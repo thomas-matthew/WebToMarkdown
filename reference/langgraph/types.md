@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -134,7 +134,7 @@ Table of contents
 
 # Types
 
-## langgraph.types [¶](https://reference.langchain.com/python/langgraph/types/#langgraph.types "Copy anchor link to this section for reference")
+## types [¶](https://reference.langchain.com/python/langgraph/types/#langgraph.types "Copy anchor link to this section for reference")
 
 | FUNCTION | DESCRIPTION |
 | --- | --- |

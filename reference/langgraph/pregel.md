@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -124,12 +124,12 @@ Table of contents
 
 # Pregel
 
-## langgraph.pregel.NodeBuilder [¶](https://reference.langchain.com/python/langgraph/pregel/#langgraph.pregel.NodeBuilder "Copy anchor link to this section for reference")
+## NodeBuilder [¶](https://reference.langchain.com/python/langgraph/pregel/#langgraph.pregel.NodeBuilder "Copy anchor link to this section for reference")
 
 | METHOD | DESCRIPTION |
 | --- | --- |
 | `subscribe_only` | Subscribe to a single channel. |
-| `subscribe_to` | Add channels to subscribe to. Node will be invoked when any of these |
+| `subscribe_to` | Add channels to subscribe to. |
 | `read_from` | Adds the specified channels to read from, without subscribing to them. |
 | `do` | Adds the specified node. |
 | `write_to` | Add channel writes. |
@@ -150,8 +150,10 @@ Subscribe to a single channel.
 subscribe_to(*channels: str, read: bool = True) -> Self
 ```
 
-Add channels to subscribe to. Node will be invoked when any of these
-channels are updated, with a dict of the channel values as input.
+Add channels to subscribe to.
+
+Node will be invoked when any of these channels are updated, with a dict of the
+channel values as input.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
@@ -188,8 +190,8 @@ Add channel writes.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `*channels` | Channel names to write to  **TYPE:** `str | ChannelWriteEntry`  **DEFAULT:** `()` |
-| `**kwargs` | Channel name and value mappings  **TYPE:** `_WriteValue`  **DEFAULT:** `{}` |
+| `*channels` | Channel names to write to.  **TYPE:** `str | ChannelWriteEntry`  **DEFAULT:** `()` |
+| `**kwargs` | Channel name and value mappings.  **TYPE:** `_WriteValue`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
@@ -211,7 +213,7 @@ build() -> PregelNode
 
 Builds the node.
 
-## langgraph.pregel.Pregel [¶](https://reference.langchain.com/python/langgraph/pregel/#langgraph.pregel.Pregel "Copy anchor link to this section for reference")
+## Pregel [¶](https://reference.langchain.com/python/langgraph/pregel/#langgraph.pregel.Pregel "Copy anchor link to this section for reference")
 
 Bases: `PregelProtocol[StateT, ContextT, InputT, OutputT]`, `Generic[StateT, ContextT, InputT, OutputT]`
 
@@ -268,17 +270,17 @@ provides a number of built-in channels:
 ##### Advanced channels: Context and BinaryOperatorAggregate[¶](https://reference.langchain.com/python/langgraph/pregel/#langgraph.pregel.Pregel--advanced-channels-context-and-binaryoperatoraggregate "Copy anchor link to this section for reference")
 
 * `Context`: exposes the value of a context manager, managing its lifecycle.
-  Useful for accessing external resources that require setup and/or teardown. eg.
+  Useful for accessing external resources that require setup and/or teardown. e.g.
   `client = Context(httpx.Client)`
 * `BinaryOperatorAggregate`: stores a persistent value, updated by applying
   a binary operator to the current value and each update
-  sent to the channel, useful for computing aggregates over multiple steps. eg.
+  sent to the channel, useful for computing aggregates over multiple steps. e.g.
   `total = BinaryOperatorAggregate(int, operator.add)`
 
 #### Examples[¶](https://reference.langchain.com/python/langgraph/pregel/#langgraph.pregel.Pregel--examples "Copy anchor link to this section for reference")
 
 Most users will interact with Pregel via a
-[StateGraph (Graph API)](https://reference.langchain.com/python/langgraph/graphs/#langgraph.graph.state.StateGraph "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">langgraph.graph.state.StateGraph</span>") or via an
+[StateGraph (Graph API)](https://reference.langchain.com/python/langgraph/graphs/#langgraph.graph.state.StateGraph "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">StateGraph</span>") or via an
 [entrypoint (Functional API)](https://reference.langchain.com/python/langgraph/func/#langgraph.func.entrypoint "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">entrypoint</span>").
 
 However, for **advanced** use cases, Pregel can be used directly. If you're
@@ -394,7 +396,7 @@ app.invoke({"a": "foo"})
 ```
 
 
-Using a BinaryOperatorAggregate channel
+Using a `BinaryOperatorAggregate` channel
 
 ```
 from langgraph.channels import EphemeralValue, BinaryOperatorAggregate
@@ -443,8 +445,9 @@ app.invoke({"a": "foo"})
 Introducing a cycle
 
 This example demonstrates how to introduce a cycle in the graph, by having
-a chain write to a channel it subscribes to. Execution will continue
-until a None value is written to the channel.
+a chain write to a channel it subscribes to.
+
+Execution will continue until a `None` value is written to the channel.
 
 ```
 from langgraph.channels import EphemeralValue
@@ -520,13 +523,13 @@ Stream graph steps for a single input.
 | `input` | The input to the graph.  **TYPE:** `InputT | Command | None` |
 | `config` | The configuration to use for the run.  **TYPE:** `RunnableConfig | None`  **DEFAULT:** `None` |
 | `context` | The static context to use for the run.  Added in version 0.6.0  **TYPE:** `ContextT | None`  **DEFAULT:** `None` |
-| `stream_mode` | The mode to stream output, defaults to `self.stream_mode`. Options are:   * `"values"`: Emit all values in the state after each step, including interrupts.   When used with functional API, values are emitted once at the end of the workflow. * `"updates"`: Emit only the node or task names and updates returned by the nodes or tasks after each step.   If multiple updates are made in the same step (e.g. multiple nodes are run) then those updates are emitted separately. * `"custom"`: Emit custom data from inside nodes or tasks using `StreamWriter`. * `"messages"`: Emit LLM messages token-by-token together with metadata for any LLM invocations inside nodes or tasks.   Will be emitted as 2-tuples `(LLM token, metadata)`. * `"checkpoints"`: Emit an event when a checkpoint is created, in the same format as returned by `get_state()`. * `"tasks"`: Emit events when tasks start and finish, including their results and errors. * `"debug"`: Emit debug events with as much information as possible for each step.   You can pass a list as the `stream_mode` parameter to stream multiple modes at once. The streamed outputs will be tuples of `(mode, data)`.  See [LangGraph streaming guide](https://docs.langchain.com/oss/python/langgraph/streaming) for more details.  **TYPE:** `StreamMode | Sequence[StreamMode] | None`  **DEFAULT:** `None` |
-| `print_mode` | Accepts the same values as `stream_mode`, but only prints the output to the console, for debugging purposes. Does not affect the output of the graph in any way.  **TYPE:** `StreamMode | Sequence[StreamMode]`  **DEFAULT:** `()` |
+| `stream_mode` | The mode to stream output, defaults to `self.stream_mode`.  Options are:   * `"values"`: Emit all values in the state after each step, including interrupts.   When used with functional API, values are emitted once at the end of the workflow. * `"updates"`: Emit only the node or task names and updates returned by the nodes or tasks after each step.   If multiple updates are made in the same step (e.g. multiple nodes are run) then those updates are emitted separately. * `"custom"`: Emit custom data from inside nodes or tasks using `StreamWriter`. * `"messages"`: Emit LLM messages token-by-token together with metadata for any LLM invocations inside nodes or tasks.   + Will be emitted as 2-tuples `(LLM token, metadata)`. * `"checkpoints"`: Emit an event when a checkpoint is created, in the same format as returned by `get_state()`. * `"tasks"`: Emit events when tasks start and finish, including their results and errors. * `"debug"`: Emit debug events with as much information as possible for each step.   You can pass a list as the `stream_mode` parameter to stream multiple modes at once. The streamed outputs will be tuples of `(mode, data)`.  See [LangGraph streaming guide](https://docs.langchain.com/oss/python/langgraph/streaming) for more details.  **TYPE:** `StreamMode | Sequence[StreamMode] | None`  **DEFAULT:** `None` |
+| `print_mode` | Accepts the same values as `stream_mode`, but only prints the output to the console, for debugging purposes.  Does not affect the output of the graph in any way.  **TYPE:** `StreamMode | Sequence[StreamMode]`  **DEFAULT:** `()` |
 | `output_keys` | The keys to stream, defaults to all non-context channels.  **TYPE:** `str | Sequence[str] | None`  **DEFAULT:** `None` |
 | `interrupt_before` | Nodes to interrupt before, defaults to all nodes in the graph.  **TYPE:** `All | Sequence[str] | None`  **DEFAULT:** `None` |
 | `interrupt_after` | Nodes to interrupt after, defaults to all nodes in the graph.  **TYPE:** `All | Sequence[str] | None`  **DEFAULT:** `None` |
-| `durability` | The durability mode for the graph execution, defaults to `"async"`. Options are:   * `"sync"`: Changes are persisted synchronously before the next step starts. * `"async"`: Changes are persisted asynchronously while the next step executes. * `"exit"`: Changes are persisted only when the graph exits.  **TYPE:** `Durability | None`  **DEFAULT:** `None` |
-| `subgraphs` | Whether to stream events from inside subgraphs, defaults to False. If `True`, the events will be emitted as tuples `(namespace, data)`, or `(namespace, mode, data)` if `stream_mode` is a list, where `namespace` is a tuple with the path to the node where a subgraph is invoked, e.g. `("parent_node:<task_id>", "child_node:<task_id>")`.  See [LangGraph streaming guide](https://docs.langchain.com/oss/python/langgraph/streaming) for more details.  **TYPE:** `bool`  **DEFAULT:** `False` |
+| `durability` | The durability mode for the graph execution, defaults to `"async"`.  Options are:   * `"sync"`: Changes are persisted synchronously before the next step starts. * `"async"`: Changes are persisted asynchronously while the next step executes. * `"exit"`: Changes are persisted only when the graph exits.  **TYPE:** `Durability | None`  **DEFAULT:** `None` |
+| `subgraphs` | Whether to stream events from inside subgraphs, defaults to `False`.  If `True`, the events will be emitted as tuples `(namespace, data)`, or `(namespace, mode, data)` if `stream_mode` is a list, where `namespace` is a tuple with the path to the node where a subgraph is invoked, e.g. `("parent_node:<task_id>", "child_node:<task_id>")`.  See [LangGraph streaming guide](https://docs.langchain.com/oss/python/langgraph/streaming) for more details.  **TYPE:** `bool`  **DEFAULT:** `False` |
 
 | YIELDS | DESCRIPTION |
 | --- | --- |
@@ -559,13 +562,13 @@ Asynchronously stream graph steps for a single input.
 | `input` | The input to the graph.  **TYPE:** `InputT | Command | None` |
 | `config` | The configuration to use for the run.  **TYPE:** `RunnableConfig | None`  **DEFAULT:** `None` |
 | `context` | The static context to use for the run.  Added in version 0.6.0  **TYPE:** `ContextT | None`  **DEFAULT:** `None` |
-| `stream_mode` | The mode to stream output, defaults to `self.stream_mode`. Options are:   * `"values"`: Emit all values in the state after each step, including interrupts.   When used with functional API, values are emitted once at the end of the workflow. * `"updates"`: Emit only the node or task names and updates returned by the nodes or tasks after each step.   If multiple updates are made in the same step (e.g. multiple nodes are run) then those updates are emitted separately. * `"custom"`: Emit custom data from inside nodes or tasks using `StreamWriter`. * `"messages"`: Emit LLM messages token-by-token together with metadata for any LLM invocations inside nodes or tasks.   Will be emitted as 2-tuples `(LLM token, metadata)`. * `"checkpoints"`: Emit an event when a checkpoint is created, in the same format as returned by `get_state()`. * `"tasks"`: Emit events when tasks start and finish, including their results and errors. * `"debug"`: Emit debug events with as much information as possible for each step.   You can pass a list as the `stream_mode` parameter to stream multiple modes at once. The streamed outputs will be tuples of `(mode, data)`.  See [LangGraph streaming guide](https://docs.langchain.com/oss/python/langgraph/streaming) for more details.  **TYPE:** `StreamMode | Sequence[StreamMode] | None`  **DEFAULT:** `None` |
-| `print_mode` | Accepts the same values as `stream_mode`, but only prints the output to the console, for debugging purposes. Does not affect the output of the graph in any way.  **TYPE:** `StreamMode | Sequence[StreamMode]`  **DEFAULT:** `()` |
+| `stream_mode` | The mode to stream output, defaults to `self.stream_mode`.  Options are:   * `"values"`: Emit all values in the state after each step, including interrupts.   When used with functional API, values are emitted once at the end of the workflow. * `"updates"`: Emit only the node or task names and updates returned by the nodes or tasks after each step.   If multiple updates are made in the same step (e.g. multiple nodes are run) then those updates are emitted separately. * `"custom"`: Emit custom data from inside nodes or tasks using `StreamWriter`. * `"messages"`: Emit LLM messages token-by-token together with metadata for any LLM invocations inside nodes or tasks.   + Will be emitted as 2-tuples `(LLM token, metadata)`. * `"checkpoints"`: Emit an event when a checkpoint is created, in the same format as returned by `get_state()`. * `"tasks"`: Emit events when tasks start and finish, including their results and errors. * `"debug"`: Emit debug events with as much information as possible for each step.   You can pass a list as the `stream_mode` parameter to stream multiple modes at once. The streamed outputs will be tuples of `(mode, data)`.  See [LangGraph streaming guide](https://docs.langchain.com/oss/python/langgraph/streaming) for more details.  **TYPE:** `StreamMode | Sequence[StreamMode] | None`  **DEFAULT:** `None` |
+| `print_mode` | Accepts the same values as `stream_mode`, but only prints the output to the console, for debugging purposes.  Does not affect the output of the graph in any way.  **TYPE:** `StreamMode | Sequence[StreamMode]`  **DEFAULT:** `()` |
 | `output_keys` | The keys to stream, defaults to all non-context channels.  **TYPE:** `str | Sequence[str] | None`  **DEFAULT:** `None` |
 | `interrupt_before` | Nodes to interrupt before, defaults to all nodes in the graph.  **TYPE:** `All | Sequence[str] | None`  **DEFAULT:** `None` |
 | `interrupt_after` | Nodes to interrupt after, defaults to all nodes in the graph.  **TYPE:** `All | Sequence[str] | None`  **DEFAULT:** `None` |
-| `durability` | The durability mode for the graph execution, defaults to `"async"`. Options are:   * `"sync"`: Changes are persisted synchronously before the next step starts. * `"async"`: Changes are persisted asynchronously while the next step executes. * `"exit"`: Changes are persisted only when the graph exits.  **TYPE:** `Durability | None`  **DEFAULT:** `None` |
-| `subgraphs` | Whether to stream events from inside subgraphs, defaults to False. If `True`, the events will be emitted as tuples `(namespace, data)`, or `(namespace, mode, data)` if `stream_mode` is a list, where `namespace` is a tuple with the path to the node where a subgraph is invoked, e.g. `("parent_node:<task_id>", "child_node:<task_id>")`.  See [LangGraph streaming guide](https://docs.langchain.com/oss/python/langgraph/streaming) for more details.  **TYPE:** `bool`  **DEFAULT:** `False` |
+| `durability` | The durability mode for the graph execution, defaults to `"async"`.  Options are:   * `"sync"`: Changes are persisted synchronously before the next step starts. * `"async"`: Changes are persisted asynchronously while the next step executes. * `"exit"`: Changes are persisted only when the graph exits.  **TYPE:** `Durability | None`  **DEFAULT:** `None` |
+| `subgraphs` | Whether to stream events from inside subgraphs, defaults to `False`.  If `True`, the events will be emitted as tuples `(namespace, data)`, or `(namespace, mode, data)` if `stream_mode` is a list, where `namespace` is a tuple with the path to the node where a subgraph is invoked, e.g. `("parent_node:<task_id>", "child_node:<task_id>")`.  See [LangGraph streaming guide](https://docs.langchain.com/oss/python/langgraph/streaming) for more details.  **TYPE:** `bool`  **DEFAULT:** `False` |
 
 | YIELDS | DESCRIPTION |
 | --- | --- |
@@ -597,11 +600,11 @@ Run the graph with a single input and config.
 | `config` | The configuration for the graph run.  **TYPE:** `RunnableConfig | None`  **DEFAULT:** `None` |
 | `context` | The static context to use for the run.  Added in version 0.6.0  **TYPE:** `ContextT | None`  **DEFAULT:** `None` |
 | `stream_mode` | The stream mode for the graph run.  **TYPE:** `StreamMode`  **DEFAULT:** `'values'` |
-| `print_mode` | Accepts the same values as `stream_mode`, but only prints the output to the console, for debugging purposes. Does not affect the output of the graph in any way.  **TYPE:** `StreamMode | Sequence[StreamMode]`  **DEFAULT:** `()` |
+| `print_mode` | Accepts the same values as `stream_mode`, but only prints the output to the console, for debugging purposes.  Does not affect the output of the graph in any way.  **TYPE:** `StreamMode | Sequence[StreamMode]`  **DEFAULT:** `()` |
 | `output_keys` | The output keys to retrieve from the graph run.  **TYPE:** `str | Sequence[str] | None`  **DEFAULT:** `None` |
 | `interrupt_before` | The nodes to interrupt the graph run before.  **TYPE:** `All | Sequence[str] | None`  **DEFAULT:** `None` |
 | `interrupt_after` | The nodes to interrupt the graph run after.  **TYPE:** `All | Sequence[str] | None`  **DEFAULT:** `None` |
-| `durability` | The durability mode for the graph execution, defaults to `"async"`. Options are:   * `"sync"`: Changes are persisted synchronously before the next step starts. * `"async"`: Changes are persisted asynchronously while the next step executes. * `"exit"`: Changes are persisted only when the graph exits.  **TYPE:** `Durability | None`  **DEFAULT:** `None` |
+| `durability` | The durability mode for the graph execution, defaults to `"async"`.  Options are:   * `"sync"`: Changes are persisted synchronously before the next step starts. * `"async"`: Changes are persisted asynchronously while the next step executes. * `"exit"`: Changes are persisted only when the graph exits.  **TYPE:** `Durability | None`  **DEFAULT:** `None` |
 | `**kwargs` | Additional keyword arguments to pass to the graph run.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
@@ -635,11 +638,11 @@ Asynchronously run the graph with a single input and config.
 | `config` | The configuration for the graph run.  **TYPE:** `RunnableConfig | None`  **DEFAULT:** `None` |
 | `context` | The static context to use for the run.  Added in version 0.6.0  **TYPE:** `ContextT | None`  **DEFAULT:** `None` |
 | `stream_mode` | The stream mode for the graph run.  **TYPE:** `StreamMode`  **DEFAULT:** `'values'` |
-| `print_mode` | Accepts the same values as `stream_mode`, but only prints the output to the console, for debugging purposes. Does not affect the output of the graph in any way.  **TYPE:** `StreamMode | Sequence[StreamMode]`  **DEFAULT:** `()` |
+| `print_mode` | Accepts the same values as `stream_mode`, but only prints the output to the console, for debugging purposes.  Does not affect the output of the graph in any way.  **TYPE:** `StreamMode | Sequence[StreamMode]`  **DEFAULT:** `()` |
 | `output_keys` | The output keys to retrieve from the graph run.  **TYPE:** `str | Sequence[str] | None`  **DEFAULT:** `None` |
 | `interrupt_before` | The nodes to interrupt the graph run before.  **TYPE:** `All | Sequence[str] | None`  **DEFAULT:** `None` |
 | `interrupt_after` | The nodes to interrupt the graph run after.  **TYPE:** `All | Sequence[str] | None`  **DEFAULT:** `None` |
-| `durability` | The durability mode for the graph execution, defaults to `"async"`. Options are:   * `"sync"`: Changes are persisted synchronously before the next step starts. * `"async"`: Changes are persisted asynchronously while the next step executes. * `"exit"`: Changes are persisted only when the graph exits.  **TYPE:** `Durability | None`  **DEFAULT:** `None` |
+| `durability` | The durability mode for the graph execution, defaults to `"async"`.  Options are:   * `"sync"`: Changes are persisted synchronously before the next step starts. * `"async"`: Changes are persisted asynchronously while the next step executes. * `"exit"`: Changes are persisted only when the graph exits.  **TYPE:** `Durability | None`  **DEFAULT:** `None` |
 | `**kwargs` | Additional keyword arguments to pass to the graph run.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
@@ -734,7 +737,7 @@ Apply updates to the graph state in bulk. Requires a checkpointer to be set.
 | PARAMETER | DESCRIPTION |
 | --- | --- |
 | `config` | The config to apply the updates to.  **TYPE:** `RunnableConfig` |
-| `supersteps` | A list of supersteps, each including a list of updates to apply sequentially to a graph state. Each update is a tuple of the form `(values, as_node, task_id)` where `task_id` is optional.  **TYPE:** `Sequence[Sequence[StateUpdate]]` |
+| `supersteps` | A list of supersteps, each including a list of updates to apply sequentially to a graph state.  Each update is a tuple of the form `(values, as_node, task_id)` where `task_id` is optional.  **TYPE:** `Sequence[Sequence[StateUpdate]]` |
 
 | RAISES | DESCRIPTION |
 | --- | --- |
@@ -758,7 +761,7 @@ Asynchronously apply updates to the graph state in bulk. Requires a checkpointer
 | PARAMETER | DESCRIPTION |
 | --- | --- |
 | `config` | The config to apply the updates to.  **TYPE:** `RunnableConfig` |
-| `supersteps` | A list of supersteps, each including a list of updates to apply sequentially to a graph state. Each update is a tuple of the form `(values, as_node, task_id)` where `task_id` is optional.  **TYPE:** `Sequence[Sequence[StateUpdate]]` |
+| `supersteps` | A list of supersteps, each including a list of updates to apply sequentially to a graph state.  Each update is a tuple of the form `(values, as_node, task_id)` where `task_id` is optional.  **TYPE:** `Sequence[Sequence[StateUpdate]]` |
 
 | RAISES | DESCRIPTION |
 | --- | --- |

@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -26,47 +26,61 @@ LangChain Reference
       * [Decorators](https://reference.langchain.com/python/langchain/middleware/#decorators)
       * [Types and utilities](https://reference.langchain.com/python/langchain/middleware/#types-and-utilities)
       * [SummarizationMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.SummarizationMiddleware)
-
-        + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.SummarizationMiddleware.__init__)
       * [HumanInTheLoopMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.HumanInTheLoopMiddleware)
-
-        + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.HumanInTheLoopMiddleware.__init__)
       * [ModelCallLimitMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelCallLimitMiddleware)
 
         + [state\_schema](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelCallLimitMiddleware.state_schema)
-        + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelCallLimitMiddleware.__init__)
       * [ToolCallLimitMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolCallLimitMiddleware)
 
         + [state\_schema](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolCallLimitMiddleware.state_schema)
-        + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolCallLimitMiddleware.__init__)
       * [ModelFallbackMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelFallbackMiddleware)
-
-        + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelFallbackMiddleware.__init__)
       * [PIIMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.PIIMiddleware)
-
-        + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.PIIMiddleware.__init__)
       * [TodoListMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.TodoListMiddleware)
 
         + [state\_schema](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.TodoListMiddleware.state_schema)
-        + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.TodoListMiddleware.__init__)
       * [LLMToolSelectorMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.LLMToolSelectorMiddleware)
-
-        + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.LLMToolSelectorMiddleware.__init__)
       * [ToolRetryMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolRetryMiddleware)
-
-        + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolRetryMiddleware.__init__)
       * [LLMToolEmulator](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.LLMToolEmulator)
-
-        + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.LLMToolEmulator.__init__)
       * [ContextEditingMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ContextEditingMiddleware)
-
-        + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ContextEditingMiddleware.__init__)
       * [ShellToolMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ShellToolMiddleware)
-
-        + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ShellToolMiddleware.__init__)
       * [FilesystemFileSearchMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.FilesystemFileSearchMiddleware)
+      * [AgentMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.AgentMiddleware)
+      * [before\_agent](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.before_agent)
+      * [before\_model](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.before_model)
+      * [after\_model](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.after_model)
+      * [after\_agent](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.after_agent)
+      * [wrap\_model\_call](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.wrap_model_call)
+      * [wrap\_tool\_call](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.wrap_tool_call)
+      * [dynamic\_prompt](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.dynamic_prompt)
+      * [hook\_config](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.hook_config)
+      * [AgentState](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.AgentState)
+      * [ModelRequest](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelRequest)
 
-        + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.FilesystemFileSearchMiddleware.__init__)
+        + [system\_prompt](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelRequest.system_prompt)
+        + [\_\_setattr\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelRequest.__setattr__)
+        + [override](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelRequest.override)
+      * [ModelResponse](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelResponse)
+
+        + [result](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelResponse.result)
+        + [structured\_response](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelResponse.structured_response)
+      * [ClearToolUsesEdit](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit)
+
+        + [trigger](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.trigger)
+        + [clear\_at\_least](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.clear_at_least)
+        + [keep](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.keep)
+        + [clear\_tool\_inputs](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.clear_tool_inputs)
+        + [exclude\_tools](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.exclude_tools)
+        + [placeholder](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.placeholder)
+        + [apply](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.apply)
+      * [InterruptOnConfig](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.InterruptOnConfig)
+
+        + [allowed\_decisions](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.InterruptOnConfig.allowed_decisions)
+        + [description](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.InterruptOnConfig.description)
+        + [args\_schema](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.InterruptOnConfig.args_schema)
+      * [ContextSize](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextSize)
+      * [ContextFraction](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextFraction)
+      * [ContextTokens](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextTokens)
+      * [ContextMessages](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextMessages)
     - [Models](https://reference.langchain.com/python/langchain/models/)
     - [Messages](https://reference.langchain.com/python/langchain/messages/)
     - [Tools](https://reference.langchain.com/python/langchain/tools/)
@@ -95,9 +109,6 @@ LangChain Reference
   + [langchain-mcp-adapters](https://reference.langchain.com/python/langchain_mcp_adapters/)
 
     langchain-mcp-adapters
-  + [langchain-model-profiles](https://reference.langchain.com/python/langchain_model_profiles/)
-
-    langchain-model-profiles
   + [langchain-tests](https://reference.langchain.com/python/langchain_tests/)
 
     langchain-tests
@@ -131,47 +142,61 @@ Table of contents
 * [Decorators](https://reference.langchain.com/python/langchain/middleware/#decorators)
 * [Types and utilities](https://reference.langchain.com/python/langchain/middleware/#types-and-utilities)
 * [SummarizationMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.SummarizationMiddleware " SummarizationMiddleware")
-
-  + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.SummarizationMiddleware.__init__)
 * [HumanInTheLoopMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.HumanInTheLoopMiddleware " HumanInTheLoopMiddleware")
-
-  + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.HumanInTheLoopMiddleware.__init__)
 * [ModelCallLimitMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelCallLimitMiddleware " ModelCallLimitMiddleware")
 
   + [state\_schema](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelCallLimitMiddleware.state_schema)
-  + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelCallLimitMiddleware.__init__)
 * [ToolCallLimitMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolCallLimitMiddleware)
 
   + [state\_schema](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolCallLimitMiddleware.state_schema)
-  + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolCallLimitMiddleware.__init__)
 * [ModelFallbackMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelFallbackMiddleware " ModelFallbackMiddleware")
-
-  + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelFallbackMiddleware.__init__)
 * [PIIMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.PIIMiddleware)
-
-  + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.PIIMiddleware.__init__)
 * [TodoListMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.TodoListMiddleware)
 
   + [state\_schema](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.TodoListMiddleware.state_schema)
-  + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.TodoListMiddleware.__init__)
-* [LLMToolSelectorMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.LLMToolSelectorMiddleware)
-
-  + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.LLMToolSelectorMiddleware.__init__)
+* [LLMToolSelectorMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.LLMToolSelectorMiddleware " LLMToolSelectorMiddleware")
 * [ToolRetryMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolRetryMiddleware)
-
-  + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolRetryMiddleware.__init__)
 * [LLMToolEmulator](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.LLMToolEmulator)
-
-  + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.LLMToolEmulator.__init__)
-* [ContextEditingMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ContextEditingMiddleware)
-
-  + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ContextEditingMiddleware.__init__)
+* [ContextEditingMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ContextEditingMiddleware " ContextEditingMiddleware")
 * [ShellToolMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ShellToolMiddleware)
+* [FilesystemFileSearchMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.FilesystemFileSearchMiddleware " FilesystemFileSearchMiddleware")
+* [AgentMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.AgentMiddleware)
+* [before\_agent](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.before_agent)
+* [before\_model](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.before_model)
+* [after\_model](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.after_model)
+* [after\_agent](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.after_agent)
+* [wrap\_model\_call](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.wrap_model_call)
+* [wrap\_tool\_call](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.wrap_tool_call)
+* [dynamic\_prompt](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.dynamic_prompt)
+* [hook\_config](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.hook_config)
+* [AgentState](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.AgentState)
+* [ModelRequest](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelRequest)
 
-  + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ShellToolMiddleware.__init__)
-* [FilesystemFileSearchMiddleware](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.FilesystemFileSearchMiddleware)
+  + [system\_prompt](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelRequest.system_prompt)
+  + [\_\_setattr\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelRequest.__setattr__)
+  + [override](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelRequest.override)
+* [ModelResponse](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelResponse)
 
-  + [\_\_init\_\_](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.FilesystemFileSearchMiddleware.__init__)
+  + [result](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelResponse.result)
+  + [structured\_response](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelResponse.structured_response)
+* [ClearToolUsesEdit](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit)
+
+  + [trigger](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.trigger)
+  + [clear\_at\_least](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.clear_at_least)
+  + [keep](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.keep)
+  + [clear\_tool\_inputs](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.clear_tool_inputs)
+  + [exclude\_tools](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.exclude_tools)
+  + [placeholder](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.placeholder)
+  + [apply](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.apply)
+* [InterruptOnConfig](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.InterruptOnConfig)
+
+  + [allowed\_decisions](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.InterruptOnConfig.allowed_decisions)
+  + [description](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.InterruptOnConfig.description)
+  + [args\_schema](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.InterruptOnConfig.args_schema)
+* [ContextSize](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextSize)
+* [ContextFraction](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextFraction)
+* [ContextTokens](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextTokens)
+* [ContextMessages](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextMessages)
 
 # Middleware
 
@@ -227,24 +252,19 @@ Core types for building middleware:
 | [`ClearToolUsesEdit`](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit) | Utility for clearing tool usage history from context |
 | [`InterruptOnConfig`](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.InterruptOnConfig) | Configuration for human-in-the-loop interruptions |
 
+[`SummarizationMiddleware`](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.SummarizationMiddleware) types:
 
-
-## langchain.agents.middleware.SummarizationMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.SummarizationMiddleware "Copy anchor link to this section for reference")
-
-Summarizes conversation history when token limits are approached.
-
-This middleware monitors message token counts and automatically summarizes older
-messages when a threshold is reached, preserving recent messages and maintaining
-context continuity by ensuring AI/Tool message pairs remain together.
-
-| METHOD | DESCRIPTION |
+| TYPE | DESCRIPTION |
 | --- | --- |
-| `__init__` | Initialize summarization middleware. |
+| [`ContextSize`](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextSize) | Union type |
+| [`ContextFraction`](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextFraction) | Summarize at fraction of total context |
+| [`ContextTokens`](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextTokens) | Summarize at token threshold |
+| [`ContextMessages`](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextMessages) | Summarize at message threshold |
 
-### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.SummarizationMiddleware.__init__ "Copy anchor link to this section for reference")
+## SummarizationMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.SummarizationMiddleware "Copy anchor link to this section for reference")
 
 ```
-__init__(
+SummarizationMiddleware(
     model: str | BaseChatModel,
     *,
     trigger: ContextSize | list[ContextSize] | None = None,
@@ -253,37 +273,41 @@ __init__(
     summary_prompt: str = DEFAULT_SUMMARY_PROMPT,
     trim_tokens_to_summarize: int | None = _DEFAULT_TRIM_TOKEN_LIMIT,
     **deprecated_kwargs: Any,
-) -> None
+)
 ```
+
+Bases: `AgentMiddleware`
+
+Summarizes conversation history when token limits are approached.
+
+This middleware monitors message token counts and automatically summarizes older
+messages when a threshold is reached, preserving recent messages and maintaining
+context continuity by ensuring AI/Tool message pairs remain together.
 
 Initialize summarization middleware.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
 | `model` | The language model to use for generating summaries.  **TYPE:** `str | BaseChatModel` |
-| `trigger` | One or more thresholds that trigger summarization. Provide a single `ContextSize` tuple or a list of tuples, in which case summarization runs when any threshold is breached. Examples: `("messages", 50)`, `("tokens", 3000)`, `[("fraction", 0.8), ("messages", 100)]`.  **TYPE:** `ContextSize | list[ContextSize] | None`  **DEFAULT:** `None` |
-| `keep` | Context retention policy applied after summarization. Provide a `ContextSize` tuple to specify how much history to preserve. Defaults to keeping the most recent 20 messages. Examples: `("messages", 20)`, `("tokens", 3000)`, or `("fraction", 0.3)`.  **TYPE:** `ContextSize`  **DEFAULT:** `('messages', _DEFAULT_MESSAGES_TO_KEEP)` |
+| `trigger` | One or more thresholds that trigger summarization.  Provide a single [`ContextSize`](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextSize "<code class=\"doc-symbol doc-symbol-heading doc-symbol-attribute\"></code>            <span class=\"doc doc-object-name doc-attribute-name\">ContextSize</span>     <span class=\"doc doc-labels\">       <small class=\"doc doc-label doc-label-module-attribute\"><code>module-attribute</code></small>   </span>") tuple or a list of tuples, in which case summarization runs when any threshold is met.  Example  ``` # Trigger summarization when 50 messages is reached ("messages", 50)  # Trigger summarization when 3000 tokens is reached ("tokens", 3000)  # Trigger summarization either when 80% of model's max input tokens # is reached or when 100 messages is reached (whichever comes first) [("fraction", 0.8), ("messages", 100)] ```  See [`ContextSize`](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextSize "<code class=\"doc-symbol doc-symbol-heading doc-symbol-attribute\"></code>            <span class=\"doc doc-object-name doc-attribute-name\">ContextSize</span>     <span class=\"doc doc-labels\">       <small class=\"doc doc-label doc-label-module-attribute\"><code>module-attribute</code></small>   </span>") for more details.  **TYPE:** `ContextSize | list[ContextSize] | None`  **DEFAULT:** `None` |
+| `keep` | Context retention policy applied after summarization.  Provide a [`ContextSize`](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextSize "<code class=\"doc-symbol doc-symbol-heading doc-symbol-attribute\"></code>            <span class=\"doc doc-object-name doc-attribute-name\">ContextSize</span>     <span class=\"doc doc-labels\">       <small class=\"doc doc-label doc-label-module-attribute\"><code>module-attribute</code></small>   </span>") tuple to specify how much history to preserve.  Defaults to keeping the most recent `20` messages.  Does not support multiple values like `trigger`.  Example  ``` # Keep the most recent 20 messages ("messages", 20)  # Keep the most recent 3000 tokens ("tokens", 3000)  # Keep the most recent 30% of the model's max input tokens ("fraction", 0.3) ```  **TYPE:** `ContextSize`  **DEFAULT:** `('messages', _DEFAULT_MESSAGES_TO_KEEP)` |
 | `token_counter` | Function to count tokens in messages.  **TYPE:** `TokenCounter`  **DEFAULT:** `count_tokens_approximately` |
 | `summary_prompt` | Prompt template for generating summaries.  **TYPE:** `str`  **DEFAULT:** `DEFAULT_SUMMARY_PROMPT` |
-| `trim_tokens_to_summarize` | Maximum tokens to keep when preparing messages for the summarization call. Pass `None` to skip trimming entirely.  **TYPE:** `int | None`  **DEFAULT:** `_DEFAULT_TRIM_TOKEN_LIMIT` |
+| `trim_tokens_to_summarize` | Maximum tokens to keep when preparing messages for the summarization call.  Pass `None` to skip trimming entirely.  **TYPE:** `int | None`  **DEFAULT:** `_DEFAULT_TRIM_TOKEN_LIMIT` |
 
-## langchain.agents.middleware.HumanInTheLoopMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.HumanInTheLoopMiddleware "Copy anchor link to this section for reference")
-
-Human in the loop middleware.
-
-| METHOD | DESCRIPTION |
-| --- | --- |
-| `__init__` | Initialize the human in the loop middleware. |
-
-### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.HumanInTheLoopMiddleware.__init__ "Copy anchor link to this section for reference")
+## HumanInTheLoopMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.HumanInTheLoopMiddleware "Copy anchor link to this section for reference")
 
 ```
-__init__(
+HumanInTheLoopMiddleware(
     interrupt_on: dict[str, bool | InterruptOnConfig],
     *,
     description_prefix: str = "Tool execution requires approval",
-) -> None
+)
 ```
+
+Bases: `AgentMiddleware[StateT, ContextT]`
+
+Human in the loop middleware.
 
 Initialize the human in the loop middleware.
 
@@ -292,7 +316,18 @@ Initialize the human in the loop middleware.
 | `interrupt_on` | Mapping of tool name to allowed actions.  If a tool doesn't have an entry, it's auto-approved by default.   * `True` indicates all decisions are allowed: approve, edit, and reject. * `False` indicates that the tool is auto-approved. * `InterruptOnConfig` indicates the specific decisions allowed for this   tool.  The `InterruptOnConfig` can include a `description` field (`str` or   `Callable`) for custom formatting of the interrupt description.  **TYPE:** `dict[str, bool | InterruptOnConfig]` |
 | `description_prefix` | The prefix to use when constructing action requests.  This is used to provide context about the tool call and the action being requested.  Not used if a tool has a `description` in its `InterruptOnConfig`.  **TYPE:** `str`  **DEFAULT:** `'Tool execution requires approval'` |
 
-## langchain.agents.middleware.ModelCallLimitMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelCallLimitMiddleware "Copy anchor link to this section for reference")
+## ModelCallLimitMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelCallLimitMiddleware "Copy anchor link to this section for reference")
+
+```
+ModelCallLimitMiddleware(
+    *,
+    thread_limit: int | None = None,
+    run_limit: int | None = None,
+    exit_behavior: Literal["end", "error"] = "end",
+)
+```
+
+Bases: `AgentMiddleware[ModelCallLimitState, Any]`
 
 Tracks model call counts and enforces limits.
 
@@ -321,9 +356,17 @@ agent = create_agent("openai:gpt-4o", middleware=[call_tracker])
 result = await agent.invoke({"messages": [HumanMessage("Help me with a task")]})
 ```
 
-| METHOD | DESCRIPTION |
+Initialize the call tracking middleware.
+
+| PARAMETER | DESCRIPTION |
 | --- | --- |
-| `__init__` | Initialize the call tracking middleware. |
+| `thread_limit` | Maximum number of model calls allowed per thread.  `None` means no limit.  **TYPE:** `int | None`  **DEFAULT:** `None` |
+| `run_limit` | Maximum number of model calls allowed per run.  `None` means no limit.  **TYPE:** `int | None`  **DEFAULT:** `None` |
+| `exit_behavior` | What to do when limits are exceeded.   * `'end'`: Jump to the end of the agent execution and   inject an artificial AI message indicating that the limit was   exceeded. * `'error'`: Raise a `ModelCallLimitExceededError`  **TYPE:** `Literal['end', 'error']`  **DEFAULT:** `'end'` |
+
+| RAISES | DESCRIPTION |
+| --- | --- |
+| `ValueError` | If both limits are `None` or if `exit_behavior` is invalid. |
 
 ### state\_schema `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelCallLimitMiddleware.state_schema "Copy anchor link to this section for reference")
 
@@ -333,30 +376,19 @@ state_schema = ModelCallLimitState
 
 The schema for state passed to the middleware nodes.
 
-### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelCallLimitMiddleware.__init__ "Copy anchor link to this section for reference")
+## ToolCallLimitMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolCallLimitMiddleware "Copy anchor link to this section for reference")
 
 ```
-__init__(
+ToolCallLimitMiddleware(
     *,
+    tool_name: str | None = None,
     thread_limit: int | None = None,
     run_limit: int | None = None,
-    exit_behavior: Literal["end", "error"] = "end",
-) -> None
+    exit_behavior: ExitBehavior = "continue",
+)
 ```
 
-Initialize the call tracking middleware.
-
-| PARAMETER | DESCRIPTION |
-| --- | --- |
-| `thread_limit` | Maximum number of model calls allowed per thread.  `None` means no limit.  **TYPE:** `int | None`  **DEFAULT:** `None` |
-| `run_limit` | Maximum number of model calls allowed per run.  `None` means no limit.  **TYPE:** `int | None`  **DEFAULT:** `None` |
-| `exit_behavior` | What to do when limits are exceeded. - `'end'`: Jump to the end of the agent execution and inject an artificial AI message indicating that the limit was exceeded. - `'error'`: Raise a `ModelCallLimitExceededError`  **TYPE:** `Literal['end', 'error']`  **DEFAULT:** `'end'` |
-
-| RAISES | DESCRIPTION |
-| --- | --- |
-| `ValueError` | If both limits are `None` or if `exit_behavior` is invalid. |
-
-## langchain.agents.middleware.ToolCallLimitMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolCallLimitMiddleware "Copy anchor link to this section for reference")
+Bases: `AgentMiddleware[ToolCallLimitState[ResponseT], ContextT]`, `Generic[ResponseT, ContextT]`
 
 Track tool call counts and enforces limits during agent execution.
 
@@ -404,7 +436,9 @@ Raise exception on limit
 
 ```
 # Strict limit with exception handling
-limiter = ToolCallLimitMiddleware(tool_name="search", thread_limit=5, exit_behavior="error")
+limiter = ToolCallLimitMiddleware(
+    tool_name="search", thread_limit=5, exit_behavior="error"
+)
 
 agent = create_agent("openai:gpt-4o", middleware=[limiter])
 
@@ -414,9 +448,18 @@ except ToolCallLimitExceededError as e:
     print(f"Search limit exceeded: {e}")
 ```
 
-| METHOD | DESCRIPTION |
+Initialize the tool call limit middleware.
+
+| PARAMETER | DESCRIPTION |
 | --- | --- |
-| `__init__` | Initialize the tool call limit middleware. |
+| `tool_name` | Name of the specific tool to limit. If `None`, limits apply to all tools.  **TYPE:** `str | None`  **DEFAULT:** `None` |
+| `thread_limit` | Maximum number of tool calls allowed per thread. `None` means no limit.  **TYPE:** `int | None`  **DEFAULT:** `None` |
+| `run_limit` | Maximum number of tool calls allowed per run. `None` means no limit.  **TYPE:** `int | None`  **DEFAULT:** `None` |
+| `exit_behavior` | How to handle when limits are exceeded.   * `'continue'`: Block exceeded tools with error messages, let other   tools continue. Model decides when to end. * `'error'`: Raise a `ToolCallLimitExceededError` exception * `'end'`: Stop execution immediately with a `ToolMessage` + AI message   for the single tool call that exceeded the limit. Raises   `NotImplementedError` if there are multiple parallel tool   calls to other tools or multiple pending tool calls.  **TYPE:** `ExitBehavior`  **DEFAULT:** `'continue'` |
+
+| RAISES | DESCRIPTION |
+| --- | --- |
+| `ValueError` | If both limits are `None`, if `exit_behavior` is invalid, or if `run_limit` exceeds `thread_limit`. |
 
 ### state\_schema `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolCallLimitMiddleware.state_schema "Copy anchor link to this section for reference")
 
@@ -426,32 +469,15 @@ state_schema = ToolCallLimitState
 
 The schema for state passed to the middleware nodes.
 
-### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolCallLimitMiddleware.__init__ "Copy anchor link to this section for reference")
+## ModelFallbackMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelFallbackMiddleware "Copy anchor link to this section for reference")
 
 ```
-__init__(
-    *,
-    tool_name: str | None = None,
-    thread_limit: int | None = None,
-    run_limit: int | None = None,
-    exit_behavior: ExitBehavior = "continue",
-) -> None
+ModelFallbackMiddleware(
+    first_model: str | BaseChatModel, *additional_models: str | BaseChatModel
+)
 ```
 
-Initialize the tool call limit middleware.
-
-| PARAMETER | DESCRIPTION |
-| --- | --- |
-| `tool_name` | Name of the specific tool to limit. If `None`, limits apply to all tools.  **TYPE:** `str | None`  **DEFAULT:** `None` |
-| `thread_limit` | Maximum number of tool calls allowed per thread. `None` means no limit.  **TYPE:** `int | None`  **DEFAULT:** `None` |
-| `run_limit` | Maximum number of tool calls allowed per run. `None` means no limit.  **TYPE:** `int | None`  **DEFAULT:** `None` |
-| `exit_behavior` | How to handle when limits are exceeded. - `'continue'`: Block exceeded tools with error messages, let other tools continue. Model decides when to end. - `'error'`: Raise a `ToolCallLimitExceededError` exception - `'end'`: Stop execution immediately with a `ToolMessage` + AI message for the single tool call that exceeded the limit. Raises `NotImplementedError` if there are multiple parallel tool calls to other tools or multiple pending tool calls.  **TYPE:** `ExitBehavior`  **DEFAULT:** `'continue'` |
-
-| RAISES | DESCRIPTION |
-| --- | --- |
-| `ValueError` | If both limits are `None`, if `exit_behavior` is invalid, or if `run_limit` exceeds thread\_limit. |
-
-## langchain.agents.middleware.ModelFallbackMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelFallbackMiddleware "Copy anchor link to this section for reference")
+Bases: `AgentMiddleware`
 
 Automatic fallback to alternative models on errors.
 
@@ -478,18 +504,6 @@ agent = create_agent(
 result = await agent.invoke({"messages": [HumanMessage("Hello")]})
 ```
 
-| METHOD | DESCRIPTION |
-| --- | --- |
-| `__init__` | Initialize model fallback middleware. |
-
-### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelFallbackMiddleware.__init__ "Copy anchor link to this section for reference")
-
-```
-__init__(
-    first_model: str | BaseChatModel, *additional_models: str | BaseChatModel
-) -> None
-```
-
 Initialize model fallback middleware.
 
 | PARAMETER | DESCRIPTION |
@@ -497,7 +511,21 @@ Initialize model fallback middleware.
 | `first_model` | First fallback model (string name or instance).  **TYPE:** `str | BaseChatModel` |
 | `*additional_models` | Additional fallbacks in order.  **TYPE:** `str | BaseChatModel`  **DEFAULT:** `()` |
 
-## langchain.agents.middleware.PIIMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.PIIMiddleware "Copy anchor link to this section for reference")
+## PIIMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.PIIMiddleware "Copy anchor link to this section for reference")
+
+```
+PIIMiddleware(
+    pii_type: Literal["email", "credit_card", "ip", "mac_address", "url"] | str,
+    *,
+    strategy: Literal["block", "redact", "mask", "hash"] = "redact",
+    detector: Callable[[str], list[PIIMatch]] | str | None = None,
+    apply_to_input: bool = True,
+    apply_to_output: bool = False,
+    apply_to_tool_results: bool = False,
+)
+```
+
+Bases: `AgentMiddleware`
 
 Detect and handle Personally Identifiable Information (PII) in conversations.
 
@@ -562,24 +590,6 @@ agent = create_agent(
 )
 ```
 
-| METHOD | DESCRIPTION |
-| --- | --- |
-| `__init__` | Initialize the PII detection middleware. |
-
-### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.PIIMiddleware.__init__ "Copy anchor link to this section for reference")
-
-```
-__init__(
-    pii_type: Literal["email", "credit_card", "ip", "mac_address", "url"] | str,
-    *,
-    strategy: Literal["block", "redact", "mask", "hash"] = "redact",
-    detector: Callable[[str], list[PIIMatch]] | str | None = None,
-    apply_to_input: bool = True,
-    apply_to_output: bool = False,
-    apply_to_tool_results: bool = False,
-) -> None
-```
-
 Initialize the PII detection middleware.
 
 | PARAMETER | DESCRIPTION |
@@ -595,7 +605,17 @@ Initialize the PII detection middleware.
 | --- | --- |
 | `ValueError` | If `pii_type` is not built-in and no detector is provided. |
 
-## langchain.agents.middleware.TodoListMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.TodoListMiddleware "Copy anchor link to this section for reference")
+## TodoListMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.TodoListMiddleware "Copy anchor link to this section for reference")
+
+```
+TodoListMiddleware(
+    *,
+    system_prompt: str = WRITE_TODOS_SYSTEM_PROMPT,
+    tool_description: str = WRITE_TODOS_TOOL_DESCRIPTION,
+)
+```
+
+Bases: `AgentMiddleware`
 
 Middleware that provides todo list management capabilities to agents.
 
@@ -621,14 +641,12 @@ result = await agent.invoke({"messages": [HumanMessage("Help me refactor my code
 print(result["todos"])  # Array of todo items with status tracking
 ```
 
+Initialize the `TodoListMiddleware` with optional custom prompts.
+
 | PARAMETER | DESCRIPTION |
 | --- | --- |
 | `system_prompt` | Custom system prompt to guide the agent on using the todo tool.  **TYPE:** `str`  **DEFAULT:** `WRITE_TODOS_SYSTEM_PROMPT` |
-| `tool_description` | Custom description for the write\_todos tool.  **TYPE:** `str`  **DEFAULT:** `WRITE_TODOS_TOOL_DESCRIPTION` |
-
-| METHOD | DESCRIPTION |
-| --- | --- |
-| `__init__` | Initialize the `TodoListMiddleware` with optional custom prompts. |
+| `tool_description` | Custom description for the `write_todos` tool.  **TYPE:** `str`  **DEFAULT:** `WRITE_TODOS_TOOL_DESCRIPTION` |
 
 ### state\_schema `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.TodoListMiddleware.state_schema "Copy anchor link to this section for reference")
 
@@ -638,24 +656,19 @@ state_schema = PlanningState
 
 The schema for state passed to the middleware nodes.
 
-### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.TodoListMiddleware.__init__ "Copy anchor link to this section for reference")
+## LLMToolSelectorMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.LLMToolSelectorMiddleware "Copy anchor link to this section for reference")
 
 ```
-__init__(
+LLMToolSelectorMiddleware(
     *,
-    system_prompt: str = WRITE_TODOS_SYSTEM_PROMPT,
-    tool_description: str = WRITE_TODOS_TOOL_DESCRIPTION,
-) -> None
+    model: str | BaseChatModel | None = None,
+    system_prompt: str = DEFAULT_SYSTEM_PROMPT,
+    max_tools: int | None = None,
+    always_include: list[str] | None = None,
+)
 ```
 
-Initialize the `TodoListMiddleware` with optional custom prompts.
-
-| PARAMETER | DESCRIPTION |
-| --- | --- |
-| `system_prompt` | Custom system prompt to guide the agent on using the todo tool.  **TYPE:** `str`  **DEFAULT:** `WRITE_TODOS_SYSTEM_PROMPT` |
-| `tool_description` | Custom description for the `write_todos` tool.  **TYPE:** `str`  **DEFAULT:** `WRITE_TODOS_TOOL_DESCRIPTION` |
-
-## langchain.agents.middleware.LLMToolSelectorMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.LLMToolSelectorMiddleware "Copy anchor link to this section for reference")
+Bases: `AgentMiddleware`
 
 Uses an LLM to select relevant tools before calling the main model.
 
@@ -685,32 +698,32 @@ Use a smaller model for selection
 middleware = LLMToolSelectorMiddleware(model="openai:gpt-4o-mini", max_tools=2)
 ```
 
-| METHOD | DESCRIPTION |
-| --- | --- |
-| `__init__` | Initialize the tool selector. |
-
-### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.LLMToolSelectorMiddleware.__init__ "Copy anchor link to this section for reference")
-
-```
-__init__(
-    *,
-    model: str | BaseChatModel | None = None,
-    system_prompt: str = DEFAULT_SYSTEM_PROMPT,
-    max_tools: int | None = None,
-    always_include: list[str] | None = None,
-) -> None
-```
-
 Initialize the tool selector.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
 | `model` | Model to use for selection.  If not provided, uses the agent's main model.  Can be a model identifier string or `BaseChatModel` instance.  **TYPE:** `str | BaseChatModel | None`  **DEFAULT:** `None` |
 | `system_prompt` | Instructions for the selection model.  **TYPE:** `str`  **DEFAULT:** `DEFAULT_SYSTEM_PROMPT` |
-| `max_tools` | Maximum number of tools to select.  If the model selects more, only the first `max_tools` will be used.  No limit if not specified.  **TYPE:** `int | None`  **DEFAULT:** `None` |
+| `max_tools` | Maximum number of tools to select.  If the model selects more, only the first `max_tools` will be used.  If not specified, there is no limit.  **TYPE:** `int | None`  **DEFAULT:** `None` |
 | `always_include` | Tool names to always include regardless of selection.  These do not count against the `max_tools` limit.  **TYPE:** `list[str] | None`  **DEFAULT:** `None` |
 
-## langchain.agents.middleware.ToolRetryMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolRetryMiddleware "Copy anchor link to this section for reference")
+## ToolRetryMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolRetryMiddleware "Copy anchor link to this section for reference")
+
+```
+ToolRetryMiddleware(
+    *,
+    max_retries: int = 2,
+    tools: list[BaseTool | str] | None = None,
+    retry_on: RetryOn = (Exception,),
+    on_failure: OnFailure = "continue",
+    backoff_factor: float = 2.0,
+    initial_delay: float = 1.0,
+    max_delay: float = 60.0,
+    jitter: bool = True,
+)
+```
+
+Bases: `AgentMiddleware`
 
 Middleware that automatically retries failed tool calls with configurable backoff.
 
@@ -718,7 +731,7 @@ Supports retrying on specific exceptions and exponential backoff.
 
 Examples:
 
-Basic usage with default settings (2 retries, exponential backoff):
+Basic usage with default settings (2 retries, exponential backoff)
 
 ```
 from langchain.agents import create_agent
@@ -727,7 +740,7 @@ from langchain.agents.middleware import ToolRetryMiddleware
 agent = create_agent(model, tools=[search_tool], middleware=[ToolRetryMiddleware()])
 ```
 
-Retry specific exceptions only:
+Retry specific exceptions only
 
 ```
 from requests.exceptions import RequestException, Timeout
@@ -739,7 +752,7 @@ retry = ToolRetryMiddleware(
 )
 ```
 
-Custom exception filtering:
+Custom exception filtering
 
 ```
 from requests.exceptions import HTTPError
@@ -758,7 +771,7 @@ retry = ToolRetryMiddleware(
 )
 ```
 
-Apply to specific tools with custom error handling:
+Apply to specific tools with custom error handling
 
 ```
 def format_error(exc: Exception) -> str:
@@ -772,7 +785,7 @@ retry = ToolRetryMiddleware(
 )
 ```
 
-Apply to specific tools using BaseTool instances:
+Apply to specific tools using `BaseTool` instances
 
 ```
 from langchain_core.tools import tool
@@ -790,7 +803,7 @@ retry = ToolRetryMiddleware(
 )
 ```
 
-Constant backoff (no exponential growth):
+Constant backoff (no exponential growth)
 
 ```
 retry = ToolRetryMiddleware(
@@ -800,44 +813,23 @@ retry = ToolRetryMiddleware(
 )
 ```
 
-Raise exception on failure:
+Raise exception on failure
 
 ```
 retry = ToolRetryMiddleware(
     max_retries=2,
-    on_failure="raise",  # Re-raise exception instead of returning message
+    on_failure="error",  # Re-raise exception instead of returning message
 )
-```
-
-| METHOD | DESCRIPTION |
-| --- | --- |
-| `__init__` | Initialize `ToolRetryMiddleware`. |
-
-### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ToolRetryMiddleware.__init__ "Copy anchor link to this section for reference")
-
-```
-__init__(
-    *,
-    max_retries: int = 2,
-    tools: list[BaseTool | str] | None = None,
-    retry_on: tuple[type[Exception], ...] | Callable[[Exception], bool] = (Exception,),
-    on_failure: Literal["raise", "return_message"]
-    | Callable[[Exception], str] = "return_message",
-    backoff_factor: float = 2.0,
-    initial_delay: float = 1.0,
-    max_delay: float = 60.0,
-    jitter: bool = True,
-) -> None
 ```
 
 Initialize `ToolRetryMiddleware`.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `max_retries` | Maximum number of retry attempts after the initial call. Default is `2` retries (`3` total attempts). Must be `>= 0`.  **TYPE:** `int`  **DEFAULT:** `2` |
+| `max_retries` | Maximum number of retry attempts after the initial call.  Must be `>= 0`.  **TYPE:** `int`  **DEFAULT:** `2` |
 | `tools` | Optional list of tools or tool names to apply retry logic to.  Can be a list of `BaseTool` instances or tool name strings.  If `None`, applies to all tools.  **TYPE:** `list[BaseTool | str] | None`  **DEFAULT:** `None` |
-| `retry_on` | Either a tuple of exception types to retry on, or a callable that takes an exception and returns `True` if it should be retried.  Default is to retry on all exceptions.  **TYPE:** `tuple[type[Exception], ...] | Callable[[Exception], bool]`  **DEFAULT:** `(Exception,)` |
-| `on_failure` | Behavior when all retries are exhausted. Options:   * `'return_message'`: Return a `ToolMessage` with error details,   allowing the LLM to handle the failure and potentially recover. * `'raise'`: Re-raise the exception, stopping agent execution. * Custom callable: Function that takes the exception and returns a   string for the `ToolMessage` content, allowing custom error   formatting.  **TYPE:** `Literal['raise', 'return_message'] | Callable[[Exception], str]`  **DEFAULT:** `'return_message'` |
+| `retry_on` | Either a tuple of exception types to retry on, or a callable that takes an exception and returns `True` if it should be retried.  Default is to retry on all exceptions.  **TYPE:** `RetryOn`  **DEFAULT:** `(Exception,)` |
+| `on_failure` | Behavior when all retries are exhausted.  Options:   * `'continue'`: Return a `ToolMessage` with error details,   allowing the LLM to handle the failure and potentially recover. * `'error'`: Re-raise the exception, stopping agent execution. * **Custom callable:** Function that takes the exception and returns a   string for the `ToolMessage` content, allowing custom error   formatting.   **Deprecated values** (for backwards compatibility):   * `'return_message'`: Use `'continue'` instead. * `'raise'`: Use `'error'` instead.  **TYPE:** `OnFailure`  **DEFAULT:** `'continue'` |
 | `backoff_factor` | Multiplier for exponential backoff.  Each retry waits `initial_delay * (backoff_factor ** retry_number)` seconds.  Set to `0.0` for constant delay.  **TYPE:** `float`  **DEFAULT:** `2.0` |
 | `initial_delay` | Initial delay in seconds before first retry.  **TYPE:** `float`  **DEFAULT:** `1.0` |
 | `max_delay` | Maximum delay in seconds between retries.  Caps exponential backoff growth.  **TYPE:** `float`  **DEFAULT:** `60.0` |
@@ -847,14 +839,24 @@ Initialize `ToolRetryMiddleware`.
 | --- | --- |
 | `ValueError` | If `max_retries < 0` or delays are negative. |
 
-## langchain.agents.middleware.LLMToolEmulator [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.LLMToolEmulator "Copy anchor link to this section for reference")
+## LLMToolEmulator [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.LLMToolEmulator "Copy anchor link to this section for reference")
+
+```
+LLMToolEmulator(
+    *,
+    tools: list[str | BaseTool] | None = None,
+    model: str | BaseChatModel | None = None,
+)
+```
+
+Bases: `AgentMiddleware`
 
 Emulates specified tools using an LLM instead of executing them.
 
 This middleware allows selective emulation of tools for testing purposes.
 
 By default (when `tools=None`), all tools are emulated. You can specify which
-tools to emulate by passing a list of tool names or BaseTool instances.
+tools to emulate by passing a list of tool names or `BaseTool` instances.
 
 Examples:
 
@@ -892,20 +894,6 @@ Emulate specific tools by passing tool instances
 middleware = LLMToolEmulator(tools=[get_weather, get_user_location])
 ```
 
-| METHOD | DESCRIPTION |
-| --- | --- |
-| `__init__` | Initialize the tool emulator. |
-
-### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.LLMToolEmulator.__init__ "Copy anchor link to this section for reference")
-
-```
-__init__(
-    *,
-    tools: list[str | BaseTool] | None = None,
-    model: str | BaseChatModel | None = None,
-) -> None
-```
-
 Initialize the tool emulator.
 
 | PARAMETER | DESCRIPTION |
@@ -913,7 +901,17 @@ Initialize the tool emulator.
 | `tools` | List of tool names (`str`) or `BaseTool` instances to emulate.  If `None`, ALL tools will be emulated.  If empty list, no tools will be emulated.  **TYPE:** `list[str | BaseTool] | None`  **DEFAULT:** `None` |
 | `model` | Model to use for emulation.  Defaults to `'anthropic:claude-sonnet-4-5-20250929'`.  Can be a model identifier string or `BaseChatModel` instance.  **TYPE:** `str | BaseChatModel | None`  **DEFAULT:** `None` |
 
-## langchain.agents.middleware.ContextEditingMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ContextEditingMiddleware "Copy anchor link to this section for reference")
+## ContextEditingMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ContextEditingMiddleware "Copy anchor link to this section for reference")
+
+```
+ContextEditingMiddleware(
+    *,
+    edits: Iterable[ContextEdit] | None = None,
+    token_count_method: Literal["approximate", "model"] = "approximate",
+)
+```
+
+Bases: `AgentMiddleware`
 
 Automatically prune tool results to manage context size.
 
@@ -921,21 +919,7 @@ The middleware applies a sequence of edits when the total input token count exce
 configured thresholds.
 
 Currently the `ClearToolUsesEdit` strategy is supported, aligning with Anthropic's
-`clear_tool_uses_20250919` behavior [(read more)](https://docs.claude.com/en/docs/agents-and-tools/tool-use/memory-tool).
-
-| METHOD | DESCRIPTION |
-| --- | --- |
-| `__init__` | Initialize an instance of context editing middleware. |
-
-### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ContextEditingMiddleware.__init__ "Copy anchor link to this section for reference")
-
-```
-__init__(
-    *,
-    edits: Iterable[ContextEdit] | None = None,
-    token_count_method: Literal["approximate", "model"] = "approximate",
-) -> None
-```
+`clear_tool_uses_20250919` behavior [(read more)](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool).
 
 Initialize an instance of context editing middleware.
 
@@ -944,7 +928,24 @@ Initialize an instance of context editing middleware.
 | `edits` | Sequence of edit strategies to apply.  Defaults to a single `ClearToolUsesEdit` mirroring Anthropic defaults.  **TYPE:** `Iterable[ContextEdit] | None`  **DEFAULT:** `None` |
 | `token_count_method` | Whether to use approximate token counting (faster, less accurate) or exact counting implemented by the chat model (potentially slower, more accurate).  **TYPE:** `Literal['approximate', 'model']`  **DEFAULT:** `'approximate'` |
 
-## langchain.agents.middleware.ShellToolMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ShellToolMiddleware "Copy anchor link to this section for reference")
+## ShellToolMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ShellToolMiddleware "Copy anchor link to this section for reference")
+
+```
+ShellToolMiddleware(
+    workspace_root: str | Path | None = None,
+    *,
+    startup_commands: tuple[str, ...] | list[str] | str | None = None,
+    shutdown_commands: tuple[str, ...] | list[str] | str | None = None,
+    execution_policy: BaseExecutionPolicy | None = None,
+    redaction_rules: tuple[RedactionRule, ...] | list[RedactionRule] | None = None,
+    tool_description: str | None = None,
+    tool_name: str = SHELL_TOOL_NAME,
+    shell_command: Sequence[str] | str | None = None,
+    env: Mapping[str, Any] | None = None,
+)
+```
+
+Bases: `AgentMiddleware[ShellToolState, Any]`
 
 Middleware that registers a persistent shell tool for agents.
 
@@ -961,28 +962,7 @@ to match your deployment's security posture:
 
 When no policy is provided the middleware defaults to `HostExecutionPolicy`.
 
-| METHOD | DESCRIPTION |
-| --- | --- |
-| `__init__` | Initialize the middleware. |
-
-### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ShellToolMiddleware.__init__ "Copy anchor link to this section for reference")
-
-```
-__init__(
-    workspace_root: str | Path | None = None,
-    *,
-    startup_commands: tuple[str, ...] | list[str] | str | None = None,
-    shutdown_commands: tuple[str, ...] | list[str] | str | None = None,
-    execution_policy: BaseExecutionPolicy | None = None,
-    redaction_rules: tuple[RedactionRule, ...] | list[RedactionRule] | None = None,
-    tool_description: str | None = None,
-    tool_name: str = SHELL_TOOL_NAME,
-    shell_command: Sequence[str] | str | None = None,
-    env: Mapping[str, Any] | None = None,
-) -> None
-```
-
-Initialize the middleware.
+Initialize an instance of `ShellToolMiddleware`.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
@@ -996,7 +976,15 @@ Initialize the middleware.
 | `shell_command` | Optional shell executable (string) or argument sequence used to launch the persistent session.  Defaults to an implementation-defined bash command.  **TYPE:** `Sequence[str] | str | None`  **DEFAULT:** `None` |
 | `env` | Optional environment variables to supply to the shell session.  Values are coerced to strings before command execution. If omitted, the session inherits the parent process environment.  **TYPE:** `Mapping[str, Any] | None`  **DEFAULT:** `None` |
 
-## langchain.agents.middleware.FilesystemFileSearchMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.FilesystemFileSearchMiddleware "Copy anchor link to this section for reference")
+## FilesystemFileSearchMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.FilesystemFileSearchMiddleware "Copy anchor link to this section for reference")
+
+```
+FilesystemFileSearchMiddleware(
+    *, root_path: str, use_ripgrep: bool = True, max_file_size_mb: int = 10
+)
+```
+
+Bases: `AgentMiddleware`
 
 Provides Glob and Grep search over filesystem files.
 
@@ -1022,24 +1010,942 @@ agent = create_agent(
 )
 ```
 
-| METHOD | DESCRIPTION |
-| --- | --- |
-| `__init__` | Initialize the search middleware. |
-
-### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.FilesystemFileSearchMiddleware.__init__ "Copy anchor link to this section for reference")
-
-```
-__init__(
-    *, root_path: str, use_ripgrep: bool = True, max_file_size_mb: int = 10
-) -> None
-```
-
 Initialize the search middleware.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
 | `root_path` | Root directory to search.  **TYPE:** `str` |
-| `use_ripgrep` | Whether to use ripgrep for search.  Falls back to Python if ripgrep unavailable.  **TYPE:** `bool`  **DEFAULT:** `True` |
+| `use_ripgrep` | Whether to use `ripgrep` for search.  Falls back to Python if `ripgrep` unavailable.  **TYPE:** `bool`  **DEFAULT:** `True` |
 | `max_file_size_mb` | Maximum file size to search in MB.  **TYPE:** `int`  **DEFAULT:** `10` |
+
+## AgentMiddleware [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.AgentMiddleware "Copy anchor link to this section for reference")
+
+Bases: `Generic[StateT, ContextT]`
+
+Base middleware class for an agent.
+
+Subclass this and implement any of the defined methods to customize agent behavior
+between steps in the main agent loop.
+
+## before\_agent [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.before_agent "Copy anchor link to this section for reference")
+
+```
+before_agent(
+    func: _CallableWithStateAndRuntime[StateT, ContextT] | None = None,
+    *,
+    state_schema: type[StateT] | None = None,
+    tools: list[BaseTool] | None = None,
+    can_jump_to: list[JumpTo] | None = None,
+    name: str | None = None,
+) -> (
+    Callable[
+        [_CallableWithStateAndRuntime[StateT, ContextT]],
+        AgentMiddleware[StateT, ContextT],
+    ]
+    | AgentMiddleware[StateT, ContextT]
+)
+```
+
+Decorator used to dynamically create a middleware with the `before_agent` hook.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `func` | The function to be decorated.  Must accept: `state: StateT, runtime: Runtime[ContextT]` - State and runtime context  **TYPE:** `_CallableWithStateAndRuntime[StateT, ContextT] | None`  **DEFAULT:** `None` |
+| `state_schema` | Optional custom state schema type.  If not provided, uses the default `AgentState` schema.  **TYPE:** `type[StateT] | None`  **DEFAULT:** `None` |
+| `tools` | Optional list of additional tools to register with this middleware.  **TYPE:** `list[BaseTool] | None`  **DEFAULT:** `None` |
+| `can_jump_to` | Optional list of valid jump destinations for conditional edges.  Valid values are: `'tools'`, `'model'`, `'end'`  **TYPE:** `list[JumpTo] | None`  **DEFAULT:** `None` |
+| `name` | Optional name for the generated middleware class.  If not provided, uses the decorated function's name.  **TYPE:** `str | None`  **DEFAULT:** `None` |
+
+| RETURNS | DESCRIPTION |
+| --- | --- |
+| `Callable[[_CallableWithStateAndRuntime[StateT, ContextT]], AgentMiddleware[StateT, ContextT]] | AgentMiddleware[StateT, ContextT]` | Either an `AgentMiddleware` instance (if func is provided directly) or a decorator function that can be applied to a function it is wrapping. |
+
+The decorated function should return:
+
+* `dict[str, Any]` - State updates to merge into the agent state
+* `Command` - A command to control flow (e.g., jump to different node)
+* `None` - No state updates or flow control
+
+Examples:
+
+Basic usage
+
+```
+@before_agent
+def log_before_agent(state: AgentState, runtime: Runtime) -> None:
+    print(f"Starting agent with {len(state['messages'])} messages")
+```
+
+With conditional jumping
+
+```
+@before_agent(can_jump_to=["end"])
+def conditional_before_agent(
+    state: AgentState, runtime: Runtime
+) -> dict[str, Any] | None:
+    if some_condition(state):
+        return {"jump_to": "end"}
+    return None
+```
+
+With custom state schema
+
+```
+@before_agent(state_schema=MyCustomState)
+def custom_before_agent(state: MyCustomState, runtime: Runtime) -> dict[str, Any]:
+    return {"custom_field": "initialized_value"}
+```
+
+## before\_model [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.before_model "Copy anchor link to this section for reference")
+
+```
+before_model(
+    func: _CallableWithStateAndRuntime[StateT, ContextT] | None = None,
+    *,
+    state_schema: type[StateT] | None = None,
+    tools: list[BaseTool] | None = None,
+    can_jump_to: list[JumpTo] | None = None,
+    name: str | None = None,
+) -> (
+    Callable[
+        [_CallableWithStateAndRuntime[StateT, ContextT]],
+        AgentMiddleware[StateT, ContextT],
+    ]
+    | AgentMiddleware[StateT, ContextT]
+)
+```
+
+Decorator used to dynamically create a middleware with the `before_model` hook.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `func` | The function to be decorated.  Must accept: `state: StateT, runtime: Runtime[ContextT]` - State and runtime context  **TYPE:** `_CallableWithStateAndRuntime[StateT, ContextT] | None`  **DEFAULT:** `None` |
+| `state_schema` | Optional custom state schema type.  If not provided, uses the default `AgentState` schema.  **TYPE:** `type[StateT] | None`  **DEFAULT:** `None` |
+| `tools` | Optional list of additional tools to register with this middleware.  **TYPE:** `list[BaseTool] | None`  **DEFAULT:** `None` |
+| `can_jump_to` | Optional list of valid jump destinations for conditional edges.  Valid values are: `'tools'`, `'model'`, `'end'`  **TYPE:** `list[JumpTo] | None`  **DEFAULT:** `None` |
+| `name` | Optional name for the generated middleware class.  If not provided, uses the decorated function's name.  **TYPE:** `str | None`  **DEFAULT:** `None` |
+
+| RETURNS | DESCRIPTION |
+| --- | --- |
+| `Callable[[_CallableWithStateAndRuntime[StateT, ContextT]], AgentMiddleware[StateT, ContextT]] | AgentMiddleware[StateT, ContextT]` | Either an `AgentMiddleware` instance (if func is provided directly) or a decorator function that can be applied to a function it is wrapping. |
+
+The decorated function should return:
+
+* `dict[str, Any]` - State updates to merge into the agent state
+* `Command` - A command to control flow (e.g., jump to different node)
+* `None` - No state updates or flow control
+
+Examples:
+
+Basic usage
+
+```
+@before_model
+def log_before_model(state: AgentState, runtime: Runtime) -> None:
+    print(f"About to call model with {len(state['messages'])} messages")
+```
+
+With conditional jumping
+
+```
+@before_model(can_jump_to=["end"])
+def conditional_before_model(
+    state: AgentState, runtime: Runtime
+) -> dict[str, Any] | None:
+    if some_condition(state):
+        return {"jump_to": "end"}
+    return None
+```
+
+With custom state schema
+
+```
+@before_model(state_schema=MyCustomState)
+def custom_before_model(state: MyCustomState, runtime: Runtime) -> dict[str, Any]:
+    return {"custom_field": "updated_value"}
+```
+
+## after\_model [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.after_model "Copy anchor link to this section for reference")
+
+```
+after_model(
+    func: _CallableWithStateAndRuntime[StateT, ContextT] | None = None,
+    *,
+    state_schema: type[StateT] | None = None,
+    tools: list[BaseTool] | None = None,
+    can_jump_to: list[JumpTo] | None = None,
+    name: str | None = None,
+) -> (
+    Callable[
+        [_CallableWithStateAndRuntime[StateT, ContextT]],
+        AgentMiddleware[StateT, ContextT],
+    ]
+    | AgentMiddleware[StateT, ContextT]
+)
+```
+
+Decorator used to dynamically create a middleware with the `after_model` hook.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `func` | The function to be decorated.  Must accept: `state: StateT, runtime: Runtime[ContextT]` - State and runtime context  **TYPE:** `_CallableWithStateAndRuntime[StateT, ContextT] | None`  **DEFAULT:** `None` |
+| `state_schema` | Optional custom state schema type.  If not provided, uses the default `AgentState` schema.  **TYPE:** `type[StateT] | None`  **DEFAULT:** `None` |
+| `tools` | Optional list of additional tools to register with this middleware.  **TYPE:** `list[BaseTool] | None`  **DEFAULT:** `None` |
+| `can_jump_to` | Optional list of valid jump destinations for conditional edges.  Valid values are: `'tools'`, `'model'`, `'end'`  **TYPE:** `list[JumpTo] | None`  **DEFAULT:** `None` |
+| `name` | Optional name for the generated middleware class.  If not provided, uses the decorated function's name.  **TYPE:** `str | None`  **DEFAULT:** `None` |
+
+| RETURNS | DESCRIPTION |
+| --- | --- |
+| `Callable[[_CallableWithStateAndRuntime[StateT, ContextT]], AgentMiddleware[StateT, ContextT]] | AgentMiddleware[StateT, ContextT]` | Either an `AgentMiddleware` instance (if func is provided) or a decorator function that can be applied to a function. |
+
+The decorated function should return:
+
+* `dict[str, Any]` - State updates to merge into the agent state
+* `Command` - A command to control flow (e.g., jump to different node)
+* `None` - No state updates or flow control
+
+Examples:
+
+Basic usage for logging model responses
+
+```
+@after_model
+def log_latest_message(state: AgentState, runtime: Runtime) -> None:
+    print(state["messages"][-1].content)
+```
+
+With custom state schema
+
+```
+@after_model(state_schema=MyCustomState, name="MyAfterModelMiddleware")
+def custom_after_model(state: MyCustomState, runtime: Runtime) -> dict[str, Any]:
+    return {"custom_field": "updated_after_model"}
+```
+
+## after\_agent [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.after_agent "Copy anchor link to this section for reference")
+
+```
+after_agent(
+    func: _CallableWithStateAndRuntime[StateT, ContextT] | None = None,
+    *,
+    state_schema: type[StateT] | None = None,
+    tools: list[BaseTool] | None = None,
+    can_jump_to: list[JumpTo] | None = None,
+    name: str | None = None,
+) -> (
+    Callable[
+        [_CallableWithStateAndRuntime[StateT, ContextT]],
+        AgentMiddleware[StateT, ContextT],
+    ]
+    | AgentMiddleware[StateT, ContextT]
+)
+```
+
+Decorator used to dynamically create a middleware with the `after_agent` hook.
+
+Async version is `aafter_agent`.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `func` | The function to be decorated.  Must accept: `state: StateT, runtime: Runtime[ContextT]` - State and runtime context  **TYPE:** `_CallableWithStateAndRuntime[StateT, ContextT] | None`  **DEFAULT:** `None` |
+| `state_schema` | Optional custom state schema type.  If not provided, uses the default `AgentState` schema.  **TYPE:** `type[StateT] | None`  **DEFAULT:** `None` |
+| `tools` | Optional list of additional tools to register with this middleware.  **TYPE:** `list[BaseTool] | None`  **DEFAULT:** `None` |
+| `can_jump_to` | Optional list of valid jump destinations for conditional edges.  Valid values are: `'tools'`, `'model'`, `'end'`  **TYPE:** `list[JumpTo] | None`  **DEFAULT:** `None` |
+| `name` | Optional name for the generated middleware class.  If not provided, uses the decorated function's name.  **TYPE:** `str | None`  **DEFAULT:** `None` |
+
+| RETURNS | DESCRIPTION |
+| --- | --- |
+| `Callable[[_CallableWithStateAndRuntime[StateT, ContextT]], AgentMiddleware[StateT, ContextT]] | AgentMiddleware[StateT, ContextT]` | Either an `AgentMiddleware` instance (if func is provided) or a decorator function that can be applied to a function. |
+
+The decorated function should return:
+
+* `dict[str, Any]` - State updates to merge into the agent state
+* `Command` - A command to control flow (e.g., jump to different node)
+* `None` - No state updates or flow control
+
+Examples:
+
+Basic usage for logging agent completion
+
+```
+@after_agent
+def log_completion(state: AgentState, runtime: Runtime) -> None:
+    print(f"Agent completed with {len(state['messages'])} messages")
+```
+
+With custom state schema
+
+```
+@after_agent(state_schema=MyCustomState, name="MyAfterAgentMiddleware")
+def custom_after_agent(state: MyCustomState, runtime: Runtime) -> dict[str, Any]:
+    return {"custom_field": "finalized_value"}
+```
+
+## wrap\_model\_call [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.wrap_model_call "Copy anchor link to this section for reference")
+
+```
+wrap_model_call(
+    func: _CallableReturningModelResponse[StateT, ContextT] | None = None,
+    *,
+    state_schema: type[StateT] | None = None,
+    tools: list[BaseTool] | None = None,
+    name: str | None = None,
+) -> (
+    Callable[
+        [_CallableReturningModelResponse[StateT, ContextT]],
+        AgentMiddleware[StateT, ContextT],
+    ]
+    | AgentMiddleware[StateT, ContextT]
+)
+```
+
+Create middleware with `wrap_model_call` hook from a function.
+
+Converts a function with handler callback into middleware that can intercept model
+calls, implement retry logic, handle errors, and rewrite responses.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `func` | Function accepting (request, handler) that calls handler(request) to execute the model and returns `ModelResponse` or `AIMessage`.  Request contains state and runtime.  **TYPE:** `_CallableReturningModelResponse[StateT, ContextT] | None`  **DEFAULT:** `None` |
+| `state_schema` | Custom state schema.  Defaults to `AgentState`.  **TYPE:** `type[StateT] | None`  **DEFAULT:** `None` |
+| `tools` | Additional tools to register with this middleware.  **TYPE:** `list[BaseTool] | None`  **DEFAULT:** `None` |
+| `name` | Middleware class name.  Defaults to function name.  **TYPE:** `str | None`  **DEFAULT:** `None` |
+
+| RETURNS | DESCRIPTION |
+| --- | --- |
+| `Callable[[_CallableReturningModelResponse[StateT, ContextT]], AgentMiddleware[StateT, ContextT]] | AgentMiddleware[StateT, ContextT]` | `AgentMiddleware` instance if func provided, otherwise a decorator. |
+
+Examples:
+
+Basic retry logic
+
+```
+@wrap_model_call
+def retry_on_error(request, handler):
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            return handler(request)
+        except Exception:
+            if attempt == max_retries - 1:
+                raise
+```
+
+Model fallback
+
+```
+@wrap_model_call
+def fallback_model(request, handler):
+    # Try primary model
+    try:
+        return handler(request)
+    except Exception:
+        pass
+
+    # Try fallback model
+    request = request.override(model=fallback_model_instance)
+    return handler(request)
+```
+
+Rewrite response content (full `ModelResponse`)
+
+```
+@wrap_model_call
+def uppercase_responses(request, handler):
+    response = handler(request)
+    ai_msg = response.result[0]
+    return ModelResponse(
+        result=[AIMessage(content=ai_msg.content.upper())],
+        structured_response=response.structured_response,
+    )
+```
+
+Simple `AIMessage` return (converted automatically)
+
+```
+@wrap_model_call
+def simple_response(request, handler):
+    # AIMessage is automatically converted to ModelResponse
+    return AIMessage(content="Simple response")
+```
+
+## wrap\_tool\_call [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.wrap_tool_call "Copy anchor link to this section for reference")
+
+```
+wrap_tool_call(
+    func: _CallableReturningToolResponse | None = None,
+    *,
+    tools: list[BaseTool] | None = None,
+    name: str | None = None,
+) -> Callable[[_CallableReturningToolResponse], AgentMiddleware] | AgentMiddleware
+```
+
+Create middleware with `wrap_tool_call` hook from a function.
+
+Async version is `awrap_tool_call`.
+
+Converts a function with handler callback into middleware that can intercept
+tool calls, implement retry logic, monitor execution, and modify responses.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `func` | Function accepting (request, handler) that calls handler(request) to execute the tool and returns final `ToolMessage` or `Command`.  Can be sync or async.  **TYPE:** `_CallableReturningToolResponse | None`  **DEFAULT:** `None` |
+| `tools` | Additional tools to register with this middleware.  **TYPE:** `list[BaseTool] | None`  **DEFAULT:** `None` |
+| `name` | Middleware class name.  Defaults to function name.  **TYPE:** `str | None`  **DEFAULT:** `None` |
+
+| RETURNS | DESCRIPTION |
+| --- | --- |
+| `Callable[[_CallableReturningToolResponse], AgentMiddleware] | AgentMiddleware` | `AgentMiddleware` instance if func provided, otherwise a decorator. |
+
+Examples:
+
+Retry logic
+
+```
+@wrap_tool_call
+def retry_on_error(request, handler):
+    max_retries = 3
+    for attempt in range(max_retries):
+        try:
+            return handler(request)
+        except Exception:
+            if attempt == max_retries - 1:
+                raise
+```
+
+Async retry logic
+
+```
+@wrap_tool_call
+async def async_retry(request, handler):
+    for attempt in range(3):
+        try:
+            return await handler(request)
+        except Exception:
+            if attempt == 2:
+                raise
+```
+
+Modify request
+
+```
+@wrap_tool_call
+def modify_args(request, handler):
+    modified_call = {
+        **request.tool_call,
+        "args": {
+            **request.tool_call["args"],
+            "value": request.tool_call["args"]["value"] * 2,
+        },
+    }
+    request = request.override(tool_call=modified_call)
+    return handler(request)
+```
+
+Short-circuit with cached result
+
+```
+@wrap_tool_call
+def with_cache(request, handler):
+    if cached := get_cache(request):
+        return ToolMessage(content=cached, tool_call_id=request.tool_call["id"])
+    result = handler(request)
+    save_cache(request, result)
+    return result
+```
+
+## dynamic\_prompt [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.dynamic_prompt "Copy anchor link to this section for reference")
+
+```
+dynamic_prompt(
+    func: _CallableReturningSystemMessage[StateT, ContextT] | None = None,
+) -> (
+    Callable[
+        [_CallableReturningSystemMessage[StateT, ContextT]],
+        AgentMiddleware[StateT, ContextT],
+    ]
+    | AgentMiddleware[StateT, ContextT]
+)
+```
+
+Decorator used to dynamically generate system prompts for the model.
+
+This is a convenience decorator that creates middleware using `wrap_model_call`
+specifically for dynamic prompt generation. The decorated function should return
+a string that will be set as the system prompt for the model request.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `func` | The function to be decorated.  Must accept: `request: ModelRequest` - Model request (contains state and runtime)  **TYPE:** `_CallableReturningSystemMessage[StateT, ContextT] | None`  **DEFAULT:** `None` |
+
+| RETURNS | DESCRIPTION |
+| --- | --- |
+| `Callable[[_CallableReturningSystemMessage[StateT, ContextT]], AgentMiddleware[StateT, ContextT]] | AgentMiddleware[StateT, ContextT]` | Either an `AgentMiddleware` instance (if func is provided) or a decorator function that can be applied to a function. |
+
+The decorated function should return
+
+* `str` – The system prompt string to use for the model request
+* `SystemMessage` – A complete system message to use for the model request
+
+Examples:
+
+Basic usage with dynamic content:
+
+```
+@dynamic_prompt
+def my_prompt(request: ModelRequest) -> str:
+    user_name = request.runtime.context.get("user_name", "User")
+    return f"You are a helpful assistant helping {user_name}."
+```
+
+Using state to customize the prompt:
+
+```
+@dynamic_prompt
+def context_aware_prompt(request: ModelRequest) -> str:
+    msg_count = len(request.state["messages"])
+    if msg_count > 10:
+        return "You are in a long conversation. Be concise."
+    return "You are a helpful assistant."
+```
+
+Using with agent:
+
+```
+agent = create_agent(model, middleware=[my_prompt])
+```
+
+## hook\_config [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.hook_config "Copy anchor link to this section for reference")
+
+```
+hook_config(
+    *, can_jump_to: list[JumpTo] | None = None
+) -> Callable[[CallableT], CallableT]
+```
+
+Decorator to configure hook behavior in middleware methods.
+
+Use this decorator on `before_model` or `after_model` methods in middleware classes
+to configure their behavior. Currently supports specifying which destinations they
+can jump to, which establishes conditional edges in the agent graph.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `can_jump_to` | Optional list of valid jump destinations.  Can be:   * `'tools'`: Jump to the tools node * `'model'`: Jump back to the model node * `'end'`: Jump to the end of the graph  **TYPE:** `list[JumpTo] | None`  **DEFAULT:** `None` |
+
+| RETURNS | DESCRIPTION |
+| --- | --- |
+| `Callable[[CallableT], CallableT]` | Decorator function that marks the method with configuration metadata. |
+
+Examples:
+
+Using decorator on a class method
+
+```
+class MyMiddleware(AgentMiddleware):
+    @hook_config(can_jump_to=["end", "model"])
+    def before_model(self, state: AgentState) -> dict[str, Any] | None:
+        if some_condition(state):
+            return {"jump_to": "end"}
+        return None
+```
+
+Alternative: Use the `can_jump_to` parameter in `before_model`/`after_model`
+decorators:
+
+```
+@before_model(can_jump_to=["end"])
+def conditional_middleware(state: AgentState) -> dict[str, Any] | None:
+    if should_exit(state):
+        return {"jump_to": "end"}
+    return None
+```
+
+## AgentState [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.AgentState "Copy anchor link to this section for reference")
+
+Bases: `TypedDict`, `Generic[ResponseT]`
+
+State schema for the agent.
+
+## ModelRequest `dataclass` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelRequest "Copy anchor link to this section for reference")
+
+```
+ModelRequest(
+    *,
+    model: BaseChatModel,
+    messages: list[AnyMessage],
+    system_message: SystemMessage | None = None,
+    system_prompt: str | None = None,
+    tool_choice: Any | None = None,
+    tools: list[BaseTool | dict] | None = None,
+    response_format: ResponseFormat | None = None,
+    state: AgentState | None = None,
+    runtime: Runtime[ContextT] | None = None,
+    model_settings: dict[str, Any] | None = None,
+)
+```
+
+Model request information for the agent.
+
+Initialize ModelRequest with backward compatibility for system\_prompt.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `model` | The chat model to use.  **TYPE:** `BaseChatModel` |
+| `messages` | List of messages (excluding system prompt).  **TYPE:** `list[AnyMessage]` |
+| `tool_choice` | Tool choice configuration.  **TYPE:** `Any | None`  **DEFAULT:** `None` |
+| `tools` | List of available tools.  **TYPE:** `list[BaseTool | dict] | None`  **DEFAULT:** `None` |
+| `response_format` | Response format specification.  **TYPE:** `ResponseFormat | None`  **DEFAULT:** `None` |
+| `state` | Agent state.  **TYPE:** `AgentState | None`  **DEFAULT:** `None` |
+| `runtime` | Runtime context.  **TYPE:** `Runtime[ContextT] | None`  **DEFAULT:** `None` |
+| `model_settings` | Additional model settings.  **TYPE:** `dict[str, Any] | None`  **DEFAULT:** `None` |
+| `system_message` | System message instance (preferred).  **TYPE:** `SystemMessage | None`  **DEFAULT:** `None` |
+| `system_prompt` | System prompt string (deprecated, converted to SystemMessage).  **TYPE:** `str | None`  **DEFAULT:** `None` |
+
+| METHOD | DESCRIPTION |
+| --- | --- |
+| `__setattr__` | Set an attribute with a deprecation warning. |
+| `override` | Replace the request with a new request with the given overrides. |
+
+### system\_prompt `property` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelRequest.system_prompt "Copy anchor link to this section for reference")
+
+```
+system_prompt: str | None
+```
+
+Get system prompt text from system\_message.
+
+| RETURNS | DESCRIPTION |
+| --- | --- |
+| `str | None` | The content of the system message if present, otherwise `None`. |
+
+### \_\_setattr\_\_ [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelRequest.__setattr__ "Copy anchor link to this section for reference")
+
+```
+__setattr__(name: str, value: Any) -> None
+```
+
+Set an attribute with a deprecation warning.
+
+Direct attribute assignment on `ModelRequest` is deprecated. Use the
+`override()` method instead to create a new request with modified attributes.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `name` | Attribute name.  **TYPE:** `str` |
+| `value` | Attribute value.  **TYPE:** `Any` |
+
+### override [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelRequest.override "Copy anchor link to this section for reference")
+
+```
+override(**overrides: Unpack[_ModelRequestOverrides]) -> ModelRequest
+```
+
+Replace the request with a new request with the given overrides.
+
+Returns a new `ModelRequest` instance with the specified attributes replaced.
+
+This follows an immutable pattern, leaving the original request unchanged.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `**overrides` | Keyword arguments for attributes to override.  Supported keys:   * `model`: `BaseChatModel` instance * `system_prompt`: deprecated, use `system_message` instead * `system_message`: `SystemMessage` instance * `messages`: `list` of messages * `tool_choice`: Tool choice configuration * `tools`: `list` of available tools * `response_format`: Response format specification * `model_settings`: Additional model settings  **TYPE:** `Unpack[_ModelRequestOverrides]`  **DEFAULT:** `{}` |
+
+| RETURNS | DESCRIPTION |
+| --- | --- |
+| `ModelRequest` | New `ModelRequest` instance with specified overrides applied. |
+
+Examples:
+
+Create a new request with different model
+
+```
+new_request = request.override(model=different_model)
+```
+
+Override system message (preferred)
+
+```
+from langchain_core.messages import SystemMessage
+
+new_request = request.override(
+    system_message=SystemMessage(content="New instructions")
+)
+```
+
+Override multiple attributes
+
+```
+new_request = request.override(
+    model=ChatOpenAI(model="gpt-4o"),
+    system_message=SystemMessage(content="New instructions"),
+)
+```
+
+## ModelResponse `dataclass` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelResponse "Copy anchor link to this section for reference")
+
+```
+ModelResponse(result: list[BaseMessage], structured_response: Any = None)
+```
+
+Response from model execution including messages and optional structured output.
+
+The result will usually contain a single `AIMessage`, but may include an additional
+`ToolMessage` if the model used a tool for structured output.
+
+### result `instance-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelResponse.result "Copy anchor link to this section for reference")
+
+```
+result: list[BaseMessage]
+```
+
+List of messages from model execution.
+
+### structured\_response `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelResponse.structured_response "Copy anchor link to this section for reference")
+
+```
+structured_response: Any = None
+```
+
+Parsed structured output if `response_format` was specified, `None` otherwise.
+
+## ClearToolUsesEdit `dataclass` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit "Copy anchor link to this section for reference")
+
+```
+ClearToolUsesEdit(
+    trigger: int = 100000,
+    clear_at_least: int = 0,
+    keep: int = 3,
+    clear_tool_inputs: bool = False,
+    exclude_tools: Sequence[str] = (),
+    placeholder: str = DEFAULT_TOOL_PLACEHOLDER,
+)
+```
+
+Bases: `ContextEdit`
+
+Configuration for clearing tool outputs when token limits are exceeded.
+
+| METHOD | DESCRIPTION |
+| --- | --- |
+| `apply` | Apply the clear-tool-uses strategy. |
+
+### trigger `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.trigger "Copy anchor link to this section for reference")
+
+```
+trigger: int = 100000
+```
+
+Token count that triggers the edit.
+
+### clear\_at\_least `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.clear_at_least "Copy anchor link to this section for reference")
+
+```
+clear_at_least: int = 0
+```
+
+Minimum number of tokens to reclaim when the edit runs.
+
+### keep `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.keep "Copy anchor link to this section for reference")
+
+```
+keep: int = 3
+```
+
+Number of most recent tool results that must be preserved.
+
+### clear\_tool\_inputs `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.clear_tool_inputs "Copy anchor link to this section for reference")
+
+```
+clear_tool_inputs: bool = False
+```
+
+Whether to clear the originating tool call parameters on the AI message.
+
+### exclude\_tools `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.exclude_tools "Copy anchor link to this section for reference")
+
+```
+exclude_tools: Sequence[str] = ()
+```
+
+List of tool names to exclude from clearing.
+
+### placeholder `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.placeholder "Copy anchor link to this section for reference")
+
+```
+placeholder: str = DEFAULT_TOOL_PLACEHOLDER
+```
+
+Placeholder text inserted for cleared tool outputs.
+
+### apply [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ClearToolUsesEdit.apply "Copy anchor link to this section for reference")
+
+```
+apply(messages: list[AnyMessage], *, count_tokens: TokenCounter) -> None
+```
+
+Apply the clear-tool-uses strategy.
+
+## InterruptOnConfig [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.InterruptOnConfig "Copy anchor link to this section for reference")
+
+Bases: `TypedDict`
+
+Configuration for an action requiring human in the loop.
+
+This is the configuration format used in the `HumanInTheLoopMiddleware.__init__`
+method.
+
+### allowed\_decisions `instance-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.InterruptOnConfig.allowed_decisions "Copy anchor link to this section for reference")
+
+```
+allowed_decisions: list[DecisionType]
+```
+
+The decisions that are allowed for this action.
+
+### description `instance-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.InterruptOnConfig.description "Copy anchor link to this section for reference")
+
+```
+description: NotRequired[str | _DescriptionFactory]
+```
+
+The description attached to the request for human input.
+
+Can be either:
+
+* A static string describing the approval request
+* A callable that dynamically generates the description based on agent state,
+  runtime, and tool call information
+
+Example
+
+```
+# Static string description
+config = ToolConfig(
+    allowed_decisions=["approve", "reject"],
+    description="Please review this tool execution"
+)
+
+# Dynamic callable description
+def format_tool_description(
+    tool_call: ToolCall,
+    state: AgentState,
+    runtime: Runtime[ContextT]
+) -> str:
+    import json
+    return (
+        f"Tool: {tool_call['name']}\n"
+        f"Arguments:\n{json.dumps(tool_call['args'], indent=2)}"
+    )
+
+config = InterruptOnConfig(
+    allowed_decisions=["approve", "edit", "reject"],
+    description=format_tool_description
+)
+```
+
+### args\_schema `instance-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.InterruptOnConfig.args_schema "Copy anchor link to this section for reference")
+
+```
+args_schema: NotRequired[dict[str, Any]]
+```
+
+JSON schema for the args associated with the action, if edits are allowed.
+
+## ContextSize `module-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextSize "Copy anchor link to this section for reference")
+
+```
+ContextSize = ContextFraction | ContextTokens | ContextMessages
+```
+
+Union type for context size specifications.
+
+Can be either:
+
+* [`ContextFraction`](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextFraction "<code class=\"doc-symbol doc-symbol-heading doc-symbol-attribute\"></code>            <span class=\"doc doc-object-name doc-attribute-name\">ContextFraction</span>
+
+
+    <span class=\"doc doc-labels\">
+        <small class=\"doc doc-label doc-label-module-attribute\"><code>module-attribute</code></small>
+    </span>"): A
+  fraction of the model's maximum input tokens.
+* [`ContextTokens`](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextTokens "<code class=\"doc-symbol doc-symbol-heading doc-symbol-attribute\"></code>            <span class=\"doc doc-object-name doc-attribute-name\">ContextTokens</span>
+
+
+    <span class=\"doc doc-labels\">
+        <small class=\"doc doc-label doc-label-module-attribute\"><code>module-attribute</code></small>
+    </span>"): An absolute
+  number of tokens.
+* [`ContextMessages`](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextMessages "<code class=\"doc-symbol doc-symbol-heading doc-symbol-attribute\"></code>            <span class=\"doc doc-object-name doc-attribute-name\">ContextMessages</span>
+
+
+    <span class=\"doc doc-labels\">
+        <small class=\"doc doc-label doc-label-module-attribute\"><code>module-attribute</code></small>
+    </span>"): An
+  absolute number of messages.
+
+Depending on use with `trigger` or `keep` parameters, this type indicates either
+when to trigger summarization or how much context to retain.
+
+Example
+
+```
+# ContextFraction
+context_size: ContextSize = ("fraction", 0.5)
+
+# ContextTokens
+context_size: ContextSize = ("tokens", 3000)
+
+# ContextMessages
+context_size: ContextSize = ("messages", 50)
+```
+
+## ContextFraction `module-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextFraction "Copy anchor link to this section for reference")
+
+```
+ContextFraction = tuple[Literal['fraction'], float]
+```
+
+Fraction of model's maximum input tokens.
+
+Example
+
+To specify 50% of the model's max input tokens:
+
+```
+("fraction", 0.5)
+```
+
+## ContextTokens `module-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextTokens "Copy anchor link to this section for reference")
+
+```
+ContextTokens = tuple[Literal['tokens'], int]
+```
+
+Absolute number of tokens.
+
+Example
+
+To specify 3000 tokens:
+
+```
+("tokens", 3000)
+```
+
+## ContextMessages `module-attribute` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.summarization.ContextMessages "Copy anchor link to this section for reference")
+
+```
+ContextMessages = tuple[Literal['messages'], int]
+```
+
+Absolute number of messages.
+
+Example
+
+To specify 50 messages:
+
+```
+("messages", 50)
+```
 
 Back to top

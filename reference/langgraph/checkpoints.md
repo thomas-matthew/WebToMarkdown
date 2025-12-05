@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -356,7 +356,7 @@ Table of contents
 
 # Checkpointing
 
-## langgraph.checkpoint.base [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.base "Copy anchor link to this section for reference")
+## base [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.base "Copy anchor link to this section for reference")
 
 | FUNCTION | DESCRIPTION |
 | --- | --- |
@@ -415,7 +415,7 @@ State snapshot at a given point in time.
 v: int
 ```
 
-The version of the checkpoint format. Currently 1.
+The version of the checkpoint format. Currently `1`.
 
 #### id `instance-attribute` [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.base.Checkpoint.id "Copy anchor link to this section for reference")
 
@@ -423,8 +423,10 @@ The version of the checkpoint format. Currently 1.
 id: str
 ```
 
-The ID of the checkpoint. This is both unique and monotonically
-increasing, so can be used for sorting checkpoints from first to last.
+The ID of the checkpoint.
+
+This is both unique and monotonically increasing, so can be used for sorting
+checkpoints from first to last.
 
 #### ts `instance-attribute` [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.base.Checkpoint.ts "Copy anchor link to this section for reference")
 
@@ -441,6 +443,7 @@ channel_values: dict[str, Any]
 ```
 
 The values of the channels at the time of the checkpoint.
+
 Mapping from channel name to deserialized channel snapshot value.
 
 #### channel\_versions `instance-attribute` [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.base.Checkpoint.channel_versions "Copy anchor link to this section for reference")
@@ -450,6 +453,7 @@ channel_versions: ChannelVersions
 ```
 
 The versions of the channels at the time of the checkpoint.
+
 The keys are channel names and the values are monotonically increasing
 version strings for each channel.
 
@@ -460,6 +464,7 @@ versions_seen: dict[str, ChannelVersions]
 ```
 
 Map from node ID to map from channel name to version seen.
+
 This keeps track of the versions of the channels that each node has seen.
 Used to determine which nodes to execute next.
 
@@ -783,8 +788,9 @@ get_next_version(current: V | None, channel: None) -> V
 
 Generate the next version ID for a channel.
 
-Default is to use integer versions, incrementing by `1`. If you override, you can use `str`/`int`/`float`
-versions, as long as they are monotonically increasing.
+Default is to use integer versions, incrementing by `1`.
+
+If you override, you can use `str`/`int`/`float` versions, as long as they are monotonically increasing.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
@@ -809,7 +815,7 @@ create_checkpoint(
 
 Create a checkpoint for the given channels.
 
-## langgraph.checkpoint.serde.base [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.serde.base "Copy anchor link to this section for reference")
+## base [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.serde.base "Copy anchor link to this section for reference")
 
 ### SerializerProtocol [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.serde.base.SerializerProtocol "Copy anchor link to this section for reference")
 
@@ -817,9 +823,7 @@ Bases: `Protocol`
 
 Protocol for serialization and deserialization of objects.
 
-* `dumps`: Serialize an object to bytes.
 * `dumps_typed`: Serialize an object to a tuple `(type, bytes)`.
-* `loads`: Deserialize an object from bytes.
 * `loads_typed`: Deserialize an object from a tuple `(type, bytes)`.
 
 Valid implementations include the `pickle`, `json` and `orjson` modules.
@@ -829,12 +833,13 @@ Valid implementations include the `pickle`, `json` and `orjson` modules.
 Bases: `Protocol`
 
 Protocol for encryption and decryption of data.
-- `encrypt`: Encrypt plaintext.
-- `decrypt`: Decrypt ciphertext.
+
+* `encrypt`: Encrypt plaintext.
+* `decrypt`: Decrypt ciphertext.
 
 | METHOD | DESCRIPTION |
 | --- | --- |
-| `encrypt` | Encrypt plaintext. Returns a tuple (cipher name, ciphertext). |
+| `encrypt` | Encrypt plaintext. Returns a tuple `(cipher name, ciphertext)`. |
 | `decrypt` | Decrypt ciphertext. Returns the plaintext. |
 
 #### encrypt [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.serde.base.CipherProtocol.encrypt "Copy anchor link to this section for reference")
@@ -843,7 +848,7 @@ Protocol for encryption and decryption of data.
 encrypt(plaintext: bytes) -> tuple[str, bytes]
 ```
 
-Encrypt plaintext. Returns a tuple (cipher name, ciphertext).
+Encrypt plaintext. Returns a tuple `(cipher name, ciphertext)`.
 
 #### decrypt [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.serde.base.CipherProtocol.decrypt "Copy anchor link to this section for reference")
 
@@ -853,7 +858,7 @@ decrypt(ciphername: str, ciphertext: bytes) -> bytes
 
 Decrypt ciphertext. Returns the plaintext.
 
-## langgraph.checkpoint.serde.jsonplus [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.serde.jsonplus "Copy anchor link to this section for reference")
+## jsonplus [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.serde.jsonplus "Copy anchor link to this section for reference")
 
 ### JsonPlusSerializer [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.serde.jsonplus.JsonPlusSerializer "Copy anchor link to this section for reference")
 
@@ -861,12 +866,14 @@ Bases: `SerializerProtocol`
 
 Serializer that uses ormsgpack, with optional fallbacks.
 
-Security note: this serializer is intended for use within the BaseCheckpointSaver
+Warning
+
+Security note: This serializer is intended for use within the `BaseCheckpointSaver`
 class and called within the Pregel loop. It should not be used on untrusted
 python objects. If an attacker can write directly to your checkpoint database,
 they may be able to trigger code execution when data is deserialized.
 
-## langgraph.checkpoint.serde.encrypted [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.serde.encrypted "Copy anchor link to this section for reference")
+## encrypted [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.serde.encrypted "Copy anchor link to this section for reference")
 
 ### EncryptedSerializer [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.serde.encrypted.EncryptedSerializer "Copy anchor link to this section for reference")
 
@@ -897,7 +904,7 @@ from_pycryptodome_aes(
 
 Create an `EncryptedSerializer` using AES encryption.
 
-## langgraph.checkpoint.memory [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.memory "Copy anchor link to this section for reference")
+## memory [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.memory "Copy anchor link to this section for reference")
 
 ### InMemorySaver [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.memory.InMemorySaver "Copy anchor link to this section for reference")
 
@@ -905,7 +912,7 @@ Bases: `BaseCheckpointSaver[str]`, `AbstractContextManager`, `AbstractAsyncConte
 
 An in-memory checkpoint saver.
 
-This checkpoint saver stores checkpoints in memory using a defaultdict.
+This checkpoint saver stores checkpoints in memory using a `defaultdict`.
 
 Note
 
@@ -918,23 +925,23 @@ If you are using LangSmith Deployment, no checkpointer needs to be specified. Th
 | --- | --- |
 | `serde` | The serializer to use for serializing and deserializing checkpoints.  **TYPE:** `SerializerProtocol | None`  **DEFAULT:** `None` |
 
-Examples:
+Example
 
 ```
-    import asyncio
+import asyncio
 
-    from langgraph.checkpoint.memory import InMemorySaver
-    from langgraph.graph import StateGraph
+from langgraph.checkpoint.memory import InMemorySaver
+from langgraph.graph import StateGraph
 
-    builder = StateGraph(int)
-    builder.add_node("add_one", lambda x: x + 1)
-    builder.set_entry_point("add_one")
-    builder.set_finish_point("add_one")
+builder = StateGraph(int)
+builder.add_node("add_one", lambda x: x + 1)
+builder.set_entry_point("add_one")
+builder.set_finish_point("add_one")
 
-    memory = InMemorySaver()
-    graph = builder.compile(checkpointer=memory)
-    coro = graph.ainvoke(1, {"configurable": {"thread_id": "thread-1"}})
-    asyncio.run(coro)  # Output: 2
+memory = InMemorySaver()
+graph = builder.compile(checkpointer=memory)
+coro = graph.ainvoke(1, {"configurable": {"thread_id": "thread-1"}})
+asyncio.run(coro)  # Output: 2
 ```
 
 | METHOD | DESCRIPTION |
@@ -1203,8 +1210,9 @@ get_next_version(current: str | None, channel: None) -> str
 
 Generate the next version ID for a channel.
 
-Default is to use integer versions, incrementing by `1`. If you override, you can use `str`/`int`/`float`
-versions, as long as they are monotonically increasing.
+Default is to use integer versions, incrementing by `1`.
+
+If you override, you can use `str`/`int`/`float` versions, as long as they are monotonically increasing.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
@@ -1276,7 +1284,7 @@ sync() -> None
 
 Write dict to disk
 
-## langgraph.checkpoint.sqlite [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.sqlite "Copy anchor link to this section for reference")
+## sqlite [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.sqlite "Copy anchor link to this section for reference")
 
 ### SqliteSaver [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.sqlite.SqliteSaver "Copy anchor link to this section for reference")
 
@@ -1720,7 +1728,7 @@ Delete all checkpoints and writes associated with a specific thread ID.
 | --- | --- |
 | `thread_id` | The thread ID whose checkpoints should be deleted.  **TYPE:** `str` |
 
-## langgraph.checkpoint.sqlite.aio [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.sqlite.aio "Copy anchor link to this section for reference")
+## aio [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.sqlite.aio "Copy anchor link to this section for reference")
 
 ### AsyncSqliteSaver [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.sqlite.aio.AsyncSqliteSaver "Copy anchor link to this section for reference")
 
@@ -2147,7 +2155,7 @@ Asynchronously fetch a checkpoint using the given configuration.
 | --- | --- |
 | `Checkpoint | None` | The requested checkpoint, or `None` if not found. |
 
-## langgraph.checkpoint.postgres [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.postgres "Copy anchor link to this section for reference")
+## postgres [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.postgres "Copy anchor link to this section for reference")
 
 ### PostgresSaver [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.postgres.PostgresSaver "Copy anchor link to this section for reference")
 
@@ -2541,8 +2549,9 @@ get_next_version(current: str | None, channel: None) -> str
 
 Generate the next version ID for a channel.
 
-Default is to use integer versions, incrementing by `1`. If you override, you can use `str`/`int`/`float`
-versions, as long as they are monotonically increasing.
+Default is to use integer versions, incrementing by `1`.
+
+If you override, you can use `str`/`int`/`float` versions, as long as they are monotonically increasing.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
@@ -2553,7 +2562,7 @@ versions, as long as they are monotonically increasing.
 | --- | --- |
 | `V` | The next version identifier, which must be increasing.  **TYPE:** `V` |
 
-## langgraph.checkpoint.postgres.aio [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.postgres.aio "Copy anchor link to this section for reference")
+## aio [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.postgres.aio "Copy anchor link to this section for reference")
 
 ### AsyncPostgresSaver [¶](https://reference.langchain.com/python/langgraph/checkpoints/#langgraph.checkpoint.postgres.aio.AsyncPostgresSaver "Copy anchor link to this section for reference")
 
@@ -2889,8 +2898,9 @@ get_next_version(current: str | None, channel: None) -> str
 
 Generate the next version ID for a channel.
 
-Default is to use integer versions, incrementing by `1`. If you override, you can use `str`/`int`/`float`
-versions, as long as they are monotonically increasing.
+Default is to use integer versions, incrementing by `1`.
+
+If you override, you can use `str`/`int`/`float` versions, as long as they are monotonically increasing.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |

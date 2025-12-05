@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -101,9 +101,6 @@ LangChain Reference
   + [langchain-mcp-adapters](https://reference.langchain.com/python/langchain_mcp_adapters/)
 
     langchain-mcp-adapters
-  + [langchain-model-profiles](https://reference.langchain.com/python/langchain_model_profiles/)
-
-    langchain-model-profiles
   + [langchain-tests](https://reference.langchain.com/python/langchain_tests/)
 
     langchain-tests
@@ -187,7 +184,7 @@ Table of contents
 
 # Documents
 
-## langchain\_core.documents [¶](https://reference.langchain.com/python/langchain_core/documents/#langchain_core.documents "Copy anchor link to this section for reference")
+## documents [¶](https://reference.langchain.com/python/langchain_core/documents/#langchain_core.documents "Copy anchor link to this section for reference")
 
 Documents module for data retrieval and processing workflows.
 
@@ -217,7 +214,7 @@ messages).
 While both can represent similar data types (text, files), they serve different
 architectural purposes in LangChain applications.
 
-## langchain\_core.documents.base.Document [¶](https://reference.langchain.com/python/langchain_core/documents/#langchain_core.documents.base.Document "Copy anchor link to this section for reference")
+## Document [¶](https://reference.langchain.com/python/langchain_core/documents/#langchain_core.documents.base.Document "Copy anchor link to this section for reference")
 
 Bases: `BaseMedia`
 
@@ -379,7 +376,7 @@ Serialize a "not implemented" object.
 | --- | --- |
 | `SerializedNotImplemented` | `SerializedNotImplemented`. |
 
-## langchain\_core.documents.base.Blob [¶](https://reference.langchain.com/python/langchain_core/documents/#langchain_core.documents.base.Blob "Copy anchor link to this section for reference")
+## Blob [¶](https://reference.langchain.com/python/langchain_core/documents/#langchain_core.documents.base.Blob "Copy anchor link to this section for reference")
 
 Bases: `BaseMedia`
 
@@ -741,7 +738,7 @@ Serialize a "not implemented" object.
 | --- | --- |
 | `SerializedNotImplemented` | `SerializedNotImplemented`. |
 
-## langchain\_core.documents.base.BaseMedia [¶](https://reference.langchain.com/python/langchain_core/documents/#langchain_core.documents.base.BaseMedia "Copy anchor link to this section for reference")
+## BaseMedia [¶](https://reference.langchain.com/python/langchain_core/documents/#langchain_core.documents.base.BaseMedia "Copy anchor link to this section for reference")
 
 Bases: `Serializable`
 

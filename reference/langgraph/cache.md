@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -120,7 +120,7 @@ Table of contents
 
 # Caching
 
-## langgraph.cache.base [¶](https://reference.langchain.com/python/langgraph/cache/#langgraph.cache.base "Copy anchor link to this section for reference")
+## base [¶](https://reference.langchain.com/python/langgraph/cache/#langgraph.cache.base "Copy anchor link to this section for reference")
 
 ### BaseCache [¶](https://reference.langchain.com/python/langgraph/cache/#langgraph.cache.base.BaseCache "Copy anchor link to this section for reference")
 
@@ -196,7 +196,7 @@ aclear(namespaces: Sequence[Namespace] | None = None) -> None
 Asynchronously delete the cached values for the given namespaces.
 If no namespaces are provided, clear all cached values.
 
-## langgraph.cache.memory [¶](https://reference.langchain.com/python/langgraph/cache/#langgraph.cache.memory "Copy anchor link to this section for reference")
+## memory [¶](https://reference.langchain.com/python/langgraph/cache/#langgraph.cache.memory "Copy anchor link to this section for reference")
 
 ### InMemoryCache [¶](https://reference.langchain.com/python/langgraph/cache/#langgraph.cache.memory.InMemoryCache "Copy anchor link to this section for reference")
 
@@ -270,7 +270,7 @@ aclear(namespaces: Sequence[Namespace] | None = None) -> None
 Asynchronously delete the cached values for the given namespaces.
 If no namespaces are provided, clear all cached values.
 
-## langgraph.cache.sqlite [¶](https://reference.langchain.com/python/langgraph/cache/#langgraph.cache.sqlite "Copy anchor link to this section for reference")
+## sqlite [¶](https://reference.langchain.com/python/langgraph/cache/#langgraph.cache.sqlite "Copy anchor link to this section for reference")
 
 ### SqliteCache [¶](https://reference.langchain.com/python/langgraph/cache/#langgraph.cache.sqlite.SqliteCache "Copy anchor link to this section for reference")
 

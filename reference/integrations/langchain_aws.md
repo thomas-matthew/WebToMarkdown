@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -715,6 +715,7 @@ LangChain Reference
     - [Nvidia AI Endpoints](https://reference.langchain.com/python/integrations/langchain_nvidia_ai_endpoints/)
     - [Ollama](https://reference.langchain.com/python/integrations/langchain_ollama/)
     - [OpenAI](https://reference.langchain.com/python/integrations/langchain_openai/)
+    - [Parallel](https://reference.langchain.com/python/integrations/langchain_parallel/)
     - [Perplexity](https://reference.langchain.com/python/integrations/langchain_perplexity/)
     - [Pinecone](https://reference.langchain.com/python/integrations/langchain_pinecone/)
     - [Postgres](https://reference.langchain.com/python/integrations/langchain_postgres/)
@@ -1877,26 +1878,27 @@ Partner packages (e.g.,
 [`langchain-openai`](https://pypi.org/project/langchain-openai)) can also use this
 field to roll out new content formats in a backward-compatible way.
 
-Added in `langchain-core` 1.0
+Added in `langchain-core` 1.0.0
 
-#### profile `property` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.profile "Copy anchor link to this section for reference")
+#### profile `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.profile "Copy anchor link to this section for reference")
 
 ```
-profile: ModelProfile
+profile: ModelProfile | None = Field(default=None, exclude=True)
 ```
 
-Return profiling information for the model.
+Profile detailing model capabilities.
 
-This property relies on the `langchain-model-profiles` package to retrieve chat
-model capabilities, such as context window sizes and supported features.
+Beta feature
 
-| RAISES | DESCRIPTION |
-| --- | --- |
-| `ImportError` | If `langchain-model-profiles` is not installed. |
+This is a beta feature. The format of model profiles is subject to change.
 
-| RETURNS | DESCRIPTION |
-| --- | --- |
-| `ModelProfile` | A `ModelProfile` object containing profiling information for the model. |
+If not specified, automatically loaded from the provider package on initialization
+if data is available.
+
+Example profile data includes context window sizes, supported modalities, or support
+for tool calling, structured output, and other features.
+
+Added in `langchain-core` 1.1.0
 
 #### beta\_use\_converse\_api `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.beta_use_converse_api "Copy anchor link to this section for reference")
 
@@ -2221,7 +2223,7 @@ pick(keys: str | list[str]) -> RunnableSerializable[Any, Any]
 
 Pick keys from the output `dict` of this `Runnable`.
 
-Pick a single key:
+Pick a single key
 
 ```
 import json
@@ -2240,7 +2242,7 @@ json_only_chain.invoke("[1, 2, 3]")
 # -> [1, 2, 3]
 ```
 
-Pick a list of keys:
+Pick a list of keys
 
 ```
 from typing import Any
@@ -2257,7 +2259,9 @@ def as_bytes(x: Any) -> bytes:
     return bytes(x, "utf-8")
 
 
-chain = RunnableMap(str=as_str, json=as_json, bytes=RunnableLambda(as_bytes))
+chain = RunnableMap(
+    str=as_str, json=as_json, bytes=RunnableLambda(as_bytes)
+)
 
 chain.invoke("[1, 2, 3]")
 # -> {"str": "[1, 2, 3]", "json": [1, 2, 3], "bytes": b"[1, 2, 3]"}
@@ -2691,7 +2695,7 @@ template = ChatPromptTemplate.from_messages(
 ).with_config({"run_name": "my_template", "tags": ["my_template"]})
 ```
 
-For instance:
+Example
 
 ```
 from langchain_core.runnables import RunnableLambda
@@ -2703,7 +2707,9 @@ async def reverse(s: str) -> str:
 
 chain = RunnableLambda(func=reverse)
 
-events = [event async for event in chain.astream_events("hello", version="v2")]
+events = [
+    event async for event in chain.astream_events("hello", version="v2")
+]
 
 # Will produce the following events
 # (run_id, and parent_ids has been omitted for brevity):
@@ -2732,7 +2738,7 @@ events = [event async for event in chain.astream_events("hello", version="v2")]
 ]
 ```
 
-Example: Dispatch Custom Event
+Dispatch custom event
 
 ```
 from langchain_core.callbacks.manager import (
@@ -2769,14 +2775,14 @@ async for event in slow_thing.astream_events("some_input", version="v2"):
 | --- | --- |
 | `input` | The input to the `Runnable`.  **TYPE:** `Any` |
 | `config` | The config to use for the `Runnable`.  **TYPE:** `RunnableConfig | None`  **DEFAULT:** `None` |
-| `version` | The version of the schema to use either `'v2'` or `'v1'`. Users should use `'v2'`. `'v1'` is for backwards compatibility and will be deprecated in `0.4.0`. No default will be assigned until the API is stabilized. custom events will only be surfaced in `'v2'`.  **TYPE:** `Literal['v1', 'v2']`  **DEFAULT:** `'v2'` |
+| `version` | The version of the schema to use, either `'v2'` or `'v1'`.  Users should use `'v2'`.  `'v1'` is for backwards compatibility and will be deprecated in `0.4.0`.  No default will be assigned until the API is stabilized. custom events will only be surfaced in `'v2'`.  **TYPE:** `Literal['v1', 'v2']`  **DEFAULT:** `'v2'` |
 | `include_names` | Only include events from `Runnable` objects with matching names.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `include_types` | Only include events from `Runnable` objects with matching types.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `include_tags` | Only include events from `Runnable` objects with matching tags.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_names` | Exclude events from `Runnable` objects with matching names.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_types` | Exclude events from `Runnable` objects with matching types.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_tags` | Exclude events from `Runnable` objects with matching tags.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
-| `**kwargs` | Additional keyword arguments to pass to the `Runnable`. These will be passed to `astream_log` as this implementation of `astream_events` is built on top of `astream_log`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Additional keyword arguments to pass to the `Runnable`.  These will be passed to `astream_log` as this implementation of `astream_events` is built on top of `astream_log`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | YIELDS | DESCRIPTION |
 | --- | --- |
@@ -3236,7 +3242,7 @@ types.
 | --- | --- |
 | `BaseTool` | A `BaseTool` instance. |
 
-Typed dict input:
+`TypedDict` input
 
 ```
 from typing_extensions import TypedDict
@@ -3257,7 +3263,7 @@ as_tool = runnable.as_tool()
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`dict` input, specifying schema via `args_schema`:
+`dict` input, specifying schema via `args_schema`
 
 ```
 from typing import Any
@@ -3278,7 +3284,7 @@ as_tool = runnable.as_tool(FSchema)
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`dict` input, specifying schema via `arg_types`:
+`dict` input, specifying schema via `arg_types`
 
 ```
 from typing import Any
@@ -3294,7 +3300,7 @@ as_tool = runnable.as_tool(arg_types={"a": int, "b": list[int]})
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`str` input:
+`str` input
 
 ```
 from langchain_core.runnables import RunnableLambda
@@ -3379,6 +3385,8 @@ Configure particular `Runnable` fields at runtime.
 | --- | --- |
 | `RunnableSerializable[Input, Output]` | A new `Runnable` with the fields configured. |
 
+Example
+
 ```
 from langchain_core.runnables import ConfigurableField
 from langchain_openai import ChatOpenAI
@@ -3392,7 +3400,9 @@ model = ChatOpenAI(max_tokens=20).configurable_fields(
 )
 
 # max_tokens = 20
-print("max_tokens_20: ", model.invoke("tell me something about chess").content)
+print(
+    "max_tokens_20: ", model.invoke("tell me something about chess").content
+)
 
 # max_tokens = 200
 print(
@@ -3427,6 +3437,8 @@ Configure alternatives for `Runnable` objects that can be set at runtime.
 | RETURNS | DESCRIPTION |
 | --- | --- |
 | `RunnableSerializable[Input, Output]` | A new `Runnable` with the alternatives configured. |
+
+Example
 
 ```
 from langchain_anthropic import ChatAnthropic
@@ -3765,7 +3777,7 @@ Assumes model has a tool calling API.
 | --- | --- |
 | `tools` | A list of tool definitions to bind to this chat model. Can be a dictionary, pydantic model, callable, or BaseTool. Pydantic models, callables, and BaseTools will be automatically converted to their schema dictionary representation.  **TYPE:** `Sequence[dict[str, Any] | TypeBaseModel | Callable | BaseTool]` |
 | `tool_choice` | Which tool to require the model to call. Must be the name of the single provided function or "auto" to automatically determine which function to call (if any), or a dict of the form: {"type": "function", "function": {"name": <>}}.  **TYPE:** `dict | str | Literal['auto', 'none'] | bool | None`  **DEFAULT:** `None` |
-| `**kwargs` | Any additional parameters to pass to the [Runnable](https://reference.langchain.com/python/langchain_core/runnables/#langchain_core.runnables.base.Runnable "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">langchain_core.runnables.base.Runnable</span>") constructor.  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Any additional parameters to pass to the [Runnable](https://reference.langchain.com/python/langchain_core/runnables/#langchain_core.runnables.base.Runnable "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">Runnable</span>") constructor.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 #### with\_structured\_output [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.with_structured_output "Copy anchor link to this section for reference")
 
@@ -4377,26 +4389,27 @@ Partner packages (e.g.,
 [`langchain-openai`](https://pypi.org/project/langchain-openai)) can also use this
 field to roll out new content formats in a backward-compatible way.
 
-Added in `langchain-core` 1.0
+Added in `langchain-core` 1.0.0
 
-#### profile `property` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.profile "Copy anchor link to this section for reference")
+#### profile `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.profile "Copy anchor link to this section for reference")
 
 ```
-profile: ModelProfile
+profile: ModelProfile | None = Field(default=None, exclude=True)
 ```
 
-Return profiling information for the model.
+Profile detailing model capabilities.
 
-This property relies on the `langchain-model-profiles` package to retrieve chat
-model capabilities, such as context window sizes and supported features.
+Beta feature
 
-| RAISES | DESCRIPTION |
-| --- | --- |
-| `ImportError` | If `langchain-model-profiles` is not installed. |
+This is a beta feature. The format of model profiles is subject to change.
 
-| RETURNS | DESCRIPTION |
-| --- | --- |
-| `ModelProfile` | A `ModelProfile` object containing profiling information for the model. |
+If not specified, automatically loaded from the provider package on initialization
+if data is available.
+
+Example profile data includes context window sizes, supported modalities, or support
+for tool calling, structured output, and other features.
+
+Added in `langchain-core` 1.1.0
 
 #### client `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.client "Copy anchor link to this section for reference")
 
@@ -4978,7 +4991,7 @@ pick(keys: str | list[str]) -> RunnableSerializable[Any, Any]
 
 Pick keys from the output `dict` of this `Runnable`.
 
-Pick a single key:
+Pick a single key
 
 ```
 import json
@@ -4997,7 +5010,7 @@ json_only_chain.invoke("[1, 2, 3]")
 # -> [1, 2, 3]
 ```
 
-Pick a list of keys:
+Pick a list of keys
 
 ```
 from typing import Any
@@ -5014,7 +5027,9 @@ def as_bytes(x: Any) -> bytes:
     return bytes(x, "utf-8")
 
 
-chain = RunnableMap(str=as_str, json=as_json, bytes=RunnableLambda(as_bytes))
+chain = RunnableMap(
+    str=as_str, json=as_json, bytes=RunnableLambda(as_bytes)
+)
 
 chain.invoke("[1, 2, 3]")
 # -> {"str": "[1, 2, 3]", "json": [1, 2, 3], "bytes": b"[1, 2, 3]"}
@@ -5448,7 +5463,7 @@ template = ChatPromptTemplate.from_messages(
 ).with_config({"run_name": "my_template", "tags": ["my_template"]})
 ```
 
-For instance:
+Example
 
 ```
 from langchain_core.runnables import RunnableLambda
@@ -5460,7 +5475,9 @@ async def reverse(s: str) -> str:
 
 chain = RunnableLambda(func=reverse)
 
-events = [event async for event in chain.astream_events("hello", version="v2")]
+events = [
+    event async for event in chain.astream_events("hello", version="v2")
+]
 
 # Will produce the following events
 # (run_id, and parent_ids has been omitted for brevity):
@@ -5489,7 +5506,7 @@ events = [event async for event in chain.astream_events("hello", version="v2")]
 ]
 ```
 
-Example: Dispatch Custom Event
+Dispatch custom event
 
 ```
 from langchain_core.callbacks.manager import (
@@ -5526,14 +5543,14 @@ async for event in slow_thing.astream_events("some_input", version="v2"):
 | --- | --- |
 | `input` | The input to the `Runnable`.  **TYPE:** `Any` |
 | `config` | The config to use for the `Runnable`.  **TYPE:** `RunnableConfig | None`  **DEFAULT:** `None` |
-| `version` | The version of the schema to use either `'v2'` or `'v1'`. Users should use `'v2'`. `'v1'` is for backwards compatibility and will be deprecated in `0.4.0`. No default will be assigned until the API is stabilized. custom events will only be surfaced in `'v2'`.  **TYPE:** `Literal['v1', 'v2']`  **DEFAULT:** `'v2'` |
+| `version` | The version of the schema to use, either `'v2'` or `'v1'`.  Users should use `'v2'`.  `'v1'` is for backwards compatibility and will be deprecated in `0.4.0`.  No default will be assigned until the API is stabilized. custom events will only be surfaced in `'v2'`.  **TYPE:** `Literal['v1', 'v2']`  **DEFAULT:** `'v2'` |
 | `include_names` | Only include events from `Runnable` objects with matching names.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `include_types` | Only include events from `Runnable` objects with matching types.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `include_tags` | Only include events from `Runnable` objects with matching tags.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_names` | Exclude events from `Runnable` objects with matching names.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_types` | Exclude events from `Runnable` objects with matching types.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_tags` | Exclude events from `Runnable` objects with matching tags.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
-| `**kwargs` | Additional keyword arguments to pass to the `Runnable`. These will be passed to `astream_log` as this implementation of `astream_events` is built on top of `astream_log`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Additional keyword arguments to pass to the `Runnable`.  These will be passed to `astream_log` as this implementation of `astream_events` is built on top of `astream_log`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | YIELDS | DESCRIPTION |
 | --- | --- |
@@ -5993,7 +6010,7 @@ types.
 | --- | --- |
 | `BaseTool` | A `BaseTool` instance. |
 
-Typed dict input:
+`TypedDict` input
 
 ```
 from typing_extensions import TypedDict
@@ -6014,7 +6031,7 @@ as_tool = runnable.as_tool()
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`dict` input, specifying schema via `args_schema`:
+`dict` input, specifying schema via `args_schema`
 
 ```
 from typing import Any
@@ -6035,7 +6052,7 @@ as_tool = runnable.as_tool(FSchema)
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`dict` input, specifying schema via `arg_types`:
+`dict` input, specifying schema via `arg_types`
 
 ```
 from typing import Any
@@ -6051,7 +6068,7 @@ as_tool = runnable.as_tool(arg_types={"a": int, "b": list[int]})
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`str` input:
+`str` input
 
 ```
 from langchain_core.runnables import RunnableLambda
@@ -6136,6 +6153,8 @@ Configure particular `Runnable` fields at runtime.
 | --- | --- |
 | `RunnableSerializable[Input, Output]` | A new `Runnable` with the fields configured. |
 
+Example
+
 ```
 from langchain_core.runnables import ConfigurableField
 from langchain_openai import ChatOpenAI
@@ -6149,7 +6168,9 @@ model = ChatOpenAI(max_tokens=20).configurable_fields(
 )
 
 # max_tokens = 20
-print("max_tokens_20: ", model.invoke("tell me something about chess").content)
+print(
+    "max_tokens_20: ", model.invoke("tell me something about chess").content
+)
 
 # max_tokens = 200
 print(
@@ -6184,6 +6205,8 @@ Configure alternatives for `Runnable` objects that can be set at runtime.
 | RETURNS | DESCRIPTION |
 | --- | --- |
 | `RunnableSerializable[Input, Output]` | A new `Runnable` with the alternatives configured. |
+
+Example
 
 ```
 from langchain_anthropic import ChatAnthropic
@@ -6554,7 +6577,7 @@ structured_model.invoke(
 # }
 ```
 
-Example: `dict` schema (`include_raw=False`):
+Example: Dictionary schema (`include_raw=False`):
 
 ```
 from pydantic import BaseModel
@@ -7946,7 +7969,7 @@ pick(keys: str | list[str]) -> RunnableSerializable[Any, Any]
 
 Pick keys from the output `dict` of this `Runnable`.
 
-Pick a single key:
+Pick a single key
 
 ```
 import json
@@ -7965,7 +7988,7 @@ json_only_chain.invoke("[1, 2, 3]")
 # -> [1, 2, 3]
 ```
 
-Pick a list of keys:
+Pick a list of keys
 
 ```
 from typing import Any
@@ -7982,7 +8005,9 @@ def as_bytes(x: Any) -> bytes:
     return bytes(x, "utf-8")
 
 
-chain = RunnableMap(str=as_str, json=as_json, bytes=RunnableLambda(as_bytes))
+chain = RunnableMap(
+    str=as_str, json=as_json, bytes=RunnableLambda(as_bytes)
+)
 
 chain.invoke("[1, 2, 3]")
 # -> {"str": "[1, 2, 3]", "json": [1, 2, 3], "bytes": b"[1, 2, 3]"}
@@ -8416,7 +8441,7 @@ template = ChatPromptTemplate.from_messages(
 ).with_config({"run_name": "my_template", "tags": ["my_template"]})
 ```
 
-For instance:
+Example
 
 ```
 from langchain_core.runnables import RunnableLambda
@@ -8428,7 +8453,9 @@ async def reverse(s: str) -> str:
 
 chain = RunnableLambda(func=reverse)
 
-events = [event async for event in chain.astream_events("hello", version="v2")]
+events = [
+    event async for event in chain.astream_events("hello", version="v2")
+]
 
 # Will produce the following events
 # (run_id, and parent_ids has been omitted for brevity):
@@ -8457,7 +8484,7 @@ events = [event async for event in chain.astream_events("hello", version="v2")]
 ]
 ```
 
-Example: Dispatch Custom Event
+Dispatch custom event
 
 ```
 from langchain_core.callbacks.manager import (
@@ -8494,14 +8521,14 @@ async for event in slow_thing.astream_events("some_input", version="v2"):
 | --- | --- |
 | `input` | The input to the `Runnable`.  **TYPE:** `Any` |
 | `config` | The config to use for the `Runnable`.  **TYPE:** `RunnableConfig | None`  **DEFAULT:** `None` |
-| `version` | The version of the schema to use either `'v2'` or `'v1'`. Users should use `'v2'`. `'v1'` is for backwards compatibility and will be deprecated in `0.4.0`. No default will be assigned until the API is stabilized. custom events will only be surfaced in `'v2'`.  **TYPE:** `Literal['v1', 'v2']`  **DEFAULT:** `'v2'` |
+| `version` | The version of the schema to use, either `'v2'` or `'v1'`.  Users should use `'v2'`.  `'v1'` is for backwards compatibility and will be deprecated in `0.4.0`.  No default will be assigned until the API is stabilized. custom events will only be surfaced in `'v2'`.  **TYPE:** `Literal['v1', 'v2']`  **DEFAULT:** `'v2'` |
 | `include_names` | Only include events from `Runnable` objects with matching names.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `include_types` | Only include events from `Runnable` objects with matching types.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `include_tags` | Only include events from `Runnable` objects with matching tags.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_names` | Exclude events from `Runnable` objects with matching names.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_types` | Exclude events from `Runnable` objects with matching types.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_tags` | Exclude events from `Runnable` objects with matching tags.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
-| `**kwargs` | Additional keyword arguments to pass to the `Runnable`. These will be passed to `astream_log` as this implementation of `astream_events` is built on top of `astream_log`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Additional keyword arguments to pass to the `Runnable`.  These will be passed to `astream_log` as this implementation of `astream_events` is built on top of `astream_log`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | YIELDS | DESCRIPTION |
 | --- | --- |
@@ -8961,7 +8988,7 @@ types.
 | --- | --- |
 | `BaseTool` | A `BaseTool` instance. |
 
-Typed dict input:
+`TypedDict` input
 
 ```
 from typing_extensions import TypedDict
@@ -8982,7 +9009,7 @@ as_tool = runnable.as_tool()
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`dict` input, specifying schema via `args_schema`:
+`dict` input, specifying schema via `args_schema`
 
 ```
 from typing import Any
@@ -9003,7 +9030,7 @@ as_tool = runnable.as_tool(FSchema)
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`dict` input, specifying schema via `arg_types`:
+`dict` input, specifying schema via `arg_types`
 
 ```
 from typing import Any
@@ -9019,7 +9046,7 @@ as_tool = runnable.as_tool(arg_types={"a": int, "b": list[int]})
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`str` input:
+`str` input
 
 ```
 from langchain_core.runnables import RunnableLambda
@@ -9104,6 +9131,8 @@ Configure particular `Runnable` fields at runtime.
 | --- | --- |
 | `RunnableSerializable[Input, Output]` | A new `Runnable` with the fields configured. |
 
+Example
+
 ```
 from langchain_core.runnables import ConfigurableField
 from langchain_openai import ChatOpenAI
@@ -9117,7 +9146,9 @@ model = ChatOpenAI(max_tokens=20).configurable_fields(
 )
 
 # max_tokens = 20
-print("max_tokens_20: ", model.invoke("tell me something about chess").content)
+print(
+    "max_tokens_20: ", model.invoke("tell me something about chess").content
+)
 
 # max_tokens = 200
 print(
@@ -9152,6 +9183,8 @@ Configure alternatives for `Runnable` objects that can be set at runtime.
 | RETURNS | DESCRIPTION |
 | --- | --- |
 | `RunnableSerializable[Input, Output]` | A new `Runnable` with the alternatives configured. |
+
+Example
 
 ```
 from langchain_anthropic import ChatAnthropic
@@ -10159,7 +10192,7 @@ pick(keys: str | list[str]) -> RunnableSerializable[Any, Any]
 
 Pick keys from the output `dict` of this `Runnable`.
 
-Pick a single key:
+Pick a single key
 
 ```
 import json
@@ -10178,7 +10211,7 @@ json_only_chain.invoke("[1, 2, 3]")
 # -> [1, 2, 3]
 ```
 
-Pick a list of keys:
+Pick a list of keys
 
 ```
 from typing import Any
@@ -10195,7 +10228,9 @@ def as_bytes(x: Any) -> bytes:
     return bytes(x, "utf-8")
 
 
-chain = RunnableMap(str=as_str, json=as_json, bytes=RunnableLambda(as_bytes))
+chain = RunnableMap(
+    str=as_str, json=as_json, bytes=RunnableLambda(as_bytes)
+)
 
 chain.invoke("[1, 2, 3]")
 # -> {"str": "[1, 2, 3]", "json": [1, 2, 3], "bytes": b"[1, 2, 3]"}
@@ -10629,7 +10664,7 @@ template = ChatPromptTemplate.from_messages(
 ).with_config({"run_name": "my_template", "tags": ["my_template"]})
 ```
 
-For instance:
+Example
 
 ```
 from langchain_core.runnables import RunnableLambda
@@ -10641,7 +10676,9 @@ async def reverse(s: str) -> str:
 
 chain = RunnableLambda(func=reverse)
 
-events = [event async for event in chain.astream_events("hello", version="v2")]
+events = [
+    event async for event in chain.astream_events("hello", version="v2")
+]
 
 # Will produce the following events
 # (run_id, and parent_ids has been omitted for brevity):
@@ -10670,7 +10707,7 @@ events = [event async for event in chain.astream_events("hello", version="v2")]
 ]
 ```
 
-Example: Dispatch Custom Event
+Dispatch custom event
 
 ```
 from langchain_core.callbacks.manager import (
@@ -10707,14 +10744,14 @@ async for event in slow_thing.astream_events("some_input", version="v2"):
 | --- | --- |
 | `input` | The input to the `Runnable`.  **TYPE:** `Any` |
 | `config` | The config to use for the `Runnable`.  **TYPE:** `RunnableConfig | None`  **DEFAULT:** `None` |
-| `version` | The version of the schema to use either `'v2'` or `'v1'`. Users should use `'v2'`. `'v1'` is for backwards compatibility and will be deprecated in `0.4.0`. No default will be assigned until the API is stabilized. custom events will only be surfaced in `'v2'`.  **TYPE:** `Literal['v1', 'v2']`  **DEFAULT:** `'v2'` |
+| `version` | The version of the schema to use, either `'v2'` or `'v1'`.  Users should use `'v2'`.  `'v1'` is for backwards compatibility and will be deprecated in `0.4.0`.  No default will be assigned until the API is stabilized. custom events will only be surfaced in `'v2'`.  **TYPE:** `Literal['v1', 'v2']`  **DEFAULT:** `'v2'` |
 | `include_names` | Only include events from `Runnable` objects with matching names.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `include_types` | Only include events from `Runnable` objects with matching types.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `include_tags` | Only include events from `Runnable` objects with matching tags.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_names` | Exclude events from `Runnable` objects with matching names.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_types` | Exclude events from `Runnable` objects with matching types.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_tags` | Exclude events from `Runnable` objects with matching tags.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
-| `**kwargs` | Additional keyword arguments to pass to the `Runnable`. These will be passed to `astream_log` as this implementation of `astream_events` is built on top of `astream_log`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Additional keyword arguments to pass to the `Runnable`.  These will be passed to `astream_log` as this implementation of `astream_events` is built on top of `astream_log`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | YIELDS | DESCRIPTION |
 | --- | --- |
@@ -11174,7 +11211,7 @@ types.
 | --- | --- |
 | `BaseTool` | A `BaseTool` instance. |
 
-Typed dict input:
+`TypedDict` input
 
 ```
 from typing_extensions import TypedDict
@@ -11195,7 +11232,7 @@ as_tool = runnable.as_tool()
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`dict` input, specifying schema via `args_schema`:
+`dict` input, specifying schema via `args_schema`
 
 ```
 from typing import Any
@@ -11216,7 +11253,7 @@ as_tool = runnable.as_tool(FSchema)
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`dict` input, specifying schema via `arg_types`:
+`dict` input, specifying schema via `arg_types`
 
 ```
 from typing import Any
@@ -11232,7 +11269,7 @@ as_tool = runnable.as_tool(arg_types={"a": int, "b": list[int]})
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`str` input:
+`str` input
 
 ```
 from langchain_core.runnables import RunnableLambda
@@ -11348,6 +11385,8 @@ Configure particular `Runnable` fields at runtime.
 | --- | --- |
 | `RunnableSerializable[Input, Output]` | A new `Runnable` with the fields configured. |
 
+Example
+
 ```
 from langchain_core.runnables import ConfigurableField
 from langchain_openai import ChatOpenAI
@@ -11361,7 +11400,9 @@ model = ChatOpenAI(max_tokens=20).configurable_fields(
 )
 
 # max_tokens = 20
-print("max_tokens_20: ", model.invoke("tell me something about chess").content)
+print(
+    "max_tokens_20: ", model.invoke("tell me something about chess").content
+)
 
 # max_tokens = 200
 print(
@@ -11396,6 +11437,8 @@ Configure alternatives for `Runnable` objects that can be set at runtime.
 | RETURNS | DESCRIPTION |
 | --- | --- |
 | `RunnableSerializable[Input, Output]` | A new `Runnable` with the alternatives configured. |
+
+Example
 
 ```
 from langchain_anthropic import ChatAnthropic
@@ -12207,7 +12250,7 @@ pick(keys: str | list[str]) -> RunnableSerializable[Any, Any]
 
 Pick keys from the output `dict` of this `Runnable`.
 
-Pick a single key:
+Pick a single key
 
 ```
 import json
@@ -12226,7 +12269,7 @@ json_only_chain.invoke("[1, 2, 3]")
 # -> [1, 2, 3]
 ```
 
-Pick a list of keys:
+Pick a list of keys
 
 ```
 from typing import Any
@@ -12243,7 +12286,9 @@ def as_bytes(x: Any) -> bytes:
     return bytes(x, "utf-8")
 
 
-chain = RunnableMap(str=as_str, json=as_json, bytes=RunnableLambda(as_bytes))
+chain = RunnableMap(
+    str=as_str, json=as_json, bytes=RunnableLambda(as_bytes)
+)
 
 chain.invoke("[1, 2, 3]")
 # -> {"str": "[1, 2, 3]", "json": [1, 2, 3], "bytes": b"[1, 2, 3]"}
@@ -12679,7 +12724,7 @@ template = ChatPromptTemplate.from_messages(
 ).with_config({"run_name": "my_template", "tags": ["my_template"]})
 ```
 
-For instance:
+Example
 
 ```
 from langchain_core.runnables import RunnableLambda
@@ -12691,7 +12736,9 @@ async def reverse(s: str) -> str:
 
 chain = RunnableLambda(func=reverse)
 
-events = [event async for event in chain.astream_events("hello", version="v2")]
+events = [
+    event async for event in chain.astream_events("hello", version="v2")
+]
 
 # Will produce the following events
 # (run_id, and parent_ids has been omitted for brevity):
@@ -12720,7 +12767,7 @@ events = [event async for event in chain.astream_events("hello", version="v2")]
 ]
 ```
 
-Example: Dispatch Custom Event
+Dispatch custom event
 
 ```
 from langchain_core.callbacks.manager import (
@@ -12757,14 +12804,14 @@ async for event in slow_thing.astream_events("some_input", version="v2"):
 | --- | --- |
 | `input` | The input to the `Runnable`.  **TYPE:** `Any` |
 | `config` | The config to use for the `Runnable`.  **TYPE:** `RunnableConfig | None`  **DEFAULT:** `None` |
-| `version` | The version of the schema to use either `'v2'` or `'v1'`. Users should use `'v2'`. `'v1'` is for backwards compatibility and will be deprecated in `0.4.0`. No default will be assigned until the API is stabilized. custom events will only be surfaced in `'v2'`.  **TYPE:** `Literal['v1', 'v2']`  **DEFAULT:** `'v2'` |
+| `version` | The version of the schema to use, either `'v2'` or `'v1'`.  Users should use `'v2'`.  `'v1'` is for backwards compatibility and will be deprecated in `0.4.0`.  No default will be assigned until the API is stabilized. custom events will only be surfaced in `'v2'`.  **TYPE:** `Literal['v1', 'v2']`  **DEFAULT:** `'v2'` |
 | `include_names` | Only include events from `Runnable` objects with matching names.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `include_types` | Only include events from `Runnable` objects with matching types.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `include_tags` | Only include events from `Runnable` objects with matching tags.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_names` | Exclude events from `Runnable` objects with matching names.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_types` | Exclude events from `Runnable` objects with matching types.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_tags` | Exclude events from `Runnable` objects with matching tags.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
-| `**kwargs` | Additional keyword arguments to pass to the `Runnable`. These will be passed to `astream_log` as this implementation of `astream_events` is built on top of `astream_log`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Additional keyword arguments to pass to the `Runnable`.  These will be passed to `astream_log` as this implementation of `astream_events` is built on top of `astream_log`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | YIELDS | DESCRIPTION |
 | --- | --- |
@@ -13224,7 +13271,7 @@ types.
 | --- | --- |
 | `BaseTool` | A `BaseTool` instance. |
 
-Typed dict input:
+`TypedDict` input
 
 ```
 from typing_extensions import TypedDict
@@ -13245,7 +13292,7 @@ as_tool = runnable.as_tool()
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`dict` input, specifying schema via `args_schema`:
+`dict` input, specifying schema via `args_schema`
 
 ```
 from typing import Any
@@ -13266,7 +13313,7 @@ as_tool = runnable.as_tool(FSchema)
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`dict` input, specifying schema via `arg_types`:
+`dict` input, specifying schema via `arg_types`
 
 ```
 from typing import Any
@@ -13282,7 +13329,7 @@ as_tool = runnable.as_tool(arg_types={"a": int, "b": list[int]})
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`str` input:
+`str` input
 
 ```
 from langchain_core.runnables import RunnableLambda
@@ -13398,6 +13445,8 @@ Configure particular `Runnable` fields at runtime.
 | --- | --- |
 | `RunnableSerializable[Input, Output]` | A new `Runnable` with the fields configured. |
 
+Example
+
 ```
 from langchain_core.runnables import ConfigurableField
 from langchain_openai import ChatOpenAI
@@ -13411,7 +13460,9 @@ model = ChatOpenAI(max_tokens=20).configurable_fields(
 )
 
 # max_tokens = 20
-print("max_tokens_20: ", model.invoke("tell me something about chess").content)
+print(
+    "max_tokens_20: ", model.invoke("tell me something about chess").content
+)
 
 # max_tokens = 200
 print(
@@ -13446,6 +13497,8 @@ Configure alternatives for `Runnable` objects that can be set at runtime.
 | RETURNS | DESCRIPTION |
 | --- | --- |
 | `RunnableSerializable[Input, Output]` | A new `Runnable` with the alternatives configured. |
+
+Example
 
 ```
 from langchain_anthropic import ChatAnthropic
@@ -13958,7 +14011,7 @@ pick(keys: str | list[str]) -> RunnableSerializable[Any, Any]
 
 Pick keys from the output `dict` of this `Runnable`.
 
-Pick a single key:
+Pick a single key
 
 ```
 import json
@@ -13977,7 +14030,7 @@ json_only_chain.invoke("[1, 2, 3]")
 # -> [1, 2, 3]
 ```
 
-Pick a list of keys:
+Pick a list of keys
 
 ```
 from typing import Any
@@ -13994,7 +14047,9 @@ def as_bytes(x: Any) -> bytes:
     return bytes(x, "utf-8")
 
 
-chain = RunnableMap(str=as_str, json=as_json, bytes=RunnableLambda(as_bytes))
+chain = RunnableMap(
+    str=as_str, json=as_json, bytes=RunnableLambda(as_bytes)
+)
 
 chain.invoke("[1, 2, 3]")
 # -> {"str": "[1, 2, 3]", "json": [1, 2, 3], "bytes": b"[1, 2, 3]"}
@@ -14430,7 +14485,7 @@ template = ChatPromptTemplate.from_messages(
 ).with_config({"run_name": "my_template", "tags": ["my_template"]})
 ```
 
-For instance:
+Example
 
 ```
 from langchain_core.runnables import RunnableLambda
@@ -14442,7 +14497,9 @@ async def reverse(s: str) -> str:
 
 chain = RunnableLambda(func=reverse)
 
-events = [event async for event in chain.astream_events("hello", version="v2")]
+events = [
+    event async for event in chain.astream_events("hello", version="v2")
+]
 
 # Will produce the following events
 # (run_id, and parent_ids has been omitted for brevity):
@@ -14471,7 +14528,7 @@ events = [event async for event in chain.astream_events("hello", version="v2")]
 ]
 ```
 
-Example: Dispatch Custom Event
+Dispatch custom event
 
 ```
 from langchain_core.callbacks.manager import (
@@ -14508,14 +14565,14 @@ async for event in slow_thing.astream_events("some_input", version="v2"):
 | --- | --- |
 | `input` | The input to the `Runnable`.  **TYPE:** `Any` |
 | `config` | The config to use for the `Runnable`.  **TYPE:** `RunnableConfig | None`  **DEFAULT:** `None` |
-| `version` | The version of the schema to use either `'v2'` or `'v1'`. Users should use `'v2'`. `'v1'` is for backwards compatibility and will be deprecated in `0.4.0`. No default will be assigned until the API is stabilized. custom events will only be surfaced in `'v2'`.  **TYPE:** `Literal['v1', 'v2']`  **DEFAULT:** `'v2'` |
+| `version` | The version of the schema to use, either `'v2'` or `'v1'`.  Users should use `'v2'`.  `'v1'` is for backwards compatibility and will be deprecated in `0.4.0`.  No default will be assigned until the API is stabilized. custom events will only be surfaced in `'v2'`.  **TYPE:** `Literal['v1', 'v2']`  **DEFAULT:** `'v2'` |
 | `include_names` | Only include events from `Runnable` objects with matching names.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `include_types` | Only include events from `Runnable` objects with matching types.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `include_tags` | Only include events from `Runnable` objects with matching tags.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_names` | Exclude events from `Runnable` objects with matching names.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_types` | Exclude events from `Runnable` objects with matching types.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_tags` | Exclude events from `Runnable` objects with matching tags.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
-| `**kwargs` | Additional keyword arguments to pass to the `Runnable`. These will be passed to `astream_log` as this implementation of `astream_events` is built on top of `astream_log`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Additional keyword arguments to pass to the `Runnable`.  These will be passed to `astream_log` as this implementation of `astream_events` is built on top of `astream_log`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | YIELDS | DESCRIPTION |
 | --- | --- |
@@ -14975,7 +15032,7 @@ types.
 | --- | --- |
 | `BaseTool` | A `BaseTool` instance. |
 
-Typed dict input:
+`TypedDict` input
 
 ```
 from typing_extensions import TypedDict
@@ -14996,7 +15053,7 @@ as_tool = runnable.as_tool()
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`dict` input, specifying schema via `args_schema`:
+`dict` input, specifying schema via `args_schema`
 
 ```
 from typing import Any
@@ -15017,7 +15074,7 @@ as_tool = runnable.as_tool(FSchema)
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`dict` input, specifying schema via `arg_types`:
+`dict` input, specifying schema via `arg_types`
 
 ```
 from typing import Any
@@ -15033,7 +15090,7 @@ as_tool = runnable.as_tool(arg_types={"a": int, "b": list[int]})
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`str` input:
+`str` input
 
 ```
 from langchain_core.runnables import RunnableLambda
@@ -15149,6 +15206,8 @@ Configure particular `Runnable` fields at runtime.
 | --- | --- |
 | `RunnableSerializable[Input, Output]` | A new `Runnable` with the fields configured. |
 
+Example
+
 ```
 from langchain_core.runnables import ConfigurableField
 from langchain_openai import ChatOpenAI
@@ -15162,7 +15221,9 @@ model = ChatOpenAI(max_tokens=20).configurable_fields(
 )
 
 # max_tokens = 20
-print("max_tokens_20: ", model.invoke("tell me something about chess").content)
+print(
+    "max_tokens_20: ", model.invoke("tell me something about chess").content
+)
 
 # max_tokens = 200
 print(
@@ -15197,6 +15258,8 @@ Configure alternatives for `Runnable` objects that can be set at runtime.
 | RETURNS | DESCRIPTION |
 | --- | --- |
 | `RunnableSerializable[Input, Output]` | A new `Runnable` with the alternatives configured. |
+
+Example
 
 ```
 from langchain_anthropic import ChatAnthropic
@@ -15713,7 +15776,7 @@ pick(keys: str | list[str]) -> RunnableSerializable[Any, Any]
 
 Pick keys from the output `dict` of this `Runnable`.
 
-Pick a single key:
+Pick a single key
 
 ```
 import json
@@ -15732,7 +15795,7 @@ json_only_chain.invoke("[1, 2, 3]")
 # -> [1, 2, 3]
 ```
 
-Pick a list of keys:
+Pick a list of keys
 
 ```
 from typing import Any
@@ -15749,7 +15812,9 @@ def as_bytes(x: Any) -> bytes:
     return bytes(x, "utf-8")
 
 
-chain = RunnableMap(str=as_str, json=as_json, bytes=RunnableLambda(as_bytes))
+chain = RunnableMap(
+    str=as_str, json=as_json, bytes=RunnableLambda(as_bytes)
+)
 
 chain.invoke("[1, 2, 3]")
 # -> {"str": "[1, 2, 3]", "json": [1, 2, 3], "bytes": b"[1, 2, 3]"}
@@ -16185,7 +16250,7 @@ template = ChatPromptTemplate.from_messages(
 ).with_config({"run_name": "my_template", "tags": ["my_template"]})
 ```
 
-For instance:
+Example
 
 ```
 from langchain_core.runnables import RunnableLambda
@@ -16197,7 +16262,9 @@ async def reverse(s: str) -> str:
 
 chain = RunnableLambda(func=reverse)
 
-events = [event async for event in chain.astream_events("hello", version="v2")]
+events = [
+    event async for event in chain.astream_events("hello", version="v2")
+]
 
 # Will produce the following events
 # (run_id, and parent_ids has been omitted for brevity):
@@ -16226,7 +16293,7 @@ events = [event async for event in chain.astream_events("hello", version="v2")]
 ]
 ```
 
-Example: Dispatch Custom Event
+Dispatch custom event
 
 ```
 from langchain_core.callbacks.manager import (
@@ -16263,14 +16330,14 @@ async for event in slow_thing.astream_events("some_input", version="v2"):
 | --- | --- |
 | `input` | The input to the `Runnable`.  **TYPE:** `Any` |
 | `config` | The config to use for the `Runnable`.  **TYPE:** `RunnableConfig | None`  **DEFAULT:** `None` |
-| `version` | The version of the schema to use either `'v2'` or `'v1'`. Users should use `'v2'`. `'v1'` is for backwards compatibility and will be deprecated in `0.4.0`. No default will be assigned until the API is stabilized. custom events will only be surfaced in `'v2'`.  **TYPE:** `Literal['v1', 'v2']`  **DEFAULT:** `'v2'` |
+| `version` | The version of the schema to use, either `'v2'` or `'v1'`.  Users should use `'v2'`.  `'v1'` is for backwards compatibility and will be deprecated in `0.4.0`.  No default will be assigned until the API is stabilized. custom events will only be surfaced in `'v2'`.  **TYPE:** `Literal['v1', 'v2']`  **DEFAULT:** `'v2'` |
 | `include_names` | Only include events from `Runnable` objects with matching names.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `include_types` | Only include events from `Runnable` objects with matching types.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `include_tags` | Only include events from `Runnable` objects with matching tags.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_names` | Exclude events from `Runnable` objects with matching names.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_types` | Exclude events from `Runnable` objects with matching types.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_tags` | Exclude events from `Runnable` objects with matching tags.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
-| `**kwargs` | Additional keyword arguments to pass to the `Runnable`. These will be passed to `astream_log` as this implementation of `astream_events` is built on top of `astream_log`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Additional keyword arguments to pass to the `Runnable`.  These will be passed to `astream_log` as this implementation of `astream_events` is built on top of `astream_log`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | YIELDS | DESCRIPTION |
 | --- | --- |
@@ -16730,7 +16797,7 @@ types.
 | --- | --- |
 | `BaseTool` | A `BaseTool` instance. |
 
-Typed dict input:
+`TypedDict` input
 
 ```
 from typing_extensions import TypedDict
@@ -16751,7 +16818,7 @@ as_tool = runnable.as_tool()
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`dict` input, specifying schema via `args_schema`:
+`dict` input, specifying schema via `args_schema`
 
 ```
 from typing import Any
@@ -16772,7 +16839,7 @@ as_tool = runnable.as_tool(FSchema)
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`dict` input, specifying schema via `arg_types`:
+`dict` input, specifying schema via `arg_types`
 
 ```
 from typing import Any
@@ -16788,7 +16855,7 @@ as_tool = runnable.as_tool(arg_types={"a": int, "b": list[int]})
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`str` input:
+`str` input
 
 ```
 from langchain_core.runnables import RunnableLambda
@@ -16904,6 +16971,8 @@ Configure particular `Runnable` fields at runtime.
 | --- | --- |
 | `RunnableSerializable[Input, Output]` | A new `Runnable` with the fields configured. |
 
+Example
+
 ```
 from langchain_core.runnables import ConfigurableField
 from langchain_openai import ChatOpenAI
@@ -16917,7 +16986,9 @@ model = ChatOpenAI(max_tokens=20).configurable_fields(
 )
 
 # max_tokens = 20
-print("max_tokens_20: ", model.invoke("tell me something about chess").content)
+print(
+    "max_tokens_20: ", model.invoke("tell me something about chess").content
+)
 
 # max_tokens = 200
 print(
@@ -16952,6 +17023,8 @@ Configure alternatives for `Runnable` objects that can be set at runtime.
 | RETURNS | DESCRIPTION |
 | --- | --- |
 | `RunnableSerializable[Input, Output]` | A new `Runnable` with the alternatives configured. |
+
+Example
 
 ```
 from langchain_anthropic import ChatAnthropic
@@ -17516,7 +17589,7 @@ Return docs most similar to query using a specified search type.
 | PARAMETER | DESCRIPTION |
 | --- | --- |
 | `query` | Input text.  **TYPE:** `str` |
-| `search_type` | Type of search to perform. Can be `'similarity'`, `'mmr'`, or `'similarity_score_threshold'`.  **TYPE:** `str` |
+| `search_type` | Type of search to perform.  Can be `'similarity'`, `'mmr'`, or `'similarity_score_threshold'`.  **TYPE:** `str` |
 | `**kwargs` | Arguments to pass to the search method.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
@@ -17538,7 +17611,7 @@ Async return docs most similar to query using a specified search type.
 | PARAMETER | DESCRIPTION |
 | --- | --- |
 | `query` | Input text.  **TYPE:** `str` |
-| `search_type` | Type of search to perform. Can be `'similarity'`, `'mmr'`, or `'similarity_score_threshold'`.  **TYPE:** `str` |
+| `search_type` | Type of search to perform.  Can be `'similarity'`, `'mmr'`, or `'similarity_score_threshold'`.  **TYPE:** `str` |
 | `**kwargs` | Arguments to pass to the search method.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
@@ -17584,7 +17657,7 @@ Return docs and relevance scores in the range `[0, 1]`.
 | --- | --- |
 | `query` | Input text.  **TYPE:** `str` |
 | `k` | Number of `Document` objects to return.  **TYPE:** `int`  **DEFAULT:** `4` |
-| `**kwargs` | kwargs to be passed to similarity search. Should include `score_threshold`, An optional floating point value between `0` to `1` to filter the resulting set of retrieved docs  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Kwargs to be passed to similarity search.  Should include `score_threshold`, an optional floating point value between `0` to `1` to filter the resulting set of retrieved docs.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
@@ -17606,7 +17679,7 @@ Async return docs and relevance scores in the range `[0, 1]`.
 | --- | --- |
 | `query` | Input text.  **TYPE:** `str` |
 | `k` | Number of `Document` objects to return.  **TYPE:** `int`  **DEFAULT:** `4` |
-| `**kwargs` | kwargs to be passed to similarity search. Should include `score_threshold`, An optional floating point value between `0` to `1` to filter the resulting set of retrieved docs  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Kwargs to be passed to similarity search.  Should include `score_threshold`, an optional floating point value between `0` to `1` to filter the resulting set of retrieved docs.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
@@ -18071,7 +18144,7 @@ Return `VectorStoreRetriever` initialized from this `VectorStore`.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `**kwargs` | Keyword arguments to pass to the search function. Can include:   * `search_type`: Defines the type of search that the Retriever should   perform. Can be `'similarity'` (default), `'mmr'`, or   `'similarity_score_threshold'`. * `search_kwargs`: Keyword arguments to pass to the search function. Can   include things like:    + `k`: Amount of documents to return (Default: `4`)   + `score_threshold`: Minimum relevance threshold     for `similarity_score_threshold`   + `fetch_k`: Amount of documents to pass to MMR algorithm     (Default: `20`)   + `lambda_mult`: Diversity of results returned by MMR;     `1` for minimum diversity and 0 for maximum. (Default: `0.5`)   + `filter`: Filter by document metadata  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Keyword arguments to pass to the search function.  Can include:   * `search_type`: Defines the type of search that the Retriever should   perform. Can be `'similarity'` (default), `'mmr'`, or   `'similarity_score_threshold'`. * `search_kwargs`: Keyword arguments to pass to the search function.  Can include things like:    + `k`: Amount of documents to return (Default: `4`)   + `score_threshold`: Minimum relevance threshold     for `similarity_score_threshold`   + `fetch_k`: Amount of documents to pass to MMR algorithm     (Default: `20`)   + `lambda_mult`: Diversity of results returned by MMR;     `1` for minimum diversity and 0 for maximum. (Default: `0.5`)   + `filter`: Filter by document metadata  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
@@ -18454,7 +18527,7 @@ Return docs most similar to query using a specified search type.
 | PARAMETER | DESCRIPTION |
 | --- | --- |
 | `query` | Input text.  **TYPE:** `str` |
-| `search_type` | Type of search to perform. Can be `'similarity'`, `'mmr'`, or `'similarity_score_threshold'`.  **TYPE:** `str` |
+| `search_type` | Type of search to perform.  Can be `'similarity'`, `'mmr'`, or `'similarity_score_threshold'`.  **TYPE:** `str` |
 | `**kwargs` | Arguments to pass to the search method.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
@@ -18476,7 +18549,7 @@ Async return docs most similar to query using a specified search type.
 | PARAMETER | DESCRIPTION |
 | --- | --- |
 | `query` | Input text.  **TYPE:** `str` |
-| `search_type` | Type of search to perform. Can be `'similarity'`, `'mmr'`, or `'similarity_score_threshold'`.  **TYPE:** `str` |
+| `search_type` | Type of search to perform.  Can be `'similarity'`, `'mmr'`, or `'similarity_score_threshold'`.  **TYPE:** `str` |
 | `**kwargs` | Arguments to pass to the search method.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
@@ -18522,7 +18595,7 @@ Return docs and relevance scores in the range `[0, 1]`.
 | --- | --- |
 | `query` | Input text.  **TYPE:** `str` |
 | `k` | Number of `Document` objects to return.  **TYPE:** `int`  **DEFAULT:** `4` |
-| `**kwargs` | kwargs to be passed to similarity search. Should include `score_threshold`, An optional floating point value between `0` to `1` to filter the resulting set of retrieved docs  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Kwargs to be passed to similarity search.  Should include `score_threshold`, an optional floating point value between `0` to `1` to filter the resulting set of retrieved docs.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
@@ -18544,7 +18617,7 @@ Async return docs and relevance scores in the range `[0, 1]`.
 | --- | --- |
 | `query` | Input text.  **TYPE:** `str` |
 | `k` | Number of `Document` objects to return.  **TYPE:** `int`  **DEFAULT:** `4` |
-| `**kwargs` | kwargs to be passed to similarity search. Should include `score_threshold`, An optional floating point value between `0` to `1` to filter the resulting set of retrieved docs  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Kwargs to be passed to similarity search.  Should include `score_threshold`, an optional floating point value between `0` to `1` to filter the resulting set of retrieved docs.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |

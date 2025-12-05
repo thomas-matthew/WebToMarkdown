@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -69,9 +69,6 @@ LangChain Reference
   + [langchain-mcp-adapters](https://reference.langchain.com/python/langchain_mcp_adapters/)
 
     langchain-mcp-adapters
-  + [langchain-model-profiles](https://reference.langchain.com/python/langchain_model_profiles/)
-
-    langchain-model-profiles
   + [langchain-tests](https://reference.langchain.com/python/langchain_tests/)
 
     langchain-tests
@@ -129,7 +126,7 @@ This page contains **reference documentation** for Agents. See [the docs](https:
 
 
 
-## langchain.agents [¶](https://reference.langchain.com/python/langchain/agents/#langchain.agents "Copy anchor link to this section for reference")
+## agents [¶](https://reference.langchain.com/python/langchain/agents/#langchain.agents "Copy anchor link to this section for reference")
 
 Entrypoint to building [Agents](https://docs.langchain.com/oss/python/langchain/agents) with LangChain.
 
@@ -140,7 +137,7 @@ create_agent(
     model: str | BaseChatModel,
     tools: Sequence[BaseTool | Callable | dict[str, Any]] | None = None,
     *,
-    system_prompt: str | None = None,
+    system_prompt: str | SystemMessage | None = None,
     middleware: Sequence[AgentMiddleware[StateT_co, ContextT]] = (),
     response_format: ResponseFormat[ResponseT] | type[ResponseT] | None = None,
     state_schema: type[AgentState[ResponseT]] | None = None,
@@ -164,9 +161,9 @@ visit the [Agents](https://docs.langchain.com/oss/python/langchain/agents) docs.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `model` [¶](https://reference.langchain.com/python/langchain/agents/#langchain.agents.create_agent(model) "Copy anchor link to this section for reference") | The language model for the agent.  Can be a string identifier (e.g., `"openai:gpt-4"`) or a direct chat model instance (e.g., [`ChatOpenAI`](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">langchain_openai.chat_models.ChatOpenAI</span>") or other another [LangChain chat model](https://docs.langchain.com/oss/python/integrations/chat)).  For a full list of supported model strings, see [`init_chat_model`](https://reference.langchain.com/python/langchain/models/#langchain.chat_models.init_chat_model(model_provider) "<code>model_provider</code>").  See the [Models](https://docs.langchain.com/oss/python/langchain/models) docs for more information.  **TYPE:** `str | BaseChatModel` |
+| `model` [¶](https://reference.langchain.com/python/langchain/agents/#langchain.agents.create_agent(model) "Copy anchor link to this section for reference") | The language model for the agent.  Can be a string identifier (e.g., `"openai:gpt-4"`) or a direct chat model instance (e.g., [`ChatOpenAI`](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">ChatOpenAI</span>") or other another [LangChain chat model](https://docs.langchain.com/oss/python/integrations/chat)).  For a full list of supported model strings, see [`init_chat_model`](https://reference.langchain.com/python/langchain/models/#langchain.chat_models.init_chat_model(model_provider) "<code>model_provider</code>").  See the [Models](https://docs.langchain.com/oss/python/langchain/models) docs for more information.  **TYPE:** `str | BaseChatModel` |
 | `tools` [¶](https://reference.langchain.com/python/langchain/agents/#langchain.agents.create_agent(tools) "Copy anchor link to this section for reference") | A list of tools, `dict`, or `Callable`.  If `None` or an empty list, the agent will consist of a model node without a tool calling loop.  See the [Tools](https://docs.langchain.com/oss/python/langchain/tools) docs for more information.  **TYPE:** `Sequence[BaseTool | Callable | dict[str, Any]] | None`  **DEFAULT:** `None` |
-| `system_prompt` [¶](https://reference.langchain.com/python/langchain/agents/#langchain.agents.create_agent(system_prompt) "Copy anchor link to this section for reference") | An optional system prompt for the LLM.  Prompts are converted to a [`SystemMessage`](https://reference.langchain.com/python/langchain/messages/#langchain.messages.SystemMessage "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">SystemMessage</span>") and added to the beginning of the message list.  **TYPE:** `str | None`  **DEFAULT:** `None` |
+| `system_prompt` [¶](https://reference.langchain.com/python/langchain/agents/#langchain.agents.create_agent(system_prompt) "Copy anchor link to this section for reference") | An optional system prompt for the LLM.  Can be a `str` (which will be converted to a `SystemMessage`) or a `SystemMessage` instance directly. The system message is added to the beginning of the message list when calling the model.  **TYPE:** `str | SystemMessage | None`  **DEFAULT:** `None` |
 | `middleware` [¶](https://reference.langchain.com/python/langchain/agents/#langchain.agents.create_agent(middleware) "Copy anchor link to this section for reference") | A sequence of middleware instances to apply to the agent.  Middleware can intercept and modify agent behavior at various stages.  See the [Middleware](https://docs.langchain.com/oss/python/langchain/middleware) docs for more information.  **TYPE:** `Sequence[AgentMiddleware[StateT_co, ContextT]]`  **DEFAULT:** `()` |
 | `response_format` [¶](https://reference.langchain.com/python/langchain/agents/#langchain.agents.create_agent(response_format) "Copy anchor link to this section for reference") | An optional configuration for structured responses.  Can be a `ToolStrategy`, `ProviderStrategy`, or a Pydantic model class.  If provided, the agent will handle structured output during the conversation flow.  Raw schemas will be wrapped in an appropriate strategy based on model capabilities.  See the [Structured output](https://docs.langchain.com/oss/python/langchain/structured-output) docs for more information.  **TYPE:** `ResponseFormat[ResponseT] | type[ResponseT] | None`  **DEFAULT:** `None` |
 | `state_schema` [¶](https://reference.langchain.com/python/langchain/agents/#langchain.agents.create_agent(state_schema) "Copy anchor link to this section for reference") | An optional `TypedDict` schema that extends `AgentState`.  When provided, this schema is used instead of `AgentState` as the base schema for merging with middleware state schemas. This allows users to add custom state fields without needing to create custom middleware.  Generally, it's recommended to use `state_schema` extensions via middleware to keep relevant extensions scoped to corresponding hooks / tools.  **TYPE:** `type[AgentState[ResponseT]] | None`  **DEFAULT:** `None` |

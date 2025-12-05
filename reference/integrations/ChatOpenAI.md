@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -173,6 +173,7 @@ LangChain Reference
       * [OpenAIEmbeddings](https://reference.langchain.com/python/integrations/langchain_openai/OpenAIEmbeddings/)
       * [AzureOpenAIEmbeddings](https://reference.langchain.com/python/integrations/langchain_openai/AzureOpenAIEmbeddings/)
       * [Middleware](https://reference.langchain.com/python/integrations/langchain_openai/middleware/)
+    - [Parallel](https://reference.langchain.com/python/integrations/langchain_parallel/)
     - [Perplexity](https://reference.langchain.com/python/integrations/langchain_perplexity/)
     - [Pinecone](https://reference.langchain.com/python/integrations/langchain_pinecone/)
     - [Postgres](https://reference.langchain.com/python/integrations/langchain_postgres/)
@@ -311,7 +312,7 @@ Reference docs
 
 This page contains **reference documentation** for `ChatOpenAI`. See [the docs](https://docs.langchain.com/oss/python/integrations/chat/openai) for conceptual guides, tutorials, and examples on using `ChatOpenAI`.
 
-## langchain\_openai.chat\_models.ChatOpenAI [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI "Copy anchor link to this section for reference")
+## ChatOpenAI [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI "Copy anchor link to this section for reference")
 
 Bases: `BaseChatOpenAI`
 
@@ -976,7 +977,9 @@ model = ChatOpenAI(
     api_key="lm-studio",  # Can be any string
     model="mlx-community/QwQ-32B-4bit",
     temperature=0,
-    extra_body={"ttl": 300},  # Auto-evict model after 5 minutes of inactivity
+    extra_body={
+        "ttl": 300
+    },  # Auto-evict model after 5 minutes of inactivity
 )
 ```
 
@@ -1292,24 +1295,25 @@ Behavior changed in `langchain-openai` 1.0.0
 
 Default updated to `"responses/v1"`.
 
-### profile `property` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.profile "Copy anchor link to this section for reference")
+### profile `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.profile "Copy anchor link to this section for reference")
 
 ```
-profile: ModelProfile
+profile: ModelProfile | None = Field(default=None, exclude=True)
 ```
 
-Return profiling information for the model.
+Profile detailing model capabilities.
 
-This property relies on the `langchain-model-profiles` package to retrieve chat
-model capabilities, such as context window sizes and supported features.
+Beta feature
 
-| RAISES | DESCRIPTION |
-| --- | --- |
-| `ImportError` | If `langchain-model-profiles` is not installed. |
+This is a beta feature. The format of model profiles is subject to change.
 
-| RETURNS | DESCRIPTION |
-| --- | --- |
-| `ModelProfile` | A `ModelProfile` object containing profiling information for the model. |
+If not specified, automatically loaded from the provider package on initialization
+if data is available.
+
+Example profile data includes context window sizes, supported modalities, or support
+for tool calling, structured output, and other features.
+
+Added in `langchain-core` 1.1.0
 
 ### model\_name `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.model_name "Copy anchor link to this section for reference")
 
@@ -2080,7 +2084,7 @@ pick(keys: str | list[str]) -> RunnableSerializable[Any, Any]
 
 Pick keys from the output `dict` of this `Runnable`.
 
-Pick a single key:
+Pick a single key
 
 ```
 import json
@@ -2099,7 +2103,7 @@ json_only_chain.invoke("[1, 2, 3]")
 # -> [1, 2, 3]
 ```
 
-Pick a list of keys:
+Pick a list of keys
 
 ```
 from typing import Any
@@ -2116,7 +2120,9 @@ def as_bytes(x: Any) -> bytes:
     return bytes(x, "utf-8")
 
 
-chain = RunnableMap(str=as_str, json=as_json, bytes=RunnableLambda(as_bytes))
+chain = RunnableMap(
+    str=as_str, json=as_json, bytes=RunnableLambda(as_bytes)
+)
 
 chain.invoke("[1, 2, 3]")
 # -> {"str": "[1, 2, 3]", "json": [1, 2, 3], "bytes": b"[1, 2, 3]"}
@@ -2550,7 +2556,7 @@ template = ChatPromptTemplate.from_messages(
 ).with_config({"run_name": "my_template", "tags": ["my_template"]})
 ```
 
-For instance:
+Example
 
 ```
 from langchain_core.runnables import RunnableLambda
@@ -2562,7 +2568,9 @@ async def reverse(s: str) -> str:
 
 chain = RunnableLambda(func=reverse)
 
-events = [event async for event in chain.astream_events("hello", version="v2")]
+events = [
+    event async for event in chain.astream_events("hello", version="v2")
+]
 
 # Will produce the following events
 # (run_id, and parent_ids has been omitted for brevity):
@@ -2591,7 +2599,7 @@ events = [event async for event in chain.astream_events("hello", version="v2")]
 ]
 ```
 
-Example: Dispatch Custom Event
+Dispatch custom event
 
 ```
 from langchain_core.callbacks.manager import (
@@ -2628,14 +2636,14 @@ async for event in slow_thing.astream_events("some_input", version="v2"):
 | --- | --- |
 | `input` | The input to the `Runnable`.  **TYPE:** `Any` |
 | `config` | The config to use for the `Runnable`.  **TYPE:** `RunnableConfig | None`  **DEFAULT:** `None` |
-| `version` | The version of the schema to use either `'v2'` or `'v1'`. Users should use `'v2'`. `'v1'` is for backwards compatibility and will be deprecated in `0.4.0`. No default will be assigned until the API is stabilized. custom events will only be surfaced in `'v2'`.  **TYPE:** `Literal['v1', 'v2']`  **DEFAULT:** `'v2'` |
+| `version` | The version of the schema to use, either `'v2'` or `'v1'`.  Users should use `'v2'`.  `'v1'` is for backwards compatibility and will be deprecated in `0.4.0`.  No default will be assigned until the API is stabilized. custom events will only be surfaced in `'v2'`.  **TYPE:** `Literal['v1', 'v2']`  **DEFAULT:** `'v2'` |
 | `include_names` | Only include events from `Runnable` objects with matching names.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `include_types` | Only include events from `Runnable` objects with matching types.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `include_tags` | Only include events from `Runnable` objects with matching tags.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_names` | Exclude events from `Runnable` objects with matching names.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_types` | Exclude events from `Runnable` objects with matching types.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
 | `exclude_tags` | Exclude events from `Runnable` objects with matching tags.  **TYPE:** `Sequence[str] | None`  **DEFAULT:** `None` |
-| `**kwargs` | Additional keyword arguments to pass to the `Runnable`. These will be passed to `astream_log` as this implementation of `astream_events` is built on top of `astream_log`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Additional keyword arguments to pass to the `Runnable`.  These will be passed to `astream_log` as this implementation of `astream_events` is built on top of `astream_log`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | YIELDS | DESCRIPTION |
 | --- | --- |
@@ -3095,7 +3103,7 @@ types.
 | --- | --- |
 | `BaseTool` | A `BaseTool` instance. |
 
-Typed dict input:
+`TypedDict` input
 
 ```
 from typing_extensions import TypedDict
@@ -3116,7 +3124,7 @@ as_tool = runnable.as_tool()
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`dict` input, specifying schema via `args_schema`:
+`dict` input, specifying schema via `args_schema`
 
 ```
 from typing import Any
@@ -3137,7 +3145,7 @@ as_tool = runnable.as_tool(FSchema)
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`dict` input, specifying schema via `arg_types`:
+`dict` input, specifying schema via `arg_types`
 
 ```
 from typing import Any
@@ -3153,7 +3161,7 @@ as_tool = runnable.as_tool(arg_types={"a": int, "b": list[int]})
 as_tool.invoke({"a": 3, "b": [1, 2]})
 ```
 
-`str` input:
+`str` input
 
 ```
 from langchain_core.runnables import RunnableLambda
@@ -3238,6 +3246,8 @@ Configure particular `Runnable` fields at runtime.
 | --- | --- |
 | `RunnableSerializable[Input, Output]` | A new `Runnable` with the fields configured. |
 
+Example
+
 ```
 from langchain_core.runnables import ConfigurableField
 from langchain_openai import ChatOpenAI
@@ -3251,7 +3261,9 @@ model = ChatOpenAI(max_tokens=20).configurable_fields(
 )
 
 # max_tokens = 20
-print("max_tokens_20: ", model.invoke("tell me something about chess").content)
+print(
+    "max_tokens_20: ", model.invoke("tell me something about chess").content
+)
 
 # max_tokens = 200
 print(
@@ -3286,6 +3298,8 @@ Configure alternatives for `Runnable` objects that can be set at runtime.
 | RETURNS | DESCRIPTION |
 | --- | --- |
 | `RunnableSerializable[Input, Output]` | A new `Runnable` with the alternatives configured. |
+
+Example
 
 ```
 from langchain_anthropic import ChatAnthropic

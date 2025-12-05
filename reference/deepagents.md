@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -183,6 +183,8 @@ before_agent(state: StateT, runtime: Runtime[ContextT]) -> dict[str, Any] | None
 
 Logic to run before the agent execution starts.
 
+Async version is `abefore_agent`
+
 #### abefore\_agent `async` [¶](https://reference.langchain.com/python/deepagents/#deepagents.FilesystemMiddleware.abefore_agent "Copy anchor link to this section for reference")
 
 ```
@@ -199,6 +201,8 @@ before_model(state: StateT, runtime: Runtime[ContextT]) -> dict[str, Any] | None
 
 Logic to run before the model is called.
 
+Async version is `abefore_model`
+
 #### abefore\_model `async` [¶](https://reference.langchain.com/python/deepagents/#deepagents.FilesystemMiddleware.abefore_model "Copy anchor link to this section for reference")
 
 ```
@@ -214,6 +218,8 @@ after_model(state: StateT, runtime: Runtime[ContextT]) -> dict[str, Any] | None
 ```
 
 Logic to run after the model is called.
+
+Async version is `aafter_model`
 
 #### aafter\_model `async` [¶](https://reference.langchain.com/python/deepagents/#deepagents.FilesystemMiddleware.aafter_model "Copy anchor link to this section for reference")
 
@@ -545,6 +551,8 @@ before_agent(state: StateT, runtime: Runtime[ContextT]) -> dict[str, Any] | None
 
 Logic to run before the agent execution starts.
 
+Async version is `abefore_agent`
+
 #### abefore\_agent `async` [¶](https://reference.langchain.com/python/deepagents/#deepagents.SubAgentMiddleware.abefore_agent "Copy anchor link to this section for reference")
 
 ```
@@ -561,6 +569,8 @@ before_model(state: StateT, runtime: Runtime[ContextT]) -> dict[str, Any] | None
 
 Logic to run before the model is called.
 
+Async version is `abefore_model`
+
 #### abefore\_model `async` [¶](https://reference.langchain.com/python/deepagents/#deepagents.SubAgentMiddleware.abefore_model "Copy anchor link to this section for reference")
 
 ```
@@ -576,6 +586,8 @@ after_model(state: StateT, runtime: Runtime[ContextT]) -> dict[str, Any] | None
 ```
 
 Logic to run after the model is called.
+
+Async version is `aafter_model`
 
 #### aafter\_model `async` [¶](https://reference.langchain.com/python/deepagents/#deepagents.SubAgentMiddleware.aafter_model "Copy anchor link to this section for reference")
 
@@ -612,6 +624,8 @@ wrap_tool_call(
 
 Intercept tool execution for retries, monitoring, or modification.
 
+Async version is `awrap_tool_call`
+
 Multiple middleware compose automatically (first defined = outermost).
 
 Exceptions propagate unless `handle_tool_errors` is configured on `ToolNode`.
@@ -635,7 +649,14 @@ Modify request before execution
 
 ```
 def wrap_tool_call(self, request, handler):
-    request.tool_call["args"]["value"] *= 2
+    modified_call = {
+        **request.tool_call,
+        "args": {
+            **request.tool_call["args"],
+            "value": request.tool_call["args"]["value"] * 2,
+        },
+    }
+    request = request.override(tool_call=modified_call)
     return handler(request)
 ```
 

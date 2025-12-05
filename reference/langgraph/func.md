@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -82,7 +82,7 @@ Table of contents
 
 # Functional API
 
-## langgraph.func [¶](https://reference.langchain.com/python/langgraph/func/#langgraph.func "Copy anchor link to this section for reference")
+## func [¶](https://reference.langchain.com/python/langgraph/func/#langgraph.func "Copy anchor link to this section for reference")
 
 | FUNCTION | DESCRIPTION |
 | --- | --- |
@@ -225,7 +225,7 @@ my_workflow.invoke("hello", config)
 ```
 
 
-Using entrypoint.final to save a value
+Using `entrypoint.final` to save a value
 
 The `entrypoint.final` object allows you to return a value while saving
 a different value to the checkpoint. This value will be accessible

@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -69,9 +69,6 @@ LangChain Reference
   + [langchain-mcp-adapters](https://reference.langchain.com/python/langchain_mcp_adapters/)
 
     langchain-mcp-adapters
-  + [langchain-model-profiles](https://reference.langchain.com/python/langchain_model_profiles/)
-
-    langchain-model-profiles
   + [langchain-tests](https://reference.langchain.com/python/langchain_tests/)
 
     langchain-tests
@@ -123,7 +120,7 @@ Table of contents
 
 # Caches
 
-## langchain\_core.caches [¶](https://reference.langchain.com/python/langchain_core/caches/#langchain_core.caches "Copy anchor link to this section for reference")
+## caches [¶](https://reference.langchain.com/python/langchain_core/caches/#langchain_core.caches "Copy anchor link to this section for reference")
 
 Optional caching layer for language models.
 

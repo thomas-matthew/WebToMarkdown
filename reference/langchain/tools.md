@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -66,9 +66,6 @@ LangChain Reference
   + [langchain-mcp-adapters](https://reference.langchain.com/python/langchain_mcp_adapters/)
 
     langchain-mcp-adapters
-  + [langchain-model-profiles](https://reference.langchain.com/python/langchain_model_profiles/)
-
-    langchain-model-profiles
   + [langchain-tests](https://reference.langchain.com/python/langchain_tests/)
 
     langchain-tests
@@ -121,7 +118,7 @@ Reference docs
 
 This page contains **reference documentation** for Tools. See [the docs](https://docs.langchain.com/oss/python/langchain/tools) for conceptual guides, tutorials, and examples on using Tools.
 
-## langchain.tools.tool [¶](https://reference.langchain.com/python/langchain/tools/#langchain.tools.tool "Copy anchor link to this section for reference")
+## tool [¶](https://reference.langchain.com/python/langchain/tools/#langchain.tools.tool "Copy anchor link to this section for reference")
 
 ```
 tool(
@@ -266,7 +263,7 @@ def invalid_docstring_3(bar: str, baz: int) -> str:
     return bar
 ```
 
-## langchain.tools.BaseTool [¶](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool "Copy anchor link to this section for reference")
+## BaseTool [¶](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool "Copy anchor link to this section for reference")
 
 Bases: `RunnableSerializable[str | dict | ToolCall, Any]`
 
@@ -389,7 +386,7 @@ This method allows to get an output schema for a specific configuration.
 | --- | --- |
 | `type[BaseModel]` | A Pydantic model that can be used to validate output. |
 
-## langchain.tools.InjectedState [¶](https://reference.langchain.com/python/langchain/tools/#langchain.tools.InjectedState "Copy anchor link to this section for reference")
+## InjectedState [¶](https://reference.langchain.com/python/langchain/tools/#langchain.tools.InjectedState "Copy anchor link to this section for reference")
 
 Bases: `InjectedToolArg`
 
@@ -474,7 +471,7 @@ __init__(field: str | None = None) -> None
 
 Initialize the `InjectedState` annotation.
 
-## langchain.tools.InjectedStore [¶](https://reference.langchain.com/python/langchain/tools/#langchain.tools.InjectedStore "Copy anchor link to this section for reference")
+## InjectedStore [¶](https://reference.langchain.com/python/langchain/tools/#langchain.tools.InjectedStore "Copy anchor link to this section for reference")
 
 Bases: `InjectedToolArg`
 
@@ -553,14 +550,14 @@ Note
 * Store injection requires the graph to be compiled with a store instance
 * Multiple tools can share the same store instance for data consistency
 
-## langchain.tools.InjectedToolArg [¶](https://reference.langchain.com/python/langchain/tools/#langchain.tools.InjectedToolArg "Copy anchor link to this section for reference")
+## InjectedToolArg [¶](https://reference.langchain.com/python/langchain/tools/#langchain.tools.InjectedToolArg "Copy anchor link to this section for reference")
 
 Annotation for tool arguments that are injected at runtime.
 
 Tool arguments annotated with this class are not included in the tool
 schema sent to language models and are instead injected during execution.
 
-## langchain.tools.InjectedToolCallId [¶](https://reference.langchain.com/python/langchain/tools/#langchain.tools.InjectedToolCallId "Copy anchor link to this section for reference")
+## InjectedToolCallId [¶](https://reference.langchain.com/python/langchain/tools/#langchain.tools.InjectedToolCallId "Copy anchor link to this section for reference")
 
 Bases: `InjectedToolArg`
 

@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -206,7 +206,7 @@ Table of contents
 
 # Channels
 
-## langgraph.channels.base [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.base "Copy anchor link to this section for reference")
+## base [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.base "Copy anchor link to this section for reference")
 
 ### BaseChannel [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.base.BaseChannel "Copy anchor link to this section for reference")
 
@@ -222,8 +222,8 @@ Base class for all channels.
 | `get` | Return the current value of the channel. |
 | `is_available` | Return `True` if the channel is available (not empty), `False` otherwise. |
 | `update` | Update the channel's value with the given sequence of updates. |
-| `consume` | Notify the channel that a subscribed task ran. By default, no-op. |
-| `finish` | Notify the channel that the Pregel run is finishing. By default, no-op. |
+| `consume` | Notify the channel that a subscribed task ran. |
+| `finish` | Notify the channel that the Pregel run is finishing. |
 
 #### ValueType `abstractmethod` `property` [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.base.BaseChannel.ValueType "Copy anchor link to this section for reference")
 
@@ -248,7 +248,9 @@ copy() -> Self
 ```
 
 Return a copy of the channel.
+
 By default, delegates to `checkpoint()` and `from_checkpoint()`.
+
 Subclasses can override this method with a more efficient implementation.
 
 #### checkpoint [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.base.BaseChannel.checkpoint "Copy anchor link to this section for reference")
@@ -258,6 +260,7 @@ checkpoint() -> Checkpoint | Any
 ```
 
 Return a serializable representation of the channel's current state.
+
 Raises `EmptyChannelError` if the channel is empty (never updated yet),
 or doesn't support checkpoints.
 
@@ -268,6 +271,7 @@ from_checkpoint(checkpoint: Checkpoint | Any) -> Self
 ```
 
 Return a new identical channel, optionally initialized from a checkpoint.
+
 If the checkpoint contains complex data structures, they should be copied.
 
 #### get `abstractmethod` [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.base.BaseChannel.get "Copy anchor link to this section for reference")
@@ -287,6 +291,7 @@ is_available() -> bool
 ```
 
 Return `True` if the channel is available (not empty), `False` otherwise.
+
 Subclasses should override this method to provide a more efficient
 implementation than calling `get()` and catching `EmptyChannelError`.
 
@@ -299,8 +304,11 @@ update(values: Sequence[Update]) -> bool
 Update the channel's value with the given sequence of updates.
 The order of the updates in the sequence is arbitrary.
 This method is called by Pregel for all channels at the end of each step.
+
 If there are no updates, it is called with an empty sequence.
+
 Raises `InvalidUpdateError` if the sequence of updates is invalid.
+
 Returns `True` if the channel was updated, `False` otherwise.
 
 #### consume [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.base.BaseChannel.consume "Copy anchor link to this section for reference")
@@ -309,9 +317,11 @@ Returns `True` if the channel was updated, `False` otherwise.
 consume() -> bool
 ```
 
-Notify the channel that a subscribed task ran. By default, no-op.
-A channel can use this method to modify its state, preventing the value
-from being consumed again.
+Notify the channel that a subscribed task ran.
+
+By default, no-op.
+
+A channel can use this method to modify its state, preventing the value from being consumed again.
 
 Returns `True` if the channel was updated, `False` otherwise.
 
@@ -321,12 +331,15 @@ Returns `True` if the channel was updated, `False` otherwise.
 finish() -> bool
 ```
 
-Notify the channel that the Pregel run is finishing. By default, no-op.
+Notify the channel that the Pregel run is finishing.
+
+By default, no-op.
+
 A channel can use this method to modify its state, preventing finish.
 
 Returns `True` if the channel was updated, `False` otherwise.
 
-## langgraph.channels [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels "Copy anchor link to this section for reference")
+## channels [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels "Copy anchor link to this section for reference")
 
 ### Topic [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.Topic "Copy anchor link to this section for reference")
 
@@ -341,8 +354,8 @@ A configurable PubSub Topic.
 
 | METHOD | DESCRIPTION |
 | --- | --- |
-| `consume` | Notify the channel that a subscribed task ran. By default, no-op. |
-| `finish` | Notify the channel that the Pregel run is finishing. By default, no-op. |
+| `consume` | Notify the channel that a subscribed task ran. |
+| `finish` | Notify the channel that the Pregel run is finishing. |
 | `copy` | Return a copy of the channel. |
 | `checkpoint` | Return a serializable representation of the channel's current state. |
 | `from_checkpoint` | Return a new identical channel, optionally initialized from a checkpoint. |
@@ -372,9 +385,11 @@ The type of the update received by the channel.
 consume() -> bool
 ```
 
-Notify the channel that a subscribed task ran. By default, no-op.
-A channel can use this method to modify its state, preventing the value
-from being consumed again.
+Notify the channel that a subscribed task ran.
+
+By default, no-op.
+
+A channel can use this method to modify its state, preventing the value from being consumed again.
 
 Returns `True` if the channel was updated, `False` otherwise.
 
@@ -384,7 +399,10 @@ Returns `True` if the channel was updated, `False` otherwise.
 finish() -> bool
 ```
 
-Notify the channel that the Pregel run is finishing. By default, no-op.
+Notify the channel that the Pregel run is finishing.
+
+By default, no-op.
+
 A channel can use this method to modify its state, preventing finish.
 
 Returns `True` if the channel was updated, `False` otherwise.
@@ -404,6 +422,7 @@ checkpoint() -> list[Value]
 ```
 
 Return a serializable representation of the channel's current state.
+
 Raises `EmptyChannelError` if the channel is empty (never updated yet),
 or doesn't support checkpoints.
 
@@ -414,6 +433,7 @@ from_checkpoint(checkpoint: list[Value]) -> Self
 ```
 
 Return a new identical channel, optionally initialized from a checkpoint.
+
 If the checkpoint contains complex data structures, they should be copied.
 
 #### update [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.Topic.update "Copy anchor link to this section for reference")
@@ -425,8 +445,11 @@ update(values: Sequence[Value | list[Value]]) -> bool
 Update the channel's value with the given sequence of updates.
 The order of the updates in the sequence is arbitrary.
 This method is called by Pregel for all channels at the end of each step.
+
 If there are no updates, it is called with an empty sequence.
+
 Raises `InvalidUpdateError` if the sequence of updates is invalid.
+
 Returns `True` if the channel was updated, `False` otherwise.
 
 #### get [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.Topic.get "Copy anchor link to this section for reference")
@@ -446,6 +469,7 @@ is_available() -> bool
 ```
 
 Return `True` if the channel is available (not empty), `False` otherwise.
+
 Subclasses should override this method to provide a more efficient
 implementation than calling `get()` and catching `EmptyChannelError`.
 
@@ -457,8 +481,8 @@ Stores the last value received, can receive at most one value per step.
 
 | METHOD | DESCRIPTION |
 | --- | --- |
-| `consume` | Notify the channel that a subscribed task ran. By default, no-op. |
-| `finish` | Notify the channel that the Pregel run is finishing. By default, no-op. |
+| `consume` | Notify the channel that a subscribed task ran. |
+| `finish` | Notify the channel that the Pregel run is finishing. |
 | `copy` | Return a copy of the channel. |
 | `from_checkpoint` | Return a new identical channel, optionally initialized from a checkpoint. |
 | `update` | Update the channel's value with the given sequence of updates. |
@@ -488,9 +512,11 @@ The type of the update received by the channel.
 consume() -> bool
 ```
 
-Notify the channel that a subscribed task ran. By default, no-op.
-A channel can use this method to modify its state, preventing the value
-from being consumed again.
+Notify the channel that a subscribed task ran.
+
+By default, no-op.
+
+A channel can use this method to modify its state, preventing the value from being consumed again.
 
 Returns `True` if the channel was updated, `False` otherwise.
 
@@ -500,7 +526,10 @@ Returns `True` if the channel was updated, `False` otherwise.
 finish() -> bool
 ```
 
-Notify the channel that the Pregel run is finishing. By default, no-op.
+Notify the channel that the Pregel run is finishing.
+
+By default, no-op.
+
 A channel can use this method to modify its state, preventing finish.
 
 Returns `True` if the channel was updated, `False` otherwise.
@@ -520,6 +549,7 @@ from_checkpoint(checkpoint: Value) -> Self
 ```
 
 Return a new identical channel, optionally initialized from a checkpoint.
+
 If the checkpoint contains complex data structures, they should be copied.
 
 #### update [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.LastValue.update "Copy anchor link to this section for reference")
@@ -531,8 +561,11 @@ update(values: Sequence[Value]) -> bool
 Update the channel's value with the given sequence of updates.
 The order of the updates in the sequence is arbitrary.
 This method is called by Pregel for all channels at the end of each step.
+
 If there are no updates, it is called with an empty sequence.
+
 Raises `InvalidUpdateError` if the sequence of updates is invalid.
+
 Returns `True` if the channel was updated, `False` otherwise.
 
 #### get [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.LastValue.get "Copy anchor link to this section for reference")
@@ -552,6 +585,7 @@ is_available() -> bool
 ```
 
 Return `True` if the channel is available (not empty), `False` otherwise.
+
 Subclasses should override this method to provide a more efficient
 implementation than calling `get()` and catching `EmptyChannelError`.
 
@@ -562,6 +596,7 @@ checkpoint() -> Value
 ```
 
 Return a serializable representation of the channel's current state.
+
 Raises `EmptyChannelError` if the channel is empty (never updated yet),
 or doesn't support checkpoints.
 
@@ -573,8 +608,8 @@ Stores the value received in the step immediately preceding, clears after.
 
 | METHOD | DESCRIPTION |
 | --- | --- |
-| `consume` | Notify the channel that a subscribed task ran. By default, no-op. |
-| `finish` | Notify the channel that the Pregel run is finishing. By default, no-op. |
+| `consume` | Notify the channel that a subscribed task ran. |
+| `finish` | Notify the channel that the Pregel run is finishing. |
 | `copy` | Return a copy of the channel. |
 | `from_checkpoint` | Return a new identical channel, optionally initialized from a checkpoint. |
 | `update` | Update the channel's value with the given sequence of updates. |
@@ -604,9 +639,11 @@ The type of the update received by the channel.
 consume() -> bool
 ```
 
-Notify the channel that a subscribed task ran. By default, no-op.
-A channel can use this method to modify its state, preventing the value
-from being consumed again.
+Notify the channel that a subscribed task ran.
+
+By default, no-op.
+
+A channel can use this method to modify its state, preventing the value from being consumed again.
 
 Returns `True` if the channel was updated, `False` otherwise.
 
@@ -616,7 +653,10 @@ Returns `True` if the channel was updated, `False` otherwise.
 finish() -> bool
 ```
 
-Notify the channel that the Pregel run is finishing. By default, no-op.
+Notify the channel that the Pregel run is finishing.
+
+By default, no-op.
+
 A channel can use this method to modify its state, preventing finish.
 
 Returns `True` if the channel was updated, `False` otherwise.
@@ -636,6 +676,7 @@ from_checkpoint(checkpoint: Value) -> Self
 ```
 
 Return a new identical channel, optionally initialized from a checkpoint.
+
 If the checkpoint contains complex data structures, they should be copied.
 
 #### update [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.EphemeralValue.update "Copy anchor link to this section for reference")
@@ -647,8 +688,11 @@ update(values: Sequence[Value]) -> bool
 Update the channel's value with the given sequence of updates.
 The order of the updates in the sequence is arbitrary.
 This method is called by Pregel for all channels at the end of each step.
+
 If there are no updates, it is called with an empty sequence.
+
 Raises `InvalidUpdateError` if the sequence of updates is invalid.
+
 Returns `True` if the channel was updated, `False` otherwise.
 
 #### get [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.EphemeralValue.get "Copy anchor link to this section for reference")
@@ -668,6 +712,7 @@ is_available() -> bool
 ```
 
 Return `True` if the channel is available (not empty), `False` otherwise.
+
 Subclasses should override this method to provide a more efficient
 implementation than calling `get()` and catching `EmptyChannelError`.
 
@@ -678,6 +723,7 @@ checkpoint() -> Value
 ```
 
 Return a serializable representation of the channel's current state.
+
 Raises `EmptyChannelError` if the channel is empty (never updated yet),
 or doesn't support checkpoints.
 
@@ -695,8 +741,8 @@ total = Channels.BinaryOperatorAggregate(int, operator.add)
 
 | METHOD | DESCRIPTION |
 | --- | --- |
-| `consume` | Notify the channel that a subscribed task ran. By default, no-op. |
-| `finish` | Notify the channel that the Pregel run is finishing. By default, no-op. |
+| `consume` | Notify the channel that a subscribed task ran. |
+| `finish` | Notify the channel that the Pregel run is finishing. |
 | `copy` | Return a copy of the channel. |
 | `from_checkpoint` | Return a new identical channel, optionally initialized from a checkpoint. |
 | `update` | Update the channel's value with the given sequence of updates. |
@@ -726,9 +772,11 @@ The type of the update received by the channel.
 consume() -> bool
 ```
 
-Notify the channel that a subscribed task ran. By default, no-op.
-A channel can use this method to modify its state, preventing the value
-from being consumed again.
+Notify the channel that a subscribed task ran.
+
+By default, no-op.
+
+A channel can use this method to modify its state, preventing the value from being consumed again.
 
 Returns `True` if the channel was updated, `False` otherwise.
 
@@ -738,7 +786,10 @@ Returns `True` if the channel was updated, `False` otherwise.
 finish() -> bool
 ```
 
-Notify the channel that the Pregel run is finishing. By default, no-op.
+Notify the channel that the Pregel run is finishing.
+
+By default, no-op.
+
 A channel can use this method to modify its state, preventing finish.
 
 Returns `True` if the channel was updated, `False` otherwise.
@@ -758,6 +809,7 @@ from_checkpoint(checkpoint: Value) -> Self
 ```
 
 Return a new identical channel, optionally initialized from a checkpoint.
+
 If the checkpoint contains complex data structures, they should be copied.
 
 #### update [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.BinaryOperatorAggregate.update "Copy anchor link to this section for reference")
@@ -769,8 +821,11 @@ update(values: Sequence[Value]) -> bool
 Update the channel's value with the given sequence of updates.
 The order of the updates in the sequence is arbitrary.
 This method is called by Pregel for all channels at the end of each step.
+
 If there are no updates, it is called with an empty sequence.
+
 Raises `InvalidUpdateError` if the sequence of updates is invalid.
+
 Returns `True` if the channel was updated, `False` otherwise.
 
 #### get [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.BinaryOperatorAggregate.get "Copy anchor link to this section for reference")
@@ -790,6 +845,7 @@ is_available() -> bool
 ```
 
 Return `True` if the channel is available (not empty), `False` otherwise.
+
 Subclasses should override this method to provide a more efficient
 implementation than calling `get()` and catching `EmptyChannelError`.
 
@@ -800,6 +856,7 @@ checkpoint() -> Value
 ```
 
 Return a serializable representation of the channel's current state.
+
 Raises `EmptyChannelError` if the channel is empty (never updated yet),
 or doesn't support checkpoints.
 
@@ -812,8 +869,8 @@ received, they are all equal.
 
 | METHOD | DESCRIPTION |
 | --- | --- |
-| `consume` | Notify the channel that a subscribed task ran. By default, no-op. |
-| `finish` | Notify the channel that the Pregel run is finishing. By default, no-op. |
+| `consume` | Notify the channel that a subscribed task ran. |
+| `finish` | Notify the channel that the Pregel run is finishing. |
 | `copy` | Return a copy of the channel. |
 | `from_checkpoint` | Return a new identical channel, optionally initialized from a checkpoint. |
 | `update` | Update the channel's value with the given sequence of updates. |
@@ -843,9 +900,11 @@ The type of the update received by the channel.
 consume() -> bool
 ```
 
-Notify the channel that a subscribed task ran. By default, no-op.
-A channel can use this method to modify its state, preventing the value
-from being consumed again.
+Notify the channel that a subscribed task ran.
+
+By default, no-op.
+
+A channel can use this method to modify its state, preventing the value from being consumed again.
 
 Returns `True` if the channel was updated, `False` otherwise.
 
@@ -855,7 +914,10 @@ Returns `True` if the channel was updated, `False` otherwise.
 finish() -> bool
 ```
 
-Notify the channel that the Pregel run is finishing. By default, no-op.
+Notify the channel that the Pregel run is finishing.
+
+By default, no-op.
+
 A channel can use this method to modify its state, preventing finish.
 
 Returns `True` if the channel was updated, `False` otherwise.
@@ -875,6 +937,7 @@ from_checkpoint(checkpoint: Value) -> Self
 ```
 
 Return a new identical channel, optionally initialized from a checkpoint.
+
 If the checkpoint contains complex data structures, they should be copied.
 
 #### update [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.AnyValue.update "Copy anchor link to this section for reference")
@@ -886,8 +949,11 @@ update(values: Sequence[Value]) -> bool
 Update the channel's value with the given sequence of updates.
 The order of the updates in the sequence is arbitrary.
 This method is called by Pregel for all channels at the end of each step.
+
 If there are no updates, it is called with an empty sequence.
+
 Raises `InvalidUpdateError` if the sequence of updates is invalid.
+
 Returns `True` if the channel was updated, `False` otherwise.
 
 #### get [¶](https://reference.langchain.com/python/langgraph/channels/#langgraph.channels.AnyValue.get "Copy anchor link to this section for reference")
@@ -907,6 +973,7 @@ is_available() -> bool
 ```
 
 Return `True` if the channel is available (not empty), `False` otherwise.
+
 Subclasses should override this method to provide a more efficient
 implementation than calling `get()` and catching `EmptyChannelError`.
 
@@ -917,6 +984,7 @@ checkpoint() -> Value
 ```
 
 Return a serializable representation of the channel's current state.
+
 Raises `EmptyChannelError` if the channel is empty (never updated yet),
 or doesn't support checkpoints.
 

@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -92,7 +92,7 @@ Table of contents
 
 # Agents
 
-## langgraph.prebuilt.chat\_agent\_executor [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.chat_agent_executor "Copy anchor link to this section for reference")
+## chat\_agent\_executor [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.chat_agent_executor "Copy anchor link to this section for reference")
 
 | FUNCTION | DESCRIPTION |
 | --- | --- |
@@ -154,7 +154,7 @@ For more details on using `create_react_agent`, visit [Agents](https://langchain
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `model` | The language model for the agent. Supports static and dynamic model selection.   * **Static model**: A chat model instance (e.g.,   [`ChatOpenAI`](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">langchain_openai.chat_models.ChatOpenAI</span>")) or string identifier (e.g.,   `"openai:gpt-4"`) * **Dynamic model**: A callable with signature   `(state, runtime) -> BaseChatModel` that returns different models   based on runtime context  If the model has tools bound via `bind_tools` or other configurations,   the return type should be a `Runnable[LanguageModelInput, BaseMessage]`   Coroutines are also supported, allowing for asynchronous model selection.   Dynamic functions receive graph state and runtime, enabling context-dependent model selection. Must return a `BaseChatModel` instance. For tool calling, bind tools using `.bind_tools()`. Bound tools must be a subset of the `tools` parameter.  Dynamic model  ``` from dataclasses import dataclass  @dataclass class ModelContext:     model_name: str = "gpt-3.5-turbo"  # Instantiate models globally gpt4_model = ChatOpenAI(model="gpt-4") gpt35_model = ChatOpenAI(model="gpt-3.5-turbo")  def select_model(state: AgentState, runtime: Runtime[ModelContext]) -> ChatOpenAI:     model_name = runtime.context.model_name     model = gpt4_model if model_name == "gpt-4" else gpt35_model     return model.bind_tools(tools) ```  Dynamic Model Requirements  Ensure returned models have appropriate tools bound via `.bind_tools()` and support required functionality. Bound tools must be a subset of those specified in the `tools` parameter.  **TYPE:** `str | LanguageModelLike | Callable[[StateSchema, Runtime[ContextT]], BaseChatModel] | Callable[[StateSchema, Runtime[ContextT]], Awaitable[BaseChatModel]] | Callable[[StateSchema, Runtime[ContextT]], Runnable[LanguageModelInput, BaseMessage]] | Callable[[StateSchema, Runtime[ContextT]], Awaitable[Runnable[LanguageModelInput, BaseMessage]]]` |
+| `model` | The language model for the agent. Supports static and dynamic model selection.   * **Static model**: A chat model instance (e.g.,   [`ChatOpenAI`](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">ChatOpenAI</span>")) or string identifier (e.g.,   `"openai:gpt-4"`) * **Dynamic model**: A callable with signature   `(state, runtime) -> BaseChatModel` that returns different models   based on runtime context  If the model has tools bound via `bind_tools` or other configurations,   the return type should be a `Runnable[LanguageModelInput, BaseMessage]`   Coroutines are also supported, allowing for asynchronous model selection.   Dynamic functions receive graph state and runtime, enabling context-dependent model selection. Must return a `BaseChatModel` instance. For tool calling, bind tools using `.bind_tools()`. Bound tools must be a subset of the `tools` parameter.  Dynamic model  ``` from dataclasses import dataclass  @dataclass class ModelContext:     model_name: str = "gpt-3.5-turbo"  # Instantiate models globally gpt4_model = ChatOpenAI(model="gpt-4") gpt35_model = ChatOpenAI(model="gpt-3.5-turbo")  def select_model(state: AgentState, runtime: Runtime[ModelContext]) -> ChatOpenAI:     model_name = runtime.context.model_name     model = gpt4_model if model_name == "gpt-4" else gpt35_model     return model.bind_tools(tools) ```  Dynamic Model Requirements  Ensure returned models have appropriate tools bound via `.bind_tools()` and support required functionality. Bound tools must be a subset of those specified in the `tools` parameter.  **TYPE:** `str | LanguageModelLike | Callable[[StateSchema, Runtime[ContextT]], BaseChatModel] | Callable[[StateSchema, Runtime[ContextT]], Awaitable[BaseChatModel]] | Callable[[StateSchema, Runtime[ContextT]], Runnable[LanguageModelInput, BaseMessage]] | Callable[[StateSchema, Runtime[ContextT]], Awaitable[Runnable[LanguageModelInput, BaseMessage]]]` |
 | `tools` | A list of tools or a `ToolNode` instance. If an empty list is provided, the agent will consist of a single LLM node without tool calling.  **TYPE:** `Sequence[BaseTool | Callable | dict[str, Any]] | ToolNode` |
 | `prompt` | An optional prompt for the LLM. Can take a few different forms:   * `str`: This is converted to a `SystemMessage` and added to the beginning of the list of messages in `state["messages"]`. * `SystemMessage`: this is added to the beginning of the list of messages in `state["messages"]`. * `Callable`: This function should take in full graph state and the output is then passed to the language model. * `Runnable`: This runnable should take in full graph state and the output is then passed to the language model.  **TYPE:** `Prompt | None`  **DEFAULT:** `None` |
 | `response_format` | An optional schema for the final agent output.  If provided, output will be formatted to match the given schema and returned in the 'structured\_response' state key.  If not provided, `structured_response` will not be present in the output state.  Can be passed in as:   * An OpenAI function/tool schema, * A JSON Schema, * A TypedDict class, * A Pydantic class. * A tuple `(prompt, schema)`, where schema is one of the above.   The prompt will be used together with the model that is being used to   generate the structured response.   Important  `response_format` requires the model to support `.with_structured_output`  Note  The graph will make a separate call to the LLM to generate the structured response after the agent loop is finished. This is not the only strategy to get structured responses, see more options in [this guide](https://langchain-ai.github.io/langgraph/how-tos/react-agent-structured-output/).  **TYPE:** `StructuredResponseSchema | tuple[str, StructuredResponseSchema] | None`  **DEFAULT:** `None` |
@@ -180,7 +180,7 @@ Please use `context_schema` instead to specify the schema for run-scoped context
 | `CompiledStateGraph` | A compiled LangChain `Runnable` that can be used for chat interactions. |
 
 The "agent" node calls the language model with the messages list (after applying the prompt).
-If the resulting AIMessage contains `tool_calls`, the graph will then call the ["tools"](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.ToolNode "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">langgraph.prebuilt.tool_node.ToolNode</span>").
+If the resulting AIMessage contains `tool_calls`, the graph will then call the ["tools"](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.ToolNode "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">ToolNode</span>").
 The "tools" node executes the tools (1 tool per `tool_call`) and adds the responses to the messages list
 as `ToolMessage` objects. The agent node then calls the language model again.
 The process repeats until no more `tool_calls` are present in the response.
@@ -205,7 +205,7 @@ for chunk in graph.stream(inputs, stream_mode="updates"):
     print(chunk)
 ```
 
-## langgraph.prebuilt.tool\_node.ToolNode [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.ToolNode "Copy anchor link to this section for reference")
+## ToolNode [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.ToolNode "Copy anchor link to this section for reference")
 
 Bases: `RunnableCallable`
 
@@ -291,7 +291,7 @@ def handle_errors(e: ValueError) -> str:
 tool_node = ToolNode([my_tool], handle_tool_errors=handle_errors)
 ```
 
-## langgraph.prebuilt.tool\_node [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node "Copy anchor link to this section for reference")
+## tool\_node [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node "Copy anchor link to this section for reference")
 
 Tool execution node for LangGraph workflows.
 
@@ -570,7 +570,7 @@ LangGraph patterns. It expects the last message to be an `AIMessage` when
 tool calls are present, which is the standard output format for tool-calling
 language models.
 
-## langgraph.prebuilt.tool\_validator.ValidationNode `deprecated` [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_validator.ValidationNode "Copy anchor link to this section for reference")
+## ValidationNode `deprecated` [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_validator.ValidationNode "Copy anchor link to this section for reference")
 
 Bases: `RunnableCallable`
 
@@ -648,7 +648,7 @@ for msg in res:
     msg.pretty_print()
 ```
 
-## langgraph.prebuilt.interrupt [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.interrupt "Copy anchor link to this section for reference")
+## interrupt [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.interrupt "Copy anchor link to this section for reference")
 
 ### HumanInterruptConfig `deprecated` [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.interrupt.HumanInterruptConfig "Copy anchor link to this section for reference")
 

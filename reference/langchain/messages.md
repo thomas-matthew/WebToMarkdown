@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -246,9 +246,6 @@ LangChain Reference
   + [langchain-mcp-adapters](https://reference.langchain.com/python/langchain_mcp_adapters/)
 
     langchain-mcp-adapters
-  + [langchain-model-profiles](https://reference.langchain.com/python/langchain_model_profiles/)
-
-    langchain-model-profiles
   + [langchain-tests](https://reference.langchain.com/python/langchain_tests/)
 
     langchain-tests
@@ -481,7 +478,7 @@ Reference docs
 
 This page contains **reference documentation** for Messages. See [the docs](https://docs.langchain.com/oss/python/langchain/messages) for conceptual guides, tutorials, and examples on using Messages.
 
-## langchain.messages [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages "Copy anchor link to this section for reference")
+## messages [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages "Copy anchor link to this section for reference")
 
 Message and message content types.
 
@@ -2055,7 +2052,7 @@ keys between the old and new versions are `type` and `text`, though the
 Note
 
 Title and context are optional fields that may be passed to the model. See
-Anthropic [example](https://docs.claude.com/en/docs/build-with-claude/citations#citable-vs-non-citable-content).
+Anthropic [example](https://platform.claude.com/docs/en/build-with-claude/citations#citable-vs-non-citable-content).
 
 Factory function
 
@@ -2393,7 +2390,7 @@ consistent with the above properties.
 | --- | --- |
 | `messages` | Sequence of Message-like objects to trim.  **TYPE:** `Iterable[MessageLikeRepresentation] | PromptValue` |
 | `max_tokens` | Max token count of trimmed messages.  **TYPE:** `int` |
-| `token_counter` | Function or llm for counting tokens in a `BaseMessage` or a list of `BaseMessage`. If a `BaseLanguageModel` is passed in then `BaseLanguageModel.get_num_tokens_from_messages()` will be used. Set to `len` to count the number of **messages** in the chat history.  Note  Use `count_tokens_approximately` to get fast, approximate token counts. This is recommended for using `trim_messages` on the hot path, where exact token counting is not necessary.  **TYPE:** `Callable[[list[BaseMessage]], int] | Callable[[BaseMessage], int] | BaseLanguageModel` |
+| `token_counter` | Function or llm for counting tokens in a `BaseMessage` or a list of `BaseMessage`. If a `BaseLanguageModel` is passed in then `BaseLanguageModel.get_num_tokens_from_messages()` will be used. Set to `len` to count the number of **messages** in the chat history.  Note  Use `count_tokens_approximately` to get fast, approximate token counts.  This is recommended for using `trim_messages` on the hot path, where exact token counting is not necessary.  **TYPE:** `Callable[[list[BaseMessage]], int] | Callable[[BaseMessage], int] | BaseLanguageModel` |
 | `strategy` | Strategy for trimming. - `'first'`: Keep the first `<= n_count` tokens of the messages. - `'last'`: Keep the last `<= n_count` tokens of the messages.  **TYPE:** `Literal['first', 'last']`  **DEFAULT:** `'last'` |
 | `allow_partial` | Whether to split a message if only part of the message can be included. If `strategy='last'` then the last partial contents of a message are included. If `strategy='first'` then the first partial contents of a message are included.  **TYPE:** `bool`  **DEFAULT:** `False` |
 | `end_on` | The message type to end on. If specified then every message after the last occurrence of this type is ignored. If `strategy='last'` then this is done before we attempt to get the last `max_tokens`. If `strategy='first'` then this is done after we get the first `max_tokens`. Can be specified as string names (e.g. `'system'`, `'human'`, `'ai'`, ...) or as `BaseMessage` classes (e.g. `SystemMessage`, `HumanMessage`, `AIMessage`, ...). Can be a single type or a list of types.  **TYPE:** `str | type[BaseMessage] | Sequence[str | type[BaseMessage]] | None`  **DEFAULT:** `None` |

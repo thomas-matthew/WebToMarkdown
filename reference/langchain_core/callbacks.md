@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -184,9 +184,6 @@ LangChain Reference
   + [langchain-mcp-adapters](https://reference.langchain.com/python/langchain_mcp_adapters/)
 
     langchain-mcp-adapters
-  + [langchain-model-profiles](https://reference.langchain.com/python/langchain_model_profiles/)
-
-    langchain-model-profiles
   + [langchain-tests](https://reference.langchain.com/python/langchain_tests/)
 
     langchain-tests
@@ -353,7 +350,7 @@ Table of contents
 
 # Callbacks
 
-## langchain\_core.callbacks.base.AsyncCallbackHandler [¶](https://reference.langchain.com/python/langchain_core/callbacks/#langchain_core.callbacks.base.AsyncCallbackHandler "Copy anchor link to this section for reference")
+## AsyncCallbackHandler [¶](https://reference.langchain.com/python/langchain_core/callbacks/#langchain_core.callbacks.base.AsyncCallbackHandler "Copy anchor link to this section for reference")
 
 Bases: `BaseCallbackHandler`
 
@@ -926,7 +923,7 @@ Override to define a handler for custom events.
 | `tags` | The tags associated with the custom event (includes inherited tags).  **TYPE:** `list[str] | None`  **DEFAULT:** `None` |
 | `metadata` | The metadata associated with the custom event (includes inherited metadata).  **TYPE:** `dict[str, Any] | None`  **DEFAULT:** `None` |
 
-## langchain\_core.callbacks.base.BaseCallbackHandler [¶](https://reference.langchain.com/python/langchain_core/callbacks/#langchain_core.callbacks.base.BaseCallbackHandler "Copy anchor link to this section for reference")
+## BaseCallbackHandler [¶](https://reference.langchain.com/python/langchain_core/callbacks/#langchain_core.callbacks.base.BaseCallbackHandler "Copy anchor link to this section for reference")
 
 Bases: `LLMManagerMixin`, `ChainManagerMixin`, `ToolManagerMixin`, `RetrieverManagerMixin`, `CallbackManagerMixin`, `RunManagerMixin`
 
@@ -1467,7 +1464,7 @@ Run when LLM errors.
 | `parent_run_id` | The parent run ID. This is the ID of the parent run.  **TYPE:** `UUID | None`  **DEFAULT:** `None` |
 | `**kwargs` | Additional keyword arguments.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
-## langchain\_core.callbacks.manager.AsyncCallbackManager [¶](https://reference.langchain.com/python/langchain_core/callbacks/#langchain_core.callbacks.manager.AsyncCallbackManager "Copy anchor link to this section for reference")
+## AsyncCallbackManager [¶](https://reference.langchain.com/python/langchain_core/callbacks/#langchain_core.callbacks.manager.AsyncCallbackManager "Copy anchor link to this section for reference")
 
 Bases: `BaseCallbackManager`
 
@@ -1857,7 +1854,7 @@ Remove metadata from the callback manager.
 | --- | --- |
 | `keys` | The keys to remove.  **TYPE:** `list[str]` |
 
-## langchain\_core.callbacks.manager.CallbackManager [¶](https://reference.langchain.com/python/langchain_core/callbacks/#langchain_core.callbacks.manager.CallbackManager "Copy anchor link to this section for reference")
+## CallbackManager [¶](https://reference.langchain.com/python/langchain_core/callbacks/#langchain_core.callbacks.manager.CallbackManager "Copy anchor link to this section for reference")
 
 Bases: `BaseCallbackManager`
 
@@ -2247,7 +2244,7 @@ Remove metadata from the callback manager.
 | --- | --- |
 | `keys` | The keys to remove.  **TYPE:** `list[str]` |
 
-## langchain\_core.callbacks.usage.UsageMetadataCallbackHandler [¶](https://reference.langchain.com/python/langchain_core/callbacks/#langchain_core.callbacks.usage.UsageMetadataCallbackHandler "Copy anchor link to this section for reference")
+## UsageMetadataCallbackHandler [¶](https://reference.langchain.com/python/langchain_core/callbacks/#langchain_core.callbacks.usage.UsageMetadataCallbackHandler "Copy anchor link to this section for reference")
 
 Bases: `BaseCallbackHandler`
 
@@ -2813,7 +2810,7 @@ Run when LLM errors.
 | `parent_run_id` | The parent run ID. This is the ID of the parent run.  **TYPE:** `UUID | None`  **DEFAULT:** `None` |
 | `**kwargs` | Additional keyword arguments.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
-## langchain\_core.callbacks.usage.get\_usage\_metadata\_callback [¶](https://reference.langchain.com/python/langchain_core/callbacks/#langchain_core.callbacks.usage.get_usage_metadata_callback "Copy anchor link to this section for reference")
+## get\_usage\_metadata\_callback [¶](https://reference.langchain.com/python/langchain_core/callbacks/#langchain_core.callbacks.usage.get_usage_metadata_callback "Copy anchor link to this section for reference")
 
 ```
 get_usage_metadata_callback(

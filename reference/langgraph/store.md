@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -292,7 +292,7 @@ Table of contents
 
 # Storage
 
-## langgraph.store.base [¶](https://reference.langchain.com/python/langgraph/store/#langgraph.store.base "Copy anchor link to this section for reference")
+## base [¶](https://reference.langchain.com/python/langgraph/store/#langgraph.store.base "Copy anchor link to this section for reference")
 
 Base classes and types for persistent key-value stores.
 
@@ -1714,7 +1714,7 @@ Types handled
 * Wildcards: "\*"
 * Multi-field selection: "{field1,field2}"
 
-## langgraph.store.postgres [¶](https://reference.langchain.com/python/langgraph/store/#langgraph.store.postgres "Copy anchor link to this section for reference")
+## postgres [¶](https://reference.langchain.com/python/langgraph/store/#langgraph.store.postgres "Copy anchor link to this section for reference")
 
 ### AsyncPostgresStore [¶](https://reference.langchain.com/python/langgraph/store/#langgraph.store.postgres.AsyncPostgresStore "Copy anchor link to this section for reference")
 

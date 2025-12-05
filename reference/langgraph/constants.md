@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -66,7 +66,7 @@ Table of contents
 
 # Constants
 
-## langgraph.constants [¶](https://reference.langchain.com/python/langgraph/constants/#langgraph.constants "Copy anchor link to this section for reference")
+## constants [¶](https://reference.langchain.com/python/langgraph/constants/#langgraph.constants "Copy anchor link to this section for reference")
 
 ### TAG\_HIDDEN `module-attribute` [¶](https://reference.langchain.com/python/langgraph/constants/#langgraph.constants.TAG_HIDDEN "Copy anchor link to this section for reference")
 

@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 100
-* 820](https://github.com/langchain-ai/docs "Go to repository")
+* 131
+* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -72,7 +72,7 @@ Table of contents
 
 # Runtime
 
-## langgraph.runtime.Runtime `dataclass` [¶](https://reference.langchain.com/python/langgraph/runtime/#langgraph.runtime.Runtime "Copy anchor link to this section for reference")
+## Runtime `dataclass` [¶](https://reference.langchain.com/python/langgraph/runtime/#langgraph.runtime.Runtime "Copy anchor link to this section for reference")
 
 Bases: `Generic[ContextT]`
 
@@ -166,7 +166,7 @@ The previous return value for the given thread.
 
 Only available with the functional API when a checkpointer is provided.
 
-## langgraph.runtime [¶](https://reference.langchain.com/python/langgraph/runtime/#langgraph.runtime "Copy anchor link to this section for reference")
+## runtime [¶](https://reference.langchain.com/python/langgraph/runtime/#langgraph.runtime "Copy anchor link to this section for reference")
 
 | FUNCTION | DESCRIPTION |
 | --- | --- |
