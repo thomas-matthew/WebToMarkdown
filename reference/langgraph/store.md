@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 131
-* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
+* 230
+* 1.8k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -2356,9 +2356,10 @@ Bases: `TypedDict`
 Connection pool settings for PostgreSQL connections.
 
 Controls connection lifecycle and resource utilization:
-- Small pools (1-5) suit low-concurrency workloads
-- Larger pools handle concurrent requests but consume more resources
-- Setting max\_size prevents resource exhaustion under load
+
+* Small pools (1-5) suit low-concurrency workloads
+* Larger pools handle concurrent requests but consume more resources
+* Setting max\_size prevents resource exhaustion under load
 
 #### min\_size `instance-attribute` [¶](https://reference.langchain.com/python/langgraph/store/#langgraph.store.postgres.PoolConfig.min_size "Copy anchor link to this section for reference")
 
@@ -2385,9 +2386,10 @@ kwargs: dict
 Additional connection arguments passed to each connection in the pool.
 
 Default kwargs set automatically:
-- autocommit: True
-- prepare\_threshold: 0
-- row\_factory: dict\_row
+
+* autocommit: True
+* prepare\_threshold: 0
+* row\_factory: dict\_row
 
 ### PostgresStore [¶](https://reference.langchain.com/python/langgraph/store/#langgraph.store.postgres.PostgresStore "Copy anchor link to this section for reference")
 
@@ -2415,7 +2417,7 @@ with Connection.connect(conn_string) as conn:
     item = store.get(("users", "123"), "prefs")
 ```
 
-Or using the convenient from\_conn\_string helper:
+Or using the convenient `from_conn_string` helper:
 
 ```
 from langgraph.store.postgres import PostgresStore

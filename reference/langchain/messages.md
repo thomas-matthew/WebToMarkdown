@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 131
-* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
+* 230
+* 1.8k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -32,7 +32,6 @@ LangChain Reference
           - [invalid\_tool\_calls](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.invalid_tool_calls)
           - [usage\_metadata](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.usage_metadata)
           - [type](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.type)
-          - [\_\_init\_\_](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.__init__)
           - [lc\_attributes](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.lc_attributes)
           - [content\_blocks](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.content_blocks)
           - [pretty\_repr](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.pretty_repr)
@@ -49,11 +48,9 @@ LangChain Reference
         + [HumanMessage](https://reference.langchain.com/python/langchain/messages/#langchain.messages.HumanMessage)
 
           - [type](https://reference.langchain.com/python/langchain/messages/#langchain.messages.HumanMessage.type)
-          - [\_\_init\_\_](https://reference.langchain.com/python/langchain/messages/#langchain.messages.HumanMessage.__init__)
         + [SystemMessage](https://reference.langchain.com/python/langchain/messages/#langchain.messages.SystemMessage)
 
           - [type](https://reference.langchain.com/python/langchain/messages/#langchain.messages.SystemMessage.type)
-          - [\_\_init\_\_](https://reference.langchain.com/python/langchain/messages/#langchain.messages.SystemMessage.__init__)
         + [AnyMessage](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AnyMessage)
         + [MessageLikeRepresentation](https://reference.langchain.com/python/langchain/messages/#langchain.messages.MessageLikeRepresentation)
         + [ToolMessage](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolMessage)
@@ -65,12 +62,12 @@ LangChain Reference
           - [additional\_kwargs](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolMessage.additional_kwargs)
           - [response\_metadata](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolMessage.response_metadata)
           - [coerce\_args](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolMessage.coerce_args)
-          - [\_\_init\_\_](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolMessage.__init__)
         + [ToolCall](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCall)
 
           - [name](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCall.name)
           - [args](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCall.args)
           - [id](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCall.id)
+          - [type](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCall.type)
         + [InvalidToolCall](https://reference.langchain.com/python/langchain/messages/#langchain.messages.InvalidToolCall)
 
           - [type](https://reference.langchain.com/python/langchain/messages/#langchain.messages.InvalidToolCall.type)
@@ -86,6 +83,7 @@ LangChain Reference
           - [args](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCallChunk.args)
           - [id](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCallChunk.id)
           - [index](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCallChunk.index)
+          - [type](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCallChunk.type)
         + [ServerToolCall](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ServerToolCall)
 
           - [type](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ServerToolCall.type)
@@ -283,7 +281,6 @@ Table of contents
     - [invalid\_tool\_calls](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.invalid_tool_calls)
     - [usage\_metadata](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.usage_metadata)
     - [type](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.type)
-    - [\_\_init\_\_](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.__init__)
     - [lc\_attributes](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.lc_attributes)
     - [content\_blocks](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.content_blocks)
     - [pretty\_repr](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.pretty_repr)
@@ -300,11 +297,9 @@ Table of contents
   + [HumanMessage](https://reference.langchain.com/python/langchain/messages/#langchain.messages.HumanMessage)
 
     - [type](https://reference.langchain.com/python/langchain/messages/#langchain.messages.HumanMessage.type)
-    - [\_\_init\_\_](https://reference.langchain.com/python/langchain/messages/#langchain.messages.HumanMessage.__init__)
   + [SystemMessage](https://reference.langchain.com/python/langchain/messages/#langchain.messages.SystemMessage)
 
     - [type](https://reference.langchain.com/python/langchain/messages/#langchain.messages.SystemMessage.type)
-    - [\_\_init\_\_](https://reference.langchain.com/python/langchain/messages/#langchain.messages.SystemMessage.__init__)
   + [AnyMessage](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AnyMessage)
   + [MessageLikeRepresentation](https://reference.langchain.com/python/langchain/messages/#langchain.messages.MessageLikeRepresentation)
   + [ToolMessage](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolMessage)
@@ -316,12 +311,12 @@ Table of contents
     - [additional\_kwargs](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolMessage.additional_kwargs)
     - [response\_metadata](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolMessage.response_metadata)
     - [coerce\_args](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolMessage.coerce_args)
-    - [\_\_init\_\_](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolMessage.__init__)
   + [ToolCall](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCall)
 
     - [name](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCall.name)
     - [args](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCall.args)
     - [id](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCall.id)
+    - [type](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCall.type)
   + [InvalidToolCall](https://reference.langchain.com/python/langchain/messages/#langchain.messages.InvalidToolCall)
 
     - [type](https://reference.langchain.com/python/langchain/messages/#langchain.messages.InvalidToolCall.type)
@@ -337,6 +332,7 @@ Table of contents
     - [args](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCallChunk.args)
     - [id](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCallChunk.id)
     - [index](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCallChunk.index)
+    - [type](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCallChunk.type)
   + [ServerToolCall](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ServerToolCall)
 
     - [type](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ServerToolCall.type)
@@ -526,6 +522,26 @@ for message content blocks (e.g., text, image, audio) and tool calls.
 
 ### AIMessage [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage "Copy anchor link to this section for reference")
 
+```
+AIMessage(content: str | list[str | dict], **kwargs: Any)
+```
+
+```
+AIMessage(
+    content: str | list[str | dict] | None = None,
+    content_blocks: list[ContentBlock] | None = None,
+    **kwargs: Any,
+)
+```
+
+```
+AIMessage(
+    content: str | list[str | dict] | None = None,
+    content_blocks: list[ContentBlock] | None = None,
+    **kwargs: Any,
+)
+```
+
 Bases: `BaseMessage`
 
 Message from an AI.
@@ -536,9 +552,18 @@ This message represents the output of the model and consists of both
 the raw output as returned by the model and standardized fields
 (e.g., tool calls, usage metadata) added by the LangChain framework.
 
+Initialize an `AIMessage`.
+
+Specify `content` as positional arg or `content_blocks` for typing.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `content` | The content of the message.  **TYPE:** `str | list[str | dict] | None`  **DEFAULT:** `None` |
+| `content_blocks` | Typed standard content.  **TYPE:** `list[ContentBlock] | None`  **DEFAULT:** `None` |
+| `**kwargs` | Additional arguments to pass to the parent class.  **TYPE:** `Any`  **DEFAULT:** `{}` |
+
 | METHOD | DESCRIPTION |
 | --- | --- |
-| `__init__` | Initialize an `AIMessage`. |
 | `pretty_repr` | Return a pretty representation of the message for display. |
 
 | ATTRIBUTE | DESCRIPTION |
@@ -553,7 +578,7 @@ the raw output as returned by the model and standardized fields
 #### tool\_calls `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.tool_calls "Copy anchor link to this section for reference")
 
 ```
-tool_calls: list[ToolCall] = []
+tool_calls: list[ToolCall] = Field(default_factory=list)
 ```
 
 If present, tool calls associated with the message.
@@ -561,7 +586,7 @@ If present, tool calls associated with the message.
 #### invalid\_tool\_calls `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.invalid_tool_calls "Copy anchor link to this section for reference")
 
 ```
-invalid_tool_calls: list[InvalidToolCall] = []
+invalid_tool_calls: list[InvalidToolCall] = Field(default_factory=list)
 ```
 
 If present, tool calls with parsing errors associated with the message.
@@ -583,26 +608,6 @@ type: Literal['ai'] = 'ai'
 ```
 
 The type of the message (used for deserialization).
-
-#### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.__init__ "Copy anchor link to this section for reference")
-
-```
-__init__(
-    content: str | list[str | dict] | None = None,
-    content_blocks: list[ContentBlock] | None = None,
-    **kwargs: Any,
-) -> None
-```
-
-Initialize an `AIMessage`.
-
-Specify `content` as positional arg or `content_blocks` for typing.
-
-| PARAMETER | DESCRIPTION |
-| --- | --- |
-| `content` | The content of the message.  **TYPE:** `str | list[str | dict] | None`  **DEFAULT:** `None` |
-| `content_blocks` | Typed standard content.  **TYPE:** `list[ContentBlock] | None`  **DEFAULT:** `None` |
-| `**kwargs` | Additional arguments to pass to the parent class.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 #### lc\_attributes `property` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessage.lc_attributes "Copy anchor link to this section for reference")
 
@@ -645,6 +650,26 @@ Return a pretty representation of the message for display.
 
 ### AIMessageChunk [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessageChunk "Copy anchor link to this section for reference")
 
+```
+AIMessageChunk(content: str | list[str | dict], **kwargs: Any)
+```
+
+```
+AIMessageChunk(
+    content: str | list[str | dict] | None = None,
+    content_blocks: list[ContentBlock] | None = None,
+    **kwargs: Any,
+)
+```
+
+```
+AIMessageChunk(
+    content: str | list[str | dict] | None = None,
+    content_blocks: list[ContentBlock] | None = None,
+    **kwargs: Any,
+)
+```
+
 Bases: `AIMessage`, `BaseMessageChunk`
 
 Message chunk from an AI (yielded when streaming).
@@ -652,7 +677,7 @@ Message chunk from an AI (yielded when streaming).
 | METHOD | DESCRIPTION |
 | --- | --- |
 | `init_tool_calls` | Initialize tool calls from tool call chunks. |
-| `init_server_tool_calls` | Parse `server_tool_call_chunks`. |
+| `init_server_tool_calls` | Initialize server tool calls. |
 | `__add__` | Message chunks support concatenation with other message chunks. |
 
 | ATTRIBUTE | DESCRIPTION |
@@ -660,7 +685,7 @@ Message chunk from an AI (yielded when streaming).
 | `type` | The type of the message (used for deserialization).  **TYPE:** `Literal['AIMessageChunk']` |
 | `tool_call_chunks` | If provided, tool call chunks associated with the message.  **TYPE:** `list[ToolCallChunk]` |
 | `chunk_position` | Optional span represented by an aggregated `AIMessageChunk`.  **TYPE:** `Literal['last'] | None` |
-| `lc_attributes` | Attributes to be serialized, even if they are derived from other initialization args.  **TYPE:** `dict` |
+| `lc_attributes` | Attributes to be serialized.  **TYPE:** `dict` |
 | `content_blocks` | Return standard, typed `ContentBlock` dicts from the message.  **TYPE:** `list[ContentBlock]` |
 
 #### type `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessageChunk.type "Copy anchor link to this section for reference")
@@ -674,7 +699,7 @@ The type of the message (used for deserialization).
 #### tool\_call\_chunks `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessageChunk.tool_call_chunks "Copy anchor link to this section for reference")
 
 ```
-tool_call_chunks: list[ToolCallChunk] = []
+tool_call_chunks: list[ToolCallChunk] = Field(default_factory=list)
 ```
 
 If provided, tool call chunks associated with the message.
@@ -696,7 +721,10 @@ If a chunk with `chunk_position="last"` is aggregated into a stream,
 lc_attributes: dict
 ```
 
-Attributes to be serialized, even if they are derived from other initialization args.
+Attributes to be serialized.
+
+Includes all attributes, even if they are derived from other initialization
+arguments.
 
 #### content\_blocks `property` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessageChunk.content_blocks "Copy anchor link to this section for reference")
 
@@ -728,7 +756,10 @@ Initialize tool calls from tool call chunks.
 init_server_tool_calls() -> Self
 ```
 
-Parse `server_tool_call_chunks`.
+Initialize server tool calls.
+
+Parse `server_tool_call_chunks` from
+[`ServerToolCallChunk`](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ServerToolCallChunk "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">ServerToolCallChunk</span>") objects.
 
 #### \_\_add\_\_ [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AIMessageChunk.__add__ "Copy anchor link to this section for reference")
 
@@ -754,13 +785,35 @@ a streaming model into a complete message.
 | --- | --- |
 | `TypeError` | If the other object is not a message chunk. |
 
-For example,
+Example
 
-`AIMessageChunk(content="Hello") + AIMessageChunk(content=" World")`
-
-will give `AIMessageChunk(content="Hello World")`
+```
+  AIMessageChunk(content="Hello", ...)
++ AIMessageChunk(content=" World", ...)
+= AIMessageChunk(content="Hello World", ...)
+```
 
 ### HumanMessage [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.HumanMessage "Copy anchor link to this section for reference")
+
+```
+HumanMessage(content: str | list[str | dict], **kwargs: Any)
+```
+
+```
+HumanMessage(
+    content: str | list[str | dict] | None = None,
+    content_blocks: list[ContentBlock] | None = None,
+    **kwargs: Any,
+)
+```
+
+```
+HumanMessage(
+    content: str | list[str | dict] | None = None,
+    content_blocks: list[ContentBlock] | None = None,
+    **kwargs: Any,
+)
+```
 
 Bases: `BaseMessage`
 
@@ -783,9 +836,7 @@ model = ...
 print(model.invoke(messages))
 ```
 
-| METHOD | DESCRIPTION |
-| --- | --- |
-| `__init__` | Specify `content` as positional arg or `content_blocks` for typing. |
+Specify `content` as positional arg or `content_blocks` for typing.
 
 | ATTRIBUTE | DESCRIPTION |
 | --- | --- |
@@ -799,19 +850,27 @@ type: Literal['human'] = 'human'
 
 The type of the message (used for serialization).
 
-#### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.HumanMessage.__init__ "Copy anchor link to this section for reference")
+### SystemMessage [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.SystemMessage "Copy anchor link to this section for reference")
 
 ```
-__init__(
+SystemMessage(content: str | list[str | dict], **kwargs: Any)
+```
+
+```
+SystemMessage(
     content: str | list[str | dict] | None = None,
     content_blocks: list[ContentBlock] | None = None,
     **kwargs: Any,
-) -> None
+)
 ```
 
-Specify `content` as positional arg or `content_blocks` for typing.
-
-### SystemMessage [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.SystemMessage "Copy anchor link to this section for reference")
+```
+SystemMessage(
+    content: str | list[str | dict] | None = None,
+    content_blocks: list[ContentBlock] | None = None,
+    **kwargs: Any,
+)
+```
 
 Bases: `BaseMessage`
 
@@ -834,9 +893,7 @@ messages = [
 print(model.invoke(messages))
 ```
 
-| METHOD | DESCRIPTION |
-| --- | --- |
-| `__init__` | Specify `content` as positional arg or `content_blocks` for typing. |
+Specify `content` as positional arg or `content_blocks` for typing.
 
 | ATTRIBUTE | DESCRIPTION |
 | --- | --- |
@@ -849,18 +906,6 @@ type: Literal['system'] = 'system'
 ```
 
 The type of the message (used for serialization).
-
-#### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.SystemMessage.__init__ "Copy anchor link to this section for reference")
-
-```
-__init__(
-    content: str | list[str | dict] | None = None,
-    content_blocks: list[ContentBlock] | None = None,
-    **kwargs: Any,
-) -> None
-```
-
-Specify `content` as positional arg or `content_blocks` for typing.
 
 ### AnyMessage `module-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AnyMessage "Copy anchor link to this section for reference")
 
@@ -896,6 +941,26 @@ A type representing the various ways a message can be represented.
 
 ### ToolMessage [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolMessage "Copy anchor link to this section for reference")
 
+```
+ToolMessage(content: str | list[str | dict], **kwargs: Any)
+```
+
+```
+ToolMessage(
+    content: str | list[str | dict] | None = None,
+    content_blocks: list[ContentBlock] | None = None,
+    **kwargs: Any,
+)
+```
+
+```
+ToolMessage(
+    content: str | list[str | dict] | None = None,
+    content_blocks: list[ContentBlock] | None = None,
+    **kwargs: Any,
+)
+```
+
 Bases: `BaseMessage`, `ToolOutputMixin`
 
 Message for passing the result of executing a tool back to a model.
@@ -903,7 +968,13 @@ Message for passing the result of executing a tool back to a model.
 `ToolMessage` objects contain the result of a tool invocation. Typically, the result
 is encoded inside the `content` field.
 
-Example: A `ToolMessage` representing a result of `42` from a tool call with id
+`tool_call_id` is used to associate the tool call request with the tool call
+response. Useful in situations where a chat model is able to request multiple tool
+calls in parallel.
+
+Example
+
+A `ToolMessage` representing a result of `42` from a tool call with id
 
 ```
 from langchain_core.messages import ToolMessage
@@ -911,7 +982,10 @@ from langchain_core.messages import ToolMessage
 ToolMessage(content="42", tool_call_id="call_Jja7J89XsjrOLA5r!MEOW!SL")
 ```
 
-Example: A `ToolMessage` where only part of the tool output is sent to the model
+
+Example
+
+A `ToolMessage` where only part of the tool output is sent to the model
 and the full output is passed in to artifact.
 
 ```
@@ -931,14 +1005,19 @@ ToolMessage(
 )
 ```
 
-The `tool_call_id` field is used to associate the tool call request with the
-tool call response. Useful in situations where a chat model is able
-to request multiple tool calls in parallel.
+Initialize a `ToolMessage`.
+
+Specify `content` as positional arg or `content_blocks` for typing.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `content` | The contents of the message.  **TYPE:** `str | list[str | dict] | None`  **DEFAULT:** `None` |
+| `content_blocks` | Typed standard content.  **TYPE:** `list[ContentBlock] | None`  **DEFAULT:** `None` |
+| `**kwargs` | Additional fields.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | METHOD | DESCRIPTION |
 | --- | --- |
 | `coerce_args` | Coerce the model arguments to the correct types. |
-| `__init__` | Initialize a `ToolMessage`. |
 
 | ATTRIBUTE | DESCRIPTION |
 | --- | --- |
@@ -1013,26 +1092,6 @@ Coerce the model arguments to the correct types.
 | --- | --- |
 | `values` | The model arguments.  **TYPE:** `dict` |
 
-#### \_\_init\_\_ [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolMessage.__init__ "Copy anchor link to this section for reference")
-
-```
-__init__(
-    content: str | list[str | dict] | None = None,
-    content_blocks: list[ContentBlock] | None = None,
-    **kwargs: Any,
-) -> None
-```
-
-Initialize a `ToolMessage`.
-
-Specify `content` as positional arg or `content_blocks` for typing.
-
-| PARAMETER | DESCRIPTION |
-| --- | --- |
-| `content` | The contents of the message.  **TYPE:** `str | list[str | dict] | None`  **DEFAULT:** `None` |
-| `content_blocks` | Typed standard content.  **TYPE:** `list[ContentBlock] | None`  **DEFAULT:** `None` |
-| `**kwargs` | Additional fields.  **TYPE:** `Any`  **DEFAULT:** `{}` |
-
 ### ToolCall [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCall "Copy anchor link to this section for reference")
 
 Bases: `TypedDict`
@@ -1048,11 +1107,19 @@ Example
 This represents a request to call the tool named `'foo'` with arguments
 `{"a": 1}` and an identifier of `'123'`.
 
+Factory function
+
+`tool_call` may also be used as a factory to create a `ToolCall`. Benefits
+include:
+
+* Required arguments strictly validated at creation time
+
 | ATTRIBUTE | DESCRIPTION |
 | --- | --- |
 | `name` | The name of the tool to be called.  **TYPE:** `str` |
-| `args` | The arguments to the tool call.  **TYPE:** `dict[str, Any]` |
+| `args` | The arguments to the tool call as a dictionary.  **TYPE:** `dict[str, Any]` |
 | `id` | An identifier associated with the tool call.  **TYPE:** `str | None` |
+| `type` | Used for discrimination.  **TYPE:** `NotRequired[Literal['tool_call']]` |
 
 #### name `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCall.name "Copy anchor link to this section for reference")
 
@@ -1068,7 +1135,7 @@ The name of the tool to be called.
 args: dict[str, Any]
 ```
 
-The arguments to the tool call.
+The arguments to the tool call as a dictionary.
 
 #### id `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCall.id "Copy anchor link to this section for reference")
 
@@ -1080,6 +1147,14 @@ An identifier associated with the tool call.
 
 An identifier is needed to associate a tool call request with a tool
 call result in events when multiple concurrent tool calls are made.
+
+#### type `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCall.type "Copy anchor link to this section for reference")
+
+```
+type: NotRequired[Literal['tool_call']]
+```
+
+Used for discrimination.
 
 ### InvalidToolCall [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.InvalidToolCall "Copy anchor link to this section for reference")
 
@@ -1165,9 +1240,9 @@ Bases: `TypedDict`
 
 A chunk of a tool call (yielded when streaming).
 
-When merging `ToolCallChunk`s (e.g., via `AIMessageChunk.__add__`),
-all string attributes are concatenated. Chunks are only merged if their
-values of `index` are equal and not None.
+When merging `ToolCallChunk` objects (e.g., via `AIMessageChunk.__add__`), all
+string attributes are concatenated. Chunks are only merged if their values of
+`index` are equal and not `None`.
 
 Example:
 
@@ -1184,9 +1259,10 @@ right_chunks = [ToolCallChunk(name=None, args="1}", index=0)]
 | ATTRIBUTE | DESCRIPTION |
 | --- | --- |
 | `name` | The name of the tool to be called.  **TYPE:** `str | None` |
-| `args` | The arguments to the tool call.  **TYPE:** `str | None` |
+| `args` | The arguments to the tool call as a JSON-parseable string.  **TYPE:** `str | None` |
 | `id` | An identifier associated with the tool call.  **TYPE:** `str | None` |
 | `index` | The index of the tool call in a sequence.  **TYPE:** `int | None` |
+| `type` | Used for discrimination.  **TYPE:** `NotRequired[Literal['tool_call_chunk']]` |
 
 #### name `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCallChunk.name "Copy anchor link to this section for reference")
 
@@ -1202,7 +1278,7 @@ The name of the tool to be called.
 args: str | None
 ```
 
-The arguments to the tool call.
+The arguments to the tool call as a JSON-parseable string.
 
 #### id `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCallChunk.id "Copy anchor link to this section for reference")
 
@@ -1212,6 +1288,9 @@ id: str | None
 
 An identifier associated with the tool call.
 
+An identifier is needed to associate a tool call request with a tool
+call result in events when multiple concurrent tool calls are made.
+
 #### index `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCallChunk.index "Copy anchor link to this section for reference")
 
 ```
@@ -1219,6 +1298,16 @@ index: int | None
 ```
 
 The index of the tool call in a sequence.
+
+Used for merging chunks.
+
+#### type `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ToolCallChunk.type "Copy anchor link to this section for reference")
+
+```
+type: NotRequired[Literal['tool_call_chunk']]
+```
+
+Used for discrimination.
 
 ### ServerToolCall [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ServerToolCall "Copy anchor link to this section for reference")
 
@@ -1296,7 +1385,7 @@ A chunk of a server-side tool call (yielded when streaming).
 | `type` | Used for discrimination.  **TYPE:** `Literal['server_tool_call_chunk']` |
 | `name` | The name of the tool to be called.  **TYPE:** `NotRequired[str]` |
 | `args` | JSON substring of the arguments to the tool call.  **TYPE:** `NotRequired[str]` |
-| `id` | An identifier associated with the tool call.  **TYPE:** `NotRequired[str]` |
+| `id` | Unique identifier for this server tool call chunk.  **TYPE:** `NotRequired[str]` |
 | `index` | Index of block in aggregate response. Used during streaming.  **TYPE:** `NotRequired[int | str]` |
 | `extras` | Provider-specific metadata.  **TYPE:** `NotRequired[dict[str, Any]]` |
 
@@ -1330,7 +1419,12 @@ JSON substring of the arguments to the tool call.
 id: NotRequired[str]
 ```
 
-An identifier associated with the tool call.
+Unique identifier for this server tool call chunk.
+
+Either:
+
+* Generated by the provider
+* Generated by LangChain upon creation (`UUID4` prefixed with `'lc_'`))
 
 #### index `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ServerToolCallChunk.index "Copy anchor link to this section for reference")
 
@@ -1357,7 +1451,7 @@ Result of a server-side tool call.
 | ATTRIBUTE | DESCRIPTION |
 | --- | --- |
 | `type` | Used for discrimination.  **TYPE:** `Literal['server_tool_result']` |
-| `id` | An identifier associated with the server tool result.  **TYPE:** `NotRequired[str]` |
+| `id` | Unique identifier for this server tool result.  **TYPE:** `NotRequired[str]` |
 | `tool_call_id` | ID of the corresponding server tool call.  **TYPE:** `str` |
 | `status` | Execution status of the server-side tool.  **TYPE:** `Literal['success', 'error']` |
 | `output` | Output of the executed tool.  **TYPE:** `NotRequired[Any]` |
@@ -1378,7 +1472,12 @@ Used for discrimination.
 id: NotRequired[str]
 ```
 
-An identifier associated with the server tool result.
+Unique identifier for this server tool result.
+
+Either:
+
+* Generated by the provider
+* Generated by LangChain upon creation (`UUID4` prefixed with `'lc_'`))
 
 #### tool\_call\_id `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ServerToolResult.tool_call_id "Copy anchor link to this section for reference")
 
@@ -1455,7 +1554,7 @@ Factory function
 | ATTRIBUTE | DESCRIPTION |
 | --- | --- |
 | `type` | Type of the content block. Used for discrimination.  **TYPE:** `Literal['text']` |
-| `id` | Content block identifier.  **TYPE:** `NotRequired[str]` |
+| `id` | Unique identifier for this content block.  **TYPE:** `NotRequired[str]` |
 | `text` | Block text.  **TYPE:** `str` |
 | `annotations` | `Citation`s and other annotations.  **TYPE:** `NotRequired[list[Annotation]]` |
 | `index` | Index of block in aggregate response. Used during streaming.  **TYPE:** `NotRequired[int | str]` |
@@ -1475,11 +1574,11 @@ Type of the content block. Used for discrimination.
 id: NotRequired[str]
 ```
 
-Content block identifier.
+Unique identifier for this content block.
 
 Either:
 
-* Generated by the provider (e.g., OpenAI's file ID)
+* Generated by the provider
 * Generated by LangChain upon creation (`UUID4` prefixed with `'lc_'`))
 
 #### text `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.TextContentBlock.text "Copy anchor link to this section for reference")
@@ -1545,7 +1644,7 @@ Benefits include:
 | ATTRIBUTE | DESCRIPTION |
 | --- | --- |
 | `type` | Type of the content block. Used for discrimination.  **TYPE:** `Literal['citation']` |
-| `id` | Content block identifier.  **TYPE:** `NotRequired[str]` |
+| `id` | Unique identifier for this content block.  **TYPE:** `NotRequired[str]` |
 | `url` | URL of the document source.  **TYPE:** `NotRequired[str]` |
 | `title` | Source document title.  **TYPE:** `NotRequired[str]` |
 | `start_index` | Start index of the **response text** (`TextContentBlock.text`).  **TYPE:** `NotRequired[int]` |
@@ -1567,11 +1666,11 @@ Type of the content block. Used for discrimination.
 id: NotRequired[str]
 ```
 
-Content block identifier.
+Unique identifier for this content block.
 
 Either:
 
-* Generated by the provider (e.g., OpenAI's file ID)
+* Generated by the provider
 * Generated by LangChain upon creation (`UUID4` prefixed with `'lc_'`))
 
 #### url `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.Citation.url "Copy anchor link to this section for reference")
@@ -1633,7 +1732,7 @@ Provider-specific annotation format.
 | ATTRIBUTE | DESCRIPTION |
 | --- | --- |
 | `type` | Type of the content block. Used for discrimination.  **TYPE:** `Literal['non_standard_annotation']` |
-| `id` | Content block identifier.  **TYPE:** `NotRequired[str]` |
+| `id` | Unique identifier for this content block.  **TYPE:** `NotRequired[str]` |
 | `value` | Provider-specific annotation data.  **TYPE:** `dict[str, Any]` |
 
 #### type `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.NonStandardAnnotation.type "Copy anchor link to this section for reference")
@@ -1650,11 +1749,11 @@ Type of the content block. Used for discrimination.
 id: NotRequired[str]
 ```
 
-Content block identifier.
+Unique identifier for this content block.
 
 Either:
 
-* Generated by the provider (e.g., OpenAI's file ID)
+* Generated by the provider
 * Generated by LangChain upon creation (`UUID4` prefixed with `'lc_'`))
 
 #### value `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.NonStandardAnnotation.value "Copy anchor link to this section for reference")
@@ -1682,7 +1781,7 @@ Factory function
 | ATTRIBUTE | DESCRIPTION |
 | --- | --- |
 | `type` | Type of the content block. Used for discrimination.  **TYPE:** `Literal['reasoning']` |
-| `id` | Content block identifier.  **TYPE:** `NotRequired[str]` |
+| `id` | Unique identifier for this content block.  **TYPE:** `NotRequired[str]` |
 | `reasoning` | Reasoning text.  **TYPE:** `NotRequired[str]` |
 | `index` | Index of block in aggregate response. Used during streaming.  **TYPE:** `NotRequired[int | str]` |
 | `extras` | Provider-specific metadata.  **TYPE:** `NotRequired[dict[str, Any]]` |
@@ -1701,11 +1800,11 @@ Type of the content block. Used for discrimination.
 id: NotRequired[str]
 ```
 
-Content block identifier.
+Unique identifier for this content block.
 
 Either:
 
-* Generated by the provider (e.g., OpenAI's file ID)
+* Generated by the provider
 * Generated by LangChain upon creation (`UUID4` prefixed with `'lc_'`))
 
 #### reasoning `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ReasoningContentBlock.reasoning "Copy anchor link to this section for reference")
@@ -1716,8 +1815,9 @@ reasoning: NotRequired[str]
 
 Reasoning text.
 
-Either the thought summary or the raw reasoning text itself. This is often parsed
-from `<think>` tags in the model's response.
+Either the thought summary or the raw reasoning text itself.
+
+Often parsed from `<think>` tags in the model's response.
 
 #### index `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ReasoningContentBlock.index "Copy anchor link to this section for reference")
 
@@ -1757,7 +1857,7 @@ Image data.
 
 Factory function
 
-`create_image_block` may also be used as a factory to create a
+`create_image_block` may also be used as a factory to create an
 `ImageContentBlock`. Benefits include:
 
 * Automatic ID generation (when not provided)
@@ -1766,9 +1866,9 @@ Factory function
 | ATTRIBUTE | DESCRIPTION |
 | --- | --- |
 | `type` | Type of the content block. Used for discrimination.  **TYPE:** `Literal['image']` |
-| `id` | Content block identifier.  **TYPE:** `NotRequired[str]` |
-| `file_id` | ID of the image file, e.g., from a file storage system.  **TYPE:** `NotRequired[str]` |
-| `mime_type` | MIME type of the image. Required for base64.  **TYPE:** `NotRequired[str]` |
+| `id` | Unique identifier for this content block.  **TYPE:** `NotRequired[str]` |
+| `file_id` | Reference to the image in an external file storage system.  **TYPE:** `NotRequired[str]` |
+| `mime_type` | MIME type of the image.  **TYPE:** `NotRequired[str]` |
 | `index` | Index of block in aggregate response. Used during streaming.  **TYPE:** `NotRequired[int | str]` |
 | `url` | URL of the image.  **TYPE:** `NotRequired[str]` |
 | `base64` | Data as a base64 string.  **TYPE:** `NotRequired[str]` |
@@ -1788,11 +1888,11 @@ Type of the content block. Used for discrimination.
 id: NotRequired[str]
 ```
 
-Content block identifier.
+Unique identifier for this content block.
 
 Either:
 
-* Generated by the provider (e.g., OpenAI's file ID)
+* Generated by the provider
 * Generated by LangChain upon creation (`UUID4` prefixed with `'lc_'`))
 
 #### file\_id `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ImageContentBlock.file_id "Copy anchor link to this section for reference")
@@ -1801,7 +1901,9 @@ Either:
 file_id: NotRequired[str]
 ```
 
-ID of the image file, e.g., from a file storage system.
+Reference to the image in an external file storage system.
+
+For example, OpenAI or Anthropic's Files API.
 
 #### mime\_type `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.ImageContentBlock.mime_type "Copy anchor link to this section for reference")
 
@@ -1809,7 +1911,9 @@ ID of the image file, e.g., from a file storage system.
 mime_type: NotRequired[str]
 ```
 
-MIME type of the image. Required for base64.
+MIME type of the image.
+
+Required for base64 data.
 
 [Examples from IANA](https://www.iana.org/assignments/media-types/media-types.xhtml#image)
 
@@ -1862,9 +1966,9 @@ Factory function
 | ATTRIBUTE | DESCRIPTION |
 | --- | --- |
 | `type` | Type of the content block. Used for discrimination.  **TYPE:** `Literal['video']` |
-| `id` | Content block identifier.  **TYPE:** `NotRequired[str]` |
-| `file_id` | ID of the video file, e.g., from a file storage system.  **TYPE:** `NotRequired[str]` |
-| `mime_type` | MIME type of the video. Required for base64.  **TYPE:** `NotRequired[str]` |
+| `id` | Unique identifier for this content block.  **TYPE:** `NotRequired[str]` |
+| `file_id` | Reference to the video in an external file storage system.  **TYPE:** `NotRequired[str]` |
+| `mime_type` | MIME type of the video.  **TYPE:** `NotRequired[str]` |
 | `index` | Index of block in aggregate response. Used during streaming.  **TYPE:** `NotRequired[int | str]` |
 | `url` | URL of the video.  **TYPE:** `NotRequired[str]` |
 | `base64` | Data as a base64 string.  **TYPE:** `NotRequired[str]` |
@@ -1884,11 +1988,11 @@ Type of the content block. Used for discrimination.
 id: NotRequired[str]
 ```
 
-Content block identifier.
+Unique identifier for this content block.
 
 Either:
 
-* Generated by the provider (e.g., OpenAI's file ID)
+* Generated by the provider
 * Generated by LangChain upon creation (`UUID4` prefixed with `'lc_'`))
 
 #### file\_id `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.VideoContentBlock.file_id "Copy anchor link to this section for reference")
@@ -1897,7 +2001,9 @@ Either:
 file_id: NotRequired[str]
 ```
 
-ID of the video file, e.g., from a file storage system.
+Reference to the video in an external file storage system.
+
+For example, OpenAI or Anthropic's Files API.
 
 #### mime\_type `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.VideoContentBlock.mime_type "Copy anchor link to this section for reference")
 
@@ -1905,7 +2011,9 @@ ID of the video file, e.g., from a file storage system.
 mime_type: NotRequired[str]
 ```
 
-MIME type of the video. Required for base64.
+MIME type of the video.
+
+Required for base64 data.
 
 [Examples from IANA](https://www.iana.org/assignments/media-types/media-types.xhtml#video)
 
@@ -1951,15 +2059,16 @@ Factory function
 
 `create_audio_block` may also be used as a factory to create an
 `AudioContentBlock`. Benefits include:
-\* Automatic ID generation (when not provided)
-\* Required arguments strictly validated at creation time
+
+* Automatic ID generation (when not provided)
+* Required arguments strictly validated at creation time
 
 | ATTRIBUTE | DESCRIPTION |
 | --- | --- |
 | `type` | Type of the content block. Used for discrimination.  **TYPE:** `Literal['audio']` |
-| `id` | Content block identifier.  **TYPE:** `NotRequired[str]` |
-| `file_id` | ID of the audio file, e.g., from a file storage system.  **TYPE:** `NotRequired[str]` |
-| `mime_type` | MIME type of the audio. Required for base64.  **TYPE:** `NotRequired[str]` |
+| `id` | Unique identifier for this content block.  **TYPE:** `NotRequired[str]` |
+| `file_id` | Reference to the audio file in an external file storage system.  **TYPE:** `NotRequired[str]` |
+| `mime_type` | MIME type of the audio.  **TYPE:** `NotRequired[str]` |
 | `index` | Index of block in aggregate response. Used during streaming.  **TYPE:** `NotRequired[int | str]` |
 | `url` | URL of the audio.  **TYPE:** `NotRequired[str]` |
 | `base64` | Data as a base64 string.  **TYPE:** `NotRequired[str]` |
@@ -1979,11 +2088,11 @@ Type of the content block. Used for discrimination.
 id: NotRequired[str]
 ```
 
-Content block identifier.
+Unique identifier for this content block.
 
 Either:
 
-* Generated by the provider (e.g., OpenAI's file ID)
+* Generated by the provider
 * Generated by LangChain upon creation (`UUID4` prefixed with `'lc_'`))
 
 #### file\_id `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AudioContentBlock.file_id "Copy anchor link to this section for reference")
@@ -1992,7 +2101,9 @@ Either:
 file_id: NotRequired[str]
 ```
 
-ID of the audio file, e.g., from a file storage system.
+Reference to the audio file in an external file storage system.
+
+For example, OpenAI or Anthropic's Files API.
 
 #### mime\_type `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.AudioContentBlock.mime_type "Copy anchor link to this section for reference")
 
@@ -2000,7 +2111,9 @@ ID of the audio file, e.g., from a file storage system.
 mime_type: NotRequired[str]
 ```
 
-MIME type of the audio. Required for base64.
+MIME type of the audio.
+
+Required for base64 data.
 
 [Examples from IANA](https://www.iana.org/assignments/media-types/media-types.xhtml#audio)
 
@@ -2065,9 +2178,9 @@ Factory function
 | ATTRIBUTE | DESCRIPTION |
 | --- | --- |
 | `type` | Type of the content block. Used for discrimination.  **TYPE:** `Literal['text-plain']` |
-| `id` | Content block identifier.  **TYPE:** `NotRequired[str]` |
-| `file_id` | ID of the plaintext file, e.g., from a file storage system.  **TYPE:** `NotRequired[str]` |
-| `mime_type` | MIME type of the file. Required for base64.  **TYPE:** `Literal['text/plain']` |
+| `id` | Unique identifier for this content block.  **TYPE:** `NotRequired[str]` |
+| `file_id` | Reference to the plaintext file in an external file storage system.  **TYPE:** `NotRequired[str]` |
+| `mime_type` | MIME type of the file.  **TYPE:** `Literal['text/plain']` |
 | `index` | Index of block in aggregate response. Used during streaming.  **TYPE:** `NotRequired[int | str]` |
 | `url` | URL of the plaintext.  **TYPE:** `NotRequired[str]` |
 | `base64` | Data as a base64 string.  **TYPE:** `NotRequired[str]` |
@@ -2090,11 +2203,11 @@ Type of the content block. Used for discrimination.
 id: NotRequired[str]
 ```
 
-Content block identifier.
+Unique identifier for this content block.
 
 Either:
 
-* Generated by the provider (e.g., OpenAI's file ID)
+* Generated by the provider
 * Generated by LangChain upon creation (`UUID4` prefixed with `'lc_'`))
 
 #### file\_id `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.PlainTextContentBlock.file_id "Copy anchor link to this section for reference")
@@ -2103,7 +2216,9 @@ Either:
 file_id: NotRequired[str]
 ```
 
-ID of the plaintext file, e.g., from a file storage system.
+Reference to the plaintext file in an external file storage system.
+
+For example, OpenAI or Anthropic's Files API.
 
 #### mime\_type `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.PlainTextContentBlock.mime_type "Copy anchor link to this section for reference")
 
@@ -2111,7 +2226,9 @@ ID of the plaintext file, e.g., from a file storage system.
 mime_type: Literal['text/plain']
 ```
 
-MIME type of the file. Required for base64.
+MIME type of the file.
+
+Required for base64 data.
 
 #### index `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.PlainTextContentBlock.index "Copy anchor link to this section for reference")
 
@@ -2193,9 +2310,9 @@ Factory function
 | ATTRIBUTE | DESCRIPTION |
 | --- | --- |
 | `type` | Type of the content block. Used for discrimination.  **TYPE:** `Literal['file']` |
-| `id` | Content block identifier.  **TYPE:** `NotRequired[str]` |
-| `file_id` | ID of the file, e.g., from a file storage system.  **TYPE:** `NotRequired[str]` |
-| `mime_type` | MIME type of the file. Required for base64.  **TYPE:** `NotRequired[str]` |
+| `id` | Unique identifier for this content block.  **TYPE:** `NotRequired[str]` |
+| `file_id` | Reference to the file in an external file storage system.  **TYPE:** `NotRequired[str]` |
+| `mime_type` | MIME type of the file.  **TYPE:** `NotRequired[str]` |
 | `index` | Index of block in aggregate response. Used during streaming.  **TYPE:** `NotRequired[int | str]` |
 | `url` | URL of the file.  **TYPE:** `NotRequired[str]` |
 | `base64` | Data as a base64 string.  **TYPE:** `NotRequired[str]` |
@@ -2215,11 +2332,16 @@ Type of the content block. Used for discrimination.
 id: NotRequired[str]
 ```
 
-Content block identifier.
+Unique identifier for this content block.
+
+Used for tracking and referencing specific blocks (e.g., during streaming).
+
+Not to be confused with `file_id`, which references an external file in a
+storage system.
 
 Either:
 
-* Generated by the provider (e.g., OpenAI's file ID)
+* Generated by the provider
 * Generated by LangChain upon creation (`UUID4` prefixed with `'lc_'`))
 
 #### file\_id `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.FileContentBlock.file_id "Copy anchor link to this section for reference")
@@ -2228,7 +2350,10 @@ Either:
 file_id: NotRequired[str]
 ```
 
-ID of the file, e.g., from a file storage system.
+Reference to the file in an external file storage system.
+
+For example, a file ID from OpenAI's Files API or another cloud storage provider.
+This is distinct from `id`, which identifies the content block itself.
 
 #### mime\_type `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.FileContentBlock.mime_type "Copy anchor link to this section for reference")
 
@@ -2236,7 +2361,9 @@ ID of the file, e.g., from a file storage system.
 mime_type: NotRequired[str]
 ```
 
-MIME type of the file. Required for base64.
+MIME type of the file.
+
+Required for base64 data.
 
 [Examples from IANA](https://www.iana.org/assignments/media-types/media-types.xhtml)
 
@@ -2299,7 +2426,7 @@ Factory function
 | ATTRIBUTE | DESCRIPTION |
 | --- | --- |
 | `type` | Type of the content block. Used for discrimination.  **TYPE:** `Literal['non_standard']` |
-| `id` | Content block identifier.  **TYPE:** `NotRequired[str]` |
+| `id` | Unique identifier for this content block.  **TYPE:** `NotRequired[str]` |
 | `value` | Provider-specific content data.  **TYPE:** `dict[str, Any]` |
 | `index` | Index of block in aggregate response. Used during streaming.  **TYPE:** `NotRequired[int | str]` |
 
@@ -2317,11 +2444,11 @@ Type of the content block. Used for discrimination.
 id: NotRequired[str]
 ```
 
-Content block identifier.
+Unique identifier for this content block.
 
 Either:
 
-* Generated by the provider (e.g., OpenAI's file ID)
+* Generated by the provider
 * Generated by LangChain upon creation (`UUID4` prefixed with `'lc_'`))
 
 #### value `instance-attribute` [¶](https://reference.langchain.com/python/langchain/messages/#langchain.messages.NonStandardContentBlock.value "Copy anchor link to this section for reference")
@@ -2349,7 +2476,8 @@ trim_messages(
     max_tokens: int,
     token_counter: Callable[[list[BaseMessage]], int]
     | Callable[[BaseMessage], int]
-    | BaseLanguageModel,
+    | BaseLanguageModel
+    | Literal["approximate"],
     strategy: Literal["first", "last"] = "last",
     allow_partial: bool = False,
     end_on: str | type[BaseMessage] | Sequence[str | type[BaseMessage]] | None = None,
@@ -2390,13 +2518,13 @@ consistent with the above properties.
 | --- | --- |
 | `messages` | Sequence of Message-like objects to trim.  **TYPE:** `Iterable[MessageLikeRepresentation] | PromptValue` |
 | `max_tokens` | Max token count of trimmed messages.  **TYPE:** `int` |
-| `token_counter` | Function or llm for counting tokens in a `BaseMessage` or a list of `BaseMessage`. If a `BaseLanguageModel` is passed in then `BaseLanguageModel.get_num_tokens_from_messages()` will be used. Set to `len` to count the number of **messages** in the chat history.  Note  Use `count_tokens_approximately` to get fast, approximate token counts.  This is recommended for using `trim_messages` on the hot path, where exact token counting is not necessary.  **TYPE:** `Callable[[list[BaseMessage]], int] | Callable[[BaseMessage], int] | BaseLanguageModel` |
-| `strategy` | Strategy for trimming. - `'first'`: Keep the first `<= n_count` tokens of the messages. - `'last'`: Keep the last `<= n_count` tokens of the messages.  **TYPE:** `Literal['first', 'last']`  **DEFAULT:** `'last'` |
-| `allow_partial` | Whether to split a message if only part of the message can be included. If `strategy='last'` then the last partial contents of a message are included. If `strategy='first'` then the first partial contents of a message are included.  **TYPE:** `bool`  **DEFAULT:** `False` |
-| `end_on` | The message type to end on. If specified then every message after the last occurrence of this type is ignored. If `strategy='last'` then this is done before we attempt to get the last `max_tokens`. If `strategy='first'` then this is done after we get the first `max_tokens`. Can be specified as string names (e.g. `'system'`, `'human'`, `'ai'`, ...) or as `BaseMessage` classes (e.g. `SystemMessage`, `HumanMessage`, `AIMessage`, ...). Can be a single type or a list of types.  **TYPE:** `str | type[BaseMessage] | Sequence[str | type[BaseMessage]] | None`  **DEFAULT:** `None` |
-| `start_on` | The message type to start on. Should only be specified if `strategy='last'`. If specified then every message before the first occurrence of this type is ignored. This is done after we trim the initial messages to the last `max_tokens`. Does not apply to a `SystemMessage` at index 0 if `include_system=True`. Can be specified as string names (e.g. `'system'`, `'human'`, `'ai'`, ...) or as `BaseMessage` classes (e.g. `SystemMessage`, `HumanMessage`, `AIMessage`, ...). Can be a single type or a list of types.  **TYPE:** `str | type[BaseMessage] | Sequence[str | type[BaseMessage]] | None`  **DEFAULT:** `None` |
-| `include_system` | Whether to keep the `SystemMessage` if there is one at index `0`. Should only be specified if `strategy="last"`.  **TYPE:** `bool`  **DEFAULT:** `False` |
-| `text_splitter` | Function or `langchain_text_splitters.TextSplitter` for splitting the string contents of a message. Only used if `allow_partial=True`. If `strategy='last'` then the last split tokens from a partial message will be included. if `strategy='first'` then the first split tokens from a partial message will be included. Token splitter assumes that separators are kept, so that split contents can be directly concatenated to recreate the original text. Defaults to splitting on newlines.  **TYPE:** `Callable[[str], list[str]] | TextSplitter | None`  **DEFAULT:** `None` |
+| `token_counter` | Function or llm for counting tokens in a `BaseMessage` or a list of `BaseMessage`.  If a `BaseLanguageModel` is passed in then `BaseLanguageModel.get_num_tokens_from_messages()` will be used. Set to `len` to count the number of **messages** in the chat history.  You can also use string shortcuts for convenience:   * `'approximate'`: Uses `count_tokens_approximately` for fast, approximate   token counts.   Note  `count_tokens_approximately` (or the shortcut `'approximate'`) is recommended for using `trim_messages` on the hot path, where exact token counting is not necessary.  **TYPE:** `Callable[[list[BaseMessage]], int] | Callable[[BaseMessage], int] | BaseLanguageModel | Literal['approximate']` |
+| `strategy` | Strategy for trimming.   * `'first'`: Keep the first `<= n_count` tokens of the messages. * `'last'`: Keep the last `<= n_count` tokens of the messages.  **TYPE:** `Literal['first', 'last']`  **DEFAULT:** `'last'` |
+| `allow_partial` | Whether to split a message if only part of the message can be included.  If `strategy='last'` then the last partial contents of a message are included. If `strategy='first'` then the first partial contents of a message are included.  **TYPE:** `bool`  **DEFAULT:** `False` |
+| `end_on` | The message type to end on.  If specified then every message after the last occurrence of this type is ignored. If `strategy='last'` then this is done before we attempt to get the last `max_tokens`. If `strategy='first'` then this is done after we get the first `max_tokens`. Can be specified as string names (e.g. `'system'`, `'human'`, `'ai'`, ...) or as `BaseMessage` classes (e.g. `SystemMessage`, `HumanMessage`, `AIMessage`, ...). Can be a single type or a list of types.  **TYPE:** `str | type[BaseMessage] | Sequence[str | type[BaseMessage]] | None`  **DEFAULT:** `None` |
+| `start_on` | The message type to start on.  Should only be specified if `strategy='last'`. If specified then every message before the first occurrence of this type is ignored. This is done after we trim the initial messages to the last `max_tokens`. Does not apply to a `SystemMessage` at index 0 if `include_system=True`. Can be specified as string names (e.g. `'system'`, `'human'`, `'ai'`, ...) or as `BaseMessage` classes (e.g. `SystemMessage`, `HumanMessage`, `AIMessage`, ...). Can be a single type or a list of types.  **TYPE:** `str | type[BaseMessage] | Sequence[str | type[BaseMessage]] | None`  **DEFAULT:** `None` |
+| `include_system` | Whether to keep the `SystemMessage` if there is one at index `0`.  Should only be specified if `strategy="last"`.  **TYPE:** `bool`  **DEFAULT:** `False` |
+| `text_splitter` | Function or `langchain_text_splitters.TextSplitter` for splitting the string contents of a message.  Only used if `allow_partial=True`. If `strategy='last'` then the last split tokens from a partial message will be included. if `strategy='first'` then the first split tokens from a partial message will be included. Token splitter assumes that separators are kept, so that split contents can be directly concatenated to recreate the original text. Defaults to splitting on newlines.  **TYPE:** `Callable[[str], list[str]] | TextSplitter | None`  **DEFAULT:** `None` |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
@@ -2409,8 +2537,8 @@ consistent with the above properties.
 Example
 
 Trim chat history based on token count, keeping the `SystemMessage` if
-present, and ensuring that the chat history starts with a `HumanMessage` (
-or a `SystemMessage` followed by a `HumanMessage`).
+present, and ensuring that the chat history starts with a `HumanMessage` (or a
+`SystemMessage` followed by a `HumanMessage`).
 
 ```
 from langchain_core.messages import (
@@ -2463,8 +2591,34 @@ trim_messages(
 ]
 ```
 
+Trim chat history using approximate token counting with `'approximate'`:
+
+```
+trim_messages(
+    messages,
+    max_tokens=45,
+    strategy="last",
+    # Using the "approximate" shortcut for fast token counting
+    token_counter="approximate",
+    start_on="human",
+    include_system=True,
+)
+
+# This is equivalent to using `count_tokens_approximately` directly
+from langchain_core.messages.utils import count_tokens_approximately
+
+trim_messages(
+    messages,
+    max_tokens=45,
+    strategy="last",
+    token_counter=count_tokens_approximately,
+    start_on="human",
+    include_system=True,
+)
+```
+
 Trim chat history based on the message count, keeping the `SystemMessage` if
-present, and ensuring that the chat history starts with a `HumanMessage` (
+present, and ensuring that the chat history starts with a HumanMessage (
 or a `SystemMessage` followed by a `HumanMessage`).
 
 ```

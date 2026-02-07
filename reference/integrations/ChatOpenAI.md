@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 131
-* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
+* 230
+* 1.8k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -22,6 +22,7 @@ LangChain Reference
 
     Packages
     - [Anthropic](https://reference.langchain.com/python/integrations/langchain_anthropic/)
+    - [Amazon Nova](https://reference.langchain.com/python/integrations/langchain_amazon_nova/)
     - [AstraDB](https://reference.langchain.com/python/integrations/langchain_astradb/)
     - [AWS](https://reference.langchain.com/python/integrations/langchain_aws/)
     - [Azure (Microsoft)](https://reference.langchain.com/python/integrations/langchain_azure/)
@@ -55,118 +56,118 @@ LangChain Reference
 
 
         Table of contents
-        + [ChatOpenAI](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI)
+        + [ChatOpenAI](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI)
 
-          - [name](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.name)
-          - [InputType](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.InputType)
-          - [OutputType](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.OutputType)
-          - [input\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.input_schema)
-          - [output\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.output_schema)
-          - [config\_specs](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.config_specs)
-          - [cache](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.cache)
-          - [verbose](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.verbose)
-          - [callbacks](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.callbacks)
-          - [tags](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.tags)
-          - [metadata](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.metadata)
-          - [custom\_get\_token\_ids](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.custom_get_token_ids)
-          - [rate\_limiter](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.rate_limiter)
-          - [disable\_streaming](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.disable_streaming)
-          - [output\_version](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.output_version)
-          - [profile](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.profile)
-          - [model\_name](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.model_name)
-          - [temperature](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.temperature)
-          - [model\_kwargs](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.model_kwargs)
-          - [openai\_api\_key](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.openai_api_key)
-          - [openai\_api\_base](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.openai_api_base)
-          - [openai\_organization](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.openai_organization)
-          - [request\_timeout](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.request_timeout)
-          - [stream\_usage](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.stream_usage)
-          - [max\_retries](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.max_retries)
-          - [presence\_penalty](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.presence_penalty)
-          - [frequency\_penalty](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.frequency_penalty)
-          - [seed](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.seed)
-          - [logprobs](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.logprobs)
-          - [top\_logprobs](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.top_logprobs)
-          - [logit\_bias](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.logit_bias)
-          - [streaming](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.streaming)
-          - [n](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.n)
-          - [top\_p](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.top_p)
-          - [reasoning\_effort](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.reasoning_effort)
-          - [reasoning](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.reasoning)
-          - [verbosity](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.verbosity)
-          - [tiktoken\_model\_name](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.tiktoken_model_name)
-          - [http\_client](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.http_client)
-          - [http\_async\_client](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.http_async_client)
-          - [stop](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.stop)
-          - [extra\_body](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.extra_body)
-          - [include\_response\_headers](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.include_response_headers)
-          - [disabled\_params](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.disabled_params)
-          - [include](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.include)
-          - [service\_tier](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.service_tier)
-          - [store](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.store)
-          - [truncation](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.truncation)
-          - [use\_previous\_response\_id](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.use_previous_response_id)
-          - [use\_responses\_api](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.use_responses_api)
-          - [max\_tokens](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.max_tokens)
-          - [lc\_secrets](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.lc_secrets)
-          - [lc\_attributes](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.lc_attributes)
-          - [get\_name](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_name)
-          - [get\_input\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_input_schema)
-          - [get\_input\_jsonschema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_input_jsonschema)
-          - [get\_output\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_output_schema)
-          - [get\_output\_jsonschema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_output_jsonschema)
-          - [config\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.config_schema)
-          - [get\_config\_jsonschema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_config_jsonschema)
-          - [get\_graph](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_graph)
-          - [get\_prompts](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_prompts)
-          - [\_\_or\_\_](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.__or__)
-          - [\_\_ror\_\_](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.__ror__)
-          - [pipe](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.pipe)
-          - [pick](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.pick)
-          - [assign](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.assign)
-          - [invoke](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.invoke)
-          - [ainvoke](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.ainvoke)
-          - [batch](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.batch)
-          - [batch\_as\_completed](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.batch_as_completed)
-          - [abatch](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.abatch)
-          - [abatch\_as\_completed](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.abatch_as_completed)
-          - [stream](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.stream)
-          - [astream](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.astream)
-          - [astream\_log](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.astream_log)
-          - [astream\_events](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.astream_events)
-          - [transform](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.transform)
-          - [atransform](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.atransform)
-          - [bind](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.bind)
-          - [with\_config](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_config)
-          - [with\_listeners](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_listeners)
-          - [with\_alisteners](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_alisteners)
-          - [with\_types](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_types)
-          - [with\_retry](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_retry)
-          - [map](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.map)
-          - [with\_fallbacks](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_fallbacks)
-          - [as\_tool](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.as_tool)
-          - [\_\_init\_\_](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.__init__)
-          - [lc\_id](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.lc_id)
-          - [to\_json](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.to_json)
-          - [to\_json\_not\_implemented](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.to_json_not_implemented)
-          - [configurable\_fields](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.configurable_fields)
-          - [configurable\_alternatives](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.configurable_alternatives)
-          - [set\_verbose](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.set_verbose)
-          - [generate\_prompt](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.generate_prompt)
-          - [agenerate\_prompt](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.agenerate_prompt)
-          - [get\_token\_ids](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_token_ids)
-          - [get\_num\_tokens](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_num_tokens)
-          - [get\_num\_tokens\_from\_messages](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_num_tokens_from_messages)
-          - [generate](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.generate)
-          - [agenerate](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.agenerate)
-          - [dict](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.dict)
-          - [bind\_tools](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.bind_tools)
-          - [build\_extra](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.build_extra)
-          - [validate\_temperature](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.validate_temperature)
-          - [validate\_environment](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.validate_environment)
-          - [get\_lc\_namespace](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_lc_namespace)
-          - [is\_lc\_serializable](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.is_lc_serializable)
-          - [with\_structured\_output](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_structured_output)
+          - [name](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.name)
+          - [InputType](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.InputType)
+          - [OutputType](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.OutputType)
+          - [input\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.input_schema)
+          - [output\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.output_schema)
+          - [config\_specs](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.config_specs)
+          - [cache](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.cache)
+          - [verbose](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.verbose)
+          - [callbacks](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.callbacks)
+          - [tags](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.tags)
+          - [metadata](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.metadata)
+          - [custom\_get\_token\_ids](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.custom_get_token_ids)
+          - [rate\_limiter](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.rate_limiter)
+          - [disable\_streaming](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.disable_streaming)
+          - [output\_version](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.output_version)
+          - [profile](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.profile)
+          - [model\_name](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.model_name)
+          - [temperature](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.temperature)
+          - [model\_kwargs](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.model_kwargs)
+          - [openai\_api\_key](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.openai_api_key)
+          - [openai\_api\_base](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.openai_api_base)
+          - [openai\_organization](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.openai_organization)
+          - [request\_timeout](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.request_timeout)
+          - [stream\_usage](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.stream_usage)
+          - [max\_retries](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.max_retries)
+          - [presence\_penalty](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.presence_penalty)
+          - [frequency\_penalty](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.frequency_penalty)
+          - [seed](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.seed)
+          - [logprobs](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.logprobs)
+          - [top\_logprobs](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.top_logprobs)
+          - [logit\_bias](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.logit_bias)
+          - [streaming](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.streaming)
+          - [n](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.n)
+          - [top\_p](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.top_p)
+          - [reasoning\_effort](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.reasoning_effort)
+          - [reasoning](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.reasoning)
+          - [verbosity](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.verbosity)
+          - [tiktoken\_model\_name](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.tiktoken_model_name)
+          - [http\_client](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.http_client)
+          - [http\_async\_client](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.http_async_client)
+          - [stop](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.stop)
+          - [extra\_body](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.extra_body)
+          - [include\_response\_headers](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.include_response_headers)
+          - [disabled\_params](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.disabled_params)
+          - [include](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.include)
+          - [service\_tier](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.service_tier)
+          - [store](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.store)
+          - [truncation](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.truncation)
+          - [use\_previous\_response\_id](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.use_previous_response_id)
+          - [use\_responses\_api](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.use_responses_api)
+          - [max\_tokens](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.max_tokens)
+          - [lc\_secrets](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.lc_secrets)
+          - [lc\_attributes](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.lc_attributes)
+          - [get\_name](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_name)
+          - [get\_input\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_input_schema)
+          - [get\_input\_jsonschema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_input_jsonschema)
+          - [get\_output\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_output_schema)
+          - [get\_output\_jsonschema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_output_jsonschema)
+          - [config\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.config_schema)
+          - [get\_config\_jsonschema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_config_jsonschema)
+          - [get\_graph](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_graph)
+          - [get\_prompts](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_prompts)
+          - [\_\_or\_\_](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.__or__)
+          - [\_\_ror\_\_](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.__ror__)
+          - [pipe](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.pipe)
+          - [pick](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.pick)
+          - [assign](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.assign)
+          - [invoke](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.invoke)
+          - [ainvoke](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.ainvoke)
+          - [batch](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.batch)
+          - [batch\_as\_completed](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.batch_as_completed)
+          - [abatch](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.abatch)
+          - [abatch\_as\_completed](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.abatch_as_completed)
+          - [stream](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.stream)
+          - [astream](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.astream)
+          - [astream\_log](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.astream_log)
+          - [astream\_events](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.astream_events)
+          - [transform](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.transform)
+          - [atransform](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.atransform)
+          - [bind](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.bind)
+          - [with\_config](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_config)
+          - [with\_listeners](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_listeners)
+          - [with\_alisteners](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_alisteners)
+          - [with\_types](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_types)
+          - [with\_retry](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_retry)
+          - [map](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.map)
+          - [with\_fallbacks](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_fallbacks)
+          - [as\_tool](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.as_tool)
+          - [\_\_init\_\_](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.__init__)
+          - [lc\_id](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.lc_id)
+          - [to\_json](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.to_json)
+          - [to\_json\_not\_implemented](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.to_json_not_implemented)
+          - [configurable\_fields](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.configurable_fields)
+          - [configurable\_alternatives](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.configurable_alternatives)
+          - [set\_verbose](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.set_verbose)
+          - [generate\_prompt](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.generate_prompt)
+          - [agenerate\_prompt](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.agenerate_prompt)
+          - [get\_token\_ids](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_token_ids)
+          - [get\_num\_tokens](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_num_tokens)
+          - [get\_num\_tokens\_from\_messages](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_num_tokens_from_messages)
+          - [generate](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.generate)
+          - [agenerate](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.agenerate)
+          - [dict](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.dict)
+          - [bind\_tools](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.bind_tools)
+          - [build\_extra](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.build_extra)
+          - [validate\_temperature](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.validate_temperature)
+          - [validate\_environment](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.validate_environment)
+          - [get\_lc\_namespace](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_lc_namespace)
+          - [is\_lc\_serializable](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.is_lc_serializable)
+          - [with\_structured\_output](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_structured_output)
       * [AzureChatOpenAI](https://reference.langchain.com/python/integrations/langchain_openai/AzureChatOpenAI/)
       * [OpenAI](https://reference.langchain.com/python/integrations/langchain_openai/OpenAI/)
       * [AzureOpenAI](https://reference.langchain.com/python/integrations/langchain_openai/AzureOpenAI/)
@@ -193,118 +194,118 @@ LangChain Reference
 
 Table of contents
 
-* [ChatOpenAI](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI)
+* [ChatOpenAI](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI)
 
-  + [name](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.name)
-  + [InputType](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.InputType)
-  + [OutputType](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.OutputType)
-  + [input\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.input_schema)
-  + [output\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.output_schema)
-  + [config\_specs](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.config_specs)
-  + [cache](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.cache)
-  + [verbose](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.verbose)
-  + [callbacks](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.callbacks)
-  + [tags](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.tags)
-  + [metadata](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.metadata)
-  + [custom\_get\_token\_ids](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.custom_get_token_ids)
-  + [rate\_limiter](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.rate_limiter)
-  + [disable\_streaming](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.disable_streaming)
-  + [output\_version](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.output_version)
-  + [profile](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.profile)
-  + [model\_name](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.model_name)
-  + [temperature](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.temperature)
-  + [model\_kwargs](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.model_kwargs)
-  + [openai\_api\_key](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.openai_api_key)
-  + [openai\_api\_base](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.openai_api_base)
-  + [openai\_organization](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.openai_organization)
-  + [request\_timeout](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.request_timeout)
-  + [stream\_usage](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.stream_usage)
-  + [max\_retries](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.max_retries)
-  + [presence\_penalty](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.presence_penalty)
-  + [frequency\_penalty](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.frequency_penalty)
-  + [seed](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.seed)
-  + [logprobs](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.logprobs)
-  + [top\_logprobs](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.top_logprobs)
-  + [logit\_bias](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.logit_bias)
-  + [streaming](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.streaming)
-  + [n](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.n)
-  + [top\_p](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.top_p)
-  + [reasoning\_effort](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.reasoning_effort)
-  + [reasoning](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.reasoning)
-  + [verbosity](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.verbosity)
-  + [tiktoken\_model\_name](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.tiktoken_model_name)
-  + [http\_client](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.http_client)
-  + [http\_async\_client](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.http_async_client)
-  + [stop](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.stop)
-  + [extra\_body](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.extra_body)
-  + [include\_response\_headers](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.include_response_headers)
-  + [disabled\_params](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.disabled_params)
-  + [include](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.include)
-  + [service\_tier](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.service_tier)
-  + [store](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.store)
-  + [truncation](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.truncation)
-  + [use\_previous\_response\_id](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.use_previous_response_id)
-  + [use\_responses\_api](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.use_responses_api)
-  + [max\_tokens](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.max_tokens)
-  + [lc\_secrets](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.lc_secrets)
-  + [lc\_attributes](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.lc_attributes)
-  + [get\_name](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_name)
-  + [get\_input\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_input_schema)
-  + [get\_input\_jsonschema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_input_jsonschema)
-  + [get\_output\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_output_schema)
-  + [get\_output\_jsonschema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_output_jsonschema)
-  + [config\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.config_schema)
-  + [get\_config\_jsonschema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_config_jsonschema)
-  + [get\_graph](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_graph)
-  + [get\_prompts](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_prompts)
-  + [\_\_or\_\_](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.__or__)
-  + [\_\_ror\_\_](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.__ror__)
-  + [pipe](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.pipe)
-  + [pick](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.pick)
-  + [assign](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.assign)
-  + [invoke](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.invoke)
-  + [ainvoke](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.ainvoke)
-  + [batch](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.batch)
-  + [batch\_as\_completed](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.batch_as_completed)
-  + [abatch](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.abatch)
-  + [abatch\_as\_completed](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.abatch_as_completed)
-  + [stream](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.stream)
-  + [astream](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.astream)
-  + [astream\_log](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.astream_log)
-  + [astream\_events](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.astream_events)
-  + [transform](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.transform)
-  + [atransform](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.atransform)
-  + [bind](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.bind)
-  + [with\_config](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_config)
-  + [with\_listeners](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_listeners)
-  + [with\_alisteners](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_alisteners)
-  + [with\_types](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_types)
-  + [with\_retry](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_retry)
-  + [map](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.map)
-  + [with\_fallbacks](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_fallbacks)
-  + [as\_tool](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.as_tool)
-  + [\_\_init\_\_](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.__init__)
-  + [lc\_id](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.lc_id)
-  + [to\_json](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.to_json)
-  + [to\_json\_not\_implemented](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.to_json_not_implemented)
-  + [configurable\_fields](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.configurable_fields)
-  + [configurable\_alternatives](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.configurable_alternatives)
-  + [set\_verbose](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.set_verbose)
-  + [generate\_prompt](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.generate_prompt)
-  + [agenerate\_prompt](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.agenerate_prompt)
-  + [get\_token\_ids](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_token_ids)
-  + [get\_num\_tokens](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_num_tokens)
-  + [get\_num\_tokens\_from\_messages](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_num_tokens_from_messages)
-  + [generate](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.generate)
-  + [agenerate](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.agenerate)
-  + [dict](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.dict)
-  + [bind\_tools](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.bind_tools)
-  + [build\_extra](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.build_extra)
-  + [validate\_temperature](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.validate_temperature)
-  + [validate\_environment](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.validate_environment)
-  + [get\_lc\_namespace](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_lc_namespace)
-  + [is\_lc\_serializable](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.is_lc_serializable)
-  + [with\_structured\_output](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_structured_output)
+  + [name](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.name)
+  + [InputType](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.InputType)
+  + [OutputType](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.OutputType)
+  + [input\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.input_schema)
+  + [output\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.output_schema)
+  + [config\_specs](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.config_specs)
+  + [cache](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.cache)
+  + [verbose](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.verbose)
+  + [callbacks](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.callbacks)
+  + [tags](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.tags)
+  + [metadata](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.metadata)
+  + [custom\_get\_token\_ids](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.custom_get_token_ids)
+  + [rate\_limiter](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.rate_limiter)
+  + [disable\_streaming](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.disable_streaming)
+  + [output\_version](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.output_version)
+  + [profile](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.profile)
+  + [model\_name](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.model_name)
+  + [temperature](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.temperature)
+  + [model\_kwargs](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.model_kwargs)
+  + [openai\_api\_key](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.openai_api_key)
+  + [openai\_api\_base](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.openai_api_base)
+  + [openai\_organization](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.openai_organization)
+  + [request\_timeout](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.request_timeout)
+  + [stream\_usage](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.stream_usage)
+  + [max\_retries](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.max_retries)
+  + [presence\_penalty](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.presence_penalty)
+  + [frequency\_penalty](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.frequency_penalty)
+  + [seed](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.seed)
+  + [logprobs](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.logprobs)
+  + [top\_logprobs](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.top_logprobs)
+  + [logit\_bias](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.logit_bias)
+  + [streaming](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.streaming)
+  + [n](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.n)
+  + [top\_p](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.top_p)
+  + [reasoning\_effort](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.reasoning_effort)
+  + [reasoning](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.reasoning)
+  + [verbosity](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.verbosity)
+  + [tiktoken\_model\_name](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.tiktoken_model_name)
+  + [http\_client](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.http_client)
+  + [http\_async\_client](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.http_async_client)
+  + [stop](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.stop)
+  + [extra\_body](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.extra_body)
+  + [include\_response\_headers](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.include_response_headers)
+  + [disabled\_params](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.disabled_params)
+  + [include](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.include)
+  + [service\_tier](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.service_tier)
+  + [store](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.store)
+  + [truncation](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.truncation)
+  + [use\_previous\_response\_id](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.use_previous_response_id)
+  + [use\_responses\_api](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.use_responses_api)
+  + [max\_tokens](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.max_tokens)
+  + [lc\_secrets](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.lc_secrets)
+  + [lc\_attributes](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.lc_attributes)
+  + [get\_name](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_name)
+  + [get\_input\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_input_schema)
+  + [get\_input\_jsonschema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_input_jsonschema)
+  + [get\_output\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_output_schema)
+  + [get\_output\_jsonschema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_output_jsonschema)
+  + [config\_schema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.config_schema)
+  + [get\_config\_jsonschema](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_config_jsonschema)
+  + [get\_graph](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_graph)
+  + [get\_prompts](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_prompts)
+  + [\_\_or\_\_](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.__or__)
+  + [\_\_ror\_\_](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.__ror__)
+  + [pipe](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.pipe)
+  + [pick](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.pick)
+  + [assign](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.assign)
+  + [invoke](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.invoke)
+  + [ainvoke](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.ainvoke)
+  + [batch](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.batch)
+  + [batch\_as\_completed](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.batch_as_completed)
+  + [abatch](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.abatch)
+  + [abatch\_as\_completed](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.abatch_as_completed)
+  + [stream](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.stream)
+  + [astream](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.astream)
+  + [astream\_log](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.astream_log)
+  + [astream\_events](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.astream_events)
+  + [transform](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.transform)
+  + [atransform](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.atransform)
+  + [bind](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.bind)
+  + [with\_config](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_config)
+  + [with\_listeners](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_listeners)
+  + [with\_alisteners](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_alisteners)
+  + [with\_types](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_types)
+  + [with\_retry](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_retry)
+  + [map](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.map)
+  + [with\_fallbacks](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_fallbacks)
+  + [as\_tool](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.as_tool)
+  + [\_\_init\_\_](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.__init__)
+  + [lc\_id](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.lc_id)
+  + [to\_json](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.to_json)
+  + [to\_json\_not\_implemented](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.to_json_not_implemented)
+  + [configurable\_fields](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.configurable_fields)
+  + [configurable\_alternatives](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.configurable_alternatives)
+  + [set\_verbose](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.set_verbose)
+  + [generate\_prompt](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.generate_prompt)
+  + [agenerate\_prompt](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.agenerate_prompt)
+  + [get\_token\_ids](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_token_ids)
+  + [get\_num\_tokens](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_num_tokens)
+  + [get\_num\_tokens\_from\_messages](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_num_tokens_from_messages)
+  + [generate](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.generate)
+  + [agenerate](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.agenerate)
+  + [dict](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.dict)
+  + [bind\_tools](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.bind_tools)
+  + [build\_extra](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.build_extra)
+  + [validate\_temperature](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.validate_temperature)
+  + [validate\_environment](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.validate_environment)
+  + [get\_lc\_namespace](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_lc_namespace)
+  + [is\_lc\_serializable](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.is_lc_serializable)
+  + [with\_structured\_output](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_structured_output)
 
 # `ChatOpenAI`[¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#chatopenai "Copy anchor link to this section for reference")
 
@@ -312,7 +313,7 @@ Reference docs
 
 This page contains **reference documentation** for `ChatOpenAI`. See [the docs](https://docs.langchain.com/oss/python/integrations/chat/openai) for conceptual guides, tutorials, and examples on using `ChatOpenAI`.
 
-## ChatOpenAI [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI "Copy anchor link to this section for reference")
+## ChatOpenAI [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI "Copy anchor link to this section for reference")
 
 Bases: `BaseChatOpenAI`
 
@@ -1134,7 +1135,7 @@ cached tokens.
 | `is_lc_serializable` | Return whether this model can be serialized by LangChain. |
 | `with_structured_output` | Model wrapper that returns outputs formatted to match the given schema. |
 
-### name `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.name "Copy anchor link to this section for reference")
+### name `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.name "Copy anchor link to this section for reference")
 
 ```
 name: str | None = None
@@ -1142,7 +1143,7 @@ name: str | None = None
 
 The name of the `Runnable`. Used for debugging and tracing.
 
-### InputType `property` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.InputType "Copy anchor link to this section for reference")
+### InputType `property` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.InputType "Copy anchor link to this section for reference")
 
 ```
 InputType: TypeAlias
@@ -1150,7 +1151,7 @@ InputType: TypeAlias
 
 Get the input type for this `Runnable`.
 
-### OutputType `property` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.OutputType "Copy anchor link to this section for reference")
+### OutputType `property` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.OutputType "Copy anchor link to this section for reference")
 
 ```
 OutputType: Any
@@ -1158,7 +1159,7 @@ OutputType: Any
 
 Get the output type for this `Runnable`.
 
-### input\_schema `property` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.input_schema "Copy anchor link to this section for reference")
+### input\_schema `property` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.input_schema "Copy anchor link to this section for reference")
 
 ```
 input_schema: type[BaseModel]
@@ -1166,7 +1167,7 @@ input_schema: type[BaseModel]
 
 The type of input this `Runnable` accepts specified as a Pydantic model.
 
-### output\_schema `property` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.output_schema "Copy anchor link to this section for reference")
+### output\_schema `property` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.output_schema "Copy anchor link to this section for reference")
 
 ```
 output_schema: type[BaseModel]
@@ -1176,7 +1177,7 @@ Output schema.
 
 The type of output this `Runnable` produces specified as a Pydantic model.
 
-### config\_specs `property` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.config_specs "Copy anchor link to this section for reference")
+### config\_specs `property` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.config_specs "Copy anchor link to this section for reference")
 
 ```
 config_specs: list[ConfigurableFieldSpec]
@@ -1184,7 +1185,7 @@ config_specs: list[ConfigurableFieldSpec]
 
 List configurable fields for this `Runnable`.
 
-### cache `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.cache "Copy anchor link to this section for reference")
+### cache `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.cache "Copy anchor link to this section for reference")
 
 ```
 cache: BaseCache | bool | None = Field(default=None, exclude=True)
@@ -1199,7 +1200,7 @@ Whether to cache the response.
 
 Caching is not currently supported for streaming methods of models.
 
-### verbose `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.verbose "Copy anchor link to this section for reference")
+### verbose `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.verbose "Copy anchor link to this section for reference")
 
 ```
 verbose: bool = Field(default_factory=_get_verbosity, exclude=True, repr=False)
@@ -1207,7 +1208,7 @@ verbose: bool = Field(default_factory=_get_verbosity, exclude=True, repr=False)
 
 Whether to print out response text.
 
-### callbacks `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.callbacks "Copy anchor link to this section for reference")
+### callbacks `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.callbacks "Copy anchor link to this section for reference")
 
 ```
 callbacks: Callbacks = Field(default=None, exclude=True)
@@ -1215,7 +1216,7 @@ callbacks: Callbacks = Field(default=None, exclude=True)
 
 Callbacks to add to the run trace.
 
-### tags `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.tags "Copy anchor link to this section for reference")
+### tags `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.tags "Copy anchor link to this section for reference")
 
 ```
 tags: list[str] | None = Field(default=None, exclude=True)
@@ -1223,7 +1224,7 @@ tags: list[str] | None = Field(default=None, exclude=True)
 
 Tags to add to the run trace.
 
-### metadata `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.metadata "Copy anchor link to this section for reference")
+### metadata `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.metadata "Copy anchor link to this section for reference")
 
 ```
 metadata: dict[str, Any] | None = Field(default=None, exclude=True)
@@ -1231,7 +1232,7 @@ metadata: dict[str, Any] | None = Field(default=None, exclude=True)
 
 Metadata to add to the run trace.
 
-### custom\_get\_token\_ids `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.custom_get_token_ids "Copy anchor link to this section for reference")
+### custom\_get\_token\_ids `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.custom_get_token_ids "Copy anchor link to this section for reference")
 
 ```
 custom_get_token_ids: Callable[[str], list[int]] | None = Field(
@@ -1241,7 +1242,7 @@ custom_get_token_ids: Callable[[str], list[int]] | None = Field(
 
 Optional encoder to use for counting tokens.
 
-### rate\_limiter `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.rate_limiter "Copy anchor link to this section for reference")
+### rate\_limiter `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.rate_limiter "Copy anchor link to this section for reference")
 
 ```
 rate_limiter: BaseRateLimiter | None = Field(default=None, exclude=True)
@@ -1249,7 +1250,7 @@ rate_limiter: BaseRateLimiter | None = Field(default=None, exclude=True)
 
 An optional rate limiter to use for limiting the number of requests.
 
-### disable\_streaming `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.disable_streaming "Copy anchor link to this section for reference")
+### disable\_streaming `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.disable_streaming "Copy anchor link to this section for reference")
 
 ```
 disable_streaming: bool | Literal['tool_calling'] = False
@@ -1271,7 +1272,7 @@ The main reason for this flag is that code might be written using `stream` and
 a user may want to swap out a given model for another model whose the implementation
 does not properly support streaming.
 
-### output\_version `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.output_version "Copy anchor link to this section for reference")
+### output\_version `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.output_version "Copy anchor link to this section for reference")
 
 ```
 output_version: str | None = Field(
@@ -1295,7 +1296,7 @@ Behavior changed in `langchain-openai` 1.0.0
 
 Default updated to `"responses/v1"`.
 
-### profile `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.profile "Copy anchor link to this section for reference")
+### profile `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.profile "Copy anchor link to this section for reference")
 
 ```
 profile: ModelProfile | None = Field(default=None, exclude=True)
@@ -1315,7 +1316,7 @@ for tool calling, structured output, and other features.
 
 Added in `langchain-core` 1.1.0
 
-### model\_name `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.model_name "Copy anchor link to this section for reference")
+### model\_name `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.model_name "Copy anchor link to this section for reference")
 
 ```
 model_name: str = Field(default='gpt-3.5-turbo', alias='model')
@@ -1323,7 +1324,7 @@ model_name: str = Field(default='gpt-3.5-turbo', alias='model')
 
 Model name to use.
 
-### temperature `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.temperature "Copy anchor link to this section for reference")
+### temperature `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.temperature "Copy anchor link to this section for reference")
 
 ```
 temperature: float | None = None
@@ -1331,7 +1332,7 @@ temperature: float | None = None
 
 What sampling temperature to use.
 
-### model\_kwargs `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.model_kwargs "Copy anchor link to this section for reference")
+### model\_kwargs `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.model_kwargs "Copy anchor link to this section for reference")
 
 ```
 model_kwargs: dict[str, Any] = Field(default_factory=dict)
@@ -1339,7 +1340,7 @@ model_kwargs: dict[str, Any] = Field(default_factory=dict)
 
 Holds any model parameters valid for `create` call not explicitly specified.
 
-### openai\_api\_key `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.openai_api_key "Copy anchor link to this section for reference")
+### openai\_api\_key `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.openai_api_key "Copy anchor link to this section for reference")
 
 ```
 openai_api_key: SecretStr | None | Callable[[], str] | Callable[[], Awaitable[str]] = (
@@ -1401,7 +1402,7 @@ async def get_api_key() -> str:
 model = ChatOpenAI(model="gpt-5-nano", api_key=get_api_key)
 ```
 
-### openai\_api\_base `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.openai_api_base "Copy anchor link to this section for reference")
+### openai\_api\_base `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.openai_api_base "Copy anchor link to this section for reference")
 
 ```
 openai_api_base: str | None = Field(default=None, alias='base_url')
@@ -1409,7 +1410,7 @@ openai_api_base: str | None = Field(default=None, alias='base_url')
 
 Base URL path for API requests, leave blank if not using a proxy or service emulator.
 
-### openai\_organization `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.openai_organization "Copy anchor link to this section for reference")
+### openai\_organization `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.openai_organization "Copy anchor link to this section for reference")
 
 ```
 openai_organization: str | None = Field(default=None, alias='organization')
@@ -1417,7 +1418,7 @@ openai_organization: str | None = Field(default=None, alias='organization')
 
 Automatically inferred from env var `OPENAI_ORG_ID` if not provided.
 
-### request\_timeout `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.request_timeout "Copy anchor link to this section for reference")
+### request\_timeout `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.request_timeout "Copy anchor link to this section for reference")
 
 ```
 request_timeout: float | tuple[float, float] | Any | None = Field(
@@ -1428,7 +1429,7 @@ request_timeout: float | tuple[float, float] | Any | None = Field(
 Timeout for requests to OpenAI completion API. Can be float, `httpx.Timeout` or
 `None`.
 
-### stream\_usage `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.stream_usage "Copy anchor link to this section for reference")
+### stream\_usage `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.stream_usage "Copy anchor link to this section for reference")
 
 ```
 stream_usage: bool | None = None
@@ -1447,7 +1448,7 @@ Behavior changed in `langchain-openai` 0.3.35
 
 Enabled for default base URL and client.
 
-### max\_retries `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.max_retries "Copy anchor link to this section for reference")
+### max\_retries `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.max_retries "Copy anchor link to this section for reference")
 
 ```
 max_retries: int | None = None
@@ -1455,7 +1456,7 @@ max_retries: int | None = None
 
 Maximum number of retries to make when generating.
 
-### presence\_penalty `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.presence_penalty "Copy anchor link to this section for reference")
+### presence\_penalty `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.presence_penalty "Copy anchor link to this section for reference")
 
 ```
 presence_penalty: float | None = None
@@ -1463,7 +1464,7 @@ presence_penalty: float | None = None
 
 Penalizes repeated tokens.
 
-### frequency\_penalty `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.frequency_penalty "Copy anchor link to this section for reference")
+### frequency\_penalty `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.frequency_penalty "Copy anchor link to this section for reference")
 
 ```
 frequency_penalty: float | None = None
@@ -1471,7 +1472,7 @@ frequency_penalty: float | None = None
 
 Penalizes repeated tokens according to frequency.
 
-### seed `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.seed "Copy anchor link to this section for reference")
+### seed `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.seed "Copy anchor link to this section for reference")
 
 ```
 seed: int | None = None
@@ -1479,7 +1480,7 @@ seed: int | None = None
 
 Seed for generation
 
-### logprobs `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.logprobs "Copy anchor link to this section for reference")
+### logprobs `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.logprobs "Copy anchor link to this section for reference")
 
 ```
 logprobs: bool | None = None
@@ -1487,7 +1488,7 @@ logprobs: bool | None = None
 
 Whether to return logprobs.
 
-### top\_logprobs `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.top_logprobs "Copy anchor link to this section for reference")
+### top\_logprobs `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.top_logprobs "Copy anchor link to this section for reference")
 
 ```
 top_logprobs: int | None = None
@@ -1497,7 +1498,7 @@ Number of most likely tokens to return at each token position, each with an
 associated log probability. `logprobs` must be set to true if this parameter is
 used.
 
-### logit\_bias `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.logit_bias "Copy anchor link to this section for reference")
+### logit\_bias `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.logit_bias "Copy anchor link to this section for reference")
 
 ```
 logit_bias: dict[int, int] | None = None
@@ -1505,7 +1506,7 @@ logit_bias: dict[int, int] | None = None
 
 Modify the likelihood of specified tokens appearing in the completion.
 
-### streaming `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.streaming "Copy anchor link to this section for reference")
+### streaming `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.streaming "Copy anchor link to this section for reference")
 
 ```
 streaming: bool = False
@@ -1513,7 +1514,7 @@ streaming: bool = False
 
 Whether to stream the results or not.
 
-### n `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.n "Copy anchor link to this section for reference")
+### n `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.n "Copy anchor link to this section for reference")
 
 ```
 n: int | None = None
@@ -1521,7 +1522,7 @@ n: int | None = None
 
 Number of chat completions to generate for each prompt.
 
-### top\_p `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.top_p "Copy anchor link to this section for reference")
+### top\_p `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.top_p "Copy anchor link to this section for reference")
 
 ```
 top_p: float | None = None
@@ -1529,7 +1530,7 @@ top_p: float | None = None
 
 Total probability mass of tokens to consider at each step.
 
-### reasoning\_effort `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.reasoning_effort "Copy anchor link to this section for reference")
+### reasoning\_effort `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.reasoning_effort "Copy anchor link to this section for reference")
 
 ```
 reasoning_effort: str | None = None
@@ -1544,7 +1545,7 @@ Currently supported values are `'minimal'`, `'low'`, `'medium'`, and
 `'high'`. Reducing reasoning effort can result in faster responses and fewer
 tokens used on reasoning in a response.
 
-### reasoning `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.reasoning "Copy anchor link to this section for reference")
+### reasoning `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.reasoning "Copy anchor link to this section for reference")
 
 ```
 reasoning: dict[str, Any] | None = None
@@ -1561,7 +1562,7 @@ reasoning={
 
 Added in `langchain-openai` 0.3.24
 
-### verbosity `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.verbosity "Copy anchor link to this section for reference")
+### verbosity `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.verbosity "Copy anchor link to this section for reference")
 
 ```
 verbosity: str | None = None
@@ -1574,41 +1575,47 @@ Currently supported values are `'low'`, `'medium'`, and `'high'`.
 
 Added in `langchain-openai` 0.3.28
 
-### tiktoken\_model\_name `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.tiktoken_model_name "Copy anchor link to this section for reference")
+### tiktoken\_model\_name `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.tiktoken_model_name "Copy anchor link to this section for reference")
 
 ```
 tiktoken_model_name: str | None = None
 ```
 
 The model name to pass to tiktoken when using this class.
+
 Tiktoken is used to count the number of tokens in documents to constrain
-them to be under a certain limit. By default, when set to None, this will
-be the same as the embedding model name. However, there are some cases
-where you may want to use this Embedding class with a model name not
-supported by tiktoken. This can include when using Azure embeddings or
-when using one of the many model providers that expose an OpenAI-like
+them to be under a certain limit.
+
+By default, when set to `None`, this will be the same as the embedding model name.
+However, there are some cases where you may want to use this `Embedding` class with
+a model name not supported by tiktoken. This can include when using Azure embeddings
+or when using one of the many model providers that expose an OpenAI-like
 API but with different models. In those cases, in order to avoid erroring
 when tiktoken is called, you can specify a model name to use here.
 
-### http\_client `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.http_client "Copy anchor link to this section for reference")
+### http\_client `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.http_client "Copy anchor link to this section for reference")
 
 ```
 http_client: Any | None = Field(default=None, exclude=True)
 ```
 
-Optional `httpx.Client`. Only used for sync invocations. Must specify
-`http_async_client` as well if you'd like a custom client for async invocations.
+Optional `httpx.Client`.
 
-### http\_async\_client `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.http_async_client "Copy anchor link to this section for reference")
+Only used for sync invocations. Must specify `http_async_client` as well if you'd
+like a custom client for async invocations.
+
+### http\_async\_client `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.http_async_client "Copy anchor link to this section for reference")
 
 ```
 http_async_client: Any | None = Field(default=None, exclude=True)
 ```
 
-Optional `httpx.AsyncClient`. Only used for async invocations. Must specify
-`http_client` as well if you'd like a custom client for sync invocations.
+Optional `httpx.AsyncClient`.
 
-### stop `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.stop "Copy anchor link to this section for reference")
+Only used for async invocations. Must specify `http_client` as well if you'd like a
+custom client for sync invocations.
+
+### stop `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.stop "Copy anchor link to this section for reference")
 
 ```
 stop: list[str] | str | None = Field(default=None, alias='stop_sequences')
@@ -1616,7 +1623,7 @@ stop: list[str] | str | None = Field(default=None, alias='stop_sequences')
 
 Default stop sequences.
 
-### extra\_body `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.extra_body "Copy anchor link to this section for reference")
+### extra\_body `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.extra_body "Copy anchor link to this section for reference")
 
 ```
 extra_body: Mapping[str, Any] | None = None
@@ -1642,7 +1649,7 @@ Do not use `model_kwargs` for custom parameters that are not part of the
 standard OpenAI API, as this will cause errors when making API calls. Use
 `extra_body` instead.
 
-### include\_response\_headers `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.include_response_headers "Copy anchor link to this section for reference")
+### include\_response\_headers `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.include_response_headers "Copy anchor link to this section for reference")
 
 ```
 include_response_headers: bool = False
@@ -1650,7 +1657,7 @@ include_response_headers: bool = False
 
 Whether to include response headers in the output message `response_metadata`.
 
-### disabled\_params `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.disabled_params "Copy anchor link to this section for reference")
+### disabled\_params `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.disabled_params "Copy anchor link to this section for reference")
 
 ```
 disabled_params: dict[str, Any] | None = Field(default=None)
@@ -1671,7 +1678,7 @@ If a parameter is disabled then it will not be used by default in any methods, e
 in `with_structured_output`. However this does not prevent a user from directly
 passed in the parameter during invocation.
 
-### include `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.include "Copy anchor link to this section for reference")
+### include `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.include "Copy anchor link to this section for reference")
 
 ```
 include: list[str] | None = None
@@ -1689,16 +1696,19 @@ Supported values:
 
 Added in `langchain-openai` 0.3.24
 
-### service\_tier `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.service_tier "Copy anchor link to this section for reference")
+### service\_tier `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.service_tier "Copy anchor link to this section for reference")
 
 ```
 service_tier: str | None = None
 ```
 
-Latency tier for request. Options are `'auto'`, `'default'`, or `'flex'`.
+Latency tier for request.
+
+Options are `'auto'`, `'default'`, or `'flex'`.
+
 Relevant for users of OpenAI's scale tier service.
 
-### store `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.store "Copy anchor link to this section for reference")
+### store `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.store "Copy anchor link to this section for reference")
 
 ```
 store: bool | None = None
@@ -1710,19 +1720,22 @@ Defaults to `True` for the Responses API and `False` for the Chat Completions AP
 
 Added in `langchain-openai` 0.3.24
 
-### truncation `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.truncation "Copy anchor link to this section for reference")
+### truncation `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.truncation "Copy anchor link to this section for reference")
 
 ```
 truncation: str | None = None
 ```
 
-Truncation strategy (Responses API). Can be `'auto'` or `'disabled'` (default).
+Truncation strategy (Responses API).
+
+Can be `'auto'` or `'disabled'` (default).
+
 If `'auto'`, model may drop input items from the middle of the message sequence to
 fit the context window.
 
 Added in `langchain-openai` 0.3.24
 
-### use\_previous\_response\_id `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.use_previous_response_id "Copy anchor link to this section for reference")
+### use\_previous\_response\_id `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.use_previous_response_id "Copy anchor link to this section for reference")
 
 ```
 use_previous_response_id: bool = False
@@ -1757,7 +1770,7 @@ model.invoke([HumanMessage("How are you?")], previous_response_id="resp_123")
 
 Added in `langchain-openai` 0.3.26
 
-### use\_responses\_api `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.use_responses_api "Copy anchor link to this section for reference")
+### use\_responses\_api `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.use_responses_api "Copy anchor link to this section for reference")
 
 ```
 use_responses_api: bool | None = None
@@ -1769,7 +1782,7 @@ If not specified then will be inferred based on invocation params.
 
 Added in `langchain-openai` 0.3.9
 
-### max\_tokens `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.max_tokens "Copy anchor link to this section for reference")
+### max\_tokens `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.max_tokens "Copy anchor link to this section for reference")
 
 ```
 max_tokens: int | None = Field(default=None, alias='max_completion_tokens')
@@ -1777,7 +1790,7 @@ max_tokens: int | None = Field(default=None, alias='max_completion_tokens')
 
 Maximum number of tokens to generate.
 
-### lc\_secrets `property` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.lc_secrets "Copy anchor link to this section for reference")
+### lc\_secrets `property` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.lc_secrets "Copy anchor link to this section for reference")
 
 ```
 lc_secrets: dict[str, str]
@@ -1785,7 +1798,7 @@ lc_secrets: dict[str, str]
 
 Mapping of secret environment variables.
 
-### lc\_attributes `property` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.lc_attributes "Copy anchor link to this section for reference")
+### lc\_attributes `property` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.lc_attributes "Copy anchor link to this section for reference")
 
 ```
 lc_attributes: dict[str, Any]
@@ -1793,7 +1806,7 @@ lc_attributes: dict[str, Any]
 
 Get the attributes of the langchain object.
 
-### get\_name [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_name "Copy anchor link to this section for reference")
+### get\_name [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_name "Copy anchor link to this section for reference")
 
 ```
 get_name(suffix: str | None = None, *, name: str | None = None) -> str
@@ -1810,7 +1823,7 @@ Get the name of the `Runnable`.
 | --- | --- |
 | `str` | The name of the `Runnable`. |
 
-### get\_input\_schema [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_input_schema "Copy anchor link to this section for reference")
+### get\_input\_schema [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_input_schema "Copy anchor link to this section for reference")
 
 ```
 get_input_schema(config: RunnableConfig | None = None) -> type[BaseModel]
@@ -1832,7 +1845,7 @@ This method allows to get an input schema for a specific configuration.
 | --- | --- |
 | `type[BaseModel]` | A Pydantic model that can be used to validate input. |
 
-### get\_input\_jsonschema [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_input_jsonschema "Copy anchor link to this section for reference")
+### get\_input\_jsonschema [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_input_jsonschema "Copy anchor link to this section for reference")
 
 ```
 get_input_jsonschema(config: RunnableConfig | None = None) -> dict[str, Any]
@@ -1865,7 +1878,7 @@ print(runnable.get_input_jsonschema())
 
 Added in `langchain-core` 0.3.0
 
-### get\_output\_schema [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_output_schema "Copy anchor link to this section for reference")
+### get\_output\_schema [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_output_schema "Copy anchor link to this section for reference")
 
 ```
 get_output_schema(config: RunnableConfig | None = None) -> type[BaseModel]
@@ -1887,7 +1900,7 @@ This method allows to get an output schema for a specific configuration.
 | --- | --- |
 | `type[BaseModel]` | A Pydantic model that can be used to validate output. |
 
-### get\_output\_jsonschema [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_output_jsonschema "Copy anchor link to this section for reference")
+### get\_output\_jsonschema [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_output_jsonschema "Copy anchor link to this section for reference")
 
 ```
 get_output_jsonschema(config: RunnableConfig | None = None) -> dict[str, Any]
@@ -1920,7 +1933,7 @@ print(runnable.get_output_jsonschema())
 
 Added in `langchain-core` 0.3.0
 
-### config\_schema [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.config_schema "Copy anchor link to this section for reference")
+### config\_schema [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.config_schema "Copy anchor link to this section for reference")
 
 ```
 config_schema(*, include: Sequence[str] | None = None) -> type[BaseModel]
@@ -1939,7 +1952,7 @@ and `configurable_alternatives` methods.
 | --- | --- |
 | `type[BaseModel]` | A Pydantic model that can be used to validate config. |
 
-### get\_config\_jsonschema [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_config_jsonschema "Copy anchor link to this section for reference")
+### get\_config\_jsonschema [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_config_jsonschema "Copy anchor link to this section for reference")
 
 ```
 get_config_jsonschema(*, include: Sequence[str] | None = None) -> dict[str, Any]
@@ -1957,7 +1970,7 @@ Get a JSON schema that represents the config of the `Runnable`.
 
 Added in `langchain-core` 0.3.0
 
-### get\_graph [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_graph "Copy anchor link to this section for reference")
+### get\_graph [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_graph "Copy anchor link to this section for reference")
 
 ```
 get_graph(config: RunnableConfig | None = None) -> Graph
@@ -1965,7 +1978,7 @@ get_graph(config: RunnableConfig | None = None) -> Graph
 
 Return a graph representation of this `Runnable`.
 
-### get\_prompts [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_prompts "Copy anchor link to this section for reference")
+### get\_prompts [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_prompts "Copy anchor link to this section for reference")
 
 ```
 get_prompts(config: RunnableConfig | None = None) -> list[BasePromptTemplate]
@@ -1973,7 +1986,7 @@ get_prompts(config: RunnableConfig | None = None) -> list[BasePromptTemplate]
 
 Return a list of prompts used by this `Runnable`.
 
-### \_\_or\_\_ [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.__or__ "Copy anchor link to this section for reference")
+### \_\_or\_\_ [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.__or__ "Copy anchor link to this section for reference")
 
 ```
 __or__(
@@ -1998,7 +2011,7 @@ Compose this `Runnable` with another object to create a
 | --- | --- |
 | `RunnableSerializable[Input, Other]` | A new `Runnable`. |
 
-### \_\_ror\_\_ [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.__ror__ "Copy anchor link to this section for reference")
+### \_\_ror\_\_ [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.__ror__ "Copy anchor link to this section for reference")
 
 ```
 __ror__(
@@ -2023,7 +2036,7 @@ Compose this `Runnable` with another object to create a
 | --- | --- |
 | `RunnableSerializable[Other, Output]` | A new `Runnable`. |
 
-### pipe [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.pipe "Copy anchor link to this section for reference")
+### pipe [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.pipe "Copy anchor link to this section for reference")
 
 ```
 pipe(
@@ -2076,7 +2089,7 @@ await sequence.abatch([1, 2, 3])
 | --- | --- |
 | `RunnableSerializable[Input, Other]` | A new `Runnable`. |
 
-### pick [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.pick "Copy anchor link to this section for reference")
+### pick [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.pick "Copy anchor link to this section for reference")
 
 ```
 pick(keys: str | list[str]) -> RunnableSerializable[Any, Any]
@@ -2140,7 +2153,7 @@ json_and_bytes_chain.invoke("[1, 2, 3]")
 | --- | --- |
 | `RunnableSerializable[Any, Any]` | a new `Runnable`. |
 
-### assign [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.assign "Copy anchor link to this section for reference")
+### assign [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.assign "Copy anchor link to this section for reference")
 
 ```
 assign(
@@ -2186,7 +2199,7 @@ print(chain_with_assign.output_schema.model_json_schema())
 | --- | --- |
 | `RunnableSerializable[Any, Any]` | A new `Runnable`. |
 
-### invoke [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.invoke "Copy anchor link to this section for reference")
+### invoke [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.invoke "Copy anchor link to this section for reference")
 
 ```
 invoke(
@@ -2209,7 +2222,7 @@ Transform a single input into an output.
 | --- | --- |
 | `Output` | The output of the `Runnable`. |
 
-### ainvoke `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.ainvoke "Copy anchor link to this section for reference")
+### ainvoke `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.ainvoke "Copy anchor link to this section for reference")
 
 ```
 ainvoke(
@@ -2232,7 +2245,7 @@ Transform a single input into an output.
 | --- | --- |
 | `Output` | The output of the `Runnable`. |
 
-### batch [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.batch "Copy anchor link to this section for reference")
+### batch [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.batch "Copy anchor link to this section for reference")
 
 ```
 batch(
@@ -2262,7 +2275,7 @@ e.g., if the underlying `Runnable` uses an API which supports a batch mode.
 | --- | --- |
 | `list[Output]` | A list of outputs from the `Runnable`. |
 
-### batch\_as\_completed [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.batch_as_completed "Copy anchor link to this section for reference")
+### batch\_as\_completed [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.batch_as_completed "Copy anchor link to this section for reference")
 
 ```
 batch_as_completed(
@@ -2289,7 +2302,7 @@ Yields results as they complete.
 | --- | --- |
 | `tuple[int, Output | Exception]` | Tuples of the index of the input and the output from the `Runnable`. |
 
-### abatch `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.abatch "Copy anchor link to this section for reference")
+### abatch `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.abatch "Copy anchor link to this section for reference")
 
 ```
 abatch(
@@ -2319,7 +2332,7 @@ e.g., if the underlying `Runnable` uses an API which supports a batch mode.
 | --- | --- |
 | `list[Output]` | A list of outputs from the `Runnable`. |
 
-### abatch\_as\_completed `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.abatch_as_completed "Copy anchor link to this section for reference")
+### abatch\_as\_completed `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.abatch_as_completed "Copy anchor link to this section for reference")
 
 ```
 abatch_as_completed(
@@ -2346,7 +2359,7 @@ Yields results as they complete.
 | --- | --- |
 | `AsyncIterator[tuple[int, Output | Exception]]` | A tuple of the index of the input and the output from the `Runnable`. |
 
-### stream [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.stream "Copy anchor link to this section for reference")
+### stream [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.stream "Copy anchor link to this section for reference")
 
 ```
 stream(
@@ -2372,7 +2385,7 @@ Subclasses must override this method if they support streaming output.
 | --- | --- |
 | `Output` | The output of the `Runnable`. |
 
-### astream `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.astream "Copy anchor link to this section for reference")
+### astream `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.astream "Copy anchor link to this section for reference")
 
 ```
 astream(
@@ -2398,7 +2411,7 @@ Subclasses must override this method if they support streaming output.
 | --- | --- |
 | `AsyncIterator[Output]` | The output of the `Runnable`. |
 
-### astream\_log `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.astream_log "Copy anchor link to this section for reference")
+### astream\_log `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.astream_log "Copy anchor link to this section for reference")
 
 ```
 astream_log(
@@ -2445,7 +2458,7 @@ The Jsonpatch ops can be applied in order to construct state.
 | --- | --- |
 | `AsyncIterator[RunLogPatch] | AsyncIterator[RunLog]` | A `RunLogPatch` or `RunLog` object. |
 
-### astream\_events `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.astream_events "Copy anchor link to this section for reference")
+### astream\_events `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.astream_events "Copy anchor link to this section for reference")
 
 ```
 astream_events(
@@ -2653,7 +2666,7 @@ async for event in slow_thing.astream_events("some_input", version="v2"):
 | --- | --- |
 | `NotImplementedError` | If the version is not `'v1'` or `'v2'`. |
 
-### transform [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.transform "Copy anchor link to this section for reference")
+### transform [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.transform "Copy anchor link to this section for reference")
 
 ```
 transform(
@@ -2678,7 +2691,7 @@ input is still being generated.
 | --- | --- |
 | `Output` | The output of the `Runnable`. |
 
-### atransform `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.atransform "Copy anchor link to this section for reference")
+### atransform `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.atransform "Copy anchor link to this section for reference")
 
 ```
 atransform(
@@ -2705,7 +2718,7 @@ input is still being generated.
 | --- | --- |
 | `AsyncIterator[Output]` | The output of the `Runnable`. |
 
-### bind [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.bind "Copy anchor link to this section for reference")
+### bind [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.bind "Copy anchor link to this section for reference")
 
 ```
 bind(**kwargs: Any) -> Runnable[Input, Output]
@@ -2745,7 +2758,7 @@ chain.invoke("Repeat quoted words exactly: 'One two three four five.'")
 # Output is 'One two'
 ```
 
-### with\_config [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_config "Copy anchor link to this section for reference")
+### with\_config [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_config "Copy anchor link to this section for reference")
 
 ```
 with_config(
@@ -2764,7 +2777,7 @@ Bind config to a `Runnable`, returning a new `Runnable`.
 | --- | --- |
 | `Runnable[Input, Output]` | A new `Runnable` with the config bound. |
 
-### with\_listeners [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_listeners "Copy anchor link to this section for reference")
+### with\_listeners [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_listeners "Copy anchor link to this section for reference")
 
 ```
 with_listeners(
@@ -2822,7 +2835,7 @@ chain = RunnableLambda(test_runnable).with_listeners(
 chain.invoke(2)
 ```
 
-### with\_alisteners [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_alisteners "Copy anchor link to this section for reference")
+### with\_alisteners [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_alisteners "Copy anchor link to this section for reference")
 
 ```
 with_alisteners(
@@ -2907,7 +2920,7 @@ asyncio.run(concurrent_runs())
 # on end callback ends at 2025-03-01T07:05:30.884831+00:00
 ```
 
-### with\_types [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_types "Copy anchor link to this section for reference")
+### with\_types [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_types "Copy anchor link to this section for reference")
 
 ```
 with_types(
@@ -2926,7 +2939,7 @@ Bind input and output types to a `Runnable`, returning a new `Runnable`.
 | --- | --- |
 | `Runnable[Input, Output]` | A new `Runnable` with the types bound. |
 
-### with\_retry [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_retry "Copy anchor link to this section for reference")
+### with\_retry [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_retry "Copy anchor link to this section for reference")
 
 ```
 with_retry(
@@ -2980,7 +2993,7 @@ except ValueError:
 assert count == 2
 ```
 
-### map [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.map "Copy anchor link to this section for reference")
+### map [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.map "Copy anchor link to this section for reference")
 
 ```
 map() -> Runnable[list[Input], list[Output]]
@@ -3008,7 +3021,7 @@ runnable = RunnableLambda(_lambda)
 print(runnable.map().invoke([1, 2, 3]))  # [2, 3, 4]
 ```
 
-### with\_fallbacks [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_fallbacks "Copy anchor link to this section for reference")
+### with\_fallbacks [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_fallbacks "Copy anchor link to this section for reference")
 
 ```
 with_fallbacks(
@@ -3067,7 +3080,7 @@ print("".join(runnable.stream({})))  # foo bar
 | --- | --- |
 | `RunnableWithFallbacks[Input, Output]` | A new `Runnable` that will try the original `Runnable`, and then each Fallback in order, upon failures. |
 
-### as\_tool [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.as_tool "Copy anchor link to this section for reference")
+### as\_tool [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.as_tool "Copy anchor link to this section for reference")
 
 ```
 as_tool(
@@ -3180,13 +3193,13 @@ as_tool = runnable.as_tool()
 as_tool.invoke("b")
 ```
 
-### \_\_init\_\_ [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.__init__ "Copy anchor link to this section for reference")
+### \_\_init\_\_ [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.__init__ "Copy anchor link to this section for reference")
 
 ```
 __init__(*args: Any, **kwargs: Any) -> None
 ```
 
-### lc\_id `classmethod` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.lc_id "Copy anchor link to this section for reference")
+### lc\_id `classmethod` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.lc_id "Copy anchor link to this section for reference")
 
 ```
 lc_id() -> list[str]
@@ -3200,7 +3213,7 @@ to the object.
 For example, for the class `langchain.llms.openai.OpenAI`, the id is
 `["langchain", "llms", "openai", "OpenAI"]`.
 
-### to\_json [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.to_json "Copy anchor link to this section for reference")
+### to\_json [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.to_json "Copy anchor link to this section for reference")
 
 ```
 to_json() -> SerializedConstructor | SerializedNotImplemented
@@ -3212,7 +3225,7 @@ Serialize the `Runnable` to JSON.
 | --- | --- |
 | `SerializedConstructor | SerializedNotImplemented` | A JSON-serializable representation of the `Runnable`. |
 
-### to\_json\_not\_implemented [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.to_json_not_implemented "Copy anchor link to this section for reference")
+### to\_json\_not\_implemented [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.to_json_not_implemented "Copy anchor link to this section for reference")
 
 ```
 to_json_not_implemented() -> SerializedNotImplemented
@@ -3224,7 +3237,7 @@ Serialize a "not implemented" object.
 | --- | --- |
 | `SerializedNotImplemented` | `SerializedNotImplemented`. |
 
-### configurable\_fields [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.configurable_fields "Copy anchor link to this section for reference")
+### configurable\_fields [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.configurable_fields "Copy anchor link to this section for reference")
 
 ```
 configurable_fields(
@@ -3274,7 +3287,7 @@ print(
 )
 ```
 
-### configurable\_alternatives [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.configurable_alternatives "Copy anchor link to this section for reference")
+### configurable\_alternatives [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.configurable_alternatives "Copy anchor link to this section for reference")
 
 ```
 configurable_alternatives(
@@ -3325,7 +3338,7 @@ print(
 )
 ```
 
-### set\_verbose [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.set_verbose "Copy anchor link to this section for reference")
+### set\_verbose [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.set_verbose "Copy anchor link to this section for reference")
 
 ```
 set_verbose(verbose: bool | None) -> bool
@@ -3343,7 +3356,7 @@ This allows users to pass in `None` as verbose to access the global setting.
 | --- | --- |
 | `bool` | The verbosity setting to use. |
 
-### generate\_prompt [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.generate_prompt "Copy anchor link to this section for reference")
+### generate\_prompt [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.generate_prompt "Copy anchor link to this section for reference")
 
 ```
 generate_prompt(
@@ -3377,7 +3390,7 @@ Use this method when you want to:
 | --- | --- |
 | `LLMResult` | An `LLMResult`, which contains a list of candidate `Generation` objects for each input prompt and additional model provider-specific output. |
 
-### agenerate\_prompt `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.agenerate_prompt "Copy anchor link to this section for reference")
+### agenerate\_prompt `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.agenerate_prompt "Copy anchor link to this section for reference")
 
 ```
 agenerate_prompt(
@@ -3411,7 +3424,7 @@ Use this method when you want to:
 | --- | --- |
 | `LLMResult` | An `LLMResult`, which contains a list of candidate `Generation` objects for each input prompt and additional model provider-specific output. |
 
-### get\_token\_ids [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_token_ids "Copy anchor link to this section for reference")
+### get\_token\_ids [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_token_ids "Copy anchor link to this section for reference")
 
 ```
 get_token_ids(text: str) -> list[int]
@@ -3419,7 +3432,7 @@ get_token_ids(text: str) -> list[int]
 
 Get the tokens present in the text with tiktoken package.
 
-### get\_num\_tokens [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_num_tokens "Copy anchor link to this section for reference")
+### get\_num\_tokens [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_num_tokens "Copy anchor link to this section for reference")
 
 ```
 get_num_tokens(text: str) -> int
@@ -3440,7 +3453,7 @@ token counts via model-specific tokenizers.
 | --- | --- |
 | `int` | The integer number of tokens in the text. |
 
-### get\_num\_tokens\_from\_messages [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_num_tokens_from_messages "Copy anchor link to this section for reference")
+### get\_num\_tokens\_from\_messages [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_num_tokens_from_messages "Copy anchor link to this section for reference")
 
 ```
 get_num_tokens_from_messages(
@@ -3465,7 +3478,7 @@ these aren't installed image inputs will be ignored in token counting.
 | `messages` | The message inputs to tokenize.  **TYPE:** `Sequence[BaseMessage]` |
 | `tools` | If provided, sequence of `dict`, `BaseModel`, function, or `BaseTool` to be converted to tool schemas.  **TYPE:** `Sequence[dict[str, Any] | type | Callable | BaseTool] | None`  **DEFAULT:** `None` |
 
-### generate [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.generate "Copy anchor link to this section for reference")
+### generate [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.generate "Copy anchor link to this section for reference")
 
 ```
 generate(
@@ -3508,7 +3521,7 @@ Use this method when you want to:
 | --- | --- |
 | `LLMResult` | An `LLMResult`, which contains a list of candidate `Generations` for each input prompt and additional model provider-specific output. |
 
-### agenerate `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.agenerate "Copy anchor link to this section for reference")
+### agenerate `async` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.agenerate "Copy anchor link to this section for reference")
 
 ```
 agenerate(
@@ -3551,7 +3564,7 @@ Use this method when you want to:
 | --- | --- |
 | `LLMResult` | An `LLMResult`, which contains a list of candidate `Generations` for each input prompt and additional model provider-specific output. |
 
-### dict [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.dict "Copy anchor link to this section for reference")
+### dict [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.dict "Copy anchor link to this section for reference")
 
 ```
 dict(**kwargs: Any) -> dict
@@ -3559,7 +3572,7 @@ dict(**kwargs: Any) -> dict
 
 Return a dictionary of the LLM.
 
-### bind\_tools [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.bind_tools "Copy anchor link to this section for reference")
+### bind\_tools [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.bind_tools "Copy anchor link to this section for reference")
 
 ```
 bind_tools(
@@ -3579,14 +3592,14 @@ Assumes model is compatible with OpenAI tool-calling API.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `tools` | A list of tool definitions to bind to this chat model. Supports any tool definition handled by `langchain_core.utils.function_calling.convert_to_openai_tool`.  **TYPE:** `Sequence[dict[str, Any] | type | Callable | BaseTool]` |
+| `tools` | A list of tool definitions to bind to this chat model.  Supports any tool definition handled by [`convert_to_openai_tool`](https://reference.langchain.com/python/langchain_core/utils/#langchain_core.utils.function_calling.convert_to_openai_tool "<code class=\"doc-symbol doc-symbol-heading doc-symbol-function\"></code>            <span class=\"doc doc-object-name doc-function-name\">convert_to_openai_tool</span>").  **TYPE:** `Sequence[dict[str, Any] | type | Callable | BaseTool]` |
 | `tool_choice` | Which tool to require the model to call. Options are:   * `str` of the form `'<<tool_name>>'`: calls `<<tool_name>>` tool. * `'auto'`: automatically selects a tool (including no tool). * `'none'`: does not call a tool. * `'any'` or `'required'` or `True`: force at least one tool to be called. * `dict` of the form `{"type": "function", "function": {"name": <<tool_name>>}}`: calls `<<tool_name>>` tool. * `False` or `None`: no effect, default OpenAI behavior.  **TYPE:** `dict | str | bool | None`  **DEFAULT:** `None` |
 | `strict` | If `True`, model output is guaranteed to exactly match the JSON Schema provided in the tool definition. The input schema will also be validated according to the [supported schemas](https://platform.openai.com/docs/guides/structured-outputs/supported-schemas?api-mode=responses#supported-schemas). If `False`, input schema will not be validated and model output will not be validated. If `None`, `strict` argument will not be passed to the model.  **TYPE:** `bool | None`  **DEFAULT:** `None` |
 | `parallel_tool_calls` | Set to `False` to disable parallel tool use. Defaults to `None` (no specification, which allows parallel tool use).  **TYPE:** `bool | None`  **DEFAULT:** `None` |
 | `response_format` | Optional schema to format model response. If provided and the model does not call a tool, the model will generate a [structured response](https://platform.openai.com/docs/guides/structured-outputs).  **TYPE:** `_DictOrPydanticClass | None`  **DEFAULT:** `None` |
 | `kwargs` | Any additional parameters are passed directly to `bind`.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
-### build\_extra `classmethod` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.build_extra "Copy anchor link to this section for reference")
+### build\_extra `classmethod` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.build_extra "Copy anchor link to this section for reference")
 
 ```
 build_extra(values: dict[str, Any]) -> Any
@@ -3594,7 +3607,7 @@ build_extra(values: dict[str, Any]) -> Any
 
 Build extra kwargs from additional params that were passed in.
 
-### validate\_temperature `classmethod` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.validate_temperature "Copy anchor link to this section for reference")
+### validate\_temperature `classmethod` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.validate_temperature "Copy anchor link to this section for reference")
 
 ```
 validate_temperature(values: dict[str, Any]) -> Any
@@ -3605,7 +3618,7 @@ Validate temperature parameter for different models.
 * gpt-5 models (excluding gpt-5-chat) only allow `temperature=1` or unset
   (Defaults to 1)
 
-### validate\_environment [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.validate_environment "Copy anchor link to this section for reference")
+### validate\_environment [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.validate_environment "Copy anchor link to this section for reference")
 
 ```
 validate_environment() -> Self
@@ -3613,7 +3626,7 @@ validate_environment() -> Self
 
 Validate that api key and python package exists in environment.
 
-### get\_lc\_namespace `classmethod` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.get_lc_namespace "Copy anchor link to this section for reference")
+### get\_lc\_namespace `classmethod` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.get_lc_namespace "Copy anchor link to this section for reference")
 
 ```
 get_lc_namespace() -> list[str]
@@ -3625,7 +3638,7 @@ Get the namespace of the LangChain object.
 | --- | --- |
 | `list[str]` | `["langchain", "chat_models", "openai"]` |
 
-### is\_lc\_serializable `classmethod` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.is_lc_serializable "Copy anchor link to this section for reference")
+### is\_lc\_serializable `classmethod` [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.is_lc_serializable "Copy anchor link to this section for reference")
 
 ```
 is_lc_serializable() -> bool
@@ -3633,7 +3646,7 @@ is_lc_serializable() -> bool
 
 Return whether this model can be serialized by LangChain.
 
-### with\_structured\_output [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI.with_structured_output "Copy anchor link to this section for reference")
+### with\_structured\_output [¶](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI.with_structured_output "Copy anchor link to this section for reference")
 
 ```
 with_structured_output(
@@ -3642,6 +3655,7 @@ with_structured_output(
     method: Literal["function_calling", "json_mode", "json_schema"] = "json_schema",
     include_raw: bool = False,
     strict: bool | None = None,
+    tools: list | None = None,
     **kwargs: Any,
 ) -> Runnable[LanguageModelInput, _DictOrPydantic]
 ```
@@ -3651,10 +3665,10 @@ Model wrapper that returns outputs formatted to match the given schema.
 | PARAMETER | DESCRIPTION |
 | --- | --- |
 | `schema` | The output schema. Can be passed in as:   * an OpenAI function/tool schema, * a JSON Schema, * a `TypedDict` class, * or a Pydantic class.   If `schema` is a Pydantic class then the model output will be a Pydantic instance of that class, and the model-generated fields will be validated by the Pydantic class. Otherwise the model output will be a dict and will not be validated.  See `langchain_core.utils.function_calling.convert_to_openai_tool` for more on how to properly specify types and descriptions of schema fields when specifying a Pydantic or `TypedDict` class.  **TYPE:** `_DictOrPydanticClass | None`  **DEFAULT:** `None` |
-| `method` | The method for steering model generation, one of:   * `'json_schema'`:   Uses OpenAI's [Structured Output API](https://platform.openai.com/docs/guides/structured-outputs).   See the docs for a list of supported models. * `'function_calling'`:   Uses OpenAI's [tool-calling API](https://platform.openai.com/docs/guides/function-calling)   (formerly called function calling). * `'json_mode'`:   Uses OpenAI's [JSON mode](https://platform.openai.com/docs/guides/structured-outputs/json-mode).   Note that if using JSON mode then you must include instructions for   formatting the output into the desired schema into the model call.   Learn more about the [differences between methods](https://platform.openai.com/docs/guides/structured-outputs/function-calling-vs-response-format).  **TYPE:** `Literal['function_calling', 'json_mode', 'json_schema']`  **DEFAULT:** `'json_schema'` |
+| `method` | The method for steering model generation, one of:   * `'json_schema'`:   Uses OpenAI's [Structured Output API](https://platform.openai.com/docs/guides/structured-outputs).   See the docs for [supported models](https://platform.openai.com/docs/guides/structured-outputs#supported-models). * `'function_calling'`:   Uses OpenAI's [tool-calling API](https://platform.openai.com/docs/guides/function-calling)   (formerly called function calling). * `'json_mode'`:   Uses OpenAI's [JSON mode](https://platform.openai.com/docs/guides/structured-outputs#json-mode).   Note that if using JSON mode then you must include instructions for   formatting the output into the desired schema into the model call.   Learn more about the [differences between methods](https://platform.openai.com/docs/guides/structured-outputs#function-calling-vs-response-format).  **TYPE:** `Literal['function_calling', 'json_mode', 'json_schema']`  **DEFAULT:** `'json_schema'` |
 | `include_raw` | If `False` then only the parsed structured output is returned.  If an error occurs during model output parsing it will be raised.  If `True` then both the raw model response (a `BaseMessage`) and the parsed model response will be returned.  If an error occurs during output parsing it will be caught and returned as well.  The final output is always a `dict` with keys `'raw'`, `'parsed'`, and `'parsing_error'`.  **TYPE:** `bool`  **DEFAULT:** `False` |
-| `strict` | * `True`:   Model output is guaranteed to exactly match the schema.   The input schema will also be validated according to the   [supported schemas](https://platform.openai.com/docs/guides/structured-outputs/supported-schemas?api-mode=responses#supported-schemas). * `False`:   Input schema will not be validated and model output will not be   validated. * `None`:   `strict` argument will not be passed to the model.   If schema is specified via `TypedDict` or JSON schema, `strict` is not enabled by default. Pass `strict=True` to enable it.  Note  `strict` can only be non-null if `method` is `'json_schema'` or `'function_calling'`.  **TYPE:** `bool | None`  **DEFAULT:** `None` |
-| `tools` | A list of tool-like objects to bind to the chat model. Requires that:   * `method` is `'json_schema'` (default). * `strict=True` * `include_raw=True`   If a model elects to call a tool, the resulting `AIMessage` in `'raw'` will include tool calls.  Example ``` from langchain.chat_models import init_chat_model from pydantic import BaseModel   class ResponseSchema(BaseModel):     response: str   def get_weather(location: str) -> str:     \"\"\"Get weather at a location.\"\"\"     pass  model = init_chat_model("openai:gpt-4o-mini")  structured_model = model.with_structured_output(     ResponseSchema,     tools=[get_weather],     strict=True,     include_raw=True, )  structured_model.invoke("What's the weather in Boston?") ```  ``` {     "raw": AIMessage(content="", tool_calls=[...], ...),     "parsing_error": None,     "parsed": None, } ``` |
+| `strict` | * `True`:   Model output is guaranteed to exactly match the schema.   The input schema will also be validated according to the   [supported schemas](https://platform.openai.com/docs/guides/structured-outputs#supported-schemas). * `False`:   Input schema will not be validated and model output will not be   validated. * `None`:   `strict` argument will not be passed to the model.   If schema is specified via `TypedDict` or JSON schema, `strict` is not enabled by default. Pass `strict=True` to enable it.  Note  `strict` can only be non-null if `method` is `'json_schema'` or `'function_calling'`.  **TYPE:** `bool | None`  **DEFAULT:** `None` |
+| `tools` | A list of tool-like objects to bind to the chat model. Requires that:   * `method` is `'json_schema'` (default). * `strict=True` * `include_raw=True`   If a model elects to call a tool, the resulting `AIMessage` in `'raw'` will include tool calls.  Example ``` from langchain.chat_models import init_chat_model from pydantic import BaseModel   class ResponseSchema(BaseModel):     response: str   def get_weather(location: str) -> str:     \"\"\"Get weather at a location.\"\"\"     pass  model = init_chat_model("openai:gpt-4o-mini")  structured_model = model.with_structured_output(     ResponseSchema,     tools=[get_weather],     strict=True,     include_raw=True, )  structured_model.invoke("What's the weather in Boston?") ```  ``` {     "raw": AIMessage(content="", tool_calls=[...], ...),     "parsing_error": None,     "parsed": None, } ```  **TYPE:** `list | None`  **DEFAULT:** `None` |
 | `kwargs` | Additional keyword args are passed through to the model.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
@@ -3680,7 +3694,7 @@ provided if `strict = True`. When using Pydantic, our model cannot
 specify any Field metadata (like min/max constraints) and fields cannot
 have default values.
 
-See [all constraints](https://platform.openai.com/docs/guides/structured-outputs/supported-schemas).
+See [all constraints](https://platform.openai.com/docs/guides/structured-outputs#supported-schemas).
 
 ```
 from langchain_openai import ChatOpenAI

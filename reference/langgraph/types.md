@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 131
-* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
+* 230
+* 1.8k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -34,6 +34,7 @@ LangChain Reference
       * [types](https://reference.langchain.com/python/langgraph/types/#langgraph.types)
 
         + [All](https://reference.langchain.com/python/langgraph/types/#langgraph.types.All)
+        + [Checkpointer](https://reference.langchain.com/python/langgraph/types/#langgraph.types.Checkpointer)
         + [StreamMode](https://reference.langchain.com/python/langgraph/types/#langgraph.types.StreamMode)
         + [StreamWriter](https://reference.langchain.com/python/langgraph/types/#langgraph.types.StreamWriter)
         + [RetryPolicy](https://reference.langchain.com/python/langgraph/types/#langgraph.types.RetryPolicy)
@@ -94,6 +95,7 @@ Table of contents
 * [types](https://reference.langchain.com/python/langgraph/types/#langgraph.types)
 
   + [All](https://reference.langchain.com/python/langgraph/types/#langgraph.types.All)
+  + [Checkpointer](https://reference.langchain.com/python/langgraph/types/#langgraph.types.Checkpointer)
   + [StreamMode](https://reference.langchain.com/python/langgraph/types/#langgraph.types.StreamMode)
   + [StreamWriter](https://reference.langchain.com/python/langgraph/types/#langgraph.types.StreamWriter)
   + [RetryPolicy](https://reference.langchain.com/python/langgraph/types/#langgraph.types.RetryPolicy)
@@ -147,6 +149,18 @@ All = Literal['*']
 ```
 
 Special value to indicate that graph should interrupt on all nodes.
+
+### Checkpointer `module-attribute` [¶](https://reference.langchain.com/python/langgraph/types/#langgraph.types.Checkpointer "Copy anchor link to this section for reference")
+
+```
+Checkpointer = None | bool | BaseCheckpointSaver
+```
+
+Type of the checkpointer to use for a subgraph.
+
+* `True` enables persistent checkpointing for this subgraph.
+* `False` disables checkpointing, even if the parent graph has a checkpointer.
+* `None` inherits checkpointer from the parent graph.
 
 ### StreamMode `module-attribute` [¶](https://reference.langchain.com/python/langgraph/types/#langgraph.types.StreamMode "Copy anchor link to this section for reference")
 

@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 131
-* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
+* 230
+* 1.8k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -254,6 +254,8 @@ Prompt template for chat models.
 
 Use to create flexible templated prompts for chat models.
 
+Example
+
 ```
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -326,9 +328,9 @@ prompt_value = template.invoke(
 
 Single-variable template
 
-If your prompt has only a single input variable (i.e., 1 instance of "{variable\_nams}"),
-and you invoke the template with a non-dict object, the prompt template will
-inject the provided argument into that variable location.
+If your prompt has only a single input variable (i.e., one instance of
+`'{variable_nams}'`), and you invoke the template with a non-dict object, the
+prompt template will inject the provided argument into that variable location.
 
 ```
 from langchain_core.prompts import ChatPromptTemplate
@@ -363,7 +365,7 @@ prompt_value = template.invoke("Hello, there!")
 | `from_messages` | Create a chat prompt template from a variety of message formats. |
 | `format_messages` | Format the chat template into a list of finalized messages. |
 | `aformat_messages` | Async format the chat template into a list of finalized messages. |
-| `partial` | Get a new ChatPromptTemplate with some input variables already filled in. |
+| `partial` | Get a new `ChatPromptTemplate` with some input variables already filled in. |
 | `append` | Append a message to the end of the chat template. |
 | `extend` | Extend the chat template with a sequence of messages. |
 | `__getitem__` | Use to index into the chat template. |
@@ -412,8 +414,8 @@ prompt_value = template.invoke("Hello, there!")
 | `configurable_fields` | Configure particular `Runnable` fields at runtime. |
 | `configurable_alternatives` | Configure alternatives for `Runnable` objects that can be set at runtime. |
 | `validate_variable_names` | Validate variable names do not include restricted names. |
-| `format_prompt` | Format prompt. Should return a ChatPromptValue. |
-| `aformat_prompt` | Async format prompt. Should return a ChatPromptValue. |
+| `format_prompt` | Format prompt. |
+| `aformat_prompt` | Async format prompt. |
 | `format` | Format the chat template into a string. |
 | `aformat` | Async format the chat template into a string. |
 | `dict` | Return dictionary representation of prompt. |
@@ -565,7 +567,7 @@ time you call the prompt.
 ### metadata `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain_core/prompts/#langchain_core.prompts.chat.ChatPromptTemplate.metadata "Copy anchor link to this section for reference")
 
 ```
-metadata: Dict[str, Any] | None = None
+metadata: dict[str, Any] | None = None
 ```
 
 Metadata to be used for tracing.
@@ -593,7 +595,7 @@ Create a chat prompt template from a variety of message formats.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `messages` | Sequence of message representations.  A message can be represented using the following formats:   1. `BaseMessagePromptTemplate` 2. `BaseMessage` 3. 2-tuple of `(message type, template)`; e.g.,    `("human", "{user_input}")` 4. 2-tuple of `(message class, template)` 5. A string which is shorthand for `("human", template)`; e.g.,    `"{user_input}"`  **TYPE:** `Sequence[MessageLikeRepresentation]` |
+| `messages` | Sequence of message representations.  A message can be represented using the following formats:   1. `BaseMessagePromptTemplate` 2. `BaseMessage` 3. 2-tuple of `(message type, template)`; e.g.,    `('human', '{user_input}')` 4. 2-tuple of `(message class, template)` 5. A string which is shorthand for `('human', template)`; e.g.,    `'{user_input}'`  **TYPE:** `Sequence[MessageLikeRepresentation]` |
 | `template_format` | Format of the template.  **TYPE:** `PromptTemplateFormat`  **DEFAULT:** `'f-string'` |
 | `**kwargs` | Additional keyword arguments passed to `BasePromptTemplate`, including (but not limited to):   * `input_variables`: A list of the names of the variables whose values   are required as inputs to the prompt. * `optional_variables`: A list of the names of the variables for   placeholder or `MessagePlaceholder` that are optional.  These variables are auto inferred from the prompt and user need not   provide them. * `partial_variables`: A dictionary of the partial variables the prompt   template carries.  Partial variables populate the template so that you don't need to   pass them in every time you call the prompt. * `validate_template`: Whether to validate the template. * `input_types`: A dictionary of the types of the variables the prompt   template expects.  If not provided, all variables are assumed to be strings.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
@@ -658,8 +660,8 @@ validate_input_variables(values: dict) -> Any
 
 Validate input variables.
 
-If input\_variables is not set, it will be set to the union of
-all input variables in the messages.
+If `input_variables` is not set, it will be set to the union of all input
+variables in the messages.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
@@ -681,13 +683,13 @@ from_template(template: str, **kwargs: Any) -> ChatPromptTemplate
 
 Create a chat prompt template from a template string.
 
-Creates a chat template consisting of a single message assumed to be from
-the human.
+Creates a chat template consisting of a single message assumed to be from the
+human.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `template` | template string  **TYPE:** `str` |
-| `**kwargs` | keyword arguments to pass to the constructor.  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `template` | Template string  **TYPE:** `str` |
+| `**kwargs` | Keyword arguments to pass to the constructor.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
@@ -738,16 +740,16 @@ messages: Sequence of message representations.
     1. `BaseMessagePromptTemplate`
     2. `BaseMessage`
     3. 2-tuple of `(message type, template)`; e.g.,
-        `("human", "{user_input}")`
+        `('human', '{user_input}')`
     4. 2-tuple of `(message class, template)`
-    5. A string which is shorthand for `("human", template)`; e.g.,
-        `"{user_input}"`
-template_format: format of the template.
+    5. A string which is shorthand for `('human', template)`; e.g.,
+        `'{user_input}'`
+template_format: Format of the template.
 ```
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
-| `ChatPromptTemplate` | a chat prompt template. |
+| `ChatPromptTemplate` | A chat prompt template. |
 
 ### format\_messages [¶](https://reference.langchain.com/python/langchain_core/prompts/#langchain_core.prompts.chat.ChatPromptTemplate.format_messages "Copy anchor link to this section for reference")
 
@@ -759,15 +761,15 @@ Format the chat template into a list of finalized messages.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `**kwargs` | keyword arguments to use for filling in template variables in all the template messages in this chat template.  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Keyword arguments to use for filling in template variables in all the template messages in this chat template.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RAISES | DESCRIPTION |
 | --- | --- |
-| `ValueError` | if messages are of unexpected types. |
+| `ValueError` | If messages are of unexpected types. |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
-| `list[BaseMessage]` | list of formatted messages. |
+| `list[BaseMessage]` | List of formatted messages. |
 
 ### aformat\_messages `async` [¶](https://reference.langchain.com/python/langchain_core/prompts/#langchain_core.prompts.chat.ChatPromptTemplate.aformat_messages "Copy anchor link to this section for reference")
 
@@ -779,11 +781,11 @@ Async format the chat template into a list of finalized messages.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `**kwargs` | keyword arguments to use for filling in template variables in all the template messages in this chat template.  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Keyword arguments to use for filling in template variables in all the template messages in this chat template.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
-| `list[BaseMessage]` | list of formatted messages. |
+| `list[BaseMessage]` | List of formatted messages. |
 
 | RAISES | DESCRIPTION |
 | --- | --- |
@@ -795,15 +797,15 @@ Async format the chat template into a list of finalized messages.
 partial(**kwargs: Any) -> ChatPromptTemplate
 ```
 
-Get a new ChatPromptTemplate with some input variables already filled in.
+Get a new `ChatPromptTemplate` with some input variables already filled in.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `**kwargs` | keyword arguments to use for filling in template variables. Ought to be a subset of the input variables.  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Keyword arguments to use for filling in template variables.  Ought to be a subset of the input variables.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
-| `ChatPromptTemplate` | A new ChatPromptTemplate. |
+| `ChatPromptTemplate` | A new `ChatPromptTemplate`. |
 
 Example
 
@@ -858,8 +860,7 @@ Use to index into the chat template.
 | RETURNS | DESCRIPTION |
 | --- | --- |
 | `MessageLike | ChatPromptTemplate` | If index is an int, returns the message at that index. |
-| `MessageLike | ChatPromptTemplate` | If index is a slice, returns a new `ChatPromptTemplate` |
-| `MessageLike | ChatPromptTemplate` | containing the messages in that slice. |
+| `MessageLike | ChatPromptTemplate` | If index is a slice, returns a new `ChatPromptTemplate` containing the messages in that slice. |
 
 ### \_\_len\_\_ [¶](https://reference.langchain.com/python/langchain_core/prompts/#langchain_core.prompts.chat.ChatPromptTemplate.__len__ "Copy anchor link to this section for reference")
 
@@ -2421,15 +2422,13 @@ Validate variable names do not include restricted names.
 format_prompt(**kwargs: Any) -> ChatPromptValue
 ```
 
-Format prompt. Should return a ChatPromptValue.
+Format prompt.
+
+Should return a `ChatPromptValue`.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
 | `**kwargs` | Keyword arguments to use for formatting.  **TYPE:** `Any`  **DEFAULT:** `{}` |
-
-| RETURNS | DESCRIPTION |
-| --- | --- |
-| `ChatPromptValue` | ChatPromptValue. |
 
 ### aformat\_prompt `async` [¶](https://reference.langchain.com/python/langchain_core/prompts/#langchain_core.prompts.chat.ChatPromptTemplate.aformat_prompt "Copy anchor link to this section for reference")
 
@@ -2437,15 +2436,13 @@ Format prompt. Should return a ChatPromptValue.
 aformat_prompt(**kwargs: Any) -> ChatPromptValue
 ```
 
-Async format prompt. Should return a ChatPromptValue.
+Async format prompt.
+
+Should return a `ChatPromptValue`.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
 | `**kwargs` | Keyword arguments to use for formatting.  **TYPE:** `Any`  **DEFAULT:** `{}` |
-
-| RETURNS | DESCRIPTION |
-| --- | --- |
-| `ChatPromptValue` | PromptValue. |
 
 ### format [¶](https://reference.langchain.com/python/langchain_core/prompts/#langchain_core.prompts.chat.ChatPromptTemplate.format "Copy anchor link to this section for reference")
 
@@ -2457,11 +2454,11 @@ Format the chat template into a string.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `**kwargs` | keyword arguments to use for filling in template variables in all the template messages in this chat template.  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Keyword arguments to use for filling in template variables in all the template messages in this chat template.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
-| `str` | formatted string. |
+| `str` | Formatted string. |
 
 ### aformat `async` [¶](https://reference.langchain.com/python/langchain_core/prompts/#langchain_core.prompts.chat.ChatPromptTemplate.aformat "Copy anchor link to this section for reference")
 
@@ -2473,11 +2470,11 @@ Async format the chat template into a string.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `**kwargs` | keyword arguments to use for filling in template variables in all the template messages in this chat template.  **TYPE:** `Any`  **DEFAULT:** `{}` |
+| `**kwargs` | Keyword arguments to use for filling in template variables in all the template messages in this chat template.  **TYPE:** `Any`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
-| `str` | formatted string. |
+| `str` | Formatted string. |
 
 ### dict [¶](https://reference.langchain.com/python/langchain_core/prompts/#langchain_core.prompts.chat.ChatPromptTemplate.dict "Copy anchor link to this section for reference")
 

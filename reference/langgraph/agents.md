@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 131
-* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
+* 230
+* 1.8k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -47,13 +47,12 @@ LangChain Reference
 
         + [AgentState](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.chat_agent_executor.AgentState)
         + [create\_react\_agent](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.chat_agent_executor.create_react_agent)
-      * [ToolNode](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.ToolNode)
       * [tool\_node](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node)
 
+        + [ToolNode](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.ToolNode)
         + [InjectedState](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.InjectedState)
-
-          - [\_\_init\_\_](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.InjectedState.__init__)
         + [InjectedStore](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.InjectedStore)
+        + [ToolRuntime](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.ToolRuntime)
         + [tools\_condition](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.tools_condition)
       * [ValidationNode](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_validator.ValidationNode)
       * [interrupt](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.interrupt)
@@ -74,13 +73,12 @@ Table of contents
 
   + [AgentState](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.chat_agent_executor.AgentState)
   + [create\_react\_agent](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.chat_agent_executor.create_react_agent)
-* [ToolNode](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.ToolNode)
 * [tool\_node](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node)
 
+  + [ToolNode](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.ToolNode)
   + [InjectedState](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.InjectedState)
-
-    - [\_\_init\_\_](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.InjectedState.__init__)
   + [InjectedStore](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.InjectedStore)
+  + [ToolRuntime](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.ToolRuntime)
   + [tools\_condition](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.tools_condition)
 * [ValidationNode](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_validator.ValidationNode)
 * [interrupt](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.interrupt)
@@ -154,7 +152,7 @@ For more details on using `create_react_agent`, visit [Agents](https://langchain
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `model` | The language model for the agent. Supports static and dynamic model selection.   * **Static model**: A chat model instance (e.g.,   [`ChatOpenAI`](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.chat_models.ChatOpenAI "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">ChatOpenAI</span>")) or string identifier (e.g.,   `"openai:gpt-4"`) * **Dynamic model**: A callable with signature   `(state, runtime) -> BaseChatModel` that returns different models   based on runtime context  If the model has tools bound via `bind_tools` or other configurations,   the return type should be a `Runnable[LanguageModelInput, BaseMessage]`   Coroutines are also supported, allowing for asynchronous model selection.   Dynamic functions receive graph state and runtime, enabling context-dependent model selection. Must return a `BaseChatModel` instance. For tool calling, bind tools using `.bind_tools()`. Bound tools must be a subset of the `tools` parameter.  Dynamic model  ``` from dataclasses import dataclass  @dataclass class ModelContext:     model_name: str = "gpt-3.5-turbo"  # Instantiate models globally gpt4_model = ChatOpenAI(model="gpt-4") gpt35_model = ChatOpenAI(model="gpt-3.5-turbo")  def select_model(state: AgentState, runtime: Runtime[ModelContext]) -> ChatOpenAI:     model_name = runtime.context.model_name     model = gpt4_model if model_name == "gpt-4" else gpt35_model     return model.bind_tools(tools) ```  Dynamic Model Requirements  Ensure returned models have appropriate tools bound via `.bind_tools()` and support required functionality. Bound tools must be a subset of those specified in the `tools` parameter.  **TYPE:** `str | LanguageModelLike | Callable[[StateSchema, Runtime[ContextT]], BaseChatModel] | Callable[[StateSchema, Runtime[ContextT]], Awaitable[BaseChatModel]] | Callable[[StateSchema, Runtime[ContextT]], Runnable[LanguageModelInput, BaseMessage]] | Callable[[StateSchema, Runtime[ContextT]], Awaitable[Runnable[LanguageModelInput, BaseMessage]]]` |
+| `model` | The language model for the agent. Supports static and dynamic model selection.   * **Static model**: A chat model instance (e.g.,   [`ChatOpenAI`](https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/#langchain_openai.ChatOpenAI "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">ChatOpenAI</span>")) or string identifier (e.g.,   `"openai:gpt-4"`) * **Dynamic model**: A callable with signature   `(state, runtime) -> BaseChatModel` that returns different models   based on runtime context  If the model has tools bound via `bind_tools` or other configurations,   the return type should be a `Runnable[LanguageModelInput, BaseMessage]`   Coroutines are also supported, allowing for asynchronous model selection.   Dynamic functions receive graph state and runtime, enabling context-dependent model selection. Must return a `BaseChatModel` instance. For tool calling, bind tools using `.bind_tools()`. Bound tools must be a subset of the `tools` parameter.  Dynamic model  ``` from dataclasses import dataclass  @dataclass class ModelContext:     model_name: str = "gpt-3.5-turbo"  # Instantiate models globally gpt4_model = ChatOpenAI(model="gpt-4") gpt35_model = ChatOpenAI(model="gpt-3.5-turbo")  def select_model(state: AgentState, runtime: Runtime[ModelContext]) -> ChatOpenAI:     model_name = runtime.context.model_name     model = gpt4_model if model_name == "gpt-4" else gpt35_model     return model.bind_tools(tools) ```  Dynamic Model Requirements  Ensure returned models have appropriate tools bound via `.bind_tools()` and support required functionality. Bound tools must be a subset of those specified in the `tools` parameter.  **TYPE:** `str | LanguageModelLike | Callable[[StateSchema, Runtime[ContextT]], BaseChatModel] | Callable[[StateSchema, Runtime[ContextT]], Awaitable[BaseChatModel]] | Callable[[StateSchema, Runtime[ContextT]], Runnable[LanguageModelInput, BaseMessage]] | Callable[[StateSchema, Runtime[ContextT]], Awaitable[Runnable[LanguageModelInput, BaseMessage]]]` |
 | `tools` | A list of tools or a `ToolNode` instance. If an empty list is provided, the agent will consist of a single LLM node without tool calling.  **TYPE:** `Sequence[BaseTool | Callable | dict[str, Any]] | ToolNode` |
 | `prompt` | An optional prompt for the LLM. Can take a few different forms:   * `str`: This is converted to a `SystemMessage` and added to the beginning of the list of messages in `state["messages"]`. * `SystemMessage`: this is added to the beginning of the list of messages in `state["messages"]`. * `Callable`: This function should take in full graph state and the output is then passed to the language model. * `Runnable`: This runnable should take in full graph state and the output is then passed to the language model.  **TYPE:** `Prompt | None`  **DEFAULT:** `None` |
 | `response_format` | An optional schema for the final agent output.  If provided, output will be formatted to match the given schema and returned in the 'structured\_response' state key.  If not provided, `structured_response` will not be present in the output state.  Can be passed in as:   * An OpenAI function/tool schema, * A JSON Schema, * A TypedDict class, * A Pydantic class. * A tuple `(prompt, schema)`, where schema is one of the above.   The prompt will be used together with the model that is being used to   generate the structured response.   Important  `response_format` requires the model to support `.with_structured_output`  Note  The graph will make a separate call to the LLM to generate the structured response after the agent loop is finished. This is not the only strategy to get structured responses, see more options in [this guide](https://langchain-ai.github.io/langgraph/how-tos/react-agent-structured-output/).  **TYPE:** `StructuredResponseSchema | tuple[str, StructuredResponseSchema] | None`  **DEFAULT:** `None` |
@@ -205,7 +203,74 @@ for chunk in graph.stream(inputs, stream_mode="updates"):
     print(chunk)
 ```
 
-## ToolNode [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.ToolNode "Copy anchor link to this section for reference")
+## tool\_node [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node "Copy anchor link to this section for reference")
+
+Tool execution node for LangGraph workflows.
+
+This module provides prebuilt functionality for executing tools in LangGraph.
+
+Tools are functions that models can call to interact with external systems,
+APIs, databases, or perform computations.
+
+The module implements design patterns for:
+
+* Parallel execution of multiple tool calls for efficiency
+* Robust error handling with customizable error messages
+* State injection for tools that need access to graph state
+* Store injection for tools that need persistent storage
+* Command-based state updates for advanced control flow
+
+Key Components:
+
+* [`ToolNode`](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.ToolNode "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">ToolNode</span>"): Main class for executing tools in LangGraph workflows
+* [`InjectedState`](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.InjectedState "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">InjectedState</span>"): Annotation for injecting graph state into tools
+* [`InjectedStore`](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.InjectedStore "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">InjectedStore</span>"): Annotation for injecting persistent store into tools
+* [`ToolRuntime`](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.ToolRuntime "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">ToolRuntime</span>
+
+
+    <span class=\"doc doc-labels\">
+        <small class=\"doc doc-label doc-label-dataclass\"><code>dataclass</code></small>
+    </span>"): Runtime information for tools, bundling together `state`, `context`,
+  `config`, `stream_writer`, `tool_call_id`, and `store`
+* [`tools_condition`](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.tools_condition "<code class=\"doc-symbol doc-symbol-heading doc-symbol-function\"></code>            <span class=\"doc doc-object-name doc-function-name\">tools_condition</span>"): Utility function for conditional routing based on tool calls
+
+Typical Usage
+
+```
+from langchain_core.tools import tool
+from langchain.tools import ToolNode
+
+
+@tool
+def my_tool(x: int) -> str:
+    return f"Result: {x}"
+
+
+tool_node = ToolNode([my_tool])
+```
+
+| FUNCTION | DESCRIPTION |
+| --- | --- |
+| `tools_condition` | Conditional routing function for tool-calling workflows. |
+
+### ToolNode [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.ToolNode "Copy anchor link to this section for reference")
+
+```
+ToolNode(
+    tools: Sequence[BaseTool | Callable],
+    *,
+    name: str = "tools",
+    tags: list[str] | None = None,
+    handle_tool_errors: bool
+    | str
+    | Callable[..., str]
+    | type[Exception]
+    | tuple[type[Exception], ...] = _default_handle_tool_errors,
+    messages_key: str = "messages",
+    wrap_tool_call: ToolCallWrapper | None = None,
+    awrap_tool_call: AsyncToolCallWrapper | None = None,
+)
+```
 
 Bases: `RunnableCallable`
 
@@ -215,9 +280,17 @@ Handles tool execution patterns including function calls, state injection,
 persistent storage, and control flow. Manages parallel execution,
 error handling.
 
+Use `ToolNode` when building custom workflows that require fine-grained control over
+tool execution—for example, custom routing logic, specialized error handling, or
+non-standard agent architectures.
+
+For standard ReAct-style agents, use [`create_agent`](https://reference.langchain.com/python/langchain/agents/#langchain.agents.create_agent "<code class=\"doc-symbol doc-symbol-heading doc-symbol-function\"></code>            <span class=\"doc doc-object-name doc-function-name\">create_agent</span>")
+instead. It uses `ToolNode` internally with sensible defaults for the agent loop,
+conditional routing, and error handling.
+
 Input Formats
 
-1. Graph state with `messages` key that has a list of messages:
+1. **Graph state** with `messages` key that has a list of messages:
 
    * Common representation for agentic workflows
    * Supports custom messages key via `messages_key` parameter
@@ -291,52 +364,23 @@ def handle_errors(e: ValueError) -> str:
 tool_node = ToolNode([my_tool], handle_tool_errors=handle_errors)
 ```
 
-## tool\_node [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node "Copy anchor link to this section for reference")
+Initialize `ToolNode` with tools and configuration.
 
-Tool execution node for LangGraph workflows.
-
-This module provides prebuilt functionality for executing tools in LangGraph.
-
-Tools are functions that models can call to interact with external systems,
-APIs, databases, or perform computations.
-
-The module implements design patterns for:
-
-* Parallel execution of multiple tool calls for efficiency
-* Robust error handling with customizable error messages
-* State injection for tools that need access to graph state
-* Store injection for tools that need persistent storage
-* Command-based state updates for advanced control flow
-
-Key Components:
-
-* `ToolNode`: Main class for executing tools in LangGraph workflows
-* `InjectedState`: Annotation for injecting graph state into tools
-* `InjectedStore`: Annotation for injecting persistent store into tools
-* `ToolRuntime`: Runtime information for tools, bundling together `state`, `context`,
-  `config`, `stream_writer`, `tool_call_id`, and `store`
-* `tools_condition`: Utility function for conditional routing based on tool calls
-
-Typical Usage
-
-```
-from langchain_core.tools import tool
-from langchain.tools import ToolNode
-
-
-@tool
-def my_tool(x: int) -> str:
-    return f"Result: {x}"
-
-
-tool_node = ToolNode([my_tool])
-```
-
-| FUNCTION | DESCRIPTION |
+| PARAMETER | DESCRIPTION |
 | --- | --- |
-| `tools_condition` | Conditional routing function for tool-calling workflows. |
+| `tools` | Sequence of tools to make available for execution.  **TYPE:** `Sequence[BaseTool | Callable]` |
+| `name` | Node name for graph identification.  **TYPE:** `str`  **DEFAULT:** `'tools'` |
+| `tags` | Optional metadata tags.  **TYPE:** `list[str] | None`  **DEFAULT:** `None` |
+| `handle_tool_errors` | Error handling configuration.  **TYPE:** `bool | str | Callable[..., str] | type[Exception] | tuple[type[Exception], ...]`  **DEFAULT:** `_default_handle_tool_errors` |
+| `messages_key` | State key containing messages.  **TYPE:** `str`  **DEFAULT:** `'messages'` |
+| `wrap_tool_call` | Sync wrapper function to intercept tool execution. Receives ToolCallRequest and execute callable, returns ToolMessage or Command. Enables retries, caching, request modification, and control flow.  **TYPE:** `ToolCallWrapper | None`  **DEFAULT:** `None` |
+| `awrap_tool_call` | Async wrapper function to intercept tool execution. If not provided, falls back to wrap\_tool\_call for async execution.  **TYPE:** `AsyncToolCallWrapper | None`  **DEFAULT:** `None` |
 
 ### InjectedState [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.InjectedState "Copy anchor link to this section for reference")
+
+```
+InjectedState(field: str | None = None)
+```
 
 Bases: `InjectedToolArg`
 
@@ -408,16 +452,6 @@ Note
   arguments (controlled by the system)
 * State injection occurs after the model generates tool calls but before
   tool execution
-
-| METHOD | DESCRIPTION |
-| --- | --- |
-| `__init__` | Initialize the `InjectedState` annotation. |
-
-#### \_\_init\_\_ [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.InjectedState.__init__ "Copy anchor link to this section for reference")
-
-```
-__init__(field: str | None = None) -> None
-```
 
 Initialize the `InjectedState` annotation.
 
@@ -499,6 +533,79 @@ Note
 * Tools can access namespaced storage using the store's get/put methods
 * Store injection requires the graph to be compiled with a store instance
 * Multiple tools can share the same store instance for data consistency
+
+### ToolRuntime `dataclass` [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.ToolRuntime "Copy anchor link to this section for reference")
+
+```
+ToolRuntime(
+    state: StateT,
+    context: ContextT,
+    config: RunnableConfig,
+    stream_writer: StreamWriter,
+    tool_call_id: str | None,
+    store: BaseStore | None,
+)
+```
+
+Bases: `_DirectlyInjectedToolArg`, `Generic[ContextT, StateT]`
+
+Runtime context automatically injected into tools.
+
+Note
+
+This is distinct from `Runtime` (from `langgraph.runtime`), which is injected
+into graph nodes and middleware. `ToolRuntime` includes additional tool-specific
+attributes like `config`, `state`, and `tool_call_id` that `Runtime` does not
+have.
+
+When a tool function has a parameter named `runtime` with type hint
+`ToolRuntime`, the tool execution system will automatically inject an instance
+containing:
+
+* `state`: The current graph state
+* `tool_call_id`: The ID of the current tool call
+* `config`: `RunnableConfig` for the current execution
+* `context`: Runtime context (shared with `Runtime`)
+* `store`: `BaseStore` instance for persistent storage (shared with `Runtime`)
+* `stream_writer`: `StreamWriter` for streaming output (shared with `Runtime`)
+
+No `Annotated` wrapper is needed - just use `runtime: ToolRuntime`
+as a parameter.
+
+Example
+
+```
+from langchain_core.tools import tool
+from langchain.tools import ToolRuntime
+
+@tool
+def my_tool(x: int, runtime: ToolRuntime) -> str:
+    """Tool that accesses runtime context."""
+    # Access state
+    messages = tool_runtime.state["messages"]
+
+    # Access tool_call_id
+    print(f"Tool call ID: {tool_runtime.tool_call_id}")
+
+    # Access config
+    print(f"Run ID: {tool_runtime.config.get('run_id')}")
+
+    # Access runtime context
+    user_id = tool_runtime.context.get("user_id")
+
+    # Access store
+    tool_runtime.store.put(("metrics",), "count", 1)
+
+    # Stream output
+    tool_runtime.stream_writer.write("Processing...")
+
+    return f"Processed {x}"
+```
+
+Note
+
+This is a marker class used for type checking and detection.
+The actual runtime object will be constructed during tool execution.
 
 ### tools\_condition [¶](https://reference.langchain.com/python/langgraph/agents/#langgraph.prebuilt.tool_node.tools_condition "Copy anchor link to this section for reference")
 

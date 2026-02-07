@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 131
-* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
+* 230
+* 1.8k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -216,13 +216,13 @@ Add a new node to the `StateGraph`.
 | PARAMETER | DESCRIPTION |
 | --- | --- |
 | `node` | The function or runnable this node will run.  If a string is provided, it will be used as the node name, and action will be used as the function or runnable.  **TYPE:** `str | StateNode[NodeInputT, ContextT]` |
-| `action` | The action associated with the node. Will be used as the node function or runnable if `node` is a string (node name).  **TYPE:** `StateNode[NodeInputT, ContextT] | None`  **DEFAULT:** `None` |
+| `action` | The action associated with the node.  Will be used as the node function or runnable if `node` is a string (node name).  **TYPE:** `StateNode[NodeInputT, ContextT] | None`  **DEFAULT:** `None` |
 | `defer` | Whether to defer the execution of the node until the run is about to end.  **TYPE:** `bool`  **DEFAULT:** `False` |
 | `metadata` | The metadata associated with the node.  **TYPE:** `dict[str, Any] | None`  **DEFAULT:** `None` |
 | `input_schema` | The input schema for the node. (Default: the graph's state schema)  **TYPE:** `type[NodeInputT] | None`  **DEFAULT:** `None` |
 | `retry_policy` | The retry policy for the node.  If a sequence is provided, the first matching policy will be applied.  **TYPE:** `RetryPolicy | Sequence[RetryPolicy] | None`  **DEFAULT:** `None` |
 | `cache_policy` | The cache policy for the node.  **TYPE:** `CachePolicy | None`  **DEFAULT:** `None` |
-| `destinations` | Destinations that indicate where a node can route to.  Useful for edgeless graphs with nodes that return `Command` objects.  If a `dict` is provided, the keys will be used as the target node names and the values will be used as the labels for the edges.  If a `tuple` is provided, the values will be used as the target node names.  Note  This is only used for graph rendering and doesn't have any effect on the graph execution.  **TYPE:** `dict[str, str] | tuple[str, ...] | None`  **DEFAULT:** `None` |
+| `destinations` | Destinations that indicate where a node can route to.  Useful for edgeless graphs with nodes that return `Command` objects.  If a `dict` is provided, the keys will be used as the target node names and the values will be used as the labels for the edges.  If a `tuple` is provided, the values will be used as the target node names.  Warning  This is only used for graph rendering and doesn't have any effect on the graph execution.  **TYPE:** `dict[str, str] | tuple[str, ...] | None`  **DEFAULT:** `None` |
 
 Example
 
@@ -366,7 +366,7 @@ streamed, batched, and run asynchronously.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `checkpointer` | A checkpoint saver object or flag.  If provided, this `Checkpointer` serves as a fully versioned "short-term memory" for the graph, allowing it to be paused, resumed, and replayed from any point.  If `None`, it may inherit the parent graph's checkpointer when used as a subgraph.  If `False`, it will not use or inherit any checkpointer.  **TYPE:** `Checkpointer`  **DEFAULT:** `None` |
+| `checkpointer` | A checkpoint saver object or flag.  If provided, this `Checkpointer` serves as a fully versioned "short-term memory" for the graph, allowing it to be paused, resumed, and replayed from any point.  If `None`, it may inherit the parent graph's checkpointer when used as a subgraph.  If `False`, it will not use or inherit any checkpointer.  **Important**: When a checkpointer is enabled, you should pass a `thread_id` in the config when invoking the graph:  ``` config = {"configurable": {"thread_id": "my-thread"}} graph.invoke(inputs, config) ```  The `thread_id` is the key used to store and retrieve checkpoints. Use a unique ID for independent runs, or reuse the same ID to accumulate state across invocations (e.g., for conversation memory).  **TYPE:** `Checkpointer`  **DEFAULT:** `None` |
 | `interrupt_before` | An optional list of node names to interrupt before.  **TYPE:** `All | list[str] | None`  **DEFAULT:** `None` |
 | `interrupt_after` | An optional list of node names to interrupt after.  **TYPE:** `All | list[str] | None`  **DEFAULT:** `None` |
 | `debug` | A flag indicating whether to enable debug mode.  **TYPE:** `bool`  **DEFAULT:** `False` |

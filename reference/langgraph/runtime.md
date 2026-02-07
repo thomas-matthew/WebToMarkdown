@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 131
-* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
+* 230
+* 1.8k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -77,6 +77,22 @@ Table of contents
 Bases: `Generic[ContextT]`
 
 Convenience class that bundles run-scoped context and other runtime utilities.
+
+This class is injected into graph nodes and middleware. It provides access to
+`context`, `store`, `stream_writer`, and `previous`.
+
+Accessing `config`
+
+`Runtime` does not include `config`. To access `RunnableConfig`, you can inject
+it directly by adding a `config: RunnableConfig` parameter to your node function
+(recommended), or use `get_config()` from `langgraph.config`.
+
+Note
+
+`ToolRuntime` (from `langgraph.prebuilt`) is a subclass that provides similar
+functionality but is designed specifically for tools. It shares `context`, `store`,
+and `stream_writer` with `Runtime`, and adds tool-specific attributes like `config`,
+`state`, and `tool_call_id`.
 
 Added in version v0.6.0
 

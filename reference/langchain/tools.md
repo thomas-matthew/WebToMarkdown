@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 131
-* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
+* 230
+* 1.8k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -31,6 +31,9 @@ LangChain Reference
         + [name](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.name)
         + [description](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.description)
         + [response\_format](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.response_format)
+        + [args\_schema](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.args_schema)
+        + [return\_direct](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.return_direct)
+        + [extras](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.extras)
         + [invoke](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.invoke)
         + [ainvoke](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.ainvoke)
         + [get\_input\_schema](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.get_input_schema)
@@ -101,6 +104,9 @@ Table of contents
   + [name](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.name)
   + [description](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.description)
   + [response\_format](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.response_format)
+  + [args\_schema](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.args_schema)
+  + [return\_direct](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.return_direct)
+  + [extras](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.extras)
   + [invoke](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.invoke)
   + [ainvoke](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.ainvoke)
   + [get\_input\_schema](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.get_input_schema)
@@ -132,6 +138,7 @@ tool(
     response_format: Literal["content", "content_and_artifact"] = "content",
     parse_docstring: bool = False,
     error_on_invalid_docstring: bool = True,
+    extras: dict[str, Any] | None = None,
 ) -> BaseTool | Callable[[Callable | Runnable], BaseTool]
 ```
 
@@ -151,16 +158,17 @@ Requirements
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `name_or_callable` | Optional name of the tool or the `Callable` to be converted to a tool. Overrides the function's name.  Must be provided as a positional argument.  **TYPE:** `str | Callable | None`  **DEFAULT:** `None` |
+| `name_or_callable` | Optional name of the tool or the `Callable` to be converted to a tool.  Overrides the function's name.  Must be provided as a positional argument.  **TYPE:** `str | Callable | None`  **DEFAULT:** `None` |
 | `runnable` | Optional `Runnable` to convert to a tool.  Must be provided as a positional argument.  **TYPE:** `Runnable | None`  **DEFAULT:** `None` |
-| `description` | Optional description for the tool.  Precedence for the tool description value is as follows:   * This `description` argument   (used even if docstring and/or `args_schema` are provided) * Tool function docstring   (used even if `args_schema` is provided) * `args_schema` description   (used only if `description` and docstring are not provided)  **TYPE:** `str | None`  **DEFAULT:** `None` |
-| `*args` | Extra positional arguments. Must be empty.  **TYPE:** `Any`  **DEFAULT:** `()` |
+| `description` | Optional description for the tool.  Precedence for the tool description value is as follows:   * This `description` argument (used even if docstring and/or `args_schema`   are provided) * Tool function docstring (used even if `args_schema` is provided) * `args_schema` description (used only if `description` and docstring are   not provided)  **TYPE:** `str | None`  **DEFAULT:** `None` |
+| `*args` | Extra positional arguments.  Must be empty.  **TYPE:** `Any`  **DEFAULT:** `()` |
 | `return_direct` | Whether to return directly from the tool rather than continuing the agent loop.  **TYPE:** `bool`  **DEFAULT:** `False` |
 | `args_schema` | Optional argument schema for user to specify.  **TYPE:** `ArgsSchema | None`  **DEFAULT:** `None` |
-| `infer_schema` | Whether to infer the schema of the arguments from the function's signature. This also makes the resultant tool accept a dictionary input to its `run()` function.  **TYPE:** `bool`  **DEFAULT:** `True` |
+| `infer_schema` | Whether to infer the schema of the arguments from the function's signature.  This also makes the resultant tool accept a dictionary input to its `run()` function.  **TYPE:** `bool`  **DEFAULT:** `True` |
 | `response_format` | The tool response format.  If `'content'`, then the output of the tool is interpreted as the contents of a `ToolMessage`.  If `'content_and_artifact'`, then the output is expected to be a two-tuple corresponding to the `(content, artifact)` of a `ToolMessage`.  **TYPE:** `Literal['content', 'content_and_artifact']`  **DEFAULT:** `'content'` |
 | `parse_docstring` | If `infer_schema` and `parse_docstring`, will attempt to parse parameter descriptions from Google Style function docstrings.  **TYPE:** `bool`  **DEFAULT:** `False` |
 | `error_on_invalid_docstring` | If `parse_docstring` is provided, configure whether to raise `ValueError` on invalid Google Style docstrings.  **TYPE:** `bool`  **DEFAULT:** `True` |
+| `extras` | Optional provider-specific extra fields for the tool.  Used to pass configuration that doesn't fit into standard tool fields. Chat models should process known extras when constructing model payloads.  Example  For example, Anthropic-specific fields like `cache_control`, `defer_loading`, or `input_examples`.  **TYPE:** `dict[str, Any] | None`  **DEFAULT:** `None` |
 
 | RAISES | DESCRIPTION |
 | --- | --- |
@@ -232,10 +240,10 @@ foo.args_schema.model_json_schema()
 }
 ```
 
-Note that parsing by default will raise `ValueError` if the docstring
-is considered invalid. A docstring is considered invalid if it contains
-arguments not in the function signature, or is unable to be parsed into
-a summary and `"Args:"` blocks. Examples below:
+Note that parsing by default will raise `ValueError` if the docstring is
+considered invalid. A docstring is considered invalid if it contains arguments
+not in the function signature, or is unable to be parsed into a summary and
+`'Args:'` blocks. Examples below:
 
 ```
 # No args section
@@ -309,6 +317,56 @@ The tool response format.
 If `'content'` then the output of the tool is interpreted as the contents of a
 `ToolMessage`. If `'content_and_artifact'` then the output is expected to be a
 two-tuple corresponding to the `(content, artifact)` of a `ToolMessage`.
+
+### args\_schema `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.args_schema "Copy anchor link to this section for reference")
+
+```
+args_schema: Annotated[ArgsSchema | None, SkipValidation()] = Field(
+    default=None, description="The tool schema."
+)
+```
+
+Pydantic model class to validate and parse the tool's input arguments.
+
+Args schema should be either:
+
+* A subclass of `pydantic.BaseModel`.
+* A subclass of `pydantic.v1.BaseModel` if accessing v1 namespace in pydantic 2
+* A JSON schema dict
+
+### return\_direct `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.return_direct "Copy anchor link to this section for reference")
+
+```
+return_direct: bool = False
+```
+
+Whether to return the tool's output directly.
+
+Setting this to `True` means that after the tool is called, the `AgentExecutor` will
+stop looping.
+
+### extras `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.extras "Copy anchor link to this section for reference")
+
+```
+extras: dict[str, Any] | None = None
+```
+
+Optional provider-specific extra fields for the tool.
+
+This is used to pass provider-specific configuration that doesn't fit into
+standard tool fields.
+
+Example
+
+Anthropic-specific fields like [`cache_control`](https://docs.langchain.com/oss/python/integrations/chat/anthropic#prompt-caching),
+[`defer_loading`](https://docs.langchain.com/oss/python/integrations/chat/anthropic#tool-search),
+or `input_examples`.
+
+```
+@tool(extras={"defer_loading": True, "cache_control": {"type": "ephemeral"}})
+def my_tool(x: str) -> str:
+    return x
+```
 
 ### invoke [¶](https://reference.langchain.com/python/langchain/tools/#langchain.tools.BaseTool.invoke "Copy anchor link to this section for reference")
 
@@ -563,8 +621,8 @@ Bases: `InjectedToolArg`
 
 Annotation for injecting the tool call ID.
 
-This annotation is used to mark a tool parameter that should receive
-the tool call ID at runtime.
+This annotation is used to mark a tool parameter that should receive the tool call
+ID at runtime.
 
 ```
 from typing import Annotated

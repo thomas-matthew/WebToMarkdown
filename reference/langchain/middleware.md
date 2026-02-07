@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 131
-* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
+* 230
+* 1.8k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -625,7 +625,9 @@ agents track progress, organize complex tasks, and provide users with visibility
 into task completion status.
 
 The middleware automatically injects system prompts that guide the agent on when
-and how to use the todo functionality effectively.
+and how to use the todo functionality effectively. It also enforces that the
+`write_todos` tool is called at most once per model turn, since the tool replaces
+the entire todo list and parallel calls would create ambiguity about precedence.
 
 Example
 
@@ -970,7 +972,7 @@ Initialize an instance of `ShellToolMiddleware`.
 | `startup_commands` | Optional commands executed sequentially after the session starts.  **TYPE:** `tuple[str, ...] | list[str] | str | None`  **DEFAULT:** `None` |
 | `shutdown_commands` | Optional commands executed before the session shuts down.  **TYPE:** `tuple[str, ...] | list[str] | str | None`  **DEFAULT:** `None` |
 | `execution_policy` | Execution policy controlling timeouts, output limits, and resource configuration.  Defaults to `HostExecutionPolicy` for native execution.  **TYPE:** `BaseExecutionPolicy | None`  **DEFAULT:** `None` |
-| `redaction_rules` | Optional redaction rules to sanitize command output before returning it to the model.  **TYPE:** `tuple[RedactionRule, ...] | list[RedactionRule] | None`  **DEFAULT:** `None` |
+| `redaction_rules` | Optional redaction rules to sanitize command output before returning it to the model.  Warning  Redaction rules are applied post execution and do not prevent exfiltration of secrets or sensitive data when using `HostExecutionPolicy`.  **TYPE:** `tuple[RedactionRule, ...] | list[RedactionRule] | None`  **DEFAULT:** `None` |
 | `tool_description` | Optional override for the registered shell tool description.  **TYPE:** `str | None`  **DEFAULT:** `None` |
 | `tool_name` | Name for the registered shell tool.  Defaults to `"shell"`.  **TYPE:** `str`  **DEFAULT:** `SHELL_TOOL_NAME` |
 | `shell_command` | Optional shell executable (string) or argument sequence used to launch the persistent session.  Defaults to an implementation-defined bash command.  **TYPE:** `Sequence[str] | str | None`  **DEFAULT:** `None` |
@@ -1096,6 +1098,46 @@ def custom_before_agent(state: MyCustomState, runtime: Runtime) -> dict[str, Any
     return {"custom_field": "initialized_value"}
 ```
 
+Streaming custom events
+
+Use `runtime.stream_writer` to emit custom events during agent execution.
+Events are received when streaming with `stream_mode="custom"`.
+
+```
+from langchain.agents import create_agent
+from langchain.agents.middleware import before_agent, AgentState
+from langchain.messages import HumanMessage
+from langgraph.runtime import Runtime
+
+
+@before_agent
+async def notify_start(state: AgentState, runtime: Runtime) -> None:
+    '''Notify user that agent is starting.'''
+    runtime.stream_writer(
+        {
+            "type": "status",
+            "message": "Initializing agent session...",
+        }
+    )
+    # Perform prerequisite tasks here
+    runtime.stream_writer({"type": "status", "message": "Agent ready!"})
+
+
+agent = create_agent(
+    model="openai:gpt-5.2",
+    tools=[...],
+    middleware=[notify_start],
+)
+
+# Consume with stream_mode="custom" to receive events
+async for mode, event in agent.astream(
+    {"messages": [HumanMessage("Hello")]},
+    stream_mode=["updates", "custom"],
+):
+    if mode == "custom":
+        print(f"Status: {event}")
+```
+
 ## before\_model [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.before_model "Copy anchor link to this section for reference")
 
 ```
@@ -1165,6 +1207,23 @@ def custom_before_model(state: MyCustomState, runtime: Runtime) -> dict[str, Any
     return {"custom_field": "updated_value"}
 ```
 
+Streaming custom events before model call
+
+Use `runtime.stream_writer` to emit custom events before each model invocation.
+Events are received when streaming with `stream_mode="custom"`.
+
+```
+@before_model
+async def notify_model_call(state: AgentState, runtime: Runtime) -> None:
+    '''Notify user before model is called.'''
+    runtime.stream_writer(
+        {
+            "type": "status",
+            "message": "Thinking...",
+        }
+    )
+```
+
 ## after\_model [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.after_model "Copy anchor link to this section for reference")
 
 ```
@@ -1220,6 +1279,25 @@ With custom state schema
 @after_model(state_schema=MyCustomState, name="MyAfterModelMiddleware")
 def custom_after_model(state: MyCustomState, runtime: Runtime) -> dict[str, Any]:
     return {"custom_field": "updated_after_model"}
+```
+
+Streaming custom events after model call
+
+Use `runtime.stream_writer` to emit custom events after model responds.
+Events are received when streaming with `stream_mode="custom"`.
+
+```
+@after_model
+async def notify_model_response(state: AgentState, runtime: Runtime) -> None:
+    '''Notify user after model has responded.'''
+    last_message = state["messages"][-1]
+    has_tool_calls = hasattr(last_message, "tool_calls") and last_message.tool_calls
+    runtime.stream_writer(
+        {
+            "type": "status",
+            "message": "Using tools..." if has_tool_calls else "Response ready!",
+        }
+    )
 ```
 
 ## after\_agent [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.after_agent "Copy anchor link to this section for reference")
@@ -1279,6 +1357,24 @@ With custom state schema
 @after_agent(state_schema=MyCustomState, name="MyAfterAgentMiddleware")
 def custom_after_agent(state: MyCustomState, runtime: Runtime) -> dict[str, Any]:
     return {"custom_field": "finalized_value"}
+```
+
+Streaming custom events on completion
+
+Use `runtime.stream_writer` to emit custom events when agent completes.
+Events are received when streaming with `stream_mode="custom"`.
+
+```
+@after_agent
+async def notify_completion(state: AgentState, runtime: Runtime) -> None:
+    '''Notify user that agent has completed.'''
+    runtime.stream_writer(
+        {
+            "type": "status",
+            "message": "Agent execution complete!",
+            "total_messages": len(state["messages"]),
+        }
+    )
 ```
 
 ## wrap\_model\_call [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.wrap_model_call "Copy anchor link to this section for reference")
@@ -1577,9 +1673,9 @@ ModelRequest(
     system_message: SystemMessage | None = None,
     system_prompt: str | None = None,
     tool_choice: Any | None = None,
-    tools: list[BaseTool | dict] | None = None,
-    response_format: ResponseFormat | None = None,
-    state: AgentState | None = None,
+    tools: list[BaseTool | dict[str, Any]] | None = None,
+    response_format: ResponseFormat[Any] | None = None,
+    state: AgentState[Any] | None = None,
     runtime: Runtime[ContextT] | None = None,
     model_settings: dict[str, Any] | None = None,
 )
@@ -1594,13 +1690,17 @@ Initialize ModelRequest with backward compatibility for system\_prompt.
 | `model` | The chat model to use.  **TYPE:** `BaseChatModel` |
 | `messages` | List of messages (excluding system prompt).  **TYPE:** `list[AnyMessage]` |
 | `tool_choice` | Tool choice configuration.  **TYPE:** `Any | None`  **DEFAULT:** `None` |
-| `tools` | List of available tools.  **TYPE:** `list[BaseTool | dict] | None`  **DEFAULT:** `None` |
-| `response_format` | Response format specification.  **TYPE:** `ResponseFormat | None`  **DEFAULT:** `None` |
-| `state` | Agent state.  **TYPE:** `AgentState | None`  **DEFAULT:** `None` |
+| `tools` | List of available tools.  **TYPE:** `list[BaseTool | dict[str, Any]] | None`  **DEFAULT:** `None` |
+| `response_format` | Response format specification.  **TYPE:** `ResponseFormat[Any] | None`  **DEFAULT:** `None` |
+| `state` | Agent state.  **TYPE:** `AgentState[Any] | None`  **DEFAULT:** `None` |
 | `runtime` | Runtime context.  **TYPE:** `Runtime[ContextT] | None`  **DEFAULT:** `None` |
 | `model_settings` | Additional model settings.  **TYPE:** `dict[str, Any] | None`  **DEFAULT:** `None` |
 | `system_message` | System message instance (preferred).  **TYPE:** `SystemMessage | None`  **DEFAULT:** `None` |
 | `system_prompt` | System prompt string (deprecated, converted to SystemMessage).  **TYPE:** `str | None`  **DEFAULT:** `None` |
+
+| RAISES | DESCRIPTION |
+| --- | --- |
+| `ValueError` | If both `system_prompt` and `system_message` are provided. |
 
 | METHOD | DESCRIPTION |
 | --- | --- |
@@ -1649,7 +1749,7 @@ This follows an immutable pattern, leaving the original request unchanged.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `**overrides` | Keyword arguments for attributes to override.  Supported keys:   * `model`: `BaseChatModel` instance * `system_prompt`: deprecated, use `system_message` instead * `system_message`: `SystemMessage` instance * `messages`: `list` of messages * `tool_choice`: Tool choice configuration * `tools`: `list` of available tools * `response_format`: Response format specification * `model_settings`: Additional model settings  **TYPE:** `Unpack[_ModelRequestOverrides]`  **DEFAULT:** `{}` |
+| `**overrides` | Keyword arguments for attributes to override.  Supported keys:   * `model`: `BaseChatModel` instance * `system_prompt`: deprecated, use `system_message` instead * `system_message`: `SystemMessage` instance * `messages`: `list` of messages * `tool_choice`: Tool choice configuration * `tools`: `list` of available tools * `response_format`: Response format specification * `model_settings`: Additional model settings * `state`: Agent state dictionary  **TYPE:** `Unpack[_ModelRequestOverrides]`  **DEFAULT:** `{}` |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
@@ -1681,6 +1781,10 @@ new_request = request.override(
     system_message=SystemMessage(content="New instructions"),
 )
 ```
+
+| RAISES | DESCRIPTION |
+| --- | --- |
+| `ValueError` | If both `system_prompt` and `system_message` are provided. |
 
 ## ModelResponse `dataclass` [¶](https://reference.langchain.com/python/langchain/middleware/#langchain.agents.middleware.ModelResponse "Copy anchor link to this section for reference")
 

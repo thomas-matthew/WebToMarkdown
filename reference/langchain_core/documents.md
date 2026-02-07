@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 131
-* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
+* 230
+* 1.8k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -320,7 +320,7 @@ Get the namespace of the LangChain object.
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
-| `list[str]` | ["langchain", "schema", "document"] |
+| `list[str]` | `["langchain", "schema", "document"]` |
 
 ### \_\_str\_\_ [¶](https://reference.langchain.com/python/langchain_core/documents/#langchain_core.documents.base.Document.__str__ "Copy anchor link to this section for reference")
 
@@ -689,8 +689,9 @@ get_lc_namespace() -> list[str]
 
 Get the namespace of the LangChain object.
 
-For example, if the class is `langchain.llms.openai.OpenAI`, then the
-namespace is `["langchain", "llms", "openai"]`
+For example, if the class is
+[`langchain.llms.openai.OpenAI`](https://reference.langchain.com/python/integrations/langchain_openai/OpenAI/#langchain_openai.OpenAI "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">OpenAI</span>"), then the namespace is
+`["langchain", "llms", "openai"]`
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
@@ -831,8 +832,9 @@ get_lc_namespace() -> list[str]
 
 Get the namespace of the LangChain object.
 
-For example, if the class is `langchain.llms.openai.OpenAI`, then the
-namespace is `["langchain", "llms", "openai"]`
+For example, if the class is
+[`langchain.llms.openai.OpenAI`](https://reference.langchain.com/python/integrations/langchain_openai/OpenAI/#langchain_openai.OpenAI "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">OpenAI</span>"), then the namespace is
+`["langchain", "llms", "openai"]`
 
 | RETURNS | DESCRIPTION |
 | --- | --- |

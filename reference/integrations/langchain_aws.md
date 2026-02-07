@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 131
-* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
+* 230
+* 1.8k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -22,6 +22,7 @@ LangChain Reference
 
     Packages
     - [Anthropic](https://reference.langchain.com/python/integrations/langchain_anthropic/)
+    - [Amazon Nova](https://reference.langchain.com/python/integrations/langchain_amazon_nova/)
     - [AstraDB](https://reference.langchain.com/python/integrations/langchain_astradb/)
     - AWS
 
@@ -62,6 +63,7 @@ LangChain Reference
           - [endpoint\_url](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.endpoint_url)
           - [streaming](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.streaming)
           - [guardrails](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.guardrails)
+          - [service\_tier](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.service_tier)
           - [rate\_limiter](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.rate_limiter)
           - [disable\_streaming](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.disable_streaming)
           - [output\_version](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.output_version)
@@ -161,6 +163,7 @@ LangChain Reference
           - [aws\_session\_token](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.aws_session_token)
           - [provider](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.provider)
           - [endpoint\_url](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.endpoint_url)
+          - [default\_headers](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.default_headers)
           - [config](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.config)
           - [guardrail\_config](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.guardrail_config)
           - [additional\_model\_request\_fields](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.additional_model_request_fields)
@@ -256,12 +259,21 @@ LangChain Reference
           - [provider](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.provider)
           - [endpoint\_url](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.endpoint_url)
           - [normalize](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.normalize)
+          - [dimensions](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.dimensions)
           - [config](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.config)
           - [validate\_environment](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.validate_environment)
           - [embed\_documents](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.embed_documents)
           - [embed\_query](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.embed_query)
           - [aembed\_query](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.aembed_query)
           - [aembed\_documents](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.aembed_documents)
+          - [embed\_image](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.embed_image)
+          - [embed\_images](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.embed_images)
+          - [embed\_audio](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.embed_audio)
+          - [embed\_video](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.embed_video)
+          - [aembed\_image](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.aembed_image)
+          - [aembed\_images](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.aembed_images)
+          - [aembed\_audio](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.aembed_audio)
+          - [aembed\_video](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.aembed_video)
         + [NeptuneAnalyticsGraph](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.NeptuneAnalyticsGraph)
 
           - [get\_schema](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.NeptuneAnalyticsGraph.get_schema)
@@ -302,6 +314,7 @@ LangChain Reference
           - [endpoint\_url](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockLLM.endpoint_url)
           - [streaming](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockLLM.streaming)
           - [guardrails](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockLLM.guardrails)
+          - [service\_tier](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockLLM.service_tier)
           - [lc\_attributes](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockLLM.lc_attributes)
           - [get\_name](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockLLM.get_name)
           - [get\_input\_schema](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockLLM.get_input_schema)
@@ -767,6 +780,7 @@ Table of contents
     - [endpoint\_url](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.endpoint_url)
     - [streaming](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.streaming)
     - [guardrails](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.guardrails)
+    - [service\_tier](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.service_tier)
     - [rate\_limiter](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.rate_limiter)
     - [disable\_streaming](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.disable_streaming)
     - [output\_version](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.output_version)
@@ -866,6 +880,7 @@ Table of contents
     - [aws\_session\_token](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.aws_session_token)
     - [provider](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.provider)
     - [endpoint\_url](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.endpoint_url)
+    - [default\_headers](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.default_headers)
     - [config](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.config)
     - [guardrail\_config](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.guardrail_config)
     - [additional\_model\_request\_fields](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.additional_model_request_fields)
@@ -961,12 +976,21 @@ Table of contents
     - [provider](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.provider)
     - [endpoint\_url](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.endpoint_url)
     - [normalize](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.normalize)
+    - [dimensions](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.dimensions)
     - [config](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.config)
     - [validate\_environment](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.validate_environment)
     - [embed\_documents](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.embed_documents)
     - [embed\_query](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.embed_query)
     - [aembed\_query](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.aembed_query)
     - [aembed\_documents](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.aembed_documents)
+    - [embed\_image](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.embed_image)
+    - [embed\_images](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.embed_images)
+    - [embed\_audio](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.embed_audio)
+    - [embed\_video](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.embed_video)
+    - [aembed\_image](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.aembed_image)
+    - [aembed\_images](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.aembed_images)
+    - [aembed\_audio](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.aembed_audio)
+    - [aembed\_video](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.aembed_video)
   + [NeptuneAnalyticsGraph](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.NeptuneAnalyticsGraph)
 
     - [get\_schema](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.NeptuneAnalyticsGraph.get_schema)
@@ -1007,6 +1031,7 @@ Table of contents
     - [endpoint\_url](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockLLM.endpoint_url)
     - [streaming](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockLLM.streaming)
     - [guardrails](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockLLM.guardrails)
+    - [service\_tier](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockLLM.service_tier)
     - [lc\_attributes](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockLLM.lc_attributes)
     - [get\_name](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockLLM.get_name)
     - [get\_input\_schema](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockLLM.get_input_schema)
@@ -1823,6 +1848,24 @@ error: BaseException,
 reason = kwargs.get("reason")
 if reason == "GUARDRAIL\_INTERVENED":
 ...Logic to handle guardrail intervention...
+
+#### service\_tier `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.service_tier "Copy anchor link to this section for reference")
+
+```
+service_tier: Literal['priority', 'default', 'flex', 'reserved'] | None = None
+```
+
+Service tier for model invocation.
+
+Specifies the processing tier type used for serving the request.
+Supported values are 'priority', 'default', 'flex', and 'reserved'.
+
+* 'priority': Prioritized processing for lower latency
+* 'default': Standard processing tier
+* 'flex': Flexible processing tier with lower cost
+* 'reserved': Reserved capacity for consistent performance
+
+If not provided, AWS uses the default tier.
 
 #### rate\_limiter `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrock.rate_limiter "Copy anchor link to this section for reference")
 
@@ -4077,7 +4120,7 @@ thinking_params= {
 }
 
 model = ChatBedrockConverse(
-    model="us.anthropic.claude-3-7-sonnet-20250219-v1:0",
+    model="us.anthropic.claude-sonnet-4-5-20250929-v1:0",
     max_tokens=5000,
     region_name="us-west-2",
     additional_model_request_fields=thinking_params,
@@ -4134,6 +4177,7 @@ ai_msg.usage_metadata
 {'input_tokens': 25, 'output_tokens': 11, 'total_tokens': 36}
 ```
 
+
 Response metadata
 
 ```
@@ -4142,7 +4186,6 @@ ai_msg.response_metadata
 ```
 
 ```
-```python
 {'ResponseMetadata': {'RequestId': '776a2a26-5946-45ae-859e-82dc5f12017c',
   'HTTPStatusCode': 200,
   'HTTPHeaders': {'date': 'Mon, 17 Jun 2024 01:37:05 GMT',
@@ -4153,7 +4196,6 @@ ai_msg.response_metadata
   'RetryAttempts': 0},
  'stopReason': 'end_turn',
  'metrics': {'latencyMs': 1290}}
-```
 ```
 
 | METHOD | DESCRIPTION |
@@ -4611,6 +4653,14 @@ endpoint_url: str | None = Field(default=None, alias='base_url')
 ```
 
 Needed if you don't want to default to us-east-1 endpoint
+
+#### default\_headers `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.default_headers "Copy anchor link to this section for reference")
+
+```
+default_headers: Mapping[str, str] | None = None
+```
+
+Headers to pass to the Anthropic clients, will be used for every API call.
 
 #### config `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.ChatBedrockConverse.config "Copy anchor link to this section for reference")
 
@@ -6481,7 +6531,9 @@ Validate that AWS credentials to and python package exists in environment.
 
 ```
 bind_tools(
-    tools: Sequence[dict[str, Any] | TypeBaseModel | Callable | BaseTool],
+    tools: Sequence[
+        dict[str, Any] | TypeBaseModel | Callable | BaseTool | str | NovaSystemTool
+    ],
     *,
     tool_choice: dict | str | Literal["auto", "any"] | None = None,
     **kwargs: Any,
@@ -6492,7 +6544,7 @@ Bind tools to the model.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `tools` | Sequence of tools to bind to the model.  **TYPE:** `Sequence[Dict[str, Any] | type | Callable | BaseTool]` |
+| `tools` | Sequence of tools to bind to the model.  **TYPE:** `Sequence[dict[str, Any] | type | Callable | BaseTool]` |
 | `tool_choice` | The tool to use. If "any" then any tool can be used.  **TYPE:** `str | None`  **DEFAULT:** `None` |
 
 | RETURNS | DESCRIPTION |
@@ -6511,7 +6563,7 @@ Model wrapper that returns outputs formatted to match the given schema.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `schema` | The output schema. Can be passed in as:   * An OpenAI function/tool schema, * A JSON Schema, * A `TypedDict` class, * Or a Pydantic class.   If `schema` is a Pydantic class then the model output will be a Pydantic instance of that class, and the model-generated fields will be validated by the Pydantic class. Otherwise the model output will be a dict and will not be validated.  See `langchain_core.utils.function_calling.convert_to_openai_tool` for more on how to properly specify types and descriptions of schema fields when specifying a Pydantic or `TypedDict` class.  **TYPE:** `Dict | type` |
+| `schema` | The output schema. Can be passed in as:   * An OpenAI function/tool schema, * A JSON Schema, * A `TypedDict` class, * Or a Pydantic class.   If `schema` is a Pydantic class then the model output will be a Pydantic instance of that class, and the model-generated fields will be validated by the Pydantic class. Otherwise the model output will be a dict and will not be validated.  See `langchain_core.utils.function_calling.convert_to_openai_tool` for more on how to properly specify types and descriptions of schema fields when specifying a Pydantic or `TypedDict` class.  **TYPE:** `dict[str, Any] | type` |
 | `include_raw` | If `False` then only the parsed structured output is returned.  If an error occurs during model output parsing it will be raised.  If `True` then both the raw model response (a `BaseMessage`) and the parsed model response will be returned.  If an error occurs during output parsing it will be caught and returned as well.  The final output is always a `dict` with keys `'raw'`, `'parsed'`, and `'parsing_error'`.  **TYPE:** `bool`  **DEFAULT:** `False` |
 
 | RAISES | DESCRIPTION |
@@ -6521,9 +6573,9 @@ Model wrapper that returns outputs formatted to match the given schema.
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
-| `Runnable[LanguageModelInput, Dict | BaseModel]` | A `Runnable` that takes same inputs as a `langchain_core.language_models.chat.BaseChatModel`. If `include_raw` is `False` and `schema` is a Pydantic class, `Runnable` outputs an instance of `schema` (i.e., a Pydantic object). Otherwise, if `include_raw` is `False` then `Runnable` outputs a `dict`.  If `include_raw` is `True`, then `Runnable` outputs a `dict` with keys:   * `'raw'`: `BaseMessage` * `'parsed'`: `None` if there was a parsing error, otherwise the type   depends on the `schema` as described above. * `'parsing_error'`: `BaseException | None` |
+| `Runnable[LanguageModelInput, dict[str, Any] | BaseModel]` | A `Runnable` that takes same inputs as a `langchain_core.language_models.chat.BaseChatModel`. If `include_raw` is `False` and `schema` is a Pydantic class, `Runnable` outputs an instance of `schema` (i.e., a Pydantic object). Otherwise, if `include_raw` is `False` then `Runnable` outputs a `dict`.  If `include_raw` is `True`, then `Runnable` outputs a `dict` with keys:   * `'raw'`: `BaseMessage` * `'parsed'`: `None` if there was a parsing error, otherwise the type   depends on the `schema` as described above. * `'parsing_error'`: `BaseException | None` |
 
-Example: Pydantic schema (`include_raw=False`):
+Pydantic schema (`include_raw=False`)
 
 ```
 from pydantic import BaseModel
@@ -6549,7 +6601,8 @@ structured_model.invoke(
 # )
 ```
 
-Example: Pydantic schema (`include_raw=True`):
+
+Pydantic schema (`include_raw=True`)
 
 ```
 from pydantic import BaseModel
@@ -6577,7 +6630,8 @@ structured_model.invoke(
 # }
 ```
 
-Example: Dictionary schema (`include_raw=False`):
+
+Dictionary schema (`include_raw=False`)
 
 ```
 from pydantic import BaseModel
@@ -6632,8 +6686,9 @@ get_lc_namespace() -> list[str]
 
 Get the namespace of the LangChain object.
 
-For example, if the class is `langchain.llms.openai.OpenAI`, then the
-namespace is `["langchain", "llms", "openai"]`
+For example, if the class is
+[`langchain.llms.openai.OpenAI`](https://reference.langchain.com/python/integrations/langchain_openai/OpenAI/#langchain_openai.OpenAI "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">OpenAI</span>"), then the namespace is
+`["langchain", "llms", "openai"]`
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
@@ -6877,6 +6932,19 @@ the name of the profile from the ~/.aws/credentials file that is to be used.
 Make sure the credentials / roles used have the required policies to
 access the Bedrock service.
 
+Example
+
+```
+from langchain_aws import BedrockEmbeddings
+
+embeddings = BedrockEmbeddings(
+    credentials_profile_name="default",
+    region_name="us-east-1",
+    model_id="amazon.nova-2-multimodal-embeddings-v1:0",
+    dimensions=256,
+)
+```
+
 | METHOD | DESCRIPTION |
 | --- | --- |
 | `validate_environment` | Validate that AWS credentials to and python package exists in environment. |
@@ -6884,6 +6952,14 @@ access the Bedrock service.
 | `embed_query` | Compute query embeddings using a Bedrock model. |
 | `aembed_query` | Asynchronous compute query embeddings using a Bedrock model. |
 | `aembed_documents` | Asynchronous compute doc embeddings using a Bedrock model. |
+| `embed_image` | Embed a single image. |
+| `embed_images` | Embed multiple images. |
+| `embed_audio` | Embed audio content. |
+| `embed_video` | Embed video content. |
+| `aembed_image` | Asynchronously embed a single image. |
+| `aembed_images` | Asynchronously embed multiple images. |
+| `aembed_audio` | Asynchronously embed audio content. |
+| `aembed_video` | Asynchronously embed video content. |
 
 #### client `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.client "Copy anchor link to this section for reference")
 
@@ -7014,6 +7090,17 @@ normalize: bool = False
 
 Whether the embeddings should be normalized to unit vectors
 
+#### dimensions `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.dimensions "Copy anchor link to this section for reference")
+
+```
+dimensions: int | None = None
+```
+
+The number of dimensions for the output embeddings.
+
+Only supported by certain models (Titan v2, Cohere, Nova).
+If not specified, uses the model's default.
+
 #### config `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.config "Copy anchor link to this section for reference")
 
 ```
@@ -7093,6 +7180,118 @@ Asynchronous compute doc embeddings using a Bedrock model.
 | RETURNS | DESCRIPTION |
 | --- | --- |
 | `list[list[float]]` | List of embeddings, one for each text. |
+
+#### embed\_image [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.embed_image "Copy anchor link to this section for reference")
+
+```
+embed_image(image: MediaInput) -> list[float]
+```
+
+Embed a single image.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `image` | Image as base64 string, file path, S3 URI (Nova/Marengo), or bytes.  **TYPE:** `MediaInput` |
+
+| RETURNS | DESCRIPTION |
+| --- | --- |
+| `list[float]` | Embedding vector for the image. |
+
+| RAISES | DESCRIPTION |
+| --- | --- |
+| `ValueError` | If model doesn't support image embeddings. |
+
+#### embed\_images [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.embed_images "Copy anchor link to this section for reference")
+
+```
+embed_images(images: list[MediaInput]) -> list[list[float]]
+```
+
+Embed multiple images.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `images` | List of images as base64 strings, file paths, S3 URIs, or bytes.  **TYPE:** `list[MediaInput]` |
+
+| RETURNS | DESCRIPTION |
+| --- | --- |
+| `list[list[float]]` | List of embedding vectors, one per image. |
+
+#### embed\_audio [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.embed_audio "Copy anchor link to this section for reference")
+
+```
+embed_audio(audio: MediaInput) -> list[float]
+```
+
+Embed audio content.
+
+Only supported by Nova models. Audio must be ≤30 seconds for sync API.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `audio` | Audio as base64 string, file path, S3 URI, or bytes.  **TYPE:** `MediaInput` |
+
+| RETURNS | DESCRIPTION |
+| --- | --- |
+| `list[float]` | Embedding vector for the audio. |
+
+| RAISES | DESCRIPTION |
+| --- | --- |
+| `ValueError` | If model doesn't support audio embeddings. |
+
+#### embed\_video [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.embed_video "Copy anchor link to this section for reference")
+
+```
+embed_video(video: MediaInput) -> list[float]
+```
+
+Embed video content.
+
+Only supported by Nova models. Video must be ≤30 seconds for sync API.
+
+| PARAMETER | DESCRIPTION |
+| --- | --- |
+| `video` | Video as base64 string, file path, S3 URI, or bytes.  **TYPE:** `MediaInput` |
+
+| RETURNS | DESCRIPTION |
+| --- | --- |
+| `list[float]` | Embedding vector for the video. |
+
+| RAISES | DESCRIPTION |
+| --- | --- |
+| `ValueError` | If model doesn't support video embeddings. |
+
+#### aembed\_image `async` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.aembed_image "Copy anchor link to this section for reference")
+
+```
+aembed_image(image: MediaInput) -> list[float]
+```
+
+Asynchronously embed a single image.
+
+#### aembed\_images `async` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.aembed_images "Copy anchor link to this section for reference")
+
+```
+aembed_images(images: list[MediaInput]) -> list[list[float]]
+```
+
+Asynchronously embed multiple images.
+
+#### aembed\_audio `async` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.aembed_audio "Copy anchor link to this section for reference")
+
+```
+aembed_audio(audio: MediaInput) -> list[float]
+```
+
+Asynchronously embed audio content.
+
+#### aembed\_video `async` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockEmbeddings.aembed_video "Copy anchor link to this section for reference")
+
+```
+aembed_video(video: MediaInput) -> list[float]
+```
+
+Asynchronously embed video content.
 
 ### NeptuneAnalyticsGraph [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.NeptuneAnalyticsGraph "Copy anchor link to this section for reference")
 
@@ -7665,6 +7864,24 @@ error: BaseException,
 reason = kwargs.get("reason")
 if reason == "GUARDRAIL\_INTERVENED":
 ...Logic to handle guardrail intervention...
+
+#### service\_tier `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockLLM.service_tier "Copy anchor link to this section for reference")
+
+```
+service_tier: Literal['priority', 'default', 'flex', 'reserved'] | None = None
+```
+
+Service tier for model invocation.
+
+Specifies the processing tier type used for serving the request.
+Supported values are 'priority', 'default', 'flex', and 'reserved'.
+
+* 'priority': Prioritized processing for lower latency
+* 'default': Standard processing tier
+* 'flex': Flexible processing tier with lower cost
+* 'reserved': Reserved capacity for consistent performance
+
+If not provided, AWS uses the default tier.
 
 #### lc\_attributes `property` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.BedrockLLM.lc_attributes "Copy anchor link to this section for reference")
 
@@ -11318,8 +11535,9 @@ get_lc_namespace() -> list[str]
 
 Get the namespace of the LangChain object.
 
-For example, if the class is `langchain.llms.openai.OpenAI`, then the
-namespace is `["langchain", "llms", "openai"]`
+For example, if the class is
+[`langchain.llms.openai.OpenAI`](https://reference.langchain.com/python/integrations/langchain_openai/OpenAI/#langchain_openai.OpenAI "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">OpenAI</span>"), then the namespace is
+`["langchain", "llms", "openai"]`
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
@@ -13378,8 +13596,9 @@ get_lc_namespace() -> list[str]
 
 Get the namespace of the LangChain object.
 
-For example, if the class is `langchain.llms.openai.OpenAI`, then the
-namespace is `["langchain", "llms", "openai"]`
+For example, if the class is
+[`langchain.llms.openai.OpenAI`](https://reference.langchain.com/python/integrations/langchain_openai/OpenAI/#langchain_openai.OpenAI "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">OpenAI</span>"), then the namespace is
+`["langchain", "llms", "openai"]`
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
@@ -15139,8 +15358,9 @@ get_lc_namespace() -> list[str]
 
 Get the namespace of the LangChain object.
 
-For example, if the class is `langchain.llms.openai.OpenAI`, then the
-namespace is `["langchain", "llms", "openai"]`
+For example, if the class is
+[`langchain.llms.openai.OpenAI`](https://reference.langchain.com/python/integrations/langchain_openai/OpenAI/#langchain_openai.OpenAI "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">OpenAI</span>"), then the namespace is
+`["langchain", "llms", "openai"]`
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
@@ -16904,8 +17124,9 @@ get_lc_namespace() -> list[str]
 
 Get the namespace of the LangChain object.
 
-For example, if the class is `langchain.llms.openai.OpenAI`, then the
-namespace is `["langchain", "llms", "openai"]`
+For example, if the class is
+[`langchain.llms.openai.OpenAI`](https://reference.langchain.com/python/integrations/langchain_openai/OpenAI/#langchain_openai.OpenAI "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">OpenAI</span>"), then the namespace is
+`["langchain", "llms", "openai"]`
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
@@ -17134,13 +17355,12 @@ of `prompt` and `llm_string` (e.g., by concatenating them with a delimiter).
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `prompt` | A string representation of the prompt. In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
+| `prompt` | A string representation of the prompt.  In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
 | `llm_string` | A string representation of the LLM configuration.  This is used to capture the invocation parameters of the LLM (e.g., model name, temperature, stop tokens, max tokens, etc.).  These invocation parameters are serialized into a string representation.  **TYPE:** `str` |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
-| `RETURN_VAL_TYPE | None` | On a cache miss, return `None`. On a cache hit, return the cached value. |
-| `RETURN_VAL_TYPE | None` | The cached value is a list of `Generation` (or subclasses). |
+| `RETURN_VAL_TYPE | None` | On a cache miss, return `None`. On a cache hit, return the cached value. The cached value is a list of `Generation` (or subclasses). |
 
 #### aupdate `async` [¶](https://reference.langchain.com/python/integrations/langchain_aws/#langchain_aws.InMemorySemanticCache.aupdate "Copy anchor link to this section for reference")
 
@@ -17155,7 +17375,7 @@ The key should match that of the look up method.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `prompt` | A string representation of the prompt. In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
+| `prompt` | A string representation of the prompt.  In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
 | `llm_string` | A string representation of the LLM configuration.  This is used to capture the invocation parameters of the LLM (e.g., model name, temperature, stop tokens, max tokens, etc.).  These invocation parameters are serialized into a string representation.  **TYPE:** `str` |
 | `return_val` | The value to be cached. The value is a list of `Generation` (or subclasses).  **TYPE:** `RETURN_VAL_TYPE` |
 

@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 131
-* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
+* 230
+* 1.8k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -22,6 +22,7 @@ LangChain Reference
 
     Packages
     - [Anthropic](https://reference.langchain.com/python/integrations/langchain_anthropic/)
+    - [Amazon Nova](https://reference.langchain.com/python/integrations/langchain_amazon_nova/)
     - [AstraDB](https://reference.langchain.com/python/integrations/langchain_astradb/)
     - [AWS](https://reference.langchain.com/python/integrations/langchain_aws/)
     - [Azure (Microsoft)](https://reference.langchain.com/python/integrations/langchain_azure/)
@@ -648,12 +649,14 @@ tiktoken_model_name: str | None = None
 ```
 
 The model name to pass to tiktoken when using this class.
+
 Tiktoken is used to count the number of tokens in documents to constrain
-them to be under a certain limit. By default, when set to None, this will
-be the same as the embedding model name. However, there are some cases
-where you may want to use this Embedding class with a model name not
-supported by tiktoken. This can include when using Azure embeddings or
-when using one of the many model providers that expose an OpenAI-like
+them to be under a certain limit.
+
+By default, when set to `None`, this will be the same as the embedding model name.
+However, there are some cases where you may want to use this `Embedding` class with
+a model name not supported by tiktoken. This can include when using Azure embeddings
+or when using one of the many model providers that expose an OpenAI-like
 API but with different models. In those cases, in order to avoid erroring
 when tiktoken is called, you can specify a model name to use here.
 
@@ -663,8 +666,10 @@ when tiktoken is called, you can specify a model name to use here.
 http_client: Any | None = Field(default=None, exclude=True)
 ```
 
-Optional `httpx.Client`. Only used for sync invocations. Must specify
-`http_async_client` as well if you'd like a custom client for async invocations.
+Optional `httpx.Client`.
+
+Only used for sync invocations. Must specify `http_async_client` as well if you'd
+like a custom client for async invocations.
 
 ### http\_async\_client `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/BaseChatOpenAI/#langchain_openai.chat_models.base.BaseChatOpenAI.http_async_client "Copy anchor link to this section for reference")
 
@@ -672,8 +677,10 @@ Optional `httpx.Client`. Only used for sync invocations. Must specify
 http_async_client: Any | None = Field(default=None, exclude=True)
 ```
 
-Optional `httpx.AsyncClient`. Only used for async invocations. Must specify
-`http_client` as well if you'd like a custom client for sync invocations.
+Optional `httpx.AsyncClient`.
+
+Only used for async invocations. Must specify `http_client` as well if you'd like a
+custom client for sync invocations.
 
 ### stop `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/BaseChatOpenAI/#langchain_openai.chat_models.base.BaseChatOpenAI.stop "Copy anchor link to this section for reference")
 
@@ -762,7 +769,10 @@ Added in `langchain-openai` 0.3.24
 service_tier: str | None = None
 ```
 
-Latency tier for request. Options are `'auto'`, `'default'`, or `'flex'`.
+Latency tier for request.
+
+Options are `'auto'`, `'default'`, or `'flex'`.
+
 Relevant for users of OpenAI's scale tier service.
 
 ### store `class-attribute` `instance-attribute` [¶](https://reference.langchain.com/python/integrations/langchain_openai/BaseChatOpenAI/#langchain_openai.chat_models.base.BaseChatOpenAI.store "Copy anchor link to this section for reference")
@@ -783,7 +793,10 @@ Added in `langchain-openai` 0.3.24
 truncation: str | None = None
 ```
 
-Truncation strategy (Responses API). Can be `'auto'` or `'disabled'` (default).
+Truncation strategy (Responses API).
+
+Can be `'auto'` or `'disabled'` (default).
+
 If `'auto'`, model may drop input items from the middle of the message sequence to
 fit the context window.
 
@@ -1119,7 +1132,7 @@ Assumes model is compatible with OpenAI tool-calling API.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `tools` | A list of tool definitions to bind to this chat model. Supports any tool definition handled by `langchain_core.utils.function_calling.convert_to_openai_tool`.  **TYPE:** `Sequence[dict[str, Any] | type | Callable | BaseTool]` |
+| `tools` | A list of tool definitions to bind to this chat model.  Supports any tool definition handled by [`convert_to_openai_tool`](https://reference.langchain.com/python/langchain_core/utils/#langchain_core.utils.function_calling.convert_to_openai_tool "<code class=\"doc-symbol doc-symbol-heading doc-symbol-function\"></code>            <span class=\"doc doc-object-name doc-function-name\">convert_to_openai_tool</span>").  **TYPE:** `Sequence[dict[str, Any] | type | Callable | BaseTool]` |
 | `tool_choice` | Which tool to require the model to call. Options are:   * `str` of the form `'<<tool_name>>'`: calls `<<tool_name>>` tool. * `'auto'`: automatically selects a tool (including no tool). * `'none'`: does not call a tool. * `'any'` or `'required'` or `True`: force at least one tool to be called. * `dict` of the form `{"type": "function", "function": {"name": <<tool_name>>}}`: calls `<<tool_name>>` tool. * `False` or `None`: no effect, default OpenAI behavior.  **TYPE:** `dict | str | bool | None`  **DEFAULT:** `None` |
 | `strict` | If `True`, model output is guaranteed to exactly match the JSON Schema provided in the tool definition. The input schema will also be validated according to the [supported schemas](https://platform.openai.com/docs/guides/structured-outputs/supported-schemas?api-mode=responses#supported-schemas). If `False`, input schema will not be validated and model output will not be validated. If `None`, `strict` argument will not be passed to the model.  **TYPE:** `bool | None`  **DEFAULT:** `None` |
 | `parallel_tool_calls` | Set to `False` to disable parallel tool use. Defaults to `None` (no specification, which allows parallel tool use).  **TYPE:** `bool | None`  **DEFAULT:** `None` |
@@ -2582,8 +2595,9 @@ get_lc_namespace() -> list[str]
 
 Get the namespace of the LangChain object.
 
-For example, if the class is `langchain.llms.openai.OpenAI`, then the
-namespace is `["langchain", "llms", "openai"]`
+For example, if the class is
+[`langchain.llms.openai.OpenAI`](https://reference.langchain.com/python/integrations/langchain_openai/OpenAI/#langchain_openai.OpenAI "<code class=\"doc-symbol doc-symbol-heading doc-symbol-class\"></code>            <span class=\"doc doc-object-name doc-class-name\">OpenAI</span>"), then the namespace is
+`["langchain", "llms", "openai"]`
 
 | RETURNS | DESCRIPTION |
 | --- | --- |

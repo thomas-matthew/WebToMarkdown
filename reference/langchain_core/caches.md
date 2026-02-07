@@ -4,8 +4,8 @@ LangChain Reference
 
 [langchain-ai/docs
 
-* 131
-* 1.2k](https://github.com/langchain-ai/docs "Go to repository")
+* 230
+* 1.8k](https://github.com/langchain-ai/docs "Go to repository")
 
 * [Get started](https://reference.langchain.com/python/)
 * [LangChain](https://reference.langchain.com/python/langchain/)
@@ -164,7 +164,7 @@ Initialize with empty cache.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `maxsize` | The maximum number of items to store in the cache. If `None`, the cache has no maximum size. If the cache exceeds the maximum size, the oldest items are removed.  **TYPE:** `int | None`  **DEFAULT:** `None` |
+| `maxsize` | The maximum number of items to store in the cache.  If `None`, the cache has no maximum size.  If the cache exceeds the maximum size, the oldest items are removed.  **TYPE:** `int | None`  **DEFAULT:** `None` |
 
 | RAISES | DESCRIPTION |
 | --- | --- |
@@ -180,7 +180,7 @@ Look up based on `prompt` and `llm_string`.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `prompt` | A string representation of the prompt. In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
+| `prompt` | A string representation of the prompt.  In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
 | `llm_string` | A string representation of the LLM configuration.  **TYPE:** `str` |
 
 | RETURNS | DESCRIPTION |
@@ -197,9 +197,9 @@ Update cache based on `prompt` and `llm_string`.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `prompt` | A string representation of the prompt. In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
+| `prompt` | A string representation of the prompt.  In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
 | `llm_string` | A string representation of the LLM configuration.  **TYPE:** `str` |
-| `return_val` | The value to be cached. The value is a list of `Generation` (or subclasses).  **TYPE:** `RETURN_VAL_TYPE` |
+| `return_val` | The value to be cached.  The value is a list of `Generation` (or subclasses).  **TYPE:** `RETURN_VAL_TYPE` |
 
 #### clear [¶](https://reference.langchain.com/python/langchain_core/caches/#langchain_core.caches.InMemoryCache.clear "Copy anchor link to this section for reference")
 
@@ -219,7 +219,7 @@ Async look up based on `prompt` and `llm_string`.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `prompt` | A string representation of the prompt. In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
+| `prompt` | A string representation of the prompt.  In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
 | `llm_string` | A string representation of the LLM configuration.  **TYPE:** `str` |
 
 | RETURNS | DESCRIPTION |
@@ -236,7 +236,7 @@ Async update cache based on `prompt` and `llm_string`.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `prompt` | A string representation of the prompt. In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
+| `prompt` | A string representation of the prompt.  In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
 | `llm_string` | A string representation of the LLM configuration.  **TYPE:** `str` |
 | `return_val` | The value to be cached. The value is a list of `Generation` (or subclasses).  **TYPE:** `RETURN_VAL_TYPE` |
 
@@ -288,13 +288,12 @@ of `prompt` and `llm_string` (e.g., by concatenating them with a delimiter).
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `prompt` | A string representation of the prompt. In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
+| `prompt` | A string representation of the prompt.  In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
 | `llm_string` | A string representation of the LLM configuration.  This is used to capture the invocation parameters of the LLM (e.g., model name, temperature, stop tokens, max tokens, etc.).  These invocation parameters are serialized into a string representation.  **TYPE:** `str` |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
-| `RETURN_VAL_TYPE | None` | On a cache miss, return `None`. On a cache hit, return the cached value. |
-| `RETURN_VAL_TYPE | None` | The cached value is a list of `Generation` (or subclasses). |
+| `RETURN_VAL_TYPE | None` | On a cache miss, return `None`. On a cache hit, return the cached value. The cached value is a list of `Generation` (or subclasses). |
 
 #### update `abstractmethod` [¶](https://reference.langchain.com/python/langchain_core/caches/#langchain_core.caches.BaseCache.update "Copy anchor link to this section for reference")
 
@@ -304,14 +303,14 @@ update(prompt: str, llm_string: str, return_val: RETURN_VAL_TYPE) -> None
 
 Update cache based on `prompt` and `llm_string`.
 
-The prompt and llm\_string are used to generate a key for the cache.
-The key should match that of the lookup method.
+The `prompt` and `llm_string` are used to generate a key for the cache. The key
+should match that of the lookup method.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `prompt` | A string representation of the prompt. In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
+| `prompt` | A string representation of the prompt.  In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
 | `llm_string` | A string representation of the LLM configuration.  This is used to capture the invocation parameters of the LLM (e.g., model name, temperature, stop tokens, max tokens, etc.).  These invocation parameters are serialized into a string representation.  **TYPE:** `str` |
-| `return_val` | The value to be cached. The value is a list of `Generation` (or subclasses).  **TYPE:** `RETURN_VAL_TYPE` |
+| `return_val` | The value to be cached.  The value is a list of `Generation` (or subclasses).  **TYPE:** `RETURN_VAL_TYPE` |
 
 #### clear `abstractmethod` [¶](https://reference.langchain.com/python/langchain_core/caches/#langchain_core.caches.BaseCache.clear "Copy anchor link to this section for reference")
 
@@ -334,13 +333,12 @@ of `prompt` and `llm_string` (e.g., by concatenating them with a delimiter).
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `prompt` | A string representation of the prompt. In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
+| `prompt` | A string representation of the prompt.  In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
 | `llm_string` | A string representation of the LLM configuration.  This is used to capture the invocation parameters of the LLM (e.g., model name, temperature, stop tokens, max tokens, etc.).  These invocation parameters are serialized into a string representation.  **TYPE:** `str` |
 
 | RETURNS | DESCRIPTION |
 | --- | --- |
-| `RETURN_VAL_TYPE | None` | On a cache miss, return `None`. On a cache hit, return the cached value. |
-| `RETURN_VAL_TYPE | None` | The cached value is a list of `Generation` (or subclasses). |
+| `RETURN_VAL_TYPE | None` | On a cache miss, return `None`. On a cache hit, return the cached value. The cached value is a list of `Generation` (or subclasses). |
 
 #### aupdate `async` [¶](https://reference.langchain.com/python/langchain_core/caches/#langchain_core.caches.BaseCache.aupdate "Copy anchor link to this section for reference")
 
@@ -355,7 +353,7 @@ The key should match that of the look up method.
 
 | PARAMETER | DESCRIPTION |
 | --- | --- |
-| `prompt` | A string representation of the prompt. In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
+| `prompt` | A string representation of the prompt.  In the case of a chat model, the prompt is a non-trivial serialization of the prompt into the language model.  **TYPE:** `str` |
 | `llm_string` | A string representation of the LLM configuration.  This is used to capture the invocation parameters of the LLM (e.g., model name, temperature, stop tokens, max tokens, etc.).  These invocation parameters are serialized into a string representation.  **TYPE:** `str` |
 | `return_val` | The value to be cached. The value is a list of `Generation` (or subclasses).  **TYPE:** `RETURN_VAL_TYPE` |
 
