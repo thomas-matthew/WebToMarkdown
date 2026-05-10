@@ -1,148 +1,63 @@
-[![logo](https://reference.langchain.com/python/static/brand/reference-light.svg)
-![logo](https://reference.langchain.com/python/static/brand/reference-dark.svg)](https://reference.langchain.com/python/ "LangChain Reference")
-LangChain Reference
-
-[langchain-ai/docs
-
-* 230
-* 1.8k](https://github.com/langchain-ai/docs "Go to repository")
-
-* [Get started](https://reference.langchain.com/python/)
-* [LangChain](https://reference.langchain.com/python/langchain/)
-* [LangGraph](https://reference.langchain.com/python/langgraph/)
-
-  LangGraph
-  + langgraph
-
-
-
-
-    langgraph
-    - [Graphs](https://reference.langchain.com/python/langgraph/graphs/)
-    - [Functional API](https://reference.langchain.com/python/langgraph/func/)
-    - [Pregel](https://reference.langchain.com/python/langgraph/pregel/)
-    - [Checkpointing](https://reference.langchain.com/python/langgraph/checkpoints/)
-    - [Storage](https://reference.langchain.com/python/langgraph/store/)
-    - [Caching](https://reference.langchain.com/python/langgraph/cache/)
-    - [Types](https://reference.langchain.com/python/langgraph/types/)
-    - [Runtime](https://reference.langchain.com/python/langgraph/runtime/)
-    - [Config](https://reference.langchain.com/python/langgraph/config/)
-    - Errors
-
-      [Errors](https://reference.langchain.com/python/langgraph/errors/)
-
-
-
-      Table of contents
-      * [errors](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors)
-
-        + [EmptyChannelError](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.EmptyChannelError)
-        + [GraphRecursionError](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.GraphRecursionError)
-        + [InvalidUpdateError](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.InvalidUpdateError)
-        + [GraphInterrupt](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.GraphInterrupt)
-        + [NodeInterrupt](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.NodeInterrupt)
-        + [EmptyInputError](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.EmptyInputError)
-        + [TaskNotFound](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.TaskNotFound)
-    - [Constants](https://reference.langchain.com/python/langgraph/constants/)
-    - [Channels](https://reference.langchain.com/python/langgraph/channels/)
-  + Prebuilt
-
-
-
-
-    Prebuilt
-    - [Agents](https://reference.langchain.com/python/langgraph/agents/)
-    - [Supervisor](https://reference.langchain.com/python/langgraph/supervisor/)
-    - [Swarm](https://reference.langchain.com/python/langgraph/swarm/)
-* [Deep Agents](https://reference.langchain.com/python/deepagents/)
-* [Integrations](https://reference.langchain.com/python/integrations/)
-* [LangSmith](https://reference.langchain.com/python/langsmith/)
-
-Table of contents
-
-* [errors](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors)
-
-  + [EmptyChannelError](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.EmptyChannelError)
-  + [GraphRecursionError](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.GraphRecursionError)
-  + [InvalidUpdateError](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.InvalidUpdateError)
-  + [GraphInterrupt](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.GraphInterrupt)
-  + [NodeInterrupt](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.NodeInterrupt)
-  + [EmptyInputError](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.EmptyInputError)
-  + [TaskNotFound](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.TaskNotFound)
+Python[langgraph](/python/langgraph)Errors
 
 # Errors
 
-## errors [¶](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors "Copy anchor link to this section for reference")
+## Classes
 
-### EmptyChannelError [¶](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.EmptyChannelError "Copy anchor link to this section for reference")
+[Class
 
-Bases: `Exception`
+### ErrorCode](/python/langgraph/errors/ErrorCode)[Class
 
-Raised when attempting to get the value of a channel that hasn't been updated
-for the first time yet.
+### GraphBubbleUp](/python/langgraph/errors/GraphBubbleUp)[Class
 
-### GraphRecursionError [¶](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.GraphRecursionError "Copy anchor link to this section for reference")
+### GraphDrained
 
-Bases: `RecursionError`
+Raised when a graph run exits early due to a drain request.](/python/langgraph/errors/GraphDrained)[Class
 
-Raised when the graph has exhausted the maximum number of steps.
+### GraphRecursionError
 
-This prevents infinite loops. To increase the maximum number of steps,
-run your graph with a config specifying a higher `recursion_limit`.
+Raised when the graph has exhausted the maximum number of steps.](/python/langgraph/errors/GraphRecursionError)[Class
 
-Troubleshooting guides:
+### InvalidUpdateError
 
-* [`GRAPH_RECURSION_LIMIT`](https://docs.langchain.com/oss/python/langgraph/GRAPH_RECURSION_LIMIT)
+Raised when attempting to update a channel with an invalid set of updates.](/python/langgraph/errors/InvalidUpdateError)[Class
 
-Examples:
+### GraphInterrupt
 
-```
-graph = builder.compile()
-graph.invoke(
-    {"messages": [("user", "Hello, world!")]},
-    # The config is the second positional argument
-    {"recursion_limit": 1000},
-)
-```
+Raised when a subgraph is interrupted, suppressed by the root graph.](/python/langgraph/errors/GraphInterrupt)[Class
 
-### InvalidUpdateError [¶](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.InvalidUpdateError "Copy anchor link to this section for reference")
+### ParentCommand](/python/langgraph/errors/ParentCommand)[Class
 
-Bases: `Exception`
+### EmptyInputError
 
-Raised when attempting to update a channel with an invalid set of updates.
+Raised when graph receives an empty input.](/python/langgraph/errors/EmptyInputError)[Class
 
-Troubleshooting guides:
+### TaskNotFound
 
-* [`INVALID_CONCURRENT_GRAPH_UPDATE`](https://docs.langchain.com/oss/python/langgraph/INVALID_CONCURRENT_GRAPH_UPDATE)
-* [`INVALID_GRAPH_NODE_RETURN_VALUE`](https://docs.langchain.com/oss/python/langgraph/INVALID_GRAPH_NODE_RETURN_VALUE)
+Raised when the executor is unable to find a task (for distributed mode).](/python/langgraph/errors/TaskNotFound)[Class
 
-### GraphInterrupt [¶](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.GraphInterrupt "Copy anchor link to this section for reference")
+### NodeError
 
-Bases: `GraphBubbleUp`
+Failure context passed to a node-level error handler.](/python/langgraph/errors/NodeError)[Class
 
-Raised when a subgraph is interrupted, suppressed by the root graph.
-Never raised directly, or surfaced to the user.
+### NodeTimeoutError
 
-### NodeInterrupt `deprecated` [¶](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.NodeInterrupt "Copy anchor link to this section for reference")
+Raised when a node invocation exceeds one of its configured timeouts.](/python/langgraph/errors/NodeTimeoutError)[Class
 
-Bases: `GraphInterrupt`
+### NodeInterrupt
 
-Deprecated
+deprecated
 
-NodeInterrupt is deprecated. Please use [`interrupt`](https://reference.langchain.com/python/langgraph/types/#langgraph.types.interrupt "<code class=\"doc-symbol doc-symbol-heading doc-symbol-function\"></code>            <span class=\"doc doc-object-name doc-function-name\">interrupt</span>") instead.
+Raised by a node to interrupt execution.](/python/langgraph/errors/NodeInterrupt)
 
-Raised by a node to interrupt execution.
+## Functions
 
-### EmptyInputError [¶](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.EmptyInputError "Copy anchor link to this section for reference")
+[Function
 
-Bases: `Exception`
+### create\_error\_message](/python/langgraph/errors/create_error_message)
 
-Raised when graph receives an empty input.
+Copy page
 
-### TaskNotFound [¶](https://reference.langchain.com/python/langgraph/errors/#langgraph.errors.TaskNotFound "Copy anchor link to this section for reference")
+### On This Page
 
-Bases: `Exception`
-
-Raised when the executor is unable to find a task (for distributed mode).
-
-Back to top
+Classes12Functions1
