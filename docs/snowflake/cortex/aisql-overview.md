@@ -172,14 +172,18 @@ This section describes the privileges required for users to access Snowflake Cor
 
 Important
 
-Your users need both the USE AI FUNCTIONS account-level privilege and one of the CORTEX\_USER or
+Your users need both the USE AI FUNCTIONS account-level privilege (or a per-function `USE AI FUNCTION <name>`
+privilege) and one of the CORTEX\_USER or
 [AI\_FUNCTIONS\_USER](#label-cortex-ai-functions-user-role) database roles to use Snowflake Cortex AI Functions.
 Because USE AI FUNCTIONS is granted to the PUBLIC role by default, no additional action is needed for this privilege
 unless it has been revoked.
 
 The USE AI FUNCTIONS account-level privilege includes the privileges that allow your users to call Snowflake Cortex AI functions. By default, the USE AI FUNCTIONS privilege is granted to the PUBLIC role. The PUBLIC role is automatically granted to all users and roles, allowing all users in your account to use the Snowflake Cortex AI functions. If you don’t want all your users to have this privilege, you can revoke access to the PUBLIC role and grant access to other roles.
 
-This section explains how to do the following :
+If you need finer-grained control over which AI functions individual roles can call, see
+[USE AI FUNCTION <name> — per-function privileges](#label-cortex-ai-function-per-function-privileges).
+
+This section explains how to do the following:
 
 * Revoke the USE AI FUNCTIONS privilege from the PUBLIC role
 * Grant the USE AI FUNCTIONS privilege to specific roles
@@ -199,9 +203,9 @@ FROM ROLE PUBLIC;
 
 Note
 
-Revoking the USE AI FUNCTIONS account-level privilege prevents your users from accessing Snowflake Cortex AI Functions.
+Revoking the USE AI FUNCTIONS account-level privilege prevents your users from accessing most Snowflake Cortex AI Functions.
 Your users need **both** the USE AI FUNCTIONS account-level privilege and one of the CORTEX\_USER or
-[AI\_FUNCTIONS\_USER](#label-cortex-ai-functions-user-role) database roles to use Snowflake Cortex AI Functions.
+[AI\_FUNCTIONS\_USER](#label-cortex-ai-functions-user-role) database roles to use Snowflake Cortex AI Functions. If a user has the USE AI FUNCTIONS account-level privilege but doesn’t have the CORTEX\_USER role, they can still use the AI\_AGG and AI\_SUMMARIZE\_AGG functions.
 
 After you’ve revoked the USE AI FUNCTIONS privilege from the PUBLIC role, you can use the ACCOUNTADMIN role to grant it to other roles in your Snowflake account.
 
@@ -234,9 +238,152 @@ Important
 
 Currently, USE AI FUNCTIONS does not apply to AI Function queries that are run inside Snowflake native applications. A query with AI Function calls runs successfully regardless of whether the role has USE AI FUNCTIONS privilege.
 
+### USE AI FUNCTION <name> — per-function privileges[¶](#use-ai-function-name-per-function-privileges)
+
+In addition to the blanket USE AI FUNCTIONS privilege, you can grant per-function privileges using
+`USE AI FUNCTION <name>`. This allows ACCOUNTADMIN to control access at the individual function level
+instead of granting access to all AI functions at once.
+
+The per-function privilege and the blanket USE AI FUNCTIONS privilege have an **OR** relationship:
+
+* If a role has USE AI FUNCTIONS, it can call **all** Cortex AI functions, regardless of any per-function grants or revocations.
+* If a role has only `USE AI FUNCTION AI_COMPLETE`, it can call only the AI\_COMPLETE function.
+* If a role has both USE AI FUNCTIONS and a per-function grant, revoking the per-function grant does **not** affect access because the blanket privilege still applies.
+
+Important
+
+Per-function privileges require the same CORTEX\_USER (or AI\_FUNCTIONS\_USER) database role as the blanket
+USE AI FUNCTIONS privilege.
+
+#### Supported per-function privileges[¶](#supported-per-function-privileges)
+
+The following table lists each Cortex AI function and its corresponding per-function privilege name for use
+with `GRANT USE AI FUNCTION <name> ON ACCOUNT TO ROLE <role_name>`.
+
+| Function | Per-function privilege name |
+| --- | --- |
+| [AI\_COMPLETE](/sql-reference/functions/ai_complete) | AI\_COMPLETE |
+| [AI\_CLASSIFY](/sql-reference/functions/ai_classify) | AI\_CLASSIFY |
+| [AI\_FILTER](/sql-reference/functions/ai_filter) | AI\_FILTER |
+| [AI\_AGG](/sql-reference/functions/ai_agg) | AI\_AGG |
+| [AI\_EMBED](/sql-reference/functions/ai_embed) | AI\_EMBED |
+| [AI\_EXTRACT](/sql-reference/functions/ai_extract) | AI\_EXTRACT |
+| [AI\_SENTIMENT](/sql-reference/functions/ai_sentiment) | AI\_SENTIMENT |
+| [AI\_SUMMARIZE\_AGG](/sql-reference/functions/ai_summarize_agg) | AI\_SUMMARIZE\_AGG |
+| [AI\_SIMILARITY](/sql-reference/functions/ai_similarity) | AI\_SIMILARITY |
+| [AI\_TRANSCRIBE](/sql-reference/functions/ai_transcribe) | AI\_TRANSCRIBE |
+| [AI\_PARSE\_DOCUMENT](/sql-reference/functions/ai_parse_document) | AI\_PARSE\_DOCUMENT |
+| [AI\_REDACT](/sql-reference/functions/ai_redact) | AI\_REDACT |
+| [AI\_TRANSLATE](/sql-reference/functions/ai_translate) | AI\_TRANSLATE |
+| [AI\_SUMMARIZE](/sql-reference/functions/ai_summarize) | AI\_SUMMARIZE |
+| [AI\_COUNT\_TOKENS](/sql-reference/functions/ai_count_tokens) | AI\_COUNT\_TOKENS |
+| [SNOWFLAKE.CORTEX.COMPLETE](/sql-reference/functions/complete-snowflake-cortex) | COMPLETE |
+| [SNOWFLAKE.CORTEX.CLASSIFY\_TEXT](/sql-reference/functions/classify_text-snowflake-cortex) | CLASSIFY\_TEXT |
+| [SNOWFLAKE.CORTEX.COUNT\_TOKENS](/sql-reference/functions/count_tokens-snowflake-cortex) | COUNT\_TOKENS |
+| [SNOWFLAKE.CORTEX.EMBED\_TEXT](/sql-reference/functions/embed_text_1024-snowflake-cortex) | EMBED\_TEXT |
+| [SNOWFLAKE.CORTEX.ENTITY\_SENTIMENT](/sql-reference/functions/entity_sentiment-snowflake-cortex) | ENTITY\_SENTIMENT |
+| [SNOWFLAKE.CORTEX.EXTRACT\_ANSWER](/sql-reference/functions/extract_answer-snowflake-cortex) | EXTRACT\_ANSWER |
+| [SNOWFLAKE.CORTEX.PARSE\_DOCUMENT](/sql-reference/functions/parse_document-snowflake-cortex) | PARSE\_DOCUMENT |
+| [SNOWFLAKE.CORTEX.SENTIMENT](/sql-reference/functions/sentiment-snowflake-cortex) | SENTIMENT |
+| [SNOWFLAKE.CORTEX.SUMMARIZE](/sql-reference/functions/summarize-snowflake-cortex) | SUMMARIZE |
+| [SNOWFLAKE.CORTEX.SUMMARIZE\_AGG](/sql-reference/functions/summarize_agg-snowflake-cortex) | SUMMARIZE\_AGG |
+| [SNOWFLAKE.CORTEX.TRANSLATE](/sql-reference/functions/translate-snowflake-cortex) | TRANSLATE |
+| [SNOWFLAKE.CORTEX.TRY\_COMPLETE](/sql-reference/functions/try_complete-snowflake-cortex) | TRY\_COMPLETE |
+
+Expand
+
+Show lessSee more
+
+#### Granting per-function privileges[¶](#granting-per-function-privileges)
+
+Use the ACCOUNTADMIN role to grant a per-function privilege. The syntax is:
+
+Copy code
+
+```
+GRANT USE AI FUNCTION <function_name> ON ACCOUNT TO ROLE <role_name>;
+```
+
+The following example revokes the blanket privilege from PUBLIC, then grants only AI\_COMPLETE access to a
+specific role:
+
+Copy code
+
+```
+USE ROLE ACCOUNTADMIN;
+
+-- Remove blanket access from PUBLIC
+REVOKE USE AI FUNCTIONS ON ACCOUNT FROM ROLE PUBLIC;
+
+-- Create a role with access to only AI_COMPLETE
+CREATE ROLE ai_complete_user_role;
+GRANT USE AI FUNCTION AI_COMPLETE ON ACCOUNT TO ROLE ai_complete_user_role;
+GRANT DATABASE ROLE SNOWFLAKE.CORTEX_USER TO ROLE ai_complete_user_role;
+
+GRANT ROLE ai_complete_user_role TO USER example_user;
+```
+
+You can grant multiple per-function privileges to the same role to build a custom set of allowed functions:
+
+Copy code
+
+```
+USE ROLE ACCOUNTADMIN;
+
+CREATE ROLE ai_analyst_role;
+
+GRANT USE AI FUNCTION AI_COMPLETE ON ACCOUNT TO ROLE ai_analyst_role;
+GRANT USE AI FUNCTION AI_CLASSIFY ON ACCOUNT TO ROLE ai_analyst_role;
+GRANT USE AI FUNCTION AI_EXTRACT ON ACCOUNT TO ROLE ai_analyst_role;
+GRANT USE AI FUNCTION AI_TRANSLATE ON ACCOUNT TO ROLE ai_analyst_role;
+
+GRANT DATABASE ROLE SNOWFLAKE.CORTEX_USER TO ROLE ai_analyst_role;
+GRANT ROLE ai_analyst_role TO USER analyst_user;
+```
+
+#### Revoking per-function privileges[¶](#revoking-per-function-privileges)
+
+To revoke a per-function privilege:
+
+Copy code
+
+```
+REVOKE USE AI FUNCTION <function_name> ON ACCOUNT FROM ROLE <role_name>;
+```
+
+For example:
+
+Copy code
+
+```
+USE ROLE ACCOUNTADMIN;
+
+REVOKE USE AI FUNCTION AI_COMPLETE ON ACCOUNT FROM ROLE ai_analyst_role;
+```
+
+After revocation, the role can no longer call AI\_COMPLETE unless it also has the blanket USE AI FUNCTIONS
+privilege.
+
+#### Viewing per-function grants[¶](#viewing-per-function-grants)
+
+You can view per-function privilege grants using SHOW GRANTS:
+
+Copy code
+
+```
+-- View all grants to a specific role
+SHOW GRANTS TO ROLE ai_analyst_role;
+
+-- View all grants on the account
+SHOW GRANTS ON ACCOUNT;
+```
+
+Per-function grants appear with the privilege name `USE AI FUNCTION <function_name>` (for example,
+`USE AI FUNCTION AI_COMPLETE`).
+
 ### Using AI Functions with Restricted Caller’s Rights[¶](#using-ai-functions-with-restricted-callers-rights)
 
-To use AI Functions with Restricted Caller’s Rights, you must grant the USE AI FUNCTIONS privilege to both the session role and the service or application owner role.
+To use AI Functions with Restricted Caller’s Rights, you must grant the USE AI FUNCTIONS privilege (or the appropriate `USE AI FUNCTION <name>` per-function privilege) to both the session role and the service or application owner role.
 
 For example, to use AI Functions inside a Snowflake Park Container Services (SPCS) service that runs with Restricted Caller’s Rights:
 
@@ -312,9 +459,10 @@ Cortex Fine-tuning, or Cortex Search.
 
 Important
 
-Your users need both the USE AI FUNCTIONS account-level privilege plus one of CORTEX\_USER and AI\_FUNCTIONS\_USER
-database role to call Snowflake Cortex AI functions. Because USE AI FUNCTIONS is granted to the PUBLIC role by
-default, no additional action is needed for this privilege unless it has been revoked.
+Your users need both the USE AI FUNCTIONS account-level privilege (or a per-function `USE AI FUNCTION <name>`
+privilege) plus one of CORTEX\_USER and AI\_FUNCTIONS\_USER database role to call Snowflake Cortex AI functions.
+Because USE AI FUNCTIONS is granted to the PUBLIC role by default, no additional action is needed for this
+privilege unless it has been revoked.
 
 AI\_FUNCTIONS\_USER role is not granted to the PUBLIC role by default. Accountadmin must
 explicitly grant this role to roles that require access to AI functions. The AI\_FUNCTIONS\_USER database role
@@ -1442,29 +1590,30 @@ On this page
 5. [Performance considerations](#performance-considerations)
 6. [Cortex LLM privileges](#cortex-llm-privileges)
 7. [USE AI FUNCTIONS on the account privilege](#use-ai-functions-on-the-account-privilege)
-8. [Using AI Functions with Restricted Caller's Rights](#using-ai-functions-with-restricted-callers-rights)
-9. [CORTEX\_USER database role](#cortex_user-database-role)
-10. [AI\_FUNCTIONS\_USER database role](#ai_functions_user-database-role)
-11. [CORTEX\_EMBED\_USER database role](#cortex_embed_user-database-role)
-12. [Using AI Functions in stored procedures with EXECUTE AS RESTRICTED CALLER](#using-ai-functions-in-stored-procedures-with-execute-as-restricted-caller)
-13. [Control model access](#control-model-access)
-14. [Account-level allowlist parameter](#account-level-allowlist-parameter)
-15. [Role-based access control (RBAC)](#role-based-access-control-rbac)
-16. [Common pitfalls](#common-pitfalls)
-17. [Supported features](#supported-features)
-18. [Regional availability](#regional-availability)
-19. [Cost considerations](#cost-considerations)
-20. [Warehouse sizing](#warehouse-sizing)
-21. [Track costs for AI services](#track-costs-for-ai-services)
-22. [Track credit consumption for Cortex AI Functions](#track-credit-consumption-for-cortex-ai-functions)
-23. [Model restrictions](#model-restrictions)
-24. [Choosing a model](#choosing-a-model)
-25. [Large models](#large-models)
-26. [Medium models](#medium-models)
-27. [Small models](#small-models)
-28. [Previous model versions](#previous-model-versions)
-29. [Using Snowflake Cortex AI Functions with Python](#using-snowflake-cortex-ai-functions-with-python)
-30. [Call Cortex AI Functions in Snowpark Python](#call-cortex-ai-functions-in-snowpark-python)
-31. [Call Cortex AI Functions in Snowflake ML](#call-cortex-ai-functions-in-snowflake-ml)
-32. [Using Snowflake Cortex AI functions with Snowflake CLI](#using-snowflake-cortex-ai-functions-with-snowflake-cli)
-33. [Legal notices](#legal-notices)
+8. [USE AI FUNCTION <name> — per-function privileges](#use-ai-function-name-per-function-privileges)
+9. [Using AI Functions with Restricted Caller's Rights](#using-ai-functions-with-restricted-callers-rights)
+10. [CORTEX\_USER database role](#cortex_user-database-role)
+11. [AI\_FUNCTIONS\_USER database role](#ai_functions_user-database-role)
+12. [CORTEX\_EMBED\_USER database role](#cortex_embed_user-database-role)
+13. [Using AI Functions in stored procedures with EXECUTE AS RESTRICTED CALLER](#using-ai-functions-in-stored-procedures-with-execute-as-restricted-caller)
+14. [Control model access](#control-model-access)
+15. [Account-level allowlist parameter](#account-level-allowlist-parameter)
+16. [Role-based access control (RBAC)](#role-based-access-control-rbac)
+17. [Common pitfalls](#common-pitfalls)
+18. [Supported features](#supported-features)
+19. [Regional availability](#regional-availability)
+20. [Cost considerations](#cost-considerations)
+21. [Warehouse sizing](#warehouse-sizing)
+22. [Track costs for AI services](#track-costs-for-ai-services)
+23. [Track credit consumption for Cortex AI Functions](#track-credit-consumption-for-cortex-ai-functions)
+24. [Model restrictions](#model-restrictions)
+25. [Choosing a model](#choosing-a-model)
+26. [Large models](#large-models)
+27. [Medium models](#medium-models)
+28. [Small models](#small-models)
+29. [Previous model versions](#previous-model-versions)
+30. [Using Snowflake Cortex AI Functions with Python](#using-snowflake-cortex-ai-functions-with-python)
+31. [Call Cortex AI Functions in Snowpark Python](#call-cortex-ai-functions-in-snowpark-python)
+32. [Call Cortex AI Functions in Snowflake ML](#call-cortex-ai-functions-in-snowflake-ml)
+33. [Using Snowflake Cortex AI functions with Snowflake CLI](#using-snowflake-cortex-ai-functions-with-snowflake-cli)
+34. [Legal notices](#legal-notices)

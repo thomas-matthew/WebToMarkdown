@@ -6,100 +6,109 @@ set -e
 # --- CONFIGURATION ---
 
 PROJECT_DIR="/Users/thomasmathew/Dev/WebToMarkdown"
-OUTPUT_DIR="reference"
+OUTPUT_DIR="."
 COMMIT_MSG="Auto-update: Generated new artifacts via web2llms"
 
 # --- URL MAPPING (Bash 3.2 Compatible) ---
-# Syntax: "URL | SUBDIRECTORY/FILENAME"
+# Syntax: "URL | reference|docs/SUBDIRECTORY/FILENAME"
 # Note: Use the pipe character '|' to separate the URL and the Filepath
+# Paths are split into:
+#   reference/  -- API references, SQL/Python function refs, REST endpoint specs
+#   docs/       -- Conceptual guides, overviews, prompt engineering, model docs
 
 URL_LIST=(
-    # Top level
-    "https://reference.langchain.com/python/deepagents/ | deepagents.md"
+    # === REFERENCE: LangChain Python API ===
+    "https://reference.langchain.com/python/deepagents/ | reference/deepagents.md"
 
-    # Integrations
-    "https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/ | integrations/ChatOpenAI.md"
-    "https://reference.langchain.com/python/integrations/langchain_openai/BaseChatOpenAI/ | integrations/BaseChatOpenAI.md"
-    "https://reference.langchain.com/python/integrations/langchain_aws/ | integrations/langchain_aws.md"
-    
+    # LangChain Integrations
+    "https://reference.langchain.com/python/integrations/langchain_openai/ChatOpenAI/ | reference/integrations/ChatOpenAI.md"
+    "https://reference.langchain.com/python/integrations/langchain_openai/BaseChatOpenAI/ | reference/integrations/BaseChatOpenAI.md"
+    "https://reference.langchain.com/python/integrations/langchain_aws/ | reference/integrations/langchain_aws.md"
+
     # LangChain (Library)
-    "https://reference.langchain.com/python/langchain/agents/ | langchain/agents.md"
-    "https://reference.langchain.com/python/langchain/middleware/ | langchain/middleware.md"
-    "https://reference.langchain.com/python/langchain/messages/#langchain.messages | langchain/messages.md"
-    "https://reference.langchain.com/python/langchain/tools/ | langchain/tools.md"
-    
+    "https://reference.langchain.com/python/langchain/agents/ | reference/langchain/agents.md"
+    "https://reference.langchain.com/python/langchain/middleware/ | reference/langchain/middleware.md"
+    "https://reference.langchain.com/python/langchain/messages/#langchain.messages | reference/langchain/messages.md"
+    "https://reference.langchain.com/python/langchain/tools/ | reference/langchain/tools.md"
+
     # LangChain Core
-    "https://reference.langchain.com/python/langchain_core/caches/ | langchain_core/caches.md"
-    "https://reference.langchain.com/python/langchain_core/callbacks/ | langchain_core/callbacks.md"
-    "https://reference.langchain.com/python/langchain_core/documents/ | langchain_core/documents.md"
-    "https://reference.langchain.com/python/langchain_core/prompts/ | langchain_core/prompts.md"
-    "https://reference.langchain.com/python/langchain_core/retrievers/ | langchain_core/retrievers.md"
-    
+    "https://reference.langchain.com/python/langchain_core/caches/ | reference/langchain_core/caches.md"
+    "https://reference.langchain.com/python/langchain_core/callbacks/ | reference/langchain_core/callbacks.md"
+    "https://reference.langchain.com/python/langchain_core/documents/ | reference/langchain_core/documents.md"
+    "https://reference.langchain.com/python/langchain_core/prompts/ | reference/langchain_core/prompts.md"
+    "https://reference.langchain.com/python/langchain_core/retrievers/ | reference/langchain_core/retrievers.md"
+
     # LangGraph
-    "https://reference.langchain.com/python/langgraph/graphs/ | langgraph/graphs.md"
-    "https://reference.langchain.com/python/langgraph/func/ | langgraph/func.md"
-    "https://reference.langchain.com/python/langgraph/pregel/ | langgraph/pregel.md"
-    "https://reference.langchain.com/python/langgraph/checkpoints/ | langgraph/checkpoints.md"
-    "https://reference.langchain.com/python/langgraph/store/ | langgraph/store.md"
-    "https://reference.langchain.com/python/langgraph/cache/ | langgraph/cache.md"
-    "https://reference.langchain.com/python/langgraph/types/ | langgraph/types.md"
-    "https://reference.langchain.com/python/langgraph/runtime/ | langgraph/runtime.md"
-    "https://reference.langchain.com/python/langgraph/config/ | langgraph/config.md"
-    "https://reference.langchain.com/python/langgraph/errors/ | langgraph/errors.md"
-    "https://reference.langchain.com/python/langgraph/constants/ | langgraph/constants.md"
-    "https://reference.langchain.com/python/langgraph/channels/ | langgraph/channels.md"
-    "https://reference.langchain.com/python/langgraph/agents/ | langgraph/agents.md"
-    "https://reference.langchain.com/python/langgraph/supervisor/ | langgraph/supervisor.md"
+    "https://reference.langchain.com/python/langgraph/graphs/ | reference/langgraph/graphs.md"
+    "https://reference.langchain.com/python/langgraph/func/ | reference/langgraph/func.md"
+    "https://reference.langchain.com/python/langgraph/pregel/ | reference/langgraph/pregel.md"
+    "https://reference.langchain.com/python/langgraph/checkpoints/ | reference/langgraph/checkpoints.md"
+    "https://reference.langchain.com/python/langgraph/store/ | reference/langgraph/store.md"
+    "https://reference.langchain.com/python/langgraph/cache/ | reference/langgraph/cache.md"
+    "https://reference.langchain.com/python/langgraph/types/ | reference/langgraph/types.md"
+    "https://reference.langchain.com/python/langgraph/runtime/ | reference/langgraph/runtime.md"
+    "https://reference.langchain.com/python/langgraph/config/ | reference/langgraph/config.md"
+    "https://reference.langchain.com/python/langgraph/errors/ | reference/langgraph/errors.md"
+    "https://reference.langchain.com/python/langgraph/constants/ | reference/langgraph/constants.md"
+    "https://reference.langchain.com/python/langgraph/channels/ | reference/langgraph/channels.md"
+    "https://reference.langchain.com/python/langgraph/agents/ | reference/langgraph/agents.md"
+    "https://reference.langchain.com/python/langgraph/supervisor/ | reference/langgraph/supervisor.md"
 
-    # Snowflake Cortex - AISQL overview
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/aisql | snowflake/cortex/aisql-overview.md"
+    # === REFERENCE: Snowflake Cortex AI SQL Functions ===
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_complete | reference/snowflake/cortex/ai_complete.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_classify | reference/snowflake/cortex/ai_classify.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_filter | reference/snowflake/cortex/ai_filter.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_extract | reference/snowflake/cortex/ai_extract.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_sentiment | reference/snowflake/cortex/ai_sentiment.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_redact | reference/snowflake/cortex/ai_redact.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_translate | reference/snowflake/cortex/ai_translate.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_agg | reference/snowflake/cortex/ai_agg.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_summarize_agg | reference/snowflake/cortex/ai_summarize_agg.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_embed | reference/snowflake/cortex/ai_embed.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_similarity | reference/snowflake/cortex/ai_similarity.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_transcribe | reference/snowflake/cortex/ai_transcribe.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_parse_document | reference/snowflake/cortex/ai_parse_document.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_count_tokens | reference/snowflake/cortex/ai_count_tokens.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/prompt | reference/snowflake/cortex/prompt.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/to_file | reference/snowflake/cortex/to_file.md"
 
-    # Snowflake Cortex - Core AI SQL Functions
-    "https://docs.snowflake.com/en/sql-reference/functions/ai_complete | snowflake/cortex/ai_complete.md"
-    "https://docs.snowflake.com/en/sql-reference/functions/ai_classify | snowflake/cortex/ai_classify.md"
-    "https://docs.snowflake.com/en/sql-reference/functions/ai_filter | snowflake/cortex/ai_filter.md"
-    "https://docs.snowflake.com/en/sql-reference/functions/ai_extract | snowflake/cortex/ai_extract.md"
-    "https://docs.snowflake.com/en/sql-reference/functions/ai_sentiment | snowflake/cortex/ai_sentiment.md"
-    "https://docs.snowflake.com/en/sql-reference/functions/ai_redact | snowflake/cortex/ai_redact.md"
-    "https://docs.snowflake.com/en/sql-reference/functions/ai_translate | snowflake/cortex/ai_translate.md"
-    "https://docs.snowflake.com/en/sql-reference/functions/ai_agg | snowflake/cortex/ai_agg.md"
-    "https://docs.snowflake.com/en/sql-reference/functions/ai_summarize_agg | snowflake/cortex/ai_summarize_agg.md"
-    "https://docs.snowflake.com/en/sql-reference/functions/ai_embed | snowflake/cortex/ai_embed.md"
-    "https://docs.snowflake.com/en/sql-reference/functions/ai_similarity | snowflake/cortex/ai_similarity.md"
-    "https://docs.snowflake.com/en/sql-reference/functions/ai_transcribe | snowflake/cortex/ai_transcribe.md"
-    "https://docs.snowflake.com/en/sql-reference/functions/ai_parse_document | snowflake/cortex/ai_parse_document.md"
-    "https://docs.snowflake.com/en/sql-reference/functions/ai_count_tokens | snowflake/cortex/ai_count_tokens.md"
-    "https://docs.snowflake.com/en/sql-reference/functions/prompt | snowflake/cortex/prompt.md"
-    "https://docs.snowflake.com/en/sql-reference/functions/to_file | snowflake/cortex/to_file.md"
+    # === REFERENCE: Snowflake Cortex REST API endpoints ===
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api/embed-api | reference/snowflake/cortex/rest-api/embed-api.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api | reference/snowflake/cortex/rest-api/cortex-agents-rest-api.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run | reference/snowflake/cortex/rest-api/cortex-agents-run.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-threads-rest-api | reference/snowflake/cortex/rest-api/cortex-agents-threads-rest-api.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-feedback-rest-api | reference/snowflake/cortex/rest-api/cortex-agents-feedback-rest-api.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst/rest-api | reference/snowflake/cortex/rest-api/cortex-analyst-rest-api.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service | reference/snowflake/cortex/rest-api/query-cortex-search-service.md"
 
-    # Snowflake Cortex - Broader Cortex Services
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents | snowflake/cortex/cortex-agents.md"
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp | snowflake/cortex/cortex-agents-mcp.md"
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst | snowflake/cortex/cortex-analyst.md"
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview | snowflake/cortex/cortex-search-overview.md"
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview | snowflake/cortex/cke-overview.md"
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api | snowflake/cortex/cortex-rest-api.md"
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-ai-guardrails | snowflake/cortex/cortex-ai-guardrails.md"
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/ai-observability | snowflake/cortex/ai-observability.md"
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/snowflake-intelligence | snowflake/cortex/snowflake-intelligence.md"
+    # === DOCS: Snowflake Cortex user guides ===
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/aisql | docs/snowflake/cortex/aisql-overview.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents | docs/snowflake/cortex/cortex-agents.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp | docs/snowflake/cortex/cortex-agents-mcp.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst | docs/snowflake/cortex/cortex-analyst.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview | docs/snowflake/cortex/cortex-search-overview.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview | docs/snowflake/cortex/cke-overview.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api | docs/snowflake/cortex/cortex-rest-api.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-ai-guardrails | docs/snowflake/cortex/cortex-ai-guardrails.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/ai-observability | docs/snowflake/cortex/ai-observability.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/snowflake-intelligence | docs/snowflake/cortex/snowflake-intelligence.md"
 
-    # Snowflake Cortex - REST API references
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api/embed-api | snowflake/cortex/rest-api/embed-api.md"
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api | snowflake/cortex/rest-api/cortex-agents-rest-api.md"
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run | snowflake/cortex/rest-api/cortex-agents-run.md"
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-threads-rest-api | snowflake/cortex/rest-api/cortex-agents-threads-rest-api.md"
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-feedback-rest-api | snowflake/cortex/rest-api/cortex-agents-feedback-rest-api.md"
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst/rest-api | snowflake/cortex/rest-api/cortex-analyst-rest-api.md"
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service | snowflake/cortex/rest-api/query-cortex-search-service.md"
+    # === DOCS: OpenAI prompt guidance (per-model tabs) ===
+    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.5 | docs/openai/prompt-guidance/gpt-5.5.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.4 | docs/openai/prompt-guidance/gpt-5.4.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.3-codex | docs/openai/prompt-guidance/gpt-5.3-codex.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.2 | docs/openai/prompt-guidance/gpt-5.2.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.1 | docs/openai/prompt-guidance/gpt-5.1.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5 | docs/openai/prompt-guidance/gpt-5.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-4.1 | docs/openai/prompt-guidance/gpt-4.1.md"
 
-    # OpenAI - Prompt Guidance (per-model tabs)
-    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.5 | openai/prompt-guidance/gpt-5.5.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.4 | openai/prompt-guidance/gpt-5.4.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.3-codex | openai/prompt-guidance/gpt-5.3-codex.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.2 | openai/prompt-guidance/gpt-5.2.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.1 | openai/prompt-guidance/gpt-5.1.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5 | openai/prompt-guidance/gpt-5.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-4.1 | openai/prompt-guidance/gpt-4.1.md"
+    # === DOCS: Anthropic Claude prompt engineering and model context ===
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview | docs/anthropic/prompt-engineering/overview.md"
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices | docs/anthropic/prompt-engineering/claude-prompting-best-practices.md"
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-tools | docs/anthropic/prompt-engineering/prompting-tools.md"
+    "https://platform.claude.com/docs/en/about-claude/models/overview | docs/anthropic/models/overview.md"
+    "https://platform.claude.com/docs/en/about-claude/models/migration-guide | docs/anthropic/models/migration-guide.md"
+    "https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-7 | docs/anthropic/models/whats-new-claude-4-7.md"
 )
 
 # --- EXECUTION START ---
