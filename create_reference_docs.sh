@@ -91,6 +91,15 @@ URL_LIST=(
     "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-feedback-rest-api | snowflake/cortex/rest-api/cortex-agents-feedback-rest-api.md"
     "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst/rest-api | snowflake/cortex/rest-api/cortex-analyst-rest-api.md"
     "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service | snowflake/cortex/rest-api/query-cortex-search-service.md"
+
+    # OpenAI - Prompt Guidance (per-model tabs)
+    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.5 | openai/prompt-guidance/gpt-5.5.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.4 | openai/prompt-guidance/gpt-5.4.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.3-codex | openai/prompt-guidance/gpt-5.3-codex.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.2 | openai/prompt-guidance/gpt-5.2.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.1 | openai/prompt-guidance/gpt-5.1.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5 | openai/prompt-guidance/gpt-5.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-4.1 | openai/prompt-guidance/gpt-4.1.md"
 )
 
 # --- EXECUTION START ---

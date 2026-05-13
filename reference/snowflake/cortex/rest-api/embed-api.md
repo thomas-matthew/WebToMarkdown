@@ -124,7 +124,7 @@ The following table shows the EMBED function models that you can prompt using th
 | `e5-base-v2` | ✔ | ✔ | ✔ |  |  | ✔ | ✔ | ✔ |
 | `snowflake-arctic-embed-l-v2.0` | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
 
-Expand
+Collapse
 
 Show lessSee more
 
