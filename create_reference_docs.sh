@@ -23,6 +23,12 @@ URL_LIST=(
     # LangChain Integrations
     "https://reference.langchain.com/python/langchain-openai/chat_models/base/ChatOpenAI | reference/integrations/ChatOpenAI.md"
     "https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI | reference/integrations/BaseChatOpenAI.md"
+    "https://reference.langchain.com/python/langchain-openai/chat_models/azure/AzureChatOpenAI | reference/integrations/AzureChatOpenAI.md"
+    "https://reference.langchain.com/python/langchain-openai/embeddings/base/OpenAIEmbeddings | reference/integrations/OpenAIEmbeddings.md"
+    "https://reference.langchain.com/python/langchain-openai/embeddings/azure/AzureOpenAIEmbeddings | reference/integrations/AzureOpenAIEmbeddings.md"
+    "https://reference.langchain.com/python/langchain-openai/llms/base/OpenAI | reference/integrations/OpenAI.md"
+    "https://reference.langchain.com/python/langchain-openai/llms/base/BaseOpenAI | reference/integrations/BaseOpenAI.md"
+    "https://reference.langchain.com/python/langchain-openai/llms/azure/AzureOpenAI | reference/integrations/AzureOpenAI.md"
     "https://reference.langchain.com/python/integrations/langchain_aws/ | reference/integrations/langchain_aws.md"
     "https://reference.langchain.com/python/langchain-xai | reference/integrations/langchain_xai.md"
     "https://reference.langchain.com/python/langchain-xai/chat_models/ChatXAI | reference/integrations/ChatXAI.md"
@@ -54,7 +60,7 @@ URL_LIST=(
     "https://reference.langchain.com/python/langgraph/constants/ | reference/langgraph/constants.md"
     "https://reference.langchain.com/python/langgraph/channels/ | reference/langgraph/channels.md"
     "https://reference.langchain.com/python/langgraph/agents/ | reference/langgraph/agents.md"
-    "https://reference.langchain.com/python/langgraph/supervisor/ | reference/langgraph/supervisor.md"
+    "https://reference.langchain.com/python/langgraph-supervisor | reference/langgraph/supervisor.md"
 
     # === REFERENCE: Snowflake Cortex AI SQL Functions ===
     "https://docs.snowflake.com/en/sql-reference/functions/ai_complete | reference/snowflake/cortex/ai_complete.md"

@@ -1,115 +1,113 @@
-Python[langchain-openai](/python/langchain-openai)[chat\_models](/python/langchain-openai/chat_models)[base](/python/langchain-openai/chat_models/base)ChatOpenAI
+Python[langchain-openai](/python/langchain-openai)[chat\_models](/python/langchain-openai/chat_models)[azure](/python/langchain-openai/chat_models/azure)AzureChatOpenAI
 
 Classv1.2.1 (latest)●Since v0.1
 
-# ChatOpenAI
+# AzureChatOpenAI
 
-Interface to OpenAI chat model APIs.
+Azure OpenAI chat model integration.
 
-API scope
+Copy
 
-`ChatOpenAI` targets
-[official OpenAI API specifications](https://github.com/openai/openai-openapi)
-only. Non-standard response fields added by third-party providers (e.g.,
-`reasoning_content`, `reasoning_details`) are **not** extracted or
-preserved. If you are pointing `base_url` at a provider such as
-OpenRouter, vLLM, or DeepSeek, use the corresponding provider-specific
-LangChain package instead (e.g., `ChatDeepSeek`, `ChatOpenRouter`).
+```
+AzureChatOpenAI()
+```
 
-Setup
+## Bases
 
-Install `langchain-openai` and set environment variable `OPENAI_API_KEY`.
+`BaseChatOpenAI`
+
+**Setup:**
+
+Head to the Azure [OpenAI quickstart guide](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/chatgpt-quickstart?tabs=keyless%2Ctypescript-keyless%2Cpython-new%2Ccommand-line&pivots=programming-language-python)
+to create your Azure OpenAI deployment.
+
+Then install `langchain-openai` and set environment variables
+`AZURE_OPENAI_API_KEY` and `AZURE_OPENAI_ENDPOINT`:
 
 ```
 pip install -U langchain-openai
 
-# or using uv
-uv add langchain-openai
+export AZURE_OPENAI_API_KEY="your-api-key"
+export AZURE_OPENAI_ENDPOINT="https://your-endpoint.openai.azure.com/"
 ```
 
 Copy
 
-```
-export OPENAI_API_KEY="your-api-key"
-```
+Key init args — completion params:
+azure\_deployment:
+Name of Azure OpenAI deployment to use.
+temperature:
+Sampling temperature.
+max\_tokens:
+Max number of tokens to generate.
+logprobs:
+Whether to return logprobs.
 
-Copy
+Key init args — client params:
+api\_version:
+Azure OpenAI REST API version to use (distinct from the version of the
+underlying model). [See more on the different versions.](https://learn.microsoft.com/en-us/azure/ai-services/openai/reference#rest-api-versioning)
+timeout:
+Timeout for requests.
+max\_retries:
+Max number of retries.
+organization:
+OpenAI organization ID. If not passed in will be read from env
+var `OPENAI_ORG_ID`.
+model:
+The name of the underlying OpenAI model. Used for tracing and token
+counting. Does not affect completion. E.g. `'gpt-4'`, `'gpt-35-turbo'`, etc.
+model\_version:
+The version of the underlying OpenAI model. Used for tracing and token
+counting. Does not affect completion. E.g., `'0125'`, `'0125-preview'`, etc.
 
-Key init args — completion params
+See full list of supported init args and their descriptions in the params section.
 
-| Param | Type | Description |
-| --- | --- | --- |
-| `model` | `str` | Name of OpenAI model to use. |
-| `temperature` | `float` | Sampling temperature. |
-| `max_tokens` | `int | None` | Max number of tokens to generate. |
-| `logprobs` | `bool | None` | Whether to return logprobs. |
-| `stream_options` | `dict` | Configure streaming outputs, like whether to return token usage when streaming (`{"include_usage": True}`). |
-| `use_responses_api` | `bool | None` | Whether to use the responses API. |
-
-See full list of supported init args and their descriptions below.
-
-Key init args — client params
-
-| Param | Type | Description |
-| --- | --- | --- |
-| `timeout` | `float | Tuple[float, float] | Any | None` | Timeout for requests. |
-| `max_retries` | `int | None` | Max number of retries. |
-| `api_key` | `str | None` | OpenAI API key. If not passed in will be read from env var `OPENAI_API_KEY`. |
-| `base_url` | `str | None` | Base URL for API requests. Only specify if using a proxy or service emulator. |
-| `organization` | `str | None` | OpenAI organization ID. If not passed in will be read from env var `OPENAI_ORG_ID`. |
-
-See full list of supported init args and their descriptions below.
-
-Instantiate
-
-Create a model instance with desired params. For example:
+**Instantiate:**
 
 ```
-from langchain_openai import ChatOpenAI
+from langchain_openai import AzureChatOpenAI
 
-model = ChatOpenAI(
-    model="...",
+model = AzureChatOpenAI(
+    azure_deployment="your-deployment",
+    api_version="2024-05-01-preview",
     temperature=0,
     max_tokens=None,
     timeout=None,
     max_retries=2,
-    # api_key="...",
-    # base_url="...",
     # organization="...",
+    # model="gpt-35-turbo",
+    # model_version="0125",
     # other params...
 )
 ```
 
 Copy
 
-See all available params below.
+Any param which is not explicitly supported will be passed directly to the
+`openai.AzureOpenAI.chat.completions.create(...)` API every time to the model is
+invoked.
 
-Preserved params
-
-Any param which is not explicitly supported will be passed directly to
-[`openai.OpenAI.chat.completions.create(...)`](https://platform.openai.com/docs/api-reference/chat/create)
-every time to the model is invoked. For example:
+For example:
 
 ```
-from langchain_openai import ChatOpenAI
+from langchain_openai import AzureChatOpenAI
 import openai
 
-ChatOpenAI(..., frequency_penalty=0.2).invoke(...)
+AzureChatOpenAI(..., logprobs=True).invoke(...)
 
-# Results in underlying API call of:
+# results in underlying API call of:
 
-openai.OpenAI(..).chat.completions.create(..., frequency_penalty=0.2)
+openai.AzureOpenAI(..).chat.completions.create(..., logprobs=True)
 
-# Which is also equivalent to:
+# which is also equivalent to:
 
-ChatOpenAI(...).invoke(..., frequency_penalty=0.2)
+AzureChatOpenAI(...).invoke(..., logprobs=True)
 ```
 
 Copy
 
-Invoke
-
-Generate a response from the model:
+**Invoke:**
 
 ```
 messages = [
@@ -124,32 +122,49 @@ model.invoke(messages)
 
 Copy
 
-Results in an `AIMessage` response:
-
 ```
 AIMessage(
-    content="J'adore la programmation.",
+    content="J'adore programmer.",
+    usage_metadata={
+        "input_tokens": 28,
+        "output_tokens": 6,
+        "total_tokens": 34,
+    },
     response_metadata={
         "token_usage": {
-            "completion_tokens": 5,
-            "prompt_tokens": 31,
-            "total_tokens": 36,
+            "completion_tokens": 6,
+            "prompt_tokens": 28,
+            "total_tokens": 34,
         },
-        "model_name": "gpt-4o",
-        "system_fingerprint": "fp_43dfabdef1",
+        "model_name": "gpt-4",
+        "system_fingerprint": "fp_7ec89fabc6",
+        "prompt_filter_results": [
+            {
+                "prompt_index": 0,
+                "content_filter_results": {
+                    "hate": {"filtered": False, "severity": "safe"},
+                    "self_harm": {"filtered": False, "severity": "safe"},
+                    "sexual": {"filtered": False, "severity": "safe"},
+                    "violence": {"filtered": False, "severity": "safe"},
+                },
+            }
+        ],
         "finish_reason": "stop",
         "logprobs": None,
+        "content_filter_results": {
+            "hate": {"filtered": False, "severity": "safe"},
+            "self_harm": {"filtered": False, "severity": "safe"},
+            "sexual": {"filtered": False, "severity": "safe"},
+            "violence": {"filtered": False, "severity": "safe"},
+        },
     },
-    id="run-012cffe2-5d3d-424d-83b5-51c6d4a593d1-0",
-    usage_metadata={"input_tokens": 31, "output_tokens": 5, "total_tokens": 36},
+    id="run-6d7a5282-0de0-4f27-9cc0-82a9db9a3ce9-0",
 )
 ```
 
 Copy
 
-Stream
-
-Stream a response from the model:
+**Stream:**
 
 ```
 for chunk in model.stream(messages):
@@ -158,94 +173,70 @@ for chunk in model.stream(messages):
 
 Copy
 
-Results in a sequence of `AIMessageChunk` objects with partial content:
-
 ```
-AIMessageChunk(content="", id="run-9e1517e3-12bf-48f2-bb1b-2e824f7cd7b0")
-AIMessageChunk(content="J", id="run-9e1517e3-12bf-48f2-bb1b-2e824f7cd7b0")
-AIMessageChunk(content="'adore", id="run-9e1517e3-12bf-48f2-bb1b-2e824f7cd7b0")
-AIMessageChunk(content=" la", id="run-9e1517e3-12bf-48f2-bb1b-2e824f7cd7b0")
+AIMessageChunk(content="", id="run-a6f294d3-0700-4f6a-abc2-c6ef1178c37f")
+AIMessageChunk(content="J", id="run-a6f294d3-0700-4f6a-abc2-c6ef1178c37f")
+AIMessageChunk(content="'", id="run-a6f294d3-0700-4f6a-abc2-c6ef1178c37f")
+AIMessageChunk(content="ad", id="run-a6f294d3-0700-4f6a-abc2-c6ef1178c37f")
+AIMessageChunk(content="ore", id="run-a6f294d3-0700-4f6a-abc2-c6ef1178c37f")
+AIMessageChunk(content=" la", id="run-a6f294d3-0700-4f6a-abc2-c6ef1178c37f")
 AIMessageChunk(
-    content=" programmation", id="run-9e1517e3-12bf-48f2-bb1b-2e824f7cd7b0"
+    content=" programm", id="run-a6f294d3-0700-4f6a-abc2-c6ef1178c37f"
 )
-AIMessageChunk(content=".", id="run-9e1517e3-12bf-48f2-bb1b-2e824f7cd7b0")
+AIMessageChunk(content="ation", id="run-a6f294d3-0700-4f6a-abc2-c6ef1178c37f")
+AIMessageChunk(content=".", id="run-a6f294d3-0700-4f6a-abc2-c6ef1178c37f")
 AIMessageChunk(
     content="",
-    response_metadata={"finish_reason": "stop"},
-    id="run-9e1517e3-12bf-48f2-bb1b-2e824f7cd7b0",
+    response_metadata={
+        "finish_reason": "stop",
+        "model_name": "gpt-4",
+        "system_fingerprint": "fp_811936bd4f",
+    },
+    id="run-a6f294d3-0700-4f6a-abc2-c6ef1178c37f",
 )
 ```
 
 Copy
-
-To collect the full message, you can concatenate the chunks:
 
 ```
 stream = model.stream(messages)
 full = next(stream)
 for chunk in stream:
     full += chunk
+full
 ```
 
 Copy
 
 ```
-full = AIMessageChunk(
-    content="J'adore la programmation.",
-    response_metadata={"finish_reason": "stop"},
-    id="run-bf917526-7f58-4683-84f7-36a6b671d140",
-)
-```
-
-Copy
-
-Async
-
-Asynchronous equivalents of `invoke`, `stream`, and `batch` are also available:
-
-```
-# Invoke
-await model.ainvoke(messages)
-
-# Stream
-async for chunk in (await model.astream(messages))
-
-# Batch
-await model.abatch([messages])
-```
-
-Copy
-
-Results in an `AIMessage` response:
-
-```
-AIMessage(
+AIMessageChunk(
     content="J'adore la programmation.",
     response_metadata={
-        "token_usage": {
-            "completion_tokens": 5,
-            "prompt_tokens": 31,
-            "total_tokens": 36,
-        },
-        "model_name": "gpt-4o",
-        "system_fingerprint": "fp_43dfabdef1",
         "finish_reason": "stop",
-        "logprobs": None,
+        "model_name": "gpt-4",
+        "system_fingerprint": "fp_811936bd4f",
     },
-    id="run-012cffe2-5d3d-424d-83b5-51c6d4a593d1-0",
-    usage_metadata={
-        "input_tokens": 31,
-        "output_tokens": 5,
-        "total_tokens": 36,
-    },
+    id="run-ba60e41c-9258-44b8-8f3a-2f10599643b3",
 )
 ```
 
 Copy
 
-For batched calls, results in a `list[AIMessage]`.
+**Async:**
 
-Tool calling
+```
+await model.ainvoke(messages)
+
+# stream:
+# async for chunk in (await model.astream(messages))
+
+# batch:
+# await model.abatch([messages])
+```
+
+Copy
+
+**Tool calling:**
 
 ```
 from pydantic import BaseModel, Field
@@ -264,10 +255,7 @@ class GetPopulation(BaseModel):
         ..., description="The city and state, e.g. San Francisco, CA"
     )
 
-model_with_tools = model.bind_tools(
-    [GetWeather, GetPopulation]
-    # strict = True  # Enforce tool args schema is respected
-)
+model_with_tools = model.bind_tools([GetWeather, GetPopulation])
 ai_msg = model_with_tools.invoke(
     "Which city is hotter today and which is bigger: LA or NY?"
 )
@@ -303,206 +291,11 @@ Copy
 
 Copy
 
-Parallel tool calls
-
-[`openai >= 1.32`](https://pypi.org/project/openai/) supports a
-`parallel_tool_calls` parameter that defaults to `True`. This parameter can
-be set to `False` to disable parallel tool calls:
+**Structured output:**
 
 ```
-ai_msg = model_with_tools.invoke(
-    "What is the weather in LA and NY?", parallel_tool_calls=False
-)
-ai_msg.tool_calls
-```
+from typing import Optional
 
-Copy
-
-```
-[
-    {
-        "name": "GetWeather",
-        "args": {"location": "Los Angeles, CA"},
-        "id": "call_4OoY0ZR99iEvC7fevsH8Uhtz",
-    }
-]
-```
-
-Copy
-
-Like other runtime parameters, `parallel_tool_calls` can be bound to a model
-using `model.bind(parallel_tool_calls=False)` or during instantiation by
-setting `model_kwargs`.
-
-See `bind_tools` for more.
-
-Built-in (server-side) tools
-
-You can access [built-in tools](https://platform.openai.com/docs/guides/tools?api-mode=responses)
-supported by the OpenAI Responses API. See [LangChain docs](https://docs.langchain.com/oss/python/integrations/chat/openai#responses-api)
-for more detail.
-
-```
-from langchain_openai import ChatOpenAI
-
-model = ChatOpenAI(model="...", output_version="responses/v1")
-
-tool = {"type": "web_search"}
-model_with_tools = model.bind_tools([tool])
-
-response = model_with_tools.invoke("What was a positive news story from today?")
-response.content
-```
-
-Copy
-
-```
-[
-    {
-        "type": "text",
-        "text": "Today, a heartwarming story emerged from ...",
-        "annotations": [
-            {
-                "end_index": 778,
-                "start_index": 682,
-                "title": "Title of story",
-                "type": "url_citation",
-                "url": "<url of story>",
-            }
-        ],
-    }
-]
-```
-
-Copy
-
-Added in `langchain-openai` 0.3.26: Updated `AIMessage` format
-
-[`langchain-openai >= 0.3.26`](https://pypi.org/project/langchain-openai/#history)
-allows users to opt-in to an updated `AIMessage` format when using the
-Responses API. Setting `ChatOpenAI(..., output_version="responses/v1")` will
-format output from reasoning summaries, built-in tool invocations, and other
-response items into the message's `content` field, rather than
-`additional_kwargs`. We recommend this format for new applications.
-
-Managing conversation state
-
-OpenAI's Responses API supports management of [conversation state](https://platform.openai.com/docs/guides/conversation-state?api-mode=responses).
-Passing in response IDs from previous messages will continue a conversational
-thread.
-
-```
-from langchain_openai import ChatOpenAI
-
-model = ChatOpenAI(
-    model="...",
-    use_responses_api=True,
-    output_version="responses/v1",
-)
-response = model.invoke("Hi, I'm Bob.")
-response.text
-```
-
-Copy
-
-```
-"Hi Bob! How can I assist you today?"
-```
-
-Copy
-
-```
-second_response = model.invoke(
-    "What is my name?",
-    previous_response_id=response.response_metadata["id"],
-)
-second_response.text
-```
-
-Copy
-
-```
-"Your name is Bob. How can I help you today, Bob?"
-```
-
-Copy
-
-Added in `langchain-openai` 0.3.26
-
-You can also initialize `ChatOpenAI` with `use_previous_response_id`.
-Input messages up to the most recent response will then be dropped from request
-payloads, and `previous_response_id` will be set using the ID of the most
-recent response.
-
-```
-model = ChatOpenAI(model="...", use_previous_response_id=True)
-```
-
-Copy
-
-OpenAI-compatible endpoints
-
-Some OpenAI-compatible providers/proxies may not support forwarding
-reasoning blocks in request history. If you see request-format
-errors while using reasoning + Responses API, prefer
-`use_previous_response_id=True` (so the server keeps
-conversation state).
-
-Reasoning output
-
-OpenAI's Responses API supports [reasoning models](https://platform.openai.com/docs/guides/reasoning?api-mode=responses)
-that expose a summary of internal reasoning processes.
-
-```
-from langchain_openai import ChatOpenAI
-
-reasoning = {
-    "effort": "medium",  # 'low', 'medium', or 'high'
-    "summary": "auto",  # 'detailed', 'auto', or None
-}
-
-model = ChatOpenAI(
-    model="...", reasoning=reasoning, output_version="responses/v1"
-)
-response = model.invoke("What is 3^3?")
-
-# Response text
-print(f"Output: {response.text}")
-
-# Reasoning summaries
-for block in response.content:
-    if block["type"] == "reasoning":
-        for summary in block["summary"]:
-            print(summary["text"])
-```
-
-Copy
-
-```
-Output: 3³ = 27
-Reasoning: The user wants to know...
-```
-
-Copy
-
-Added in `langchain-openai` 0.3.26: Updated `AIMessage` format
-
-[`langchain-openai >= 0.3.26`](https://pypi.org/project/langchain-openai/#history)
-allows users to opt-in to an updated `AIMessage` format when using the
-Responses API. Setting `ChatOpenAI(..., output_version="responses/v1")` will
-format output from reasoning summaries, built-in tool invocations, and other
-response items into the message's `content` field, rather than
-`additional_kwargs`. We recommend this format for new applications.
-
-Troubleshooting with non-OpenAI backends
-
-When using a non-OpenAI endpoint via `base_url`, request handling for
-reasoning history can differ. If agent loops fail after tool calls, use:
-`ChatOpenAI(..., use_responses_api=True, use_previous_response_id=True)`.
-
-Structured output
-
-```
 from pydantic import BaseModel, Field
 
 class Joke(BaseModel):
@@ -530,9 +323,9 @@ Joke(
 
 Copy
 
-See `with_structured_output` for more info.
+See `AzureChatOpenAI.with_structured_output()` for more.
 
-JSON mode
+**JSON mode:**
 
 ```
 json_model = model.bind(response_format={"type": "json_object"})
@@ -550,12 +343,12 @@ Copy
 
 Copy
 
-Image input
+**Image input:**
 
 ```
 import base64
 import httpx
-from langchain.messages import HumanMessage
+from langchain_core.messages import HumanMessage
 
 image_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg"
 image_data = base64.b64encode(httpx.get(image_url).content).decode("utf-8")
@@ -568,7 +361,6 @@ message = HumanMessage(
         },
     ]
 )
-
 ai_msg = model.invoke([message])
 ai_msg.content
 ```
@@ -576,31 +368,16 @@ ai_msg.content
 Copy
 
 ```
-"The weather in the image appears to be clear and pleasant. The sky is mostly blue with scattered, light clouds, suggesting a sunny day with minimal cloud cover. There is no indication of rain or strong winds, and the overall scene looks bright and calm. The lush green grass and clear visibility further indicate good weather conditions."
+"The weather in the image appears to be quite pleasant. The sky is mostly clear"
 ```
 
 Copy
 
-Token usage
+**Token usage:**
 
 ```
 ai_msg = model.invoke(messages)
 ai_msg.usage_metadata
-
-```txt
-{"input_tokens": 28, "output_tokens": 5, "total_tokens": 33}
-```
-
-Copy
-
-When streaming, set the `stream_usage` kwarg:
-
-```
-stream = model.stream(messages, stream_usage=True)
-full = next(stream)
-for chunk in stream:
-    full += chunk
-full.usage_metadata
 ```
 
 Copy
@@ -611,7 +388,7 @@ Copy
 
 Copy
 
-Logprobs
+Logprobs:
 
 ```
 logprobs_model = model.bind(logprobs=True)
@@ -687,199 +464,161 @@ Copy
 ```
 {
     "token_usage": {
-        "completion_tokens": 5,
+        "completion_tokens": 6,
         "prompt_tokens": 28,
-        "total_tokens": 33,
+        "total_tokens": 34,
     },
-    "model_name": "gpt-4o",
-    "system_fingerprint": "fp_319be4768e",
+    "model_name": "gpt-35-turbo",
+    "system_fingerprint": None,
+    "prompt_filter_results": [
+        {
+            "prompt_index": 0,
+            "content_filter_results": {
+                "hate": {"filtered": False, "severity": "safe"},
+                "self_harm": {"filtered": False, "severity": "safe"},
+                "sexual": {"filtered": False, "severity": "safe"},
+                "violence": {"filtered": False, "severity": "safe"},
+            },
+        }
+    ],
     "finish_reason": "stop",
     "logprobs": None,
+    "content_filter_results": {
+        "hate": {"filtered": False, "severity": "safe"},
+        "self_harm": {"filtered": False, "severity": "safe"},
+        "sexual": {"filtered": False, "severity": "safe"},
+        "violence": {"filtered": False, "severity": "safe"},
+    },
 }
 ```
 
 Copy
 
-Flex processing
-
-OpenAI offers a variety of [service tiers](https://platform.openai.com/docs/guides/flex-processing?api-mode=responses).
-The "flex" tier offers cheaper pricing for requests, with the trade-off that
-responses may take longer and resources might not always be available.
-This approach is best suited for non-critical tasks, including model testing,
-data enhancement, or jobs that can be run asynchronously.
-
-To use it, initialize the model with `service_tier="flex"`:
-
-```
-from langchain_openai import ChatOpenAI
-
-model = ChatOpenAI(model="...", service_tier="flex")
-```
-
-Copy
-
-Note that this is a beta feature that is only available for a subset of models.
-See OpenAI [flex processing docs](https://platform.openai.com/docs/guides/flex-processing?api-mode=responses)
-for more detail.
-
-OpenAI-compatible APIs
-
-`ChatOpenAI` can be used with OpenAI-compatible APIs like
-[LM Studio](https://lmstudio.ai/), [vLLM](https://github.com/vllm-project/vllm),
-[Ollama](https://ollama.com/), and others.
-
-To use custom parameters specific to these providers, use the `extra_body` parameter.
-
-LM Studio example with TTL (auto-eviction)
-
-```
-from langchain_openai import ChatOpenAI
-
-model = ChatOpenAI(
-    base_url="http://localhost:1234/v1",
-    api_key="lm-studio",  # Can be any string
-    model="mlx-community/QwQ-32B-4bit",
-    temperature=0,
-    extra_body={
-        "ttl": 300
-    },  # Auto-evict model after 5 minutes of inactivity
-)
-```
-
-Copy
-
-vLLM example with custom parameters
-
-```
-model = ChatOpenAI(
-    base_url="http://localhost:8000/v1",
-    api_key="EMPTY",
-    model="meta-llama/Llama-2-7b-chat-hf",
-    extra_body={"use_beam_search": True, "best_of": 4},
-)
-```
-
-Copy
-
-`model_kwargs` vs `extra_body`
-
-Use the correct parameter for different types of API arguments:
-
-**Use `model_kwargs` for:**
-
-* Standard OpenAI API parameters not explicitly defined as class parameters
-* Parameters that should be flattened into the top-level request payload
-* Examples: `max_completion_tokens`, `stream_options`, `modalities`, `audio`
-
-```
-# Standard OpenAI parameters
-model = ChatOpenAI(
-    model="...",
-    model_kwargs={
-        "stream_options": {"include_usage": True},
-        "max_completion_tokens": 300,
-        "modalities": ["text", "audio"],
-        "audio": {"voice": "alloy", "format": "wav"},
-    },
-)
-```
-
-Copy
-
-**Use `extra_body` for:**
-
-* Custom parameters specific to OpenAI-compatible providers (vLLM, LM Studio,
-  OpenRouter, etc.)
-* Parameters that need to be nested under `extra_body` in the request
-* Any non-standard OpenAI API parameters
-
-```
-# Custom provider parameters
-model = ChatOpenAI(
-    base_url="http://localhost:8000/v1",
-    model="custom-model",
-    extra_body={
-        "use_beam_search": True,  # vLLM parameter
-        "best_of": 4,  # vLLM parameter
-        "ttl": 300,  # LM Studio parameter
-    },
-)
-```
-
-Copy
-
-**Key Differences:**
-
-* `model_kwargs`: Parameters are **merged into top-level** request payload
-* `extra_body`: Parameters are **nested under `extra_body`** key in request
-
-Warning
-
-Always use `extra_body` for custom parameters, **not** `model_kwargs`.
-Using `model_kwargs` for non-OpenAI parameters will cause API errors.
-
-Prompt caching optimization
-
-For high-volume applications with repetitive prompts, use `prompt_cache_key`
-per-invocation to improve cache hit rates and reduce costs:
-
-```
-model = ChatOpenAI(model="...")
-
-response = model.invoke(
-    messages,
-    prompt_cache_key="example-key-a",  # Routes to same machine for cache hits
-)
-
-customer_response = model.invoke(messages, prompt_cache_key="example-key-b")
-support_response = model.invoke(messages, prompt_cache_key="example-key-c")
-
-# Dynamic cache keys based on context
-cache_key = f"example-key-{dynamic_suffix}"
-response = model.invoke(messages, prompt_cache_key=cache_key)
-```
-
-Copy
-
-Cache keys help ensure requests with the same prompt prefix are routed to
-machines with existing cache, providing cost reduction and latency improvement on
-cached tokens.
-
-Copy
-
-```
-ChatOpenAI()
-```
-
-## Bases
-
-`BaseChatOpenAI`
-
 ## Used in Docs
 
-* [Agents](https://docs.langchain.com/oss/python/langchain/agents)
-* [Build a SQL assistant with on-demand skills](https://docs.langchain.com/oss/python/langchain/multi-agent/skills-sql-assistant)
-* [Custom workflow](https://docs.langchain.com/oss/python/langchain/multi-agent/custom-workflow)
-* [Evaluate a RAG application](https://docs.langchain.com/langsmith/evaluate-rag-tutorial)
-* [Manage prompts programmatically](https://docs.langchain.com/langsmith/manage-prompts-programmatically)
-
-+15 more(144 more not shown)
+* [Azure Cosmos DB for Apache Gremlin integration](https://docs.langchain.com/oss/python/integrations/graphs/azure_cosmosdb_gremlin)
+* [AzureChatOpenAI integration](https://docs.langchain.com/oss/python/integrations/chat/azure_chat_openai)
+* [Bing search integration](https://docs.langchain.com/oss/python/integrations/tools/bing_search)
+* [Microsoft integrations](https://docs.langchain.com/oss/python/integrations/providers/microsoft)
+* [Sqlserver integration](https://docs.langchain.com/oss/python/integrations/vectorstores/sqlserver)
 
 ## Attributes
 
 [attribute
 
+azure\_endpoint: str | None
+
+Your Azure endpoint, including the resource.
+
+Automatically inferred from env var `AZURE_OPENAI_ENDPOINT` if not provided.
+
+Example: `https://example-resource.azure.openai.com/`](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/azure_endpoint)[attribute
+
+deployment\_name: str | None
+
+A model deployment.
+
+If given sets the base client URL to include `/deployments/{azure_deployment}`
+
+Note
+
+This means you won't be able to use non-deployment endpoints.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/deployment_name)[attribute
+
+openai\_api\_version: str | None
+
+Automatically inferred from env var `OPENAI_API_VERSION` if not provided.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/openai_api_version)[attribute
+
+openai\_api\_key: SecretStr | None
+
+Automatically inferred from env var `AZURE_OPENAI_API_KEY` if not provided.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/openai_api_key)[attribute
+
+azure\_ad\_token: SecretStr | None
+
+Your Azure Active Directory token.
+
+Automatically inferred from env var `AZURE_OPENAI_AD_TOKEN` if not provided.
+
+For more, see [this page](https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id).](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/azure_ad_token)[attribute
+
+azure\_ad\_token\_provider: Callable[[], str] | None
+
+A function that returns an Azure Active Directory token.
+
+Will be invoked on every sync request. For async requests,
+will be invoked if `azure_ad_async_token_provider` is not provided.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/azure_ad_token_provider)[attribute
+
+azure\_ad\_async\_token\_provider: Callable[[], Awaitable[str]] | None
+
+A function that returns an Azure Active Directory token.
+
+Will be invoked on every async request.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/azure_ad_async_token_provider)[attribute
+
+model\_version: str
+
+The version of the model (e.g. `'0125'` for `'gpt-3.5-0125'`).
+
+Azure OpenAI doesn't return model version with the response by default so it must
+be manually specified if you want to use this information downstream, e.g. when
+calculating costs.
+
+When you specify the version, it will be appended to the model name in the
+response. Setting correct version will help you to calculate the cost properly.
+Model version is not validated, so make sure you set it correctly to get the
+correct cost.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/model_version)[attribute
+
+openai\_api\_type: str | None
+
+Legacy, for `openai<1.0.0` support.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/openai_api_type)[attribute
+
+validate\_base\_url: bool
+
+If legacy arg `openai_api_base` is passed in, try to infer if it is a
+`base_url` or `azure_endpoint` and update client params accordingly.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/validate_base_url)[attribute
+
+model\_name: str | None
+
+Name of the deployed OpenAI model, e.g. `'gpt-4o'`, `'gpt-35-turbo'`, etc.
+
+Distinct from the Azure deployment name, which is set by the Azure user.
+Used for tracing and token counting.
+
+Warning
+
+Does NOT affect completion.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/model_name)[attribute
+
+disabled\_params: dict[str, Any] | None
+
+Parameters of the OpenAI client or chat.completions endpoint that should be
+disabled for the given model.
+
+Should be specified as `{"param": None | ['val1', 'val2']}` where the key is the
+parameter and the value is either None, meaning that parameter should never be
+used, or it's a list of disabled values for the parameter.
+
+For example, older models may not support the `'parallel_tool_calls'` parameter at
+all, in which case `disabled_params={"parallel_tool_calls: None}` can ben passed
+in.
+
+If a parameter is disabled then it will not be used by default in any methods, e.g.
+in
+`langchain_openai.chat_models.azure.AzureChatOpenAI.with_structured_output`.
+However this does not prevent a user from directly passed in the parameter during
+invocation.
+
+By default, unless `model_name="gpt-4o"` is specified, then
+`'parallel_tools_calls'` will be disabled.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/disabled_params)[attribute
+
 max\_tokens: int | None
 
-Maximum number of tokens to generate.](/python/langchain-openai/chat_models/base/ChatOpenAI/max_tokens)[attribute
+Maximum number of tokens to generate.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/max_tokens)[attribute
 
 lc\_secrets: dict[str, str]
 
-Mapping of secret environment variables.](/python/langchain-openai/chat_models/base/ChatOpenAI/lc_secrets)[attribute
+Get the mapping of secret environment variables.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/lc_secrets)[attribute
 
 lc\_attributes: dict[str, Any]
 
-Get the attributes of the langchain object.](/python/langchain-openai/chat_models/base/ChatOpenAI/lc_attributes)
+Get the attributes relevant to tracing.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/lc_attributes)
 
 ## Methods
 
@@ -887,25 +626,25 @@ Get the attributes of the langchain object.](/python/langchain-openai/chat_model
 
 get\_lc\_namespace
 
-Get the namespace of the LangChain object.](/python/langchain-openai/chat_models/base/ChatOpenAI/get_lc_namespace)[method
+Get the namespace of the LangChain object.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/get_lc_namespace)[method
 
 is\_lc\_serializable
 
-Return whether this model can be serialized by LangChain.](/python/langchain-openai/chat_models/base/ChatOpenAI/is_lc_serializable)[method
+Check if the class is serializable in langchain.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/is_lc_serializable)[method
+
+validate\_environment
+
+Validate that api key and python package exists in environment.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/validate_environment)[method
 
 with\_structured\_output
 
-Model wrapper that returns outputs formatted to match the given schema.](/python/langchain-openai/chat_models/base/ChatOpenAI/with_structured_output)
+Model wrapper that returns outputs formatted to match the given schema.](/python/langchain-openai/chat_models/azure/AzureChatOpenAI/with_structured_output)
 
 ## Inherited from[BaseChatOpenAI](/python/langchain-openai/chat_models/base/BaseChatOpenAI)
 
 ### Attributes
 
-[Aclient: Any](/python/langchain-openai/chat_models/base/BaseChatOpenAI/client)[Aasync\_client: Any](/python/langchain-openai/chat_models/base/BaseChatOpenAI/async_client)[Aroot\_client: Any](/python/langchain-openai/chat_models/base/BaseChatOpenAI/root_client)[Aroot\_async\_client: Any](/python/langchain-openai/chat_models/base/BaseChatOpenAI/root_async_client)[Amodel\_name: str
-
-—
-
-Model name to use.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/model_name)[Atemperature: float | None
+[Aclient: Any](/python/langchain-openai/chat_models/base/BaseChatOpenAI/client)[Aasync\_client: Any](/python/langchain-openai/chat_models/base/BaseChatOpenAI/async_client)[Aroot\_client: Any](/python/langchain-openai/chat_models/base/BaseChatOpenAI/root_client)[Aroot\_async\_client: Any](/python/langchain-openai/chat_models/base/BaseChatOpenAI/root_async_client)[Atemperature: float | None
 
 —
 
@@ -913,11 +652,7 @@ What sampling temperature to use.](/python/langchain-openai/chat_models/base/Bas
 
 —
 
-Holds any model parameters valid for `create` call not explicitly specified.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/model_kwargs)[Aopenai\_api\_key: SecretStr | None | Callable[[], str] | Callable[[], Awaitable[str]]
-
-—
-
-API key to use.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/openai_api_key)[Aopenai\_api\_base: str | None
+Holds any model parameters valid for `create` call not explicitly specified.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/model_kwargs)[Aopenai\_api\_base: str | None
 
 —
 
@@ -1017,11 +752,7 @@ Optional additional JSON properties to include in the request parameters](/pytho
 
 —
 
-Whether to include response headers in the output message `response_metadata`.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/include_response_headers)[Adisabled\_params: dict[str, Any] | None
-
-—
-
-Parameters of the OpenAI client or `chat.completions` endpoint that should be](/python/langchain-openai/chat_models/base/BaseChatOpenAI/disabled_params)[Acontext\_management: list[dict[str, Any]] | None
+Whether to include response headers in the output message `response_metadata`.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/include_response_headers)[Acontext\_management: list[dict[str, Any]] | None
 
 —
 
@@ -1069,11 +800,7 @@ Build extra kwargs from additional params that were passed in.](/python/langchai
 
 —
 
-Validate temperature parameter for different models.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/validate_temperature)[Mvalidate\_environment
-
-—
-
-Validate that api key and python package exists in environment.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/validate_environment)[Mget\_token\_ids
+Validate temperature parameter for different models.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/validate_temperature)[Mget\_token\_ids
 
 —
 
@@ -1137,7 +864,7 @@ Bind tool-like objects to this chat model.](/python/langchain-openai/chat_models
 
 [Mget\_name](/python/langchain-core/runnables/base/Runnable/get_name)[Mget\_input\_schema](/python/langchain-core/runnables/base/Runnable/get_input_schema)[Mget\_input\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_input_jsonschema)[Mget\_output\_schema](/python/langchain-core/runnables/base/Runnable/get_output_schema)[Mget\_output\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_output_jsonschema)[Mconfig\_schema](/python/langchain-core/runnables/base/Runnable/config_schema)[Mget\_config\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_config_jsonschema)[Mget\_graph](/python/langchain-core/runnables/base/Runnable/get_graph)[Mget\_prompts](/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe](/python/langchain-core/runnables/base/Runnable/pipe)[Mpick](/python/langchain-core/runnables/base/Runnable/pick)[Massign](/python/langchain-core/runnables/base/Runnable/assign)[Minvoke](/python/langchain-core/runnables/base/Runnable/invoke)[Mainvoke](/python/langchain-core/runnables/base/Runnable/ainvoke)[Mbatch](/python/langchain-core/runnables/base/Runnable/batch)[Mbatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch](/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mstream](/python/langchain-core/runnables/base/Runnable/stream)[Mastream](/python/langchain-core/runnables/base/Runnable/astream)[Mastream\_log](/python/langchain-core/runnables/base/Runnable/astream_log)[Mastream\_events](/python/langchain-core/runnables/base/Runnable/astream_events)[Mstream\_events](/python/langchain-core/runnables/base/Runnable/stream_events)[Mtransform](/python/langchain-core/runnables/base/Runnable/transform)[Matransform](/python/langchain-core/runnables/base/Runnable/atransform)[Mbind](/python/langchain-core/runnables/base/Runnable/bind)[Mwith\_config](/python/langchain-core/runnables/base/Runnable/with_config)[Mwith\_listeners](/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith\_alisteners](/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith\_types](/python/langchain-core/runnables/base/Runnable/with_types)[Mwith\_retry](/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap](/python/langchain-core/runnables/base/Runnable/map)[Mwith\_fallbacks](/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas\_tool](/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/c4c91d9cd34ac53c7c73162671f98b7769a40123/libs/partners/openai/langchain_openai/chat_models/base.py#L2522)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/c4c91d9cd34ac53c7c73162671f98b7769a40123/libs/partners/openai/langchain_openai/chat_models/azure.py#L37)
 
 Version History
 
@@ -1149,21 +876,21 @@ Related Documentation
 
 Attributes
 
-Amax\_tokensAlc\_secretsAlc\_attributes
+Aazure\_endpointAdeployment\_nameAopenai\_api\_versionAopenai\_api\_keyAazure\_ad\_tokenAazure\_ad\_token\_providerAazure\_ad\_async\_token\_providerAmodel\_versionAopenai\_api\_typeAvalidate\_base\_urlAmodel\_nameAdisabled\_paramsAmax\_tokensAlc\_secretsAlc\_attributes
 
 Methods
 
-Mget\_lc\_namespaceMis\_lc\_serializableMwith\_structured\_output
+Mget\_lc\_namespaceMis\_lc\_serializableMvalidate\_environmentMwith\_structured\_output
 
 from BaseChatOpenAI
 
 AAttributes
 
-AclientAasync\_clientAroot\_clientAroot\_async\_clientAmodel\_nameAtemperatureAmodel\_kwargsAopenai\_api\_keyAopenai\_api\_baseAopenai\_organizationAopenai\_proxyArequest\_timeoutAstream\_usageAmax\_retriesApresence\_penaltyAfrequency\_penaltyAseedAlogprobsAtop\_logprobsAlogit\_biasAstreamingAnAtop\_pAreasoning\_effortAreasoningAverbosityAtiktoken\_model\_nameAdefault\_headersAdefault\_queryAhttp\_clientAhttp\_async\_clientAhttp\_socket\_optionsAstream\_chunk\_timeoutAstopAextra\_bodyAinclude\_response\_headersAdisabled\_paramsAcontext\_managementAincludeAservice\_tierAstoreAtruncationAuse\_previous\_response\_idAuse\_responses\_apiAoutput\_versionAmodel\_configAmodel
+AclientAasync\_clientAroot\_clientAroot\_async\_clientAtemperatureAmodel\_kwargsAopenai\_api\_baseAopenai\_organizationAopenai\_proxyArequest\_timeoutAstream\_usageAmax\_retriesApresence\_penaltyAfrequency\_penaltyAseedAlogprobsAtop\_logprobsAlogit\_biasAstreamingAnAtop\_pAreasoning\_effortAreasoningAverbosityAtiktoken\_model\_nameAdefault\_headersAdefault\_queryAhttp\_clientAhttp\_async\_clientAhttp\_socket\_optionsAstream\_chunk\_timeoutAstopAextra\_bodyAinclude\_response\_headersAcontext\_managementAincludeAservice\_tierAstoreAtruncationAuse\_previous\_response\_idAuse\_responses\_apiAoutput\_versionAmodel\_configAmodel
 
 MMethods
 
-Mbuild\_extraMvalidate\_temperatureMvalidate\_environmentMget\_token\_idsMget\_num\_tokens\_from\_messagesMbind\_tools
+Mbuild\_extraMvalidate\_temperatureMget\_token\_idsMget\_num\_tokens\_from\_messagesMbind\_tools
 
 from BaseChatModel
 
