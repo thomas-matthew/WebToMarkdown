@@ -50,6 +50,47 @@ URL_LIST=(
     "https://reference.langchain.com/python/langgraph/channels/ | langgraph/channels.md"
     "https://reference.langchain.com/python/langgraph/agents/ | langgraph/agents.md"
     "https://reference.langchain.com/python/langgraph/supervisor/ | langgraph/supervisor.md"
+
+    # Snowflake Cortex - AISQL overview
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/aisql | snowflake/cortex/aisql-overview.md"
+
+    # Snowflake Cortex - Core AI SQL Functions
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_complete | snowflake/cortex/ai_complete.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_classify | snowflake/cortex/ai_classify.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_filter | snowflake/cortex/ai_filter.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_extract | snowflake/cortex/ai_extract.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_sentiment | snowflake/cortex/ai_sentiment.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_redact | snowflake/cortex/ai_redact.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_translate | snowflake/cortex/ai_translate.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_agg | snowflake/cortex/ai_agg.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_summarize_agg | snowflake/cortex/ai_summarize_agg.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_embed | snowflake/cortex/ai_embed.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_similarity | snowflake/cortex/ai_similarity.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_transcribe | snowflake/cortex/ai_transcribe.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_parse_document | snowflake/cortex/ai_parse_document.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/ai_count_tokens | snowflake/cortex/ai_count_tokens.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/prompt | snowflake/cortex/prompt.md"
+    "https://docs.snowflake.com/en/sql-reference/functions/to_file | snowflake/cortex/to_file.md"
+
+    # Snowflake Cortex - Broader Cortex Services
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents | snowflake/cortex/cortex-agents.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp | snowflake/cortex/cortex-agents-mcp.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst | snowflake/cortex/cortex-analyst.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview | snowflake/cortex/cortex-search-overview.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview | snowflake/cortex/cke-overview.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api | snowflake/cortex/cortex-rest-api.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-ai-guardrails | snowflake/cortex/cortex-ai-guardrails.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/ai-observability | snowflake/cortex/ai-observability.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/snowflake-intelligence | snowflake/cortex/snowflake-intelligence.md"
+
+    # Snowflake Cortex - REST API references
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api/embed-api | snowflake/cortex/rest-api/embed-api.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api | snowflake/cortex/rest-api/cortex-agents-rest-api.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run | snowflake/cortex/rest-api/cortex-agents-run.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-threads-rest-api | snowflake/cortex/rest-api/cortex-agents-threads-rest-api.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-feedback-rest-api | snowflake/cortex/rest-api/cortex-agents-feedback-rest-api.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst/rest-api | snowflake/cortex/rest-api/cortex-analyst-rest-api.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service | snowflake/cortex/rest-api/query-cortex-search-service.md"
 )
 
 # --- EXECUTION START ---

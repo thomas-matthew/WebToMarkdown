@@ -1,13 +1,39 @@
-404
+Python[langchain](/python/langchain)Tools
 
-# Page not found
+# Tools
 
-The page you're looking for doesn't exist or has been moved. Try searching for what you need or navigate back to the documentation.
+This page contains **reference documentation** for Tools. See [the docs](https://docs.langchain.com/oss/python/langchain/tools) for conceptual guides, tutorials, and examples on using Tools.
 
-[Go Home](/)[Back to Docs](/python)
+## Classes
 
-Popular destinations
+[Class
 
-[Python Reference](/python)[JavaScript Reference](/javascript)
+### BaseTool
 
-Press `⌘K` to search
+Base class for all LangChain tools.](/python/langchain-core/tools/base/BaseTool)[Class
+
+### InjectedToolArg
+
+Annotation for tool arguments that are injected at runtime.](/python/langchain-core/tools/base/InjectedToolArg)[Class
+
+### InjectedToolCallId
+
+Annotation for injecting the tool call ID.](/python/langchain-core/tools/base/InjectedToolCallId)[Class
+
+### ToolException
+
+Exception thrown when a tool execution error occurs.](/python/langchain-core/tools/base/ToolException)
+
+## Constants
+
+[Attribute
+
+### tool
+
+LangChain tool instance created from the schema for model binding.](/python/langchain/agents/structured_output/OutputToolBinding/tool)
+
+Copy page
+
+### On This Page
+
+OverviewClasses4Constants1

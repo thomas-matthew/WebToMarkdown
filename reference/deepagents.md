@@ -56,6 +56,18 @@ For detailed information on how to contribute, see the [Contributing Guide](http
 
 [Class
 
+### SubagentRunStream
+
+Typed sync handle for a declared subagent execution.](/python/deepagents/_subagent_transformer/SubagentRunStream)[Class
+
+### AsyncSubagentRunStream
+
+Typed async handle for a declared subagent execution.](/python/deepagents/_subagent_transformer/AsyncSubagentRunStream)[Class
+
+### SubagentTransformer
+
+Promote declared subagents into typed handles on `run.subagents`.](/python/deepagents/_subagent_transformer/SubagentTransformer)[Class
+
 ### SubAgent
 
 Specification for an agent.](/python/deepagents/middleware/subagents/SubAgent)[Class
@@ -223,6 +235,10 @@ Runtime configuration for deep agent behavior.](/python/deepagents/profiles/harn
 ### BaseSandbox
 
 Base sandbox implementation with `execute()` as the core abstract method.](/python/deepagents/backends/sandbox/BaseSandbox)[Class
+
+### ContextHubBackend
+
+Backend that stores files in a LangSmith Hub agent repo (persistent).](/python/deepagents/backends/context_hub/ContextHubBackend)[Class
 
 ### StoreBackend
 
@@ -552,6 +568,10 @@ Memory backends for pluggable file storage.](/python/deepagents/backends)[Module
 
 Base sandbox implementation.](/python/deepagents/backends/sandbox)[Module
 
+### context\_hub
+
+ContextHubBackend: Store files in a LangSmith Hub agent repo (persistent).](/python/deepagents/backends/context_hub)[Module
+
 ### utils
 
 Shared utility functions for memory backend implementations.](/python/deepagents/backends/utils)[Module
@@ -604,4 +624,4 @@ Copy page
 
 ### On This Page
 
-DescriptionClasses63Functions40Modules27Types3
+DescriptionClasses67Functions40Modules28Types3
