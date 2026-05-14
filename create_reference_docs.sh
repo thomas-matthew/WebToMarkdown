@@ -158,6 +158,40 @@ URL_LIST=(
     "https://platform.claude.com/docs/en/about-claude/models/overview | docs/anthropic/models/overview.md"
     "https://platform.claude.com/docs/en/about-claude/models/migration-guide | docs/anthropic/models/migration-guide.md"
     "https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-7 | docs/anthropic/models/whats-new-claude-4-7.md"
+
+    # === REFERENCE: Claude Agent SDK API ===
+    # Raw .md URLs -- downloaded directly with curl, no scraping
+    "https://code.claude.com/docs/en/agent-sdk/python.md | reference/anthropic/agent-sdk/python.md"
+    "https://code.claude.com/docs/en/agent-sdk/typescript.md | reference/anthropic/agent-sdk/typescript.md"
+    "https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview.md | reference/anthropic/agent-sdk/typescript-v2-preview.md"
+
+    # === DOCS: Claude Agent SDK guides ===
+    "https://code.claude.com/docs/en/agent-sdk/overview.md | docs/anthropic/agent-sdk/overview.md"
+    "https://code.claude.com/docs/en/agent-sdk/quickstart.md | docs/anthropic/agent-sdk/quickstart.md"
+    "https://code.claude.com/docs/en/agent-sdk/agent-loop.md | docs/anthropic/agent-sdk/agent-loop.md"
+    "https://code.claude.com/docs/en/agent-sdk/claude-code-features.md | docs/anthropic/agent-sdk/claude-code-features.md"
+    "https://code.claude.com/docs/en/agent-sdk/cost-tracking.md | docs/anthropic/agent-sdk/cost-tracking.md"
+    "https://code.claude.com/docs/en/agent-sdk/custom-tools.md | docs/anthropic/agent-sdk/custom-tools.md"
+    "https://code.claude.com/docs/en/agent-sdk/file-checkpointing.md | docs/anthropic/agent-sdk/file-checkpointing.md"
+    "https://code.claude.com/docs/en/agent-sdk/hooks.md | docs/anthropic/agent-sdk/hooks.md"
+    "https://code.claude.com/docs/en/agent-sdk/hosting.md | docs/anthropic/agent-sdk/hosting.md"
+    "https://code.claude.com/docs/en/agent-sdk/mcp.md | docs/anthropic/agent-sdk/mcp.md"
+    "https://code.claude.com/docs/en/agent-sdk/migration-guide.md | docs/anthropic/agent-sdk/migration-guide.md"
+    "https://code.claude.com/docs/en/agent-sdk/modifying-system-prompts.md | docs/anthropic/agent-sdk/modifying-system-prompts.md"
+    "https://code.claude.com/docs/en/agent-sdk/observability.md | docs/anthropic/agent-sdk/observability.md"
+    "https://code.claude.com/docs/en/agent-sdk/permissions.md | docs/anthropic/agent-sdk/permissions.md"
+    "https://code.claude.com/docs/en/agent-sdk/plugins.md | docs/anthropic/agent-sdk/plugins.md"
+    "https://code.claude.com/docs/en/agent-sdk/secure-deployment.md | docs/anthropic/agent-sdk/secure-deployment.md"
+    "https://code.claude.com/docs/en/agent-sdk/sessions.md | docs/anthropic/agent-sdk/sessions.md"
+    "https://code.claude.com/docs/en/agent-sdk/skills.md | docs/anthropic/agent-sdk/skills.md"
+    "https://code.claude.com/docs/en/agent-sdk/slash-commands.md | docs/anthropic/agent-sdk/slash-commands.md"
+    "https://code.claude.com/docs/en/agent-sdk/streaming-output.md | docs/anthropic/agent-sdk/streaming-output.md"
+    "https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode.md | docs/anthropic/agent-sdk/streaming-vs-single-mode.md"
+    "https://code.claude.com/docs/en/agent-sdk/structured-outputs.md | docs/anthropic/agent-sdk/structured-outputs.md"
+    "https://code.claude.com/docs/en/agent-sdk/subagents.md | docs/anthropic/agent-sdk/subagents.md"
+    "https://code.claude.com/docs/en/agent-sdk/todo-tracking.md | docs/anthropic/agent-sdk/todo-tracking.md"
+    "https://code.claude.com/docs/en/agent-sdk/tool-search.md | docs/anthropic/agent-sdk/tool-search.md"
+    "https://code.claude.com/docs/en/agent-sdk/user-input.md | docs/anthropic/agent-sdk/user-input.md"
 )
 
 # --- EXECUTION START ---
@@ -196,9 +230,14 @@ for item in "${URL_LIST[@]}"; do
     
     echo " -> Processing: $url"
     echo "    Target: $full_output_path"
-    
-    # Run the python command
-    python web2llms.py "$url" -o "$full_output_path"
+
+    # If the URL already points to raw markdown, just download it directly.
+    # Otherwise, use the HTML-to-markdown scraper.
+    if [[ "$url" == *.md ]]; then
+        curl -sSL --fail -o "$full_output_path" "$url"
+    else
+        python web2llms.py "$url" -o "$full_output_path"
+    fi
 done
 
 # 4. Git Operations
