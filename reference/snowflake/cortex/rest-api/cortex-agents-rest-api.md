@@ -17,7 +17,7 @@
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
-    - [Dynamic tables](/en/user-guide/dynamic-tables-about "Dynamic tables")
+    - [Dynamic tables](/en/user-guide/dynamic-tables/overview "Dynamic tables")
     - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
     - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
     - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
@@ -132,12 +132,12 @@ Show lessSee more
 | --- | --- | --- |
 | `name` | string | Name of the agent. |
 | `comment` | string | Optional comment about the agent. |
-| `profile` | [`AgentProfile`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-agentprofile) | Agent profile information (display name, avatar, color, etc.). |
-| `models` | [`ModelConfig`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
-| `instructions` | [`AgentInstructions`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
-| `orchestration` | [`OrchestrationConfig`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
-| `tools` | array of [`Tool`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
-| `tool_resources` | map of [`ToolResource`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-toolresource) | Configuration for each tool referenced in the tools array. Keys must match the name of the respective tool. |
+| `profile` | [AgentProfile](#label-snowflake-agent-object-agentprofile) | Agent profile information (display name, avatar, color, etc.). |
+| `models` | [ModelConfig](#label-snowflake-agent-object-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
+| `instructions` | [AgentInstructions](#label-snowflake-agent-object-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
+| `orchestration` | [OrchestrationConfig](#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
+| `tools` | array of [Tool](#label-snowflake-agent-object-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
+| `tool_resources` | map of [ToolResource](#label-snowflake-agent-object-toolresource) | Configuration for each tool referenced in the tools array. Keys must match the name of the respective tool. |
 
 Expand
 
@@ -316,12 +316,12 @@ Show lessSee more
 | Field | Type | Description |
 | --- | --- | --- |
 | `comment` | string | Optional comment about the agent. |
-| `profile` | [`AgentProfile`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-agentprofile) | Agent profile information (display name, avatar, color, etc.). |
-| `models` | [`ModelConfig`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
-| `instructions` | [`AgentInstructions`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
-| `orchestration` | [`OrchestrationConfig`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
-| `tools` | array of [`Tool`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
-| `tool_resources` | map of [`ToolResource`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-toolresource) | Configuration for each tool referenced in the tools array. Keys must match the name of the respective tool. |
+| `profile` | [AgentProfile](#label-snowflake-agent-object-agentprofile) | Agent profile information (display name, avatar, color, etc.). |
+| `models` | [ModelConfig](#label-snowflake-agent-object-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
+| `instructions` | [AgentInstructions](#label-snowflake-agent-object-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
+| `orchestration` | [OrchestrationConfig](#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
+| `tools` | array of [Tool](#label-snowflake-agent-object-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
+| `tool_resources` | map of [ToolResource](#label-snowflake-agent-object-toolresource) | Configuration for each tool referenced in the tools array. Keys must match the name of the respective tool. |
 
 Expand
 
@@ -659,7 +659,7 @@ Copy code
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `budget` | [`BudgetConfig`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-budgetconfig) | Budget constraints for the agent. If more than one constraint is specified, whichever is first hit will end the request. |
+| `budget` | [BudgetConfig](#label-snowflake-agent-object-budgetconfig) | Budget constraints for the agent. If more than one constraint is specified, whichever is first hit will end the request. |
 
 Expand
 
@@ -684,7 +684,7 @@ Defines a tool that can be used by the agent. Tools provide specific capabilitie
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `tool_spec` | [`ToolSpec`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-toolspec) | Specification of the tool’s type, configuration, and input requirements. |
+| `tool_spec` | [ToolSpec](#label-snowflake-agent-object-toolspec) | Specification of the tool’s type, configuration, and input requirements. |
 
 Expand
 
@@ -726,8 +726,8 @@ Scroll to top
 | --- | --- | --- |
 | `type` | string | The type of the input schema object. |
 | `description` | string | A description of what the input is. |
-| `properties` | map of [`ToolInputSchema`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-toolinputschema) | If type is `object`, definitions of each input parameter. |
-| `items` | [`ToolInputSchema`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-toolinputschema) | If type is `array`, the schema for the elements of the array. |
+| `properties` | map of [ToolInputSchema](#label-snowflake-agent-object-toolinputschema) | If type is `object`, definitions of each input parameter. |
+| `items` | [ToolInputSchema](#label-snowflake-agent-object-toolinputschema) | If type is `array`, the schema for the elements of the array. |
 | `required` | array of string | If type is `object`, list of required input parameter names. |
 
 Expand
@@ -769,7 +769,7 @@ Scroll to top
 > | --- | --- | --- |
 > | `semantic_model_file` | string | The path to a file stored in a Snowflake Stage holding the semantic model yaml. |
 > | `semantic_view` | string | The name of the Snowflake native semantic model object. |
-> | `execution_environment` | [`ExecutionEnvironment`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-executionenvironment) | Configuration for how to execute the generated SQL query. |
+> | `execution_environment` | [ExecutionEnvironment](#label-snowflake-agent-object-executionenvironment) | Configuration for how to execute the generated SQL query. |
 >
 > Expand
 >
@@ -824,7 +824,7 @@ Scroll to top
 > | Field | Type | Description |
 > | --- | --- | --- |
 > | `type` | string | If the tool is server-side executed, whether it is a Stored Procedure or a UDF. |
-> | `execution_environment` | [`ExecutionEnvironment`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-executionenvironment) |  |
+> | `execution_environment` | [ExecutionEnvironment](#label-snowflake-agent-object-executionenvironment) |  |
 > | `identifier` | string | Fully qualified name of the Stored Procedure or UDF. |
 >
 > Expand
@@ -876,7 +876,7 @@ Specification of the tool’s type, configuration, and input requirements.
 | `type` | string | The type of tool capability. Can be specialized types like ‘cortex\_analyst\_text\_to\_sql’ or ‘generic’ for general-purpose tools. |
 | `name` | string | Unique identifier for referencing this tool instance. Used to match with configuration in tool\_resources. |
 | `description` | string | Description of the tool to be considered for tool use. |
-| `input_schema` | [`ToolInputSchema`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-object-SCHEMAS#label-snowflake-agent-object-toolinputschema) | JSON Schema definition of the expected input parameters for this tool. This will be fed to the agent so it knows the structure it should follow for when generating the input for ToolUses. Required for generic tools to specify their input parameters. |
+| `input_schema` | [ToolInputSchema](#label-snowflake-agent-object-toolinputschema) | JSON Schema definition of the expected input parameters for this tool. This will be fed to the agent so it knows the structure it should follow for when generating the input for ToolUses. Required for generic tools to specify their input parameters. |
 
 Expand
 

@@ -17,7 +17,7 @@
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
-    - [Dynamic tables](/en/user-guide/dynamic-tables-about "Dynamic tables")
+    - [Dynamic tables](/en/user-guide/dynamic-tables/overview "Dynamic tables")
     - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
     - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
     - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
@@ -481,13 +481,13 @@ When the data underlying a Cortex Search Service changes, the service
 updates to reflect those changes. These updates are referred to as a refresh. This process
 is automated, and it involves analyzing the query that underlies the table.
 
-Cortex Search Services have the same refresh properties as Dynamic Tables. See [Understanding dynamic table initialization and refresh](/user-guide/dynamic-tables-refresh) topic to
+Cortex Search Services have the same refresh properties as Dynamic Tables. See [Understanding dynamic table initialization and refresh](/user-guide/dynamic-tables/refresh-modes) topic to
 understand the refresh characteristics of a Cortex Search Service.
 
 The source query for a Cortex Search Service must be a candidate for dynamic table incremental refresh. For details on those requirements,
-see [Support for incremental refresh](/user-guide/dynamic-tables-limitations#label-dynamic-tables-limits-incremental-refresh). This restriction is designed to prevent any unwanted runaway costs associated
+see [Support for incremental refresh](/user-guide/dynamic-tables/supported-queries#label-dynamic-tables-limits-incremental-refresh). This restriction is designed to prevent any unwanted runaway costs associated
 with vector embedding computation. For more information about the constructs that are not supported for dynamic table incremental refresh,
-see [Supported queries for dynamic tables](/user-guide/dynamic-tables-supported-queries).
+see [Supported queries for dynamic tables](/user-guide/dynamic-tables/supported-queries).
 
 
 
@@ -519,10 +519,15 @@ CREATE OR REPLACE CORTEX SEARCH SERVICE transcript_search_service
 The primary key columns of existing services can be modified with `ALTER CORTEX SEARCH SERVICE ... SET PRIMARY KEY (...)`.
 For detailed syntax, see [ALTER CORTEX SEARCH SERVICE](/sql-reference/sql/alter-cortex-search).
 
-Services with primary keys can make use of an optimized refresh path when data underlying the service changes.
-This optimized path can result in significant reductions to the cost and latency of a refresh. With this optimization
-enabled, the search service periodically compacts index information generated during a refresh. You can specify a target frequency for index refreshes by setting the
-`FULL_INDEX_BUILD_INTERVAL_DAYS` property on the service. For syntax details, see [CREATE CORTEX SEARCH SERVICE](/sql-reference/sql/create-cortex-search) and [ALTER CORTEX SEARCH SERVICE](/sql-reference/sql/alter-cortex-search).
+Services with primary keys can use an optimized refresh path where each refresh cycle processes only the rows
+that changed since the last refresh, rather than re-embedding all data. This can result in significant reductions
+to the cost and latency of a refresh.
+
+Over time, these incremental updates accumulate fragmented index segments. The service periodically compacts
+these segments with a full index rebuild to maintain optimal search performance. You can control how often this
+compaction occurs by setting the `FULL_INDEX_BUILD_INTERVAL_DAYS` property on the service. A full index rebuild
+does not re-embed unchanged data. For syntax details, see [CREATE CORTEX SEARCH SERVICE](/sql-reference/sql/create-cortex-search) and
+[ALTER CORTEX SEARCH SERVICE](/sql-reference/sql/alter-cortex-search).
 
 Note
 
@@ -679,12 +684,12 @@ Usage of Cortex Search is subject to the following limitations:
   To increase throughput beyond 20 QPS for a single search service or 140 QPS across all services in your account, contact
   your Snowflake account team.
 * **Query constructs**: Cortex Search Service source queries must adhere to the same query restrictions
-  that Dynamic Tables have. Please see the [Dynamic table limitations](/user-guide/dynamic-tables-limitations) for more detail.
+  that Dynamic Tables have. Please see the [General limitations](/user-guide/dynamic-tables/decision-guide#label-dynamic-tables-limitations) for more detail.
 * **Data retention**: Cortex Search Services have the same requirements as dynamic tables around data retentions.
   Specifically, you can’t set the [DATA\_RETENTION\_TIME\_IN\_DAYS](/sql-reference/parameters#label-data-retention-time-in-days) object parameter in your base tables to zero
   or set this parameter on the schema or database containing the search service. Additionally, search services
   can become stale if they are not refreshed within [MAX\_DATA\_EXTENSION\_TIME\_IN\_DAYS](/sql-reference/parameters#label-max-data-extension-time-in-days). Once stale, they must be
-  recreated to resume refreshes. Please see the [Dynamic table limitations](/user-guide/dynamic-tables-limitations) for more detail.
+  recreated to resume refreshes. Please see the [General limitations](/user-guide/dynamic-tables/decision-guide#label-dynamic-tables-limitations) for more detail.
 * **Cloning**: Cortex Search Services do not currently support [cloning](/user-guide/object-clone).
   Snowflake intends to provide this capability in some future release, but cannot guarantee a specific timeline.
 * **Table immutability**: While running, your Cortex Search Services require tables they access aren’t modified or dropped. To safely update tables used by a Cortex Search Service, stop the service before making your changes.

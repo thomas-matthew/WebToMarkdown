@@ -198,7 +198,7 @@ Serialize the object to JSON.](/python/langchain-core/load/serializable/Serializ
 
 Serialize a "not implemented" object.](/python/langchain-core/load/serializable/Serializable/to_json_not_implemented)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/c4c91d9cd34ac53c7c73162671f98b7769a40123/libs/core/langchain_core/documents/base.py#L59)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/365c36c27033cf63c9a8bbc881bf6d595219edbe/libs/core/langchain_core/documents/base.py#L59)
 
 Version History
 

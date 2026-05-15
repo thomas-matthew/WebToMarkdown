@@ -486,7 +486,7 @@ with\_structured\_output
 
 Model wrapper that returns outputs formatted to match the given schema.](/python/langchain-xai/chat_models/ChatXAI/with_structured_output)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/c4c91d9cd34ac53c7c73162671f98b7769a40123/libs/partners/xai/langchain_xai/chat_models.py#L43)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/365c36c27033cf63c9a8bbc881bf6d595219edbe/libs/partners/xai/langchain_xai/chat_models.py#L43)
 
 Version History
 

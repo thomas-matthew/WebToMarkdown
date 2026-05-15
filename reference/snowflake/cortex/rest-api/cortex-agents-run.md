@@ -17,7 +17,7 @@
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
-    - [Dynamic tables](/en/user-guide/dynamic-tables-about "Dynamic tables")
+    - [Dynamic tables](/en/user-guide/dynamic-tables/overview "Dynamic tables")
     - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
     - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
     - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
@@ -138,9 +138,9 @@ Show lessSee more
 | --- | --- | --- |
 | `thread_id` | integer | The thread ID for the conversation. If thread\_id is used, then parent\_message\_id must be passed as well. |
 | `parent_message_id` | integer | The ID of the parent message in the thread. If this is the first message, parent\_message\_id should be 0. |
-| `messages` | array of [`Message`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-message) | If thread\_id and parent\_message\_id are passed in the request, messages includes the current user message in the conversation. Else, messages includes the conversation history and the current message. Messages contains both user queries and assistant responses in chronological order. |
+| `messages` | array of [Message](#label-snowflake-agent-run-message) | If thread\_id and parent\_message\_id are passed in the request, messages includes the current user message in the conversation. Else, messages includes the conversation history and the current message. Messages contains both user queries and assistant responses in chronological order. |
 | `stream` | boolean | Whether to return a streaming response (`text/event-stream`) or a non-streaming JSON response (`application/json`). If true, the response will be streamed as Server-Sent Events. If false, the response will be returned as JSON. |
-| `tool_choice` | [`ToolChoice`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-toolchoice) | Configures how the agent should select and use tools during the interaction. Controls whether tool use is automatic, required, or whether specific tools should be used. |
+| `tool_choice` | [ToolChoice](#label-snowflake-agent-run-toolchoice) | Configures how the agent should select and use tools during the interaction. Controls whether tool use is automatic, required, or whether specific tools should be used. |
 
 Expand
 
@@ -232,14 +232,14 @@ Show lessSee more
 | --- | --- | --- |
 | `thread_id` | integer | The thread ID for the conversation. If thread\_id is used, then parent\_message\_id must be passed as well. |
 | `parent_message_id` | integer | The ID of the parent message in the thread. If this is the first message, parent\_message\_id should be 0. |
-| `messages` | array of [`Message`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-message) | If thread\_id and parent\_message\_id are passed in the request, messages includes the current user message in the conversation. Else, messages includes the conversation history and the current message. Messages contains both user queries and assistant responses in chronological order. |
+| `messages` | array of [Message](#label-snowflake-agent-run-message) | If thread\_id and parent\_message\_id are passed in the request, messages includes the current user message in the conversation. Else, messages includes the conversation history and the current message. Messages contains both user queries and assistant responses in chronological order. |
 | `stream` | boolean | Whether to return a streaming response (`text/event-stream`) or a non-streaming JSON response (`application/json`). If true, the response will be streamed as Server-Sent Events. If false, the response will be returned as JSON. |
-| `tool_choice` | [`ToolChoice`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-toolchoice) | Configures how the agent should select and use tools during the interaction. Controls whether tool use is automatic, required, or whether specific tools should be used. |
-| `models` | [`ModelConfig`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
-| `instructions` | [`AgentInstructions`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
-| `orchestration` | [`OrchestrationConfig`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
-| `tools` | array of [`Tool`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
-| `tool_resources` | map of [`ToolResource`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-toolresource) | Configuration for each tool referenced in the tools array. Keys must match the name of the respective tool. |
+| `tool_choice` | [ToolChoice](#label-snowflake-agent-run-toolchoice) | Configures how the agent should select and use tools during the interaction. Controls whether tool use is automatic, required, or whether specific tools should be used. |
+| `models` | [ModelConfig](#label-snowflake-agent-run-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
+| `instructions` | [AgentInstructions](#label-snowflake-agent-run-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
+| `orchestration` | [OrchestrationConfig](#label-snowflake-agent-run-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
+| `tools` | array of [Tool](#label-snowflake-agent-run-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
+| `tool_resources` | map of [ToolResource](#label-snowflake-agent-run-toolresource) | Configuration for each tool referenced in the tools array. Keys must match the name of the respective tool. |
 
 Expand
 
@@ -389,9 +389,9 @@ Event streamed when the final response is available. This is the last event emit
 | Field | Type | Description |
 | --- | --- | --- |
 | `role` | string | The role for the message. Always `assistant` in the API response. |
-| `content` | array of [`MessageContentItem`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-messagecontentitem) | The content generated by the agent. |
-| `warnings` | array of [`Warning`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-warning) | Non-fatal warnings that occurred during processing. Present for non-streaming clients or as a summary. |
-| `metadata` | [`ResponseMetadata`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-responsemetadata) |  |
+| `content` | array of [MessageContentItem](#label-snowflake-agent-run-messagecontentitem) | The content generated by the agent. |
+| `warnings` | array of [Warning](#label-snowflake-agent-run-warning) | Non-fatal warnings that occurred during processing. Present for non-streaming clients or as a summary. |
+| `metadata` | [ResponseMetadata](#label-snowflake-agent-run-responsemetadata) |  |
 | `status` | string | The completion status of the agent run. Set to “cancelled” when the run was terminated via CancelAgentRun. |
 
 Expand
@@ -455,7 +455,7 @@ An event streamed when a text content block is done streaming, including all the
 | --- | --- | --- |
 | `content_index` | integer | The index in the response content array this event represents |
 | `text` | string | A text result from the agent |
-| `annotations` | array of [`Annotation`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-annotation) | Any annotations attached to the text result (e.g. citations) |
+| `annotations` | array of [Annotation](#label-snowflake-agent-run-annotation) | Any annotations attached to the text result (e.g. citations) |
 | `is_elicitation` | boolean | Whether this text content is the agent asking for more information from the end user. |
 
 Expand
@@ -522,7 +522,7 @@ Event streamed when an annotation is added to a text content.
 | --- | --- | --- |
 | `content_index` | integer | The index in the response content array this event represents |
 | `annotation_index` | integer | The index in the annotation array this `annotation` belongs to. |
-| `annotation` | [`Annotation`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-annotation) | The annotation object being added. |
+| `annotation` | [Annotation](#label-snowflake-agent-run-annotation) | The annotation object being added. |
 
 Expand
 
@@ -611,7 +611,7 @@ An event streamed when the agent requests a tool use.
 | `name` | string | The unique identifier for this tool instance |
 | `input` | object | The structured input for this tool. The schema of this object should will vary depending on the tool spec. |
 | `client_side_execute` | boolean | Whether the tool use is executed on the client side. |
-| `permission` | [`ToolUsePermission`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-toolusepermission) |  |
+| `permission` | [ToolUsePermission](#label-snowflake-agent-run-toolusepermission) |  |
 
 Expand
 
@@ -654,7 +654,7 @@ Event streamed when a tool finishes executing, including the tool result.
 | `tool_use_id` | string | Unique identifier for this tool use. Can be used to associated tool results. |
 | `type` | string | The type of the tool (e.g. cortex\_search, cortex\_analyst\_text\_to\_sql) |
 | `name` | string | The unique identifier for this tool instance |
-| `content` | array of [`ToolResultContent`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-toolresultcontent) | The content on the tool result |
+| `content` | array of [ToolResultContent](#label-snowflake-agent-run-toolresultcontent) | The content on the tool result |
 | `status` | string | The status of tool execution |
 
 Expand
@@ -727,7 +727,7 @@ An delta event streamed for the Cortex Analyst tool execution
 | `tool_use_id` | string | Unique identifier for this tool use. Can be used to associated tool results. |
 | `tool_type` | string | The type of the tool (always cortex\_analyst\_text\_to\_sql for this event) |
 | `tool_name` | string | The unique identifier for this tool instance |
-| `delta` | [`CortexAnalystToolResultDelta`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-cortexanalysttoolresultdelta) | The content delta |
+| `delta` | [CortexAnalystToolResultDelta](#label-snowflake-agent-run-cortexanalysttoolresultdelta) | The content delta |
 
 Expand
 
@@ -799,7 +799,7 @@ An event streamed when a table content block is added.
 | `content_index` | integer | The index in the response content array this event represents |
 | `tool_use_id` | string | The ID of the tool use that generated this table |
 | `query_id` | string | The query id of the sql query that generated this data |
-| `result_set` | [`ResultSet`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-resultset) | The SQL results to render a table. Matches the schema from Snowflake’s SQL API ResultSet (<https://docs.snowflake.com/en/developer-guide/sql-api/reference#resultset>) |
+| `result_set` | [ResultSet](#label-snowflake-agent-run-resultset) | The SQL results to render a table. Matches the schema from Snowflake’s SQL API ResultSet (<https://docs.snowflake.com/en/developer-guide/sql-api/reference#resultset>) |
 | `title` | string | The title for this table |
 
 Expand
@@ -959,7 +959,7 @@ Metadata about the request. This event is sent when a message is added to the th
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `metadata` | [`Metadata`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-metadata) |  |
+| `metadata` | [Metadata](#label-snowflake-agent-run-metadata) |  |
 
 Expand
 
@@ -1111,8 +1111,8 @@ Copy code
 | `sql_explanation` | string | A delta from Cortex Analyst’s explanation of what the SQL query does |
 | `query_id` | string | The query id once SQL execution begins |
 | `verified_query_used` | boolean | Whether a verified query was used to generate this response |
-| `result_set` | [`ResultSet`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-resultset) | The results from SQL execution. Matches the schema from Snowflake’s SQL API ResultSet (<https://docs.snowflake.com/en/developer-guide/sql-api/reference#resultset>) |
-| `suggestions` | [`CortexAnalystSuggestionDelta`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-cortexanalystsuggestiondelta) | A delta from Cortex Analyst’s suggested questions. This is sent when Analyst cannot answer the question due to missing information or other failures. |
+| `result_set` | [ResultSet](#label-snowflake-agent-run-resultset) | The results from SQL execution. Matches the schema from Snowflake’s SQL API ResultSet (<https://docs.snowflake.com/en/developer-guide/sql-api/reference#resultset>) |
+| `suggestions` | [CortexAnalystSuggestionDelta](#label-snowflake-agent-run-cortexanalystsuggestiondelta) | A delta from Cortex Analyst’s suggested questions. This is sent when Analyst cannot answer the question due to missing information or other failures. |
 
 Expand
 
@@ -1230,9 +1230,9 @@ Represents a single message in the conversation. Can be either from the user or 
 | Field | Type | Description |
 | --- | --- | --- |
 | `role` | string | Identifies who sent the message - either the user or the assistant. User messages typically contain queries, while assistant messages contain responses and tool results. |
-| `content` | array of [`MessageContentItem`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-messagecontentitem) | Array of content elements making up the message. Can include text, tool results, or custom content types. |
+| `content` | array of [MessageContentItem](#label-snowflake-agent-run-messagecontentitem) | Array of content elements making up the message. Can include text, tool results, or custom content types. |
 | `status` | string | The completion status of the message set by the server when saving to a thread. Set to “error” when the agent run terminated with an error; in that case the `error` field contains the error details. |
-| `error` | [`MessageError`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-messageerror) | Details about the error that terminated the agent run. Only set when `status` is “error”. |
+| `error` | [MessageError](#label-snowflake-agent-run-messageerror) | Details about the error that terminated the agent run. Only set when `status` is “error”. |
 
 Expand
 
@@ -1270,7 +1270,7 @@ Scroll to top
 > | Field | Type | Description |
 > | --- | --- | --- |
 > | `type` | string | The content type (always `chart`). |
-> | `chart` | [`ChartContent`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-chartcontent) | The chart. |
+> | `chart` | [ChartContent](#label-snowflake-agent-run-chartcontent) | The chart. |
 >
 > Expand
 >
@@ -1295,7 +1295,7 @@ Scroll to top
 > | Field | Type | Description |
 > | --- | --- | --- |
 > | `type` | string | Content type identifier. |
-> | `permission_decision` | [`PermissionDecision`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-permissiondecision) |  |
+> | `permission_decision` | [PermissionDecision](#label-snowflake-agent-run-permissiondecision) |  |
 >
 > Expand
 >
@@ -1319,7 +1319,7 @@ Scroll to top
 > | Field | Type | Description |
 > | --- | --- | --- |
 > | `type` | string | The content type (always `table`). |
-> | `table` | [`TableContent`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-tablecontent) | The table. |
+> | `table` | [TableContent](#label-snowflake-agent-run-tablecontent) | The table. |
 >
 > Expand
 >
@@ -1371,7 +1371,7 @@ Scroll to top
 > | Field | Type | Description |
 > | --- | --- | --- |
 > | `text` | string | A text result from the agent |
-> | `annotations` | array of [`Annotation`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-annotation) | Any annotations attached to the text result (e.g. citations) |
+> | `annotations` | array of [Annotation](#label-snowflake-agent-run-annotation) | Any annotations attached to the text result (e.g. citations) |
 > | `is_elicitation` | boolean | Whether this text content is the agent asking for more information from the end user. |
 > | `type` | string | The content type (always `text`). |
 >
@@ -1404,7 +1404,7 @@ Scroll to top
 > | Field | Type | Description |
 > | --- | --- | --- |
 > | `type` | string | The content type (always `thinking`). |
-> | `thinking` | [`ThinkingContent`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-thinkingcontent) | The thinking content. |
+> | `thinking` | [ThinkingContent](#label-snowflake-agent-run-thinkingcontent) | The thinking content. |
 >
 > Expand
 >
@@ -1427,7 +1427,7 @@ Scroll to top
 > | Field | Type | Description |
 > | --- | --- | --- |
 > | `type` | string | The content type (always `tool_result`). |
-> | `tool_result` | [`ToolResult`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-toolresult) | The tool result. |
+> | `tool_result` | [ToolResult](#label-snowflake-agent-run-toolresult) | The tool result. |
 >
 > Expand
 >
@@ -1460,7 +1460,7 @@ Scroll to top
 > | Field | Type | Description |
 > | --- | --- | --- |
 > | `type` | string | The content type (always `tool_use`). |
-> | `tool_use` | [`ToolUse`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-tooluse) | The tool use. |
+> | `tool_use` | [ToolUse](#label-snowflake-agent-run-tooluse) | The tool use. |
 >
 > Expand
 >
@@ -1563,7 +1563,7 @@ Copy code
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `budget` | [`BudgetConfig`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-budgetconfig) | Budget constraints for the agent. If more than one constraint is specified, whichever is first hit will end the request. |
+| `budget` | [BudgetConfig](#label-snowflake-agent-run-budgetconfig) | Budget constraints for the agent. If more than one constraint is specified, whichever is first hit will end the request. |
 
 Expand
 
@@ -1636,7 +1636,7 @@ Metadata about the response, including usage information.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `usage` | [`UsageMetadata`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-usagemetadata) |  |
+| `usage` | [UsageMetadata](#label-snowflake-agent-run-usagemetadata) |  |
 | `run_id` | string | The unique identifier for this Agent Run. Can be used to reconnect to the output stream. |
 | `thread_id` | integer | The Thead ID, if using a thread. |
 | `user_message_id` | integer | If using a Thread, this is the message ID of the user question sent in this request. The `assistant_message_id` is a child of this message. |
@@ -1685,7 +1685,7 @@ Scroll to top
 | Field | Type | Description |
 | --- | --- | --- |
 | `statementHandle` | string | The query id. |
-| `resultSetMetaData` | [`ResultSetMetaData`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-resultsetmetadata) | Metadata on the result set. |
+| `resultSetMetaData` | [ResultSetMetaData](#label-snowflake-agent-run-resultsetmetadata) | Metadata on the result set. |
 | `data` | array of array | 2D array representing the data |
 
 Expand
@@ -1738,7 +1738,7 @@ Scroll to top
 | `partition` | integer | The index number of the partition. |
 | `numRows` | integer | The total number of rows of results. |
 | `format` | string | Format of the data in the result set. |
-| `rowType` | array of [`RowType`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-rowtype) | Description of the columns in the result. |
+| `rowType` | array of [RowType](#label-snowflake-agent-run-rowtype) | Description of the columns in the result. |
 
 Expand
 
@@ -1806,7 +1806,7 @@ Copy code
 | --- | --- | --- |
 | `tool_use_id` | string | The ID of the tool use that generated this table |
 | `query_id` | string | The query id of the sql query that generated this data |
-| `result_set` | [`ResultSet`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-resultset) | The SQL results to render a table. Matches the schema from Snowflake’s SQL API ResultSet (<https://docs.snowflake.com/en/developer-guide/sql-api/reference#resultset>) |
+| `result_set` | [ResultSet](#label-snowflake-agent-run-resultset) | The SQL results to render a table. Matches the schema from Snowflake’s SQL API ResultSet (<https://docs.snowflake.com/en/developer-guide/sql-api/reference#resultset>) |
 | `title` | string | The title for this table |
 
 Expand
@@ -1886,8 +1886,8 @@ Token consumption for a specific model.
 | Field | Type | Description |
 | --- | --- | --- |
 | `model_name` | string | Name of the model used. |
-| `input_tokens` | [`InputTokens`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-inputtokens) |  |
-| `output_tokens` | [`OutputTokens`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-outputtokens) |  |
+| `input_tokens` | [InputTokens](#label-snowflake-agent-run-inputtokens) |  |
+| `output_tokens` | [OutputTokens](#label-snowflake-agent-run-outputtokens) |  |
 | `context_window` | integer | The model’s context window size (in tokens). |
 
 Expand
@@ -1924,7 +1924,7 @@ Defines a tool that can be used by the agent. Tools provide specific capabilitie
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `tool_spec` | [`ToolSpec`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-toolspec) | Specification of the tool’s type, configuration, and input requirements. |
+| `tool_spec` | [ToolSpec](#label-snowflake-agent-run-toolspec) | Specification of the tool’s type, configuration, and input requirements. |
 
 Expand
 
@@ -1991,8 +1991,8 @@ Copy code
 | --- | --- | --- |
 | `type` | string | The type of the input schema object. |
 | `description` | string | A description of what the input is. |
-| `properties` | map of [`ToolInputSchema`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-toolinputschema) | If type is `object`, definitions of each input parameter. |
-| `items` | [`ToolInputSchema`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-toolinputschema) | If type is `array`, the schema for the elements of the array. |
+| `properties` | map of [ToolInputSchema](#label-snowflake-agent-run-toolinputschema) | If type is `object`, definitions of each input parameter. |
+| `items` | [ToolInputSchema](#label-snowflake-agent-run-toolinputschema) | If type is `array`, the schema for the elements of the array. |
 | `required` | array of string | If type is `object`, list of required input parameter names. |
 
 Expand
@@ -2034,7 +2034,7 @@ Scroll to top
 > | --- | --- | --- |
 > | `semantic_model_file` | string | The path to a file stored in a Snowflake Stage holding the semantic model yaml. |
 > | `semantic_view` | string | The name of the Snowflake native semantic model object. |
-> | `execution_environment` | [`ExecutionEnvironment`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-executionenvironment) | Configuration for how to execute the generated SQL query. |
+> | `execution_environment` | [ExecutionEnvironment](#label-snowflake-agent-run-executionenvironment) | Configuration for how to execute the generated SQL query. |
 >
 > Expand
 >
@@ -2089,7 +2089,7 @@ Scroll to top
 > | Field | Type | Description |
 > | --- | --- | --- |
 > | `type` | string | If the tool is server-side executed, whether it is a Stored Procedure or a UDF. |
-> | `execution_environment` | [`ExecutionEnvironment`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-executionenvironment) |  |
+> | `execution_environment` | [ExecutionEnvironment](#label-snowflake-agent-run-executionenvironment) |  |
 > | `identifier` | string | Fully qualified name of the Stored Procedure or UDF. |
 >
 > Expand
@@ -2139,7 +2139,7 @@ Scroll to top
 | `tool_use_id` | string | Unique identifier for this tool use. Can be used to associated tool results. |
 | `type` | string | The type of the tool (e.g. cortex\_search, cortex\_analyst\_text\_to\_sql) |
 | `name` | string | The unique identifier for this tool instance |
-| `content` | array of [`ToolResultContent`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-toolresultcontent) | The content on the tool result |
+| `content` | array of [ToolResultContent](#label-snowflake-agent-run-toolresultcontent) | The content on the tool result |
 | `status` | string | The status of tool execution |
 
 Expand
@@ -2226,7 +2226,7 @@ Specification of the tool’s type, configuration, and input requirements.
 | `type` | string | The type of tool capability. Can be specialized types like ‘cortex\_analyst\_text\_to\_sql’ or ‘generic’ for general-purpose tools. |
 | `name` | string | Unique identifier for referencing this tool instance. Used to match with configuration in tool\_resources. |
 | `description` | string | Description of the tool to be considered for tool use. |
-| `input_schema` | [`ToolInputSchema`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-toolinputschema) | JSON Schema definition of the expected input parameters for this tool. This will be fed to the agent so it knows the structure it should follow for when generating the input for ToolUses. Required for generic tools to specify their input parameters. |
+| `input_schema` | [ToolInputSchema](#label-snowflake-agent-run-toolinputschema) | JSON Schema definition of the expected input parameters for this tool. This will be fed to the agent so it knows the structure it should follow for when generating the input for ToolUses. Required for generic tools to specify their input parameters. |
 
 Expand
 
@@ -2269,7 +2269,7 @@ Scroll to top
 | `name` | string | The unique identifier for this tool instance |
 | `input` | object | The structured input for this tool. The schema of this object should will vary depending on the tool spec. |
 | `client_side_execute` | boolean | Whether the tool use is executed on the client side. |
-| `permission` | [`ToolUsePermission`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-toolusepermission) |  |
+| `permission` | [ToolUsePermission](#label-snowflake-agent-run-toolusepermission) |  |
 
 Expand
 
@@ -2332,7 +2332,7 @@ Usage information for this request.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `tokens_consumed` | array of [`TokensConsumed`](/INCLUDE/cortex-agents/auto-generated-do-not-edit/agent-run-SCHEMAS#label-snowflake-agent-run-tokensconsumed) | Token consumption details per model used in this request. |
+| `tokens_consumed` | array of [TokensConsumed](#label-snowflake-agent-run-tokensconsumed) | Token consumption details per model used in this request. |
 
 Expand
 

@@ -142,14 +142,14 @@ URL_LIST=(
     "https://docs.snowflake.com/en/user-guide/snowflake-cortex/ai-observability | docs/snowflake/cortex/ai-observability.md"
     "https://docs.snowflake.com/en/user-guide/snowflake-cortex/snowflake-intelligence | docs/snowflake/cortex/snowflake-intelligence.md"
 
-    # === DOCS: OpenAI prompt guidance (per-model tabs) ===
-    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.5 | docs/openai/prompt-guidance/gpt-5.5.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.4 | docs/openai/prompt-guidance/gpt-5.4.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.3-codex | docs/openai/prompt-guidance/gpt-5.3-codex.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.2 | docs/openai/prompt-guidance/gpt-5.2.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5.1 | docs/openai/prompt-guidance/gpt-5.1.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-5 | docs/openai/prompt-guidance/gpt-5.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance?model=gpt-4.1 | docs/openai/prompt-guidance/gpt-4.1.md"
+    # === DOCS: OpenAI prompt guidance (per-model, direct .md) ===
+    "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-5.5.md | docs/openai/prompt-guidance/gpt-5.5.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-5.4.md | docs/openai/prompt-guidance/gpt-5.4.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-5.3-codex.md | docs/openai/prompt-guidance/gpt-5.3-codex.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-5.2.md | docs/openai/prompt-guidance/gpt-5.2.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-5.1.md | docs/openai/prompt-guidance/gpt-5.1.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-5.md | docs/openai/prompt-guidance/gpt-5.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-4.1.md | docs/openai/prompt-guidance/gpt-4.1.md"
 
     # === DOCS: Anthropic Claude prompt engineering and model context ===
     "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview | docs/anthropic/prompt-engineering/overview.md"

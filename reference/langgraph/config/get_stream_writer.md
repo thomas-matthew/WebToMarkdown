@@ -84,6 +84,7 @@ Copy
 
 ## Used in Docs
 
+* [Event streaming](https://docs.langchain.com/oss/python/langgraph/event-streaming)
 * [Streaming](https://docs.langchain.com/oss/python/deepagents/streaming)
 * [Streaming](https://docs.langchain.com/oss/python/langchain/streaming)
 * [Streaming](https://docs.langchain.com/oss/python/langgraph/streaming)

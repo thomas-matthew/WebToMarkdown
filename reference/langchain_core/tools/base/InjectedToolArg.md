@@ -15,6 +15,6 @@ Copy
 InjectedToolArg()
 ```
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/c4c91d9cd34ac53c7c73162671f98b7769a40123/libs/core/langchain_core/tools/base.py#L1374)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/365c36c27033cf63c9a8bbc881bf6d595219edbe/libs/core/langchain_core/tools/base.py#L1374)
 
 Version History

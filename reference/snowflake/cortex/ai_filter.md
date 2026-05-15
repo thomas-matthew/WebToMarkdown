@@ -8,40 +8,26 @@
    * [Aggregate](/en/sql-reference/functions-aggregation "Aggregate")
    * AI Functions
 
-     * Scalar functions
-
-       * [AI\_CLASSIFY](/en/sql-reference/functions/ai_classify "AI_CLASSIFY")
-       * [AI\_COMPLETE](/en/sql-reference/functions/ai_complete "AI_COMPLETE")
-       * [AI\_COUNT\_TOKENS](/en/sql-reference/functions/ai_count_tokens "AI_COUNT_TOKENS")
-       * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
-       * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
-       * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
-       * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
-       * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
-       * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
-       * [AI\_SIMILARITY](/en/sql-reference/functions/ai_similarity "AI_SIMILARITY")
-       * [AI\_TRANSCRIBE](/en/sql-reference/functions/ai_transcribe "AI_TRANSCRIBE")
-       * [AI\_TRANSLATE](/en/sql-reference/functions/ai_translate "AI_TRANSLATE")
-       * [CLASSIFY\_TEXT (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/classify_text-snowflake-cortex "CLASSIFY_TEXT (SNOWFLAKE.CORTEX)")
-       * [COMPLETE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/complete-snowflake-cortex "COMPLETE (SNOWFLAKE.CORTEX)")
-       * [COMPLETE multimodal (images) (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/complete-snowflake-cortex-multimodal "COMPLETE multimodal (images) (SNOWFLAKE.CORTEX)")
-       * [EMBED\_TEXT\_768 (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/embed_text-snowflake-cortex "EMBED_TEXT_768 (SNOWFLAKE.CORTEX)")
-       * [EMBED\_TEXT\_1024 (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/embed_text_1024-snowflake-cortex "EMBED_TEXT_1024 (SNOWFLAKE.CORTEX)")
-       * [ENTITY\_SENTIMENT (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/entity_sentiment-snowflake-cortex "ENTITY_SENTIMENT (SNOWFLAKE.CORTEX)")
-       * [EXTRACT\_ANSWER (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/extract_answer-snowflake-cortex "EXTRACT_ANSWER (SNOWFLAKE.CORTEX)")
-       * [FINETUNE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/finetune-snowflake-cortex "FINETUNE (SNOWFLAKE.CORTEX)")
-       * [PARSE\_DOCUMENT (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/parse_document-snowflake-cortex "PARSE_DOCUMENT (SNOWFLAKE.CORTEX)")
-       * [SENTIMENT (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/sentiment-snowflake-cortex "SENTIMENT (SNOWFLAKE.CORTEX)")
-       * [SUMMARIZE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/summarize-snowflake-cortex "SUMMARIZE (SNOWFLAKE.CORTEX)")
-       * [TRANSLATE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/translate-snowflake-cortex "TRANSLATE (SNOWFLAKE.CORTEX)")
-     * Aggregate functions
-
-       * [AI\_AGG](/en/sql-reference/functions/ai_agg "AI_AGG")
-       * [AI\_SUMMARIZE\_AGG](/en/sql-reference/functions/ai_summarize_agg "AI_SUMMARIZE_AGG")
+     * [AI\_AGG](/en/sql-reference/functions/ai_agg "AI_AGG")
+     * [AI\_CLASSIFY](/en/sql-reference/functions/ai_classify "AI_CLASSIFY")
+     * [AI\_COMPLETE](/en/sql-reference/functions/ai_complete "AI_COMPLETE")
+     * [AI\_COUNT\_TOKENS](/en/sql-reference/functions/ai_count_tokens "AI_COUNT_TOKENS")
+     * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
+     * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
+     * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
+     * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
+     * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
+     * [AI\_SIMILARITY](/en/sql-reference/functions/ai_similarity "AI_SIMILARITY")
+     * [AI\_SUMMARIZE\_AGG](/en/sql-reference/functions/ai_summarize_agg "AI_SUMMARIZE_AGG")
+     * [AI\_TRANSCRIBE](/en/sql-reference/functions/ai_transcribe "AI_TRANSCRIBE")
+     * [AI\_TRANSLATE](/en/sql-reference/functions/ai_translate "AI_TRANSLATE")
+     * [FINETUNE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/finetune-snowflake-cortex "FINETUNE (SNOWFLAKE.CORTEX)")
+     * [SENTIMENT (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/sentiment-snowflake-cortex "SENTIMENT (SNOWFLAKE.CORTEX)")
+     * [SUMMARIZE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/summarize-snowflake-cortex "SUMMARIZE (SNOWFLAKE.CORTEX)")
      * Helper functions
 
        * [AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/agent_run-snowflake-cortex "AGENT_RUN (SNOWFLAKE.CORTEX)")
-       * [COUNT\_TOKENS (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/count_tokens-snowflake-cortex "COUNT_TOKENS (SNOWFLAKE.CORTEX)")
        * [DATA\_AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/data_agent_run-snowflake-cortex "DATA_AGENT_RUN (SNOWFLAKE.CORTEX)")
        * [EXECUTE\_AI\_EVALUATION](/en/sql-reference/functions/execute_ai_evaluation "EXECUTE_AI_EVALUATION")
        * [GET\_AI\_EVALUATION\_DATA (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_evaluation_data-snowflake-local "GET_AI_EVALUATION_DATA (SNOWFLAKE.LOCAL)")
@@ -51,7 +37,6 @@
        * [SEARCH\_PREVIEW (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/search_preview-snowflake-cortex "SEARCH_PREVIEW (SNOWFLAKE.CORTEX)")
        * [SPLIT\_TEXT\_MARKDOWN\_HEADER (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/split_text_markdown_header-snowflake-cortex "SPLIT_TEXT_MARKDOWN_HEADER (SNOWFLAKE.CORTEX)")
        * [SPLIT\_TEXT\_RECURSIVE\_CHARACTER (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/split_text_recursive_character-snowflake-cortex "SPLIT_TEXT_RECURSIVE_CHARACTER (SNOWFLAKE.CORTEX)")
-       * [TRY\_COMPLETE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/try_complete-snowflake-cortex "TRY_COMPLETE (SNOWFLAKE.CORTEX)")
    * [Bitwise expression](/en/sql-reference/expressions-byte-bit "Bitwise expression")
    * [Conditional expression](/en/sql-reference/expressions-conditional "Conditional expression")
    * [Context](/en/sql-reference/functions-context "Context")
@@ -83,7 +68,7 @@
 7. [General reference](/en/sql-reference "General reference")
 8. [API reference](/en/api-reference "API reference")
 
-[Reference](/en/reference)[Function and stored procedure reference](/en/sql-reference-functions)AI FunctionsScalar functionsAI\_FILTER
+[Reference](/en/reference)[Function and stored procedure reference](/en/sql-reference-functions)AI FunctionsAI\_FILTER
 
 Categories:
 :   [String & binary functions](/sql-reference/functions-string) (AI Functions)
@@ -361,6 +346,10 @@ WHERE AI_FILTER(PROMPT('{0} is a cat picture', img));
   + User stage, table stage
   + Stage with double-quoted names
 
+## Legal notices[¶](#legal-notices)
+
+Refer to [Snowflake AI and ML](/guides-overview-ai-features) for legal notices.
+
 Was this page helpful?
 
 YesNo
@@ -397,6 +386,7 @@ On this page
 8. [Usage notes](#usage-notes)
 9. [Examples](#examples)
 10. [Limitations](#limitations)
+11. [Legal notices](#legal-notices)
 
 Related content
 

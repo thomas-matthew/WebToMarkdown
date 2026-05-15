@@ -17,7 +17,7 @@
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
-    - [Dynamic tables](/en/user-guide/dynamic-tables-about "Dynamic tables")
+    - [Dynamic tables](/en/user-guide/dynamic-tables/overview "Dynamic tables")
     - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
     - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
     - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
@@ -153,7 +153,7 @@ Cortex Guard is an option of the AI\_COMPLETE (or SNOWFLAKE.CORTEX.COMPLETE) fun
 language model. Cortex Guard is currently built with Meta’s Llama Guard 3. Cortex Guard works by evaluating the responses of a language
 model before that output is returned to the application. Once you activate Cortex Guard, language model responses which may be associated
 with violent crimes, hate, sexual content, self-harm, and more are automatically filtered. See
-[COMPLETE arguments](#label-cortex-complete-arguments) for syntax and examples.
+[COMPLETE arguments](/sql-reference/functions/complete-snowflake-cortex#label-cortex-complete-arguments) for syntax and examples.
 
 Note
 
@@ -749,7 +749,7 @@ Scroll to top
   seem similar to model access errors.
 * Model access controls only govern the use of a model and not the use of a feature itself. A feature can have its own access
   controls. For example, access to `AI_COMPLETE` is governed by the `CORTEX_USER` or `AI_FUNCTIONS_USER` database role and the USE AI FUNCTIONS account-level privilege. For more information, see
-  [Cortex LLM privileges](#label-cortex-llm--privileges).
+  [Cortex LLM privileges](#label-cortex-llm-privileges).
 * Not all features support model access controls. For more information about what a feature supports, see the [supported features](#label-cortex-llm-model-access-supported-features) table.
 * Secondary roles can obscure permissions. For example, if a user has ACCOUNTADMIN as a secondary role, all model objects may appear
   accessible. Disable secondary roles temporarily when verifying permissions.

@@ -68,7 +68,7 @@ aclear
 
 Async clear cache that can take additional keyword arguments.](/python/langchain-core/caches/BaseCache/aclear)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/c4c91d9cd34ac53c7c73162671f98b7769a40123/libs/core/langchain_core/caches.py#L32)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/365c36c27033cf63c9a8bbc881bf6d595219edbe/libs/core/langchain_core/caches.py#L32)
 
 Version History
 

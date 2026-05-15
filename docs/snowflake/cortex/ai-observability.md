@@ -17,7 +17,7 @@
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
-    - [Dynamic tables](/en/user-guide/dynamic-tables-about "Dynamic tables")
+    - [Dynamic tables](/en/user-guide/dynamic-tables/overview "Dynamic tables")
     - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
     - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
     - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
@@ -166,7 +166,7 @@ You can compare the traces of different application versions to identify improve
 
 ## Pricing[¶](#pricing)
 
-AI Observability uses LLM judges to compute the evaluation metrics. For server-side evaluations, LLMs on Cortex AI are used as LLM judges. The LLM judges are invoked via the [COMPLETE (SNOWFLAKE.CORTEX)](/sql-reference/functions/complete-snowflake-cortex) function to perform evaluations.
+AI Observability uses LLM judges to compute the evaluation metrics. For server-side evaluations, LLMs on Cortex AI are used as LLM judges. The LLM judges are invoked via the [AI\_COMPLETE](/sql-reference/functions/ai_complete) function to perform evaluations.
 You incur charges for the Cortex Complete function calls. The LLM used to perform the evaluations determines how much you’re charged.
 Additionally, you’re charged the following:
 
