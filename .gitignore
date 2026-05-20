@@ -90,3 +90,6 @@ dmypy.json
 # OS-specific files
 .DS_Store
 Thumbs.db
+
+# Claude Code local session/scheduling state
+.claude/

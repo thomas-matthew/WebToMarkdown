@@ -25,7 +25,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 GITHUB = "https://github.com"
-OUTPUT_ROOT = Path("reference/release-notes")
+OUTPUT_ROOT = Path("release-notes")
 
 Version = tuple[int, ...]
 
