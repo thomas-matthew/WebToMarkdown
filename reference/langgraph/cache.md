@@ -6,7 +6,9 @@ Python[langgraph](/python/langgraph)Caching
 
 [Class
 
-### ManagedValue](/python/langgraph/managed/base/ManagedValue)[Class
+### BaseChannel
+
+Base class for all channels.](/python/langgraph/channels/base/BaseChannel)[Class
 
 ### InMemorySaver
 
@@ -20,12 +22,6 @@ Persistent dictionary with an API compatible with shelve and anydbm.](/python/la
 
 A checkpoint saver that stores checkpoints in a SQLite database.](/python/langgraph.checkpoint.sqlite/SqliteSaver)
 
-## Functions
-
-[Function
-
-### is\_managed\_value](/python/langgraph/managed/base/is_managed_value)
-
 ## Modules
 
 [Module
@@ -38,13 +34,11 @@ A checkpoint saver that stores checkpoints in a SQLite database.](/python/langgr
 
 [Attribute
 
-### V](/python/langgraph/managed/base/V)[Attribute
+### Value](/python/langgraph/channels/base/Value)[Attribute
 
-### U](/python/langgraph/managed/base/U)[Attribute
+### Update](/python/langgraph/channels/base/Update)[Attribute
 
-### ManagedValueSpec](/python/langgraph/managed/base/ManagedValueSpec)[Attribute
-
-### ManagedValueMapping](/python/langgraph/managed/base/ManagedValueMapping)[Attribute
+### Checkpoint](/python/langgraph/channels/base/Checkpoint)[Attribute
 
 ### logger](/python/langgraph.checkpoint/memory/logger)[Attribute
 
@@ -54,4 +48,4 @@ Copy page
 
 ### On This Page
 
-Classes4Functions1Modules2Constants6
+Classes4Modules2Constants5

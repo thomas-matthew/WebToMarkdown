@@ -24,7 +24,7 @@
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/README "Migrations")
+13. [Migrations](/en/migrations/migrations "Migrations")
 15. [Queries](/en/guides-overview-queries "Queries")
 16. [Listings](/en/collaboration/collaboration-listings-about "Listings")
 17. [Collaboration](/en/guides-overview-sharing "Collaboration")
@@ -107,7 +107,7 @@ to return answers that are grounded in your most up-to-date proprietary data.
 ## Example: Create and query a Cortex Search service[¶](#example-create-and-query-a-cortex-search-service)
 
 This example takes you through the steps of creating a Cortex Search Service and querying
-it using the REST API. Refer to the [Querying a Cortex Search Service](#label-cortex-search-query-syntax) topic for
+it using the REST API. Refer to the [Querying a Cortex Search Service](/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax) topic for
 more details about querying the service.
 
 This example uses a sample customer support transcript dataset.

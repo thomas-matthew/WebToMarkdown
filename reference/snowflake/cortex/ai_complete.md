@@ -127,8 +127,8 @@ See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql#label-cortex-llm-
 
 Note
 
-%aisql-new-func-name% is the updated version of %aisql-old-func-link%.
-For the latest functionality, use %aisql-new-func-name%.
+AI\_COMPLETE is the updated version of [COMPLETE](/sql-reference/functions/complete-snowflake-cortex).
+For the latest functionality, use AI\_COMPLETE.
 
 ## Legal notices[¶](#legal-notices)
 

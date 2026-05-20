@@ -430,6 +430,10 @@ Create a pair of (AIMessage, ToolMessage) to add to the message history when ret
 
 Create a tool the supervisor can use to forward a worker message by name.](/python/langgraph-supervisor/handoff/create_forward_message_tool)[Function
 
+### create\_supervisor
+
+Create a multi-agent supervisor.](/python/langgraph-supervisor/supervisor/create_supervisor)[Function
+
 ### add\_inline\_agent\_name
 
 Add name and content XML tags to the message content.](/python/langgraph-supervisor/agent_name/add_inline_agent_name)[Function
@@ -440,11 +444,7 @@ Remove explicit name and content XML tags from the AI message content.](/python/
 
 ### with\_agent\_name
 
-Attach formatted agent names to the messages passed to and from a language model.](/python/langgraph-supervisor/agent_name/with_agent_name)[Function
-
-### create\_supervisor
-
-Create a multi-agent supervisor.](/python/langgraph-supervisor/supervisor/create_supervisor)
+Attach formatted agent names to the messages passed to and from a language model.](/python/langgraph-supervisor/agent_name/with_agent_name)
 
 ## Modules
 
@@ -454,9 +454,9 @@ Create a multi-agent supervisor.](/python/langgraph-supervisor/supervisor/create
 
 ### handoff](/python/langgraph-supervisor/handoff)[Module
 
-### agent\_name](/python/langgraph-supervisor/agent_name)[Module
+### supervisor](/python/langgraph-supervisor/supervisor)[Module
 
-### supervisor](/python/langgraph-supervisor/supervisor)
+### agent\_name](/python/langgraph-supervisor/agent_name)
 
 Copy page
 

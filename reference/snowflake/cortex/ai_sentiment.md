@@ -237,8 +237,8 @@ Show lessSee more
 
 Note
 
-%aisql-new-func-name% is the updated version of %aisql-old-func-link%.
-For the latest functionality, use %aisql-new-func-name%.
+AI\_SENTIMENT is the updated version of [ENTITY\_SENTIMENT](/sql-reference/functions/entity_sentiment-snowflake-cortex).
+For the latest functionality, use AI\_SENTIMENT.
 
 ## Legal notices[¶](#legal-notices)
 

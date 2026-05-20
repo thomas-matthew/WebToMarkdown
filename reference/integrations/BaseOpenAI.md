@@ -59,7 +59,8 @@ OpenAI API key. If not passed in will be read from env var
 `OPENAI_API_KEY`.
 openai\_api\_base:
 Base URL path for API requests, leave blank if not using a proxy or
-service emulator.
+service emulator. Falls back to env var `OPENAI_API_BASE`, then to
+`OPENAI_BASE_URL` (read by the underlying SDK client).
 openai\_organization:
 OpenAI organization ID. If not passed in will be read from env
 var `OPENAI_ORG_ID`.
@@ -201,7 +202,13 @@ Automatically inferred from env var `OPENAI_API_KEY` if not provided.](/python/l
 openai\_api\_base: str | None
 
 Base URL path for API requests, leave blank if not using a proxy or service
-emulator.](/python/langchain-openai/llms/base/BaseOpenAI/openai_api_base)[attribute
+emulator.
+
+Resolution order (first match wins):
+
+1. Explicit `base_url` (or `openai_api_base`) kwarg.
+2. Env var `OPENAI_API_BASE` (read by LangChain at init).
+3. Env var `OPENAI_BASE_URL` (read by the underlying `openai` SDK client).](/python/langchain-openai/llms/base/BaseOpenAI/openai_api_base)[attribute
 
 openai\_organization: str | None
 
@@ -314,13 +321,25 @@ get\_token\_ids
 
 Get the token IDs using the tiktoken package.](/python/langchain-openai/llms/base/BaseOpenAI/get_token_ids)[method
 
-modelname\_to\_contextsize
-
-Calculate the maximum number of tokens possible to generate for a model.](/python/langchain-openai/llms/base/BaseOpenAI/modelname_to_contextsize)[method
-
 max\_tokens\_for\_prompt
 
-Calculate the maximum number of tokens possible to generate for a prompt.](/python/langchain-openai/llms/base/BaseOpenAI/max_tokens_for_prompt)
+Calculate the maximum number of tokens possible to generate for a prompt.](/python/langchain-openai/llms/base/BaseOpenAI/max_tokens_for_prompt)[deprecatedmethod
+
+modelname\_to\_contextsize
+
+Return the maximum input context size for a model.
+
+Prefers the model's profile (`max_input_tokens`) and falls back to a
+mapping of legacy models that have no profile.
+
+Changed in 1.2
+
+Now returns `max_input_tokens` from the model profile, which is the
+input context window. Earlier releases returned a hand-maintained
+number that for some newer models (e.g. `gpt-5`) reflected the
+*total* context (input + output). Callers using the result as an
+input-token budget are unaffected; callers using it as a combined
+input+output budget should switch to the profile fields directly.](/python/langchain-openai/llms/base/BaseOpenAI/modelname_to_contextsize)
 
 ## Inherited from[BaseLLM](/python/langchain-core/language_models/llms/BaseLLM)(langchain\_core)
 
@@ -372,7 +391,7 @@ Calculate the maximum number of tokens possible to generate for a prompt.](/pyth
 
 [Mget\_name](/python/langchain-core/runnables/base/Runnable/get_name)[Mget\_input\_schema](/python/langchain-core/runnables/base/Runnable/get_input_schema)[Mget\_input\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_input_jsonschema)[Mget\_output\_schema](/python/langchain-core/runnables/base/Runnable/get_output_schema)[Mget\_output\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_output_jsonschema)[Mconfig\_schema](/python/langchain-core/runnables/base/Runnable/config_schema)[Mget\_config\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_config_jsonschema)[Mget\_graph](/python/langchain-core/runnables/base/Runnable/get_graph)[Mget\_prompts](/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe](/python/langchain-core/runnables/base/Runnable/pipe)[Mpick](/python/langchain-core/runnables/base/Runnable/pick)[Massign](/python/langchain-core/runnables/base/Runnable/assign)[Minvoke](/python/langchain-core/runnables/base/Runnable/invoke)[Mainvoke](/python/langchain-core/runnables/base/Runnable/ainvoke)[Mbatch](/python/langchain-core/runnables/base/Runnable/batch)[Mbatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch](/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mstream](/python/langchain-core/runnables/base/Runnable/stream)[Mastream](/python/langchain-core/runnables/base/Runnable/astream)[Mastream\_log](/python/langchain-core/runnables/base/Runnable/astream_log)[Mastream\_events](/python/langchain-core/runnables/base/Runnable/astream_events)[Mstream\_events](/python/langchain-core/runnables/base/Runnable/stream_events)[Mtransform](/python/langchain-core/runnables/base/Runnable/transform)[Matransform](/python/langchain-core/runnables/base/Runnable/atransform)[Mbind](/python/langchain-core/runnables/base/Runnable/bind)[Mwith\_config](/python/langchain-core/runnables/base/Runnable/with_config)[Mwith\_listeners](/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith\_alisteners](/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith\_types](/python/langchain-core/runnables/base/Runnable/with_types)[Mwith\_retry](/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap](/python/langchain-core/runnables/base/Runnable/map)[Mwith\_fallbacks](/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas\_tool](/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/365c36c27033cf63c9a8bbc881bf6d595219edbe/libs/partners/openai/langchain_openai/llms/base.py#L53)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/625ed0ee8c683dd8a7d87564a14bdbd4472d2a44/libs/partners/openai/langchain_openai/llms/base.py#L56)
 
 Version History
 

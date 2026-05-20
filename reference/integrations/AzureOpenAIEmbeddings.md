@@ -298,7 +298,7 @@ Call out to OpenAI's embedding endpoint async for embedding query text.](/python
 
 [Membed\_documents](/python/langchain-core/embeddings/embeddings/Embeddings/embed_documents)[Membed\_query](/python/langchain-core/embeddings/embeddings/Embeddings/embed_query)[Maembed\_documents](/python/langchain-core/embeddings/embeddings/Embeddings/aembed_documents)[Maembed\_query](/python/langchain-core/embeddings/embeddings/Embeddings/aembed_query)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/365c36c27033cf63c9a8bbc881bf6d595219edbe/libs/partners/openai/langchain_openai/embeddings/azure.py#L16)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/625ed0ee8c683dd8a7d87564a14bdbd4472d2a44/libs/partners/openai/langchain_openai/embeddings/azure.py#L16)
 
 Version History
 

@@ -24,7 +24,7 @@
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/README "Migrations")
+13. [Migrations](/en/migrations/migrations "Migrations")
 15. [Queries](/en/guides-overview-queries "Queries")
 16. [Listings](/en/collaboration/collaboration-listings-about "Listings")
 17. [Collaboration](/en/guides-overview-sharing "Collaboration")

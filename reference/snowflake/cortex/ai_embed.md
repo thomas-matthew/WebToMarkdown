@@ -174,8 +174,8 @@ SELECT AI_EMBED('voyage-multimodal-3',
 
 Note
 
-%aisql-new-func-name% is the updated version of %aisql-old-func-link%.
-For the latest functionality, use %aisql-new-func-name%.
+AI\_EMBED is the updated version of [EMBED\_TEXT\_1024](/sql-reference/functions/embed_text_1024-snowflake-cortex) and [EMBED\_TEXT\_768](/sql-reference/functions/embed_text-snowflake-cortex).
+For the latest functionality, use AI\_EMBED.
 
 ## Legal notices[¶](#legal-notices)
 

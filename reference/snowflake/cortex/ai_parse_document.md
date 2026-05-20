@@ -191,8 +191,8 @@ For examples, see [AI\_PARSE\_DOCUMENT examples](/user-guide/snowflake-cortex/pa
 
 Note
 
-%aisql-new-func-name% is the updated version of %aisql-old-func-link%.
-For the latest functionality, use %aisql-new-func-name%.
+AI\_PARSE\_DOCUMENT is the updated version of [PARSE\_DOCUMENT](/sql-reference/functions/parse_document-snowflake-cortex).
+For the latest functionality, use AI\_PARSE\_DOCUMENT.
 
 ## Legal notices[¶](#legal-notices)
 

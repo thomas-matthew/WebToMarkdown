@@ -388,8 +388,8 @@ Show lessSee more
 
 Note
 
-%aisql-new-func-name% is the updated version of %aisql-old-func-link%.
-For the latest functionality, use %aisql-new-func-name%.
+AI\_CLASSIFY is the updated version of [CLASSIFY\_TEXT](/sql-reference/functions/classify_text-snowflake-cortex).
+For the latest functionality, use AI\_CLASSIFY.
 
 ## Legal notices[¶](#legal-notices)
 

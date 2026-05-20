@@ -343,7 +343,7 @@ Scroll to top
 
 ## Extraction scores (preview)[¶](#extraction-scores-preview)
 
-![Snowflake logo in black (no text)](/static/images/logo-snowflake-black.png) [Preview Feature](/release-notes/preview-features) — Open
+[Preview Feature](/release-notes/preview-features) — Open
 
 Available to all accounts.
 
@@ -995,8 +995,8 @@ For more information, see [Fine-tuning arctic-extract models](/user-guide/snowfl
 
 Note
 
-%aisql-new-func-name% is the updated version of %aisql-old-func-link%.
-For the latest functionality, use %aisql-new-func-name%.
+AI\_EXTRACT is the updated version of [EXTRACT\_ANSWER](/sql-reference/functions/extract_answer-snowflake-cortex).
+For the latest functionality, use AI\_EXTRACT.
 
 ## Legal notices[¶](#legal-notices)
 

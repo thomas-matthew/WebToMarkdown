@@ -24,7 +24,7 @@
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/README "Migrations")
+13. [Migrations](/en/migrations/migrations "Migrations")
 15. [Queries](/en/guides-overview-queries "Queries")
 16. [Listings](/en/collaboration/collaboration-listings-about "Listings")
 17. [Collaboration](/en/guides-overview-sharing "Collaboration")
@@ -92,7 +92,7 @@ Visibility of **unredacted** raw fields in monitoring and in observability user-
 
 Before you start using AI Observability:
 
-1. To create and execute runs, your role must have the following roles or privileges granted. For more information, see [Required privileges](/user-guide/snowflake-cortex/ai-observability/reference#label-ai-observability-required-privileges):
+1. To create and execute runs, your role must have the following roles or privileges granted. For more information, see [Access control and storage](/user-guide/snowflake-cortex/ai-observability/reference#label-ai-observability-required-privileges):
 
    * CORTEX\_USER database role
    * CREATE EXTERNAL AGENT privilege on the schema
@@ -119,7 +119,7 @@ An application is an end-to-end generative AI application that is designed using
 Applications are represented in Snowflake as External Agent objects. An External Agent object is used to store application and evaluation metadata (such as the application name, version name, or run name). It does not store the application code, application definition, execution traces, or evaluation results. While the application can be hosted in any environment (such as Snowflake, cloud, or on-premises), the execution traces and evaluation results are stored in an event table in your Snowflake account. For more information, see [Observability data](/user-guide/snowflake-cortex/ai-observability/reference#label-ai-observability-data).
 
 In addition to storing application and evaluation metadata, the External Agent object is also used to govern access to the traces and evaluation results for the application.
-For more information, see [Required privileges](/user-guide/snowflake-cortex/ai-observability/reference#label-ai-observability-required-privileges).
+For more information, see [Access control and storage](/user-guide/snowflake-cortex/ai-observability/reference#label-ai-observability-required-privileges).
 
 The TruLens SDK automatically creates External Agent objects when you register an application (for example, using `TruApp()`,
 `TruChain`, `TruGraph`, or `TruLlama`). Running an evaluation can also create an External Agent if one does not already exist

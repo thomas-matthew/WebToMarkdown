@@ -90,7 +90,7 @@ Copy
 * [Streaming](https://docs.langchain.com/oss/python/langgraph/streaming)
 * [Use the functional API](https://docs.langchain.com/oss/python/langgraph/use-functional-api)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/076e2a3627206f5a1aef573aaca4a01e5af897ca/libs/langgraph/langgraph/config.py#L126)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/aa322c13cd5f16a3f6254a931a4104e412cd687c/libs/langgraph/langgraph/config.py#L126)
 
 Version History
 

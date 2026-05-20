@@ -85,7 +85,7 @@ Notify the channel that a subscribed task ran.](/python/langgraph/channels/base/
 
 Notify the channel that the Pregel run is finishing.](/python/langgraph/channels/base/BaseChannel/finish)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/076e2a3627206f5a1aef573aaca4a01e5af897ca/libs/langgraph/langgraph/channels/last_value.py#L20)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/aa322c13cd5f16a3f6254a931a4104e412cd687c/libs/langgraph/langgraph/channels/last_value.py#L20)
 
 Version History
 

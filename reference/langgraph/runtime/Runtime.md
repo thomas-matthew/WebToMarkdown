@@ -111,7 +111,7 @@ constructor
 | Name | Type |
 | --- | --- |
 | context | [ContextT](/python/langgraph/typing/ContextT) |
-| store | [BaseStore](/python/langchain-core/stores/BaseStore) | None |
+| store | BaseStore | None |
 | stream\_writer | [StreamWriter](/python/langgraph/types/StreamWriter) |
 | heartbeat | [Callable](https://docs.python.org/3/library/typing.html#typing.Callable)[[], None] |
 | previous | [Any](https://docs.python.org/3/library/typing.html#typing.Any) |
@@ -192,7 +192,7 @@ patch\_execution\_info
 
 Return a new runtime with selected execution\_info fields replaced.](/python/langgraph/runtime/Runtime/patch_execution_info)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/076e2a3627206f5a1aef573aaca4a01e5af897ca/libs/langgraph/langgraph/runtime.py#L124)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/aa322c13cd5f16a3f6254a931a4104e412cd687c/libs/langgraph/langgraph/runtime.py#L124)
 
 Version History
 

@@ -240,6 +240,10 @@ for item in "${URL_LIST[@]}"; do
     fi
 done
 
+# 3b. Generate GitHub release notes (feature-focused, re-runnable)
+echo ">>> Generating GitHub release notes..."
+python release_notes.py
+
 # 4. Git Operations
 echo ">>> Performing Git operations..."
 

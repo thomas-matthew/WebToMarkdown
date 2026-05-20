@@ -22,17 +22,17 @@ Base class for content used in retrieval and data processing workflows.](/python
 
 [Module
 
-### base
-
-Base classes for media and documents.](/python/langchain-core/documents/base)[Module
-
 ### transformers
 
 Document transformers.](/python/langchain-core/documents/transformers)[Module
 
 ### compressor
 
-Document compressor.](/python/langchain-core/documents/compressor)
+Document compressor.](/python/langchain-core/documents/compressor)[Module
+
+### base
+
+Base classes for media and documents.](/python/langchain-core/documents/base)
 
 Copy page
 

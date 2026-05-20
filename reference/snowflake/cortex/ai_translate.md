@@ -273,8 +273,8 @@ I'm going to like your photos on Insta.
 
 Note
 
-%aisql-new-func-name% is the updated version of %aisql-old-func-link%.
-For the latest functionality, use %aisql-new-func-name%.
+AI\_TRANSLATE is the updated version of [TRANSLATE](/sql-reference/functions/translate-snowflake-cortex).
+For the latest functionality, use AI\_TRANSLATE.
 
 ## Legal notices[¶](#legal-notices)
 

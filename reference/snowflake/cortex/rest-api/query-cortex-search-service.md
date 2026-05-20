@@ -24,7 +24,7 @@
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/README "Migrations")
+13. [Migrations](/en/migrations/migrations "Migrations")
 15. [Queries](/en/guides-overview-queries "Queries")
 16. [Listings](/en/collaboration/collaboration-listings-about "Listings")
 17. [Collaboration](/en/guides-overview-sharing "Collaboration")
@@ -83,7 +83,7 @@ All APIs support the same set of query parameters:
 | Required | `query` | The search query, to be searched for in the text column in the service. |
 | Optional | `columns` | A comma-separated list of columns to return for each relevant result in the response. These columns must be included in the source query for the service.  If this parameter is not provided, only the search column is returned in the response. |
 |  | `filter` | A filter object for filtering results based on data in the `ATTRIBUTES` columns. See [Filter syntax](#filter-syntax) for syntax. |
-|  | `scoring_config` | Configuration object for customizing search ranking behavior. See  for syntax. |
+|  | `scoring_config` | Configuration object for customizing search ranking behavior. See [Customizing Cortex Search scoring](/user-guide/snowflake-cortex/cortex-search/cortex-search-customize-scoring#label-cortex-search-customize-scoring) for syntax. |
 |  | `scoring_profile` | The named scoring profile to be used with the query, previously defined with [ALTER CORTEX SEARCH SERVICE … ADD SCORING PROFILE](/sql-reference/sql/alter-cortex-search). If `scoring_profile` is provided, any `scoring_config` provided is ignored. |
 |  | `limit` | Maximum number of results to return in the response, up to 1000. The default limit is 10. |
 

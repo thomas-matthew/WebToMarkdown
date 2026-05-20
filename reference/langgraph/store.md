@@ -6,17 +6,13 @@ Python[langgraph](/python/langgraph)Storage
 
 [Class
 
-### ManagedValue](/python/langgraph/managed/base/ManagedValue)[Class
+### BaseChannel
+
+Base class for all channels.](/python/langgraph/channels/base/BaseChannel)[Class
 
 ### AsyncPostgresStore
 
 Asynchronous Postgres-backed store with optional vector search using pgvector.](/python/langgraph.store.postgres/aio/AsyncPostgresStore)
-
-## Functions
-
-[Function
-
-### is\_managed\_value](/python/langgraph/managed/base/is_managed_value)
 
 ## Modules
 
@@ -30,16 +26,14 @@ Asynchronous Postgres-backed store with optional vector search using pgvector.](
 
 [Attribute
 
-### V](/python/langgraph/managed/base/V)[Attribute
+### Value](/python/langgraph/channels/base/Value)[Attribute
 
-### U](/python/langgraph/managed/base/U)[Attribute
+### Update](/python/langgraph/channels/base/Update)[Attribute
 
-### ManagedValueSpec](/python/langgraph/managed/base/ManagedValueSpec)[Attribute
-
-### ManagedValueMapping](/python/langgraph/managed/base/ManagedValueMapping)
+### Checkpoint](/python/langgraph/channels/base/Checkpoint)
 
 Copy page
 
 ### On This Page
 
-Classes2Functions1Modules2Constants4
+Classes2Modules2Constants3

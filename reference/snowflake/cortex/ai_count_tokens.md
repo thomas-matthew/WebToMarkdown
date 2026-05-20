@@ -432,8 +432,8 @@ Response:
 
 Note
 
-%aisql-new-func-name% is the updated version of %aisql-old-func-link%.
-For the latest functionality, use %aisql-new-func-name%.
+AI\_COUNT\_TOKENS is the updated version of [COUNT\_TOKENS](/sql-reference/functions/count_tokens-snowflake-cortex).
+For the latest functionality, use AI\_COUNT\_TOKENS.
 
 ## Legal notices[¶](#legal-notices)
 

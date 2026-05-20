@@ -30,7 +30,7 @@ Message for passing the result of executing a tool back to a model.](/python/lan
 
 ### ToolCall
 
-Represents an AI's request to call a tool.](/python/langchain-core/messages/content/ToolCall)[Class
+Represents an AI's request to call a tool.](/python/langchain-core/messages/tool/ToolCall)[Class
 
 ### InvalidToolCall
 
@@ -38,7 +38,7 @@ Allowance for errors made by LLM.](/python/langchain-core/messages/content/Inval
 
 ### ToolCallChunk
 
-A chunk of a tool call (yielded when streaming).](/python/langchain-core/messages/content/ToolCallChunk)[Class
+A chunk of a tool call (yielded when streaming).](/python/langchain-core/messages/tool/ToolCallChunk)[Class
 
 ### ServerToolCall
 

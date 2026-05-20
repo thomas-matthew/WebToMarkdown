@@ -171,7 +171,11 @@ openai\_api\_base: str | None
 Base URL path for API requests, leave blank if not using a proxy or
 service emulator.
 
-Automatically inferred from env var `OPENAI_API_BASE` if not provided.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/openai_api_base)[attribute
+Resolution order (first match wins):
+
+1. Explicit `base_url` (or `openai_api_base`) kwarg.
+2. Env var `OPENAI_API_BASE` (read by LangChain at init).
+3. Env var `OPENAI_BASE_URL` (read by the underlying `openai` SDK client).](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/openai_api_base)[attribute
 
 openai\_api\_type: str | None](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/openai_api_type)[attribute
 
@@ -313,7 +317,7 @@ aembed\_query
 
 Call out to OpenAI's embedding endpoint async for embedding query text.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/aembed_query)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/365c36c27033cf63c9a8bbc881bf6d595219edbe/libs/partners/openai/langchain_openai/embeddings/base.py#L86)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/625ed0ee8c683dd8a7d87564a14bdbd4472d2a44/libs/partners/openai/langchain_openai/embeddings/base.py#L86)
 
 Version History
 

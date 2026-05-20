@@ -24,7 +24,7 @@
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/README "Migrations")
+13. [Migrations](/en/migrations/migrations "Migrations")
 15. [Queries](/en/guides-overview-queries "Queries")
 16. [Listings](/en/collaboration/collaboration-listings-about "Listings")
 17. [Collaboration](/en/guides-overview-sharing "Collaboration")
@@ -478,7 +478,7 @@ nor does Snowflake warrant that the below content is accurate.
 
 For more information on creating and running Streamlit apps in Snowflake, see [About Streamlit in Snowflake](/developer-guide/streamlit/about-streamlit).
 
-1. Follow the directions in  to create a new
+1. Follow the directions in [Create your Streamlit app](/developer-guide/streamlit/app-development/creating-your-app#label-streamlit-create-app) to create a new
    Streamlit app in Snowsight.
 2. Copy the [Streamlit code](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-analyst/blob/main/cortex_analyst_sis_demo_app.py) from our GitHub repo into the code editor.
 3. Replace the placeholder values with your account details.

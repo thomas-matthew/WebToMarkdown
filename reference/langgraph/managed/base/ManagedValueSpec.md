@@ -10,6 +10,6 @@ Copy
 ManagedValueSpec = type[ManagedValue]
 ```
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/076e2a3627206f5a1aef573aaca4a01e5af897ca/libs/langgraph/langgraph/managed/base.py#L24)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/aa322c13cd5f16a3f6254a931a4104e412cd687c/libs/langgraph/langgraph/managed/base.py#L24)
 
 Version History

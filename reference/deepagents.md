@@ -68,66 +68,6 @@ Typed async handle for a declared subagent execution.](/python/deepagents/_subag
 
 Promote declared subagents into typed handles on `run.subagents`.](/python/deepagents/_subagent_transformer/SubagentTransformer)[Class
 
-### SubAgent
-
-Specification for an agent.](/python/deepagents/middleware/subagents/SubAgent)[Class
-
-### CompiledSubAgent
-
-A pre-compiled agent spec.](/python/deepagents/middleware/subagents/CompiledSubAgent)[Class
-
-### TaskToolSchema
-
-Input schema for the `task` tool.](/python/deepagents/middleware/subagents/TaskToolSchema)[Class
-
-### SubAgentMiddleware
-
-Middleware for providing subagents to an agent via a `task` tool.](/python/deepagents/middleware/subagents/SubAgentMiddleware)[Class
-
-### CompactConversationSchema
-
-Input schema for the `compact_conversation` tool.](/python/deepagents/middleware/summarization/CompactConversationSchema)[Class
-
-### SummarizationEvent
-
-Represents a summarization event.](/python/deepagents/middleware/summarization/SummarizationEvent)[Class
-
-### TruncateArgsSettings
-
-Settings for truncating large tool-call arguments in older messages.](/python/deepagents/middleware/summarization/TruncateArgsSettings)[Class
-
-### SummarizationState
-
-State for the summarization middleware.](/python/deepagents/middleware/summarization/SummarizationState)[Class
-
-### SummarizationDefaults
-
-Default settings computed from model profile.](/python/deepagents/middleware/summarization/SummarizationDefaults)[Class
-
-### SummarizationToolMiddleware
-
-Middleware that provides a `compact_conversation` tool for manual compaction.](/python/deepagents/middleware/summarization/SummarizationToolMiddleware)[Class
-
-### PatchToolCallsMiddleware
-
-Middleware to patch dangling tool calls in the messages history.](/python/deepagents/middleware/patch_tool_calls/PatchToolCallsMiddleware)[Class
-
-### SkillMetadata
-
-Metadata for a skill per Agent Skills specification (https://agentskills.io/specification).](/python/deepagents/middleware/skills/SkillMetadata)[Class
-
-### SkillsState
-
-State for the skills middleware.](/python/deepagents/middleware/skills/SkillsState)[Class
-
-### SkillsStateUpdate
-
-State update for the skills middleware.](/python/deepagents/middleware/skills/SkillsStateUpdate)[Class
-
-### SkillsMiddleware
-
-Middleware for loading and exposing agent skills to the system prompt.](/python/deepagents/middleware/skills/SkillsMiddleware)[Class
-
 ### AsyncSubAgent
 
 Specification for an async subagent running on a remote Agent Protocol server.](/python/deepagents/middleware/async_subagents/AsyncSubAgent)[Class
@@ -176,6 +116,66 @@ State update for `MemoryMiddleware`.](/python/deepagents/middleware/memory/Memor
 
 Middleware for loading agent memory from `AGENTS.md` files.](/python/deepagents/middleware/memory/MemoryMiddleware)[Class
 
+### SkillMetadata
+
+Metadata for a skill per Agent Skills specification (https://agentskills.io/specification).](/python/deepagents/middleware/skills/SkillMetadata)[Class
+
+### SkillsState
+
+State for the skills middleware.](/python/deepagents/middleware/skills/SkillsState)[Class
+
+### SkillsStateUpdate
+
+State update for the skills middleware.](/python/deepagents/middleware/skills/SkillsStateUpdate)[Class
+
+### SkillsMiddleware
+
+Middleware for loading and exposing agent skills to the system prompt.](/python/deepagents/middleware/skills/SkillsMiddleware)[Class
+
+### SubAgent
+
+Specification for an agent.](/python/deepagents/middleware/subagents/SubAgent)[Class
+
+### CompiledSubAgent
+
+A pre-compiled agent spec.](/python/deepagents/middleware/subagents/CompiledSubAgent)[Class
+
+### TaskToolSchema
+
+Input schema for the `task` tool.](/python/deepagents/middleware/subagents/TaskToolSchema)[Class
+
+### SubAgentMiddleware
+
+Middleware for providing subagents to an agent via a `task` tool.](/python/deepagents/middleware/subagents/SubAgentMiddleware)[Class
+
+### CompactConversationSchema
+
+Input schema for the `compact_conversation` tool.](/python/deepagents/middleware/summarization/CompactConversationSchema)[Class
+
+### SummarizationEvent
+
+Represents a summarization event.](/python/deepagents/middleware/summarization/SummarizationEvent)[Class
+
+### TruncateArgsSettings
+
+Settings for truncating large tool-call arguments in older messages.](/python/deepagents/middleware/summarization/TruncateArgsSettings)[Class
+
+### SummarizationState
+
+State for the summarization middleware.](/python/deepagents/middleware/summarization/SummarizationState)[Class
+
+### SummarizationDefaults
+
+Default settings computed from model profile.](/python/deepagents/middleware/summarization/SummarizationDefaults)[Class
+
+### SummarizationToolMiddleware
+
+Middleware that provides a `compact_conversation` tool for manual compaction.](/python/deepagents/middleware/summarization/SummarizationToolMiddleware)[Class
+
+### PatchToolCallsMiddleware
+
+Middleware to patch dangling tool calls in the messages history.](/python/deepagents/middleware/patch_tool_calls/PatchToolCallsMiddleware)[Class
+
 ### FilesystemPermission
 
 A single access rule for filesystem operations.](/python/deepagents/middleware/filesystem/FilesystemPermission)[Class
@@ -216,10 +216,6 @@ Input schema for the `execute` tool.](/python/deepagents/middleware/filesystem/E
 
 Middleware for providing filesystem and optional execution tools to an agent.](/python/deepagents/middleware/filesystem/FilesystemMiddleware)[Class
 
-### ProviderProfile
-
-Declarative configuration for constructing a chat model.](/python/deepagents/profiles/provider/provider_profiles/ProviderProfile)[Class
-
 ### GeneralPurposeSubagentProfile
 
 Edits applied to the auto-added `general-purpose` subagent.](/python/deepagents/profiles/harness/harness_profiles/GeneralPurposeSubagentProfile)[Class
@@ -232,25 +228,9 @@ Declarative harness-profile config for YAML/JSON-backed profiles.](/python/deepa
 
 Runtime configuration for deep agent behavior.](/python/deepagents/profiles/harness/harness_profiles/HarnessProfile)[Class
 
-### BaseSandbox
+### ProviderProfile
 
-Base sandbox implementation with `execute()` as the core abstract method.](/python/deepagents/backends/sandbox/BaseSandbox)[Class
-
-### ContextHubBackend
-
-Backend that stores files in a LangSmith Hub agent repo (persistent).](/python/deepagents/backends/context_hub/ContextHubBackend)[Class
-
-### StoreBackend
-
-Backend that stores files in LangGraph's BaseStore (persistent).](/python/deepagents/backends/store/StoreBackend)[Class
-
-### CompositeBackend
-
-Routes file operations to different backends by path prefix.](/python/deepagents/backends/composite/CompositeBackend)[Class
-
-### LocalShellBackend
-
-Filesystem backend with unrestricted local shell command execution.](/python/deepagents/backends/local_shell/LocalShellBackend)[Class
+Declarative configuration for constructing a chat model.](/python/deepagents/profiles/provider/provider_profiles/ProviderProfile)[Class
 
 ### StateBackend
 
@@ -259,6 +239,30 @@ Backend that stores files in agent state (ephemeral).](/python/deepagents/backen
 ### LangSmithSandbox
 
 LangSmith sandbox implementation conforming to `SandboxBackendProtocol`.](/python/deepagents/backends/langsmith/LangSmithSandbox)[Class
+
+### CompositeBackend
+
+Routes file operations to different backends by path prefix.](/python/deepagents/backends/composite/CompositeBackend)[Class
+
+### StoreBackend
+
+Backend that stores files in LangGraph's BaseStore (persistent).](/python/deepagents/backends/store/StoreBackend)[Class
+
+### BaseSandbox
+
+Base sandbox implementation with `execute()` as the core abstract method.](/python/deepagents/backends/sandbox/BaseSandbox)[Class
+
+### LocalShellBackend
+
+Filesystem backend with unrestricted local shell command execution.](/python/deepagents/backends/local_shell/LocalShellBackend)[Class
+
+### FilesystemBackend
+
+Backend that reads and writes files directly from the filesystem.](/python/deepagents/backends/filesystem/FilesystemBackend)[Class
+
+### ContextHubBackend
+
+Backend that stores files in a LangSmith Hub agent repo (persistent).](/python/deepagents/backends/context_hub/ContextHubBackend)[Class
 
 ### FileDownloadResponse
 
@@ -316,10 +320,6 @@ Result of code execution.](/python/deepagents/backends/protocol/ExecuteResponse)
 
 Extension of `BackendProtocol` that adds shell command execution.](/python/deepagents/backends/protocol/SandboxBackendProtocol)[Class
 
-### FilesystemBackend
-
-Backend that reads and writes files directly from the filesystem.](/python/deepagents/backends/filesystem/FilesystemBackend)[Class
-
 ### BackendContext
 
 deprecated
@@ -374,6 +374,30 @@ Check if a backend supports command execution.](/python/deepagents/middleware/fi
 
 Validate a profile registry key.](/python/deepagents/profiles/_keys/validate_profile_key)[Function
 
+### register\_harness\_profile
+
+Register a harness profile for a provider or specific model.](/python/deepagents/profiles/harness/harness_profiles/register_harness_profile)[Function
+
+### register
+
+Register the built-in Claude Opus 4.7 harness profile.](/python/deepagents/profiles/harness/_anthropic_opus_4_7/register)[Function
+
+### register
+
+Register the built-in Claude Haiku 4.5 harness profile.](/python/deepagents/profiles/harness/_anthropic_haiku_4_5/register)[Function
+
+### register
+
+Register the built-in Claude Sonnet 4.6 harness profile.](/python/deepagents/profiles/harness/_anthropic_sonnet_4_6/register)[Function
+
+### register
+
+Register the built-in Codex harness profile for each Codex spec.](/python/deepagents/profiles/harness/_openai_codex/register)[Function
+
+### register
+
+Register the built-in OpenAI provider profile.](/python/deepagents/profiles/provider/_openai/register)[Function
+
 ### register\_provider\_profile
 
 Register a `ProviderProfile` for a provider or specific model.](/python/deepagents/profiles/provider/provider_profiles/register_provider_profile)[Function
@@ -393,30 +417,6 @@ Raise if the installed `langchain-openrouter` is below the minimum.](/python/dee
 ### register
 
 Register the built-in OpenRouter provider profile.](/python/deepagents/profiles/provider/_openrouter/register)[Function
-
-### register
-
-Register the built-in OpenAI provider profile.](/python/deepagents/profiles/provider/_openai/register)[Function
-
-### register
-
-Register the built-in Claude Opus 4.7 harness profile.](/python/deepagents/profiles/harness/_anthropic_opus_4_7/register)[Function
-
-### register
-
-Register the built-in Claude Sonnet 4.6 harness profile.](/python/deepagents/profiles/harness/_anthropic_sonnet_4_6/register)[Function
-
-### register
-
-Register the built-in Codex harness profile for each Codex spec.](/python/deepagents/profiles/harness/_openai_codex/register)[Function
-
-### register\_harness\_profile
-
-Register a harness profile for a provider or specific model.](/python/deepagents/profiles/harness/harness_profiles/register_harness_profile)[Function
-
-### register
-
-Register the built-in Claude Haiku 4.5 harness profile.](/python/deepagents/profiles/harness/_anthropic_haiku_4_5/register)[Function
 
 ### sanitize\_tool\_call\_id
 
@@ -508,22 +508,6 @@ Primary graph assembly module for Deep Agents.](/python/deepagents/graph)[Module
 
 Middleware for the Deep Agents agent.](/python/deepagents/middleware)[Module
 
-### subagents
-
-Middleware for providing subagents to an agent via a `task` tool.](/python/deepagents/middleware/subagents)[Module
-
-### summarization
-
-Summarization middleware for automatic and tool-based conversation compaction.](/python/deepagents/middleware/summarization)[Module
-
-### patch\_tool\_calls
-
-Middleware to patch dangling tool calls in the messages history.](/python/deepagents/middleware/patch_tool_calls)[Module
-
-### skills
-
-Skills middleware for loading and exposing agent skills to the system prompt.](/python/deepagents/middleware/skills)[Module
-
 ### async\_subagents
 
 Middleware for async subagents running on remote Agent Protocol servers.](/python/deepagents/middleware/async_subagents)[Module
@@ -536,6 +520,22 @@ Middleware for loading agent memory/context from AGENTS.md files.](/python/deepa
 
 Backward-compatible re-export for filesystem permissions.](/python/deepagents/middleware/permissions)[Module
 
+### skills
+
+Skills middleware for loading and exposing agent skills to the system prompt.](/python/deepagents/middleware/skills)[Module
+
+### subagents
+
+Middleware for providing subagents to an agent via a `task` tool.](/python/deepagents/middleware/subagents)[Module
+
+### summarization
+
+Summarization middleware for automatic and tool-based conversation compaction.](/python/deepagents/middleware/summarization)[Module
+
+### patch\_tool\_calls
+
+Middleware to patch dangling tool calls in the messages history.](/python/deepagents/middleware/patch_tool_calls)[Module
+
 ### filesystem
 
 Middleware for providing filesystem tools to an agent.](/python/deepagents/middleware/filesystem)[Module
@@ -543,14 +543,6 @@ Middleware for providing filesystem tools to an agent.](/python/deepagents/middl
 ### profiles
 
 Public beta APIs for model and harness profiles.](/python/deepagents/profiles)[Module
-
-### provider
-
-Provider profile package: `ProviderProfile` API and built-in providers.](/python/deepagents/profiles/provider)[Module
-
-### provider\_profiles
-
-Beta APIs for configuring model-construction behavior.](/python/deepagents/profiles/provider/provider_profiles)[Module
 
 ### harness
 
@@ -560,33 +552,17 @@ Harness profile package: `HarnessProfile` API and built-in registrations.](/pyth
 
 Beta APIs for configuring deep agent runtime behavior.](/python/deepagents/profiles/harness/harness_profiles)[Module
 
+### provider
+
+Provider profile package: `ProviderProfile` API and built-in providers.](/python/deepagents/profiles/provider)[Module
+
+### provider\_profiles
+
+Beta APIs for configuring model-construction behavior.](/python/deepagents/profiles/provider/provider_profiles)[Module
+
 ### backends
 
 Memory backends for pluggable file storage.](/python/deepagents/backends)[Module
-
-### sandbox
-
-Base sandbox implementation.](/python/deepagents/backends/sandbox)[Module
-
-### context\_hub
-
-ContextHubBackend: Store files in a LangSmith Hub agent repo (persistent).](/python/deepagents/backends/context_hub)[Module
-
-### utils
-
-Shared utility functions for memory backend implementations.](/python/deepagents/backends/utils)[Module
-
-### store
-
-StoreBackend: Adapter for LangGraph's BaseStore (persistent, cross-thread).](/python/deepagents/backends/store)[Module
-
-### composite
-
-Composite backend that routes file operations by path prefix.](/python/deepagents/backends/composite)[Module
-
-### local\_shell
-
-`LocalShellBackend`: Filesystem backend with unrestricted local shell execution.](/python/deepagents/backends/local_shell)[Module
 
 ### state
 
@@ -596,13 +572,37 @@ StateBackend: Store files in LangGraph agent state (ephemeral).](/python/deepage
 
 LangSmith sandbox backend implementation.](/python/deepagents/backends/langsmith)[Module
 
-### protocol
+### composite
 
-Protocol definition for pluggable memory backends.](/python/deepagents/backends/protocol)[Module
+Composite backend that routes file operations by path prefix.](/python/deepagents/backends/composite)[Module
+
+### store
+
+StoreBackend: Adapter for LangGraph's BaseStore (persistent, cross-thread).](/python/deepagents/backends/store)[Module
+
+### utils
+
+Shared utility functions for memory backend implementations.](/python/deepagents/backends/utils)[Module
+
+### sandbox
+
+Base sandbox implementation.](/python/deepagents/backends/sandbox)[Module
+
+### local\_shell
+
+`LocalShellBackend`: Filesystem backend with unrestricted local shell execution.](/python/deepagents/backends/local_shell)[Module
 
 ### filesystem
 
 `FilesystemBackend`: Read and write files directly from the filesystem.](/python/deepagents/backends/filesystem)[Module
+
+### context\_hub
+
+ContextHubBackend: Store files in a LangSmith Hub agent repo (persistent).](/python/deepagents/backends/context_hub)[Module
+
+### protocol
+
+Protocol definition for pluggable memory backends.](/python/deepagents/backends/protocol)[Module
 
 ### deprecation
 
