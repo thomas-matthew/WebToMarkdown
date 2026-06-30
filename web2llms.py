@@ -82,5 +82,9 @@ async def main():
     else:
         print(f"Failed to retrieve content for {args.url}")
 
-if __name__ == "__main__":
+def cli():
+    """Console script entry point."""
     asyncio.run(main())
+
+if __name__ == "__main__":
+    cli()
