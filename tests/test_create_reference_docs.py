@@ -23,3 +23,14 @@ def test_openai_core_concepts_use_direct_markdown_downloads() -> None:
         assert source_url.endswith(".md")
         assert output_path.startswith("docs/openai/core-concepts/")
         assert f'"{source_url} | {output_path}"' in script
+
+
+def test_reference_docs_script_processes_urls_in_parallel_batches() -> None:
+    script = SCRIPT_PATH.read_text(encoding="utf-8")
+
+    assert 'CONCURRENCY="${CONCURRENCY:-4}"' in script
+    assert "process_url() {" in script
+    assert "wait_for_pending_jobs() {" in script
+    assert 'process_url "$item" &' in script
+    assert 'pending_pids+=("$!")' in script
+    assert 'if [ "${#pending_pids[@]}" -ge "$CONCURRENCY" ]; then' in script

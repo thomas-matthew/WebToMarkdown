@@ -8,6 +8,7 @@ set -e
 PROJECT_DIR="/Users/thomasmathew/Dev/personal/WebToMarkdown"
 OUTPUT_DIR="."
 COMMIT_MSG="Auto-update: Generated new artifacts via web2llms"
+CONCURRENCY="${CONCURRENCY:-4}"
 
 # --- URL MAPPING (Bash 3.2 Compatible) ---
 # Syntax: "URL | reference|docs/SUBDIRECTORY/FILENAME"
@@ -204,6 +205,60 @@ URL_LIST=(
     "https://code.claude.com/docs/en/agent-sdk/user-input.md | docs/anthropic/agent-sdk/user-input.md"
 )
 
+process_url() {
+    local item="$1"
+    local url
+    local relative_path
+    local full_output_path
+    local target_dir
+
+    # Split the string by " | "
+    # ${item%% | *} gets everything BEFORE the separator (The URL)
+    # ${item##* | } gets everything AFTER the separator (The Path)
+    url="${item%% | *}"
+    relative_path="${item##* | }"
+
+    # Combine with the main output directory
+    full_output_path="$OUTPUT_DIR/$relative_path"
+
+    # Get the directory part of the path
+    target_dir=$(dirname "$full_output_path")
+
+    # Ensure the specific subdirectory exists
+    if [ ! -d "$target_dir" ]; then
+        mkdir -p "$target_dir"
+    fi
+
+    echo " -> Processing: $url"
+    echo "    Target: $full_output_path"
+
+    # If the URL already points to raw markdown, just download it directly.
+    # Otherwise, use the HTML-to-markdown scraper.
+    if [[ "$url" == *.md ]]; then
+        curl -sSL --fail -o "$full_output_path" "$url"
+    else
+        python web2llms.py "$url" -o "$full_output_path"
+    fi
+}
+
+wait_for_pending_jobs() {
+    local pid
+    local failed=0
+
+    for pid in "${pending_pids[@]}"; do
+        if ! wait "$pid"; then
+            failed=1
+        fi
+    done
+
+    pending_pids=()
+
+    if [ "$failed" -ne 0 ]; then
+        echo "Error: one or more URL processing jobs failed."
+        exit 1
+    fi
+}
+
 # --- EXECUTION START ---
 
 echo ">>> Starting Workflow..."
@@ -216,39 +271,35 @@ cd "$PROJECT_DIR"
 echo ">>> Activating Python virtual environment..."
 source .venv/bin/activate
 
-# 3. Loop through the list and run the Python command
-echo ">>> Processing ${#URL_LIST[@]} URLs..."
+# 3. Loop through the list and run the URL jobs in bounded parallel batches
+case "$CONCURRENCY" in
+    ''|*[!0-9]*)
+        echo "Error: CONCURRENCY must be a positive integer."
+        exit 1
+        ;;
+esac
+
+if [ "$CONCURRENCY" -lt 1 ]; then
+    echo "Error: CONCURRENCY must be a positive integer."
+    exit 1
+fi
+
+echo ">>> Processing ${#URL_LIST[@]} URLs with concurrency $CONCURRENCY..."
+
+pending_pids=()
 
 for item in "${URL_LIST[@]}"; do
-    # Split the string by " | "
-    # ${item%% | *} gets everything BEFORE the separator (The URL)
-    # ${item##* | } gets everything AFTER the separator (The Path)
-    
-    url="${item%% | *}"
-    relative_path="${item##* | }"
-    
-    # Combine with the main output directory
-    full_output_path="$OUTPUT_DIR/$relative_path"
-    
-    # Get the directory part of the path
-    target_dir=$(dirname "$full_output_path")
-    
-    # Ensure the specific subdirectory exists
-    if [ ! -d "$target_dir" ]; then
-        mkdir -p "$target_dir"
-    fi
-    
-    echo " -> Processing: $url"
-    echo "    Target: $full_output_path"
+    process_url "$item" &
+    pending_pids+=("$!")
 
-    # If the URL already points to raw markdown, just download it directly.
-    # Otherwise, use the HTML-to-markdown scraper.
-    if [[ "$url" == *.md ]]; then
-        curl -sSL --fail -o "$full_output_path" "$url"
-    else
-        python web2llms.py "$url" -o "$full_output_path"
+    if [ "${#pending_pids[@]}" -ge "$CONCURRENCY" ]; then
+        wait_for_pending_jobs
     fi
 done
+
+if [ "${#pending_pids[@]}" -gt 0 ]; then
+    wait_for_pending_jobs
+fi
 
 # 3b. Generate GitHub release notes (feature-focused, re-runnable)
 echo ">>> Generating GitHub release notes..."
