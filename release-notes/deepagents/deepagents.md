@@ -3,6 +3,66 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/deepagents/releases
 
+## 0.6.12 — 2026-06-25
+
+[Release on GitHub](https://github.com/langchain-ai/deepagents/releases/tag/deepagents%3D%3D0.6.12)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 0.6.11 — 2026-06-18
+
+[Release on GitHub](https://github.com/langchain-ai/deepagents/releases/tag/deepagents%3D%3D0.6.11)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 0.6.10 — 2026-06-13
+
+[Release on GitHub](https://github.com/langchain-ai/deepagents/releases/tag/deepagents%3D%3D0.6.10)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 0.6.9 — 2026-06-12
+
+[Release on GitHub](https://github.com/langchain-ai/deepagents/releases/tag/deepagents%3D%3D0.6.9)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 0.6.8 — 2026-06-03
+
+[Release on GitHub](https://github.com/langchain-ai/deepagents/releases/tag/deepagents%3D%3D0.6.8)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 0.6.7 — 2026-05-30
+
+[Release on GitHub](https://github.com/langchain-ai/deepagents/releases/tag/deepagents%3D%3D0.6.7)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 0.6.6 — 2026-05-28
+
+[Release on GitHub](https://github.com/langchain-ai/deepagents/releases/tag/deepagents%3D%3D0.6.6)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 0.6.5 — 2026-05-28
+
+[Release on GitHub](https://github.com/langchain-ai/deepagents/releases/tag/deepagents%3D%3D0.6.5)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 0.6.4 — 2026-05-26
+
+[Release on GitHub](https://github.com/langchain-ai/deepagents/releases/tag/deepagents%3D%3D0.6.4)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 0.6.3 — 2026-05-20
+
+[Release on GitHub](https://github.com/langchain-ai/deepagents/releases/tag/deepagents%3D%3D0.6.3)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 0.6.2 — 2026-05-18
 
 [Release on GitHub](https://github.com/langchain-ai/deepagents/releases/tag/deepagents%3D%3D0.6.2)

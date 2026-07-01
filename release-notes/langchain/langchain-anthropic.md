@@ -3,6 +3,37 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.4.8 — 2026-06-26
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.4.8)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.4.7 — 2026-06-22
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.4.7)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.4.6 — 2026-06-12
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.4.6)
+
+- feat(core,partners): add package version tracking to tracing metadata (#35295)
+- feat(standard-tests): validate tool call chunks during streaming (#34707)
+
+## 1.4.5 — 2026-06-10
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.4.5)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.4.4 — 2026-05-28
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.4.4)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 1.4.3 — 2026-05-03
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.4.3)

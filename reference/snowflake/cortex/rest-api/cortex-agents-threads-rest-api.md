@@ -31,12 +31,13 @@
 19. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
-    * [Snowflake Intelligence](/en/user-guide/snowflake-cortex/snowflake-intelligence "Snowflake Intelligence")
+    * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
     * [Cortex Code](/en/user-guide/cortex-code/cortex-code "Cortex Code")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
 
-      + [Configure and interact with Agents](/en/user-guide/snowflake-cortex/cortex-agents-manage "Configure and interact with Agents")
+      + [Create and manage agents](/en/user-guide/snowflake-cortex/cortex-agents-manage "Create and manage agents")
+      + [Access control and authentication](/en/user-guide/snowflake-cortex/cortex-agents-setup "Access control and authentication")
       + [Use threads with Agents](/en/user-guide/snowflake-cortex/cortex-agents-threads "Use threads with Agents")
       + REST API
 
@@ -60,21 +61,20 @@
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
     * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
     * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
-    * [Cortex REST API](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex REST API")
+    * [Cortex Inference](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex Inference")
     * [Cortex AI Guardrails](/en/user-guide/snowflake-cortex/cortex-ai-guardrails "Cortex AI Guardrails")
     * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
     * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
     * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
+    * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
 21. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
 23. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
 25. [Security](/en/guides-overview-secure "Security")
-26. [Data Governance](/en/guides-overview-govern "Data Governance")
-27. [Privacy](/en/guides-overview-privacy "Privacy")
-29. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-30. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-32. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-33. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
+27. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
+28. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
+30. [Performance optimization](/en/guides-overview-performance "Performance optimization")
+31. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
 
 [Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)[Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents)REST APIThreads
 
@@ -94,7 +94,7 @@ Creates a new thread and returns a thread metadata object.
 
 | Header | Description |
 | --- | --- |
-| `Authorization` | (Required) Authorization token. For more information, see [Authentication](/user-guide/snowflake-cortex/cortex-agents#label-chat-api-authenticate-example). |
+| `Authorization` | (Required) Authorization token. For more information, see [Authentication](/user-guide/snowflake-cortex/cortex-agents-setup#label-chat-api-authenticate-example). |
 | `Content-Type` | (Required) application/json |
 
 Expand
@@ -157,7 +157,7 @@ Copy code
 
 `GET /api/v2/cortex/threads/{id}`
 
-Describes a thread and returns a batch of messages in that thread, based on the page\_size and the last\_message\_id, in descending order of creation. This request is only successful if the thread ID belongs to the user.
+Describes a thread and returns a batch of messages in that thread, based on the page\_size and the last\_message\_id, in descending order of creation. This request is only successful if the thread ID belongs to the user. To return only messages of a particular type, use the `message_type` query parameter.
 
 ### Request[¶](#request)
 
@@ -177,6 +177,7 @@ Show lessSee more
 | --- | --- | --- |
 | `page_size` | integer | (Optional) Number of messages to return (default: 20, max: 100). |
 | `last_message_id` | integer | (Optional) The ID of the last message received. Used to set the offset for next batch. Can be empty for the first batch of messages. |
+| `message_type` | string | (Optional) When set, only messages of the specified type are returned. Valid values are `conversation` (messages exchanged between the user and the agent) and `compaction` (summary messages generated when a thread is compacted). When omitted, messages of all types are returned. |
 
 Expand
 
@@ -230,6 +231,7 @@ Show lessSee more
 | `role` | string | The role that generated this message. |
 | `message_payload` | string | Message payload. |
 | `request_id` | string | Request ID for the original message. |
+| `message_type` | string | The type of the message. Either `conversation` (a message exchanged between the user and the agent) or `compaction` (a summary message generated when a thread is compacted). |
 
 Expand
 
@@ -237,7 +239,7 @@ Show lessSee more
 
 Example:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -255,7 +257,8 @@ Copy codeExpand
       "created_on": 1717000000000,
       "role": "user",
       "message_payload": "Hello, I need help.",
-      "request_id": "req_001"
+      "request_id": "req_001",
+      "message_type": "conversation"
     },
     {
       "message_id": 2,
@@ -263,7 +266,8 @@ Copy codeExpand
       "created_on": 1717000001000,
       "role": "assistant",
       "message_payload": "How can I assist you?",
-      "request_id": "req_002"
+      "request_id": "req_002",
+      "message_type": "conversation"
     }
   ]
 }

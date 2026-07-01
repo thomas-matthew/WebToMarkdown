@@ -31,7 +31,7 @@
 19. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
-    * [Snowflake Intelligence](/en/user-guide/snowflake-cortex/snowflake-intelligence "Snowflake Intelligence")
+    * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
     * [Cortex Code](/en/user-guide/cortex-code/cortex-code "Cortex Code")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
@@ -42,21 +42,20 @@
 
       + [CKE document access history](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-access-history "CKE document access history")
       + [Tutorials](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/overview-tutorials "Tutorials")
-    * [Cortex REST API](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex REST API")
+    * [Cortex Inference](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex Inference")
     * [Cortex AI Guardrails](/en/user-guide/snowflake-cortex/cortex-ai-guardrails "Cortex AI Guardrails")
     * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
     * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
     * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
+    * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
 21. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
 23. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
 25. [Security](/en/guides-overview-secure "Security")
-26. [Data Governance](/en/guides-overview-govern "Data Governance")
-27. [Privacy](/en/guides-overview-privacy "Privacy")
-29. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-30. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-32. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-33. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
+27. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
+28. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
+30. [Performance optimization](/en/guides-overview-performance "Performance optimization")
+31. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
 
 [Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)Cortex Knowledge Extensions
 
@@ -101,7 +100,7 @@ Providers can limit the percentage of indexed content in their CKE that can be r
 Refer to the [Listing manifest reference](/progaccess/listing-manifest-reference) for more information about the
 `cke_content_protection` field.
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 -- Use CREATE to create a new CKE listing with content protection.
@@ -136,6 +135,8 @@ Show lessSee more
 Scroll to top
 
 When the threshold has been hit by a consumer, queries to the CKE are blocked from executing, and the consumer receives the following error:
+
+Expand code block
 
 ```
 You have reached the content protection threshold. Please try again later.
@@ -179,7 +180,7 @@ Consumers:
 
 ## Citations[¶](#citations)
 
-To ensure that the CKE is providing citations, when you configure the [Cortex Search Services](/user-guide/snowflake-cortex/cortex-search/cortex-search-overview), make sure that you include a *SOURCE\_URL* column that points to the source of the document in the indexed columns. This can be used by LLMs or Snowflake Intelligence to provide clear attribution and hyperlinks back to the source material.
+To ensure that the CKE is providing citations, when you configure the [Cortex Search Services](/user-guide/snowflake-cortex/cortex-search/cortex-search-overview), make sure that you include a *SOURCE\_URL* column that points to the source of the document in the indexed columns. This can be used by LLMs or Snowflake CoWork to provide clear attribution and hyperlinks back to the source material.
 
 ## Publishing the CKE to the Snowflake Marketplace[¶](#publishing-the-cke-to-the-snowflake-marketplace)
 
@@ -195,9 +196,9 @@ You can use the following methods to ask the CKE questions.
   2. Select the CKE from the **Database/Schema** drop down menu.
   3. Click on **Playground** in the upper-right corner.
   4. Type in a search query and see the results
-* Use Snowflake Intelligence:
+* Use Snowflake CoWork:
 
-  + Follow the steps outlined in [Tutorial 3: Add a CKE to Snowflake Intelligence](/user-guide/snowflake-cortex/cortex-knowledge-extensions/tutorials/add-cke-to-snowflake-intelligence-tutorial).
+  + Follow the steps outlined in [Tutorial 3: Add a CKE to Snowflake CoWork](/user-guide/snowflake-cortex/cortex-knowledge-extensions/tutorials/add-cke-to-snowflake-cowork-tutorial).
 * Use Cortex Agent API:
 
   + Use the Cortex Agent API, and specify the shared CKE in the [CREATE CORTEX SEARCH](/sql-reference/sql/create-cortex-search) parameter. Refer to the [Cortex Agent API](/user-guide/snowflake-cortex/cortex-agents) documentation for more information.
@@ -213,7 +214,7 @@ Keeping a CKE up-to-date is a common use case for providers that regularly intro
    [Use SQL](/user-guide/snowflake-cortex/cortex-search/cortex-search-overview#label-cortex-search-overview-example-sql) topic for more information about `target_lag`.
 3. Run the following commands to ensure that the Cortex Search Service is indexing.
 
-   Copy code
+   Copy codeExpand code block
 
    ```
    -- Get the status of the search service

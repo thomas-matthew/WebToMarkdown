@@ -15,6 +15,7 @@
      * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
      * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
@@ -196,7 +197,7 @@ SELECT TO_FILE(BUILD_STAGE_FILE_URL('@mystage', 'image.png'));
 
 Result:
 
-Expand
+Expand code block
 
 ```
 +--------------------------------------------------------------------------------------------------------------------+
@@ -226,7 +227,7 @@ Copy code
 SELECT TO_FILE(FILE_URL) FROM DIRECTORY(@mystage) LIMIT 1;
 ```
 
-Expand
+Expand code block
 
 ```
 +--------------------------------------------------------------------------------------------------------------------+
@@ -250,7 +251,7 @@ Scroll to top
 
 This example uses TO\_FILE function directly with a scoped file URL:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 SELECT TO_FILE(`https://snowflake.account.snowflakecomputing.com/api/files/01ba4df2-0100-0001-0000-00040002e2b6/299017/Y6JShH6KjV`);
@@ -274,7 +275,7 @@ Scroll to top
 
 This shows an example of constructing a FILE from an object containing the required metadata:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 SELECT TO_FILE(OBJECT_CONSTRUCT('STAGE', 'MYSTAGE', 'RELATIVE_PATH', 'image.png', 'ETAG', '<ETAG value>',
@@ -306,7 +307,7 @@ with time travel.
 
 Creating a table with a FILE column:
 
-Copy code
+Copy codeExpand code block
 
 ```
 CREATE OR REPLACE TABLE sample_table (a INT, f FILE NOT NULL);
@@ -318,7 +319,7 @@ SELECT * FROM sample_table WHERE fl_get_file_type(f) = 'image';
 
 To write a table containing a FILE column to a stage as a Parquet file and load it back:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 -- Write to stage as Parquet
@@ -344,7 +345,7 @@ Scroll to top
 
 Create a dataset from a Parquet file:
 
-Copy code
+Copy codeExpand code block
 
 ```
 CREATE OR REPLACE DATASET mydataset;
@@ -399,7 +400,7 @@ AS SELECT f FROM sample_table;
 
 Store files in an array in a table column:
 
-Copy code
+Copy codeExpand code block
 
 ```
 CREATE OR REPLACE TABLE files_array_table(files ARRAY);
@@ -414,20 +415,22 @@ These examples illustrate common mistakes in using TO\_FILE that result in the f
 
 The following example constructs a FILE from a metadata object but omits a required field:
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT TO_FILE(OBJECT_CONSTRUCT('RELATIVE_PATH', 'image.png', 'ETAG', '<ETAG value>',
   'LAST_MODIFIED', 'Wed, 11 Dec 2024 20:24:00 GMT', 'SIZE', 105859, 'CONTENT_TYPE', 'image/png'));
 ```
 
+Expand code block
+
 ```
 Invalid file metadata. Must provide (STAGE and RELATIVE_PATH), SCOPED_FILE_URL, or STAGE_FILE_URL.
 ```
 
-The following example is similar, but omits the ETAG field, which is requred.
+The following example is similar, but omits the ETAG field, which is required.
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT TO_FILE(OBJECT_CONSTRUCT('STAGE', 'MYSTAGE', 'RELATIVE_PATH', 'image.png',
@@ -441,7 +444,7 @@ Invalid file metadata. Missing required fields: ETAG.
 The following example shows attempts to GROUP BY, ORDER BY, and CLUSTER BY a FILE column, which is not supported
 because FILE values cannot be compared.
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT f, count(*) FROM sample_table GROUP BY f;
@@ -463,6 +466,8 @@ Copy code
 ```
 SELECT TO_FILE('@mystage/', 'image.png');
 ```
+
+Expand code block
 
 ```
 Remote file '@mystage//image.png' was not found. There are several potential causes.

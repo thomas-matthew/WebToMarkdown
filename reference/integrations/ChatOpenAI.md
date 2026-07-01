@@ -1,6 +1,6 @@
 Python[langchain-openai](/python/langchain-openai)[chat\_models](/python/langchain-openai/chat_models)[base](/python/langchain-openai/chat_models/base)ChatOpenAI
 
-Classv1.2.1 (latest)●Since v0.1
+Classv1.3.3 (latest)●Since v0.1
 
 # ChatOpenAI
 
@@ -55,7 +55,7 @@ Key init args — client params
 | `timeout` | `float | Tuple[float, float] | Any | None` | Timeout for requests. |
 | `max_retries` | `int | None` | Max number of retries. |
 | `api_key` | `str | None` | OpenAI API key. If not passed in will be read from env var `OPENAI_API_KEY`. |
-| `base_url` | `str | None` | Base URL for API requests. Only specify if using a proxy or service emulator. |
+| `base_url` | `str | None` | Base URL for API requests. Only specify if using a proxy or service emulator. Falls back to env var `OPENAI_API_BASE`, then to `OPENAI_BASE_URL` (read by the underlying SDK client). |
 | `organization` | `str | None` | OpenAI organization ID. If not passed in will be read from env var `OPENAI_ORG_ID`. |
 
 See full list of supported init args and their descriptions below.
@@ -135,7 +135,7 @@ AIMessage(
             "prompt_tokens": 31,
             "total_tokens": 36,
         },
-        "model_name": "gpt-4o",
+        "model_name": "gpt-4.1-mini",
         "system_fingerprint": "fp_43dfabdef1",
         "finish_reason": "stop",
         "logprobs": None,
@@ -227,7 +227,7 @@ AIMessage(
             "prompt_tokens": 31,
             "total_tokens": 36,
         },
-        "model_name": "gpt-4o",
+        "model_name": "gpt-4.1-mini",
         "system_fingerprint": "fp_43dfabdef1",
         "finish_reason": "stop",
         "logprobs": None,
@@ -691,7 +691,7 @@ Copy
         "prompt_tokens": 28,
         "total_tokens": 33,
     },
-    "model_name": "gpt-4o",
+    "model_name": "gpt-4.1-mini",
     "system_fingerprint": "fp_319be4768e",
     "finish_reason": "stop",
     "logprobs": None,
@@ -857,13 +857,13 @@ ChatOpenAI()
 
 ## Used in Docs
 
-* [Agents](https://docs.langchain.com/oss/python/langchain/agents)
 * [Build a SQL assistant with on-demand skills](https://docs.langchain.com/oss/python/langchain/multi-agent/skills-sql-assistant)
 * [Custom workflow](https://docs.langchain.com/oss/python/langchain/multi-agent/custom-workflow)
-* [Evaluate a RAG application](https://docs.langchain.com/langsmith/evaluate-rag-tutorial)
 * [Manage prompts programmatically](https://docs.langchain.com/langsmith/manage-prompts-programmatically)
+* [Messages view integrations](https://docs.langchain.com/langsmith/messages-view-integrations)
+* [MODEL\_AUTHENTICATION](https://docs.langchain.com/oss/python/langchain/errors/MODEL_AUTHENTICATION)
 
-+15 more(144 more not shown)
++15 more(65 more not shown)
 
 ## Attributes
 
@@ -1081,7 +1081,7 @@ Get the tokens present in the text with tiktoken package.](/python/langchain-ope
 
 —
 
-Calculate num tokens for `gpt-3.5-turbo` and `gpt-4` with `tiktoken` package.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/get_num_tokens_from_messages)[Mbind\_tools
+Calculate num tokens for supported OpenAI chat models.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/get_num_tokens_from_messages)[Mbind\_tools
 
 —
 
@@ -1095,7 +1095,7 @@ Bind tool-like objects to this chat model.](/python/langchain-openai/chat_models
 
 ### Methods
 
-[Minvoke](/python/langchain-core/language_models/chat_models/BaseChatModel/invoke)[Mainvoke](/python/langchain-core/language_models/chat_models/BaseChatModel/ainvoke)[Mstream](/python/langchain-core/language_models/chat_models/BaseChatModel/stream)[Mastream](/python/langchain-core/language_models/chat_models/BaseChatModel/astream)[Mstream\_events](/python/langchain-core/language_models/chat_models/BaseChatModel/stream_events)[Mastream\_events](/python/langchain-core/language_models/chat_models/BaseChatModel/astream_events)[Mgenerate](/python/langchain-core/language_models/chat_models/BaseChatModel/generate)[Magenerate](/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate)[Mgenerate\_prompt](/python/langchain-core/language_models/chat_models/BaseChatModel/generate_prompt)[Magenerate\_prompt](/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate_prompt)[Mdict](/python/langchain-core/language_models/chat_models/BaseChatModel/dict)[Mbind](/python/langchain-core/language_models/chat_models/BaseChatModel/bind)[Mbind\_tools](/python/langchain-core/language_models/chat_models/BaseChatModel/bind_tools)
+[Minvoke](/python/langchain-core/language_models/chat_models/BaseChatModel/invoke)[Mainvoke](/python/langchain-core/language_models/chat_models/BaseChatModel/ainvoke)[Mstream](/python/langchain-core/language_models/chat_models/BaseChatModel/stream)[Mastream](/python/langchain-core/language_models/chat_models/BaseChatModel/astream)[Mstream\_events](/python/langchain-core/language_models/chat_models/BaseChatModel/stream_events)[Mastream\_events](/python/langchain-core/language_models/chat_models/BaseChatModel/astream_events)[Mgenerate](/python/langchain-core/language_models/chat_models/BaseChatModel/generate)[Magenerate](/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate)[Mgenerate\_prompt](/python/langchain-core/language_models/chat_models/BaseChatModel/generate_prompt)[Magenerate\_prompt](/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate_prompt)[Mdict](/python/langchain-core/language_models/chat_models/BaseChatModel/dict)[Masdict](/python/langchain-core/language_models/chat_models/BaseChatModel/asdict)[Mbind](/python/langchain-core/language_models/chat_models/BaseChatModel/bind)[Mbind\_tools](/python/langchain-core/language_models/chat_models/BaseChatModel/bind_tools)
 
 ## Inherited from[BaseLanguageModel](/python/langchain-core/language_models/base/BaseLanguageModel)(langchain\_core)
 
@@ -1105,7 +1105,7 @@ Bind tool-like objects to this chat model.](/python/langchain-openai/chat_models
 
 ### Methods
 
-[Mset\_verbose](/python/langchain-core/language_models/base/BaseLanguageModel/set_verbose)[Mgenerate\_prompt](/python/langchain-core/language_models/base/BaseLanguageModel/generate_prompt)[Magenerate\_prompt](/python/langchain-core/language_models/base/BaseLanguageModel/agenerate_prompt)[Mget\_token\_ids](/python/langchain-core/language_models/base/BaseLanguageModel/get_token_ids)[Mget\_num\_tokens](/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens)[Mget\_num\_tokens\_from\_messages](/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens_from_messages)
+[Mmodel\_post\_init](/python/langchain-core/language_models/base/BaseLanguageModel/model_post_init)[Mset\_verbose](/python/langchain-core/language_models/base/BaseLanguageModel/set_verbose)[Mgenerate\_prompt](/python/langchain-core/language_models/base/BaseLanguageModel/generate_prompt)[Magenerate\_prompt](/python/langchain-core/language_models/base/BaseLanguageModel/agenerate_prompt)[Mget\_token\_ids](/python/langchain-core/language_models/base/BaseLanguageModel/get_token_ids)[Mget\_num\_tokens](/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens)[Mget\_num\_tokens\_from\_messages](/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens_from_messages)
 
 ## Inherited from[RunnableSerializable](/python/langchain-core/runnables/base/RunnableSerializable)(langchain\_core)
 
@@ -1137,7 +1137,7 @@ Bind tool-like objects to this chat model.](/python/langchain-openai/chat_models
 
 [Mget\_name](/python/langchain-core/runnables/base/Runnable/get_name)[Mget\_input\_schema](/python/langchain-core/runnables/base/Runnable/get_input_schema)[Mget\_input\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_input_jsonschema)[Mget\_output\_schema](/python/langchain-core/runnables/base/Runnable/get_output_schema)[Mget\_output\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_output_jsonschema)[Mconfig\_schema](/python/langchain-core/runnables/base/Runnable/config_schema)[Mget\_config\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_config_jsonschema)[Mget\_graph](/python/langchain-core/runnables/base/Runnable/get_graph)[Mget\_prompts](/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe](/python/langchain-core/runnables/base/Runnable/pipe)[Mpick](/python/langchain-core/runnables/base/Runnable/pick)[Massign](/python/langchain-core/runnables/base/Runnable/assign)[Minvoke](/python/langchain-core/runnables/base/Runnable/invoke)[Mainvoke](/python/langchain-core/runnables/base/Runnable/ainvoke)[Mbatch](/python/langchain-core/runnables/base/Runnable/batch)[Mbatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch](/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mstream](/python/langchain-core/runnables/base/Runnable/stream)[Mastream](/python/langchain-core/runnables/base/Runnable/astream)[Mastream\_log](/python/langchain-core/runnables/base/Runnable/astream_log)[Mastream\_events](/python/langchain-core/runnables/base/Runnable/astream_events)[Mstream\_events](/python/langchain-core/runnables/base/Runnable/stream_events)[Mtransform](/python/langchain-core/runnables/base/Runnable/transform)[Matransform](/python/langchain-core/runnables/base/Runnable/atransform)[Mbind](/python/langchain-core/runnables/base/Runnable/bind)[Mwith\_config](/python/langchain-core/runnables/base/Runnable/with_config)[Mwith\_listeners](/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith\_alisteners](/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith\_types](/python/langchain-core/runnables/base/Runnable/with_types)[Mwith\_retry](/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap](/python/langchain-core/runnables/base/Runnable/map)[Mwith\_fallbacks](/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas\_tool](/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/365c36c27033cf63c9a8bbc881bf6d595219edbe/libs/partners/openai/langchain_openai/chat_models/base.py#L2522)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/partners/openai/langchain_openai/chat_models/base.py#L2565)
 
 Version History
 
@@ -1173,7 +1173,7 @@ Arate\_limiterAdisable\_streamingAoutput\_versionAprofileAmodel\_configAOutputTy
 
 MMethods
 
-MinvokeMainvokeMstreamMastreamMstream\_eventsMastream\_eventsMgenerateMagenerateMgenerate\_promptMagenerate\_promptMdictMbindMbind\_tools
+MinvokeMainvokeMstreamMastreamMstream\_eventsMastream\_eventsMgenerateMagenerateMgenerate\_promptMagenerate\_promptMdictMasdictMbindMbind\_tools
 
 from BaseLanguageModel
 
@@ -1183,7 +1183,7 @@ AcacheAverboseAcallbacksAtagsAmetadataAcustom\_get\_token\_idsAmodel\_configAInp
 
 MMethods
 
-Mset\_verboseMgenerate\_promptMagenerate\_promptMget\_token\_idsMget\_num\_tokensMget\_num\_tokens\_from\_messages
+Mmodel\_post\_initMset\_verboseMgenerate\_promptMagenerate\_promptMget\_token\_idsMget\_num\_tokensMget\_num\_tokens\_from\_messages
 
 from RunnableSerializable
 

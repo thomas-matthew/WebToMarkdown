@@ -31,7 +31,7 @@
 19. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
-    * [Snowflake Intelligence](/en/user-guide/snowflake-cortex/snowflake-intelligence "Snowflake Intelligence")
+    * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
     * [Cortex Code](/en/user-guide/cortex-code/cortex-code "Cortex Code")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
@@ -39,7 +39,7 @@
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
     * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
     * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
-    * [Cortex REST API](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex REST API")
+    * [Cortex Inference](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex Inference")
 
       + [Vector embedding API](/en/user-guide/snowflake-cortex/cortex-rest-api/embed-api "Vector embedding API")
     * [Cortex AI Guardrails](/en/user-guide/snowflake-cortex/cortex-ai-guardrails "Cortex AI Guardrails")
@@ -47,17 +47,16 @@
     * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
     * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
+    * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
 21. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
 23. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
 25. [Security](/en/guides-overview-secure "Security")
-26. [Data Governance](/en/guides-overview-govern "Data Governance")
-27. [Privacy](/en/guides-overview-privacy "Privacy")
-29. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-30. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-32. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-33. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
+27. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
+28. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
+30. [Performance optimization](/en/guides-overview-performance "Performance optimization")
+31. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
 
-[Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)Cortex REST API
+[Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)Cortex Inference
 
 # Cortex REST API[¶](#cortex-rest-api)
 
@@ -101,7 +100,7 @@ The Chat Completions API follows the OpenAI specification. You can use the OpenA
 
 PythonJavaScript/TypeScriptcurl
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 from openai import OpenAI
@@ -176,7 +175,7 @@ PythonJavaScript/TypeScriptcurl
 The Anthropic SDK sends credentials via `x-api-key` by default, but Snowflake expects a `Bearer` token.
 Use an `httpx` client to set the correct authorization header.
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 import httpx
@@ -333,7 +332,7 @@ To provide access to the Cortex REST API, use the ACCOUNTADMIN role to do the fo
 The following example creates the custom role `cortex_rest_api_role`, grants it the CORTEX\_REST\_API\_USER
 database role, and assigns the role to `example_user`:
 
-Copy code
+Copy codeExpand code block
 
 ```
 USE ROLE ACCOUNTADMIN;
@@ -346,7 +345,7 @@ GRANT ROLE cortex_rest_api_role TO USER example_user;
 You can also grant access to the Cortex REST API through existing roles. For example, if you have an
 `api_consumer` role used by a group of users, you can grant access with a single GRANT statement:
 
-Copy code
+Copy codeExpand code block
 
 ```
 GRANT DATABASE ROLE SNOWFLAKE.CORTEX_REST_API_USER TO ROLE api_consumer;
@@ -442,7 +441,7 @@ Both APIs support streaming responses using [server-sent events](https://develop
 
 PythonJavaScript/TypeScriptcurl
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 from openai import OpenAI
@@ -515,7 +514,7 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/
 
 PythonJavaScript/TypeScriptcurl
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 import httpx
@@ -611,7 +610,7 @@ Tool calling is supported for OpenAI and Claude models.
 
 PythonJavaScript/TypeScriptcurl
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 import json
@@ -870,7 +869,7 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/
 
 PythonJavaScript/TypeScriptcurl
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 import json
@@ -1152,7 +1151,7 @@ Use the `response_format` field with a JSON schema to constrain the model’s ou
 
 PythonJavaScript/TypeScriptcurl
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 import json
@@ -1294,7 +1293,7 @@ valid JSON in a `text` content block that matches your schema.
 
 PythonJavaScript/TypeScriptcurl
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 import json
@@ -1456,7 +1455,7 @@ Image input is supported for:
 
 PythonJavaScript/TypeScriptcurl
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 import base64
@@ -1572,7 +1571,7 @@ instead of a data URL.
 
 PythonJavaScript/TypeScriptcurl
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 import base64
@@ -1720,7 +1719,7 @@ automatically and do not require this field.
 
 PythonJavaScript/TypeScriptcurl
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 from openai import OpenAI
@@ -1815,7 +1814,7 @@ with a 5-minute TTL. A maximum of 4 cache breakpoints can be set per request.
 
 PythonJavaScript/TypeScriptcurl
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 import httpx
@@ -1926,7 +1925,7 @@ For Claude models, use the `reasoning` object. For OpenAI reasoning models, use 
 
 PythonJavaScript/TypeScriptcurl
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 from openai import OpenAI
@@ -2038,7 +2037,7 @@ The following examples demonstrate how to make a Messages API call with adaptive
 
 PythonJavaScript/TypeScriptcurl
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 import httpx
@@ -2138,7 +2137,7 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messa
 The response includes thinking blocks with summarized thinking and thinking signatures.
 Pass these blocks back in multi-turn conversations to maintain reasoning context:
 
-Copy code
+Copy codeExpand code block
 
 ```
 {
@@ -2154,7 +2153,7 @@ For a full description of the Messages API support for Adaptive Thinking, see [C
 
 ### Beta features (Messages API)[¶](#beta-features-messages-api)
 
-![Snowflake logo in black (no text)](/static/images/logo-snowflake-black.png) [Preview Feature](/release-notes/preview-features) — Open
+[![Snowflake logo in black (no text)](/static/images/logo-snowflake-black.png)](/static/images/logo-snowflake-black.png) [Preview Feature](/release-notes/preview-features) — Open
 
 Available to all accounts.
 
@@ -2182,7 +2181,7 @@ The following example demonstrates using tool examples with `claude-sonnet-4-6`:
 
 PythonJavaScript/TypeScriptcurl
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 import httpx
@@ -2340,7 +2339,7 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messa
 
 You can combine multiple beta features by passing a comma-separated string:
 
-Copy code
+Copy codeExpand code block
 
 ```
 -H "anthropic-beta: tool-examples-2025-10-29,tool-search-tool-2025-10-19"
@@ -2352,6 +2351,8 @@ Copy code
 
 Generates a chat completion using the specified model. The request and response format follows the
 [OpenAI Chat Completions API specification](https://platform.openai.com/docs/api-reference/chat/create).
+
+Expand code block
 
 ```
 POST https://<account_identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/completions
@@ -2623,6 +2624,8 @@ for Claude models. These features are exposed as extra fields on the request:
 Generates a response using a Claude model. The request and response format follows the
 [Anthropic Messages API specification](https://docs.anthropic.com/en/api/messages).
 
+Expand code block
+
 ```
 POST https://<account_identifier>.snowflakecomputing.com/api/v2/cortex/v1/messages
 ```
@@ -2789,7 +2792,7 @@ To see the rate limits that apply to your account, query the
 [CORTEX\_REST\_API\_RATE\_LIMIT\_POLICIES](/sql-reference/account-usage/cortex_rest_api_rate_limit_policies)
 Account Usage view. The view returns the RPM and TPM limits for each model.
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT * FROM SNOWFLAKE.ACCOUNT_USAGE.CORTEX_REST_API_RATE_LIMIT_POLICIES;
@@ -2902,7 +2905,7 @@ ORDER BY 1, 2;
 
 #### Peak RPM and TPM per model[¶](#peak-rpm-and-tpm-per-model)
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 WITH per_minute AS (
@@ -2933,7 +2936,7 @@ Scroll to top
 
 #### Rate limit utilization (last 24 hours)[¶](#rate-limit-utilization-last-24-hours)
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 WITH per_minute AS (
@@ -3002,7 +3005,7 @@ ORDER BY requests DESC;
 
 You can export usage data to a stage for long-term retention or external analysis:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 COPY INTO @my_stage/cortex_rest_api_export/

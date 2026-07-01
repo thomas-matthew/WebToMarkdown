@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[pregel](/python/langgraph/pregel)[main](/python/langgraph/pregel/main)Pregel
 
-Classv1.2.0 (latest)●Since v0.6
+Classv1.2.7 (latest)●Since v0.6
 
 # Pregel
 
@@ -333,12 +333,12 @@ constructor
 | step\_timeout | [float](https://docs.python.org/3/library/functions.html#float) | None |
 | debug | [bool](https://docs.python.org/3/library/functions.html#bool) | None |
 | checkpointer | [Checkpointer](/python/langgraph/types/Checkpointer) |
-| store | BaseStore | None |
-| cache | BaseCache | None |
+| store | [BaseStore](/python/langgraph.store/base/BaseStore) | None |
+| cache | [BaseCache](/python/langchain-core/caches/BaseCache) | None |
 | retry\_policy | [RetryPolicy](/python/langgraph/types/RetryPolicy) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[RetryPolicy](/python/langgraph/types/RetryPolicy)] |
 | cache\_policy | [CachePolicy](/python/langgraph/types/CachePolicy) | None |
 | context\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[ContextT](/python/langgraph/typing/ContextT)] | None |
-| config | RunnableConfig | None |
+| config | [RunnableConfig](/python/langchain-core/runnables/config/RunnableConfig) | None |
 | trigger\_to\_nodes | [Mapping](https://docs.python.org/3/library/typing.html#typing.Mapping)[[str](https://docs.python.org/3/library/stdtypes.html#str), [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[str](https://docs.python.org/3/library/stdtypes.html#str)]] | None |
 | node\_error\_handler\_map | [Mapping](https://docs.python.org/3/library/typing.html#typing.Mapping)[[str](https://docs.python.org/3/library/stdtypes.html#str), [str](https://docs.python.org/3/library/stdtypes.html#str)] | None |
 | name | [str](https://docs.python.org/3/library/stdtypes.html#str) |
@@ -570,7 +570,7 @@ get\_config\_jsonschema](/python/langgraph/pregel/main/Pregel/get_config_jsonsch
 
 [Mget\_name](/python/langchain-core/runnables/base/Runnable/get_name)[Mget\_prompts](/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe](/python/langchain-core/runnables/base/Runnable/pipe)[Mpick](/python/langchain-core/runnables/base/Runnable/pick)[Massign](/python/langchain-core/runnables/base/Runnable/assign)[Mbatch](/python/langchain-core/runnables/base/Runnable/batch)[Mbatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch](/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mastream\_log](/python/langchain-core/runnables/base/Runnable/astream_log)[Mtransform](/python/langchain-core/runnables/base/Runnable/transform)[Matransform](/python/langchain-core/runnables/base/Runnable/atransform)[Mbind](/python/langchain-core/runnables/base/Runnable/bind)[Mwith\_listeners](/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith\_alisteners](/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith\_types](/python/langchain-core/runnables/base/Runnable/with_types)[Mwith\_retry](/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap](/python/langchain-core/runnables/base/Runnable/map)[Mwith\_fallbacks](/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas\_tool](/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/aa322c13cd5f16a3f6254a931a4104e412cd687c/libs/langgraph/langgraph/pregel/main.py#L448)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/5931a5f0b313feff24e2516a586c55601b868ac1/libs/langgraph/langgraph/pregel/main.py#L449)
 
 Version History
 

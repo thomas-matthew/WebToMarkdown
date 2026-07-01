@@ -1,6 +1,6 @@
 Python[langchain-core](/python/langchain-core)[prompts](/python/langchain-core/prompts)[chat](/python/langchain-core/prompts/chat)ChatPromptTemplate
 
-Classv1.4.0 (latest)●Since v0.1
+Classv1.4.8 (latest)●Since v0.1
 
 # ChatPromptTemplate
 
@@ -139,7 +139,7 @@ ChatPromptTemplate(
 * [Trace LangChain applications (Python and JS/TS)](https://docs.langchain.com/langsmith/trace-with-langchain)
 * [Trace with OpenTelemetry](https://docs.langchain.com/langsmith/trace-with-opentelemetry)
 
-+15 more(69 more not shown)
++15 more(40 more not shown)
 
 ## Parameters
 
@@ -230,7 +230,7 @@ Save prompt to file.](/python/langchain-core/prompts/chat/ChatPromptTemplate/sav
 
 ### Attributes
 
-[Alc\_attributes: dict](/python/langchain-core/prompts/chat/BaseChatPromptTemplate/lc_attributes)
+[Alc\_attributes: dict[str, Any]](/python/langchain-core/prompts/chat/BaseChatPromptTemplate/lc_attributes)
 
 ### Methods
 
@@ -336,7 +336,11 @@ Async format the prompt with the inputs.](/python/langchain-core/prompts/base/Ba
 
 —
 
-Return dictionary representation of prompt.](/python/langchain-core/prompts/base/BasePromptTemplate/dict)
+DEPRECATED - use `asdict()` instead.](/python/langchain-core/prompts/base/BasePromptTemplate/dict)[Masdict
+
+—
+
+Return a dictionary representation of the prompt.](/python/langchain-core/prompts/base/BasePromptTemplate/asdict)
 
 ## Inherited from[RunnableSerializable](/python/langchain-core/runnables/base/RunnableSerializable)
 
@@ -372,7 +376,7 @@ Configure alternatives for `Runnable` objects that can be set at runtime.](/pyth
 
 —
 
-A map of constructor argument names to secret ids.](/python/langchain-core/load/serializable/Serializable/lc_secrets)[Alc\_attributes: dict
+A map of constructor argument names to secret ids.](/python/langchain-core/load/serializable/Serializable/lc_secrets)[Alc\_attributes: dict[str, Any]
 
 —
 
@@ -414,11 +418,11 @@ Input type.](/python/langchain-core/runnables/base/Runnable/InputType)[AOutputTy
 
 —
 
-Output Type.](/python/langchain-core/runnables/base/Runnable/OutputType)[Ainput\_schema: type[BaseModel]
+Output Type.](/python/langchain-core/runnables/base/Runnable/OutputType)[Ainput\_schema: TypeBaseModel
 
 —
 
-The type of input this `Runnable` accepts specified as a Pydantic model.](/python/langchain-core/runnables/base/Runnable/input_schema)[Aoutput\_schema: type[BaseModel]
+The type of input this `Runnable` accepts specified as a Pydantic model.](/python/langchain-core/runnables/base/Runnable/input_schema)[Aoutput\_schema: TypeBaseModel
 
 —
 
@@ -568,7 +572,7 @@ Add fallbacks to a `Runnable`, returning a new `Runnable`.](/python/langchain-co
 
 Create a `BaseTool` from a `Runnable`.](/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/625ed0ee8c683dd8a7d87564a14bdbd4472d2a44/libs/core/langchain_core/prompts/chat.py#L790)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/core/langchain_core/prompts/chat.py#L794)
 
 Version History
 
@@ -608,7 +612,7 @@ Ainput\_variablesAoptional\_variablesAinput\_typesAoutput\_parserApartial\_varia
 
 MMethods
 
-Mvalidate\_variable\_namesMis\_lc\_serializableMget\_input\_schemaMinvokeMainvokeMformat\_promptMaformat\_promptMformatMaformatMdict
+Mvalidate\_variable\_namesMis\_lc\_serializableMget\_input\_schemaMinvokeMainvokeMformat\_promptMaformat\_promptMformatMaformatMdictMasdict
 
 from RunnableSerializable
 

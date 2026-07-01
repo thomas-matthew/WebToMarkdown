@@ -1,6 +1,6 @@
 Python[langchain-openai](/python/langchain-openai)[llms](/python/langchain-openai/llms)[base](/python/langchain-openai/llms/base)BaseOpenAI
 
-Classv1.2.1 (latest)●Since v0.1
+Classv1.3.3 (latest)●Since v0.1
 
 # BaseOpenAI
 
@@ -349,7 +349,7 @@ input+output budget should switch to the profile fields directly.](/python/langc
 
 ### Methods
 
-[Minvoke](/python/langchain-core/language_models/llms/BaseLLM/invoke)[Mainvoke](/python/langchain-core/language_models/llms/BaseLLM/ainvoke)[Mbatch](/python/langchain-core/language_models/llms/BaseLLM/batch)[Mabatch](/python/langchain-core/language_models/llms/BaseLLM/abatch)[Mstream](/python/langchain-core/language_models/llms/BaseLLM/stream)[Mastream](/python/langchain-core/language_models/llms/BaseLLM/astream)[Mgenerate\_prompt](/python/langchain-core/language_models/llms/BaseLLM/generate_prompt)[Magenerate\_prompt](/python/langchain-core/language_models/llms/BaseLLM/agenerate_prompt)[Mgenerate](/python/langchain-core/language_models/llms/BaseLLM/generate)[Magenerate](/python/langchain-core/language_models/llms/BaseLLM/agenerate)[Mdict](/python/langchain-core/language_models/llms/BaseLLM/dict)[Msave](/python/langchain-core/language_models/llms/BaseLLM/save)
+[Minvoke](/python/langchain-core/language_models/llms/BaseLLM/invoke)[Mainvoke](/python/langchain-core/language_models/llms/BaseLLM/ainvoke)[Mbatch](/python/langchain-core/language_models/llms/BaseLLM/batch)[Mabatch](/python/langchain-core/language_models/llms/BaseLLM/abatch)[Mstream](/python/langchain-core/language_models/llms/BaseLLM/stream)[Mastream](/python/langchain-core/language_models/llms/BaseLLM/astream)[Mgenerate\_prompt](/python/langchain-core/language_models/llms/BaseLLM/generate_prompt)[Magenerate\_prompt](/python/langchain-core/language_models/llms/BaseLLM/agenerate_prompt)[Mgenerate](/python/langchain-core/language_models/llms/BaseLLM/generate)[Magenerate](/python/langchain-core/language_models/llms/BaseLLM/agenerate)[Mdict](/python/langchain-core/language_models/llms/BaseLLM/dict)[Masdict](/python/langchain-core/language_models/llms/BaseLLM/asdict)[Msave](/python/langchain-core/language_models/llms/BaseLLM/save)
 
 ## Inherited from[BaseLanguageModel](/python/langchain-core/language_models/base/BaseLanguageModel)(langchain\_core)
 
@@ -359,7 +359,7 @@ input+output budget should switch to the profile fields directly.](/python/langc
 
 ### Methods
 
-[Mset\_verbose](/python/langchain-core/language_models/base/BaseLanguageModel/set_verbose)[Mgenerate\_prompt](/python/langchain-core/language_models/base/BaseLanguageModel/generate_prompt)[Magenerate\_prompt](/python/langchain-core/language_models/base/BaseLanguageModel/agenerate_prompt)[Mwith\_structured\_output](/python/langchain-core/language_models/base/BaseLanguageModel/with_structured_output)[Mget\_num\_tokens](/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens)[Mget\_num\_tokens\_from\_messages](/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens_from_messages)
+[Mmodel\_post\_init](/python/langchain-core/language_models/base/BaseLanguageModel/model_post_init)[Mset\_verbose](/python/langchain-core/language_models/base/BaseLanguageModel/set_verbose)[Mgenerate\_prompt](/python/langchain-core/language_models/base/BaseLanguageModel/generate_prompt)[Magenerate\_prompt](/python/langchain-core/language_models/base/BaseLanguageModel/agenerate_prompt)[Mwith\_structured\_output](/python/langchain-core/language_models/base/BaseLanguageModel/with_structured_output)[Mget\_num\_tokens](/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens)[Mget\_num\_tokens\_from\_messages](/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens_from_messages)
 
 ## Inherited from[RunnableSerializable](/python/langchain-core/runnables/base/RunnableSerializable)(langchain\_core)
 
@@ -391,7 +391,7 @@ input+output budget should switch to the profile fields directly.](/python/langc
 
 [Mget\_name](/python/langchain-core/runnables/base/Runnable/get_name)[Mget\_input\_schema](/python/langchain-core/runnables/base/Runnable/get_input_schema)[Mget\_input\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_input_jsonschema)[Mget\_output\_schema](/python/langchain-core/runnables/base/Runnable/get_output_schema)[Mget\_output\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_output_jsonschema)[Mconfig\_schema](/python/langchain-core/runnables/base/Runnable/config_schema)[Mget\_config\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_config_jsonschema)[Mget\_graph](/python/langchain-core/runnables/base/Runnable/get_graph)[Mget\_prompts](/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe](/python/langchain-core/runnables/base/Runnable/pipe)[Mpick](/python/langchain-core/runnables/base/Runnable/pick)[Massign](/python/langchain-core/runnables/base/Runnable/assign)[Minvoke](/python/langchain-core/runnables/base/Runnable/invoke)[Mainvoke](/python/langchain-core/runnables/base/Runnable/ainvoke)[Mbatch](/python/langchain-core/runnables/base/Runnable/batch)[Mbatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch](/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mstream](/python/langchain-core/runnables/base/Runnable/stream)[Mastream](/python/langchain-core/runnables/base/Runnable/astream)[Mastream\_log](/python/langchain-core/runnables/base/Runnable/astream_log)[Mastream\_events](/python/langchain-core/runnables/base/Runnable/astream_events)[Mstream\_events](/python/langchain-core/runnables/base/Runnable/stream_events)[Mtransform](/python/langchain-core/runnables/base/Runnable/transform)[Matransform](/python/langchain-core/runnables/base/Runnable/atransform)[Mbind](/python/langchain-core/runnables/base/Runnable/bind)[Mwith\_config](/python/langchain-core/runnables/base/Runnable/with_config)[Mwith\_listeners](/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith\_alisteners](/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith\_types](/python/langchain-core/runnables/base/Runnable/with_types)[Mwith\_retry](/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap](/python/langchain-core/runnables/base/Runnable/map)[Mwith\_fallbacks](/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas\_tool](/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/625ed0ee8c683dd8a7d87564a14bdbd4472d2a44/libs/partners/openai/langchain_openai/llms/base.py#L56)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/partners/openai/langchain_openai/llms/base.py#L57)
 
 Version History
 
@@ -415,7 +415,7 @@ AOutputType
 
 MMethods
 
-MinvokeMainvokeMbatchMabatchMstreamMastreamMgenerate\_promptMagenerate\_promptMgenerateMagenerateMdictMsave
+MinvokeMainvokeMbatchMabatchMstreamMastreamMgenerate\_promptMagenerate\_promptMgenerateMagenerateMdictMasdictMsave
 
 from BaseLanguageModel
 
@@ -425,7 +425,7 @@ AcacheAverboseAcallbacksAtagsAmetadataAcustom\_get\_token\_idsAInputType
 
 MMethods
 
-Mset\_verboseMgenerate\_promptMagenerate\_promptMwith\_structured\_outputMget\_num\_tokensMget\_num\_tokens\_from\_messages
+Mmodel\_post\_initMset\_verboseMgenerate\_promptMagenerate\_promptMwith\_structured\_outputMget\_num\_tokensMget\_num\_tokens\_from\_messages
 
 from RunnableSerializable
 

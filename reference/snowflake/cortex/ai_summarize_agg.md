@@ -15,6 +15,7 @@
      * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
      * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
@@ -112,11 +113,13 @@ This function provides a general purpose summary. For a more specific summary, u
 
 AI\_SUMMARIZE\_AGG can be used as a simple scalar function on string constants.
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_SUMMARIZE_AGG('The restaurant was excellent. I especially enjoyed the pizza and ice cream. My grandma didnt like it though.');
 ```
+
+Expand code block
 
 ```
 The restaurant received mixed reviews from our group. While I thoroughly enjoyed the pizza and ice cream, my grandma did not have a positive experience.
@@ -137,13 +140,15 @@ SELECT AI_SUMMARIZE_AGG(review)
   FROM reviews;
 ```
 
+Expand code block
+
 ```
 The restaurant received mixed reviews. Some customers had a great experience, enjoying the pizza and finding the restaurant excellent. However, others had a more neutral experience, describing the food and service as mediocre, with one customer specifically mentioning that the service was subpar.
 ```
 
 AI\_SUMMARIZE\_AGG can be used on multiple columns of data using `CONCAT` or the `||` operator.
 
-Copy code
+Copy codeExpand code block
 
 ```
 WITH reviews AS (
@@ -156,13 +161,15 @@ SELECT AI_SUMMARIZE_AGG('Menu Item: ' || menu_item || '\nReview: ' || review)
   FROM reviews;
 ```
 
+Expand code block
+
 ```
 The restaurant received positive reviews for its pizza, with one reviewer describing it as "excellent" and another stating they "loved" it. In contrast, the burger received a mixed review, with the food being "great" but the service being "meh." The pancakes were rated as "mediocre" in terms of both food and service. Overall, the restaurant's performance varied depending on the menu item, with pizza being a highlight.
 ```
 
 AI\_SUMMARIZE\_AGG can also be used in combination with GROUP BY.
 
-Copy code
+Copy codeExpand code block
 
 ```
 WITH reviews AS (
@@ -178,6 +185,8 @@ SELECT product_id,
   FROM reviews
  GROUP BY 1;
 ```
+
+Expand code block
 
 ```
 +------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+

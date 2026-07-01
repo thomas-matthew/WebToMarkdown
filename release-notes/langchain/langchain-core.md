@@ -3,6 +3,54 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.4.8 — 2026-06-18
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.4.8)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.4.7 — 2026-06-12
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.4.7)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.4.6 — 2026-06-11
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.4.6)
+
+- feat(core,partners): add package version tracking to tracing metadata (#35295)
+
+## 1.4.5 — 2026-06-11
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.4.5)
+
+- feat(standard-tests): validate tool call chunks during streaming (#34707)
+
+## 1.4.4 — 2026-06-10
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.4.4)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.4.3 — 2026-06-09
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.4.3)
+
+- feat(openai): support `apply_patch` built-in tool (#37157)
+
+## 1.4.2 — 2026-06-08
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.4.2)
+
+- feat(core): deprecate problematic `dict()` method (#31685)
+
+## 1.4.1 — 2026-06-05
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.4.1)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 1.4.0 — 2026-05-11
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.4.0)

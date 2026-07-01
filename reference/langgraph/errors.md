@@ -40,6 +40,10 @@ Raised when the executor is unable to find a task (for distributed mode).](/pyth
 
 Failure context passed to a node-level error handler.](/python/langgraph/errors/NodeError)[Class
 
+### NodeCancelledError
+
+Raised when a node body raises `asyncio.CancelledError` itself.](/python/langgraph/errors/NodeCancelledError)[Class
+
 ### NodeTimeoutError
 
 Raised when a node invocation exceeds one of its configured timeouts.](/python/langgraph/errors/NodeTimeoutError)[Class
@@ -60,4 +64,4 @@ Copy page
 
 ### On This Page
 
-Classes12Functions1
+Classes13Functions1

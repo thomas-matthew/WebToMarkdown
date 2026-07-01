@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[runtime](/python/langgraph/runtime)Runtime
 
-Classv1.2.0 (latest)●Since v0.6
+Classv1.2.7 (latest)●Since v0.6
 
 # Runtime
 
@@ -96,11 +96,11 @@ Runtime(
 
 * [A2A endpoint in Agent Server](https://docs.langchain.com/langsmith/server-a2a)
 * [Custom middleware](https://docs.langchain.com/oss/python/langchain/middleware/custom)
-* [Durable execution](https://docs.langchain.com/oss/python/langgraph/durable-execution)
 * [Fault tolerance](https://docs.langchain.com/oss/python/langgraph/fault-tolerance)
 * [Going to production](https://docs.langchain.com/oss/python/deepagents/going-to-production)
+* [Graph API overview](https://docs.langchain.com/oss/python/langgraph/graph-api)
 
-+9 more
++8 more
 
 ## Constructors
 
@@ -111,7 +111,7 @@ constructor
 | Name | Type |
 | --- | --- |
 | context | [ContextT](/python/langgraph/typing/ContextT) |
-| store | BaseStore | None |
+| store | [BaseStore](/python/langgraph.store/base/BaseStore) | None |
 | stream\_writer | [StreamWriter](/python/langgraph/types/StreamWriter) |
 | heartbeat | [Callable](https://docs.python.org/3/library/typing.html#typing.Callable)[[], None] |
 | previous | [Any](https://docs.python.org/3/library/typing.html#typing.Any) |
@@ -192,7 +192,7 @@ patch\_execution\_info
 
 Return a new runtime with selected execution\_info fields replaced.](/python/langgraph/runtime/Runtime/patch_execution_info)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/aa322c13cd5f16a3f6254a931a4104e412cd687c/libs/langgraph/langgraph/runtime.py#L124)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/5931a5f0b313feff24e2516a586c55601b868ac1/libs/langgraph/langgraph/runtime.py#L124)
 
 Version History
 

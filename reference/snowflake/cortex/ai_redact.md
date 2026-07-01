@@ -15,6 +15,7 @@
      * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
      * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
@@ -81,7 +82,7 @@ Detects and redacts personally identifiable information (PII) from unstructured 
 
 Use AI\_REDACT to detect and redact PII:
 
-Copy code
+Copy codeExpand code block
 
 ```
 AI_REDACT( <input> [, <categories> ] [, <return_error_details> ] [, <mode> ] )

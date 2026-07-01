@@ -1,6 +1,6 @@
 Python[langchain-core](/python/langchain-core)[tools](/python/langchain-core/tools)[base](/python/langchain-core/tools/base)BaseTool
 
-Classv1.4.0 (latest)●Since v0.2
+Classv1.4.8 (latest)●Since v0.2
 
 # BaseTool
 
@@ -21,7 +21,7 @@ BaseTool(
 
 ## Bases
 
-`RunnableSerializable[str | dict | ToolCall, Any]`
+`RunnableSerializable[str | dict[str, Any] | ToolCall, Any]`
 
 ## Used in Docs
 
@@ -91,9 +91,18 @@ and passed as arguments to the handlers defined in `callbacks`.
 
 You can use these to, e.g., identify a specific instance of a tool with its usecase.](/python/langchain-core/tools/base/BaseTool/metadata)[attribute
 
-handle\_tool\_error: bool | str | Callable[[ToolException], str] | None
+handle\_tool\_error: bool | str | Callable[[ToolException], ToolExceptionHandlerOutput] | None
 
-Handle the content of the `ToolException` thrown.](/python/langchain-core/tools/base/BaseTool/handle_tool_error)[attribute
+Handle `ToolException` raised by tool execution.
+
+If `False`, the exception is re-raised. If `True`, the exception message is
+returned as tool output. If a string is passed, that string is returned
+as tool output. If a callable is passed, it receives the exception and
+its return value is used as the tool output.
+
+Callable handlers may return either a string or a list of message
+content blocks. If the tool was invoked with a `tool_call_id`, the handled
+content is wrapped in a `ToolMessage` with `status="error"`.](/python/langchain-core/tools/base/BaseTool/handle_tool_error)[attribute
 
 handle\_validation\_error: bool | str | Callable[[ValidationError | ValidationErrorV1], str] | None
 
@@ -120,7 +129,7 @@ is\_single\_input: bool
 
 Check if the tool accepts only a single input argument.](/python/langchain-core/tools/base/BaseTool/is_single_input)[attribute
 
-args: dict
+args: dict[str, Any]
 
 Get the tool's input arguments schema.](/python/langchain-core/tools/base/BaseTool/args)[attribute
 
@@ -131,6 +140,15 @@ Get the schema for tool calls, excluding injected arguments.](/python/langchain-
 ## Methods
 
 [method
+
+model\_copy
+
+Copy the tool, clearing the schema memo if `update` affects it.
+
+`model_copy` writes `update` directly to the copy's `__dict__` without
+going through `__setattr__`, and private attributes (including the
+memo) carry over to the copy, so the memo is cleared here when the
+update touches one of the fields the schema is built from.](/python/langchain-core/tools/base/BaseTool/model_copy)[method
 
 get\_input\_schema
 
@@ -174,7 +192,7 @@ Configure alternatives for `Runnable` objects that can be set at runtime.](/pyth
 
 —
 
-A map of constructor argument names to secret ids.](/python/langchain-core/load/serializable/Serializable/lc_secrets)[Alc\_attributes: dict
+A map of constructor argument names to secret ids.](/python/langchain-core/load/serializable/Serializable/lc_secrets)[Alc\_attributes: dict[str, Any]
 
 —
 
@@ -216,11 +234,11 @@ Input type.](/python/langchain-core/runnables/base/Runnable/InputType)[AOutputTy
 
 —
 
-Output Type.](/python/langchain-core/runnables/base/Runnable/OutputType)[Ainput\_schema: type[BaseModel]
+Output Type.](/python/langchain-core/runnables/base/Runnable/OutputType)[Ainput\_schema: TypeBaseModel
 
 —
 
-The type of input this `Runnable` accepts specified as a Pydantic model.](/python/langchain-core/runnables/base/Runnable/input_schema)[Aoutput\_schema: type[BaseModel]
+The type of input this `Runnable` accepts specified as a Pydantic model.](/python/langchain-core/runnables/base/Runnable/input_schema)[Aoutput\_schema: TypeBaseModel
 
 —
 
@@ -358,7 +376,7 @@ Add fallbacks to a `Runnable`, returning a new `Runnable`.](/python/langchain-co
 
 Create a `BaseTool` from a `Runnable`.](/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/625ed0ee8c683dd8a7d87564a14bdbd4472d2a44/libs/core/langchain_core/tools/base.py#L405)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/core/langchain_core/tools/base.py#L427)
 
 Version History
 
@@ -378,7 +396,7 @@ AnameAdescriptionAargs\_schemaAreturn\_directAverboseAcallbacksAtagsAmetadataAha
 
 Methods
 
-Mget\_input\_schemaMinvokeMainvokeMrunMarun
+Mmodel\_copyMget\_input\_schemaMinvokeMainvokeMrunMarun
 
 from RunnableSerializable
 

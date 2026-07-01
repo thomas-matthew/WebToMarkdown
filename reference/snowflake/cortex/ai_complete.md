@@ -19,6 +19,7 @@
      * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
      * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
@@ -120,7 +121,7 @@ For more information about error handling for AI functions, see [Snowflake Corte
 ## Access control requirements[¶](#access-control-requirements)
 
 Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
-See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql#label-cortex-llm-privileges) for more information on this privilege.
+See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this privilege.
 
 
 

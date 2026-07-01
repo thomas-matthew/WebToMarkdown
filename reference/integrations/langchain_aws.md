@@ -20,6 +20,10 @@ This page contains **reference documentation** for AWS. See [the docs](https://d
 
 [Class
 
+### ContentHandlerBase
+
+A handler class to transform input from LLM and BaseChatModel to a](/python/langchain-aws/utils/ContentHandlerBase)[Class
+
 ### AnthropicTool](/python/langchain-aws/function_calling/AnthropicTool)[Class
 
 ### FunctionDescription
@@ -32,123 +36,9 @@ Representation of a callable function to the OpenAI API.](/python/langchain-aws/
 
 ### ToolsOutputParser](/python/langchain-aws/function_calling/ToolsOutputParser)[Class
 
-### ContentHandlerBase
+### BedrockEmbeddings
 
-A handler class to transform input from LLM and BaseChatModel to a](/python/langchain-aws/utils/ContentHandlerBase)[Class
-
-### AnthropicTool](/python/langchain-aws/llms/bedrock/AnthropicTool)[Class
-
-### LLMInputOutputAdapter
-
-Adapter class to prepare the inputs from Langchain to a format](/python/langchain-aws/llms/bedrock/LLMInputOutputAdapter)[Class
-
-### BedrockBase
-
-Base class for Bedrock models.](/python/langchain-aws/llms/bedrock/BedrockBase)[Class
-
-### BedrockLLM
-
-Bedrock models.](/python/langchain-aws/llms/bedrock/BedrockLLM)[Class
-
-### LineIterator
-
-A helper class for parsing the byte stream input.](/python/langchain-aws/llms/sagemaker_endpoint/LineIterator)[Class
-
-### LLMContentHandler
-
-Content handler for LLM class.](/python/langchain-aws/llms/sagemaker_endpoint/LLMContentHandler)[Class
-
-### SagemakerEndpoint
-
-Sagemaker Inference Endpoint models.](/python/langchain-aws/llms/sagemaker_endpoint/SagemakerEndpoint)[Class
-
-### BedrockPromptCachingMiddleware
-
-Prompt Caching Middleware for ChatBedrock and ChatBedrockConverse.](/python/langchain-aws/middleware/prompt_caching/BedrockPromptCachingMiddleware)[Class
-
-### ChatAnthropicBedrock
-
-Anthropic Claude via AWS Bedrock.](/python/langchain-aws/chat_models/anthropic/ChatAnthropicBedrock)[Class
-
-### NovaSonicSession
-
-Manages a single bidirectional streaming session with Nova Sonic.](/python/langchain-aws/chat_models/bedrock_nova_sonic/NovaSonicSession)[Class
-
-### ChatBedrockNovaSonic
-
-Chat model for Amazon Nova Sonic bidirectional streaming.](/python/langchain-aws/chat_models/bedrock_nova_sonic/ChatBedrockNovaSonic)[Class
-
-### ChatPromptAdapter
-
-Adapter class to prepare the inputs from Langchain to prompt format that Chat](/python/langchain-aws/chat_models/bedrock/ChatPromptAdapter)[Class
-
-### ChatBedrock
-
-A chat model that uses the Bedrock API.](/python/langchain-aws/chat_models/bedrock/ChatBedrock)[Class
-
-### ChatBedrockConverse
-
-Bedrock chat model integration built on the Bedrock converse API.](/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse)[Class
-
-### ChatLineIterator
-
-A helper class for parsing the byte stream input.](/python/langchain-aws/chat_models/sagemaker_endpoint/ChatLineIterator)[Class
-
-### ChatModelContentHandler
-
-Content handler for ChatSagemakerEndpoint class.](/python/langchain-aws/chat_models/sagemaker_endpoint/ChatModelContentHandler)[Class
-
-### ChatSagemakerEndpoint
-
-A chat model that uses a HuggingFace TGI compatible SageMaker Endpoint.](/python/langchain-aws/chat_models/sagemaker_endpoint/ChatSagemakerEndpoint)[Class
-
-### AmazonQ
-
-Amazon Q Runnable wrapper.](/python/langchain-aws/runnables/q_business/AmazonQ)[Class
-
-### BedrockAgentFinish
-
-AgentFinish with session id information.](/python/langchain-aws/agents/types/BedrockAgentFinish)[Class
-
-### BedrockAgentAction
-
-AgentAction with session id information.](/python/langchain-aws/agents/types/BedrockAgentAction)[Class
-
-### GuardrailConfiguration](/python/langchain-aws/agents/types/GuardrailConfiguration)[Class
-
-### KnowledgebaseConfiguration](/python/langchain-aws/agents/types/KnowledgebaseConfiguration)[Class
-
-### InlineAgentConfiguration
-
-Configurations for an Inline Agent.](/python/langchain-aws/agents/types/InlineAgentConfiguration)[Class
-
-### BedrockAgentsRunnable
-
-Invoke a Bedrock Agent](/python/langchain-aws/agents/base/BedrockAgentsRunnable)[Class
-
-### BedrockInlineAgentsRunnable
-
-Invoke Bedrock Inline Agent as a Runnable.](/python/langchain-aws/agents/base/BedrockInlineAgentsRunnable)[Class
-
-### AmazonS3VectorsRetriever
-
-AmazonS3VectorsRetriever is a retriever for Amazon S3 Vectors.](/python/langchain-aws/retrievers/s3_vectors/AmazonS3VectorsRetriever)[Class
-
-### SearchFilter
-
-Filter configuration for retrieval.](/python/langchain-aws/retrievers/bedrock/SearchFilter)[Class
-
-### VectorSearchConfig
-
-Configuration for vector search.](/python/langchain-aws/retrievers/bedrock/VectorSearchConfig)[Class
-
-### RetrievalConfig
-
-Configuration for retrieval.](/python/langchain-aws/retrievers/bedrock/RetrievalConfig)[Class
-
-### AmazonKnowledgeBasesRetriever
-
-`Amazon Bedrock Knowledge Bases` retrieval.](/python/langchain-aws/retrievers/bedrock/AmazonKnowledgeBasesRetriever)[Class
+Bedrock embedding models.](/python/langchain-aws/embeddings/bedrock/BedrockEmbeddings)[Class
 
 ### Highlight
 
@@ -198,6 +88,114 @@ Retrieve API result item.](/python/langchain-aws/retrievers/kendra/RetrieveResul
 
 `Amazon Kendra Index` retriever.](/python/langchain-aws/retrievers/kendra/AmazonKendraRetriever)[Class
 
+### SearchFilter
+
+Filter configuration for retrieval.](/python/langchain-aws/retrievers/bedrock/SearchFilter)[Class
+
+### VectorSearchConfig
+
+Configuration for vector search.](/python/langchain-aws/retrievers/bedrock/VectorSearchConfig)[Class
+
+### RetrievalConfig
+
+Configuration for retrieval.](/python/langchain-aws/retrievers/bedrock/RetrievalConfig)[Class
+
+### AmazonKnowledgeBasesRetriever
+
+`Amazon Bedrock Knowledge Bases` retrieval.](/python/langchain-aws/retrievers/bedrock/AmazonKnowledgeBasesRetriever)[Class
+
+### AmazonS3VectorsRetriever
+
+AmazonS3VectorsRetriever is a retriever for Amazon S3 Vectors.](/python/langchain-aws/retrievers/s3_vectors/AmazonS3VectorsRetriever)[Class
+
+### ValkeyVectorStore
+
+Valkey vector database.](/python/langchain-aws/vectorstores/valkey/base/ValkeyVectorStore)[Class
+
+### AmazonS3Vectors
+
+S3Vectors is Amazon S3 Vectors database.](/python/langchain-aws/vectorstores/s3_vectors/base/AmazonS3Vectors)[Class
+
+### InMemoryDBDistanceMetric
+
+Distance metrics for Redis vector fields.](/python/langchain-aws/vectorstores/inmemorydb/schema/InMemoryDBDistanceMetric)[Class
+
+### InMemoryDBField
+
+Base class for Redis fields.](/python/langchain-aws/vectorstores/inmemorydb/schema/InMemoryDBField)[Class
+
+### TextFieldSchema
+
+Schema for text fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/TextFieldSchema)[Class
+
+### TagFieldSchema
+
+Schema for tag fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/TagFieldSchema)[Class
+
+### NumericFieldSchema
+
+Schema for numeric fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/NumericFieldSchema)[Class
+
+### InMemoryDBVectorField
+
+Base class for Redis vector fields.](/python/langchain-aws/vectorstores/inmemorydb/schema/InMemoryDBVectorField)[Class
+
+### FlatVectorField
+
+Schema for flat vector fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/FlatVectorField)[Class
+
+### HNSWVectorField
+
+Schema for HNSW vector fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/HNSWVectorField)[Class
+
+### InMemoryDBModel
+
+Schema for MemoryDB index.](/python/langchain-aws/vectorstores/inmemorydb/schema/InMemoryDBModel)[Class
+
+### InMemoryDBFilterOperator
+
+InMemoryDBFilterOperator enumerator is used to create](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBFilterOperator)[Class
+
+### InMemoryDBFilter
+
+Collection of InMemoryDBFilterFields.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBFilter)[Class
+
+### InMemoryDBFilterField
+
+Base class for InMemoryDBFilterFields.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBFilterField)[Class
+
+### InMemoryDBTag
+
+InMemoryDBFilterField representing a tag in a InMemoryDB index.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBTag)[Class
+
+### InMemoryDBNum
+
+InMemoryDBFilterField representing a numeric field in a InMemoryDB index.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBNum)[Class
+
+### InMemoryDBText
+
+InMemoryDBFilterField representing a text field in a InMemoryDB index.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBText)[Class
+
+### InMemoryDBFilterExpression
+
+Logical expression of InMemoryDBFilterFields.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBFilterExpression)[Class
+
+### InMemorySemanticCache
+
+Cache that uses MemoryDB as a vector-store backend.](/python/langchain-aws/vectorstores/inmemorydb/cache/InMemorySemanticCache)[Class
+
+### InMemoryVectorStore
+
+InMemoryVectorStore vector database.](/python/langchain-aws/vectorstores/inmemorydb/base/InMemoryVectorStore)[Class
+
+### InMemoryVectorStoreRetriever
+
+Retriever for InMemoryVectorStore.](/python/langchain-aws/vectorstores/inmemorydb/base/InMemoryVectorStoreRetriever)[Class
+
+### NeptuneRdfGraph
+
+Neptune wrapper for RDF graph operations.](/python/langchain-aws/graphs/neptune_rdf_graph/NeptuneRdfGraph)[Class
+
 ### NeptuneQueryException
 
 Exception for the Neptune queries.](/python/langchain-aws/graphs/neptune_graph/NeptuneQueryException)[Class
@@ -212,29 +210,103 @@ Neptune Analytics wrapper for graph operations.](/python/langchain-aws/graphs/ne
 
 Neptune wrapper for graph operations.](/python/langchain-aws/graphs/neptune_graph/NeptuneGraph)[Class
 
-### NeptuneRdfGraph
+### LineIterator
 
-Neptune wrapper for RDF graph operations.](/python/langchain-aws/graphs/neptune_rdf_graph/NeptuneRdfGraph)[Class
+A helper class for parsing the byte stream input.](/python/langchain-aws/llms/sagemaker_endpoint/LineIterator)[Class
+
+### LLMContentHandler
+
+Content handler for LLM class.](/python/langchain-aws/llms/sagemaker_endpoint/LLMContentHandler)[Class
+
+### SagemakerEndpoint
+
+Sagemaker Inference Endpoint models.](/python/langchain-aws/llms/sagemaker_endpoint/SagemakerEndpoint)[Class
+
+### AnthropicTool](/python/langchain-aws/llms/bedrock/AnthropicTool)[Class
+
+### LLMInputOutputAdapter
+
+Adapter class to prepare the inputs from Langchain to a format](/python/langchain-aws/llms/bedrock/LLMInputOutputAdapter)[Class
+
+### BedrockBase
+
+Base class for Bedrock models.](/python/langchain-aws/llms/bedrock/BedrockBase)[Class
+
+### BedrockLLM
+
+Bedrock models.](/python/langchain-aws/llms/bedrock/BedrockLLM)[Class
+
+### BedrockAgentsRunnable
+
+Invoke a Bedrock Agent](/python/langchain-aws/agents/base/BedrockAgentsRunnable)[Class
+
+### BedrockInlineAgentsRunnable
+
+Invoke Bedrock Inline Agent as a Runnable.](/python/langchain-aws/agents/base/BedrockInlineAgentsRunnable)[Class
+
+### BedrockAgentFinish
+
+AgentFinish with session id information.](/python/langchain-aws/agents/types/BedrockAgentFinish)[Class
+
+### BedrockAgentAction
+
+AgentAction with session id information.](/python/langchain-aws/agents/types/BedrockAgentAction)[Class
+
+### GuardrailConfiguration](/python/langchain-aws/agents/types/GuardrailConfiguration)[Class
+
+### KnowledgebaseConfiguration](/python/langchain-aws/agents/types/KnowledgebaseConfiguration)[Class
+
+### InlineAgentConfiguration
+
+Configurations for an Inline Agent.](/python/langchain-aws/agents/types/InlineAgentConfiguration)[Class
+
+### BedrockPromptCachingMiddleware
+
+Prompt Caching Middleware for ChatBedrock and ChatBedrockConverse.](/python/langchain-aws/middleware/prompt_caching/BedrockPromptCachingMiddleware)[Class
 
 ### BedrockRerank
 
 Document compressor that uses AWS Bedrock Rerank API.](/python/langchain-aws/document_compressors/rerank/BedrockRerank)[Class
 
-### BrowserSessionManager
+### AmazonQ
 
-Manages browser sessions for different threads.](/python/langchain-aws/tools/browser_session_manager/BrowserSessionManager)[Class
+Amazon Q Runnable wrapper.](/python/langchain-aws/runnables/q_business/AmazonQ)[Class
 
-### NovaSystemTool
+### ChatLineIterator
 
-Base class for Nova system tools.](/python/langchain-aws/tools/nova_tools/NovaSystemTool)[Class
+A helper class for parsing the byte stream input.](/python/langchain-aws/chat_models/sagemaker_endpoint/ChatLineIterator)[Class
 
-### NovaGroundingTool
+### ChatModelContentHandler
 
-Helper for Nova's web grounding system tool.](/python/langchain-aws/tools/nova_tools/NovaGroundingTool)[Class
+Content handler for ChatSagemakerEndpoint class.](/python/langchain-aws/chat_models/sagemaker_endpoint/ChatModelContentHandler)[Class
 
-### NovaCodeInterpreterTool
+### ChatSagemakerEndpoint
 
-Helper for Nova's code interpreter system tool.](/python/langchain-aws/tools/nova_tools/NovaCodeInterpreterTool)[Class
+A chat model that uses a HuggingFace TGI compatible SageMaker Endpoint.](/python/langchain-aws/chat_models/sagemaker_endpoint/ChatSagemakerEndpoint)[Class
+
+### ChatPromptAdapter
+
+Adapter class to prepare the inputs from Langchain to prompt format that Chat](/python/langchain-aws/chat_models/bedrock/ChatPromptAdapter)[Class
+
+### ChatBedrock
+
+A chat model that uses the Bedrock API.](/python/langchain-aws/chat_models/bedrock/ChatBedrock)[Class
+
+### ChatBedrockConverse
+
+Bedrock chat model integration built on the Bedrock converse API.](/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse)[Class
+
+### NovaSonicSession
+
+Manages a single bidirectional streaming session with Nova Sonic.](/python/langchain-aws/chat_models/bedrock_nova_sonic/NovaSonicSession)[Class
+
+### ChatBedrockNovaSonic
+
+Chat model for Amazon Nova Sonic bidirectional streaming.](/python/langchain-aws/chat_models/bedrock_nova_sonic/ChatBedrockNovaSonic)[Class
+
+### ChatAnthropicBedrock
+
+Anthropic Claude via AWS Bedrock.](/python/langchain-aws/chat_models/anthropic/ChatAnthropicBedrock)[Class
 
 ### ExecuteCodeInput
 
@@ -271,6 +343,18 @@ Input schema for install\_packages tool.](/python/langchain-aws/tools/code_inter
 ### CodeInterpreterToolkit
 
 Toolkit for working with AWS code interpreter environment.](/python/langchain-aws/tools/code_interpreter_toolkit/CodeInterpreterToolkit)[Class
+
+### NovaSystemTool
+
+Base class for Nova system tools.](/python/langchain-aws/tools/nova_tools/NovaSystemTool)[Class
+
+### NovaGroundingTool
+
+Helper for Nova's web grounding system tool.](/python/langchain-aws/tools/nova_tools/NovaGroundingTool)[Class
+
+### NovaCodeInterpreterTool
+
+Helper for Nova's code interpreter system tool.](/python/langchain-aws/tools/nova_tools/NovaCodeInterpreterTool)[Class
 
 ### NavigateToolInput
 
@@ -354,107 +438,19 @@ Tool for scrolling the webpage.](/python/langchain-aws/tools/browser_tools/Threa
 
 Tool for waiting until an element appears or reaches a specific state.](/python/langchain-aws/tools/browser_tools/ThreadAwareWaitForElementTool)[Class
 
+### BrowserSessionManager
+
+Manages browser sessions for different threads.](/python/langchain-aws/tools/browser_session_manager/BrowserSessionManager)[Class
+
 ### BrowserToolkit
 
-Toolkit for navigating web with AWS browser with thread support.](/python/langchain-aws/tools/browser_toolkit/BrowserToolkit)[Class
-
-### BedrockEmbeddings
-
-Bedrock embedding models.](/python/langchain-aws/embeddings/bedrock/BedrockEmbeddings)[Class
-
-### InMemoryDBFilterOperator
-
-InMemoryDBFilterOperator enumerator is used to create](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBFilterOperator)[Class
-
-### InMemoryDBFilter
-
-Collection of InMemoryDBFilterFields.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBFilter)[Class
-
-### InMemoryDBFilterField
-
-Base class for InMemoryDBFilterFields.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBFilterField)[Class
-
-### InMemoryDBTag
-
-InMemoryDBFilterField representing a tag in a InMemoryDB index.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBTag)[Class
-
-### InMemoryDBNum
-
-InMemoryDBFilterField representing a numeric field in a InMemoryDB index.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBNum)[Class
-
-### InMemoryDBText
-
-InMemoryDBFilterField representing a text field in a InMemoryDB index.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBText)[Class
-
-### InMemoryDBFilterExpression
-
-Logical expression of InMemoryDBFilterFields.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBFilterExpression)[Class
-
-### InMemoryVectorStore
-
-InMemoryVectorStore vector database.](/python/langchain-aws/vectorstores/inmemorydb/base/InMemoryVectorStore)[Class
-
-### InMemoryVectorStoreRetriever
-
-Retriever for InMemoryVectorStore.](/python/langchain-aws/vectorstores/inmemorydb/base/InMemoryVectorStoreRetriever)[Class
-
-### InMemoryDBDistanceMetric
-
-Distance metrics for Redis vector fields.](/python/langchain-aws/vectorstores/inmemorydb/schema/InMemoryDBDistanceMetric)[Class
-
-### InMemoryDBField
-
-Base class for Redis fields.](/python/langchain-aws/vectorstores/inmemorydb/schema/InMemoryDBField)[Class
-
-### TextFieldSchema
-
-Schema for text fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/TextFieldSchema)[Class
-
-### TagFieldSchema
-
-Schema for tag fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/TagFieldSchema)[Class
-
-### NumericFieldSchema
-
-Schema for numeric fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/NumericFieldSchema)[Class
-
-### InMemoryDBVectorField
-
-Base class for Redis vector fields.](/python/langchain-aws/vectorstores/inmemorydb/schema/InMemoryDBVectorField)[Class
-
-### FlatVectorField
-
-Schema for flat vector fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/FlatVectorField)[Class
-
-### HNSWVectorField
-
-Schema for HNSW vector fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/HNSWVectorField)[Class
-
-### InMemoryDBModel
-
-Schema for MemoryDB index.](/python/langchain-aws/vectorstores/inmemorydb/schema/InMemoryDBModel)[Class
-
-### InMemorySemanticCache
-
-Cache that uses MemoryDB as a vector-store backend.](/python/langchain-aws/vectorstores/inmemorydb/cache/InMemorySemanticCache)[Class
-
-### AmazonS3Vectors
-
-S3Vectors is Amazon S3 Vectors database.](/python/langchain-aws/vectorstores/s3_vectors/base/AmazonS3Vectors)[Class
-
-### ValkeyVectorStore
-
-Valkey vector database.](/python/langchain-aws/vectorstores/valkey/base/ValkeyVectorStore)
+Toolkit for navigating web with AWS browser with thread support.](/python/langchain-aws/tools/browser_toolkit/BrowserToolkit)
 
 ## Functions
 
 [Function
 
 ### setup\_logging](/python/langchain-aws/setup_logging)[Function
-
-### get\_system\_message](/python/langchain-aws/function_calling/get_system_message)[Function
-
-### convert\_to\_anthropic\_tool](/python/langchain-aws/function_calling/convert_to_anthropic_tool)[Function
 
 ### enforce\_stop\_tokens
 
@@ -490,11 +486,47 @@ Check if the thinking parameter is enabled in the request.](/python/langchain-aw
 
 Trim trailing whitespace from final AIMessage content.](/python/langchain-aws/utils/trim_message_whitespace)[Function
 
-### extract\_tool\_calls](/python/langchain-aws/llms/bedrock/extract_tool_calls)[Function
+### get\_system\_message](/python/langchain-aws/function_calling/get_system_message)[Function
+
+### convert\_to\_anthropic\_tool](/python/langchain-aws/function_calling/convert_to_anthropic_tool)[Function
+
+### clean\_excerpt
+
+Clean an excerpt from Kendra.](/python/langchain-aws/retrievers/kendra/clean_excerpt)[Function
+
+### combined\_text
+
+Combine a ResultItem title and excerpt into a single string.](/python/langchain-aws/retrievers/kendra/combined_text)[Function
+
+### check\_index\_exists
+
+Check if Valkey index exists.](/python/langchain-aws/vectorstores/valkey/base/check_index_exists)[Function
+
+### read\_schema
+
+Read in the index schema from a dict or yaml file.](/python/langchain-aws/vectorstores/inmemorydb/schema/read_schema)[Function
+
+### check\_operator\_misuse
+
+Decorator to check for misuse of equality operators.](/python/langchain-aws/vectorstores/inmemorydb/filters/check_operator_misuse)[Function
+
+### check\_index\_exists
+
+Check if MemoryDB index exists.](/python/langchain-aws/vectorstores/inmemorydb/base/check_index_exists)[Function
 
 ### enforce\_stop\_tokens
 
 Cut off the text as soon as any stop words occur.](/python/langchain-aws/llms/sagemaker_endpoint/enforce_stop_tokens)[Function
+
+### extract\_tool\_calls](/python/langchain-aws/llms/bedrock/extract_tool_calls)[Function
+
+### get\_boto\_session
+
+Construct the boto3 session](/python/langchain-aws/agents/utils/get_boto_session)[Function
+
+### parse\_agent\_response
+
+Parses the raw response from Bedrock Agent](/python/langchain-aws/agents/utils/parse_agent_response)[Function
 
 ### convert\_messages\_to\_prompt\_llama
 
@@ -564,33 +596,9 @@ Selects the final prompt.](/python/langchain-aws/chains/graph_qa/neptune_sparql/
 
 Chain for question-answering against a Neptune graph](/python/langchain-aws/chains/graph_qa/neptune_sparql/create_neptune_sparql_qa_chain)[Function
 
-### get\_boto\_session
-
-Construct the boto3 session](/python/langchain-aws/agents/utils/get_boto_session)[Function
-
-### parse\_agent\_response
-
-Parses the raw response from Bedrock Agent](/python/langchain-aws/agents/utils/parse_agent_response)[Function
-
-### clean\_excerpt
-
-Clean an excerpt from Kendra.](/python/langchain-aws/retrievers/kendra/clean_excerpt)[Function
-
-### combined\_text
-
-Combine a ResultItem title and excerpt into a single string.](/python/langchain-aws/retrievers/kendra/combined_text)[Function
-
 ### create\_code\_interpreter\_toolkit
 
 Create and setup a CodeInterpreterToolkit.](/python/langchain-aws/tools/code_interpreter_toolkit/create_code_interpreter_toolkit)[Function
-
-### create\_thread\_aware\_tools
-
-Create thread-aware browser tools that use the session manager.](/python/langchain-aws/tools/browser_tools/create_thread_aware_tools)[Function
-
-### create\_browser\_toolkit
-
-Create a BrowserToolkit with thread support.](/python/langchain-aws/tools/browser_toolkit/create_browser_toolkit)[Function
 
 ### aget\_current\_page
 
@@ -604,21 +612,13 @@ Get the current page of the browser.](/python/langchain-aws/tools/utils/get_curr
 
 Build a session key from RunnableConfig.](/python/langchain-aws/tools/utils/get_session_key)[Function
 
-### check\_operator\_misuse
+### create\_thread\_aware\_tools
 
-Decorator to check for misuse of equality operators.](/python/langchain-aws/vectorstores/inmemorydb/filters/check_operator_misuse)[Function
+Create thread-aware browser tools that use the session manager.](/python/langchain-aws/tools/browser_tools/create_thread_aware_tools)[Function
 
-### check\_index\_exists
+### create\_browser\_toolkit
 
-Check if MemoryDB index exists.](/python/langchain-aws/vectorstores/inmemorydb/base/check_index_exists)[Function
-
-### read\_schema
-
-Read in the index schema from a dict or yaml file.](/python/langchain-aws/vectorstores/inmemorydb/schema/read_schema)[Function
-
-### check\_index\_exists
-
-Check if Valkey index exists.](/python/langchain-aws/vectorstores/valkey/base/check_index_exists)
+Create a BrowserToolkit with thread support.](/python/langchain-aws/tools/browser_toolkit/create_browser_toolkit)
 
 ## Modules
 
@@ -626,131 +626,25 @@ Check if Valkey index exists.](/python/langchain-aws/vectorstores/valkey/base/ch
 
 ### langchain\_aws](/python/langchain-aws/langchain_aws)[Module
 
+### utils](/python/langchain-aws/utils)[Module
+
 ### function\_calling
 
 Methods for creating function specs in the style of Bedrock Functions](/python/langchain-aws/function_calling)[Module
-
-### utils](/python/langchain-aws/utils)[Module
-
-### llms](/python/langchain-aws/llms)[Module
-
-### bedrock](/python/langchain-aws/llms/bedrock)[Module
-
-### sagemaker\_endpoint
-
-Sagemaker InvokeEndpoint API.](/python/langchain-aws/llms/sagemaker_endpoint)[Module
-
-### middleware
-
-Middleware for LangChain AWS integrations.](/python/langchain-aws/middleware)[Module
-
-### prompt\_caching](/python/langchain-aws/middleware/prompt_caching)[Module
-
-### chat\_models](/python/langchain-aws/chat_models)[Module
-
-### anthropic
-
-Anthropic Bedrock chat models.](/python/langchain-aws/chat_models/anthropic)[Module
-
-### bedrock\_nova\_sonic
-
-Amazon Nova Sonic bidirectional streaming chat model.](/python/langchain-aws/chat_models/bedrock_nova_sonic)[Module
-
-### bedrock](/python/langchain-aws/chat_models/bedrock)[Module
-
-### bedrock\_converse](/python/langchain-aws/chat_models/bedrock_converse)[Module
-
-### sagemaker\_endpoint
-
-Sagemaker Chat Model.](/python/langchain-aws/chat_models/sagemaker_endpoint)[Module
-
-### runnables](/python/langchain-aws/runnables)[Module
-
-### q\_business](/python/langchain-aws/runnables/q_business)[Module
-
-### chains](/python/langchain-aws/chains)[Module
-
-### graph\_qa](/python/langchain-aws/chains/graph_qa)[Module
-
-### neptune\_cypher](/python/langchain-aws/chains/graph_qa/neptune_cypher)[Module
-
-### prompts](/python/langchain-aws/chains/graph_qa/prompts)[Module
-
-### neptune\_sparql
-
-Question answering over an RDF or OWL graph using SPARQL.](/python/langchain-aws/chains/graph_qa/neptune_sparql)[Module
-
-### agents](/python/langchain-aws/agents)[Module
-
-### types](/python/langchain-aws/agents/types)[Module
-
-### base](/python/langchain-aws/agents/base)[Module
-
-### utils](/python/langchain-aws/agents/utils)[Module
-
-### retrievers](/python/langchain-aws/retrievers)[Module
-
-### s3\_vectors](/python/langchain-aws/retrievers/s3_vectors)[Module
-
-### bedrock](/python/langchain-aws/retrievers/bedrock)[Module
-
-### kendra](/python/langchain-aws/retrievers/kendra)[Module
-
-### graphs](/python/langchain-aws/graphs)[Module
-
-### neptune\_graph](/python/langchain-aws/graphs/neptune_graph)[Module
-
-### neptune\_rdf\_graph](/python/langchain-aws/graphs/neptune_rdf_graph)[Module
-
-### document\_compressors](/python/langchain-aws/document_compressors)[Module
-
-### rerank](/python/langchain-aws/document_compressors/rerank)[Module
-
-### tools](/python/langchain-aws/tools)[Module
-
-### browser\_session\_manager](/python/langchain-aws/tools/browser_session_manager)[Module
-
-### nova\_tools
-
-Nova system tools helpers.](/python/langchain-aws/tools/nova_tools)[Module
-
-### code\_interpreter\_toolkit](/python/langchain-aws/tools/code_interpreter_toolkit)[Module
-
-### browser\_tools
-
-Thread-aware browser tools that work with the browser session manager.](/python/langchain-aws/tools/browser_tools)[Module
-
-### browser\_toolkit
-
-Toolkit for navigating web with AWS browser with thread support.](/python/langchain-aws/tools/browser_toolkit)[Module
-
-### utils
-
-Utilities for the Playwright browser tools.](/python/langchain-aws/tools/utils)[Module
 
 ### embeddings](/python/langchain-aws/embeddings)[Module
 
 ### bedrock](/python/langchain-aws/embeddings/bedrock)[Module
 
+### retrievers](/python/langchain-aws/retrievers)[Module
+
+### kendra](/python/langchain-aws/retrievers/kendra)[Module
+
+### bedrock](/python/langchain-aws/retrievers/bedrock)[Module
+
+### s3\_vectors](/python/langchain-aws/retrievers/s3_vectors)[Module
+
 ### vectorstores](/python/langchain-aws/vectorstores)[Module
-
-### inmemorydb](/python/langchain-aws/vectorstores/inmemorydb)[Module
-
-### constants](/python/langchain-aws/vectorstores/inmemorydb/constants)[Module
-
-### filters](/python/langchain-aws/vectorstores/inmemorydb/filters)[Module
-
-### base
-
-Wrapper around MemoryDB vector database.](/python/langchain-aws/vectorstores/inmemorydb/base)[Module
-
-### schema](/python/langchain-aws/vectorstores/inmemorydb/schema)[Module
-
-### cache](/python/langchain-aws/vectorstores/inmemorydb/cache)[Module
-
-### s3\_vectors](/python/langchain-aws/vectorstores/s3_vectors)[Module
-
-### base](/python/langchain-aws/vectorstores/s3_vectors/base)[Module
 
 ### valkey](/python/langchain-aws/vectorstores/valkey)[Module
 
@@ -762,23 +656,129 @@ Valkey filter expressions - aliases for InMemoryDB filters.](/python/langchain-a
 
 Wrapper around Valkey vector database.](/python/langchain-aws/vectorstores/valkey/base)[Module
 
+### s3\_vectors](/python/langchain-aws/vectorstores/s3_vectors)[Module
+
+### base](/python/langchain-aws/vectorstores/s3_vectors/base)[Module
+
+### inmemorydb](/python/langchain-aws/vectorstores/inmemorydb)[Module
+
+### schema](/python/langchain-aws/vectorstores/inmemorydb/schema)[Module
+
+### filters](/python/langchain-aws/vectorstores/inmemorydb/filters)[Module
+
+### constants](/python/langchain-aws/vectorstores/inmemorydb/constants)[Module
+
+### cache](/python/langchain-aws/vectorstores/inmemorydb/cache)[Module
+
+### base
+
+Wrapper around MemoryDB vector database.](/python/langchain-aws/vectorstores/inmemorydb/base)[Module
+
+### graphs](/python/langchain-aws/graphs)[Module
+
+### neptune\_rdf\_graph](/python/langchain-aws/graphs/neptune_rdf_graph)[Module
+
+### neptune\_graph](/python/langchain-aws/graphs/neptune_graph)[Module
+
+### llms](/python/langchain-aws/llms)[Module
+
+### sagemaker\_endpoint
+
+Sagemaker InvokeEndpoint API.](/python/langchain-aws/llms/sagemaker_endpoint)[Module
+
+### bedrock](/python/langchain-aws/llms/bedrock)[Module
+
+### agents](/python/langchain-aws/agents)[Module
+
+### utils](/python/langchain-aws/agents/utils)[Module
+
+### base](/python/langchain-aws/agents/base)[Module
+
+### types](/python/langchain-aws/agents/types)[Module
+
+### middleware
+
+Middleware for LangChain AWS integrations.](/python/langchain-aws/middleware)[Module
+
+### prompt\_caching](/python/langchain-aws/middleware/prompt_caching)[Module
+
+### document\_compressors](/python/langchain-aws/document_compressors)[Module
+
+### rerank](/python/langchain-aws/document_compressors/rerank)[Module
+
 ### data
 
-Model profile data. All edits should be made in profile\_augmentations.toml.](/python/langchain-aws/data)
+Model profile data. All edits should be made in profile\_augmentations.toml.](/python/langchain-aws/data)[Module
+
+### runnables](/python/langchain-aws/runnables)[Module
+
+### q\_business](/python/langchain-aws/runnables/q_business)[Module
+
+### chat\_models](/python/langchain-aws/chat_models)[Module
+
+### sagemaker\_endpoint
+
+Sagemaker Chat Model.](/python/langchain-aws/chat_models/sagemaker_endpoint)[Module
+
+### bedrock](/python/langchain-aws/chat_models/bedrock)[Module
+
+### bedrock\_converse](/python/langchain-aws/chat_models/bedrock_converse)[Module
+
+### bedrock\_nova\_sonic
+
+Amazon Nova Sonic bidirectional streaming chat model.](/python/langchain-aws/chat_models/bedrock_nova_sonic)[Module
+
+### anthropic
+
+Anthropic Bedrock chat models.](/python/langchain-aws/chat_models/anthropic)[Module
+
+### chains](/python/langchain-aws/chains)[Module
+
+### graph\_qa](/python/langchain-aws/chains/graph_qa)[Module
+
+### prompts](/python/langchain-aws/chains/graph_qa/prompts)[Module
+
+### neptune\_cypher](/python/langchain-aws/chains/graph_qa/neptune_cypher)[Module
+
+### neptune\_sparql
+
+Question answering over an RDF or OWL graph using SPARQL.](/python/langchain-aws/chains/graph_qa/neptune_sparql)[Module
+
+### tools](/python/langchain-aws/tools)[Module
+
+### code\_interpreter\_toolkit](/python/langchain-aws/tools/code_interpreter_toolkit)[Module
+
+### utils
+
+Utilities for the Playwright browser tools.](/python/langchain-aws/tools/utils)[Module
+
+### nova\_tools
+
+Nova system tools helpers.](/python/langchain-aws/tools/nova_tools)[Module
+
+### browser\_tools
+
+Thread-aware browser tools that work with the browser session manager.](/python/langchain-aws/tools/browser_tools)[Module
+
+### browser\_session\_manager](/python/langchain-aws/tools/browser_session_manager)[Module
+
+### browser\_toolkit
+
+Toolkit for navigating web with AWS browser with thread support.](/python/langchain-aws/tools/browser_toolkit)
 
 ## Types
 
 [Type
 
-### OutputType](/python/langchain-aws/agents/types/OutputType)[Type
-
-### FilterValue](/python/langchain-aws/retrievers/bedrock/FilterValue)[Type
+### MediaInput](/python/langchain-aws/embeddings/bedrock/MediaInput)[Type
 
 ### DocumentAttributeValueType
 
 Possible types of a DocumentAttributeValue.](/python/langchain-aws/retrievers/kendra/DocumentAttributeValueType)[Type
 
-### MediaInput](/python/langchain-aws/embeddings/bedrock/MediaInput)
+### FilterValue](/python/langchain-aws/retrievers/bedrock/FilterValue)[Type
+
+### OutputType](/python/langchain-aws/agents/types/OutputType)
 
 Copy page
 

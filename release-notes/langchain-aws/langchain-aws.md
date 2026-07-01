@@ -3,6 +3,25 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain-aws/releases
 
+## 1.6.1 — 2026-06-25
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.6.1)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.6.0 — 2026-06-18
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.6.0)
+
+- feat(aws): surface per-TTL cache breakdown from cacheDetails by @onraz in https://github.com/langchain-ai/langchain-aws/pull/1098
+- feat(aws): add `langchain-aws` version metadata to models by @mdrxy in https://github.com/langchain-ai/langchain-aws/pull/1102
+
+## 1.5.1 — 2026-06-08
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.5.1)
+
+- feat(aws): Enable streaming for `prompt_prefill` structured output mode by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1042
+
 ## 1.5.0 — 2026-05-19
 
 [Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.5.0)

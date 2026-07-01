@@ -8,7 +8,7 @@ Prompt GPT-5 for agentic workflows, coding, steerability, and new API controls.
 - Dedicated guidance for agentic eagerness, tool preambles, and verbosity.
 - Frontend and software engineering prompt patterns from production agent use.
 
-GPT-5, our newest flagship model, represents a substantial leap forward in agentic task performance, coding, raw intelligence, and steerability.
+GPT-5 represents a substantial leap forward in agentic task performance, coding, raw intelligence, and steerability.
 
 While we trust it will perform excellently “out of the box” across a wide range of domains, in this guide we’ll cover prompting tips to maximize the quality of model outputs, derived from our experience training and applying the model to real-world tasks. We discuss concepts like improving agentic task performance, ensuring instruction adherence, making use of newly API features, and optimizing coding for frontend and software engineering tasks - with key insights into AI code editor Cursor’s prompt tuning work with GPT-5.
 

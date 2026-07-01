@@ -15,6 +15,7 @@
      * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
      * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
@@ -77,7 +78,7 @@ Categories:
 
 Regional Availability
 
-Available natively to accounts in [select regions](/user-guide/snowflake-cortex/aisql#label-cortex-llm-availability).
+Available natively to accounts in [select regions](/user-guide/snowflake-cortex/aisql-regional-availability#label-cortex-llm-availability).
 Available through [cross-region inference](/user-guide/snowflake-cortex/cross-region-inference) to accounts in all regions.
 
 Returns the extracted content from a document on a Snowflake stage as a JSON-formatted string. This
@@ -86,7 +87,7 @@ information, see [Parsing documents with AI\_PARSE\_DOCUMENT](/user-guide/snowfl
 
 ## Syntax[¶](#syntax)
 
-Copy code
+Copy codeExpand code block
 
 ```
 AI_PARSE_DOCUMENT( <file_object> [, <options> ] [, <return_error_details> ] )
@@ -148,13 +149,16 @@ If the `'page_split'` option is set, the output has the following structure:
 >   one page, the output still contains a `"pages"` array (which contains a single object). Each page has the following fields:
 >   + `"content"`: Plain text (in OCR mode) or Markdown-formatted text (in LAYOUT mode).
 >   + `"index"`: The page index in the file, starting at 0. Page numbers and formats specified in the document are ignored.
->
-> > * `"metadata"`: Contains metadata about the document, such as page count.
 
 If `'page_split'` is FALSE or is not present, the output has the following structure:
 
 > * `"content"`: Plain text (in OCR mode) or Markdown-formatted text (in LAYOUT mode).
-> * `"metadata"`: Contains metadata about the document, such as page count.
+
+Note
+
+Document metadata such as `pageCount` is not included in the output structures above. To return metadata, pass
+`TRUE` as the `return_error_details` argument. The function then returns an OBJECT with top-level `value`, `error`,
+and `metadata` fields; `metadata` contains fields such as `pageCount`.
 
 If the `"extract_images"` option is set to TRUE, the output includes an additional field:
 

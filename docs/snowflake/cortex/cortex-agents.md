@@ -31,12 +31,13 @@
 19. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
-    * [Snowflake Intelligence](/en/user-guide/snowflake-cortex/snowflake-intelligence "Snowflake Intelligence")
+    * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
     * [Cortex Code](/en/user-guide/cortex-code/cortex-code "Cortex Code")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
 
-      + [Configure and interact with Agents](/en/user-guide/snowflake-cortex/cortex-agents-manage "Configure and interact with Agents")
+      + [Create and manage agents](/en/user-guide/snowflake-cortex/cortex-agents-manage "Create and manage agents")
+      + [Access control and authentication](/en/user-guide/snowflake-cortex/cortex-agents-setup "Access control and authentication")
       + [Use threads with Agents](/en/user-guide/snowflake-cortex/cortex-agents-threads "Use threads with Agents")
       + REST API
 
@@ -60,21 +61,20 @@
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
     * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
     * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
-    * [Cortex REST API](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex REST API")
+    * [Cortex Inference](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex Inference")
     * [Cortex AI Guardrails](/en/user-guide/snowflake-cortex/cortex-ai-guardrails "Cortex AI Guardrails")
     * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
     * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
     * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
+    * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
 21. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
 23. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
 25. [Security](/en/guides-overview-secure "Security")
-26. [Data Governance](/en/guides-overview-govern "Data Governance")
-27. [Privacy](/en/guides-overview-privacy "Privacy")
-29. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-30. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-32. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-33. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
+27. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
+28. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
+30. [Performance optimization](/en/guides-overview-performance "Performance optimization")
+31. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
 
 [Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)Cortex Agents
 
@@ -86,274 +86,123 @@ Get started with Cortex Agents
 
 ## Overview[¶](#overview)
 
-Cortex Agents orchestrate across both structured and unstructured data sources to deliver insights. They plan tasks, use tools to execute these tasks, and generate responses. Agents use Cortex Analyst (structured) and Cortex Search (unstructured) as tools, along with LLMs, to analyze data. Cortex Search extracts insights from unstructured sources, while Cortex Analyst generates SQL to process structured data. In addition, you can use stored procedures and user defined functions (UDFs) to implement custom tools. A comprehensive support for tool identification and tool execution enables delivery of sophisticated applications grounded in enterprise data.
+Cortex Agents is a fully managed agentic platform for building and running AI agents within Snowflake’s governed environment. An agent reasons over a request, plans the work, calls tools, executes code, and generates a response, without requiring you to build or operate your own orchestration loop, runtime, or sandbox infrastructure. Data access is governed by Snowflake privileges and the execution context of each configured tool.
 
-The workflow involves four key components:
+Agents bring your structured and unstructured data together in a single governed workflow. They generate SQL over structured data using Cortex Analyst semantic views and use Cortex Search to retrieve insights from unstructured sources, then reason over the combined results. You can extend what an agent can do with several types of tools:
 
-1. **Planning**: Applications often switch between processing data from structured and unstructured sources. For example, consider a conversational app designed to answer user queries. A business user may first ask for top distributors by revenue (structured) and then switch to inquiring about a contract (unstructured). Cortex Agents can parse a request to orchestrate a plan and arrive at the solution or response.
+* A built-in code execution tool that, when enabled, runs Python in a secure, isolated sandbox to process data and perform calculations.
+* A Data to Chart tool that generates visualizations from data.
+* Custom tools built from stored procedures and user-defined functions (UDFs) to call backend systems or implement your own business logic.
+* Packaged agent skills, modular bundles of instructions and scripts that give an agent repeatable, task-specific capabilities.
+* MCP connectors to remote Model Context Protocol (MCP) servers, letting agents discover and invoke tools hosted by providers such as Atlassian Jira, Salesforce, or your own applications.
+* Web search for real-time information from the public internet.
 
-   1. **Explore options**: When the user poses an ambiguous question (for example, “Tell me about Acme Supplies”), the agent considers different permutations - products, location, or sales personnel - to disambiguate and improve accuracy.
-   2. **Split into subtasks**: Cortex Agents can split a task or request (for example, “What are the differences between contract terms for Acme Supplies and Acme Stationery?”) into multiple parts for a more precise response.
-   3. **Route across tools**: The agent selects the right tool - Cortex Analyst or Cortex Search - to ensure governed access and compliance with enterprise policies.
-2. **Tool use**: With a plan in place, the agent retrieves data efficiently. Cortex Search extracts insights from unstructured sources, while Cortex Analyst generates SQL to process structured data. A comprehensive support for tool identification and tool execution enables delivery of sophisticated applications grounded in enterprise data.
-3. **Reflection**: After each tool use, the agent evaluates results to determine the next steps - asking for clarification, iterating, or generating a final response. This orchestration allows it to handle complex data queries while ensuring accuracy and compliance within Snowflake’s secure perimeter.
-4. **Monitor, evaluate, and iterate**: After deployment, you can track metrics, analyze performance, perform evaluations, and refine behavior for continuous improvements. By monitoring and refining your agent, you can continuously improve performance and response accuracy.
+Threads maintain conversation context across turns, so your client application doesn’t have to manage state. After deployment, you can monitor agents, collect end-user feedback, and run evaluations to continuously refine their behavior.
+
+To answer a request, an agent follows a reasoning loop with three steps:
+
+1. **Plan**: The agent parses the request and decides how to answer it. It can disambiguate a vague question (for example, “Tell me about Acme Supplies” might refer to products, location, or sales personnel), split a complex request into subtasks (for example, “What are the differences between contract terms for Acme Supplies and Acme Stationery?”), and choose which tool to use for each part.
+2. **Use tools**: The agent calls the tools it selected, such as Cortex Analyst for structured data, Cortex Search for unstructured data, or the code execution tool to process results.
+3. **Reflect and respond**: The agent evaluates the results from each tool to decide what to do next, whether that’s asking a clarifying question, calling another tool, or generating a final response. This loop lets the agent handle complex, multi-step questions while staying within Snowflake’s secure perimeter.
+
+The agent repeats this loop as needed within a single request.
+
+You define an agent as a reusable object that bundles its model, tools, and orchestration instructions. Create one in Snowsight, with the Cortex Agents SQL commands, or through the REST API, then integrate it into your application using the REST API. You guide its behavior with natural-language instructions, and you can choose the language model that powers it or let Snowflake select one automatically. In addition to calling agents from your own applications through the REST API, users can interact with them in [Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork) and [Cortex Code](/user-guide/cortex-code/cortex-code).
 
 For tutorials to help you get started, see [Cortex Agents tutorials](/user-guide/snowflake-cortex/cortex-agents-tutorials).
 
 Note
 
-While Snowflake strives to provide high quality responses, the accuracy of the LLM responses or
+While Snowflake strives to provide high-quality responses, the accuracy of the LLM responses or
 the citations provided are not guaranteed. You should review all answers from the Agents API before serving them to your users.
 
-## Access control requirements[¶](#access-control-requirements)
+## Key concepts[¶](#key-concepts)
 
-To make a request to Cortex Agent via agent:run API, you can use a role that has the
-SNOWFLAKE.CORTEX\_USER or SNOWFLAKE.CORTEX\_AGENT\_USER role granted. The CORTEX\_USER provides
-access to all Covered AI features including Cortex Agents whereas CORTEX\_AGENT\_USER provides access to
-the Agents feature.
+Cortex Agents is built around the following concepts:
 
-Note
-
-You must use the user’s default role when calling or updating Cortex Agents. To allow another role to edit the agent, grant USAGE on the database, schema, and agent to that role.
-
-Copy code
-
-```
-GRANT USAGE ON DATABASE <database_name> to ROLE <role_name>;
-GRANT USAGE ON SCHEMA <database_name>.<schema_name> to ROLE <role_name>;
-GRANT USAGE ON AGENT <database_name>.<schema_name>.<agent_name> to ROLE <role_name>;
-```
-
-To use Cortex Agents with a semantic model, you also need the following privileges:
-
-| Privilege | Object | Notes |
-| --- | --- | --- |
-| CREATE AGENT | Schema | Required to create the Cortex Agent. |
-| USAGE | Cortex Search service | Required to run the Cortex Search services in the Cortex Agents request. |
-| USAGE | Database, schema, table | Required for access the objects referenced in the Cortex Agents semantic model. |
-| OWNERSHIP | Agent | OWNERSHIP is a special privilege on an object that is automatically granted to the role that created the object, but can also be transferred using the [GRANT OWNERSHIP](/sql-reference/sql/grant-ownership) command to a different role by the owning role (or any role with the MANAGE GRANTS privilege). In a managed access schema, only the schema owner (for example. the role with the OWNERSHIP privilege on the schema) or a role with the MANAGE GRANTS privilege can grant or revoke privileges on objects in the schema, including future grants. |
-| MODIFY | Agent | Required to update the Cortex Agent. |
-| MONITOR | Agent | Required to view threads, logs, and traces of the Cortex Agent. |
-| USAGE | Agent | Required to query the Cortex Agent to generate responses. |
+| Concept | Description |
+| --- | --- |
+| **Agent** | A schema-level object that bundles the agent’s model, tools, orchestration settings, and instructions. Create it once and reuse it across interactions and applications. |
+| **Tools** | How the agent acts on your data and systems: Cortex Analyst, Cortex Search, code execution, custom tools, and more. See [Tools](#label-cortex-agents-tools). |
+| **Orchestration** | The LLM-driven plan, use tools, reflect loop the agent runs to answer a request. You shape it with natural-language planning and response instructions. |
+| **Thread** | Persisted conversation context across turns, so your client application doesn’t manage state. Create a thread object and reference its ID in agent interactions. |
+| **Run** | A single request to an agent through the `agent:run` API. The agent emits events throughout the run that surface its reasoning, tool calls, and reflections. |
 
 Expand
 
 Show lessSee more
 
-Requests to the Cortex Agents API must include an authorization token. For details on how to authenticate to
-the API, see [Authenticating Snowflake REST APIs with Snowflake](/developer-guide/snowflake-rest-api/authentication). Note that the example in this topic uses a
-session token to authenticate to a Snowflake account.
 
-**Limiting access to specific roles**
 
-By default, the CORTEX\_USER role is granted to the PUBLIC role. The PUBLIC role is automatically granted to all
-users and roles. If you don’t want all users to have this privilege, you can revoke access to the PUBLIC role and
-grant access to specific roles. For more information, see [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql#label-cortex-llm-privileges).
+### Models[¶](#models)
 
-To provide selective access to Cortex Agents so that only a subset of users have access to the
-feature, use the CORTEX\_AGENTS\_USER role.
+When creating an agent, we recommend selecting **auto** for the model. With this option, Cortex automatically selects the highest quality model for your account, and quality improves as new models become available.
 
-**Limiting access using the Cortex Agents user role**
+Cortex Agents supports models from the Claude (Anthropic), GPT (OpenAI), Grok (SpaceX) and Gemini (Google) families. Model and feature availability can vary by region and georegion. For per-region availability of these models, see [Model availability](/user-guide/snowflake-cortex/aisql-regional-availability#label-cortex-llm-availability).
 
-To provide selective access to Cortex Agents for specific users, use the SNOWFLAKE.CORTEX\_AGENT\_USER database role.
-This role includes the privileges needed to call the Cortex Agent API.
+## How it works[¶](#how-it-works)
 
-Important
+Building with Cortex Agents follows a five-step lifecycle:
 
-If your user roles have the CORTEX\_USER role, you must revoke access to the CORTEX\_USER role.
-To revoke the CORTEX\_USER database role from your user roles, run the following command using the
-ACCOUNTADMIN role:
+1. **Create an agent**: Define the agent object in Snowsight, with SQL, or through the REST API, including its name, model, and instructions. See [Create an agent](/user-guide/snowflake-cortex/cortex-agents-manage#label-snowflake-agents-create).
+2. **Add tools**: Configure the tools the agent can use and the resources each tool needs, such as semantic views, search services, and warehouses. See [Add tools](/user-guide/snowflake-cortex/cortex-agents-manage#label-snowflake-agents-modify-agents).
+3. **Test the agent**: Prompt the agent in the Snowsight playground and refine its tools and instructions until it responds as expected. See [Test the agent](/user-guide/snowflake-cortex/cortex-agents-manage#label-snowflake-agents-use-agent).
+4. **Integrate it into your application**: Call the agent through the `agent:run` REST API, using threads to maintain conversation context. Users can also interact with agents directly in [Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork) and [Cortex Code](/user-guide/cortex-code/cortex-code). See [Cortex Agents Run API](/user-guide/snowflake-cortex/cortex-agents-run).
+5. **Monitor, evaluate, and iterate**: Review threads, logs, and traces, collect end-user feedback as ratings and free-text comments, and run evaluations to refine the agent over its lifecycle. See [Monitor Cortex Agent requests](/user-guide/snowflake-cortex/cortex-agents-monitor) and [Cortex Agent evaluations](/user-guide/snowflake-cortex/cortex-agents-evaluations).
 
-Copy code
+If you want to experiment before creating an agent object, you can call `agent:run` directly and pass the agent configuration with every request. See [Create and manage agents](/user-guide/snowflake-cortex/cortex-agents-manage).
 
-```
-REVOKE DATABASE ROLE SNOWFLAKE.CORTEX_USER FROM ROLE agent;
-```
+## When to use Cortex Agents[¶](#when-to-use-cortex-agents)
 
-To provide access to Cortex Agents, use the ACCOUNTADMIN role to do the following:
+Cortex Agents is best for workloads that need:
 
-1. Grant the SNOWFLAKE.CORTEX\_AGENT\_USER database role to a custom role.
-2. Assign this custom role to users.
+* **Reasoning across structured and unstructured data**: Questions whose answers combine SQL results over semantic views with retrieval from documents and other unstructured sources.
+* **Multi-step task execution**: Requests that the agent must break into subtasks, route to different tools, and reflect on intermediate results.
+* **Minimal infrastructure**: No orchestration loop, runtime, or sandbox to build or operate; Snowflake manages all of it.
+* **Governance**: Data access controlled by your existing Snowflake roles and privileges, inside Snowflake’s secure perimeter.
+* **Stateful conversations**: Threads that persist context across turns without client-side state management.
 
-Note
+## Tools[¶](#tools)
 
-You can’t grant database roles directly to users. For more information, see [GRANT DATABASE ROLE](/sql-reference/sql/grant-database-role).
+Cortex Agents support the following tools:
 
-The following example:
+| Tool | Description |
+| --- | --- |
+| Cortex Analyst | Generates SQL queries over your structured data from natural language, using a semantic view. |
+| Cortex Search | Retrieves information from your unstructured data. Agents can dynamically adjust filters, retrieved columns, result counts, per-index queries, and time-decay settings based on the user’s query. |
+| Code execution | Runs Python in a secure, isolated sandbox to process data and perform calculations. See [Cortex Agent code execution tool](/user-guide/snowflake-cortex/cortex-agents-code-execution-tool). |
+| Data to Chart | Generates visualizations from data returned by other tools. |
+| Custom tools | Stored procedures and user-defined functions (UDFs) that implement your own business logic or call backend systems. |
+| Agent skills | Packaged, modular bundles of instructions and scripts that give an agent repeatable, task-specific capabilities. |
+| MCP connectors | Tools hosted on remote Model Context Protocol (MCP) servers, such as those from Atlassian Jira, Salesforce, or your own applications. |
+| Web search | Real-time information from the public internet. Must be enabled at the account level. See [Web search](/user-guide/snowflake-cortex/cortex-agents-manage#label-cortex-agents-web-search). |
 
-1. Creates the custom role, `cortex_agent_user_role`.
-2. Grants it the CORTEX\_AGENT\_USER database role.
-3. Assigns this role to `example_user`.
+Expand
 
-Copy code
+Show lessSee more
 
-```
-USE ROLE ACCOUNTADMIN;
-CREATE ROLE cortex_agent_user_role;
-GRANT DATABASE ROLE SNOWFLAKE.CORTEX_AGENT_USER TO ROLE cortex_agent_user_role;
+For how to add and configure each tool, see [Create and manage agents](/user-guide/snowflake-cortex/cortex-agents-manage).
 
-GRANT ROLE cortex_agent_user_role TO USER example_user;
-```
+## Access control and authentication[¶](#access-control-and-authentication)
 
-You can also grant access to Cortex Agents through existing roles. For example, if you have an `agent` role
-used by agents in your organization, you can grant access with a single GRANT statement:
+Calling an agent requires the SNOWFLAKE.CORTEX\_USER or SNOWFLAKE.CORTEX\_AGENT\_USER database role, privileges on the agent object, and privileges on the objects used by the agent’s tools. Cortex Agents determines session permissions from the querying user’s default role. Requests to the Cortex Agents API must include an authorization token.
 
-Copy code
+For the full requirements, including role setup, privilege tables, and authentication methods, see [Access control and authentication](/user-guide/snowflake-cortex/cortex-agents-setup).
 
-```
-GRANT DATABASE ROLE SNOWFLAKE.CORTEX_AGENT_USER TO ROLE agent;
-```
+## Limitations[¶](#limitations)
 
-## Authentication[¶](#authentication)
-
-Snowflake REST APIs support authentication via programmatic access tokens (PATs),
-key pair authentication using JSON Web Tokens (JWTs), and OAuth.
-For details, see [Authenticating Snowflake REST APIs with Snowflake](/developer-guide/snowflake-rest-api/authentication).
-
-Important
-
-Cortex Agents uses models that might not be available in all regions. To access these models, you will have to enable cross-region inference, if feasible. For more information, see [Regional availability](/user-guide/snowflake-cortex/aisql#label-cortex-llm-availability).
-
-Important
-
-Cortex Agent APIs are not supported from within a Streamlit in Snowflake (SiS) application using a warehouse runtime.
-To call Cortex Agent APIs from a SiS app, use a container runtime instead. For more information, see
-[Runtime environments for Streamlit apps](/developer-guide/streamlit/app-development/runtime-environments).
+Cortex Agents APIs are not supported from within a Streamlit in Snowflake (SiS) application using a warehouse runtime. To call Cortex Agents APIs from a SiS app, use a container runtime instead. For more information, see [Runtime environments for Streamlit apps](/developer-guide/streamlit/app-development/runtime-environments).
 
 ## Cost considerations[¶](#cost-considerations)
 
-> Cortex Agents incur charges for the orchestration and use of tools.
->
-> * The orchestration usage is charged based on the tokens used.
-> * Cortex Analyst is charged per token.
-> * Cortex Search charges depend on the size of the index and the time it has persisted.
-> * Warehouse charges depend on the size of the warehouse and how long it runs.
+Cortex Agents incur charges for orchestration and for the tools the agent uses:
 
-For more information, see the [Snowflake Service Consumption Table](https://www.snowflake.com/legal-files/CreditConsumptionTable.pdf). Also, use of custom tools may incur [warehouse costs](/user-guide/cost-understanding-compute).
+* Orchestration is charged based on the tokens used.
+* Cortex Analyst is charged per token.
+* Cortex Search charges depend on the size of the index and the time it has persisted.
+* Custom tools incur [warehouse costs](/user-guide/cost-understanding-compute), which depend on the size of the warehouse and how long it runs.
 
-## Models[¶](#models)
-
-You can use the following models with Cortex Agents. If the model is not available in the local region, you must use cross-region inference.
-
-When creating an agent, we recommend selecting **auto** for the model. With this option, Cortex automatically selects the highest quality model for your account, and the quality automatically improves as new models become available.
-
-* *auto*
-* *claude-haiku-4-5*
-* *claude-sonnet-4-5*
-* *claude-sonnet-4-6*
-* *claude-4-sonnet*
-* *openai-gpt-4.1*
-
-The following tables show the models that are available for each region:
-
-Cross-region and Cross-cloud
-
-| Model | Cross-cloud (Any region) | AWS US (Cross-region) | AWS EU (Cross-region) | AWS APJ (Cross-region) | Azure US (Cross-region) |
-| --- | --- | --- | --- | --- | --- |
-| `claude-haiku-4-5` | \* | \* |  |  |  |
-| `claude-sonnet-4-5` | ✔ | ✔ | ✔ |  |  |
-| `claude-4-sonnet` | ✔ | ✔ | ✔ | ✔ |  |
-| `claude-sonnet-4-6` | ✔ | ✔ |  |  |  |
-| `openai-gpt-4.1` | ✔ |  |  |  | ✔ |
-
-Expand
-
-Show lessSee more
-
-\*\*\*\*\* Indicates a preview function or model. Preview features are not suitable for production workloads.
-
-## Cortex Agent Concepts[¶](#cortex-agent-concepts)
-
-Cortex Agents use Cortex Analyst, Cortex Search and custom tools to plan tasks and generate responses. You can influence the orchestration with instructions. You can also specify attributes to dynamically select a tool based on business logic.
-
-During an interaction, Agents use a thread to maintain context. A thread provides an easy retrieval of the entire conversation context for use in application logic.
-
-You can collect feedback from end-users as you continuously iterate and refine the Agent. An explicit feedback mechanism (positive/negative rating) coupled with subjective feedback (text) allows you to capture user inputs throughout the lifecycle of the Agent.
-
-### Agent object[¶](#agent-object)
-
-The agent configuration includes all metadata, orchestration settings, and tool details that are stored in the agent object. You can use the agent object to interact with the agent.
-
-### Threads[¶](#threads)
-
-Threads persist the context of your interactions with the agent, so you don’t have to maintain context on the client application. To use threads, you create a thread object and reference the thread ID in the agent interactions.
-
-### Orchestration[¶](#orchestration)
-
-Cortex Agents use LLM-based orchestration to plan tasks and generate responses. You can control the orchestration with the following settings:
-
-#### Models[¶](#models)
-
-For information about the models you can use with Cortex Agents for orchestration, see [Models](#label-cortex-agents-models).
-
-#### Instructions[¶](#instructions)
-
-Response instructions allow you to configure the agent responses to a brand and tone of your preference.
-
-#### Sample questions[¶](#sample-questions)
-
-You can use these questions to seed the conversation in your client application. These are common questions that can get users started with the interaction.
-
-### Tools[¶](#tools)
-
-Cortex Agents can orchestrate across both structured and unstructured data. Also, custom tools allow agents to interact with other backend systems or implement custom logic.
-
-Note
-
-Tool names must be between 1 and 64 characters. If you’re using a semantic view as a tool, the semantic view name is used as the tool name.
-
-#### Cortex Analyst semantic view[¶](#cortex-analyst-semantic-view)
-
-You can use Cortex Analyst to create SQL queries from natural language. To use Cortex Analyst, you must create a Semantic Model. For more information, see [Create a semantic model](/user-guide/snowflake-cortex/cortex-analyst#label-copilot-create-semantic-model).
-
-#### Cortex Search Service[¶](#cortex-search-service)
-
-Use Cortex Search to search through your data. For more information, see [CREATE CORTEX SEARCH SERVICE](/sql-reference/sql/create-cortex-search).
-
-Agents can dynamically adjust the following search parameters if the user’s query requires it: filter conditions, metadata columns to retrieve, number of results,
-per-index queries for multi-index services, and time-decay settings.
-
-Note
-
-The DEFAULT\_ROLE of the querying user must have USAGE privilege on the Cortex Search Service, as well as the database and schema
-in which it resides.
-
-#### Custom tools[¶](#custom-tools)
-
-You can use stored procedures and user defined functions (UDF) to implement custom business logic as a tool. For more information, see [Stored procedures overview](/developer-guide/stored-procedure/stored-procedures-overview) and [User-defined functions overview](/developer-guide/udf/udf-overview).
-
-### Thinking and reflection[¶](#thinking-and-reflection)
-
-The Agent emits events throughout the interaction, providing insights into the reasoning process. These steps cover the initial splitting of tasks, sequencing into sub-tasks, and selection of tools for the sub-task. In addition, the agent also surfaces its reflections about tool results and how these influence further orchestration.
-
-### Monitor, evaluate, and iterate[¶](#monitor-evaluate-and-iterate)
-
-You can collect feedback from the end user as a rating (positive/negative), along with any subjective inputs (as text). These can be used to refine and improve the agent over the lifecycle. For more information on how to perform monitoring and evaluation with native Snowflake features, see [Monitor Cortex Agent requests](/user-guide/snowflake-cortex/cortex-agents-monitor) and [Cortex Agent evaluations](/user-guide/snowflake-cortex/cortex-agents-evaluations).
-
-## Web search[¶](#web-search)
-
-Before providing web search access to your agents, an ACCOUNTADMIN role must first enable web search access at the account level. To properly enable web search:
-
-1. Sign in to [Snowsight](/user-guide/ui-snowsight-gs#label-snowsight-getting-started-sign-in).
-2. In the navigation menu, select **AI & ML** » **Agents**.
-3. Select **Settings**.
-4. Select the Web search toggle to enable the feature, as shown below.
-
-![Enable web search toggle](/static/images/cortex-code/enable-websearch.png)
-
-After enabling web search at the account level, you can use the web search tool in your agents. For more information, see [Create an agent](/user-guide/snowflake-cortex/cortex-agents-manage#label-snowflake-agents-create).
-
-Cortex Agents use the Brave Web Search API to query the web and retrieve results for real-time information during an interaction. The agent creates a query based on the user’s input and any relevant context from the interaction. The API returns results from Brave Search’s independent web index. The query and the results leave Snowflake and traverse the public internet. The agent then incorporates the relevant results into its response alongside any data from other configured tools. Snowflake has enabled zero data retention (ZDR) with Brave, which means no search queries are stored by Brave for any length of time. This applies to the search query text, the results returned, and any metadata associated with the request. ZDR simplifies compliance obligations and reduces risk — because the data is never stored.
-
-## Interact with agents[¶](#interact-with-agents)
-
-Cortex Agents support two distinct methods of interacting with agents through the REST API:
-
-* **Configure an agent object to interact with the agent**: With this method, you first configure an agent object that can be reused for the entire interaction. Configuring an agent object simplifies client code and enables CI/CD for enterprise-ready applications.
-* **Interact without an agent object**: With this method, you must pass the agent configuration as part of every interaction request. Interaction without an agent object allows you to quickly try out use cases and experiment with different scenarios.
-
-For information about these methods, see [Configure and interact with Agents](/user-guide/snowflake-cortex/cortex-agents-manage).
+For more information, see the [Snowflake Service Consumption Table](https://www.snowflake.com/legal-files/CreditConsumptionTable.pdf).
 
 ## Legal notices[¶](#legal-notices)
 
@@ -399,17 +248,12 @@ YesNo
 On this page
 
 1. [Overview](#overview)
-2. [Access control requirements](#access-control-requirements)
-3. [Authentication](#authentication)
-4. [Cost considerations](#cost-considerations)
-5. [Models](#models)
-6. [Cortex Agent Concepts](#cortex-agent-concepts)
-7. [Agent object](#agent-object)
-8. [Threads](#threads)
-9. [Orchestration](#orchestration)
-10. [Tools](#tools)
-11. [Thinking and reflection](#thinking-and-reflection)
-12. [Monitor, evaluate, and iterate](#monitor-evaluate-and-iterate)
-13. [Web search](#web-search)
-14. [Interact with agents](#interact-with-agents)
-15. [Legal notices](#legal-notices)
+2. [Key concepts](#key-concepts)
+3. [Models](#models)
+4. [How it works](#how-it-works)
+5. [When to use Cortex Agents](#when-to-use-cortex-agents)
+6. [Tools](#tools)
+7. [Access control and authentication](#access-control-and-authentication)
+8. [Limitations](#limitations)
+9. [Cost considerations](#cost-considerations)
+10. [Legal notices](#legal-notices)

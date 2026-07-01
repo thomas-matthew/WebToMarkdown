@@ -31,12 +31,13 @@
 19. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
-    * [Snowflake Intelligence](/en/user-guide/snowflake-cortex/snowflake-intelligence "Snowflake Intelligence")
+    * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
     * [Cortex Code](/en/user-guide/cortex-code/cortex-code "Cortex Code")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
 
-      + [Configure and interact with Agents](/en/user-guide/snowflake-cortex/cortex-agents-manage "Configure and interact with Agents")
+      + [Create and manage agents](/en/user-guide/snowflake-cortex/cortex-agents-manage "Create and manage agents")
+      + [Access control and authentication](/en/user-guide/snowflake-cortex/cortex-agents-setup "Access control and authentication")
       + [Use threads with Agents](/en/user-guide/snowflake-cortex/cortex-agents-threads "Use threads with Agents")
       + REST API
 
@@ -60,21 +61,20 @@
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
     * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
     * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
-    * [Cortex REST API](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex REST API")
+    * [Cortex Inference](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex Inference")
     * [Cortex AI Guardrails](/en/user-guide/snowflake-cortex/cortex-ai-guardrails "Cortex AI Guardrails")
     * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
     * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
     * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
+    * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
 21. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
 23. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
 25. [Security](/en/guides-overview-secure "Security")
-26. [Data Governance](/en/guides-overview-govern "Data Governance")
-27. [Privacy](/en/guides-overview-privacy "Privacy")
-29. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-30. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-32. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-33. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
+27. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
+28. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
+30. [Performance optimization](/en/guides-overview-performance "Performance optimization")
+31. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
 
 [Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)[Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents)REST APIAgent Run
 
@@ -124,7 +124,7 @@ Show lessSee more
 
 | Header | Description |
 | --- | --- |
-| `Authorization` | (Required) Authorization token. See [Authentication](/user-guide/snowflake-cortex/cortex-agents#label-chat-api-authenticate-example). |
+| `Authorization` | (Required) Authorization token. See [Authentication](/user-guide/snowflake-cortex/cortex-agents-setup#label-chat-api-authenticate-example). |
 | `Content-Type` | (Required) application/json |
 | `Accept` | (Optional) Response content type. Use `text/event-stream` for streaming responses or `application/json` for a single non-streaming response. |
 
@@ -148,7 +148,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -218,7 +218,7 @@ Copy code
 
 | Header | Description |
 | --- | --- |
-| `Authorization` | (Required) Authorization token. See [Authentication](/user-guide/snowflake-cortex/cortex-agents#label-chat-api-authenticate-example). |
+| `Authorization` | (Required) Authorization token. See [Authentication](/user-guide/snowflake-cortex/cortex-agents-setup#label-chat-api-authenticate-example). |
 | `Content-Type` | (Required) application/json |
 | `Accept` | (Optional) Response content type. Use `text/event-stream` for streaming responses or `application/json` for a single non-streaming response. |
 
@@ -247,7 +247,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -355,7 +355,7 @@ Make sure your application can handle unknown event types.
 
 **Example Response**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 event: response.status
@@ -400,7 +400,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -464,7 +464,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -619,7 +619,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -663,7 +663,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -735,7 +735,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -808,7 +808,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -867,7 +867,7 @@ Show lessSee more
 
 **Example**
 
-Copy code
+Copy codeExpand code block
 
 ```
 {
@@ -916,7 +916,7 @@ Show lessSee more
 
 **Example**
 
-Copy code
+Copy codeExpand code block
 
 ```
 {
@@ -994,7 +994,7 @@ Show lessSee more
 
 **Example**
 
-Copy code
+Copy codeExpand code block
 
 ```
 {
@@ -1070,7 +1070,7 @@ Show lessSee more
 
 **Example**
 
-Copy code
+Copy codeExpand code block
 
 ```
 {
@@ -1120,7 +1120,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -1240,7 +1240,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -1278,7 +1278,7 @@ Scroll to top
 >
 > **Example**
 >
-> Copy code
+> Copy codeExpand code block
 >
 > ```
 > {
@@ -1648,7 +1648,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -1694,7 +1694,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -1746,7 +1746,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -1815,7 +1815,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -1896,7 +1896,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -1932,7 +1932,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -2001,7 +2001,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -2148,7 +2148,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -2234,7 +2234,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -2277,7 +2277,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -2340,7 +2340,7 @@ Show lessSee more
 
 **Example**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -2379,7 +2379,7 @@ Show lessSee more
 
 **Example**
 
-Copy code
+Copy codeExpand code block
 
 ```
 {
@@ -2396,7 +2396,7 @@ The response body is the same object as the `response` event payload in streamin
 
 **Example response**
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -2412,15 +2412,15 @@ Copy codeExpand
       "tool_use": {
         "client_side_execute": false,
         "input": {
-          "has_time_column": false,
-          "need_future_forecasting_data": false,
-          "original_query": "what are some types of products?",
-          "previous_related_tool_result_id": "",
-          "query": "What are the different types or categories of products?"
+          "sql": "WITH __table_a AS (...) SELECT ...",
+          "execution_environment": {
+            "type": "warehouse",
+            "warehouse": "my_warehouse"
+          }
         },
-        "name": "semantic_view_a",
+        "name": "system_execute_sql",
         "tool_use_id": "<tool_use_id>",
-        "type": "cortex_analyst_text_to_sql"
+        "type": "system_execute_sql"
       },
       "type": "tool_use"
     },
@@ -2442,16 +2442,15 @@ Copy codeExpand
                 },
                 "statementHandle": "<statement_handle>"
               },
-              "sql": "WITH __table_a AS (...) SELECT ...",
-              "text": "The question is clear and I can answer it with the following SQL."
+              "sql": "WITH __table_a AS (...) SELECT ..."
             },
             "type": "json"
           }
         ],
-        "name": "semantic_view_a",
+        "name": "system_execute_sql",
         "status": "success",
         "tool_use_id": "<tool_use_id>",
-        "type": "cortex_analyst_text_to_sql"
+        "type": "system_execute_sql"
       },
       "type": "tool_result"
     },

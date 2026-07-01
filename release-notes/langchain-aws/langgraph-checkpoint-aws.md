@@ -3,6 +3,18 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain-aws/releases
 
+## 1.1.1 — 2026-06-17
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langgraph-checkpoint-aws%3D%3D1.1.1)
+
+- feat(langgraph-checkpoint-aws): add batch flush for DeferredCheckpointSaver #1016 by @Keyur-S-Patel in https://github.com/langchain-ai/langchain-aws/pull/1091
+
+## 1.1.0 — 2026-06-02
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langgraph-checkpoint-aws%3D%3D1.1.0)
+
+- feat(langgraph-checkpoint-aws): Set default Valkey client name if not provided by user by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1065
+
 ## 1.0.7 — 2026-04-14
 
 [Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langgraph-checkpoint-aws%3D%3D1.0.7)

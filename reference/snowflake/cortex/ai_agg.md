@@ -15,6 +15,7 @@
      * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
      * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
@@ -128,12 +129,14 @@ For optimal performance, follow these guidelines:
 AI\_AGG can be used as a simple scalar function on string constants. In the following example, AI\_AGG is used to
 summarize product ratings, which are provided as a single string.
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_AGG('[Excellent, Excellent, Great, Mediocre]',
               'Summarize the product ratings for a blog post targeting consumers');
 ```
+
+Expand code block
 
 ```
 Overall, the product has received overwhelmingly positive reviews, with the majority of users rating it as 'Excellent' or 'Great'. Only a small percentage of users had a mediocre experience with the product. This suggests that the product is well-liked by most consumers and is a great option for those looking for a reliable choice.
@@ -141,7 +144,7 @@ Overall, the product has received overwhelmingly positive reviews, with the majo
 
 AI\_AGG can also be used on a column of data. In the following example, the product ratings from the above example are provided as a column in a table using a [Common Table Expression](/user-guide/queries-cte).
 
-Copy code
+Copy codeExpand code block
 
 ```
 WITH reviews AS (
@@ -154,13 +157,15 @@ SELECT AI_AGG(review, 'Summarize the restaurant reviews for potential consumers'
   FROM reviews;
 ```
 
+Expand code block
+
 ```
 Reviews for this restaurant are mixed. Some customers had a very positive experience, describing the restaurant as "excellent" and loving the pizza. However, others had a more neutral or negative experience, citing mediocre food and service.
 ```
 
 AI\_AGG can be used on multiple columns of data using `CONCAT` or the `||` operator.
 
-Copy code
+Copy codeExpand code block
 
 ```
 WITH reviews AS (
@@ -174,13 +179,15 @@ SELECT AI_AGG('Menu Item: ' || menu_item || '\nReview: ' || review,
   FROM reviews;
 ```
 
+Expand code block
+
 ```
 Based on the reviews, the restaurant seems to receive high praise for their pizza, with two reviews using the word "excellent" to describe their experience. However, the reviews for other menu items, such as burgers and pancakes, are more mixed, with some customers expressing disappointment with the service or finding the food to be just mediocre. Overall, potential consumers may want to consider ordering pizza if they decide to dine at this restaurant.
 ```
 
 AI\_AGG can also be used in combination with GROUP BY. The following example summarizes product ratings for two products (identified by the column `product_id`) in a table of reviews.
 
-Copy code
+Copy codeExpand code block
 
 ```
 WITH reviews AS (
@@ -197,6 +204,8 @@ SELECT restaurant_id,
  GROUP BY 1;
 ```
 
+Expand code block
+
 ```
 +---------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | RESTAURANT_ID | SUMMARIZED_REVIEW                                                                                                                                                                                                                                 |
@@ -210,7 +219,7 @@ SELECT restaurant_id,
 The instruction can be used for various aggregation tasks and to configure the style and tone of the response. The following example uses an instruction to find the most positive rating for each product and provide
 French and Polish translations of the rating.
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 WITH reviews AS (

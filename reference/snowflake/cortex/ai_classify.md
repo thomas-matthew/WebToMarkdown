@@ -15,6 +15,7 @@
      * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
      * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
@@ -93,7 +94,7 @@ Show lessSee more
 
 ## Syntax[¶](#syntax)
 
-Copy code
+Copy codeExpand code block
 
 ```
 AI_CLASSIFY( <input> , <list_of_categories> [, <config_object> ] [, <return_error_details> ] )
@@ -124,7 +125,7 @@ AI_CLASSIFY( <input> , <list_of_categories> [, <config_object> ] [, <return_erro
     Note
 
     Descriptions count as input tokens, which affects the cost of the classification operation.
-    For more information, see [Cost considerations](/user-guide/snowflake-cortex/aisql#label-cortex-llm-cost-considerations).
+    For more information, see [Snowflake Cortex AI functions incur compute cost based on the number of tokens…](/user-guide/snowflake-cortex/aisql-cost#label-cortex-llm-cost-considerations).
 
 **Optional:**
 
@@ -172,7 +173,7 @@ For more information about error handling for AI functions, see [Snowflake Corte
 ## Access control requirements[¶](#access-control-requirements)
 
 Users must use a role that has the [SNOWFLAKE.CORTEX\_USER database role](/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
-For more information about this privilege, see [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql#label-cortex-llm-privileges).
+For more information about this privilege, see [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges).
 
 ## Usage notes[¶](#usage-notes)
 
@@ -214,7 +215,7 @@ The following examples use the AI\_CLASSIFY function with only the required argu
 
 The following example classifies the prompt into one of two categories, travel or cooking:
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_CLASSIFY('One day I will see the world', ['travel', 'cooking']);
@@ -250,7 +251,7 @@ The following is the output of the preceding command.
 
 The following example passes in a task description, label descriptions, and few-shot examples:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 SELECT AI_CLASSIFY(
@@ -290,7 +291,7 @@ The following example creates a `text_classification_table` that contains a colu
 categories for that text. The AI\_CLASSIFY function is called on each row of the table to classify the string in the text
 column.
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 CREATE OR REPLACE TEMPORARY TABLE text_classification_table AS
@@ -316,7 +317,7 @@ Scroll to top
 
 Using single file input:
 
-Copy code
+Copy codeExpand code block
 
 ```
 WITH food_pictures AS (
@@ -332,7 +333,7 @@ FROM food_pictures;
 
 Using a prompt object constructed by PROMPT():
 
-Copy code
+Copy codeExpand code block
 
 ```
   WITH food_pictures AS (
@@ -349,7 +350,7 @@ FROM food_pictures;
 
 ### AI\_CLASSIFY: Documents[¶](#ai_classify-documents)
 
-Copy code
+Copy codeExpand code block
 
 ```
 WITH staged_docs AS (

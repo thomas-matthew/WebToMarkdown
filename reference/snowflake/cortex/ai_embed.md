@@ -15,6 +15,7 @@
      * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
      * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
@@ -120,7 +121,7 @@ AI_EMBED( <model> , <input> )
 
     * `voyage-multimodal-3`
 
-    Supported models might have different [costs](/user-guide/snowflake-cortex/aisql#label-cortex-llm-cost-considerations).
+    Supported models might have different [costs](/user-guide/snowflake-cortex/aisql-cost#label-cortex-llm-cost-considerations).
 
 `input`
 :   The string or image (as a [FILE object](/sql-reference/functions/to_file)) to generate an embedding from. Images must be:
@@ -136,7 +137,7 @@ An embedding vector of type VECTOR derived from the input text or image.
 ## Access control requirements[¶](#access-control-requirements)
 
 You must use a role that has been granted the SNOWFLAKE.CORTEX\_USER database role *or* the SNOWFLAKE.CORTEX\_EMBED\_USER
-database role to call this function. See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql#label-cortex-llm-privileges) for more information on granting one of
+database role to call this function. See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on granting one of
 these privileges.
 
 ## Examples[¶](#examples)

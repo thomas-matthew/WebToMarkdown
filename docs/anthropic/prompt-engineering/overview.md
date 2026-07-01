@@ -4,9 +4,13 @@ Best practices/Prompt engineering
 
 Copy page
 
+
+
 Copy page
 
-## Before prompt engineering
+
+
+##  Before prompt engineering
 
 This guide assumes that you have:
 
@@ -16,22 +20,26 @@ This guide assumes that you have:
 
 If not, we highly suggest you spend time establishing that first. Check out [Define success criteria and build evaluations](/docs/en/test-and-evaluate/develop-tests) for tips and guidance.
 
-[Prompt generator
+[
 
-Don't have a first draft prompt? Try the prompt generator in the Claude Console!](/dashboard)[Prompting best practices
+Prompt generator
+
+Don't have a first draft prompt? Try the prompt generator in the Claude Console!](/dashboard)[
+
+Prompting best practices
 
 For model-specific tuning guidance for Claude's latest models, start here.](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)
 
 ---
 
-## When to prompt engineer
+##  When to prompt engineer
 
 This guide focuses on success criteria that are controllable through prompt engineering.
 Not every success criteria or failing eval is best solved by prompt engineering. For example, latency and cost can be sometimes more easily improved by selecting a different model.
 
 ---
 
-## How to prompt engineer
+##  How to prompt engineer
 
 All prompting techniques — from clarity and examples to XML structuring, role prompting, thinking, and prompt chaining — are covered in [Prompting best practices](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices). That's the living reference; start there.
 
@@ -39,22 +47,34 @@ The [Claude Console](/dashboard) also offers [prompting tools](/docs/en/build-wi
 
 ---
 
-## Prompt engineering tutorial
+##  Prompt engineering tutorial
 
 If you're an interactive learner, you can dive into our interactive tutorials instead!
 
-[GitHub prompting tutorial
+[
 
-An example-filled tutorial that covers the prompt engineering concepts found in our docs.](https://github.com/anthropics/prompt-eng-interactive-tutorial)[Google Sheets prompting tutorial
+GitHub prompting tutorial
+
+
+
+An example-filled tutorial that covers the prompt engineering concepts found in our docs.](https://github.com/anthropics/prompt-eng-interactive-tutorial)[
+
+Google Sheets prompting tutorial
+
+
 
 A lighter weight version of our prompt engineering tutorial via an interactive spreadsheet.](https://docs.google.com/spreadsheets/d/19jzLgRruG9kjUQNKtCg1ZjdD6l6weA6qRXG5zLIAhC8)
 
 Was this page helpful?
 
+
+
 * [Before prompt engineering](#before-prompt-engineering)
 * [When to prompt engineer](#when-to-prompt-engineer)
 * [How to prompt engineer](#how-to-prompt-engineer)
 * [Prompt engineering tutorial](#prompt-engineering-tutorial)
+
+[Claude Platform Docs](/docs)
 
 ### Solutions
 
@@ -69,13 +89,13 @@ Was this page helpful?
 
 ### Partners
 
-* [Amazon Bedrock](https://claude.com/partners/amazon-bedrock)
-* [Google Cloud's Vertex AI](https://claude.com/partners/google-cloud-vertex-ai)
+* [Claude on AWS](https://claude.com/partners/amazon-bedrock)
+* [Claude on Google Cloud](https://claude.com/partners/google-cloud-vertex-ai)
 
 ### Learn
 
 * [Blog](https://claude.com/blog)
-* [Courses](https://www.anthropic.com/learn)
+* [Courses](https://claude.com/resources/courses)
 * [Use cases](https://claude.com/resources/use-cases)
 * [Connectors](https://claude.com/partners/mcp)
 * [Customer stories](https://claude.com/customers)
@@ -99,7 +119,7 @@ Was this page helpful?
 ### Learn
 
 * [Blog](https://claude.com/blog)
-* [Courses](https://www.anthropic.com/learn)
+* [Courses](https://claude.com/resources/courses)
 * [Use cases](https://claude.com/resources/use-cases)
 * [Connectors](https://claude.com/partners/mcp)
 * [Customer stories](https://claude.com/customers)

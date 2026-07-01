@@ -5,7 +5,7 @@ set -e
 
 # --- CONFIGURATION ---
 
-PROJECT_DIR="/Users/thomasmathew/Dev/WebToMarkdown"
+PROJECT_DIR="/Users/thomasmathew/Dev/personal/WebToMarkdown"
 OUTPUT_DIR="."
 COMMIT_MSG="Auto-update: Generated new artifacts via web2llms"
 
@@ -142,6 +142,16 @@ URL_LIST=(
     "https://docs.snowflake.com/en/user-guide/snowflake-cortex/ai-observability | docs/snowflake/cortex/ai-observability.md"
     "https://docs.snowflake.com/en/user-guide/snowflake-cortex/snowflake-intelligence | docs/snowflake/cortex/snowflake-intelligence.md"
 
+    # === DOCS: OpenAI Core concepts (direct .md) ===
+    "https://developers.openai.com/api/docs/guides/text.md | docs/openai/core-concepts/text.md"
+    "https://developers.openai.com/api/docs/guides/code-generation.md | docs/openai/core-concepts/code-generation.md"
+    "https://developers.openai.com/api/docs/guides/images-vision.md | docs/openai/core-concepts/images-vision.md"
+    "https://developers.openai.com/api/docs/guides/audio.md | docs/openai/core-concepts/audio.md"
+    "https://developers.openai.com/api/docs/guides/structured-outputs.md | docs/openai/core-concepts/structured-outputs.md"
+    "https://developers.openai.com/api/docs/guides/function-calling.md | docs/openai/core-concepts/function-calling.md"
+    "https://developers.openai.com/api/docs/guides/migrate-to-responses.md | docs/openai/core-concepts/migrate-to-responses.md"
+    "https://developers.openai.com/api/docs/guides/tools.md | docs/openai/core-concepts/tools.md"
+
     # === DOCS: OpenAI prompt guidance (per-model, direct .md) ===
     "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-5.5.md | docs/openai/prompt-guidance/gpt-5.5.md"
     "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-5.4.md | docs/openai/prompt-guidance/gpt-5.4.md"
@@ -204,7 +214,7 @@ cd "$PROJECT_DIR"
 
 # 2. Activate Venv
 echo ">>> Activating Python virtual environment..."
-source venv/bin/activate
+source .venv/bin/activate
 
 # 3. Loop through the list and run the Python command
 echo ">>> Processing ${#URL_LIST[@]} URLs..."

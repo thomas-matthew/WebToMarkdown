@@ -1,6 +1,6 @@
 Python[langchain-openai](/python/langchain-openai)[embeddings](/python/langchain-openai/embeddings)[azure](/python/langchain-openai/embeddings/azure)AzureOpenAIEmbeddings
 
-Classv1.2.1 (latest)●Since v0.1
+Classv1.3.3 (latest)●Since v0.1
 
 # AzureOpenAIEmbeddings
 
@@ -120,13 +120,13 @@ Copy
 
 ## Used in Docs
 
-* [Azure AI search integration](https://docs.langchain.com/oss/python/integrations/retrievers/azure_ai_search)
-* [Azure AI search integration](https://docs.langchain.com/oss/python/integrations/vectorstores/azuresearch)
 * [Azure Cosmos DB mongo vcore integration](https://docs.langchain.com/oss/python/integrations/vectorstores/azure_cosmos_db_mongo_vcore)
 * [Azure Cosmos DB NoSQL integration](https://docs.langchain.com/oss/python/integrations/vectorstores/azure_cosmos_db_no_sql)
 * [Azure database for postgresql - flexible server integration](https://docs.langchain.com/oss/python/integrations/vectorstores/azure_db_for_postgresql)
+* [AzureOpenAIEmbeddings integration](https://docs.langchain.com/oss/python/integrations/embeddings/azure_openai)
+* [Sqlserver integration](https://docs.langchain.com/oss/python/integrations/vectorstores/sqlserver)
 
-+3 more
++1 more
 
 ## Attributes
 
@@ -298,7 +298,7 @@ Call out to OpenAI's embedding endpoint async for embedding query text.](/python
 
 [Membed\_documents](/python/langchain-core/embeddings/embeddings/Embeddings/embed_documents)[Membed\_query](/python/langchain-core/embeddings/embeddings/Embeddings/embed_query)[Maembed\_documents](/python/langchain-core/embeddings/embeddings/Embeddings/aembed_documents)[Maembed\_query](/python/langchain-core/embeddings/embeddings/Embeddings/aembed_query)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/625ed0ee8c683dd8a7d87564a14bdbd4472d2a44/libs/partners/openai/langchain_openai/embeddings/azure.py#L16)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/partners/openai/langchain_openai/embeddings/azure.py#L16)
 
 Version History
 

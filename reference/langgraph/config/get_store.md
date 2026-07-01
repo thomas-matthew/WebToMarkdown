@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[config](/python/langgraph/config)get\_store
 
-Functionv1.2.0 (latest)●Since v0.2
+Functionv1.2.7 (latest)●Since v0.2
 
 # get\_store
 
@@ -105,6 +105,6 @@ Copy
 
 Copy
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/aa322c13cd5f16a3f6254a931a4104e412cd687c/libs/langgraph/langgraph/config.py#L32)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/5931a5f0b313feff24e2516a586c55601b868ac1/libs/langgraph/langgraph/config.py#L32)
 
 Version History

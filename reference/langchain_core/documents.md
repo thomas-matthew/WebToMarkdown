@@ -22,13 +22,13 @@ Base class for content used in retrieval and data processing workflows.](/python
 
 [Module
 
-### transformers
-
-Document transformers.](/python/langchain-core/documents/transformers)[Module
-
 ### compressor
 
 Document compressor.](/python/langchain-core/documents/compressor)[Module
+
+### transformers
+
+Document transformers.](/python/langchain-core/documents/transformers)[Module
 
 ### base
 

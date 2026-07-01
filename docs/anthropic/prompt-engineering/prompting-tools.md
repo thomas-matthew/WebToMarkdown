@@ -4,13 +4,19 @@ Best practices/Prompt engineering
 
 Copy page
 
+
+
 Copy page
+
+
 
 The Claude Console offers a suite of tools to help you build and refine prompts. This page walks through them in the order you'll typically use them: generating a first draft, adding templates and variables, then improving an existing prompt.
 
 ---
 
-## Prompt generator
+##  Prompt generator
+
+
 
 The prompt generator is compatible with all Claude models, including those with extended thinking capabilities. For prompting tips specific to extended thinking models, see the [extended thinking prompting tips](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#leverage-thinking-and-interleaved-thinking-capabilities).
 
@@ -18,13 +24,15 @@ Sometimes, the hardest part of using an AI model is figuring out how to prompt i
 
 The prompt generator is particularly useful for solving the "blank page problem"—it gives you a jumping-off point for further testing and iteration.
 
+
+
 Try the prompt generator now directly on the [Console](/dashboard).
 
 If you're interested in analyzing the underlying prompt and architecture, check out our [prompt generator Google Colab notebook](https://anthropic.com/metaprompt-notebook/). To run the Colab notebook, you'll need an [API key](/settings/keys).
 
 ---
 
-## Prompt templates and variables
+##  Prompt templates and variables
 
 When deploying an LLM-based application with Claude, your API calls will typically consist of two types of content:
 
@@ -53,7 +61,7 @@ The Console uses prompt templates and variables to power its tooling:
 * **Prompt improver:** Takes your existing template, including all variables, and maintains them in the improved template it outputs
 * **[Evaluation tool](/docs/en/test-and-evaluate/eval-tool):** Allows you to easily test, scale, and track versions of your prompts by separating the variable and fixed portions of your prompt template
 
-### Example prompt template
+###  Example prompt template
 
 Consider a simple application that translates English text to Spanish. The translated text would be variable since it changes between users or calls to Claude. You might use this prompt template:
 
@@ -61,11 +69,17 @@ Consider a simple application that translates English text to Spanish. The trans
 Translate this text from English to Spanish: {{text}}
 ```
 
+
+
+
+
 To level up your prompt variables, wrap them in [XML tags](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#structure-prompts-with-xml-tags) for clearer structure.
 
 ---
 
-## Prompt improver
+##  Prompt improver
+
+
 
 The prompt improver is compatible with all Claude models, including those with extended thinking capabilities. For prompting tips specific to extended thinking models, see the [extended thinking prompting tips](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#leverage-thinking-and-interleaved-thinking-capabilities).
 
@@ -73,7 +87,7 @@ The prompt improver helps you quickly iterate and improve your prompts through a
 
 ![](/docs/images/prompt_improver.png)
 
-### Before you begin
+###  Before you begin
 
 You'll need:
 
@@ -81,7 +95,7 @@ You'll need:
 * Feedback on current issues with Claude's outputs (optional but recommended)
 * Example inputs and ideal outputs (optional but recommended)
 
-### How the prompt improver works
+###  How the prompt improver works
 
 The prompt improver enhances your prompts in 4 steps:
 
@@ -92,7 +106,7 @@ The prompt improver enhances your prompts in 4 steps:
 
 You can watch these steps happen in real-time in the improvement modal.
 
-### What you get
+###  What you get
 
 The prompt improver generates templates with:
 
@@ -101,16 +115,18 @@ The prompt improver generates templates with:
 * Standardized example formatting that demonstrates step-by-step reasoning from input to output
 * Strategic prefills that guide Claude's initial responses
 
+
+
 While examples appear separately in the Workbench UI, they're included at the start of the first user message in the actual API call. View the raw format by clicking "**</> Get Code**" or insert examples as raw text via the Examples box.
 
-### How to use the prompt improver
+###  How to use the prompt improver
 
 1. Submit your prompt template
 2. Add any feedback about issues with Claude's current outputs (e.g., "summaries are too basic for expert audiences")
 3. Include example inputs and ideal outputs
 4. Review the improved prompt
 
-### Generate test examples
+###  Generate test examples
 
 Don't have examples yet? Use the [Test Case Generator](/docs/en/test-and-evaluate/eval-tool#creating-test-cases) to:
 
@@ -119,7 +135,7 @@ Don't have examples yet? Use the [Test Case Generator](/docs/en/test-and-evaluat
 3. Edit the responses to match your ideal outputs
 4. Add the polished examples to your prompt
 
-### When to use the prompt improver
+###  When to use the prompt improver
 
 The prompt improver works best for:
 
@@ -127,9 +143,11 @@ The prompt improver works best for:
 * Situations where accuracy is more important than speed
 * Problems where Claude's current outputs need significant improvement
 
+
+
 For latency or cost-sensitive applications, consider using simpler prompts. The prompt improver creates templates that produce longer, more thorough, but slower responses.
 
-### Example improvement
+###  Example improvement
 
 Here's how the prompt improver enhances a basic classification prompt:
 
@@ -144,7 +162,7 @@ Notice how the improved prompt:
 * Provides explicit output formatting requirements
 * Guides Claude through the analysis process
 
-### Troubleshooting
+###  Troubleshooting
 
 Common issues and solutions:
 
@@ -154,17 +172,27 @@ Common issues and solutions:
 
 ---
 
-## Next steps
+##  Next steps
 
-[Start prompt engineering
+[
 
-Learn core techniques with worked examples.](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)[Test your prompts
+Start prompt engineering
 
-Use the evaluation tool to test your improved prompts.](/docs/en/test-and-evaluate/eval-tool)[GitHub prompting tutorial
+Learn core techniques with worked examples.](/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices)[
+
+Test your prompts
+
+Use the evaluation tool to test your improved prompts.](/docs/en/test-and-evaluate/eval-tool)[
+
+GitHub prompting tutorial
+
+
 
 An example-filled tutorial that covers the prompt engineering concepts found in our docs.](https://github.com/anthropics/prompt-eng-interactive-tutorial)
 
 Was this page helpful?
+
+
 
 * [Prompt generator](#prompt-generator)
 * [Prompt templates and variables](#prompt-templates-and-variables)
@@ -180,6 +208,8 @@ Was this page helpful?
 * [Troubleshooting](#troubleshooting)
 * [Next steps](#next-steps)
 
+[Claude Platform Docs](/docs)
+
 ### Solutions
 
 * [AI agents](https://claude.com/solutions/agents)
@@ -193,13 +223,13 @@ Was this page helpful?
 
 ### Partners
 
-* [Amazon Bedrock](https://claude.com/partners/amazon-bedrock)
-* [Google Cloud's Vertex AI](https://claude.com/partners/google-cloud-vertex-ai)
+* [Claude on AWS](https://claude.com/partners/amazon-bedrock)
+* [Claude on Google Cloud](https://claude.com/partners/google-cloud-vertex-ai)
 
 ### Learn
 
 * [Blog](https://claude.com/blog)
-* [Courses](https://www.anthropic.com/learn)
+* [Courses](https://claude.com/resources/courses)
 * [Use cases](https://claude.com/resources/use-cases)
 * [Connectors](https://claude.com/partners/mcp)
 * [Customer stories](https://claude.com/customers)
@@ -223,7 +253,7 @@ Was this page helpful?
 ### Learn
 
 * [Blog](https://claude.com/blog)
-* [Courses](https://www.anthropic.com/learn)
+* [Courses](https://claude.com/resources/courses)
 * [Use cases](https://claude.com/resources/use-cases)
 * [Connectors](https://claude.com/partners/mcp)
 * [Customer stories](https://claude.com/customers)

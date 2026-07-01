@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[pregel](/python/langgraph/pregel)[main](/python/langgraph/pregel/main)NodeBuilder
 
-Classv1.2.0 (latest)●Since v0.6
+Classv1.2.7 (latest)●Since v0.6
 
 # NodeBuilder
 
@@ -65,7 +65,7 @@ build
 
 Builds the node.](/python/langgraph/pregel/main/NodeBuilder/build)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/aa322c13cd5f16a3f6254a931a4104e412cd687c/libs/langgraph/langgraph/pregel/main.py#L204)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/5931a5f0b313feff24e2516a586c55601b868ac1/libs/langgraph/langgraph/pregel/main.py#L205)
 
 Version History
 

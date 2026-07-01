@@ -15,6 +15,7 @@
      * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
      * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
@@ -84,7 +85,7 @@ categories/labels, those inputs can also be specified.
 The syntax can vary based on the function used. In general, you pass the function name, model name if applicable,
 input text, and any additional options that affect token count.
 
-Copy code
+Copy codeExpand code block
 
 ```
 AI_COUNT_TOKENS( <function_name>, <input_text> [, <return_error_details> ] )
@@ -95,7 +96,7 @@ AI_COUNT_TOKENS( <function_name>, <model_name>, <input_text>, <options> [, <retu
 
 AI\_COUNT\_TOKENS uses specific syntax variations for some functions. For example:
 
-Copy code
+Copy codeExpand code block
 
 ```
 AI_COUNT_TOKENS( 'ai_similarity', <input_text_1>, <input_text_2>, <options> [, <return_error_details> ] )
@@ -113,7 +114,7 @@ See [Examples](#examples) for function specific usage patterns.
 :   String containing the name of the function you want to base the token count on, such as `'ai_complete'` or `'ai_sentiment'`.
     The function’s name must begin with “ai\_” and use only lowercase letters.
 
-    A complete list of supported functions is available in the [Regional availability](/user-guide/snowflake-cortex/aisql#label-cortex-llm-availability) table.
+    A complete list of supported functions is available in the [Regional availability](/user-guide/snowflake-cortex/aisql-regional-availability#label-cortex-llm-availability) table.
 
 `input_text` or `input_text_1`, `input_text_2`
 :   Input text to count the tokens in.
@@ -124,7 +125,7 @@ See [Examples](#examples) for function specific usage patterns.
 :   String containing the name of the model you want to base the token content on. Required if the function specified by
     `function_name` requires you to choose the model to use, such as AI\_COMPLETE or AI\_EMBED.
 
-    A list of available LLM models is available in the [Regional availability](/user-guide/snowflake-cortex/aisql#label-cortex-llm-availability) table. However, not all models are
+    A list of available LLM models is available in the [Regional availability](/user-guide/snowflake-cortex/aisql-regional-availability#label-cortex-llm-availability) table. However, not all models are
     currently supported. Snowflake intends to add support for additional models over time.
 
     For AI\_COMPLETE, the following models are not supported:
@@ -201,7 +202,7 @@ For more information about error handling for AI functions, see [Snowflake Corte
 
 The following SQL statement counts the number of tokens in a prompt for AI\_COMPLETE and the `llama3.3-70b` model:
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_complete', 'llama3.3-70b', 'Summarize the insights from this
@@ -224,7 +225,7 @@ Response:
 
 The following SQL statement counts the number of tokens in text being embedded using the AI\_EMBED function and the `nv-embed-qa-4` model:
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_embed', 'nv-embed-qa-4', '"I finally splurged on these after months
@@ -268,7 +269,7 @@ Response:
 
 The following example adds per-label descriptions and an overall task description to the previous example:
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_classify',
@@ -293,7 +294,7 @@ Response:
 
 The following example builds upon the previous two examples by adding label examples:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_classify',
@@ -331,7 +332,7 @@ Response:
 
 The following SQL statement counts the number of tokens in text being analyzed for sentiment using the AI\_SENTIMENT function:
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_sentiment',
@@ -346,7 +347,7 @@ Response:
 
 The following example adds labels to the previous example:
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_sentiment',
@@ -369,7 +370,7 @@ Response:
 
 The following SQL statement counts the number of tokens in an AI\_SIMILARITY call that uses the default model.
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_similarity',
@@ -389,7 +390,7 @@ Response:
 
 The following SQL statement counts the number of tokens in an AI\_SIMILARITY that uses the `e5-base-v2` model:
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_similarity',
@@ -412,7 +413,7 @@ Response:
 The following SQL statement counts the number of tokens used by AI\_TRANSLATE when translating text from English to
 German.
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_translate',
@@ -425,6 +426,39 @@ Response:
 
 ```
 51
+```
+
+### AI\_REDACT examples[¶](#ai_redact-examples)
+
+The following SQL statement counts the number of input tokens for a basic AI\_REDACT request:
+
+Copy codeExpand code block
+
+```
+SELECT AI_COUNT_TOKENS('ai_redact',
+  'My name is John Smith and I live at twenty third street, San Francisco.');
+```
+
+Response:
+
+```
+442
+```
+
+The following example includes a `categories` argument to estimate tokens when redacting only names and email addresses:
+
+Copy code
+
+```
+SELECT AI_COUNT_TOKENS('ai_redact',
+  'My name is John and I live at twenty third street, San Francisco.',
+  ['NAME', 'EMAIL']);
+```
+
+Response:
+
+```
+441
 ```
 
 
@@ -477,7 +511,8 @@ On this page
 10. [AI\_SENTIMENT examples](#ai_sentiment-examples)
 11. [AI\_SIMILARITY examples](#ai_similarity-examples)
 12. [AI\_TRANSLATE example](#ai_translate-example)
-13. [Legal notices](#legal-notices)
+13. [AI\_REDACT examples](#ai_redact-examples)
+14. [Legal notices](#legal-notices)
 
 Related content
 

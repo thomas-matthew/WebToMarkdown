@@ -3,6 +3,12 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.1.9 — 2026-05-21
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-tests%3D%3D1.1.9)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 1.1.8 — 2026-05-18
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-tests%3D%3D1.1.8)

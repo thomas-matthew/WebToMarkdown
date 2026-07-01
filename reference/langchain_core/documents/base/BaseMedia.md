@@ -1,6 +1,6 @@
 Python[langchain-core](/python/langchain-core)[documents](/python/langchain-core/documents)[base](/python/langchain-core/documents/base)BaseMedia
 
-Classv1.4.0 (latest)●Since v0.2
+Classv1.4.8 (latest)●Since v0.2
 
 # BaseMedia
 
@@ -38,7 +38,7 @@ An optional identifier for the document.
 Ideally this should be unique across the document collection and formatted
 as a UUID, but this will not be enforced.](/python/langchain-core/documents/base/BaseMedia/id)[attribute
 
-metadata: dict
+metadata: dict[Any, Any]
 
 Arbitrary metadata associated with the content.](/python/langchain-core/documents/base/BaseMedia/metadata)
 
@@ -50,7 +50,7 @@ Arbitrary metadata associated with the content.](/python/langchain-core/document
 
 —
 
-A map of constructor argument names to secret ids.](/python/langchain-core/load/serializable/Serializable/lc_secrets)[Alc\_attributes: dict
+A map of constructor argument names to secret ids.](/python/langchain-core/load/serializable/Serializable/lc_secrets)[Alc\_attributes: dict[str, Any]
 
 —
 
@@ -80,7 +80,7 @@ Serialize the object to JSON.](/python/langchain-core/load/serializable/Serializ
 
 Serialize a "not implemented" object.](/python/langchain-core/load/serializable/Serializable/to_json_not_implemented)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/625ed0ee8c683dd8a7d87564a14bdbd4472d2a44/libs/core/langchain_core/documents/base.py#L34)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/core/langchain_core/documents/base.py#L34)
 
 Version History
 

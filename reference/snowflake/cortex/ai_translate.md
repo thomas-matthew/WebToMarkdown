@@ -15,6 +15,7 @@
      * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
      * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
@@ -79,7 +80,7 @@ Translates the given input text from one supported language to another.
 
 ## Syntax[¶](#syntax)
 
-Copy code
+Copy codeExpand code block
 
 ```
 AI_TRANSLATE(
@@ -172,7 +173,7 @@ Show lessSee more
 ## Access control requirements[¶](#access-control-requirements)
 
 Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
-See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql#label-cortex-llm-privileges) for more information on this privilege.
+See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this privilege.
 
 ## Examples[¶](#examples)
 
@@ -187,7 +188,7 @@ SELECT AI_TRANSLATE(review_content, 'en', 'de') FROM reviews LIMIT 10;
 
 The following example translates a fictitious product review from English to Spanish:
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_TRANSLATE(
@@ -197,13 +198,15 @@ SELECT AI_TRANSLATE(
 
 The result of this query is:
 
+Expand code block
+
 ```
 Sube a las pistas con la última innovación de Snowflake: "Skii Headphones", diseñados para mantener tus oídos calientes y tu alma encendida. Diseñados específicamente para el clima de nieve, estos audífonos resistentes combinan un sonido cristalino con copas de oído aisladas térmicamente para mantener el frío fuera y los ritmos dentro. Ya sea que estés esculpiendo en polvo o deslizándote por pistas preparadas, los Skii Headphones alimentarán tus aventuras en la montaña con un sonido vibrante y una pasión incesante. Mantente caliente, mantente encendido y arrasa la montaña con los Skii Headphones de Snowflake.
 ```
 
 The following example translates a call transcript from German to English:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 SELECT AI_TRANSLATE(
@@ -230,7 +233,7 @@ Scroll to top
 
 The result is:
 
-Expand
+Expand code block
 
 ```
 Customer: Hello

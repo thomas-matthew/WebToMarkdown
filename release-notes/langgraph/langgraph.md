@@ -3,6 +3,53 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langgraph/releases
 
+## 1.2.7 — 2026-06-30
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.7)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.2.6 — 2026-06-18
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.6)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.2.5 — 2026-06-12
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.5)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.2.4 — 2026-06-02
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.4)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.2.3 — 2026-06-01
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.3)
+
+- feat(langgraph): wire RemoteGraph.interleave to sdk-py interleave_projections (#7938)
+- feat(langgraph): add v3 streaming support to RemoteGraph (#7927)
+- feat(langgraph): name tool-dispatched subagents via lc_agent_name (#7928)
+- feat(sdk-py): add websocket stream transports (#7830)
+- feat(sdk-py): add messages and tool call projections (#7823)
+- feat(sdk-py): add v3 streaming primitives and SSE transport (#7818)
+
+## 1.2.2 — 2026-05-26
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.2)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.2.1 — 2026-05-21
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.1)
+
+- feat(langgraph): add `before_builtins` opt-in for stream transformers (#7882)
+
 ## 1.2.0 — 2026-05-12
 
 [Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.0)

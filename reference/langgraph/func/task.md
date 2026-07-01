@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[func](/python/langgraph/func)task
 
-Functionv1.2.0 (latest)●Since v0.2
+Functionv1.2.7 (latest)●Since v0.2
 
 # task
 
@@ -94,7 +94,7 @@ Copy
 | `cache_policy` | `CachePolicy[Callable[P, str | bytes]] | None` | Default:`None`  An optional cache policy to use for the task. This allows caching of the task results. |
 | `timeout` | `float | timedelta | TimeoutPolicy | None` | Default:`None`  Timeout for each task attempt. A number or `timedelta` is a hard wall-clock cap and is not refreshed. Use `TimeoutPolicy` to configure both a wall-clock `run_timeout` and an `idle_timeout` refreshed by progress signals. For long-running work that doesn't naturally emit progress, call `runtime.heartbeat()` from inside the task. When the timeout fires, `NodeTimeoutError` is raised and the retry policy (if any) decides whether to retry. Supported only for async tasks; sync tasks cannot be safely cancelled in-process. |
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/aa322c13cd5f16a3f6254a931a4104e412cd687c/libs/langgraph/langgraph/func/__init__.py#L132)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/5931a5f0b313feff24e2516a586c55601b868ac1/libs/langgraph/langgraph/func/__init__.py#L132)
 
 Version History
 

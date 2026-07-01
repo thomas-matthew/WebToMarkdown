@@ -15,6 +15,7 @@
      * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
      * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
@@ -258,7 +259,7 @@ Output:
 
 ### Use with Cortex AI\_FILTER[¶](#use-with-cortex-ai_filter)
 
-Copy code
+Copy codeExpand code block
 
 ```
 WITH reviews AS (
@@ -272,7 +273,7 @@ WHERE AI_FILTER(PROMPT('The reviewer enjoyed the restaurant: {0}, Rating: {1}', 
 
 ### Use with Cortex COMPLETE and a FILE column[¶](#use-with-cortex-complete-and-a-file-column)
 
-Copy code
+Copy codeExpand code block
 
 ```
 AI_COMPLETE('claude-4-sonnet',

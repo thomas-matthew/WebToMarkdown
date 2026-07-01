@@ -3,6 +3,69 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.3.11 — 2026-06-22
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.11)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.3.10 — 2026-06-18
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.10)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.3.9 — 2026-06-12
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.9)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.3.8 — 2026-06-12
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.8)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.3.7 — 2026-06-10
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.7)
+
+- feat(langchain): add `ProviderToolSearchMiddleware` (#37969)
+
+## 1.3.6 — 2026-06-10
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.6)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.3.5 — 2026-06-10
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.5)
+
+- feat(langchain): port AND-capable trigger conditions to `SummarizationMiddleware` (#34576)
+- feat(openai): support `apply_patch` built-in tool (#37157)
+
+## 1.3.4 — 2026-06-02
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.4)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.3.3 — 2026-06-02
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.3)
+
+- feat(langchain): project subagent runs onto typed run.subagents channel (#37739)
+- feat(langchain): add `interrupt_mode` and `when` predicate to `HumanInTheLoopMiddleware` (#37579)
+
+## 1.3.2 — 2026-05-26
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.2)
+
+- feat(langchain): redact streamed PII in flight on `PIIMiddleware` (#37616)
+- feat(langchain): register stream transformers on middleware (#37591)
+
 ## 1.3.1 — 2026-05-15
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.1)

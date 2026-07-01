@@ -1,6 +1,6 @@
 Python[langchain-openai](/python/langchain-openai)[embeddings](/python/langchain-openai/embeddings)[base](/python/langchain-openai/embeddings/base)OpenAIEmbeddings
 
-Classv1.2.1 (latest)●Since v0.1
+Classv1.3.3 (latest)●Since v0.1
 
 # OpenAIEmbeddings
 
@@ -135,12 +135,12 @@ Copy
 ## Used in Docs
 
 * [Custom workflow](https://docs.langchain.com/oss/python/langchain/multi-agent/custom-workflow)
-* [Evaluate a RAG application](https://docs.langchain.com/langsmith/evaluate-rag-tutorial)
 * [Activeloop Deep lake integration](https://docs.langchain.com/oss/python/integrations/vectorstores/activeloop_deeplake)
-* [Activeloop Deep memory integration](https://docs.langchain.com/oss/python/integrations/retrievers/activeloop)
-* [Alibaba cloud OpenSearch integration](https://docs.langchain.com/oss/python/integrations/vectorstores/alibabacloud_opensearch)
+* [AgentMail](https://docs.langchain.com/oss/python/integrations/document_loaders/agentmail)
+* [Amazon DocumentDB integration](https://docs.langchain.com/oss/python/integrations/vectorstores/documentdb)
+* [Apify dataset integration](https://docs.langchain.com/oss/python/integrations/document_loaders/apify_dataset)
 
-+15 more(81 more not shown)
++15 more(21 more not shown)
 
 ## Attributes
 
@@ -317,7 +317,7 @@ aembed\_query
 
 Call out to OpenAI's embedding endpoint async for embedding query text.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/aembed_query)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/625ed0ee8c683dd8a7d87564a14bdbd4472d2a44/libs/partners/openai/langchain_openai/embeddings/base.py#L86)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/partners/openai/langchain_openai/embeddings/base.py#L86)
 
 Version History
 

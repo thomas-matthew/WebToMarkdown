@@ -31,7 +31,7 @@
 19. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
-    * [Snowflake Intelligence](/en/user-guide/snowflake-cortex/snowflake-intelligence "Snowflake Intelligence")
+    * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
     * [Cortex Code](/en/user-guide/cortex-code/cortex-code "Cortex Code")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
@@ -51,21 +51,20 @@
       + [Tutorial: Answer questions about time series revenue data](/en/user-guide/snowflake-cortex/cortex-analyst/tutorials/tutorial-1 "Tutorial: Answer questions about time series revenue data")
     * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
     * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
-    * [Cortex REST API](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex REST API")
+    * [Cortex Inference](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex Inference")
     * [Cortex AI Guardrails](/en/user-guide/snowflake-cortex/cortex-ai-guardrails "Cortex AI Guardrails")
     * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
     * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
     * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
+    * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
 21. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
 23. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
 25. [Security](/en/guides-overview-secure "Security")
-26. [Data Governance](/en/guides-overview-govern "Data Governance")
-27. [Privacy](/en/guides-overview-privacy "Privacy")
-29. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-30. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-32. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-33. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
+27. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
+28. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
+30. [Performance optimization](/en/guides-overview-performance "Performance optimization")
+31. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
 
 [Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)Cortex Analyst
 
@@ -106,7 +105,7 @@ Want to get started with Cortex Analyst quickly? Try the [Tutorial: Answer quest
   and platforms, bringing the power of data insights to where business users already operate, such as Streamlit apps,
   Slack, Teams, custom chat interfaces, and more.
 * *Powered by state-of-the-art large language models:* By default, Cortex Analyst is powered by industry-leading models
-  which run securely inside [Snowflake Cortex](/user-guide/snowflake-cortex/aisql#label-cortex-llm-availability), Snowflake’s
+  which run securely inside [Snowflake Cortex](/user-guide/snowflake-cortex/aisql-regional-availability#label-cortex-llm-availability), Snowflake’s
   intelligent, fully managed AI service. At runtime, Cortex Analyst selects the best combination of models to ensure the
   highest accuracy and performance for each query. As LLMs evolve, Snowflake may add more models to the mix
   to further improve performance and accuracy.
@@ -209,7 +208,7 @@ Note that the example in this topic uses a session token to authenticate to a Sn
 
 By default, the CORTEX\_USER role is granted to the PUBLIC role. The PUBLIC role is automatically granted to all users and roles.
 If you don’t want all users to have this privilege, you can revoke access to the PUBLIC role and grant access to specific roles.
-For more information, see [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql#label-cortex-llm-privileges).
+For more information, see [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges).
 
 To control access to specific semantic models, you can store the YAML file in a stage and control access to that stage.
 
@@ -245,7 +244,7 @@ The following example:
 2. Grants it the CORTEX\_ANALYST\_USER database role.
 3. Assigns this role to `example_user`.
 
-Copy code
+Copy codeExpand code block
 
 ```
 USE ROLE ACCOUNTADMIN;
@@ -296,7 +295,7 @@ query to answer this question.
 
 To use this feature, pass the conversation history in the `messages` field:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -537,7 +536,7 @@ Show lessSee more
 
 You can use model-level RBAC (role-based access control) to control access to the models used by Cortex Analyst. Each
 model is protected by a designated application role, and administrators can grant or revoke access to specific LLMs via
-these model-specific roles. For more information, see [Role-based access control (RBAC)](/user-guide/snowflake-cortex/aisql#label-cortex-llm-rbac).
+these model-specific roles. For more information, see [Role-based access control (RBAC)](/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-rbac).
 
 Important
 
@@ -548,9 +547,9 @@ recommends that you do not use this feature.
 You cannot choose a model directly. Instead, Cortex Analyst assigns each request to a model, or to a combination of
 models, taking into account the following factors:
 
-* The models [available in your Snowflake region](/user-guide/snowflake-cortex/aisql#label-cortex-llm-availability).
+* The models [available in your Snowflake region](/user-guide/snowflake-cortex/aisql-regional-availability#label-cortex-llm-availability).
 * The account’s [cross-region inference configuration](/user-guide/snowflake-cortex/cross-region-inference).
-* Any model-level [RBAC restrictions](/user-guide/snowflake-cortex/aisql#label-cortex-llm-rbac) you have established.
+* Any model-level [RBAC restrictions](/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-rbac) you have established.
 
 Tip
 
@@ -560,11 +559,11 @@ inference configuration, and model-level RBAC restrictions for all requests.
 Cortex Analyst selects models in the following order of preference, using the highest-ranked model to which your role
 has access. If your role has access to none of these models, the request fails.
 
-#. Anthropic Claude Sonnet 4.6
-#. Anthropic Claude Sonnet 4.5
-#. OpenAI GPT 4.1
-#. Arctic Text2SQL R1.5 (with thinking enabled)
-#. Combination of Mistral Large 2 and Llama 3.1 70b
+1. Anthropic Claude Sonnet 4.6
+2. Anthropic Claude Sonnet 4.5
+3. OpenAI GPT 4.1
+4. Arctic Text2SQL R1.5 (with thinking enabled)
+5. Combination of Mistral Large 2 and Llama 3.1 70b
 
 Cortex Analyst’s model selection behavior may change from time to time to take advantage of advances in model functionality.
 

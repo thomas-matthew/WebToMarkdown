@@ -31,7 +31,7 @@
 19. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
-    * [Snowflake Intelligence](/en/user-guide/snowflake-cortex/snowflake-intelligence "Snowflake Intelligence")
+    * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
     * [Cortex Code](/en/user-guide/cortex-code/cortex-code "Cortex Code")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
@@ -51,21 +51,20 @@
       + [Tutorial: Answer questions about time series revenue data](/en/user-guide/snowflake-cortex/cortex-analyst/tutorials/tutorial-1 "Tutorial: Answer questions about time series revenue data")
     * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
     * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
-    * [Cortex REST API](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex REST API")
+    * [Cortex Inference](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex Inference")
     * [Cortex AI Guardrails](/en/user-guide/snowflake-cortex/cortex-ai-guardrails "Cortex AI Guardrails")
     * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
     * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
     * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
+    * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
 21. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
 23. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
 25. [Security](/en/guides-overview-secure "Security")
-26. [Data Governance](/en/guides-overview-govern "Data Governance")
-27. [Privacy](/en/guides-overview-privacy "Privacy")
-29. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-30. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-32. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-33. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
+27. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
+28. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
+30. [Performance optimization](/en/guides-overview-performance "Performance optimization")
+31. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
 
 [Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)[Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst)REST API
 
@@ -143,7 +142,7 @@ You must specify one of the following fields in the body of the request:
 
 #### Example of specifying a semantic model in a file on a stage[¶](#example-of-specifying-a-semantic-model-in-a-file-on-a-stage)
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -168,7 +167,7 @@ Scroll to top
 
 #### Example of specifying a semantic view[¶](#example-of-specifying-a-semantic-view)
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -215,7 +214,7 @@ Show lessSee more
 By default, the response is returned all at once after Cortex Analyst has fully processed the user’s question. See [Streaming response](#label-cortex-analyst-rest-api-streaming)
 for the format of streaming mode responses.
 
-> Copy codeExpand
+> Copy codeExpand code block
 >
 > ```
 > {
@@ -309,7 +308,7 @@ Events from different responses (even extremely similar ones) can vary. There is
 
 The following is a sample non-streaming response for a simple query:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -335,7 +334,7 @@ Scroll to top
 
 And this is one possible series of streaming events for that response (a different series of events is also possible):
 
-Expand
+Expand code block
 
 ```
 event: status
@@ -384,7 +383,7 @@ of the non-streaming response. Similarly, the `delta` event that contains the SQ
 
 This example contains suggested questions for an ambiguous question. The following is the non-streaming response:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 {
@@ -413,7 +412,7 @@ Scroll to top
 
 And here is a possible series of streaming events that constitute that response:
 
-Expand
+Expand code block
 
 ```
 event: status
@@ -530,7 +529,7 @@ error
     ```
 
 warnings
-:   Copy codeExpand
+:   Copy codeExpand code block
 
     ```
     Warnings:

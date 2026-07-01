@@ -15,6 +15,7 @@
      * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
      * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
@@ -133,7 +134,7 @@ Returns a float value of range -1 to 1 that represents the similarity score comp
 ## Access control requirements[¶](#access-control-requirements)
 
 Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
-See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql#label-cortex-llm-privileges) for more information on this privilege.
+See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this privilege.
 
 ## Examples[¶](#examples)
 
@@ -162,7 +163,7 @@ ORDER BY AI_SIMILARITY(review, 'I love the food here!');
 
 In this example, the function computes a similarity score between the two images, `cat.jpg` and `2cats.jpg`, stored in a Snowflake stage `@file_stage`.
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_SIMILARITY(TO_FILE('@file_stage', 'cat.jpg'), TO_FILE('@file_stage', '2cats.jpg'));

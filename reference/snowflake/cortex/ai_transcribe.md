@@ -15,6 +15,7 @@
      * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
      * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
@@ -101,7 +102,7 @@ Show lessSee more
 
 ## Syntax[¶](#syntax)
 
-Copy code
+Copy codeExpand code block
 
 ```
 AI_TRANSCRIBE( <audio_file> [ , <options> ] [, <return_error_details> ] )
@@ -167,7 +168,7 @@ For more information about error handling for AI functions, see [Snowflake Corte
 ## Access control requirements[¶](#access-control-requirements)
 
 Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
-See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql#label-cortex-llm-privileges) for more information on this role.
+See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this role.
 
 ## Usage notes[¶](#usage-notes)
 
@@ -237,8 +238,9 @@ excess silence before uploading.
 
 Billing for all AI Functions is based on token consumption. For transcription, each second of audio processed is 50
 tokens, regardless of language or segmentation method. A full hour of audio is therefore 180,000 tokens. Assuming
-that processing a million tokens costs 1.3 credits, and that Snowflake credits cost US $3 each, each hour of audio
-processed costs about US $0.702. This estimate is subject to change. For current pricing information, see the
+that processing a million tokens costs 0.97 credits, and that a Snowflake AI Credit costs US $2.00 assuming
+Global routing, each hour of audio processed costs about US $0.35. This estimate is subject to change. For
+current pricing information, see the
 [Snowflake Service Consumption Table](https://www.snowflake.com/legal-files/CreditConsumptionTable.pdf).
 
 Note
@@ -265,7 +267,7 @@ SELECT AI_TRANSCRIBE(TO_FILE(
 
 Response:
 
-Expand
+Expand code block
 
 ```
 {"audio_duration":321.78,"text":"Good afternoon, Robert. Thanks for calling in
@@ -352,7 +354,7 @@ Set the timestamp granularity to “word” to extract precise timestamps for ev
 navigable transcripts. Note that [this audio file](/static/samples/cortex/audio/consultation_3_sp.wav) is in
 Spanish.
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_TRANSCRIBE(TO_FILE('@financial_consultation', 'consultation_3_sp.wav'),
@@ -365,7 +367,7 @@ Note
 
 The output is truncated for brevity. The full output contains a segment for each word spoken in the audio file.
 
-Expand
+Expand code block
 
 ```
 {
@@ -491,7 +493,7 @@ Set timestamp granularity to “speaker” to detect, separate, and identify uni
 meetings. This example uses [an audio file](/static/samples/cortex/audio/consultation_5_mix_es_en.wav) with two
 speakers, one speaking English and the other Spanish.
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_TRANSCRIBE(TO_FILE('@financial_consultation', 'consultation_5_mix_es_en.wav'),
@@ -505,7 +507,7 @@ Note
 The output is truncated for brevity. The full output contains a segment for each conversational “turn” in the
 audio file.
 
-Expand
+Expand code block
 
 ```
 {
@@ -640,7 +642,7 @@ Note
 
 AI\_SENTIMENT analyzes only text and does not consider speech characteristics like tone of voice.
 
-Copy code
+Copy codeExpand code block
 
 ```
 WITH transcriptions AS
@@ -656,7 +658,7 @@ FROM transcriptions
 
 AI\_SENTIMENT response:
 
-Expand
+Expand code block
 
 ```
 {
@@ -690,6 +692,8 @@ Show lessSee more
 Scroll to top
 
 AI\_COMPLETE response:
+
+Expand code block
 
 ```
 "The agent needs significant improvement in empathy, active listening, and client-centered communication. Instead of

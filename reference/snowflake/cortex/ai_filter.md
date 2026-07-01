@@ -15,6 +15,7 @@
      * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
      * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
@@ -110,7 +111,7 @@ AI_FILTER( <predicate> , <input> [, <return_error_details> ] )
 
 Applying AI\_FILTER to multiple columns with both text and images, leveraging the [PROMPT](/sql-reference/functions/prompt):
 
-Copy code
+Copy codeExpand code block
 
 ```
 AI_FILTER( PROMPT('<template_string>',  <col_1>, … ) [, <return_error_details> ] )
@@ -173,7 +174,7 @@ For more information about error handling for AI functions, see [Snowflake Corte
 ## Access control requirements[¶](#access-control-requirements)
 
 Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
-See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql#label-cortex-llm-privileges) for more information on this privilege.
+See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this privilege.
 
 ## Performance and cost optimization[¶](#performance-and-cost-optimization)
 
@@ -223,7 +224,7 @@ WHERE AI_FILTER(CONCAT('The reviewer enjoyed the restaurant: ', review));
 
 For easier templated formatting across multiple columns, Snowflake provides [PROMPT](/sql-reference/functions/prompt); for example:
 
-Copy code
+Copy codeExpand code block
 
 ```
 WITH reviews AS (
@@ -282,7 +283,7 @@ You can use AI\_FILTER with a JOIN to express linking two tables with a natural 
 
 The following example joins the RESUMES table with the JOBS table using a prompt with the AI\_FILTER function.
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT *

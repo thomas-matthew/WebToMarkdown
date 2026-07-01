@@ -3,6 +3,37 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.3.3 — 2026-06-22
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.3.3)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.3.2 — 2026-06-13
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.3.2)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.3.1 — 2026-06-13
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.3.1)
+
+- feat(core,partners): add package version tracking to tracing metadata (#35295)
+- feat(standard-tests): validate tool call chunks during streaming (#34707)
+
+## 1.3.0 — 2026-06-09
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.3.0)
+
+- feat(openai): support `apply_patch` built-in tool (#37157)
+
+## 1.2.2 — 2026-05-21
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.2.2)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 1.2.1 — 2026-04-24
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.2.1)

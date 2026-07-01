@@ -1,6 +1,6 @@
 Python[langchain-core](/python/langchain-core)[tools](/python/langchain-core/tools)[base](/python/langchain-core/tools/base)ToolException
 
-Classv1.4.0 (latest)●Since v0.2
+Classv1.4.8 (latest)●Since v0.2
 
 # ToolException
 
@@ -21,6 +21,6 @@ ToolException()
 
 `Exception`
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/625ed0ee8c683dd8a7d87564a14bdbd4472d2a44/libs/core/langchain_core/tools/base.py#L390)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/core/langchain_core/tools/base.py#L365)
 
 Version History

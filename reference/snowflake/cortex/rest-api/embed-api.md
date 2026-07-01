@@ -31,7 +31,7 @@
 19. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
-    * [Snowflake Intelligence](/en/user-guide/snowflake-cortex/snowflake-intelligence "Snowflake Intelligence")
+    * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
     * [Cortex Code](/en/user-guide/cortex-code/cortex-code "Cortex Code")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
@@ -39,7 +39,7 @@
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
     * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
     * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
-    * [Cortex REST API](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex REST API")
+    * [Cortex Inference](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex Inference")
 
       + [Vector embedding API](/en/user-guide/snowflake-cortex/cortex-rest-api/embed-api "Vector embedding API")
     * [Cortex AI Guardrails](/en/user-guide/snowflake-cortex/cortex-ai-guardrails "Cortex AI Guardrails")
@@ -47,17 +47,16 @@
     * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
     * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
+    * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
 21. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
 23. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
 25. [Security](/en/guides-overview-secure "Security")
-26. [Data Governance](/en/guides-overview-govern "Data Governance")
-27. [Privacy](/en/guides-overview-privacy "Privacy")
-29. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-30. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-32. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-33. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
+27. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
+28. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
+30. [Performance optimization](/en/guides-overview-performance "Performance optimization")
+31. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
 
-[Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)[Cortex REST API](/en/user-guide/snowflake-cortex/cortex-rest-api)Vector embedding API
+[Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)[Cortex Inference](/en/user-guide/snowflake-cortex/cortex-rest-api)Vector embedding API
 
 # Vector embedding REST API[¶](#vector-embedding-rest-api)
 
@@ -105,6 +104,8 @@ ALTER USER my_user SET DEFAULT_ROLE=my_role
 
 You can make requests to the `/api/v2/cortex/inference:embed` endpoint to create embeddings for your text. The request takes the following form:
 
+Expand code block
+
 ```
 POST https://<account_identifier>.snowflakecomputing.com/api/v2/cortex/inference:embed
 ```
@@ -124,7 +125,7 @@ The following table shows the EMBED function models that you can prompt using th
 | `e5-base-v2` | ✔ | ✔ | ✔ |  |  | ✔ | ✔ | ✔ |
 | `snowflake-arctic-embed-l-v2.0` | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
 
-Expand
+Collapse
 
 Show lessSee more
 
@@ -204,7 +205,7 @@ conditions.
 :   Errors related to incorrect response schema structure. Correct the schema and try again.
 
 400 `max tokens of count exceeded`
-:   The request exceeded the maximum number of tokens supported by the model (see [Model restrictions](/user-guide/snowflake-cortex/aisql#label-cortex-llm-model-restrictions)).
+:   The request exceeded the maximum number of tokens supported by the model (see [Model restrictions](/user-guide/snowflake-cortex/aisql-regional-availability#label-cortex-llm-model-restrictions)).
 
 400 `all requests were throttled by remote service`
 :   The request has been throttled due to a high level of usage. Try again later.
@@ -244,7 +245,7 @@ curl --location "<account_url>/api/v2/cortex/inference:embed" \
 
 The following is the output of the request, with the contents of the embedding array truncated:
 
-Expand
+Expand code block
 
 ```
 {
@@ -278,7 +279,7 @@ In the preceding example, “foo” corresponds to the 0 index and “bar” cor
 The following example uses the Python API to make an EMBED request to the `e5-base-v2` model.
 Replace `token` and `account_identifier` with the appropriate values in this command.
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 from snowflake.core import Root
@@ -305,7 +306,7 @@ Scroll to top
 
 The following is the output of the request, with the contents of the embedding array truncated:
 
-Expand
+Expand code block
 
 ```
 {

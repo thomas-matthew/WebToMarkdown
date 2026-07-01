@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[runtime](/python/langgraph/runtime)get\_runtime
 
-Functionv1.2.0 (latest)●Since v0.6
+Functionv1.2.7 (latest)●Since v0.6
 
 # get\_runtime
 
@@ -24,7 +24,7 @@ get_runtime(
 | --- | --- | --- |
 | `context_schema` | `type[ContextT] | None` | Default:`None`  Optional schema used for type hinting the return type of the runtime. |
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/aa322c13cd5f16a3f6254a931a4104e412cd687c/libs/langgraph/langgraph/runtime.py#L296)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/5931a5f0b313feff24e2516a586c55601b868ac1/libs/langgraph/langgraph/runtime.py#L296)
 
 Version History
 

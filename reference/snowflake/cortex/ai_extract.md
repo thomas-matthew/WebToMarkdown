@@ -17,6 +17,7 @@
 
        + [AI\_EXTRACT (Document AI legacy models)](/en/sql-reference/functions/ai_extract-document-ai "AI_EXTRACT (Document AI legacy models)")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
@@ -147,15 +148,21 @@ AI_EXTRACT( file => <file>,
 
     * Simple object schema that maps the label and information to be extracted:
 
+      Expand code block
+
       ```
       {'name': 'What is the last name of the employee?', 'address': 'What is the address of the employee?'}
       ```
     * An array of strings that contain the information to be extracted:
 
+      Expand code block
+
       ```
       ['What is the last name of the employee?', 'What is the address of the employee?']
       ```
     * An array of arrays that contain two strings (label and the information to be extracted):
+
+      Expand code block
 
       ```
       [['name', 'What is the last name of the employee?'], ['address', 'What is the address of the employee?']]
@@ -199,7 +206,7 @@ AI_EXTRACT( file => <file>,
     Extract tabular data using a JSON schema with `'type': 'object'` and `column_ordering`. Each column is defined as a
     nested property with `'type': 'array'` and a `description` that matches the column name in the file:
 
-    Expand
+    Expand code block
 
     ```
     {
@@ -247,7 +254,7 @@ AI_EXTRACT( file => <file>,
 :   Optional. Supported only in the named-argument syntax shown above. A BOOLEAN that controls whether the function returns
     scores for extracted values. The default is `FALSE`. When `TRUE`, the JSON result includes a `scoring`
     object in addition to `response`. For the output format, SQL examples, and limitations, see
-    [Extraction scores (preview)](#label-ai-extract-scores).
+    [Extraction scores](#label-ai-extract-scores).
 
 `config => config_object`
 :   An [OBJECT](/sql-reference/data-types-semistructured#label-data-type-object) value that specifies the configuration settings. You can use an
@@ -317,7 +324,7 @@ Returns a JSON object with column arrays representing the extracted table:
 
 When extracting entities, lists, and tables in a single call, the response contains all extraction types:
 
-Expand
+Expand code block
 
 ```
 {
@@ -341,11 +348,7 @@ Show lessSee more
 
 Scroll to top
 
-## Extraction scores (preview)[¶](#extraction-scores-preview)
-
-[Preview Feature](/release-notes/preview-features) — Open
-
-Available to all accounts.
+## Extraction scores[¶](#extraction-scores)
 
 When you use AI\_EXTRACT, you can request scores that indicate the model’s certainty about each extracted value. You can
 use these scores to set thresholds for business logic, such as flagging low-scoring extractions for human review.
@@ -366,7 +369,7 @@ named-argument syntax shown in [Arguments](#label-ai-extract-arguments).
 
 When `scores => TRUE`, the returned JSON includes a `scoring` object:
 
-Expand
+Expand code block
 
 ```
 {
@@ -396,7 +399,7 @@ Each field in `scoring.scores` corresponds to a field in `response` and contains
 
 For list extraction, the `scoring` object returns an aggregate score for the entire list:
 
-Expand
+Expand code block
 
 ```
 {
@@ -420,7 +423,7 @@ Scroll to top
 
 For table extraction, the `scoring` object returns an aggregate score for the entire table:
 
-Expand
+Expand code block
 
 ```
 {
@@ -455,7 +458,7 @@ Scroll to top
 
 The following example extracts information from a file and returns scores for each extracted field:
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_EXTRACT(
@@ -467,7 +470,7 @@ SELECT AI_EXTRACT(
 
 Result:
 
-Expand
+Expand code block
 
 ```
 {
@@ -495,7 +498,7 @@ Scroll to top
 
 The following example extracts a list of buyer names and returns an aggregate score:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 SELECT AI_EXTRACT(
@@ -521,7 +524,7 @@ Scroll to top
 
 Result:
 
-Expand
+Expand code block
 
 ```
 {
@@ -548,7 +551,7 @@ Scroll to top
 
 The following example extracts a table and returns an aggregate score:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 SELECT AI_EXTRACT(
@@ -585,7 +588,7 @@ Scroll to top
 
 Result:
 
-Expand
+Expand code block
 
 ```
 {
@@ -613,7 +616,7 @@ Scroll to top
 ## Access control requirements[¶](#access-control-requirements)
 
 Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
-For information about granting this privilege, see [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql#label-cortex-llm-privileges).
+For information about granting this privilege, see [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges).
 
 ## Usage notes[¶](#usage-notes)
 
@@ -663,8 +666,8 @@ For information about granting this privilege, see [Cortex LLM privileges](/user
   60 entity extraction questions in a single AI\_EXTRACT call.
 * The maximum output length for entity extraction is 512 tokens per question. For table extraction, the model returns answers that are a maximum of 4096 tokens.
 * Client-side encrypted stages are not supported.
-* Optional extraction scores are available in preview when you use named arguments and pass `scores => TRUE`.
-  For details, see [Extraction scores (preview)](#label-ai-extract-scores).
+* You can request optional extraction scores by using named arguments and passing `scores => TRUE`.
+  For details, see [Extraction scores](#label-ai-extract-scores).
 
 ## Cost considerations[¶](#cost-considerations)
 
@@ -740,7 +743,7 @@ Show lessSee more
 
 * The following example extracts entities from the input text using a simple object schema:
 
-  Copy code
+  Copy codeExpand code block
 
   ```
   SELECT AI_EXTRACT(
@@ -750,7 +753,7 @@ Show lessSee more
   ```
 * The following example extracts and parses entities from the input text:
 
-  Copy code
+  Copy codeExpand code block
 
   ```
   SELECT AI_EXTRACT(
@@ -760,7 +763,7 @@ Show lessSee more
   ```
 * The following example extracts entities from the `document.pdf` file:
 
-  Copy code
+  Copy codeExpand code block
 
   ```
   SELECT AI_EXTRACT(
@@ -787,7 +790,7 @@ Show lessSee more
   ```
 * The following example extracts the `title` entity from the `report.pdf` file using a JSON schema:
 
-  Copy codeExpand
+  Copy codeExpand code block
 
   ```
   SELECT AI_EXTRACT(
@@ -814,7 +817,7 @@ Show lessSee more
 
 The following example extracts the `employees` list from the `report.pdf` file:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 SELECT AI_EXTRACT(
@@ -841,7 +844,7 @@ Scroll to top
 
 The following example extracts the `income_table` table from the `report.pdf` file:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 SELECT AI_EXTRACT(
@@ -880,7 +883,7 @@ Scroll to top
 The following example extracts a table (`income_table`), entity (`title`), and list (`employees`) from the `report.pdf`
 file in a single call:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 SELECT AI_EXTRACT(
@@ -926,7 +929,7 @@ Scroll to top
 
 The following example extracts the `employees` array from the `report.pdf` file using a scale factor of 2.0:
 
-Copy codeExpand
+Copy codeExpand code block
 
 ```
 SELECT AI_EXTRACT(
@@ -966,7 +969,7 @@ SELECT AI_EXTRACT(
 
 You can overwrite questions used for fine-tuning by using the `responseFormat` parameter as shown in the following example:
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT AI_EXTRACT(
@@ -1031,7 +1034,7 @@ On this page
 1. [Syntax](#syntax)
 2. [Arguments](#arguments)
 3. [Returns](#returns)
-4. [Extraction scores (preview)](#extraction-scores-preview)
+4. [Extraction scores](#extraction-scores)
 5. [Access control requirements](#access-control-requirements)
 6. [Usage notes](#usage-notes)
 7. [Cost considerations](#cost-considerations)

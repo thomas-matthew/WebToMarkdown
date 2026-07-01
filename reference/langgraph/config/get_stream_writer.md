@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[config](/python/langgraph/config)get\_stream\_writer
 
-Functionv1.2.0 (latest)●Since v0.2
+Functionv1.2.7 (latest)●Since v0.2
 
 # get\_stream\_writer
 
@@ -88,9 +88,8 @@ Copy
 * [Streaming](https://docs.langchain.com/oss/python/deepagents/streaming)
 * [Streaming](https://docs.langchain.com/oss/python/langchain/streaming)
 * [Streaming](https://docs.langchain.com/oss/python/langgraph/streaming)
-* [Use the functional API](https://docs.langchain.com/oss/python/langgraph/use-functional-api)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/aa322c13cd5f16a3f6254a931a4104e412cd687c/libs/langgraph/langgraph/config.py#L126)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/5931a5f0b313feff24e2516a586c55601b868ac1/libs/langgraph/langgraph/config.py#L126)
 
 Version History
 

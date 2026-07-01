@@ -8,7 +8,7 @@ Prompt GPT-5.4 for long-running tasks, tool use, reliable execution, and structu
 - More disciplined tool persistence, verification loops, and evidence-grounded synthesis.
 - Small-model notes for `gpt-5.4-mini` and `gpt-5.4-nano`.
 
-GPT-5.4, our newest mainline model, is designed to balance long-running task performance, stronger control over style and behavior, and more disciplined execution across complex workflows. Building on advances from GPT-5 through GPT-5.3-Codex, GPT-5.4 improves token efficiency, sustains multi-step workflows more reliably, and performs well on long-horizon tasks.
+GPT-5.4 is designed to balance long-running task performance, stronger control over style and behavior, and more disciplined execution across complex workflows. Building on advances from GPT-5 through GPT-5.3-Codex, GPT-5.4 improves token efficiency, sustains multi-step workflows more reliably, and performs well on long-horizon tasks.
 
 GPT-5.4 is designed for production-grade assistants and agents that need strong multi-step reasoning, evidence-rich synthesis, and reliable performance over long contexts. It is especially effective when prompts clearly specify the output contract, tool-use expectations, and completion criteria. In practice, the biggest gains come from choosing the right reasoning effort for the task, using explicit grounding and citation rules, and giving the model a precise definition of what "done" looks like. This guide focuses on prompt patterns and migration practices that preserve those efficiency wins. For model capabilities, API parameters, and broader migration guidance, see [our latest model guide](https://developers.openai.com/api/docs/guides/latest-model).
 
