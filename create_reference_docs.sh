@@ -153,6 +153,20 @@ URL_LIST=(
     "https://developers.openai.com/api/docs/guides/migrate-to-responses.md | docs/openai/core-concepts/migrate-to-responses.md"
     "https://developers.openai.com/api/docs/guides/tools.md | docs/openai/core-concepts/tools.md"
 
+    # === DOCS: OpenAI Agents SDK (direct .md) ===
+    "https://developers.openai.com/api/docs/guides/agents.md | docs/openai/agents-sdk/overview.md"
+    "https://developers.openai.com/api/docs/guides/agents/quickstart.md | docs/openai/agents-sdk/quickstart.md"
+    "https://developers.openai.com/api/docs/guides/agents/define-agents.md | docs/openai/agents-sdk/define-agents.md"
+    "https://developers.openai.com/api/docs/guides/agents/models.md | docs/openai/agents-sdk/models.md"
+    "https://developers.openai.com/api/docs/guides/agents/running-agents.md | docs/openai/agents-sdk/running-agents.md"
+    "https://developers.openai.com/api/docs/guides/agents/sandboxes.md | docs/openai/agents-sdk/sandboxes.md"
+    "https://developers.openai.com/api/docs/guides/agents/orchestration.md | docs/openai/agents-sdk/orchestration.md"
+    "https://developers.openai.com/api/docs/guides/agents/guardrails-approvals.md | docs/openai/agents-sdk/guardrails-approvals.md"
+    "https://developers.openai.com/api/docs/guides/agents/results.md | docs/openai/agents-sdk/results.md"
+    "https://developers.openai.com/api/docs/guides/agents/integrations-observability.md | docs/openai/agents-sdk/integrations-observability.md"
+    "https://developers.openai.com/api/docs/guides/agent-evals.md | docs/openai/agents-sdk/agent-evals.md"
+    "https://developers.openai.com/api/docs/guides/voice-agents.md | docs/openai/agents-sdk/voice-agents.md"
+
     # === DOCS: OpenAI prompt guidance (per-model, direct .md) ===
     "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-5.5.md | docs/openai/prompt-guidance/gpt-5.5.md"
     "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-5.4.md | docs/openai/prompt-guidance/gpt-5.4.md"

@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[graph](/python/langgraph/graph)[state](/python/langgraph/graph/state)StateGraph
 
-Classv1.2.0 (latest)●Since v0.1
+Classv1.2.7 (latest)●Since v0.1
 
 # StateGraph
 
@@ -83,11 +83,11 @@ Copy
 
 * [A2A endpoint in Agent Server](https://docs.langchain.com/langsmith/server-a2a)
 * [Backward compatibility](https://docs.langchain.com/oss/python/langgraph/backward-compatibility)
-* [Build a custom SQL agent](https://docs.langchain.com/oss/python/langgraph/sql-agent)
 * [Build a multi-source knowledge base with routing](https://docs.langchain.com/oss/python/langchain/multi-agent/router-knowledge-base)
+* [Checkpointers](https://docs.langchain.com/oss/python/langgraph/checkpointers)
 * [Choosing between Graph and Functional APIs](https://docs.langchain.com/oss/python/langgraph/choosing-apis)
 
-+15 more(19 more not shown)
++15 more(17 more not shown)
 
 ## Parameters
 
@@ -201,7 +201,7 @@ Compiles the `StateGraph` into a `CompiledStateGraph` object.
 The compiled graph implements the `Runnable` interface and can be invoked,
 streamed, batched, and run asynchronously.](/python/langgraph/graph/state/StateGraph/compile)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/aa322c13cd5f16a3f6254a931a4104e412cd687c/libs/langgraph/langgraph/graph/state.py#L130)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/5931a5f0b313feff24e2516a586c55601b868ac1/libs/langgraph/langgraph/graph/state.py#L130)
 
 Version History
 

@@ -345,7 +345,7 @@ GRANT ROLE cortex_rest_api_role TO USER example_user;
 You can also grant access to the Cortex REST API through existing roles. For example, if you have an
 `api_consumer` role used by a group of users, you can grant access with a single GRANT statement:
 
-Copy codeExpand code block
+Copy code
 
 ```
 GRANT DATABASE ROLE SNOWFLAKE.CORTEX_REST_API_USER TO ROLE api_consumer;

@@ -211,7 +211,7 @@ constructor
 | Name | Type |
 | --- | --- |
 | checkpointer | [BaseCheckpointSaver](/python/langgraph.checkpoint/base/BaseCheckpointSaver) | None |
-| store | [BaseStore](/python/langgraph.store/base/BaseStore) | None |
+| store | [BaseStore](/python/langchain-core/stores/BaseStore) | None |
 | cache | [BaseCache](/python/langchain-core/caches/BaseCache) | None |
 | context\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[ContextT](/python/langgraph/typing/ContextT)] | None |
 | cache\_policy | [CachePolicy](/python/langgraph/types/CachePolicy) | None |

@@ -33,7 +33,7 @@ Copy
 
 Here's a simple example of a supervisor managing two specialized agents:
 
-![Supervisor Architecture](https://raw.githubusercontent.com/langchain-ai/langgraph-supervisor-py/5d341ac33475c1199a1ce2c9226338f063016a5e/./static/img/supervisor.png)
+![Supervisor Architecture](https://raw.githubusercontent.com/langchain-ai/langgraph-supervisor-py/74c8752739ae2fe0fdc3bc39408ebfb161e2a428/./static/img/supervisor.png)
 
 ```
 pip install langgraph-supervisor langchain-openai
@@ -120,7 +120,7 @@ You can control how messages from worker agents are added to the overall convers
 
 Include full message history from an agent:
 
-![Full History](https://raw.githubusercontent.com/langchain-ai/langgraph-supervisor-py/5d341ac33475c1199a1ce2c9226338f063016a5e/./static/img/full_history.png)
+![Full History](https://raw.githubusercontent.com/langchain-ai/langgraph-supervisor-py/74c8752739ae2fe0fdc3bc39408ebfb161e2a428/./static/img/full_history.png)
 
 ```
 workflow = create_supervisor(
@@ -133,7 +133,7 @@ Copy
 
 Include only the final agent response:
 
-![Last Message](https://raw.githubusercontent.com/langchain-ai/langgraph-supervisor-py/5d341ac33475c1199a1ce2c9226338f063016a5e/./static/img/last_message.png)
+![Last Message](https://raw.githubusercontent.com/langchain-ai/langgraph-supervisor-py/74c8752739ae2fe0fdc3bc39408ebfb161e2a428/./static/img/last_message.png)
 
 ```
 workflow = create_supervisor(
@@ -418,6 +418,10 @@ Copy
 
 [Function
 
+### create\_supervisor
+
+Create a multi-agent supervisor.](/python/langgraph-supervisor/supervisor/create_supervisor)[Function
+
 ### create\_handoff\_tool
 
 Create a tool that can handoff control to the requested agent.](/python/langgraph-supervisor/handoff/create_handoff_tool)[Function
@@ -429,10 +433,6 @@ Create a pair of (AIMessage, ToolMessage) to add to the message history when ret
 ### create\_forward\_message\_tool
 
 Create a tool the supervisor can use to forward a worker message by name.](/python/langgraph-supervisor/handoff/create_forward_message_tool)[Function
-
-### create\_supervisor
-
-Create a multi-agent supervisor.](/python/langgraph-supervisor/supervisor/create_supervisor)[Function
 
 ### add\_inline\_agent\_name
 
@@ -452,9 +452,9 @@ Attach formatted agent names to the messages passed to and from a language model
 
 ### langgraph\_supervisor](/python/langgraph-supervisor/langgraph_supervisor)[Module
 
-### handoff](/python/langgraph-supervisor/handoff)[Module
-
 ### supervisor](/python/langgraph-supervisor/supervisor)[Module
+
+### handoff](/python/langgraph-supervisor/handoff)[Module
 
 ### agent\_name](/python/langgraph-supervisor/agent_name)
 

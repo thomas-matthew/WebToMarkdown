@@ -211,7 +211,7 @@ TRUE
 
 You can [CONCAT , ||](/sql-reference/functions/concat) instructions with text columns to use this function:
 
-Copy code
+Copy codeExpand code block
 
 ```
 WITH reviews AS (

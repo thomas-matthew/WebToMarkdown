@@ -209,7 +209,7 @@ Return value:
 In this example, a table named `reviews` contains a column named `review_content` containing the text of movie reviews
 submitted by users. The query returns the sentiment of several facets of up to ten reviews.
 
-Copy code
+Copy codeExpand code block
 
 ```
 SELECT
