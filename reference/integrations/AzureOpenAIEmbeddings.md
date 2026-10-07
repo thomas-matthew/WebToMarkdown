@@ -1,6 +1,6 @@
 Python[langchain-openai](/python/langchain-openai)[embeddings](/python/langchain-openai/embeddings)[azure](/python/langchain-openai/embeddings/azure)AzureOpenAIEmbeddings
 
-Classv1.3.3 (latest)●Since v0.1
+Classv1.6.7 (latest)●Since v0.1
 
 # AzureOpenAIEmbeddings
 
@@ -124,9 +124,7 @@ Copy
 * [Azure Cosmos DB NoSQL integration](https://docs.langchain.com/oss/python/integrations/vectorstores/azure_cosmos_db_no_sql)
 * [Azure database for postgresql - flexible server integration](https://docs.langchain.com/oss/python/integrations/vectorstores/azure_db_for_postgresql)
 * [AzureOpenAIEmbeddings integration](https://docs.langchain.com/oss/python/integrations/embeddings/azure_openai)
-* [Sqlserver integration](https://docs.langchain.com/oss/python/integrations/vectorstores/sqlserver)
-
-+1 more
+* [Vector store integrations](https://docs.langchain.com/oss/python/integrations/vectorstores)
 
 ## Attributes
 
@@ -298,7 +296,7 @@ Call out to OpenAI's embedding endpoint async for embedding query text.](/python
 
 [Membed\_documents](/python/langchain-core/embeddings/embeddings/Embeddings/embed_documents)[Membed\_query](/python/langchain-core/embeddings/embeddings/Embeddings/embed_query)[Maembed\_documents](/python/langchain-core/embeddings/embeddings/Embeddings/aembed_documents)[Maembed\_query](/python/langchain-core/embeddings/embeddings/Embeddings/aembed_query)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/partners/openai/langchain_openai/embeddings/azure.py#L16)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/026c3da2b615abe52f8446e37de460b844d07a43/libs/partners/openai/langchain_openai/embeddings/azure.py#L16)
 
 Version History
 

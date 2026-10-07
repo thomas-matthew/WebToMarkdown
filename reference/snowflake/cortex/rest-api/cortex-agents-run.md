@@ -14,6 +14,8 @@
     - Zero-Copy Connectors
 
       - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
+      - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
+      - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
@@ -24,40 +26,46 @@
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/migrations "Migrations")
+13. [Migrations](/en/migrations/snowflake-aim "Migrations")
 15. [Queries](/en/guides-overview-queries "Queries")
-16. [Listings](/en/collaboration/collaboration-listings-about "Listings")
-17. [Collaboration](/en/guides-overview-sharing "Collaboration")
-19. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
+16. [Collaboration](/en/guides-overview-sharing "Collaboration")
+18. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
     * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
-    * [Cortex Code](/en/user-guide/cortex-code/cortex-code "Cortex Code")
+    * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
 
+      + [Get started](/en/user-guide/snowflake-cortex/cortex-agents-get-started "Get started")
       + [Create and manage agents](/en/user-guide/snowflake-cortex/cortex-agents-manage "Create and manage agents")
       + [Access control and authentication](/en/user-guide/snowflake-cortex/cortex-agents-setup "Access control and authentication")
-      + [Use threads with Agents](/en/user-guide/snowflake-cortex/cortex-agents-threads "Use threads with Agents")
       + REST API
 
         + [Agent Object](/en/user-guide/snowflake-cortex/cortex-agents-rest-api "Agent Object")
         + [Agent Run](/en/user-guide/snowflake-cortex/cortex-agents-run "Agent Run")
         + [Threads](/en/user-guide/snowflake-cortex/cortex-agents-threads-rest-api "Threads")
         + [Feedback](/en/user-guide/snowflake-cortex/cortex-agents-feedback-rest-api "Feedback")
+        + [Compact](/en/user-guide/snowflake-cortex/cortex-agents-compact "Compact")
+      + [Use threads with Agents](/en/user-guide/snowflake-cortex/cortex-agents-threads "Use threads with Agents")
       + [Microsoft Teams integration](/en/user-guide/snowflake-cortex/cortex-agents-teams-integration "Microsoft Teams integration")
-      + [Evaluations](/en/user-guide/snowflake-cortex/cortex-agents-evaluations "Evaluations")
       + [Monitoring](/en/user-guide/snowflake-cortex/cortex-agents-monitor "Monitoring")
-      + [Share Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents-sharing "Share Cortex Agents")
+      + [Evaluations](/en/user-guide/snowflake-cortex/cortex-agents-evaluations "Evaluations")
+      + [Share Cortex agents](/en/user-guide/snowflake-cortex/cortex-agents-sharing "Share Cortex agents")
+      + [Temporary agents](/en/user-guide/snowflake-cortex/cortex-agents-temporary "Temporary agents")
+      + [Secure agents](/en/user-guide/snowflake-cortex/cortex-agents-secure "Secure agents")
       + [Tutorials](/en/user-guide/snowflake-cortex/cortex-agents-tutorials "Tutorials")
       + [Resource budgets](/en/user-guide/snowflake-cortex/cortex-agents-resource-budgets "Resource budgets")
       + [Shared resource budgets](/en/user-guide/snowflake-cortex/cortex-agents-shared-budgets "Shared resource budgets")
       + [Agent skills](/en/user-guide/snowflake-cortex/cortex-agents-skills "Agent skills")
       + [Code execution tool](/en/user-guide/snowflake-cortex/cortex-agents-code-execution-tool "Code execution tool")
+      + [Agent toolsets](/en/user-guide/snowflake-cortex/cortex-agents-toolsets "Agent toolsets")
+      + [Coding Agent](/en/user-guide/snowflake-cortex/cortex-agents-coding-agent "Coding Agent")
       + [MCP Connectors](/en/user-guide/snowflake-cortex/cortex-agents-mcp-connectors "MCP Connectors")
       + [Agent versioning](/en/user-guide/snowflake-cortex/cortex-agents-versioning "Agent versioning")
       + [Multi-tenancy](/en/user-guide/snowflake-cortex/cortex-agents-multi-tenancy "Multi-tenancy")
     * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
+    * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
     * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
     * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
@@ -68,13 +76,13 @@
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
     * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
     * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
-21. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
-23. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
-25. [Security](/en/guides-overview-secure "Security")
-27. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-28. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-30. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-31. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
+20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
+22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
+24. [Security](/en/guides-overview-secure "Security")
+26. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
+27. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
+29. [Performance optimization](/en/guides-overview-performance "Performance optimization")
+30. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
 
 [Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)[Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents)REST APIAgent Run
 
@@ -82,7 +90,7 @@
 
 Note
 
-Requests to the Cortex Agent REST API time out after 15 minutes.
+By default, requests to the Cortex Agent REST API time out after 15 minutes. To run longer requests, set the `background` field to `true` in the request body. Background runs time out after 6 hours, and you can reconnect to them with the [Stream Agent Run](#stream-agent-run) endpoint. Background runs are generally available on AWS and Azure, and they’re only available when you use threads to manage conversation history.
 
 There are two methods to interact with an Agent:
 
@@ -139,6 +147,7 @@ Show lessSee more
 | `thread_id` | integer | The thread ID for the conversation. If thread\_id is used, then parent\_message\_id must be passed as well. |
 | `parent_message_id` | integer | The ID of the parent message in the thread. If this is the first message, parent\_message\_id should be 0. |
 | `messages` | array of [Message](#label-snowflake-agent-run-message) | If thread\_id and parent\_message\_id are passed in the request, messages includes the current user message in the conversation. Else, messages includes the conversation history and the current message. Messages contains both user queries and assistant responses in chronological order. |
+| `background` | boolean | Whether to run the agent asynchronously. If `true`, the agent runs asynchronously in the background with a 6 hour timeout, even if the client disconnects. For a background run with `stream` set to `false`, the API returns immediately with `status: in_progress` and a `run_id`; retrieve the response after the run completes by streaming from the Stream Agent Run endpoint with the `run_id` (REST API) or by polling the THREAD\_MESSAGES SQL function with the thread ID. If `stream` is `true`, the response is streamed as Server-Sent Events. If `background` is `false`, the agent runs synchronously with a 15 minute timeout. Only available when using threads to manage conversation history. |
 | `stream` | boolean | Whether to return a streaming response (`text/event-stream`) or a non-streaming JSON response (`application/json`). If true, the response will be streamed as Server-Sent Events. If false, the response will be returned as JSON. |
 | `tool_choice` | [ToolChoice](#label-snowflake-agent-run-toolchoice) | Configures how the agent should select and use tools during the interaction. Controls whether tool use is automatic, required, or whether specific tools should be used. |
 
@@ -170,6 +179,7 @@ Copy codeExpand code block
       }
     }
   ],
+  "background": false,
   "stream": false,
   "tool_choice": {
     "type": "auto",
@@ -184,6 +194,20 @@ Copy codeExpand code block
 Show lessSee more
 
 Scroll to top
+
+The `orchestration` configuration, including `tool_not_accessible`, comes from the agent object’s specification. You can’t set `tool_not_accessible` in this run request. To change it, set it on the top-level `orchestration` object of the agent specification, not on `models.orchestration` or `instructions.orchestration`:
+
+Copy code
+
+```
+{
+  "orchestration": {
+    "tool_not_accessible": "accept"
+  }
+}
+```
+
+For the update endpoint and full agent specification, see [Update Cortex Agent](/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agents-rest-api-update).
 
 The request body supports an optional `stream` boolean field:
 
@@ -207,7 +231,7 @@ Copy code
 
 ```
 {
-  "model": "claude-4-sonnet",
+  "model": "claude-sonnet-4-6",
   "messages": [
      {"role":"user", "content": [] }
   ]
@@ -233,6 +257,7 @@ Show lessSee more
 | `thread_id` | integer | The thread ID for the conversation. If thread\_id is used, then parent\_message\_id must be passed as well. |
 | `parent_message_id` | integer | The ID of the parent message in the thread. If this is the first message, parent\_message\_id should be 0. |
 | `messages` | array of [Message](#label-snowflake-agent-run-message) | If thread\_id and parent\_message\_id are passed in the request, messages includes the current user message in the conversation. Else, messages includes the conversation history and the current message. Messages contains both user queries and assistant responses in chronological order. |
+| `background` | boolean | Whether to run the agent asynchronously. If `true`, the agent runs asynchronously in the background with a 6 hour timeout, even if the client disconnects. For a background run with `stream` set to `false`, the API returns immediately with `status: in_progress` and a `run_id`; retrieve the response after the run completes by streaming from the Stream Agent Run endpoint with the `run_id` (REST API) or by polling the THREAD\_MESSAGES SQL function with the thread ID. If `stream` is `true`, the response is streamed as Server-Sent Events. If `background` is `false`, the agent runs synchronously with a 15 minute timeout. Only available when using threads to manage conversation history. |
 | `stream` | boolean | Whether to return a streaming response (`text/event-stream`) or a non-streaming JSON response (`application/json`). If true, the response will be streamed as Server-Sent Events. If false, the response will be returned as JSON. |
 | `tool_choice` | [ToolChoice](#label-snowflake-agent-run-toolchoice) | Configures how the agent should select and use tools during the interaction. Controls whether tool use is automatic, required, or whether specific tools should be used. |
 | `models` | [ModelConfig](#label-snowflake-agent-run-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
@@ -269,6 +294,7 @@ Copy codeExpand code block
       }
     }
   ],
+  "background": false,
   "stream": false,
   "tool_choice": {
     "type": "auto",
@@ -328,6 +354,47 @@ Show lessSee more
 
 Scroll to top
 
+For a run without an agent object, set `tool_not_accessible` in the top-level `orchestration` object of the request body. This request body has three different keys named `orchestration`: the top-level `orchestration` object holds run controls such as `tool_not_accessible` and `budget`, `models.orchestration` names the orchestration model, and `instructions.orchestration` holds natural-language instructions. Only the top-level object accepts `tool_not_accessible`:
+
+Copy codeExpand code block
+
+```
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "What is the total revenue for 2025?"
+        }
+      ]
+    }
+  ],
+  "models": {
+    "orchestration": "claude-4-sonnet"
+  },
+  "instructions": {
+    "orchestration": "Use the search tool for all refund questions."
+  },
+  "orchestration": {
+    "tool_not_accessible": "accept",
+    "budget": {
+      "seconds": 30,
+      "tokens": 16000
+    }
+  },
+  "tools": [],
+  "tool_resources": {}
+}
+```
+
+Show lessSee more
+
+Scroll to top
+
+If you omit `tool_not_accessible`, the default is `accept`. For all values and their behavior, see [Where to set the field](/user-guide/snowflake-cortex/cortex-agents-inaccessible-tool-handling#label-cortex-agents-inaccessible-tool-where-to-set).
+
 The request body supports an optional `stream` boolean field:
 
 * If `stream` is omitted, it defaults to `true` and the response is streamed as SSE events.
@@ -352,6 +419,8 @@ represents a reasoning token, and *response.text.delta*, which represent an answ
 Note
 
 Make sure your application can handle unknown event types.
+
+When a named tool isn’t accessible and `tool_not_accessible` is `accept`, the stream includes a `response.warning` event before the first model call. The warning is also included in the top-level `warnings` array of the final `response` event. Applications should handle the SSE event or inspect the final array so users know the answer might not use every configured tool. For the warning format and the other access modes, see .
 
 **Example Response**
 
@@ -392,7 +461,7 @@ Event streamed when the final response is available. This is the last event emit
 | `content` | array of [MessageContentItem](#label-snowflake-agent-run-messagecontentitem) | The content generated by the agent. |
 | `warnings` | array of [Warning](#label-snowflake-agent-run-warning) | Non-fatal warnings that occurred during processing. Present for non-streaming clients or as a summary. |
 | `metadata` | [ResponseMetadata](#label-snowflake-agent-run-responsemetadata) |  |
-| `status` | string | The completion status of the agent run. Set to “cancelled” when the run was terminated via CancelAgentRun. |
+| `status` | string | The completion status of the agent run. Set to “cancelled” when the run was terminated via CancelAgentRun, or “timed\_out” when the run exceeded its max run length. |
 
 Expand
 
@@ -407,7 +476,7 @@ Copy codeExpand code block
   "role": "assistant",
   "content": [
     {
-      "type": "asset"
+      "type": "actual_user_message"
     }
   ],
   "warnings": [
@@ -979,6 +1048,116 @@ Copy code
 }
 ```
 
+## Stream Agent Run[¶](#stream-agent-run)
+
+`GET /api/v2/cortex/agent/runs/{run_id}`
+
+Connect to an Agent Run and stream its output. The Server-Sent Events returned match exactly
+the events returned by the streaming `agent:run` API.
+
+If the `starting_after` query parameter is not provided, all events are returned. If provided,
+only events with a greater sequence number are returned (non-inclusive).
+
+The events of an Agent Run are accessible via this endpoint while the run is active and for up
+to 5 minutes after it completes. After that, connecting to a previously completed run returns a
+409 Conflict, in which case the full agent response can be retrieved from a thread.
+
+### Path parameters[¶](#path-parameters)
+
+| Parameter | Description |
+| --- | --- |
+| `run_id` | (Required) The Agent Run ID. Used to identify async runs. In the format {thread\_id}-{user\_message\_id}. |
+
+Expand
+
+Show lessSee more
+
+### Query parameters[¶](#query-parameters)
+
+| Parameter | Description |
+| --- | --- |
+| `starting_after` | (Optional) The sequence number offset to start streaming from (non-inclusive). If not provided the entire output will be streamed. |
+
+Expand
+
+Show lessSee more
+
+### Response[¶](#response)
+
+A stream of Server-Sent Events (`text/event-stream`). The events are identical to those
+returned by the streaming `agent:run` API.
+
+## Cancel Agent Run[¶](#cancel-agent-run)
+
+`POST /api/v2/cortex/agent/runs/{run_id}/cancel`
+
+Cancel an actively running Agent Run. Any partial output from the run will be saved
+to the thread and billed accordingly.
+
+Returns a `CancelAgentRunResponse` object. If partial output was saved to the thread,
+`metadata.assistant_message_id` will be present and can be used as the `parent_message_id`
+for follow-up requests to continue the conversation.
+
+If the run has already completed or been canceled, returns 409 Conflict.
+
+### Path parameters[¶](#path-parameters)
+
+| Parameter | Description |
+| --- | --- |
+| `run_id` | (Required) The Agent Run ID. Used to identify async runs. In the format {thread\_id}-{user\_message\_id}. |
+
+Expand
+
+Show lessSee more
+
+### Response[¶](#response)
+
+Run successfully canceled. Returns metadata about the canceled run.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `metadata` | [ResponseMetadata](#label-snowflake-agent-run-responsemetadata) | Metadata about the canceled run, including usage and message IDs. |
+
+Expand
+
+Show lessSee more
+
+**Example**
+
+Copy codeExpand code block
+
+```
+{
+  "metadata": {
+    "usage": {
+      "tokens_consumed": [
+        {
+          "model_name": "llama3.1-70b",
+          "input_tokens": {
+            "total": 175,
+            "cache_read": 50,
+            "cache_write": 25,
+            "uncached": 100
+          },
+          "output_tokens": {
+            "total": 75
+          },
+          "context_window": 128000
+        }
+      ]
+    },
+    "run_id": "4264-83472",
+    "thread_id": 4264,
+    "user_message_id": 83472,
+    "assistant_message_id": 83473
+  }
+}
+```
+
+Show lessSee more
+
+Scroll to top
+
 ## Schemas[¶](#schemas)
 
 # `AgentInstructions`[¶](#agentinstructions)
@@ -1176,7 +1355,7 @@ Configuration for server-executed tools.
 | Field | Type | Description |
 | --- | --- | --- |
 | `type` | string | The type of execution environment, currently only `warehouse` is supported. |
-| `warehouse` | string | The name of the warehouse. Case-sensitive, if it is an unquoted identifier, provide the name in all-caps. |
+| `warehouse` | string | The name of the warehouse. Case-sensitive; if it is an unquoted identifier, provide the name in all-caps. If not specified, the user’s default warehouse is used. |
 | `query_timeout` | integer | The query timeout in seconds |
 
 Expand
@@ -1225,11 +1404,11 @@ Copy code
 
 ## `Message`[¶](#message)
 
-Represents a single message in the conversation. Can be either from the user or the assistant.
+Represents a single message in the conversation. Can be from the user, assistant, or a control message.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `role` | string | Identifies who sent the message - either the user or the assistant. User messages typically contain queries, while assistant messages contain responses and tool results. |
+| `role` | string | Identifies the message role. |
 | `content` | array of [MessageContentItem](#label-snowflake-agent-run-messagecontentitem) | Array of content elements making up the message. Can include text, tool results, or custom content types. |
 | `status` | string | The completion status of the message set by the server when saving to a thread. Set to “error” when the agent run terminated with an error; in that case the `error` field contains the error details. |
 | `error` | [MessageError](#label-snowflake-agent-run-messageerror) | Details about the error that terminated the agent run. Only set when `status` is “error”. |
@@ -1519,7 +1698,7 @@ Copy code
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `role` | string | Identifies who sent the message - either the user or the assistant. |
+| `role` | string | Identifies the message role. |
 | `message_id` | integer | The thread message id. Use this ID (when role is `assistant`) to ask a followup question on the thread. |
 | `run_id` | string | The unique identifier for this Agent Run. Can be used to reconnect to the output stream. |
 
@@ -2394,6 +2573,8 @@ To receive a **single non-streaming JSON response**, set `stream` to `false` in 
 
 The response body is the same object as the `response` event payload in streaming mode (that is, it corresponds to the JSON returned in the SSE `response` event’s `data` field).
 
+If non-fatal warnings occur during the run, the response includes a top-level `warnings` array. For example, warning code `399569` indicates that the caller’s role couldn’t access a named tool and the agent produced an answer with its remaining tools.
+
 **Example response**
 
 Copy codeExpand code block
@@ -2458,6 +2639,12 @@ Copy codeExpand code block
       "text": "Based on the data available, there are 2 main types of products...",
       "type": "text"
     }
+  ],
+  "warnings": [
+    {
+      "code": "399569",
+      "message": "TOOL_NOT_ACCESSIBLE: Search1 (cortex_search) - The Cortex Search Service does not exist or access is not authorized for the current role: db.schema.css1"
+    }
   ]
 }
 ```
@@ -2510,44 +2697,52 @@ On this page
 22. [response.warning](#responsewarning)
 23. [error](#error)
 24. [metadata](#metadata)
-25. [Schemas](#schemas)
-26. [AgentInstructions](#agentinstructions)
-27. [Annotation](#annotation)
-28. [BudgetConfig](#budgetconfig)
-29. [ChartContent](#chartcontent)
-30. [CortexAnalystSuggestionDelta](#cortexanalystsuggestiondelta)
-31. [CortexAnalystToolResultDelta](#cortexanalysttoolresultdelta)
-32. [ExecutionEnvironment](#executionenvironment)
-33. [InputTokens](#inputtokens)
-34. [Message](#message)
-35. [MessageContentItem](#messagecontentitem)
-36. [MessageError](#messageerror)
-37. [Metadata](#metadata)
-38. [ModelConfig](#modelconfig)
-39. [OrchestrationConfig](#orchestrationconfig)
-40. [OutputTokens](#outputtokens)
-41. [PermissionDecision](#permissiondecision)
-42. [ResponseMetadata](#responsemetadata)
-43. [ResultSet](#resultset)
-44. [ResultSetMetaData](#resultsetmetadata)
-45. [RowType](#rowtype)
-46. [TableContent](#tablecontent)
-47. [ThinkingContent](#thinkingcontent)
-48. [TokensConsumed](#tokensconsumed)
-49. [Tool](#tool)
-50. [ToolChoice](#toolchoice)
-51. [ToolInputSchema](#toolinputschema)
-52. [ToolResource](#toolresource)
-53. [ToolResult](#toolresult)
-54. [ToolResultContent](#toolresultcontent)
-55. [ToolSpec](#toolspec)
-56. [ToolUse](#tooluse)
-57. [ToolUsePermission](#toolusepermission)
-58. [UsageMetadata](#usagemetadata)
-59. [Warning](#warning)
-60. [Non-streaming response (stream: false)](#non-streaming-response-stream-false)
+25. [Stream Agent Run](#stream-agent-run)
+26. [Path parameters](#path-parameters)
+27. [Query parameters](#query-parameters)
+28. [Response](#response)
+29. [Cancel Agent Run](#cancel-agent-run)
+30. [Path parameters](#path-parameters)
+31. [Response](#response)
+32. [Schemas](#schemas)
+33. [AgentInstructions](#agentinstructions)
+34. [Annotation](#annotation)
+35. [BudgetConfig](#budgetconfig)
+36. [ChartContent](#chartcontent)
+37. [CortexAnalystSuggestionDelta](#cortexanalystsuggestiondelta)
+38. [CortexAnalystToolResultDelta](#cortexanalysttoolresultdelta)
+39. [ExecutionEnvironment](#executionenvironment)
+40. [InputTokens](#inputtokens)
+41. [Message](#message)
+42. [MessageContentItem](#messagecontentitem)
+43. [MessageError](#messageerror)
+44. [Metadata](#metadata)
+45. [ModelConfig](#modelconfig)
+46. [OrchestrationConfig](#orchestrationconfig)
+47. [OutputTokens](#outputtokens)
+48. [PermissionDecision](#permissiondecision)
+49. [ResponseMetadata](#responsemetadata)
+50. [ResultSet](#resultset)
+51. [ResultSetMetaData](#resultsetmetadata)
+52. [RowType](#rowtype)
+53. [TableContent](#tablecontent)
+54. [ThinkingContent](#thinkingcontent)
+55. [TokensConsumed](#tokensconsumed)
+56. [Tool](#tool)
+57. [ToolChoice](#toolchoice)
+58. [ToolInputSchema](#toolinputschema)
+59. [ToolResource](#toolresource)
+60. [ToolResult](#toolresult)
+61. [ToolResultContent](#toolresultcontent)
+62. [ToolSpec](#toolspec)
+63. [ToolUse](#tooluse)
+64. [ToolUsePermission](#toolusepermission)
+65. [UsageMetadata](#usagemetadata)
+66. [Warning](#warning)
+67. [Non-streaming response (stream: false)](#non-streaming-response-stream-false)
 
 Related content
 
 1. [Cortex Agents](/user-guide/snowflake-cortex/cortex-agents)
-2. [DATA\_AGENT\_RUN (SNOWFLAKE.CORTEX)](/sql-reference/functions/data_agent_run-snowflake-cortex)
+2. [Inaccessible tool handling](/user-guide/snowflake-cortex/cortex-agents-inaccessible-tool-handling)
+3. [DATA\_AGENT\_RUN (SNOWFLAKE.CORTEX)](/sql-reference/functions/data_agent_run-snowflake-cortex)

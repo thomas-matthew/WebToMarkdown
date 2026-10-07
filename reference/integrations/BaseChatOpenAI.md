@@ -1,6 +1,6 @@
 Python[langchain-openai](/python/langchain-openai)[chat\_models](/python/langchain-openai/chat_models)[base](/python/langchain-openai/chat_models/base)BaseChatOpenAI
 
-Classv1.3.3 (latest)●Since v0.1
+Classv1.6.7 (latest)●Since v0.1
 
 # BaseChatOpenAI
 
@@ -203,7 +203,30 @@ For use with the Chat Completions API. Reasoning models only.
 
 Currently supported values are `'minimal'`, `'low'`, `'medium'`, and
 `'high'`. Reducing reasoning effort can result in faster responses and fewer
-tokens used on reasoning in a response.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/reasoning_effort)[attribute
+tokens used on reasoning in a response.
+
+Changing reasoning effort mid-conversation
+
+Changing this value part-way through a conversation changes a request-level
+parameter, which invalidates the cached prompt prefix.
+
+Models that support it (currently GPT-6) can instead carry the new effort
+in a `configuration_update` item attached to the message that should start
+using it:
+
+```
+HumanMessage(
+    [
+        {"type": "configuration_update", "reasoning": {"effort": "high"}},
+        {"type": "text", "text": "Analyze the failure modes."},
+    ]
+)
+```
+
+Copy
+
+The new effort applies from that message onward, until another update
+overrides it.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/reasoning_effort)[attribute
 
 reasoning: dict[str, Any] | None
 
@@ -387,7 +410,10 @@ standard OpenAI API, as this will cause errors when making API calls. Use
 
 include\_response\_headers: bool
 
-Whether to include response headers in the output message `response_metadata`.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/include_response_headers)[attribute
+Whether to include response headers in the output message `response_metadata`.
+
+Note: some inference providers return additional metadata (such as served model
+names) in the response headers. Enable to capture these metadata.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/include_response_headers)[attribute
 
 disabled\_params: dict[str, Any] | None
 
@@ -422,6 +448,10 @@ Supported values:
 * `'computer_call_output.output.image_url'`
 * `'reasoning.encrypted_content'`
 * `'code_interpreter_call.outputs'`](/python/langchain-openai/chat_models/base/BaseChatOpenAI/include)[attribute
+
+prompt\_cache\_options: dict[str, Any] | None
+
+Options controlling OpenAI prompt cache behavior.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/prompt_cache_options)[attribute
 
 service\_tier: str | None
 
@@ -483,7 +513,7 @@ use\_responses\_api: bool | None
 
 Whether to use the Responses API instead of the Chat API.
 
-If not specified then will be inferred based on invocation params.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/use_responses_api)[attribute
+If not specified, set to `True` when instance settings require the Responses API,](/python/langchain-openai/chat_models/base/BaseChatOpenAI/use_responses_api)[attribute
 
 output\_version: str | None
 
@@ -605,7 +635,7 @@ Model wrapper that returns outputs formatted to match the given schema.](/python
 
 [Mget\_name](/python/langchain-core/runnables/base/Runnable/get_name)[Mget\_input\_schema](/python/langchain-core/runnables/base/Runnable/get_input_schema)[Mget\_input\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_input_jsonschema)[Mget\_output\_schema](/python/langchain-core/runnables/base/Runnable/get_output_schema)[Mget\_output\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_output_jsonschema)[Mconfig\_schema](/python/langchain-core/runnables/base/Runnable/config_schema)[Mget\_config\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_config_jsonschema)[Mget\_graph](/python/langchain-core/runnables/base/Runnable/get_graph)[Mget\_prompts](/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe](/python/langchain-core/runnables/base/Runnable/pipe)[Mpick](/python/langchain-core/runnables/base/Runnable/pick)[Massign](/python/langchain-core/runnables/base/Runnable/assign)[Minvoke](/python/langchain-core/runnables/base/Runnable/invoke)[Mainvoke](/python/langchain-core/runnables/base/Runnable/ainvoke)[Mbatch](/python/langchain-core/runnables/base/Runnable/batch)[Mbatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch](/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mstream](/python/langchain-core/runnables/base/Runnable/stream)[Mastream](/python/langchain-core/runnables/base/Runnable/astream)[Mastream\_log](/python/langchain-core/runnables/base/Runnable/astream_log)[Mastream\_events](/python/langchain-core/runnables/base/Runnable/astream_events)[Mstream\_events](/python/langchain-core/runnables/base/Runnable/stream_events)[Mtransform](/python/langchain-core/runnables/base/Runnable/transform)[Matransform](/python/langchain-core/runnables/base/Runnable/atransform)[Mbind](/python/langchain-core/runnables/base/Runnable/bind)[Mwith\_config](/python/langchain-core/runnables/base/Runnable/with_config)[Mwith\_listeners](/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith\_alisteners](/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith\_types](/python/langchain-core/runnables/base/Runnable/with_types)[Mwith\_retry](/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap](/python/langchain-core/runnables/base/Runnable/map)[Mwith\_fallbacks](/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas\_tool](/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/partners/openai/langchain_openai/chat_models/base.py#L583)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/026c3da2b615abe52f8446e37de460b844d07a43/libs/partners/openai/langchain_openai/chat_models/base.py#L783)
 
 Version History
 
@@ -615,7 +645,7 @@ Copy page
 
 Attributes
 
-AclientAasync\_clientAroot\_clientAroot\_async\_clientAmodel\_nameAtemperatureAmodel\_kwargsAopenai\_api\_keyAopenai\_api\_baseAopenai\_organizationAopenai\_proxyArequest\_timeoutAstream\_usageAmax\_retriesApresence\_penaltyAfrequency\_penaltyAseedAlogprobsAtop\_logprobsAlogit\_biasAstreamingAnAtop\_pAmax\_tokensAreasoning\_effortAreasoningAverbosityAtiktoken\_model\_nameAdefault\_headersAdefault\_queryAhttp\_clientAhttp\_async\_clientAhttp\_socket\_optionsAstream\_chunk\_timeoutAstopAextra\_bodyAinclude\_response\_headersAdisabled\_paramsAcontext\_managementAincludeAservice\_tierAstoreAtruncationAuse\_previous\_response\_idAuse\_responses\_apiAoutput\_versionAmodel\_configAmodel
+AclientAasync\_clientAroot\_clientAroot\_async\_clientAmodel\_nameAtemperatureAmodel\_kwargsAopenai\_api\_keyAopenai\_api\_baseAopenai\_organizationAopenai\_proxyArequest\_timeoutAstream\_usageAmax\_retriesApresence\_penaltyAfrequency\_penaltyAseedAlogprobsAtop\_logprobsAlogit\_biasAstreamingAnAtop\_pAmax\_tokensAreasoning\_effortAreasoningAverbosityAtiktoken\_model\_nameAdefault\_headersAdefault\_queryAhttp\_clientAhttp\_async\_clientAhttp\_socket\_optionsAstream\_chunk\_timeoutAstopAextra\_bodyAinclude\_response\_headersAdisabled\_paramsAcontext\_managementAincludeAprompt\_cache\_optionsAservice\_tierAstoreAtruncationAuse\_previous\_response\_idAuse\_responses\_apiAoutput\_versionAmodel\_configAmodel
 
 Methods
 

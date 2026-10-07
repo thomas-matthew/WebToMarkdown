@@ -1,6 +1,8 @@
 # Quickstart
 
-Use this page when you want the shortest path to a working SDK-based agent. The examples below use the same high-level concepts in both TypeScript and Python: define an agent, run it, then add tools and specialist agents as your workflow grows.
+> For the complete documentation index, see [llms.txt](/llms.txt). Markdown versions of documentation pages are available by appending `.md` to the page URL.
+
+Use this page when you want the shortest path to a working SDK-based agent. The examples below use the same high-level concepts in both JavaScript and Python: define an agent, run it, then add tools and specialist agents as your workflow grows.
 
 ## Install the SDK
 
@@ -11,10 +13,12 @@ Create a project, install the SDK, and set your API key.
 Create an API Key
 
 
-<p></p>
+
+
+
 
 ```bash
-# TypeScript
+# JavaScript
 npm install @openai/agents zod
 
 # Python
@@ -29,14 +33,13 @@ Start with one focused agent and one turn. The SDK handles the model call and re
 
 Create and run an agent
 
-```typescript
+```javascript
 import { Agent, run } from "@openai/agents";
 
 const agent = new Agent({
   name: "History tutor",
-  instructions:
-    "You answer history questions clearly and concisely.",
-  model: "gpt-5.5",
+  instructions: "You answer history questions clearly and concisely.",
+  model: "gpt-6-astra",
 });
 
 const result = await run(agent, "When did the Roman Empire fall?");
@@ -51,7 +54,7 @@ from agents import Agent, Runner
 agent = Agent(
     name="History tutor",
     instructions="You answer history questions clearly and concisely.",
-    model="gpt-5.5",
+    model="gpt-6-astra",
 )
 
 
@@ -73,12 +76,12 @@ The first run result is also how you decide what the second turn should use as s
 
 | If you want                                           | Start with                                                                                                                               |
 | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Keep the full history in your application             | |
+| Keep the full history in your application             | `result.history` in TypeScript or `result.to_input_list()` in Python                         |
 | Let the SDK load and save history for you             | A session                                                                                                                                |
 | Let OpenAI manage continuation state                  | A server-managed continuation ID                                                                                                         |
-| Resume a run that paused for approval or interruption | , together with `interruptions` |
+| Resume a run that paused for approval or interruption | `result.state` in TypeScript or `result.to_state()` in Python, together with `interruptions` |
 
-After handoffs, reuse for the next turn when that specialist should stay in control.
+After handoffs, reuse `lastAgent` in TypeScript or `last_agent` in Python for the next turn when that specialist should stay in control.
 
 ## Give the agent a tool
 
@@ -86,7 +89,7 @@ The first capability you add is often a function tool or a hosted OpenAI tool su
 
 Add a function tool
 
-```typescript
+```javascript
 import { Agent, run, tool } from "@openai/agents";
 import { z } from "zod";
 
@@ -108,7 +111,7 @@ const agent = new Agent({
 
 const result = await run(
   agent,
-  "Tell me something surprising about ancient life on Earth.",
+  "Tell me something surprising about ancient life on Earth."
 );
 
 console.log(result.finalOutput);
@@ -154,7 +157,7 @@ A common next step is to split the workflow into specialists and let a router de
 
 Route to specialist agents
 
-```typescript
+```javascript
 import { Agent, run } from "@openai/agents";
 
 const historyTutor = new Agent({
@@ -175,7 +178,7 @@ const triageAgent = Agent.create({
 
 const result = await run(
   triageAgent,
-  "Who was the first president of the United States?",
+  "Who was the first president of the United States?"
 );
 
 console.log(result.finalOutput);
@@ -228,53 +231,25 @@ The normal server-side SDK path includes tracing. As soon as the first run works
 
 Once the first run works, continue with the guide that matches the next capability you want to add.
 
-<div class="not-prose mt-4 grid gap-3">
-  <a
-    href="/api/docs/guides/agents/define-agents"
-    class="block no-underline hover:no-underline"
-  >
-    
-
-<span slot="icon">
-        </span>
-      Shape one specialist cleanly before you scale the workflow.
 
 
-  </a>
-  <a
-    href="/api/docs/guides/tools#usage-in-the-agents-sdk"
-    class="block no-underline hover:no-underline"
-  >
-    
-
-<span slot="icon">
-        </span>
-      Add hosted tools, function tools, and agents-as-tools.
+  [Agent definitions
 
 
-  </a>
-  <a
-    href="/api/docs/guides/agents/running-agents"
-    class="block no-underline hover:no-underline"
-  >
-    
 
-<span slot="icon">
-        </span>
-      Learn the agent loop, streaming, and continuation strategies.
+        Shape one specialist cleanly before you scale the workflow.](https://developers.openai.com/api/docs/guides/agents/define-agents)
+  [Using tools
 
 
-  </a>
-  <a
-    href="/api/docs/guides/agents/orchestration"
-    class="block no-underline hover:no-underline"
-  >
-    
 
-<span slot="icon">
-        </span>
-      Decide when specialists should take over the conversation.
+        Add hosted tools, function tools, and agents-as-tools.](https://developers.openai.com/api/docs/guides/tools#usage-in-the-agents-sdk)
+  [Running agents
 
 
-  </a>
-</div>
+
+        Learn the agent loop, streaming, and continuation strategies.](https://developers.openai.com/api/docs/guides/agents/running-agents)
+  [Orchestration and handoffs
+
+
+
+        Decide when specialists should take over the conversation.](https://developers.openai.com/api/docs/guides/agents/orchestration)

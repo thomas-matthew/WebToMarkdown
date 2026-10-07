@@ -69,7 +69,10 @@ Core types for building middleware:
 
 ### SummarizationMiddleware
 
-Summarizes conversation history when token limits are approached.](/python/langchain/agents/middleware/summarization/SummarizationMiddleware)[Class
+Summarizes conversation history when token limits are approached.
+
+This middleware monitors message token counts and automatically summarizes older
+messages when a threshold is reached, preserving rec](/python/langchain/agents/middleware/summarization/SummarizationMiddleware)[Class
 
 ### HumanInTheLoopMiddleware
 
@@ -77,51 +80,93 @@ Human in the loop middleware.](/python/langchain/agents/middleware/human_in_the_
 
 ### ModelCallLimitMiddleware
 
-Tracks model call counts and enforces limits.](/python/langchain/agents/middleware/model_call_limit/ModelCallLimitMiddleware)[Class
+Tracks model call counts and enforces limits.
+
+This middleware monitors the number of model calls made during agent execution
+and can terminate the agent when specified limits are reached. It supports](/python/langchain/agents/middleware/model_call_limit/ModelCallLimitMiddleware)[Class
 
 ### ToolCallLimitMiddleware
 
-Track tool call counts and enforces limits during agent execution.](/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitMiddleware)[Class
+Track tool call counts and enforces limits during agent execution.
+
+This middleware monitors the number of tool calls made and can terminate or
+restrict execution when limits are exceeded. It supports](/python/langchain/agents/middleware/tool_call_limit/ToolCallLimitMiddleware)[Class
 
 ### ModelFallbackMiddleware
 
-Automatic fallback to alternative models on errors.](/python/langchain/agents/middleware/model_fallback/ModelFallbackMiddleware)[Class
+Automatic fallback to alternative models on errors.
+
+Retries failed model calls with alternative models in sequence until
+success or all models exhausted. Primary model specified in `create_agent`.](/python/langchain/agents/middleware/model_fallback/ModelFallbackMiddleware)[Class
 
 ### PIIMiddleware
 
-Detect and handle Personally Identifiable Information (PII) in conversations.](/python/langchain/agents/middleware/pii/PIIMiddleware)[Class
+Detect and handle Personally Identifiable Information (PII) in conversations.
+
+This middleware detects common PII types and applies configurable strategies
+to handle them. It can detect emails, credit](/python/langchain/agents/middleware/pii/PIIMiddleware)[Class
 
 ### TodoListMiddleware
 
-Middleware that provides todo list management capabilities to agents.](/python/langchain/agents/middleware/todo/TodoListMiddleware)[Class
+Middleware that provides todo list management capabilities to agents.
+
+This middleware adds a `write_todos` tool that allows agents to create and manage
+structured task lists for complex multi-step op](/python/langchain/agents/middleware/todo/TodoListMiddleware)[Class
 
 ### LLMToolSelectorMiddleware
 
-Uses an LLM to select relevant tools before calling the main model.](/python/langchain/agents/middleware/tool_selection/LLMToolSelectorMiddleware)[Class
+Uses an LLM to select relevant tools before calling the main model.
+
+When an agent has many tools available, this middleware filters them down
+to only the most relevant ones for the user's query. This](/python/langchain/agents/middleware/tool_selection/LLMToolSelectorMiddleware)[Class
 
 ### ToolRetryMiddleware
 
-Middleware that automatically retries failed tool calls with configurable backoff.](/python/langchain/agents/middleware/tool_retry/ToolRetryMiddleware)[Class
+Middleware that automatically retries failed tool calls with configurable backoff.
+
+Supports retrying on specific exceptions and exponential backoff.](/python/langchain/agents/middleware/tool_retry/ToolRetryMiddleware)[Class
 
 ### LLMToolEmulator
 
-Emulates specified tools using an LLM instead of executing them.](/python/langchain/agents/middleware/tool_emulator/LLMToolEmulator)[Class
+Emulates specified tools using an LLM instead of executing them.
+
+This middleware allows selective emulation of tools for testing purposes.
+
+By default (when `tools=None`), all tools are emulated. You](/python/langchain/agents/middleware/tool_emulator/LLMToolEmulator)[Class
 
 ### ContextEditingMiddleware
 
-Automatically prune tool results to manage context size.](/python/langchain/agents/middleware/context_editing/ContextEditingMiddleware)[Class
+Automatically prune tool results to manage context size.
+
+The middleware applies a sequence of edits when the total input token count exceeds
+configured thresholds.
+
+Currently the `ClearToolUsesEdit`](/python/langchain/agents/middleware/context_editing/ContextEditingMiddleware)[Class
 
 ### ShellToolMiddleware
 
-Middleware that registers a persistent shell tool for agents.](/python/langchain/agents/middleware/shell_tool/ShellToolMiddleware)[Class
+Middleware that registers a persistent shell tool for agents.
+
+The middleware exposes a single long-lived shell session. Use the execution policy
+to match your deployment's security posture:
+
+* `HostE](/python/langchain/agents/middleware/shell_tool/ShellToolMiddleware)[Class
 
 ### FilesystemFileSearchMiddleware
 
-Provides Glob and Grep search over filesystem files.](/python/langchain/agents/middleware/file_search/FilesystemFileSearchMiddleware)[Class
+Provides Glob and Grep search over filesystem files.
+
+This middleware adds two tools that search through local filesystem:
+
+* Glob: Fast file pattern matching by file path
+* Grep: Fast content search](/python/langchain/agents/middleware/file_search/FilesystemFileSearchMiddleware)[Class
 
 ### AgentMiddleware
 
-Base middleware class for an agent.](/python/langchain/agents/middleware/types/AgentMiddleware)[Class
+Base middleware class for an agent.
+
+Subclass this and implement any of the defined methods to customize agent behavior
+between steps in the main agent loop.](/python/langchain/agents/middleware/types/AgentMiddleware)[Class
 
 ### AgentState
 
@@ -133,7 +178,10 @@ Model request information for the agent.](/python/langchain/agents/middleware/ty
 
 ### ModelResponse
 
-Response from model execution including messages and optional structured output.](/python/langchain/agents/middleware/types/ModelResponse)[Class
+Response from model execution including messages and optional structured output.
+
+The result will usually contain a single `AIMessage`, but may include an additional
+`ToolMessage` if the model used a](/python/langchain/agents/middleware/types/ModelResponse)[Class
 
 ### ClearToolUsesEdit
 
@@ -141,7 +189,10 @@ Configuration for clearing tool outputs when token limits are exceeded.](/python
 
 ### InterruptOnConfig
 
-Configuration for an action requiring human in the loop.](/python/langchain/agents/middleware/human_in_the_loop/InterruptOnConfig)
+Configuration for an action requiring human in the loop.
+
+This is the configuration format used in the `HumanInTheLoopMiddleware.__init__`
+method.](/python/langchain/agents/middleware/human_in_the_loop/InterruptOnConfig)
 
 ## Functions
 
@@ -161,23 +212,39 @@ Decorator used to dynamically create a middleware with the `after_model` hook.](
 
 ### after\_agent
 
-Decorator used to dynamically create a middleware with the `after_agent` hook.](/python/langchain/agents/middleware/types/after_agent)[Function
+Decorator used to dynamically create a middleware with the `after_agent` hook.
+
+Async version is `aafter_agent`.](/python/langchain/agents/middleware/types/after_agent)[Function
 
 ### wrap\_model\_call
 
-Create middleware with `wrap_model_call` hook from a function.](/python/langchain/agents/middleware/types/wrap_model_call)[Function
+Create middleware with `wrap_model_call` hook from a function.
+
+Converts a function with handler callback into middleware that can intercept model
+calls, implement retry logic, handle errors, and rewr](/python/langchain/agents/middleware/types/wrap_model_call)[Function
 
 ### wrap\_tool\_call
 
-Create middleware with `wrap_tool_call` hook from a function.](/python/langchain/agents/middleware/types/wrap_tool_call)[Function
+Create middleware with `wrap_tool_call` hook from a function.
+
+Async version is `awrap_tool_call`.
+
+Converts a function with handler callback into middleware that can intercept
+tool calls, implement r](/python/langchain/agents/middleware/types/wrap_tool_call)[Function
 
 ### dynamic\_prompt
 
-Decorator used to dynamically generate system prompts for the model.](/python/langchain/agents/middleware/types/dynamic_prompt)[Function
+Decorator used to dynamically generate system prompts for the model.
+
+This is a convenience decorator that creates middleware using `wrap_model_call`
+specifically for dynamic prompt generation. The de](/python/langchain/agents/middleware/types/dynamic_prompt)[Function
 
 ### hook\_config
 
-Decorator to configure hook behavior in middleware methods.](/python/langchain/agents/middleware/types/hook_config)
+Decorator to configure hook behavior in middleware methods.
+
+Use this decorator on `before_model` or `after_model` methods in middleware classes
+to configure their behavior. Currently supports specify](/python/langchain/agents/middleware/types/hook_config)
 
 ## Types
 
@@ -185,7 +252,13 @@ Decorator to configure hook behavior in middleware methods.](/python/langchain/a
 
 ### ContextSize
 
-Union type for context size specifications.](/python/langchain/agents/middleware/summarization/ContextSize)
+Union type for context size specifications.
+
+Can be either:
+
+* `ContextFraction`: A
+  fraction of the model's maximum input tokens.
+* [`C](/python/langchain/agents/middleware/summarization/ContextSize)
 
 ## Constants
 

@@ -14,6 +14,8 @@
     - Zero-Copy Connectors
 
       - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
+      - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
+      - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
@@ -24,18 +26,18 @@
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/migrations "Migrations")
+13. [Migrations](/en/migrations/snowflake-aim "Migrations")
 15. [Queries](/en/guides-overview-queries "Queries")
-16. [Listings](/en/collaboration/collaboration-listings-about "Listings")
-17. [Collaboration](/en/guides-overview-sharing "Collaboration")
-19. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
+16. [Collaboration](/en/guides-overview-sharing "Collaboration")
+18. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
     * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
-    * [Cortex Code](/en/user-guide/cortex-code/cortex-code "Cortex Code")
+    * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
     * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
+    * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
     * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
     * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
@@ -43,137 +45,144 @@
     * [Cortex AI Guardrails](/en/user-guide/snowflake-cortex/cortex-ai-guardrails "Cortex AI Guardrails")
     * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
 
+      + [Trace applications with TruLens](/en/user-guide/snowflake-cortex/ai-observability/trace-applications-trulens "Trace applications with TruLens")
+      + [Evaluate applications with TruLens](/en/user-guide/snowflake-cortex/ai-observability/evaluate-applications-trulens "Evaluate applications with TruLens")
       + [Tutorial](/en/user-guide/snowflake-cortex/ai-observability/tutorial "Tutorial")
-      + [Evaluate AI applications](/en/user-guide/snowflake-cortex/ai-observability/evaluate-ai-applications "Evaluate AI applications")
       + [Reference](/en/user-guide/snowflake-cortex/ai-observability/reference "Reference")
     * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
     * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
     * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
-21. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
-23. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
-25. [Security](/en/guides-overview-secure "Security")
-27. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-28. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-30. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-31. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
+20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
+22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
+24. [Security](/en/guides-overview-secure "Security")
+26. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
+27. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
+29. [Performance optimization](/en/guides-overview-performance "Performance optimization")
+30. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
 
 [Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)AI Observability
 
-# AI Observability in Snowflake Cortex[¶](#ai-observability-in-snowflake-cortex)
+# AI Observability with Snowflake Cortex[¶](#ai-observability-with-snowflake-cortex)
 
-Use AI Observability in Snowflake Cortex to evaluate and trace your generative AI applications.
-With AI Observability, you can make your applications more trustworthy and transparent.
-Use it to measure the performance of your AI applications by running systematic evaluations.
-You can use the information from the evaluations to iterate on your application configurations and optimize performance.
-You can also use it to log application traces for debugging purposes.
+## What is AI observability?[¶](#what-is-ai-observability)
 
-Use AI Observability to benchmark performance, thus making your applications trustworthy and providing greater confidence for production deployments.
+AI observability is a collection of features inside Cortex products that help you answer questions about AI workloads in your account, such as what happened in a specific production request, how well the feature performs on test data, what the cost was for a request, and whether Guardrails blocked a request. You might review conversation traces in Snowsight, run batch evaluations on a dataset, or query Account Usage views for credits, tokens, and request metadata such as models and request IDs.
 
-AI Observability has the following features:
+Not every Cortex feature supports the same observability surfaces. Native features such as Cortex Agents expose monitoring and evaluations in Snowsight. Other features expose usage/billing information through Account Usage only. Custom AI applications you host through Snowflake products, or even outside of Snowflake, can stream telemetry information into your account with TruLens.
 
-* **Evaluations:** Use AI Observability to systematically evaluate the performance of your generative AI applications and agents using the LLM-as-a-judge technique.
-  You can use metrics, such as accuracy, latency, usage, and cost, to quickly iterate on your application configurations and optimize performance.
-* **Comparison:** Compare multiple evaluations side by side and assess the quality and accuracy of responses. You can analyze the responses across different LLMs, prompts, and inference configurations to identify the best configuration for production deployments.
-* **Tracing:** Trace every step of application executions across input prompts, retrieved context, tool use, and LLM inference. Use it to debug individual records and refine the app for accuracy, latency, and cost.
+## Where to start[¶](#where-to-start)
 
-AI Observability can be used to evaluate a variety of task types, such as retrieval-augmented generation (RAG) and summarization. For example, the context relevance score can help you detect the quality of the search results retrieval corresponding to a user query. You can use the answer relevance and groundedness scores to detect the truthfulness and relevance of the final response based on the retrieved context.
+Use the following paths to find the right documentation:
 
-For summarization, you can measure the factual correctness and comprehensiveness of the LLM-generated summaries based on original input and avoid prompts and LLMs that have a higher frequency of hallucinations in your generative AI applications.
+* **Cortex feature in Snowflake**: See [Observability at a glance](#observability-at-a-glance) and [Native Cortex features](#native-cortex-features) below.
+* **Custom AI applications you host**: See [Custom AI application observability with TruLens](#custom-applications-outside-snowflake).
+* **Guardrail scans and blocked requests**: [Cortex AI Guardrails](/user-guide/snowflake-cortex/cortex-ai-guardrails) protect **CoCo**, **Snowflake CoWork**, and **Cortex Agents**. See [Cortex AI Guardrails](#label-cortex-ai-guardrails-observability) below and [Monitor guardrail activity](/user-guide/snowflake-cortex/cortex-ai-guardrails#label-cortex-ai-guardrails-monitor).
+* **Spend reporting, budgets, and alerts**: See [Cost and governance](#cost-and-governance) and [AI cost management and governance](/user-guide/snowflake-cortex/governance-and-availability/ai-cost-management-and-governance).
 
-To get started, learn about the [Key concepts](#label-ai-observability-key-concepts), and then take a quick walkthrough with the [AI Observability Tutorial](/user-guide/snowflake-cortex/ai-observability/tutorial). You can then use the information in [Evaluate AI applications](/user-guide/snowflake-cortex/ai-observability/evaluate-ai-applications) for an in-depth walkthrough.
+For Cortex Agent terms such as thread, turn, trace, and span, see [Terminology](/user-guide/snowflake-cortex/cortex-agents-monitor#label-cortex-agent-observability-terminology).
 
-To review a specific concept, see the [Snowflake AI Observability Reference](/user-guide/snowflake-cortex/ai-observability/reference). For querying `AI_OBSERVABILITY_EVENTS` with SQL for a Cortex Agent (pass `CORTEX AGENT` as `agent_type`) or an External Agent application (pass `EXTERNAL AGENT` as `agent_type`), see [Monitor Cortex Agent requests](/user-guide/snowflake-cortex/cortex-agents-monitor), [GET\_AI\_OBSERVABILITY\_EVENTS (SNOWFLAKE.LOCAL)](/sql-reference/functions/get_ai_observability_events-snowflake-local), and [External Agent commands](/sql-reference/commands-external-agent).
+## Observability at a glance[¶](#observability-at-a-glance)
 
-Visibility of **unredacted** raw fields in monitoring and in observability user-defined table function results is covered by the **READ UNREDACTED AI OBSERVABILITY EVENTS TABLE** account privilege; it does not apply to **Cortex Agent evaluation** runs or the **External AgentEvaluations** experience. For more details, please see [Account Privilege READ UNREDACTED AI OBSERVABILITY EVENTS TABLE](/release-notes/bcr-bundles/un-bundled/bcr-read-unredacted-ai-observability-events) and [Monitor Cortex Agent requests](/user-guide/snowflake-cortex/cortex-agents-monitor).
+The following table summarizes what you can observe for each native Cortex feature and where to read more:
 
-## Access control and prerequisites[¶](#access-control-and-prerequisites)
+| Feature | What you can observe | Documentation |
+| --- | --- | --- |
+| **Snowflake CoWork** and **Cortex Agents** | Live agent threads and traces; batch evaluations on a dataset | [Monitor Cortex Agent requests](/user-guide/snowflake-cortex/cortex-agents-monitor), [Cortex Agent evaluations](/user-guide/snowflake-cortex/cortex-agents-evaluations) |
+| **CoCo** | Prompt traces in the event table; credits, tokens, models, and request IDs in Account Usage | [Observability](/user-guide/cortex-code/observability), [Daily credit usage limits for CoCo](/user-guide/cortex-code/credit-usage-limit) |
+| **Cortex Analyst** | Request and response logs; batch evaluations | [Cortex Analyst administrator monitoring](/user-guide/snowflake-cortex/cortex-analyst/admin-observability), [Cortex Analyst evaluations](/user-guide/snowflake-cortex/cortex-analyst-evaluations) |
+| **Cortex Search** | Request logs when logging is enabled; query with `GET_AI_OBSERVABILITY_EVENTS` and `CORTEX SEARCH SERVICE` | [Monitor Cortex Search requests](/user-guide/snowflake-cortex/cortex-search/cortex-search-monitor) |
+| **Built-in Cortex AI Functions** | Credits, tokens, function name, and model per call in Account Usage | [Managing Cortex AI Function costs with Account Usage](/user-guide/snowflake-cortex/ai-func-cost-management) |
+| **Cortex AI Function Studio** | Author and evaluate custom AI functions; production usage in Account Usage | [Cortex AI Function Evaluation and Optimization](/user-guide/snowflake-cortex/ai-function-studio) |
+| **Cortex REST API** | Tokens, credits, model, request ID, and inference region per request in Account Usage | [Monitor usage](/user-guide/snowflake-cortex/cortex-rest-api#label-cortex-rest-api-monitor-usage) |
+| **Cortex AI Guardrails** | Guardrail scan activity, tokens, credits, and request metadata in Account Usage | [Monitor guardrail activity](/user-guide/snowflake-cortex/cortex-ai-guardrails#label-cortex-ai-guardrails-monitor) |
 
-Before you start using AI Observability:
+Expand
 
-1. To create and execute runs, your role must have the following roles or privileges granted. For more information, see [Access control and storage](/user-guide/snowflake-cortex/ai-observability/reference#label-ai-observability-required-privileges):
+Show lessSee more
 
-   * CORTEX\_USER database role
-   * CREATE EXTERNAL AGENT privilege on the schema
-   * CREATE TASK privilege on the schema
-   * EXECUTE TASK global privilege
-   * USE AI FUNCTIONS account-level privilege (or the per-function `USE AI FUNCTION AI_COMPLETE` privilege). AI Observability computes its evaluation metrics with the [AI\_COMPLETE](/sql-reference/functions/ai_complete) function using the LLM-as-a-judge technique, so the role that runs the computation must be able to call AI\_COMPLETE. This privilege is granted to the PUBLIC role by default. If your account has revoked it from PUBLIC, grant it explicitly. For more information, see [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges).
-2. Install the following Trulens Python packages in your Python project:
+## Native Cortex features[¶](#native-cortex-features)
 
-   * `trulens-core`
-   * `trulens-connectors-snowflake`
-   * `trulens-providers-cortex`
+The sections below describe observability for each native feature. For step-by-step procedures, follow the links in each section.
 
-   The version of the package that you’re using in your Python project should be version 2.1.2 or later.
+### Snowflake CoWork and Cortex Agents[¶](#snowflake-cowork-and-cortex-agents)
 
-TruLens is the platform that Snowflake uses to track your applications. For more information, see the [TruLens documentation](https://trulens.org/getting_started).
+Cortex Agents deployed through the Agent API or Snowflake CoWork log conversation threads, turns, and execution spans automatically into `SNOWFLAKE.LOCAL.AI_OBSERVABILITY_EVENTS`. Use the **Observability** tab or [Monitor Cortex Agent requests](/user-guide/snowflake-cortex/cortex-agents-monitor) to debug production conversations. Use the **Evaluations** tab or [Cortex Agent evaluations](/user-guide/snowflake-cortex/cortex-agents-evaluations) to score an agent on a dataset before or after deployment.
 
-## Key concepts[¶](#key-concepts)
+Credit usage appears in [CORTEX\_AGENT\_USAGE\_HISTORY](/sql-reference/account-usage/cortex_agent_usage_history) and [SNOWFLAKE\_INTELLIGENCE\_USAGE\_HISTORY](/sql-reference/account-usage/snowflake_intelligence_usage_history_view). Those views include request IDs, user and agent identifiers, token counts with per-model breakdowns, and a `METADATA` column for interface and role context. Resource and shared budgets are described in [Resource budgets for Cortex Agents](/user-guide/snowflake-cortex/cortex-agents-resource-budgets) and [AI cost management and governance](/user-guide/snowflake-cortex/governance-and-availability/ai-cost-management-and-governance).
 
-### Applications[¶](#applications)
+### CoCo[¶](#coco)
 
-An application is an end-to-end generative AI application that is designed using multiple components such as LLMs, tools (such as search retrievers or APIs), and additional custom logic. For example, an application can contain a RAG pipeline with retrievers, re-rankers, and LLMs chained together. You can enable AI observability for applications that can run in any environment (such as Snowflake, cloud, or on-premises).
+CoCo writes span records to `AI_OBSERVABILITY_EVENTS` for each prompt. All three CoCo surfaces (Snowsight, Desktop, and the CLI) are traced the same way, emit the same spans, and use the same access model. For what’s captured and how to query it, see [Observability](/user-guide/cortex-code/observability).
 
-### External Agent[¶](#external-agent)
+Credits, tokens, models, and request IDs for every surface are recorded in [SNOWFLAKE\_COCO\_USAGE\_HISTORY](/sql-reference/account-usage/snowflake_coco_usage_history), whose `INTERFACE` column identifies the originating surface. Per-surface views are also available:
 
-Applications are represented in Snowflake as External Agent objects. An External Agent object is used to store application and evaluation metadata (such as the application name, version name, or run name). It does not store the application code, application definition, execution traces, or evaluation results. While the application can be hosted in any environment (such as Snowflake, cloud, or on-premises), the execution traces and evaluation results are stored in an event table in your Snowflake account. For more information, see [Observability data](/user-guide/snowflake-cortex/ai-observability/reference#label-ai-observability-data).
+* **Snowsight**: [Observability](/user-guide/cortex-code/cortex-code-snowsight/observability) and [CORTEX\_CODE\_SNOWSIGHT\_USAGE\_HISTORY](/sql-reference/account-usage/cortex_code_snowsight_usage_history)
+* **Desktop**: [Audit logging and observability](/user-guide/cortex-code/cortex-code-desktop/security#audit-logging-and-observability) and [CORTEX\_CODE\_DESKTOP\_USAGE\_HISTORY](/sql-reference/account-usage/cortex_code_desktop_usage_history)
+* **CLI**: [CoCo CLI](/user-guide/cortex-code/cortex-code-cli) and [CORTEX\_CODE\_CLI\_USAGE\_HISTORY](/sql-reference/account-usage/cortex_code_cli_usage_history)
 
-In addition to storing application and evaluation metadata, the External Agent object is also used to govern access to the traces and evaluation results for the application.
-For more information, see [Access control and storage](/user-guide/snowflake-cortex/ai-observability/reference#label-ai-observability-required-privileges).
+See also [Cost controls for CoCo](/user-guide/cortex-code/cost-controls) and [daily credit usage limits](/user-guide/cortex-code/credit-usage-limit).
 
-The TruLens SDK automatically creates External Agent objects when you register an application (for example, using `TruApp()`,
-`TruChain`, `TruGraph`, or `TruLlama`). Running an evaluation can also create an External Agent if one does not already exist
-for the specified application name.
+### Cortex Analyst[¶](#cortex-analyst)
 
-You can also manage external agents using SQL commands. For more information, see [External Agent commands](/sql-reference/commands-external-agent).
+Cortex Analyst stores **direct** Analyst request and response telemetry in `SNOWFLAKE.LOCAL.CORTEX_ANALYST_REQUESTS_RAW`, not in the shared AI observability event table. When a **Cortex Agent** invokes Analyst as a tool (including agentic Analyst flows), those steps are recorded in `AI_OBSERVABILITY_EVENTS` as part of the agent trace. Administrators can query direct Analyst logs with Analyst-specific SQL or review usage in Account Usage. Batch evaluations use a separate workflow documented in [Cortex Analyst evaluations](/user-guide/snowflake-cortex/cortex-analyst-evaluations).
 
-Important
+See [Administrator monitoring](/user-guide/snowflake-cortex/cortex-analyst/admin-observability) for log access and [CORTEX\_ANALYST\_USAGE\_HISTORY](/sql-reference/account-usage/cortex_analyst_usage_history) for billing data, including message counts and request timing metadata.
 
-External Agent objects share a namespace with [model](/sql-reference/sql/create-model) objects. You cannot create an
-external agent with the same name as an existing model in the same schema, and vice versa. If a name collision occurs
-(for example, when an evaluation and a model share the same name), you must rename or drop the conflicting object before
-proceeding.
+### Cortex Search[¶](#cortex-search)
 
-### Versions[¶](#versions)
+When [`REQUEST_LOGGING`](/user-guide/snowflake-cortex/cortex-search/cortex-search-monitor#label-cortex-search-request-logging) is enabled on a service, Cortex Search writes one event row per request to `AI_OBSERVABILITY_EVENTS`. Query those logs with [GET\_AI\_OBSERVABILITY\_EVENTS](/sql-reference/functions/get_ai_observability_events-snowflake-local) and `agent_type` `CORTEX SEARCH SERVICE` (requires `MONITOR` on the service), or follow the steps in [Monitor Cortex Search requests](/user-guide/snowflake-cortex/cortex-search/cortex-search-monitor). You can also monitor serving usage and credits in Account Usage and configure resource budgets.
 
-Applications can have multiple versions. Each version represents a different implementation. For example, these versions can represent different retrievers, prompts, LLMs or inference configurations.
+See [CORTEX\_SEARCH\_DAILY\_USAGE\_HISTORY](/sql-reference/account-usage/cortex_search_daily_usage_history).
 
-### Dataset[¶](#dataset)
+### Built-in Cortex AI Functions[¶](#built-in-cortex-ai-functions)
 
-A dataset represents a set of inputs. You can configure it to also represent a set of expected outputs (the ground truth) to test the application. Using the dataset, you can invoke the application to do the following tasks:
+Built-in functions such as `AI_COMPLETE` and `AI_CLASSIFY` do not write traces to the observability event table. Monitor credit consumption with [Managing Cortex AI Function costs with Account Usage](/user-guide/snowflake-cortex/ai-func-cost-management) and [CORTEX\_AI\_FUNCTIONS\_USAGE\_HISTORY](/sql-reference/account-usage/cortex_ai_functions_usage_history), which records function name, model, warehouse, and token counts per call. You can attach alerts and shared resource budgets as described in that topic.
 
-* Generate the output.
-* Capture the traces.
-* Compute evaluation metrics.
+### Custom AI Functions with Function Studio[¶](#custom-ai-functions-with-function-studio)
 
-You can use a dataset containing both the inputs and the generated outputs to compute the evaluation metrics without invoking the application. For a list of fields supported in the dataset, see [Dataset and attributes](/user-guide/snowflake-cortex/ai-observability/reference#label-ai-observability-dataset-and-attributes).
+[Cortex AI Function Studio](/user-guide/snowflake-cortex/ai-function-studio) helps you create, [evaluate](/user-guide/snowflake-cortex/ai-function-studio#label-cortex-ai-function-studio-evaluate), and optimize custom AI functions in Snowsight or CoCo. Production invocations of registered functions appear in `CORTEX_AI_FUNCTIONS_USAGE_HISTORY` with `CUSTOM_AI_FUNCTION_NAME` in the metrics column.
 
-### Runs[¶](#runs)
+### Cortex REST API[¶](#cortex-rest-api)
 
-A run is an evaluation job. It uses the dataset and the application version that you’ve specified to compute evaluation metrics.
+REST API inference does not write to the observability event table. Monitor token counts, credits, model name, request ID, and inference region with [CORTEX\_REST\_API\_USAGE\_HISTORY](/sql-reference/account-usage/cortex_rest_api_usage_history).
 
-A run has an invocation stage and a computation stage. The invocation stage triggers the application to generate the output and corresponding traces. The computation stage computes the evaluation metrics specified for the run. Multiple computations can be performed to add new metrics to an existing run. For the list of statuses associated with the execution of a run, see [Runs](/user-guide/snowflake-cortex/ai-observability/reference#label-ai-observability-runs).
+See [Monitor usage](/user-guide/snowflake-cortex/cortex-rest-api#label-cortex-rest-api-monitor-usage).
 
-### Metrics[¶](#metrics)
+### Cortex AI Guardrails[¶](#cortex-ai-guardrails)
 
-Evaluation metrics are scores that you use to assess generative AI application performance based on your own criteria. These metrics use LLMs to grade outputs and provide detailed scoring information. For a comprehensive list of metrics and their definitions, see [Evaluation metrics](/user-guide/snowflake-cortex/ai-observability/reference#label-ai-observability-evaluation-metrics).
+[Cortex AI Guardrails](/user-guide/snowflake-cortex/cortex-ai-guardrails) run at request time on [CoCo](/user-guide/cortex-code/cortex-code), [Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork), and [Cortex Agents](/user-guide/snowflake-cortex/cortex-agents). They do not apply to the Cortex REST API or TruLens External Agents.
 
-### Traces[¶](#traces)
+Built-in functions such as `AI_COMPLETE` also support a separate **`guardrails`** request parameter ([Cortex Guard](/sql-reference/functions/ai_complete-single-string#label-cortex-llm-complete-cortex-guard)) that filters potentially harmful model output. That per-request option is distinct from account-level Cortex AI Guardrails configured through `AI_SETTINGS`.
 
-Traces are comprehensive records that capture the inputs, outputs, and intermediate steps of the interactions with an LLM application.
-Traces provide a detailed view of the application’s execution. Use traces to analyze and understand the model’s behavior at each stage.
-You can compare the traces of different application versions to identify improvements, debug issues, and verify intended performance. For information about accessing traces associated with each record, see [Evaluate AI applications](/user-guide/snowflake-cortex/ai-observability/evaluate-ai-applications).
+Guardrail scans are recorded in [CORTEX\_AI\_GUARDRAILS\_USAGE\_HISTORY](/sql-reference/account-usage/cortex_ai_guardrails_usage_history), including scan activity, tokens, credits, and request metadata. Flagged scans also appear in Cortex Agent monitoring traces and in CoCo conversation logs.
 
-## Pricing[¶](#pricing)
+See [Monitor guardrail activity](/user-guide/snowflake-cortex/cortex-ai-guardrails#label-cortex-ai-guardrails-monitor).
 
-AI Observability uses LLM judges to compute the evaluation metrics. For server-side evaluations, LLMs on Cortex AI are used as LLM judges. The LLM judges are invoked via the [AI\_COMPLETE](/sql-reference/functions/ai_complete) function to perform evaluations.
-You incur charges for the Cortex Complete function calls. The LLM used to perform the evaluations determines how much you’re charged.
-Additionally, you’re charged the following:
+## Custom AI application observability with TruLens[¶](#custom-ai-application-observability-with-trulens)
 
-* Warehouse charges for tasks used to manage evaluation runs
-* Warehouse charges for queries used to compute evaluation metrics
-* Storage charges for the evaluation results
-* Warehouse charges to retrieve the evaluation results to be viewed in Snowsight
+Use **TruLens** when you build a **custom AI application** whose observability you own end to end: for example, a standalone agent or workflow, a RAG pipeline that combines Cortex Search with `AI_COMPLETE`, a graph of Cortex Agents, or other compositions that are not served only through native Snowflake monitoring for a single Cortex Agent, Analyst, or Search deployment. You can host the app on Snowflake compute or on other infrastructure. Typical examples include agent or RAG apps on Snowpark Container Services, workloads on another cloud or on-premises, custom retrieval pipelines, or batch evaluations you run from Python instead of Snowsight.
+
+Snowflake registers each TruLens application as an [External Agent](/sql-reference/commands-external-agent) object. That object stores metadata only. Traces and scores live in `SNOWFLAKE.LOCAL.AI_OBSERVABILITY_EVENTS`.
+
+* [Trace applications with TruLens](/user-guide/snowflake-cortex/ai-observability/trace-applications-trulens)
+* [Evaluate applications with TruLens](/user-guide/snowflake-cortex/ai-observability/evaluate-applications-trulens)
+* [Snowflake AI Observability Reference](/user-guide/snowflake-cortex/ai-observability/reference)
+* [AI Observability tutorial](/user-guide/snowflake-cortex/ai-observability/tutorial)
+
+View External Agent traces and evaluation runs in Snowsight under **AI & ML** » **Evaluations**.
+
+## Cost and governance[¶](#cost-and-governance)
+
+Credits, tokens, and request metadata (such as model name, request ID, and user ID) for most AI features are recorded in [Account Usage](/sql-reference/account-usage) views. Traces for agents, CoCo, Search, and TruLens are stored separately in `AI_OBSERVABILITY_EVENTS`. Some workloads, such as CoCo, support joining trace data to usage rows on `REQUEST_ID` to attribute cost to individual prompts.
+
+Base spend reporting on the usage views rather than on `AI_OBSERVABILITY_EVENTS`. Trace delivery is best effort, so totals computed from the event table can under-report consumption. For the authoritative sources, see [AI\_OBSERVABILITY\_EVENTS](/sql-reference/local/ai_observability_events#label-ai-observability-events-billing).
+
+For usage views, budget types, alerts, and showback patterns by feature, see [AI cost management and governance](/user-guide/snowflake-cortex/governance-and-availability/ai-cost-management-and-governance). For list prices and consumption units, see [Cortex pricing](/user-guide/snowflake-cortex/pricing).
+
+## Shared trace storage[¶](#shared-trace-storage)
+
+Several features write traces to `SNOWFLAKE.LOCAL.AI_OBSERVABILITY_EVENTS`. Direct Cortex Analyst requests use a separate LOCAL table instead. For what the event table stores, which features write to it, application roles, redaction behavior, and the four `GET_AI_*` table functions (including `GET_AI_OBSERVABILITY_EVENTS` with `CORTEX AGENT`, `EXTERNAL AGENT`, or `CORTEX SEARCH SERVICE`), see [AI\_OBSERVABILITY\_EVENTS table](/sql-reference/local/ai_observability_events) in the LOCAL schema reference.
 
 Was this page helpful?
 
@@ -195,6 +204,10 @@ YesNo
 
 On this page
 
-1. [Access control and prerequisites](#access-control-and-prerequisites)
-2. [Key concepts](#key-concepts)
-3. [Pricing](#pricing)
+1. [What is AI observability?](#what-is-ai-observability)
+2. [Where to start](#where-to-start)
+3. [Observability at a glance](#observability-at-a-glance)
+4. [Native Cortex features](#native-cortex-features)
+5. [Custom AI application observability with TruLens](#custom-ai-application-observability-with-trulens)
+6. [Cost and governance](#cost-and-governance)
+7. [Shared trace storage](#shared-trace-storage)

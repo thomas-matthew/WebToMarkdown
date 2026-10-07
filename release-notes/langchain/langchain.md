@@ -3,6 +3,78 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.4.3 — 2026-09-28
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.3)
+
+- feat(langchain): support Bedrock Mantle chat models in `init_chat_model` (#40837)
+
+## 1.4.2 — 2026-09-18
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.2)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.4.1 — 2026-09-16
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.1)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.4.0 — 2026-09-03
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.0)
+
+- feat(langchain): `langchain.mcp` namespace, `MCPAdapter` (#39939)
+
+## 1.3.18 — 2026-08-27
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.18)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.3.17 — 2026-08-25
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.17)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.3.16 — 2026-08-20
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.16)
+
+- feat(core): add standard model exception types (#39538)
+- feat(langchain): support custom token_counter in ContextEditingMiddleware (#39754)
+
+## 1.3.15 — 2026-08-11
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.15)
+
+- feat(langchain): expose `trace_policy` on `AgentMiddleware` (#38910)
+- feat(langchain): add `state_schema` param to `wrap_tool_call` (#39292)
+- feat(langchain): filter internal middleware model calls from `messages` projection (#39252)
+- feat(langchain): add LangSmith provider to `init_chat_model` (#39224)
+- feat(core): add `reasoning_effort` as a standard chat model parameter (#38887)
+
+## 1.3.14 — 2026-07-16
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.14)
+
+- feat(langchain): `ToolErrorMiddleware` (#38781)
+
+## 1.3.13 — 2026-07-10
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.13)
+
+- feat(langchain): add `meta` extra and support langchain-meta in init_chat_model (#38786)
+- feat(openai): support explicit prompt caching (#38762)
+
+## 1.3.12 — 2026-07-08
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.12)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 1.3.11 — 2026-06-22
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.3.11)

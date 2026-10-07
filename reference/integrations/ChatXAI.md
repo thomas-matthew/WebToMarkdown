@@ -1,6 +1,6 @@
 Python[langchain-xai](/python/langchain-xai)[chat\_models](/python/langchain-xai/chat_models)ChatXAI
 
-Classv1.2.2 (latest)●Since v0.1
+Classv1.3.0 (latest)●Since v0.1
 
 # ChatXAI
 
@@ -486,7 +486,7 @@ with\_structured\_output
 
 Model wrapper that returns outputs formatted to match the given schema.](/python/langchain-xai/chat_models/ChatXAI/with_structured_output)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/partners/xai/langchain_xai/chat_models.py#L61)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/789c6abdc23dc32d7aa22c9648fc7e2d7a3d6c36/libs/partners/xai/langchain_xai/chat_models.py#L61)
 
 Version History
 

@@ -14,6 +14,8 @@
     - Zero-Copy Connectors
 
       - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
+      - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
+      - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
@@ -24,40 +26,46 @@
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/migrations "Migrations")
+13. [Migrations](/en/migrations/snowflake-aim "Migrations")
 15. [Queries](/en/guides-overview-queries "Queries")
-16. [Listings](/en/collaboration/collaboration-listings-about "Listings")
-17. [Collaboration](/en/guides-overview-sharing "Collaboration")
-19. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
+16. [Collaboration](/en/guides-overview-sharing "Collaboration")
+18. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
     * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
-    * [Cortex Code](/en/user-guide/cortex-code/cortex-code "Cortex Code")
+    * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
 
+      + [Get started](/en/user-guide/snowflake-cortex/cortex-agents-get-started "Get started")
       + [Create and manage agents](/en/user-guide/snowflake-cortex/cortex-agents-manage "Create and manage agents")
       + [Access control and authentication](/en/user-guide/snowflake-cortex/cortex-agents-setup "Access control and authentication")
-      + [Use threads with Agents](/en/user-guide/snowflake-cortex/cortex-agents-threads "Use threads with Agents")
       + REST API
 
         + [Agent Object](/en/user-guide/snowflake-cortex/cortex-agents-rest-api "Agent Object")
         + [Agent Run](/en/user-guide/snowflake-cortex/cortex-agents-run "Agent Run")
         + [Threads](/en/user-guide/snowflake-cortex/cortex-agents-threads-rest-api "Threads")
         + [Feedback](/en/user-guide/snowflake-cortex/cortex-agents-feedback-rest-api "Feedback")
+        + [Compact](/en/user-guide/snowflake-cortex/cortex-agents-compact "Compact")
+      + [Use threads with Agents](/en/user-guide/snowflake-cortex/cortex-agents-threads "Use threads with Agents")
       + [Microsoft Teams integration](/en/user-guide/snowflake-cortex/cortex-agents-teams-integration "Microsoft Teams integration")
-      + [Evaluations](/en/user-guide/snowflake-cortex/cortex-agents-evaluations "Evaluations")
       + [Monitoring](/en/user-guide/snowflake-cortex/cortex-agents-monitor "Monitoring")
-      + [Share Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents-sharing "Share Cortex Agents")
+      + [Evaluations](/en/user-guide/snowflake-cortex/cortex-agents-evaluations "Evaluations")
+      + [Share Cortex agents](/en/user-guide/snowflake-cortex/cortex-agents-sharing "Share Cortex agents")
+      + [Temporary agents](/en/user-guide/snowflake-cortex/cortex-agents-temporary "Temporary agents")
+      + [Secure agents](/en/user-guide/snowflake-cortex/cortex-agents-secure "Secure agents")
       + [Tutorials](/en/user-guide/snowflake-cortex/cortex-agents-tutorials "Tutorials")
       + [Resource budgets](/en/user-guide/snowflake-cortex/cortex-agents-resource-budgets "Resource budgets")
       + [Shared resource budgets](/en/user-guide/snowflake-cortex/cortex-agents-shared-budgets "Shared resource budgets")
       + [Agent skills](/en/user-guide/snowflake-cortex/cortex-agents-skills "Agent skills")
       + [Code execution tool](/en/user-guide/snowflake-cortex/cortex-agents-code-execution-tool "Code execution tool")
+      + [Agent toolsets](/en/user-guide/snowflake-cortex/cortex-agents-toolsets "Agent toolsets")
+      + [Coding Agent](/en/user-guide/snowflake-cortex/cortex-agents-coding-agent "Coding Agent")
       + [MCP Connectors](/en/user-guide/snowflake-cortex/cortex-agents-mcp-connectors "MCP Connectors")
       + [Agent versioning](/en/user-guide/snowflake-cortex/cortex-agents-versioning "Agent versioning")
       + [Multi-tenancy](/en/user-guide/snowflake-cortex/cortex-agents-multi-tenancy "Multi-tenancy")
     * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
+    * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
     * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
     * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
@@ -68,13 +76,13 @@
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
     * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
     * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
-21. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
-23. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
-25. [Security](/en/guides-overview-secure "Security")
-27. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-28. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-30. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-31. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
+20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
+22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
+24. [Security](/en/guides-overview-secure "Security")
+26. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
+27. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
+29. [Performance optimization](/en/guides-overview-performance "Performance optimization")
+30. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
 
 [Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)[Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents)REST APIAgent Object
 
@@ -135,7 +143,7 @@ Show lessSee more
 | `profile` | [AgentProfile](#label-snowflake-agent-object-agentprofile) | Agent profile information (display name, avatar, color, etc.). |
 | `models` | [ModelConfig](#label-snowflake-agent-object-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
 | `instructions` | [AgentInstructions](#label-snowflake-agent-object-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
-| `orchestration` | [OrchestrationConfig](#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
+| `orchestration` | [OrchestrationConfig](#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (for example, seconds, tokens) and capabilities such as `analytical_search`. |
 | `tools` | array of [Tool](#label-snowflake-agent-object-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
 | `tool_resources` | map of [ToolResource](#label-snowflake-agent-object-toolresource) | Configuration for each tool referenced in the tools array. Keys must match the name of the respective tool. |
 
@@ -271,7 +279,7 @@ Copy codeExpand code block
 
 ```
 {
-  "agent_spec": "{\"models\":{\"orchestration\":\"llama3.1-70B\"},\"experimental\":{\"foo\":\"bar\",\"nested\":{\"key\":\"value\"}},\"orchestration\":{\"budget\":{\"seconds\":30,\"tokens\":16000}},\"instructions\":{\"response\":\"You will respond in a friendly but concise manner\",\"orchestration\":\"For any revenue question use Analyst; for policy use Search\",\"sample_questions\":[{\"question\":\"question 1\"},{\"question\":\"question 2\"},{\"question\":\"question 3\"}]},\"tools\":[{\"tool_spec\":{\"type\":\"cortex_analyst_text_to_sql\",\"name\":\"Analyst1\",\"description\":\"test\"}},{\"tool_spec\":{\"type\":\"cortex_analyst_sql_exec\",\"name\":\"SQL_exec1\"}},{\"tool_spec\":{\"type\":\"cortex_search\",\"name\":\"Search1\"}},{\"tool_spec\":{\"type\":\"web_search\",\"name\":\"web_search_1\"}},{\"tool_spec\":{\"type\":\"generic\",\"name\":\"get_weather\",\"input_schema\":{\"type\":\"object\",\"properties\":{\"location\":{\"type\":\"string\",\"description\":\"The city and state\"}},\"required\":[\"Location\"]}}}],\"tool_unable_to_answer\":\"I don't know the answer to that\",\"tool_resources\":{\"Analyst1\":{\"semantic_model_file\":\"stage1\"},\"Analyst2\":{\"semantic_view\":\"db.schema.semantic_view\"},\"Search1\":{\"name\":\"db.schema.service_name\",\"Max_results\":\"5\",\"filter\":{\"@eq\":{\"region\":\"North America\"}},\"Title_column\":\"<title_name>\",\"ID_column\":\"<column_name>\"},\"SQL_exec1\":{\"Name\":\"my_warehouse\",\"Timeout\":\"30\",\"AutoExecute\":\"true\"},\"web_search\":{\"name\":\"web_search_1\",\"Function\":\"db/schema/search_web\"}}}",
+  "agent_spec": "{\"models\":{\"orchestration\":\"auto\"},\"experimental\":{\"foo\":\"bar\",\"nested\":{\"key\":\"value\"}},\"orchestration\":{\"budget\":{\"seconds\":30,\"tokens\":16000}},\"instructions\":{\"response\":\"You will respond in a friendly but concise manner\",\"orchestration\":\"For any revenue question use Analyst; for policy use Search\",\"sample_questions\":[{\"question\":\"question 1\"},{\"question\":\"question 2\"},{\"question\":\"question 3\"}]},\"tools\":[{\"tool_spec\":{\"type\":\"cortex_analyst_text_to_sql\",\"name\":\"Analyst1\",\"description\":\"test\"}},{\"tool_spec\":{\"type\":\"cortex_search\",\"name\":\"Search1\"}},{\"tool_spec\":{\"type\":\"web_search\",\"name\":\"web_search_1\"}},{\"tool_spec\":{\"type\":\"generic\",\"name\":\"get_weather\",\"input_schema\":{\"type\":\"object\",\"properties\":{\"location\":{\"type\":\"string\",\"description\":\"The city and state\"}},\"required\":[\"location\"]}}}],\"tool_resources\":{\"Analyst1\":{\"semantic_view\":\"db.schema.semantic_view\",\"execution_environment\":{\"type\":\"warehouse\",\"warehouse\":\"my_warehouse\",\"query_timeout\":30}},\"Search1\":{\"search_service\":\"db.schema.service_name\",\"max_results\":5,\"filter\":{\"@eq\":{\"region\":\"North America\"}},\"title_column\":\"<title_name>\",\"id_column\":\"<column_name>\"},\"web_search_1\":{\"max_results\":20}}}",
   "name": "MY_AGENT1",
   "database_name": "TEST_DATABASE",
   "schema_name": "TEST_SCHEMA",
@@ -319,7 +327,7 @@ Show lessSee more
 | `profile` | [AgentProfile](#label-snowflake-agent-object-agentprofile) | Agent profile information (display name, avatar, color, etc.). |
 | `models` | [ModelConfig](#label-snowflake-agent-object-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
 | `instructions` | [AgentInstructions](#label-snowflake-agent-object-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
-| `orchestration` | [OrchestrationConfig](#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
+| `orchestration` | [OrchestrationConfig](#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (for example, seconds, tokens) and capabilities such as `analytical_search`. |
 | `tools` | array of [Tool](#label-snowflake-agent-object-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
 | `tool_resources` | map of [ToolResource](#label-snowflake-agent-object-toolresource) | Configuration for each tool referenced in the tools array. Keys must match the name of the respective tool. |
 
@@ -545,6 +553,8 @@ Copy code
 
 ## Schemas[¶](#schemas)
 
+The `OrchestrationConfig` schema documents `budget`. The same object also accepts `tool_not_accessible` (`accept`, `reject`, or `legacy`) to control whether a missing tool privilege aborts the run. Set that field on the agent specification’s top-level `orchestration` object, which uses this schema. Don’t confuse it with `models.orchestration` (the orchestration model name) or `instructions.orchestration` (natural-language instructions). For behavior, defaults, and which tools Snowflake checks, see [Where to set the field](/user-guide/snowflake-cortex/cortex-agents-inaccessible-tool-handling#label-cortex-agents-inaccessible-tool-where-to-set).
+
 # `AgentInstructions`[¶](#agentinstructions)
 
 | Field | Type | Description |
@@ -618,7 +628,7 @@ Configuration for server-executed tools.
 | Field | Type | Description |
 | --- | --- | --- |
 | `type` | string | The type of execution environment, currently only `warehouse` is supported. |
-| `warehouse` | string | The name of the warehouse. Case-sensitive, if it is an unquoted identifier, provide the name in all-caps. |
+| `warehouse` | string | The name of the warehouse. Case-sensitive; if it is an unquoted identifier, provide the name in all-caps. If not specified, the user’s default warehouse is used. |
 | `query_timeout` | integer | The query timeout in seconds |
 
 Expand
@@ -662,6 +672,7 @@ Copy code
 | Field | Type | Description |
 | --- | --- | --- |
 | `budget` | [BudgetConfig](#label-snowflake-agent-object-budgetconfig) | Budget constraints for the agent. If more than one constraint is specified, whichever is first hit will end the request. |
+| `capabilities` | object | Optional orchestration capabilities. Set `analytical_search` to `true` to allow the agent to run analytical search when a Cortex Search tool is configured. Default: `false`. See [Analytical search](/user-guide/snowflake-cortex/cortex-agents-analytical-search#label-enable-analytical-search). |
 
 Expand
 
@@ -676,6 +687,9 @@ Copy code
   "budget": {
     "seconds": 30,
     "tokens": 16000
+  },
+  "capabilities": {
+    "analytical_search": true
   }
 }
 ```
@@ -962,3 +976,4 @@ On this page
 Related content
 
 1. [Cortex Agents](/user-guide/snowflake-cortex/cortex-agents)
+2. [Inaccessible tool handling](/user-guide/snowflake-cortex/cortex-agents-inaccessible-tool-handling)

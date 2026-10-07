@@ -15,21 +15,24 @@
      * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
      * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_FUNCTION\_EVALUATION](/en/sql-reference/functions/ai_function_evaluation "AI_FUNCTION_EVALUATION")
+     * [AI\_FUNCTION\_OPTIMIZATION](/en/sql-reference/functions/ai_function_optimization "AI_FUNCTION_OPTIMIZATION")
      * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
      * [AI\_SIMILARITY](/en/sql-reference/functions/ai_similarity "AI_SIMILARITY")
+     * [AI\_SUMMARIZE](/en/sql-reference/functions/ai_summarize "AI_SUMMARIZE")
      * [AI\_SUMMARIZE\_AGG](/en/sql-reference/functions/ai_summarize_agg "AI_SUMMARIZE_AGG")
      * [AI\_TRANSCRIBE](/en/sql-reference/functions/ai_transcribe "AI_TRANSCRIBE")
      * [AI\_TRANSLATE](/en/sql-reference/functions/ai_translate "AI_TRANSLATE")
      * [FINETUNE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/finetune-snowflake-cortex "FINETUNE (SNOWFLAKE.CORTEX)")
      * [SENTIMENT (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/sentiment-snowflake-cortex "SENTIMENT (SNOWFLAKE.CORTEX)")
-     * [SUMMARIZE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/summarize-snowflake-cortex "SUMMARIZE (SNOWFLAKE.CORTEX)")
      * Helper functions
 
        * [AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/agent_run-snowflake-cortex "AGENT_RUN (SNOWFLAKE.CORTEX)")
        * [DATA\_AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/data_agent_run-snowflake-cortex "DATA_AGENT_RUN (SNOWFLAKE.CORTEX)")
+       * [THREAD\_MESSAGES (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/thread_messages-snowflake-cortex "THREAD_MESSAGES (SNOWFLAKE.CORTEX)")
        * [EXECUTE\_AI\_EVALUATION](/en/sql-reference/functions/execute_ai_evaluation "EXECUTE_AI_EVALUATION")
        * [GET\_AI\_EVALUATION\_DATA (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_evaluation_data-snowflake-local "GET_AI_EVALUATION_DATA (SNOWFLAKE.LOCAL)")
        * [GET\_AI\_OBSERVABILITY\_LOGS (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_observability_logs-snowflake-local "GET_AI_OBSERVABILITY_LOGS (SNOWFLAKE.LOCAL)")
@@ -55,6 +58,7 @@
    * [Notification](/en/sql-reference/functions-notification "Notification")
    * [Numeric](/en/sql-reference/functions-numeric "Numeric")
    * [Organization users and organization user groups](/en/sql-reference/functions-organization-users "Organization users and organization user groups")
+   * [Period](/en/sql-reference/functions-period "Period")
    * [Regular expressions](/en/sql-reference/functions-regexp "Regular expressions")
    * [Semi-structured and structured data](/en/sql-reference/functions-semistructured "Semi-structured and structured data")
    * [Snowpark Container Services](/en/sql-reference/functions-spcs "Snowpark Container Services")
@@ -76,9 +80,9 @@ Categories:
 
 # AI\_COUNT\_TOKENS[¶](#ai_count_tokens)
 
-Returns an estimate of the number of tokens in a prompt for the specified large language model or task-specific
-function. For functions that can take additional inputs that affect token count, such as model name or
-categories/labels, those inputs can also be specified.
+Returns an estimate of the number of **input** tokens in a prompt for the specified large language model or
+task-specific function. For functions that can take additional inputs that affect the input token count, such as model
+name or categories/labels, those inputs can also be specified.
 
 ## Syntax[¶](#syntax)
 
@@ -125,31 +129,8 @@ See [Examples](#examples) for function specific usage patterns.
 :   String containing the name of the model you want to base the token content on. Required if the function specified by
     `function_name` requires you to choose the model to use, such as AI\_COMPLETE or AI\_EMBED.
 
-    A list of available LLM models is available in the [Regional availability](/user-guide/snowflake-cortex/aisql-regional-availability#label-cortex-llm-availability) table. However, not all models are
-    currently supported. Snowflake intends to add support for additional models over time.
-
-    For AI\_COMPLETE, the following models are not supported:
-
-    * claude-3-7-sonnet
-    * claude-4-opus
-    * claude-4-sonnet
-    * claude-haiku-4-5
-    * claude-opus-4-5
-    * claude-opus-4-6
-    * claude-opus-4-7
-    * claude-sonnet-4-5
-    * claude-sonnet-4-6
-    * gemini-2.5-flash
-    * gemini-2.5-flash-lite
-    * gemini-3.1-pro
-    * openai-gpt-4.1
-    * openai-gpt-5
-    * openai-gpt-5-chat
-    * openai-gpt-5-mini
-    * openai-gpt-5-nano
-    * openai-gpt-5.1
-    * openai-gpt-5.2
-    * openai-gpt-5.4
+    A list of available LLM models is available in the [Regional availability](/user-guide/snowflake-cortex/aisql-regional-availability#label-cortex-llm-availability) table. Snowflake intends to add
+    support for additional models over time.
 
 `categories`
 :   An array of VARIANT values that specify one or more categories or labels to use, for functions that require this data. Categories are included in the input token count.
@@ -165,7 +146,8 @@ See [Examples](#examples) for function specific usage patterns.
 
 ## Returns[¶](#returns)
 
-An [INTEGER](/sql-reference/data-types-numeric#label-data-type-integer) value that is the number of tokens of input text calculated using the given parameter values.
+An [INTEGER](/sql-reference/data-types-numeric#label-data-type-integer) value that is the estimated number of *input* tokens for the input text and
+other parameter values you provide. This value does not include output (generated) tokens.
 
 ## Error behavior[¶](#error-behavior)
 
@@ -193,8 +175,38 @@ For more information about error handling for AI functions, see [Snowflake Corte
 * AI\_COUNT\_TOKENS does not work with LLM functions in the SNOWFLAKE.CORTEX namespace or with fine-tuned models.
   You must specify a function name that begins with “ai\_”.
 * AI\_COUNT\_TOKENS accepts only text, not image, audio, or video inputs.
+* AI\_COUNT\_TOKENS estimates input tokens only. It does not estimate output (generated) tokens, which also
+  contribute to billing. To see actual billed input and output tokens for a query, use the
+  [CORTEX\_FUNCTIONS\_QUERY\_USAGE\_HISTORY](/sql-reference/account-usage/cortex_functions_query_usage_history) view.
+* The accuracy of the token count depends on the model. See [Token count accuracy](#token-count-accuracy) for details.
+* When you use [AI\_COMPLETE](/sql-reference/functions/ai_complete) with the `response_format` argument (structured
+  output) on Anthropic Claude models, additional request content is generated to support structured output. This
+  content is included in the billed input tokens but is not reflected in the AI\_COUNT\_TOKENS estimate. As a result, the
+  billed input token count for these requests can be materially higher than the estimated token count.
 * AI\_COUNT\_TOKENS only incurs compute costs and does not bill based on token count.
 * AI\_COUNT\_TOKENS is available in all regions, even for models not available in a given region.
+
+### Token count accuracy[¶](#token-count-accuracy)
+
+The accuracy of the token count depends on the model. For most models, AI\_COUNT\_TOKENS returns an exact count. The
+following table shows the expected accuracy by model:
+
+| Model | Token count accuracy |
+| --- | --- |
+| Anthropic Claude | Estimate; relative error under 3% |
+| Google Gemini | Estimate; relative error under 3% |
+| OpenAI | Near-exact |
+| All other models | Exact |
+
+Expand
+
+Show lessSee more
+
+Note
+
+If you use structured outputs (the `response_format` argument, supported on Anthropic Claude models), the difference
+between the estimate and the billed input token count can be a lot larger than the values shown here. For details, see
+the structured output note in [Usage notes](#usage-notes).
 
 ## Examples[¶](#examples)
 
@@ -220,6 +232,54 @@ Response:
 ```
 158
 ```
+
+### AI\_COMPLETE with structured output example[¶](#ai_complete-with-structured-output-example)
+
+The following SQL statement estimates the input tokens for an AI\_COMPLETE call that uses the `response_format`
+argument (structured output) on an Anthropic Claude model:
+
+Copy codeExpand code block
+
+```
+SELECT AI_COUNT_TOKENS(
+  'ai_complete',
+  'claude-sonnet-4-5',
+  'Extract structured data from this customer interaction note: Customer Sarah Jones
+  complained about the mobile app crashing during checkout. She tried to purchase 3 items:
+  a red XL jacket (EUR 89.99), blue running shoes (EUR 129.50), and a fitness tracker
+  (EUR 199.00). The app crashed after she entered her shipping address at 123 Main St,
+  Portland OR, 97201. She has been a premium member since January 2024.',
+  {
+    'type': 'json',
+    'schema': {
+      'type': 'object',
+      'properties': {
+        'items_count': {'type': 'number'},
+        'prices': {'type': 'array', 'items': {'type': 'string'}},
+        'address': {'type': 'string'},
+        'member_date': {'type': 'string'}
+      },
+      'required': ['items_count', 'prices', 'address', 'member_date']
+    }
+  }
+);
+```
+
+Show lessSee more
+
+Scroll to top
+
+Response:
+
+```
+296
+```
+
+Note
+
+Structured output on Claude models generates additional request content that is billed as input tokens but is not
+reflected in this estimate, so the billed input token count can be materially higher than the estimated token count.
+See [Usage notes](#usage-notes) for details.
 
 ### AI\_EMBED example[¶](#ai_embed-example)
 
@@ -504,15 +564,17 @@ On this page
 3. [Returns](#returns)
 4. [Error behavior](#error-behavior)
 5. [Usage notes](#usage-notes)
-6. [Examples](#examples)
-7. [AI\_COMPLETE example](#ai_complete-example)
-8. [AI\_EMBED example](#ai_embed-example)
-9. [AI\_CLASSIFY examples](#ai_classify-examples)
-10. [AI\_SENTIMENT examples](#ai_sentiment-examples)
-11. [AI\_SIMILARITY examples](#ai_similarity-examples)
-12. [AI\_TRANSLATE example](#ai_translate-example)
-13. [AI\_REDACT examples](#ai_redact-examples)
-14. [Legal notices](#legal-notices)
+6. [Token count accuracy](#token-count-accuracy)
+7. [Examples](#examples)
+8. [AI\_COMPLETE example](#ai_complete-example)
+9. [AI\_COMPLETE with structured output example](#ai_complete-with-structured-output-example)
+10. [AI\_EMBED example](#ai_embed-example)
+11. [AI\_CLASSIFY examples](#ai_classify-examples)
+12. [AI\_SENTIMENT examples](#ai_sentiment-examples)
+13. [AI\_SIMILARITY examples](#ai_similarity-examples)
+14. [AI\_TRANSLATE example](#ai_translate-example)
+15. [AI\_REDACT examples](#ai_redact-examples)
+16. [Legal notices](#legal-notices)
 
 Related content
 

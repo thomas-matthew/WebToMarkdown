@@ -3,6 +3,18 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.3.0 — 2026-07-21
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-xai%3D%3D1.3.0)
+
+- feat(core): add `reasoning_effort` as a standard chat model parameter (#38887)
+- feat(core,partners): add package version tracking to tracing metadata (#35295)
+- feat(standard-tests): validate tool call chunks during streaming (#34707)
+- feat(core): add content-block-centric streaming (v2) (#36834)
+- feat(xai): support `base_url` alias and `XAI_API_BASE` env var (#35790)
+- feat(model-profiles): new fields + `Makefile` target (#35788)
+- feat(model-profiles): add `text_inputs` and `text_outputs` (#35084)
+
 ## 1.2.2 — 2026-02-15
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-xai%3D%3D1.2.2)

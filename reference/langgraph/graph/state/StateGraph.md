@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[graph](/python/langgraph/graph)[state](/python/langgraph/graph/state)StateGraph
 
-Classv1.2.7 (latest)●Since v0.1
+Classv1.2.14 (latest)●Since v0.1
 
 # StateGraph
 
@@ -29,7 +29,7 @@ StateGraph(
   *,
   input_schema: type[InputT] | None = None,
   output_schema: type[OutputT] | None = None,
-  **kwargs: Unpack[DeprecatedKwargs] = {}
+  kwargs: Unpack[DeprecatedKwargs] = {}
 )
 ```
 
@@ -87,7 +87,7 @@ Copy
 * [Checkpointers](https://docs.langchain.com/oss/python/langgraph/checkpointers)
 * [Choosing between Graph and Functional APIs](https://docs.langchain.com/oss/python/langgraph/choosing-apis)
 
-+15 more(17 more not shown)
++15 more(22 more not shown)
 
 ## Parameters
 
@@ -106,10 +106,11 @@ constructor
 
 | Name | Type |
 | --- | --- |
-| state\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[StateT](/python/langgraph/types/StateT)] |
+| state\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[StateT](/python/langgraph/typing/StateT)] |
 | context\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[ContextT](/python/langgraph/typing/ContextT)] | None |
 | input\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[InputT](/python/langgraph/typing/InputT)] | None |
-| output\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[OutputT](/python/langgraph/types/OutputT)] | None |
+| output\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[OutputT](/python/langgraph/typing/OutputT)] | None |
+| kwargs | Unpack[[DeprecatedKwargs](/python/langgraph/_internal/_typing/DeprecatedKwargs)] |
 
 ## Attributes
 
@@ -201,7 +202,7 @@ Compiles the `StateGraph` into a `CompiledStateGraph` object.
 The compiled graph implements the `Runnable` interface and can be invoked,
 streamed, batched, and run asynchronously.](/python/langgraph/graph/state/StateGraph/compile)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/5931a5f0b313feff24e2516a586c55601b868ac1/libs/langgraph/langgraph/graph/state.py#L130)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/70dd64065bffaa3b6ab61a33f1f020fb54db8efa/libs/langgraph/langgraph/graph/state.py#L131)
 
 Version History
 

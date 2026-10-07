@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[channels](/python/langgraph/channels)[topic](/python/langgraph/channels/topic)Topic
 
-Classv1.2.7 (latest)●Since v0.1
+Classv1.2.14 (latest)●Since v0.1
 
 # Topic
 
@@ -94,7 +94,7 @@ Notify the channel that a subscribed task ran.](/python/langgraph/channels/base/
 
 Notify the channel that the Pregel run is finishing.](/python/langgraph/channels/base/BaseChannel/finish)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/5931a5f0b313feff24e2516a586c55601b868ac1/libs/langgraph/langgraph/channels/topic.py#L23)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/70dd64065bffaa3b6ab61a33f1f020fb54db8efa/libs/langgraph/langgraph/channels/topic.py#L23)
 
 Version History
 

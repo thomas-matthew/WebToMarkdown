@@ -8,11 +8,16 @@ Python[langgraph](/python/langgraph)Config
 
 ### get\_store
 
-Access LangGraph store from inside a graph node or entrypoint task at runtime.](/python/langgraph/config/get_store)[Function
+Access LangGraph store from inside a graph node or entrypoint task at runtime.
+
+Can be called from inside any `StateGraph` node or
+functional API [`task`][langgraph.func.](/python/langgraph/config/get_store)[Function
 
 ### get\_stream\_writer
 
-Access LangGraph `StreamWriter` from inside a graph node or entrypoint task at runtime.](/python/langgraph/config/get_stream_writer)
+Access LangGraph `StreamWriter` from inside a graph node or entrypoint task at runtime.
+
+Can be called from inside any `StateGraph` node o](/python/langgraph/config/get_stream_writer)
 
 Copy page
 

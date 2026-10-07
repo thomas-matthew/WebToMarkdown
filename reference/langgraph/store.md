@@ -12,7 +12,15 @@ Base class for all channels.](/python/langgraph/channels/base/BaseChannel)[Class
 
 ### AsyncPostgresStore
 
-Asynchronous Postgres-backed store with optional vector search using pgvector.](/python/langgraph.store.postgres/aio/AsyncPostgresStore)
+Asynchronous Postgres-backed store with optional vector search using pgvector.
+
+Basic setup and usage:
+
+```
+from langgraph.store.postgres import AsyncPostgresSt
+
+<!--/ADMON-->
+```](/python/langgraph.store.postgres/aio/AsyncPostgresStore)
 
 ## Modules
 

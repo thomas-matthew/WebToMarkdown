@@ -3,6 +3,106 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain-aws/releases
 
+## 1.8.1 — 2026-10-06
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.8.1)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.8.0 — 2026-09-30
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.8.0)
+
+- feat(aws): tag the Valkey client lib-name for adoption attribution by @Jonathan-Improving in https://github.com/langchain-ai/langchain-aws/pull/1336
+- feat(aws): Support Claude Sonnet 5.5 by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1337
+
+## 1.7.9 — 2026-09-22
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.7.9)
+
+- feat(aws): add AgentCore web search tool by @sundargthb in https://github.com/langchain-ai/langchain-aws/pull/1275
+- feat(aws): add model property to ChatBedrockNovaSonic by @WOLIKIMCHENG in https://github.com/langchain-ai/langchain-aws/pull/1298
+
+## 1.7.8 — 2026-09-16
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.7.8)
+
+- feat(aws): add readable `model` property to Bedrock chat models by @mdrxy in https://github.com/langchain-ai/langchain-aws/pull/1294
+
+## 1.7.7 — 2026-09-16
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.7.7)
+
+- feat(aws): support `LANGSMITH_GATEWAY` in `ChatBedrockConverse` by @ccurme in https://github.com/langchain-ai/langchain-aws/pull/1283
+
+## 1.7.6 — 2026-09-11
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.7.6)
+
+- feat(aws): Streaming and tool_choice support for GPT-6 and GPT-5.6 on ChatBedrockConverse by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1268
+- feat(aws): Support reasoning effort for GPT-6 Astra by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1271
+
+## 1.7.5 — 2026-09-02
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.7.5)
+
+- feat(aws): Add auth_mode parameter to ChatAnthropicMantle by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1234
+
+## 1.7.4 — 2026-08-26
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.7.4)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.7.3 — 2026-08-20
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.7.3)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.7.2 — 2026-08-18
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.7.2)
+
+- feat(aws): credential-derived auth for ChatOpenAIMantle by @3coins in https://github.com/langchain-ai/langchain-aws/pull/1203
+- feat(aws): add ChatAnthropicMantle for Bedrock Mantle Anthropic Messages API by @3coins in https://github.com/langchain-ai/langchain-aws/pull/1190
+
+## 1.7.1 — 2026-08-14
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.7.1)
+
+- feat(aws): add DynamoDBVectorStore backed by DynamoDB vector indexes by @LeeroyHannigan in https://github.com/langchain-ai/langchain-aws/pull/1200
+
+## 1.7.0 — 2026-08-05
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.7.0)
+
+- feat(aws): add ChatOpenAIMantle for Bedrock Mantle OpenAI-compatible API by @3coins in https://github.com/langchain-ai/langchain-aws/pull/1189
+- feat(aws): support for `reasoning_effort` param for `ChatBedrockConverse` by @imnishitha in https://github.com/langchain-ai/langchain-aws/pull/1188
+- feat(aws): use Anthropic simplified prompt cache management in ChatBedrockConverse by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1192
+
+## 1.6.4 — 2026-07-28
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.6.4)
+
+- feat(aws): support Bedrock Guardrails in ChatAnthropicBedrock by @pablodg12 in https://github.com/langchain-ai/langchain-aws/pull/1178
+- feat(aws): Support per-request guardrail configuration on ChatAnthropicBedrock by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1183
+- feat(aws): Support Claude Opus 5 default thinking in ChatBedrock by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1186
+
+## 1.6.3 — 2026-07-22
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.6.3)
+
+- feat(aws): Log helpful warning when ChatBedrockConverse auto-disables streaming for unsupported models by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1160
+- feat: add Bedrock Managed Knowledge Base support by @PVidyadhar in https://github.com/langchain-ai/langchain-aws/pull/1155
+- feat(aws): Support Anthropic search_result content blocks in ChatBedrockConverse by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1175
+
+## 1.6.2 — 2026-07-07
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.6.2)
+
+- feat(aws): Support Claude Fable and Sonnet 5 by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1140
+
 ## 1.6.1 — 2026-06-25
 
 [Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.6.1)

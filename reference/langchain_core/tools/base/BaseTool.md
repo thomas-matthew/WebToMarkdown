@@ -1,6 +1,6 @@
 Python[langchain-core](/python/langchain-core)[tools](/python/langchain-core/tools)[base](/python/langchain-core/tools/base)BaseTool
 
-Classv1.4.8 (latest)●Since v0.2
+Classv1.6.7 (latest)●Since v0.2
 
 # BaseTool
 
@@ -15,7 +15,7 @@ Copy
 ```
 BaseTool(
     self,
-    **kwargs: Any = {},
+    kwargs: Any = {},
 )
 ```
 
@@ -23,15 +23,15 @@ BaseTool(
 
 `RunnableSerializable[str | dict[str, Any] | ToolCall, Any]`
 
-## Used in Docs
-
-* [Fmp data integration](https://docs.langchain.com/oss/python/integrations/tools/fmp-data)
-
 ## Constructors
 
-[constructor
+constructor
 
-\_\_init\_\_](/python/langchain-core/tools/base/BaseTool/__init__)
+\_\_init\_\_
+
+| Name | Type |
+| --- | --- |
+| kwargs | [Any](https://docs.python.org/3/library/typing.html#typing.Any) |
 
 ## Attributes
 
@@ -376,15 +376,13 @@ Add fallbacks to a `Runnable`, returning a new `Runnable`.](/python/langchain-co
 
 Create a `BaseTool` from a `Runnable`.](/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/core/langchain_core/tools/base.py#L427)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/f40f58d50499700f98051be6bb610bee5dd11cc2/libs/core/langchain_core/tools/base.py#L433)
 
 Version History
 
 Copy page
 
 ### On This Page
-
-Related Documentation
 
 Constructors
 

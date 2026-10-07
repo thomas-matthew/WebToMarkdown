@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[channels](/python/langgraph/channels)[base](/python/langgraph/channels/base)BaseChannel
 
-Classv1.2.7 (latest)●Since v0.1
+Classv1.2.14 (latest)●Since v0.1
 
 # BaseChannel
 
@@ -117,7 +117,7 @@ A channel can use this method to modify its state, preventing finish.
 
 Returns `True` if the channel was updated, `False` otherwise.](/python/langgraph/channels/base/BaseChannel/finish)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/5931a5f0b313feff24e2516a586c55601b868ac1/libs/langgraph/langgraph/channels/base.py#L19)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/70dd64065bffaa3b6ab61a33f1f020fb54db8efa/libs/langgraph/langgraph/channels/base.py#L19)
 
 Version History
 

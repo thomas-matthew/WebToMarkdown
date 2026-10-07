@@ -3,6 +3,12 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/deepagents/releases
 
+## 0.0.8 — 2026-07-29
+
+[Release on GitHub](https://github.com/langchain-ai/deepagents/releases/tag/langchain-daytona%3D%3D0.0.8)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 0.0.7 — 2026-06-03
 
 [Release on GitHub](https://github.com/langchain-ai/deepagents/releases/tag/langchain-daytona%3D%3D0.0.7)

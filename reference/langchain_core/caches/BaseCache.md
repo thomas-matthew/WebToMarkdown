@@ -1,6 +1,6 @@
 Python[langchain-core](/python/langchain-core)[caches](/python/langchain-core/caches)BaseCache
 
-Classv1.4.8 (latest)●Since v0.1
+Classv1.6.7 (latest)●Since v0.1
 
 # BaseCache
 
@@ -68,7 +68,7 @@ aclear
 
 Async clear cache that can take additional keyword arguments.](/python/langchain-core/caches/BaseCache/aclear)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/core/langchain_core/caches.py#L32)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/f40f58d50499700f98051be6bb610bee5dd11cc2/libs/core/langchain_core/caches.py#L32)
 
 Version History
 

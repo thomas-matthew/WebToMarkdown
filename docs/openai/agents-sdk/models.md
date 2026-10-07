@@ -1,5 +1,7 @@
 # Models and providers
 
+> For the complete documentation index, see [llms.txt](/llms.txt). Markdown versions of documentation pages are available by appending `.md` to the page URL.
+
 Every SDK run eventually resolves a model and a transport. Most applications should keep that setup straightforward: choose models explicitly, use the standard OpenAI path by default, and reach for provider or transport overrides only when the workflow actually needs them.
 
 ## Start with explicit model selection
@@ -12,13 +14,13 @@ In production, prefer explicit model choice over whichever runtime default your 
 
 Set models per agent and per run
 
-```typescript
+```javascript
 import { Agent, Runner } from "@openai/agents";
 
 const fastAgent = new Agent({
   name: "Fast support agent",
   instructions: "Handle routine support questions.",
-  model: "gpt-5.4-mini",
+  model: "gpt-5.6-terra",
 });
 
 const generalAgent = new Agent({
@@ -27,13 +29,13 @@ const generalAgent = new Agent({
 });
 
 const runner = new Runner({
-  model: "gpt-5.5",
+  model: "gpt-6-astra",
 });
 
 await runner.run(fastAgent, "Summarize ticket 123.");
 const result = await runner.run(
   generalAgent,
-  "Investigate the billing issue on account 456.",
+  "Investigate the billing issue on account 456."
 );
 
 console.log(result.finalOutput);
@@ -47,7 +49,7 @@ from agents import Agent, RunConfig, Runner
 fast_agent = Agent(
     name="Fast support agent",
     instructions="Handle routine support questions.",
-    model="gpt-5.4-mini",
+    model="gpt-5.6-terra",
 )
 
 general_agent = Agent(
@@ -62,7 +64,7 @@ async def main() -> None:
     result = await Runner.run(
         general_agent,
         "Investigate the billing issue on account 456.",
-        run_config=RunConfig(model="gpt-5.5"),
+        run_config=RunConfig(model="gpt-6-astra"),
     )
     print(result.final_output)
 
@@ -72,7 +74,7 @@ if __name__ == "__main__":
 ```
 
 
-For most new SDK workflows, start with [`gpt-5.5`](https://developers.openai.com/api/docs/models/gpt-5.5) and move to a smaller variant only when latency or cost matters enough to justify it. Use the platform-wide <a href="/api/docs/guides/latest-model">Using GPT-5.5</a> guide for current model-selection advice.
+For most new SDK workflows, start with [`gpt-6-astra`](https://developers.openai.com/api/docs/models/gpt-6-astra) and move to a smaller variant only when latency or cost matters enough to justify it. Use the platform-wide [Model guidance](https://developers.openai.com/api/docs/guides/latest-model) page for current model-selection advice.
 
 ## Choose the simplest default strategy
 
@@ -104,7 +106,7 @@ Exact provider configuration, provider lifecycle management, and transport helpe
 
 Model choice is only part of the runtime contract.
 
-- Use for tuning such as reasoning effort, verbosity, and tool behavior.
+- Use `modelSettings` in TypeScript or `model_settings` in Python for tuning such as reasoning effort, verbosity, and tool behavior.
 - Use `prompt` when you want a stored prompt configuration to control the run instead of embedding the full system prompt in code.
 - Some SDK features depend on the OpenAI Responses path rather than older compatibility surfaces, so check the SDK docs when you need advanced tool-loading or transport features.
 
@@ -114,41 +116,20 @@ Keep the model contract close to the agent definition when it's intrinsic to tha
 
 Once the runtime contract is clear, continue with the guide that matches the rest of the workflow design.
 
-<div class="not-prose mt-4 grid gap-3">
-  <a
-    href="/api/docs/guides/agents/define-agents"
-    class="block no-underline hover:no-underline"
-  >
-    
-
-<span slot="icon">
-        </span>
-      Keep model choices aligned with the responsibilities of each specialist.
 
 
-  </a>
-  <a
-    href="/api/docs/guides/agents/running-agents"
-    class="block no-underline hover:no-underline"
-  >
-    
-
-<span slot="icon">
-        </span>
-      See how transport and model choices affect the runtime loop.
+  [Agent definitions
 
 
-  </a>
-  <a
-    href="/api/docs/guides/external-models"
-    class="block no-underline hover:no-underline"
-  >
-    
 
-<span slot="icon">
-        </span>
-      Compare broader provider options when a mixed-model stack matters.
+        Keep model choices aligned with the responsibilities of each specialist.](https://developers.openai.com/api/docs/guides/agents/define-agents)
+  [Running agents
 
 
-  </a>
-</div>
+
+        See how transport and model choices affect the runtime loop.](https://developers.openai.com/api/docs/guides/agents/running-agents)
+  [External models
+
+
+
+        Compare broader provider options when a mixed-model stack matters.](https://developers.openai.com/api/docs/guides/external-models)

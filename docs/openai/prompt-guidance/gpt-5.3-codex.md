@@ -1,42 +1,63 @@
-# GPT-5.3 Codex prompting guide
+# Using GPT-5.3-Codex
 
-Prompt Codex-tuned models for agentic coding, code editing, compaction, and long-running autonomy.
+> For the complete documentation index, see [llms.txt](/llms.txt). Markdown versions of documentation pages are available by appending `.md` to the page URL.
 
-## New in GPT-5.3 Codex vs GPT-5-series models
-- Faster, more token-efficient agentic coding behavior.
-- Higher long-running autonomy for difficult coding tasks.
-- First-class compaction guidance for multi-hour reasoning and long conversations.
-- Guidance to avoid upfront plans and preambles that can interrupt Codex rollouts.
+## Introduction
 
-Codex models advance the frontier of intelligence and efficiency and our recommended agentic coding model. Follow this guide closely to ensure you’re getting the best performance possible from this model. This guide is for anyone using the model directly via the API for maximum customizability; we also have the [Codex SDK](https://developers.openai.com/codex/sdk/) for simpler integrations.
+GPT-5.3-Codex advances the frontier of intelligence and efficiency for agentic coding. Follow this guide closely to ensure you’re getting the best performance possible from this model. This guide is for anyone using the model directly via the API for maximum customizability; we also have the [Codex SDK](https://developers.openai.com/codex/codex-sdk/) for simpler integrations.
 
 In the API, the Codex-tuned model is `gpt-5.3-codex` (see the [model page](https://developers.openai.com/api/docs/models/gpt-5.3-codex)).
 
-Recent improvements to Codex models
+## What's new
 
 - Faster and more token efficient: Uses fewer thinking tokens to accomplish a task. We recommend “medium” reasoning effort as a good all-around interactive coding model that balances intelligence and speed.
-- Higher intelligence and long-running autonomy: Codex is very capable and will work autonomously for hours to complete your hardest tasks. You can use `high` or `xhigh` reasoning effort for your hardest tasks.
+- Higher intelligence and long-running autonomy: Codex can work autonomously for hours to complete your hardest tasks. You can use `high` or `xhigh` reasoning effort for your hardest tasks.
 - First-class compaction support: Compaction enables multi-hour reasoning without hitting context limits and longer continuous user conversations without needing to start new chat sessions.
 - Codex is also much better in PowerShell and Windows environments.
 
-## Getting Started
+## Migration quickstart
 
 If you already have a working Codex implementation, this model should work well with relatively minimal updates, but if you’re starting with a prompt and set of tools that’s optimized for GPT-5-series models, or a third-party model, we recommend making more significant changes. The best reference implementation is our fully open-source codex-cli agent, available on [GitHub](https://github.com/openai/codex). Clone this repo and use Codex (or any coding agent) to ask questions about how things are implemented. From working with customers, we’ve also learned how to customize agent harnesses beyond this particular implementation.
 
 Key steps to migrate your harness to codex-cli:
 
-1. Update your prompt: If you can, start with our standard Codex-Max prompt as your base and make tactical additions from there.  
-   a) The most critical snippets are those covering autonomy and persistence, codebase exploration, tool use, and frontend quality.  
-   b) You should also remove all prompting for the model to communicate an upfront plan, preambles, or other status updates during the rollout, as this can cause the model to stop abruptly before the rollout is complete.
-2. Update your tools, including our apply_patch implementation and other best practices below. This is a major lever for getting the most performance.
+<ol>
+  <li>
+    Update your prompt: If you can, start with our standard Codex-Max prompt as
+    your base and make tactical additions from there.
+    <ol type="a">
+      <li>
+        The most critical snippets are those covering autonomy and persistence,
+        codebase exploration, tool use, and frontend quality.
+      </li>
+      <li>
+        You should also remove all prompting for the model to communicate an
+        upfront plan, preambles, or other status updates during the rollout, as
+        this can cause the model to stop abruptly before the rollout is
+        complete.
+      </li>
+    </ol>
+  </li>
+  <li>
+    Update your tools, including our `apply_patch` implementation and other best
+    practices below. This is a major lever for getting the most performance.
+  </li>
+</ol>
 
-## Prompting
+## Model, API, and feature updates
 
-## Recommended Starter Prompt
+- `gpt-5.3-codex` is optimized for agentic coding tasks in Codex or similar environments.
+- It is available in the Responses API.
+- `reasoning.effort` supports `low`, `medium`, `high`, and `xhigh`.
+- Supported tools include function calling, web search, hosted shell, and skills.
+
+## Prompting best practices
+
+### Recommended Starter Prompt
 
 This prompt began as the default [GPT-5.1-Codex-Max prompt](https://github.com/openai/codex/blob/main/codex-rs/core/gpt-5.1-codex-max_prompt.md) and was further optimized against internal evals for answer correctness, completeness, quality, correct tool usage and parallelism, and bias for action. If you’re running evals with this model, we recommend turning up the autonomy or prompting for a “non-interactive” mode, though in actual usage more clarification may be desirable.
 
-```
+```text
 You are Codex, based on GPT-5. You are running as a coding agent in the Codex CLI on a user's computer.
 
 
@@ -44,7 +65,7 @@ You are Codex, based on GPT-5. You are running as a coding agent in the Codex CL
 
 - When searching for text or files, prefer using `rg` or `rg --files` respectively because `rg` is much faster than alternatives like `grep`. (If the `rg` command is not found, then use alternatives.)
 - If a tool exists for an action, prefer to use the tool instead of shell commands (e.g `read_file` over `cat`). Strictly avoid raw `cmd`/terminal when a dedicated tool exists. Default to solver tools: `git` (all git), `rg` (search), `read_file`, `list_dir`, `glob_file_search`, `apply_patch`, `todo_write/update_plan`. Use `cmd`/`run_terminal_cmd` only when no listed tool can perform the action.
-- When multiple tool calls can be parallelized (e.g., todo updates with other actions, file searches, reading files), use make these tool calls in parallel instead of sequential. Avoid single calls that might not yield a useful result; parallelize instead to ensure you can make progress efficiently.
+- When multiple tool calls can be parallelized (e.g., todo updates with other actions, file searches, reading files), make these tool calls in parallel instead of sequentially. Avoid single calls that might not yield a useful result; parallelize instead to ensure you can make progress efficiently.
 - Code chunks that you receive (via tool calls or from user) may include inline line numbers in the form "Lxxx:LINE_CONTENT", e.g. "L123:LINE_CONTENT". Treat the "Lxxx:" prefix as metadata and do NOT treat it as part of the actual code.
 - Default expectation: deliver working code, not just a plan. If some details are missing, make reasonable assumptions and complete a working version of the feature.
 
@@ -163,7 +184,7 @@ You are producing plain text that will later be styled by the CLI. Follow these 
 - Adaptation: code explanations → precise, structured with code refs; simple tasks → lead with outcome; big changes → logical walkthrough + rationale + next actions; casual one-offs → plain sentences, no headers/bullets.
 - File References: When referencing files in your response follow the below rules:
   * Use inline code to make file paths clickable.
-  * Each reference should have a stand alone path. Even if it's the same file.
+  * Each reference should have a stand-alone path, even if it's the same file.
   * Accepted: absolute, workspace‑relative, a/ or b/ diff prefixes, or bare filename/suffix.
   * Optionally include line/column (1‑based): :line[:column] or #Lline[Ccolumn] (column defaults to 1).
   * Do not use URIs like file://, vscode://, or https://.
@@ -171,11 +192,11 @@ You are producing plain text that will later be styled by the CLI. Follow these 
   * Examples: src/app.ts, src/app.ts:42, b/server/index.js#L10, C:\repo\project\main.rs:12:5
 ```
 
-## Mid-Rollout User Updates
+### Mid-Rollout User Updates
 
 The Codex model family can surface mid-rollout user updates while it's working. For codex versions prior to gpt-5.3-codex, these updates are system-generated rather than promptable, so we advise against adding instructions to the prompt about intermediate plans or messages to the user for those. For gpt-5.3-codex and after, these updates are more communicative and provide more critical information about what's happening and why and work similarly to how intermediate messages work for other GPT-5 series models and can be prompted according to the Preambles & Personality section below.
 
-## Using agents.md
+### Using agents.md
 
 Codex-cli automatically enumerates these files and injects them into the conversation; the model has been trained to closely adhere to these instructions.
 
@@ -183,7 +204,7 @@ Codex-cli automatically enumerates these files and injects them into the convers
 2\. They’re merged in order, later directories overriding earlier ones.  
 3\. Each merged chunk shows up to the model as its own user-role message like so:
 
-```
+```text
 # AGENTS.md instructions for <directory>
 
 
@@ -197,7 +218,7 @@ Additional details
 - Each discovered file becomes its own user-role message that starts with \# AGENTS.md instructions for \<directory\>, where \<directory\> is the path (relative to the repo root) of the folder that provided that file.
 - Messages are injected near the top of the conversation history, before the user prompt, in root-to-leaf order: global instructions first, then repo root, then each deeper directory. If an AGENTS.override.md was used, its directory name still appears in the header (e.g., \# AGENTS.md instructions for backend/api), so the context is obvious in the transcript.
 
-## Compaction
+### Compaction
 
 Compaction unlocks significantly longer effective context windows, where user conversations can persist for many turns without hitting context window limits or long context performance degradation, and agents can perform very long trajectories that exceed a typical context window for long-running, complex tasks. A weaker version of this was previously possible with ad-hoc scaffolding and conversation summarization, but our first-class implementation, available via the Responses API, is integrated with the model and is highly performant.
 
@@ -209,19 +230,19 @@ How it works:
    2. The endpoint is ZDR compatible and will return an “encrypted_content” item that you can pass into future requests.
 3. For subsequent calls to the /responses endpoint, you can pass your updated, compacted list of conversation items (including the added compaction item). The model retains key prior state with fewer conversation tokens.
 
-For endpoint details see our `/responses/compact` [docs](https://developers.openai.com/api/docs/api-reference/responses/compact).
+For endpoint details see our `/responses/compact` [docs](https://developers.openai.com/api/reference/resources/responses/methods/compact).
 
-## Tools
+### Tools
 
 1. We strongly recommend using our exact `apply_patch` implementation as the model has been trained to excel at this diff format. For terminal commands we recommend our `shell` tool, and for plan/TODO items our `update_plan` tool should be most performant.
 2. If you prefer your agent to use more “terminal-like tools” (like `file_read()` instead of calling \`sed\` in the terminal), this model can reliably call them instead of terminal (following the instructions below)
 3. For other tools, including semantic search, MCPs, or other custom tools, they can work but it requires more tuning and experimentation.
 
-### Apply_patch
+#### Apply_patch
 
 The easiest way to implement apply_patch is with our first-class implementation in the Responses API, but you can also use our freeform tool implementation with [context-free grammar](https://developers.openai.com/cookbook/examples/gpt-5/gpt-5_new_params_and_tools?utm_source=chatgpt.com#3-contextfree-grammar-cfg). Both are demonstrated below.
 
-```py
+```python
 # Sample script to demonstrate the server-defined apply_patch tool
 
 import json
@@ -282,7 +303,7 @@ tools: list[ToolParam] = [
 ]
 
 response = client.responses.create(
-    model="gpt-5.1-Codex-Max",
+    model="gpt-5.3-codex",
     input=input_items,
     tools=tools,
     parallel_tool_calls=False,
@@ -346,7 +367,7 @@ tools_with_cfg: list[ToolParam] = [
 ]
 
 response_cfg = client.responses.create(
-    model="gpt-5.1-Codex-Max",
+    model="gpt-5.3-codex",
     input=input_items,
     tools=tools_with_cfg,
     parallel_tool_calls=False,
@@ -370,13 +391,77 @@ for item in response_cfg.output:
         # *** End Patch
 ```
 
+```ruby
+require "openai"
+
+client = OpenAI::Client.new
+
+input = <<~PROMPT
+  Add a cancel button next to the save button in app/page.tsx.
+  Current file contents:
+  export default function Page() { return <button>Save</button>; }
+PROMPT
+response = client.responses.create(
+  model: "gpt-5.3-codex", input: input,
+  tools: [{ type: :apply_patch }], parallel_tool_calls: false
+)
+response.output.each do |item|
+  pp(item.operation) if item.is_a?(OpenAI::Responses::ResponseApplyPatchToolCall)
+end
+
+APPLY_PATCH_GRAMMAR = <<~GRAMMAR
+
+  start: begin_patch hunk+ end_patch
+  begin_patch: "*** Begin Patch" LF
+  end_patch: "*** End Patch" LF?
+
+  hunk: add_hunk | delete_hunk | update_hunk
+  add_hunk: "*** Add File: " filename LF add_line+
+  delete_hunk: "*** Delete File: " filename LF
+  update_hunk: "*** Update File: " filename LF change_move? change?
+
+  filename: /(.+)/
+  add_line: "+" /(.*)/ LF -> line
+
+  change_move: "*** Move to: " filename LF
+  change: (change_context | change_line)+ eof_line?
+  change_context: ("@@" | "@@ " /(.+)/) LF
+  change_line: ("+" | "-" | " ") /(.*)/ LF
+  eof_line: "*** End of File" LF
+
+  %import common.LF
+
+GRAMMAR
+
+response = client.responses.create(
+  model: "gpt-5.3-codex", input: input,
+  tools: [
+    {
+      type: :custom,
+      name: "apply_patch",
+      description: "Apply a patch to update files.",
+      format: {
+        type: :grammar,
+        syntax: :lark,
+        definition: APPLY_PATCH_GRAMMAR
+      }
+    }
+  ],
+  parallel_tool_calls: false
+)
+response.output.each do |item|
+  puts(item.input) if item.is_a?(OpenAI::Responses::ResponseCustomToolCall)
+end
+```
+
+
 Patches objects the Responses API tool can be implemented by following this [example](https://github.com/openai/openai-agents-python/blob/main/examples/tools/apply_patch.py) and patches from the freeform tool can be applied with the logic in our canonical GPT-5 [apply_patch.py](https://github.com/openai/openai-cookbook/blob/main/examples/gpt-5/apply_patch.py%20) implementation.
 
-### Shell_command
+#### Shell_command
 
 This is our default shell tool. Note that we have seen better performance with a command type “string” rather than a list of commands.
 
-```
+```json
 {
   "type": "function",
   "function": {
@@ -416,13 +501,13 @@ This is our default shell tool. Note that we have seen better performance with a
 
 If you’re using Windows PowerShell, update to this tool description.
 
-```
+```text
 Runs a shell command and returns its output. The arguments you pass will be invoked via PowerShell (e.g., ["pwsh", "-NoLogo", "-NoProfile", "-Command", "<cmd>"]). Always fill in workdir; avoid using cd in the command string.
 ```
 
 You can check out codex-cli for the implementation for `exec_command`, which launches a long-lived PTY when you need streaming output, REPLs, or interactive sessions; and `write_stdin`, to feed extra keystrokes (or just poll output) for an existing exec_command session.
 
-### Update Plan
+#### Update Plan
 
 This is our default TODO tool; feel free to customize as you’d prefer. See the `## Plan tool` section of our starter prompt for additional instructions to maintain hygiene and tweak behavior.
 
@@ -465,11 +550,11 @@ This is our default TODO tool; feel free to customize as you’d prefer. See the
 }
 ```
 
-### View_image
+#### View_image
 
 This is a basic function used in codex-cli for the model to view images.
 
-```
+```json
 {
   "type": "function",
   "function": {
@@ -485,21 +570,17 @@ This is a basic function used in codex-cli for the model to view images.
         }
       },
       "additionalProperties": false,
-      "required": [
-        "path"
-      ]
+      "required": ["path"]
     }
   }
 }
-
-
 ```
 
-## Dedicated terminal-wrapping tools
+### Dedicated terminal-wrapping tools
 
 If you would prefer your codex agent to use terminal-wrapping tools (like a dedicated `list_dir(‘.’)` tool instead of `terminal(‘ls .’)`, this generally works well. We see the best results when the name of the tool, the arguments, and the output are as close as possible to those from the underlying command, so it’s as in-distribution as possible for the model (which was primarily trained using a dedicated terminal tool). For example, if you notice the model using git via the terminal and would prefer it to use a dedicated tool, we found that creating a related tool, and adding a directive in the prompt to only use that tool for git commands, fully mitigated the model’s terminal usage for git commands.
 
-```
+```python
 GIT_TOOL = {
     "type": "function",
     "name": "git",
@@ -530,12 +611,47 @@ GIT_TOOL = {
     },
 }
 
-...
+TOOLS = [GIT_TOOL]
 
-PROMPT_TOOL_USE_DIRECTIVE = "- Strictly avoid raw `cmd`/terminal when a dedicated tool exists. Default to solver tools: `git` (all git), `list_dir`, `apply_patch`. Use `cmd`/`run_terminal_cmd` only when no listed tool can perform the action." # update with your desired tools
+PROMPT_TOOL_USE_DIRECTIVE = (
+    "- Strictly avoid raw `cmd`/terminal for Git operations. Use the dedicated "
+    "`git` tool instead."
+)
 ```
 
-## Other Custom Tools (web search, semantic search, memory, etc.)
+```ruby
+require "json"
+
+GIT_TOOL = {
+  "type" => "function",
+  "name" => "git",
+  "description" => "Execute a git command in the repository root. Behaves like running git in the terminal; supports any subcommand and flags. The command can be provided as a full git invocation (e.g., `git status -sb`) or just the arguments after git (e.g., `status -sb`).",
+  "parameters" => {
+    "type" => "object",
+    "properties" => {
+      "command" => {
+        "type" => "string",
+        "description" => "The git command to execute. Accepts either a full git invocation or only the subcommand/args."
+      },
+      "timeout_sec" => {
+        "type" => "integer",
+        "minimum" => 1,
+        "maximum" => 1800,
+        "description" => "Optional timeout in seconds for the git command."
+      }
+    },
+    "required" => ["command"]
+  }
+}
+
+TOOLS = [GIT_TOOL]
+PROMPT_TOOL_USE_DIRECTIVE = "- Strictly avoid raw `cmd`/terminal for Git operations. Use the dedicated `git` tool instead."
+puts(JSON.generate(TOOLS))
+puts(PROMPT_TOOL_USE_DIRECTIVE)
+```
+
+
+### Other Custom Tools (web search, semantic search, memory, etc.)
 
 The model hasn’t necessarily been post-trained to excel at these tools, but we have seen success here as well. To get the most out of these tools, we recommend:
 
@@ -543,11 +659,11 @@ The model hasn’t necessarily been post-trained to excel at these tools, but we
 2. Be explicit in your prompt about when, why, and how to use these tools, including good and bad examples.
 3. It could also be helpful to make the results look different from outputs the model is accustomed to seeing from other tools, for example ripgrep results should look different from semantic search results to avoid the model collapsing into old habits.
 
-## Parallel Tool Calling
+### Parallel Tool Calling
 
 In codex-cli, when parallel tool calling is enabled, the responses API request sets `parallel_tool_calls: true` and the following snippet is added to the system instructions:
 
-```
+```text
 ## Exploration and reading files
 
 - **Think first.** Before any tool call, decide ALL files/resources you will need.
@@ -564,31 +680,31 @@ In codex-cli, when parallel tool calling is enabled, the responses API request s
 
 We've found it to be helpful and more in-distribution if parallel tool call items and responses are ordered in the following way:
 
-```
+```text
 function_call
 function_call
 function_call_output
 function_call_output
 ```
 
-## Tool Response Truncation
+### Tool Response Truncation
 
 We recommend doing tool call response truncation as follows to be as in-distribution for the model as possible:
 
 - Limit to 10k tokens. You can cheaply approximate this by computing `num_bytes/4`.
 - If you hit the truncation limit, you should use half of the budget for the beginning, half for the end, and truncate in the middle with `…3 tokens truncated…`
 
-## New features in GPT-5.3 Codex
+### New features in GPT-5.3 Codex
 
-### Preamble messages
+#### Preamble messages
 
-The Responses API has been updated to include a new `phase` parameter intended to prevent early stopping and other misbehaviors when preamble messages are requested by the prompt. `phase` is currently only supported with `gpt-5.3-codex`. Check out implementation details below. Correctly implementing this parameter is required for `gpt-5.3-codex`; otherwise, significant performance degradation can occur.
+The Responses API includes a `phase` parameter intended to prevent early stopping and other misbehavior when preamble messages are requested by the prompt. Correctly implementing this parameter is required for `gpt-5.3-codex`; otherwise, significant performance degradation can occur.
 
-### Phase
+#### Phase
 
 To better support preamble messages with `gpt-5.3-codex`, the Responses API includes a `phase` field designed to prevent early stopping on longer-running tasks and other misbehaviors.
 
-#### Values
+##### Values
 
 `phase` is one of:
 
@@ -596,13 +712,13 @@ To better support preamble messages with `gpt-5.3-codex`, the Responses API incl
 - `"commentary"`
 - `"final_answer"`
 
-#### Where it appears
+##### Where it appears
 
 You’ll receive `phase` on assistant output items (for example, `output_item.done`). Your integration must persist assistant output items, including their `phase`, and pass those assistant items back in subsequent requests.
 
 **Important:** `phase` is only supported on assistant items. Do not add `phase` to user messages.
 
-#### How it’s used downstream
+##### How it’s used downstream
 
 When the model marks an output item with:
 
@@ -611,7 +727,7 @@ When the model marks an output item with:
 
 Correctly preserving `phase` on assistant items is required for `gpt-5.3-codex`. If assistant `phase` metadata is dropped during history reconstruction, significant performance degradation can occur.
 
-### Preambles & Personality
+#### Preambles & Personality
 
 Preambles are messages sent along with tool calls that provide user updates while working: short, human-readable progress and intent snapshots that keep the user oriented without turning the transcript into a tool-call log. GPT-5.3-Codex preambles have been tuned toward the following characteristics:
 
@@ -621,13 +737,13 @@ Preambles are messages sent along with tool calls that provide user updates whil
 - Content per update: outcome/impact so far, next 1–3 steps, and open questions/learnings when present.
 - Tone: real person pairing, low-ceremony; avoid headings/status labels and log voice.
 
-#### Personality (Friendly vs Pragmatic)
+##### Personality (Friendly vs Pragmatic)
 
 Personality is the higher-level vibe and collaboration posture that sits above preamble mechanics (cadence, length, and grounding). It affects word choice, how eagerly the model explains tradeoffs, and how much warmth it brings to the interaction.
 
 The Codex app and CLI ship with support for two personalities provided here as example implementations for your harness.
 
-##### Friendly
+###### Friendly
 
 - More human, partner-y pairing energy.
 - Slightly more acknowledgement, reassurance, and context-setting.
@@ -637,7 +753,7 @@ The Codex app and CLI ship with support for two personalities provided here as e
 
 This snippet can be used in your system prompt to steer the pair programming personality of the model.
 
-```
+```text
 # Personality
 
 You optimize for team morale and being a supportive teammate as much as code quality. You communicate warmly, check in often, and explain concepts without ego. You excel at pairing, onboarding, and unblocking others. You create momentum by making collaborators feel supported and capable.
@@ -659,13 +775,13 @@ You are a patient and enjoyable collaborator: unflappable when others might get 
 You escalate gently and deliberately when decisions have non-obvious consequences or hidden risk. Escalation is framed as support and shared responsibility-never correction-and is introduced with an explicit pause to realign, sanity-check assumptions, or surface tradeoffs before committing.
 ```
 
-##### Pragmatic
+###### Pragmatic
 
 - More terse, direct, let’s ship delivery.
 - Fewer social flourishes; higher ratio of actionable information per token.
 - Better when latency/throughput matters, or your users already know the workflow and just want progress and results.
 
-### Troubleshooting & Metaprompting
+#### Troubleshooting & Metaprompting
 
 Common failure modes we’ve been explicitly tracking:
 
@@ -673,11 +789,11 @@ Common failure modes we’ve been explicitly tracking:
 - Loggy / unnatural status updates instead of pair programmer collaboration.
 - Awkward preamble phrasing and repetitive tics ("Good catch", "Aha", "Got it–", etc.).
 
-#### Metaprompting for targeted fixes
+##### Metaprompting for targeted fixes
 
 Failure modes like the ones above can typically be addressed through metaprompting. It’s possible to ask the model at the end of a turn that didn’t perform up to expectations how to improve its own instructions. The following prompt was used to produce some of the solutions to overthinking problems above and can be modified to meet your particular needs.
 
-```
+```text
 That was a high quality response, thanks! It seemed like it took you a while to finish responding though. Is there a way to clarify your instructions so you can get to a response as good as this faster next time? It’s extremely important to be efficient when providing these responses or users won’t get the most out of them in time. Let’s see if we can improve!
 think through the response you gave above
 read through your instructions starting from "" and look for anything that might have made you take longer to formulate a high quality response than you needed
@@ -686,7 +802,7 @@ write out targeted (but generalized) additions/changes/deletions to your instruc
 
 When metaprompting inside a specific context, it is important to generate responses a few times if possible and pay attention to elements of the responses that are common between them. Some improvements or changes the model proposes might be overly specific to that particular situation, but you can often simplify them to arrive at a general improvement. We recommend creating an eval to measure whether a particular prompt change is better or worse for your particular use case.
 
-#### Some examples
+##### Some examples
 
 - For overthinking / slow starts: ask it to propose instruction changes that reduce time-to-first-tool-call or first concrete plan.
 - For overly loggy preambles: ask it to rewrite your user updates instructions to satisfy your particular preference constraints.

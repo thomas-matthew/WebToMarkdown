@@ -3,6 +3,102 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.6.7 — 2026-10-06
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.7)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.6.6 — 2026-09-29
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.6)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.6.5 — 2026-09-24
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.5)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.6.4 — 2026-09-21
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.4)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.6.3 — 2026-09-11
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.3)
+
+- feat(core): Allow model name and provider tracing metadata override based on gateway response (#40406)
+
+## 1.6.2 — 2026-09-04
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.2)
+
+- feat(openai): support async tools (#40208)
+
+## 1.6.1 — 2026-08-27
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.1)
+
+- feat(core): propagate gateway information on error path (#39829)
+
+## 1.6.0 — 2026-08-19
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.0)
+
+- feat(core): add standard model exception types (#39538)
+
+## 1.5.6 — 2026-08-17
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.5.6)
+
+- feat(core): incorporate gateway metadata to traces (#39703)
+
+## 1.5.5 — 2026-08-14
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.5.5)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.5.4 — 2026-08-11
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.5.4)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.5.3 — 2026-07-30
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.5.3)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.5.2 — 2026-07-28
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.5.2)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.5.1 — 2026-07-23
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.5.1)
+
+- feat(anthropic,fireworks,openai): support langsmith gateway through env var (#38742)
+
+## 1.5.0 — 2026-07-21
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.5.0)
+
+- feat(core): add `reasoning_effort` as a standard chat model parameter (#38887)
+
+## 1.4.9 — 2026-07-08
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.4.9)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 1.4.8 — 2026-06-18
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.4.8)

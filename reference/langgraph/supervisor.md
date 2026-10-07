@@ -33,7 +33,7 @@ Copy
 
 Here's a simple example of a supervisor managing two specialized agents:
 
-![Supervisor Architecture](https://raw.githubusercontent.com/langchain-ai/langgraph-supervisor-py/74c8752739ae2fe0fdc3bc39408ebfb161e2a428/./static/img/supervisor.png)
+![Supervisor Architecture](https://raw.githubusercontent.com/langchain-ai/langgraph-supervisor-py/69c808c071e0a420255155c0ef383962b4872003/./static/img/supervisor.png)
 
 ```
 pip install langgraph-supervisor langchain-openai
@@ -111,16 +111,13 @@ result = app.invoke({
 
 Copy
 
-> [!TIP]
-> For developing, debugging, and deploying AI agents and LLM applications, see [LangSmith](https://docs.langchain.com/langsmith/home).
-
 ## Message History Management
 
 You can control how messages from worker agents are added to the overall conversation history of the multi-agent system:
 
 Include full message history from an agent:
 
-![Full History](https://raw.githubusercontent.com/langchain-ai/langgraph-supervisor-py/74c8752739ae2fe0fdc3bc39408ebfb161e2a428/./static/img/full_history.png)
+![Full History](https://raw.githubusercontent.com/langchain-ai/langgraph-supervisor-py/69c808c071e0a420255155c0ef383962b4872003/./static/img/full_history.png)
 
 ```
 workflow = create_supervisor(
@@ -133,7 +130,7 @@ Copy
 
 Include only the final agent response:
 
-![Last Message](https://raw.githubusercontent.com/langchain-ai/langgraph-supervisor-py/74c8752739ae2fe0fdc3bc39408ebfb161e2a428/./static/img/last_message.png)
+![Last Message](https://raw.githubusercontent.com/langchain-ai/langgraph-supervisor-py/69c808c071e0a420255155c0ef383962b4872003/./static/img/last_message.png)
 
 ```
 workflow = create_supervisor(
@@ -418,10 +415,6 @@ Copy
 
 [Function
 
-### create\_supervisor
-
-Create a multi-agent supervisor.](/python/langgraph-supervisor/supervisor/create_supervisor)[Function
-
 ### create\_handoff\_tool
 
 Create a tool that can handoff control to the requested agent.](/python/langgraph-supervisor/handoff/create_handoff_tool)[Function
@@ -432,19 +425,41 @@ Create a pair of (AIMessage, ToolMessage) to add to the message history when ret
 
 ### create\_forward\_message\_tool
 
-Create a tool the supervisor can use to forward a worker message by name.](/python/langgraph-supervisor/handoff/create_forward_message_tool)[Function
+Create a tool the supervisor can use to forward a worker message by name.
+
+This helps avoid information loss any time the supervisor rewrites a worker query
+to the user and also can save some tokens.](/python/langgraph-supervisor/handoff/create_forward_message_tool)[Function
 
 ### add\_inline\_agent\_name
 
-Add name and content XML tags to the message content.](/python/langgraph-supervisor/agent_name/add_inline_agent_name)[Function
+Add name and content XML tags to the message content.
+
+Examples:
+
+```
+>>> add_inline_agent_name(AIMessage(content="Hello", name="assistant"))
+AIMessage(content="<name>assistant</name><content>Hell
+```](/python/langgraph-supervisor/agent_name/add_inline_agent_name)[Function
 
 ### remove\_inline\_agent\_name
 
-Remove explicit name and content XML tags from the AI message content.](/python/langgraph-supervisor/agent_name/remove_inline_agent_name)[Function
+Remove explicit name and content XML tags from the AI message content.
+
+Examples:
+
+```
+>>> remove_inline_agent_name(AIMessage(content="<name>assistant</name><content>Hello</content>", name="assistant"
+```](/python/langgraph-supervisor/agent_name/remove_inline_agent_name)[Function
 
 ### with\_agent\_name
 
-Attach formatted agent names to the messages passed to and from a language model.](/python/langgraph-supervisor/agent_name/with_agent_name)
+Attach formatted agent names to the messages passed to and from a language model.
+
+This is useful for making a message history with multiple agents more coherent.](/python/langgraph-supervisor/agent_name/with_agent_name)[Function
+
+### create\_supervisor
+
+Create a multi-agent supervisor.](/python/langgraph-supervisor/supervisor/create_supervisor)
 
 ## Modules
 
@@ -452,11 +467,11 @@ Attach formatted agent names to the messages passed to and from a language model
 
 ### langgraph\_supervisor](/python/langgraph-supervisor/langgraph_supervisor)[Module
 
-### supervisor](/python/langgraph-supervisor/supervisor)[Module
-
 ### handoff](/python/langgraph-supervisor/handoff)[Module
 
-### agent\_name](/python/langgraph-supervisor/agent_name)
+### agent\_name](/python/langgraph-supervisor/agent_name)[Module
+
+### supervisor](/python/langgraph-supervisor/supervisor)
 
 Copy page
 

@@ -3,6 +3,109 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.6.7 — 2026-09-30
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.6.7)
+
+- feat(openai): discover Azure workload identity (#40532)
+
+## 1.6.6 — 2026-09-24
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.6.6)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.6.5 — 2026-09-23
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.6.5)
+
+- feat(anthropic,openai): mid-conversation tool changes on `SystemMessage` (#40758)
+
+## 1.6.4 — 2026-09-22
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.6.4)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.6.3 — 2026-09-21
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.6.3)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.6.2 — 2026-09-09
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.6.2)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.6.1 — 2026-09-08
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.6.1)
+
+- feat(openai): support async tools (#40208)
+- feat(openai): support `configuration_update` (#40201)
+
+## 1.6.0 — 2026-08-19
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.6.0)
+
+- feat(core): add standard model exception types (#39538)
+
+## 1.5.2 — 2026-08-18
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.5.2)
+
+- feat(openai): extract gateway metadata from response headers when available (#39706)
+
+## 1.5.1 — 2026-08-14
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.5.1)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.5.0 — 2026-08-13
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.5.0)
+
+- feat(openai): support openai 3.0 SDK (#39613)
+
+## 1.4.3 — 2026-08-10
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.4.3)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.4.2 — 2026-08-07
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.4.2)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.4.1 — 2026-07-23
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.4.1)
+
+- feat(anthropic,fireworks,openai): support langsmith gateway through env var (#38742)
+
+## 1.4.0 — 2026-07-21
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.4.0)
+
+- feat(core): add `reasoning_effort` as a standard chat model parameter (#38887)
+
+## 1.3.5 — 2026-07-10
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.3.5)
+
+- feat(openai): support explicit prompt caching (#38762)
+
+## 1.3.4 — 2026-07-08
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.3.4)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 1.3.3 — 2026-06-22
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.3.3)

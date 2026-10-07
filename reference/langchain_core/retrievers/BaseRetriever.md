@@ -1,6 +1,6 @@
 Python[langchain-core](/python/langchain-core)[retrievers](/python/langchain-core/retrievers)BaseRetriever
 
-Classv1.4.8 (latest)●Since v0.1
+Classv1.6.7 (latest)●Since v0.1
 
 # BaseRetriever
 
@@ -72,8 +72,8 @@ Copy
 ```
 BaseRetriever(
     self,
-    *args: Any = (),
-    **kwargs: Any = {},
+    args: Any = (),
+    kwargs: Any = {},
 )
 ```
 
@@ -353,7 +353,7 @@ Add fallbacks to a `Runnable`, returning a new `Runnable`.](/python/langchain-co
 
 Create a `BaseTool` from a `Runnable`.](/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/core/langchain_core/retrievers.py#L55)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/f40f58d50499700f98051be6bb610bee5dd11cc2/libs/core/langchain_core/retrievers.py#L55)
 
 Version History
 

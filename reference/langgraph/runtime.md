@@ -8,7 +8,10 @@ Python[langgraph](/python/langgraph)Runtime
 
 ### Runtime
 
-Convenience class that bundles run-scoped context and other runtime utilities.](/python/langgraph/runtime/Runtime)
+Convenience class that bundles run-scoped context and other runtime utilities.
+
+This class is injected into graph nodes and middleware. It provides access to
+`context`, `store`, `stream_writer`, `prev](/python/langgraph/runtime/Runtime)
 
 ## Functions
 

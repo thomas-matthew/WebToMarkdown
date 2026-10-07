@@ -1,5 +1,7 @@
 # Running agents
 
+> For the complete documentation index, see [llms.txt](/llms.txt). Markdown versions of documentation pages are available by appending `.md` to the page URL.
+
 Defining an agent is only the setup step. The runtime questions are what a single run does, how the next turn continues, and how the workflow behaves when it pauses for approvals or tool work.
 
 ## The agent loop
@@ -20,16 +22,16 @@ There are four common ways to carry state into the next turn:
 
 | Strategy                                                                                                           | Where state lives         | Best for                                                               | What you pass on the next turn                 |
 | ------------------------------------------------------------------------------------------------------------------ | ------------------------- | ---------------------------------------------------------------------- | ---------------------------------------------- |
-| | Your application          | Small chat loops and maximum control                                   | The replay-ready history                       |
+| `result.history` in TypeScript or `result.to_input_list()` in Python   | Your application          | Small chat loops and maximum control                                   | The replay-ready history                       |
 | `session`                                                                                                          | Your storage plus the SDK | Persistent chat state, resumable runs, and storage you control         | The same session                               |
 | `conversationId`                                                                                                   | OpenAI Conversations API  | Shared server-managed state across workers or services                 | The same conversation ID and only the new turn |
-| | OpenAI Responses API      | The lightest server-managed continuation from one response to the next | The last response ID and only the new turn     |
+| `previousResponseId` in TypeScript or `previous_response_id` in Python | OpenAI Responses API      | The lightest server-managed continuation from one response to the next | The last response ID and only the new turn     |
 
 In most applications, pick one strategy per conversation. Mixing local replay with server-managed state can duplicate context unless you are deliberately reconciling both layers.
 
 Persist multi-turn state with sessions
 
-```typescript
+```javascript
 import { Agent, MemorySession, run } from "@openai/agents";
 
 const agent = new Agent({
@@ -39,11 +41,9 @@ const agent = new Agent({
 
 const session = new MemorySession();
 
-const firstTurn = await run(
-  agent,
-  "What city is the Golden Gate Bridge in?",
-  { session },
-);
+const firstTurn = await run(agent, "What city is the Golden Gate Bridge in?", {
+  session,
+});
 console.log(firstTurn.finalOutput);
 
 const secondTurn = await run(agent, "What state is it in?", { session });
@@ -88,7 +88,7 @@ Sessions are the best default when you want durable memory, resumable approval f
 
 Continue with server-managed state
 
-```typescript
+```javascript
 import { Agent, run } from "@openai/agents";
 import OpenAI from "openai";
 
@@ -142,7 +142,7 @@ if __name__ == "__main__":
 ```
 
 
-Use `conversationId` when multiple systems should share one named conversation. Use when you want the cheapest response-to-response continuation option.
+Use `conversationId` when multiple systems should share one named conversation. Use `previousResponseId` in TypeScript or `previous_response_id` in Python when you want the cheapest response-to-response continuation option.
 
 ## Stream runs incrementally
 
@@ -150,7 +150,7 @@ Streaming uses the same agent loop and the same state strategies. The only diffe
 
 Stream a run as text arrives
 
-```typescript
+```javascript
 import { Agent, run } from "@openai/agents";
 
 const agent = new Agent({
@@ -165,7 +165,7 @@ const stream = await run(agent, "Give me three short facts about Saturn.", {
 for await (const event of stream) {
   if (
     event.type === "raw_model_stream_event" &&
-    event.data.type === "response.output_text.delta"
+    event.data.type === "output_text_delta"
   ) {
     process.stdout.write(event.data.delta);
   }
@@ -195,9 +195,8 @@ async def main() -> None:
     )
 
     async for event in stream.stream_events():
-        if (
-            event.type == "raw_response_event"
-            and isinstance(event.data, ResponseTextDeltaEvent)
+        if event.type == "raw_response_event" and isinstance(
+            event.data, ResponseTextDeltaEvent
         ):
             print(event.data.delta, end="", flush=True)
 
@@ -228,42 +227,21 @@ Treat approvals as paused runs, not as new turns. That distinction keeps turn co
 
 Once the runtime loop is clear, move to the guide that matches the next workflow boundary you need to design.
 
-<div class="not-prose mt-4 grid gap-3">
-  <a
-    href="/api/docs/guides/agents/results"
-    class="block no-underline hover:no-underline"
-  >
-    
-
-<span slot="icon">
-        </span>
-      Learn which result surfaces your application should carry into the next
-      turn.
 
 
-  </a>
-  <a
-    href="/api/docs/guides/agents/orchestration"
-    class="block no-underline hover:no-underline"
-  >
-    
-
-<span slot="icon">
-        </span>
-      Decide how multiple specialists behave inside the same runtime loop.
+  [Results and state
 
 
-  </a>
-  <a
-    href="/api/docs/guides/agents/guardrails-approvals"
-    class="block no-underline hover:no-underline"
-  >
-    
 
-<span slot="icon">
-        </span>
-      Add validation and approval pauses without breaking turn continuity.
+        Learn which result surfaces your application should carry into the next
+      turn.](https://developers.openai.com/api/docs/guides/agents/results)
+  [Orchestration and handoffs
 
 
-  </a>
-</div>
+
+        Decide how multiple specialists behave inside the same runtime loop.](https://developers.openai.com/api/docs/guides/agents/orchestration)
+  [Guardrails and human review
+
+
+
+        Add validation and approval pauses without breaking turn continuity.](https://developers.openai.com/api/docs/guides/agents/guardrails-approvals)

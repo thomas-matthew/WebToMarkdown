@@ -1,6 +1,6 @@
 Python[langchain-openai](/python/langchain-openai)[chat\_models](/python/langchain-openai/chat_models)[base](/python/langchain-openai/chat_models/base)ChatOpenAI
 
-Classv1.3.3 (latest)●Since v0.1
+Classv1.6.7 (latest)●Since v0.1
 
 # ChatOpenAI
 
@@ -335,6 +335,41 @@ using `model.bind(parallel_tool_calls=False)` or during instantiation by
 setting `model_kwargs`.
 
 See `bind_tools` for more.
+
+Mid-conversation tool additions
+
+```
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_openai import ChatOpenAI
+
+model = ChatOpenAI(model="gpt-6-astra", use_responses_api=True)
+model.invoke(
+    [
+        HumanMessage("What time is it?"),
+        SystemMessage(
+            [
+                {
+                    "type": "additional_tools",
+                    "role": "developer",
+                    "tools": [
+                        {
+                            "type": "function",
+                            "name": "get_time",
+                            "description": "Get the current time.",
+                            "parameters": {
+                                "type": "object",
+                                "properties": {},
+                            },
+                        }
+                    ],
+                }
+            ]
+        ),
+    ]
+)
+```
+
+Copy
 
 Built-in (server-side) tools
 
@@ -761,6 +796,26 @@ model = ChatOpenAI(
 
 Copy
 
+Model name can trigger Responses API routing
+
+The choice between the Chat Completions API (`/v1/chat/completions`)
+and the Responses API (`/v1/responses`) is inferred in part from the
+model name, independent of `base_url`.
+
+`use_responses_api` should generally be set explicitly to avoid ambiguity,
+especially when using OpenAI-compatible providers:
+
+```
+model = ChatOpenAI(
+    base_url="http://localhost:8000/v1",
+    api_key="EMPTY",
+    model="codex-7b-instruct",
+    use_responses_api=False,
+)
+```
+
+Copy
+
 `model_kwargs` vs `extra_body`
 
 Use the correct parameter for different types of API arguments:
@@ -820,8 +875,9 @@ Using `model_kwargs` for non-OpenAI parameters will cause API errors.
 
 Prompt caching optimization
 
-For high-volume applications with repetitive prompts, use `prompt_cache_key`
-per-invocation to improve cache hit rates and reduce costs:
+OpenAI prompt caching is automatic for eligible prompts. For high-volume
+applications with repetitive prompts, use `prompt_cache_key`
+per invocation to improve cache hit rates and reduce costs:
 
 ```
 model = ChatOpenAI(model="...")
@@ -841,9 +897,75 @@ response = model.invoke(messages, prompt_cache_key=cache_key)
 
 Copy
 
-Cache keys help ensure requests with the same prompt prefix are routed to
-machines with existing cache, providing cost reduction and latency improvement on
-cached tokens.
+The default `"implicit"` mode keeps OpenAI's automatic breakpoint and
+also uses explicit breakpoints. The `"explicit"` mode uses only the
+breakpoints you provide.
+
+For models that support explicit cache breakpoints, pass
+request-level cache options and mark supported content blocks
+with `prompt_cache_breakpoint`:
+
+```
+model = ChatOpenAI(model="gpt-5.6-sol")
+response = model.invoke(
+    [
+        {
+            "role": "system",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Stable instructions and examples...",
+                    "prompt_cache_breakpoint": {"mode": "explicit"},
+                }
+            ],
+        },
+        {"role": "user", "content": "Current request"},
+    ],
+    prompt_cache_key="tenant:acme:support-v1",
+    prompt_cache_options={"mode": "explicit", "ttl": "30m"},
+)
+```
+
+Copy
+
+Set `prompt_cache_options` per invocation, as above, or persist it on
+the model:
+
+```
+model = ChatOpenAI(
+    model="gpt-5.6-sol",
+    prompt_cache_options={"mode": "explicit", "ttl": "30m"},
+)
+```
+
+Copy
+
+`prompt_cache_options["mode"]` can be `"implicit"` or `"explicit"`.
+OpenAI limits how many breakpoints can write to the cache in a single
+request. In `"implicit"` mode, the implicit breakpoint on the latest
+message uses one write slot, so up to three explicit breakpoints can
+write. In `"explicit"` mode, up to four explicit breakpoints can write.
+For reads, OpenAI considers up to the latest 50 breakpoints.
+
+For models before the GPT-5.6 family that support legacy prompt cache
+retention, pass `prompt_cache_retention`. See OpenAI's
+[prompt caching docs](https://platform.openai.com/docs/guides/prompt-caching)
+for the current model support list and retention semantics.
+
+```
+response = model.invoke(messages, prompt_cache_retention="24h")
+```
+
+Copy
+
+Cache keys help ensure requests with the same prompt prefix are routed
+to machines with existing cache, providing cost reduction and
+latency improvement on cached tokens. Cache reads are available as
+`response.usage_metadata["input_token_details"]["cache_read"]`; cache
+writes are available as `"cache_creation"` when the OpenAI response
+includes `cache_write_tokens`. On the `"priority"` and `"flex"`
+service tiers these keys are prefixed with the tier name
+(e.g. `"priority_cache_read"`).
 
 Copy
 
@@ -860,10 +982,10 @@ ChatOpenAI()
 * [Build a SQL assistant with on-demand skills](https://docs.langchain.com/oss/python/langchain/multi-agent/skills-sql-assistant)
 * [Custom workflow](https://docs.langchain.com/oss/python/langchain/multi-agent/custom-workflow)
 * [Manage prompts programmatically](https://docs.langchain.com/langsmith/manage-prompts-programmatically)
-* [Messages view integrations](https://docs.langchain.com/langsmith/messages-view-integrations)
 * [MODEL\_AUTHENTICATION](https://docs.langchain.com/oss/python/langchain/errors/MODEL_AUTHENTICATION)
+* [Models](https://docs.langchain.com/oss/python/langchain/models)
 
-+15 more(65 more not shown)
++15 more(27 more not shown)
 
 ## Attributes
 
@@ -1029,7 +1151,11 @@ Configuration for](/python/langchain-openai/chat_models/base/BaseChatOpenAI/cont
 
 —
 
-Additional fields to include in generations from Responses API.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/include)[Aservice\_tier: str | None
+Additional fields to include in generations from Responses API.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/include)[Aprompt\_cache\_options: dict[str, Any] | None
+
+—
+
+Options controlling OpenAI prompt cache behavior.](/python/langchain-openai/chat_models/base/BaseChatOpenAI/prompt_cache_options)[Aservice\_tier: str | None
 
 —
 
@@ -1137,7 +1263,7 @@ Bind tool-like objects to this chat model.](/python/langchain-openai/chat_models
 
 [Mget\_name](/python/langchain-core/runnables/base/Runnable/get_name)[Mget\_input\_schema](/python/langchain-core/runnables/base/Runnable/get_input_schema)[Mget\_input\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_input_jsonschema)[Mget\_output\_schema](/python/langchain-core/runnables/base/Runnable/get_output_schema)[Mget\_output\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_output_jsonschema)[Mconfig\_schema](/python/langchain-core/runnables/base/Runnable/config_schema)[Mget\_config\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_config_jsonschema)[Mget\_graph](/python/langchain-core/runnables/base/Runnable/get_graph)[Mget\_prompts](/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe](/python/langchain-core/runnables/base/Runnable/pipe)[Mpick](/python/langchain-core/runnables/base/Runnable/pick)[Massign](/python/langchain-core/runnables/base/Runnable/assign)[Minvoke](/python/langchain-core/runnables/base/Runnable/invoke)[Mainvoke](/python/langchain-core/runnables/base/Runnable/ainvoke)[Mbatch](/python/langchain-core/runnables/base/Runnable/batch)[Mbatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch](/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mstream](/python/langchain-core/runnables/base/Runnable/stream)[Mastream](/python/langchain-core/runnables/base/Runnable/astream)[Mastream\_log](/python/langchain-core/runnables/base/Runnable/astream_log)[Mastream\_events](/python/langchain-core/runnables/base/Runnable/astream_events)[Mstream\_events](/python/langchain-core/runnables/base/Runnable/stream_events)[Mtransform](/python/langchain-core/runnables/base/Runnable/transform)[Matransform](/python/langchain-core/runnables/base/Runnable/atransform)[Mbind](/python/langchain-core/runnables/base/Runnable/bind)[Mwith\_config](/python/langchain-core/runnables/base/Runnable/with_config)[Mwith\_listeners](/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith\_alisteners](/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith\_types](/python/langchain-core/runnables/base/Runnable/with_types)[Mwith\_retry](/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap](/python/langchain-core/runnables/base/Runnable/map)[Mwith\_fallbacks](/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas\_tool](/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/partners/openai/langchain_openai/chat_models/base.py#L2565)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/026c3da2b615abe52f8446e37de460b844d07a43/libs/partners/openai/langchain_openai/chat_models/base.py#L2904)
 
 Version History
 
@@ -1159,7 +1285,7 @@ from BaseChatOpenAI
 
 AAttributes
 
-AclientAasync\_clientAroot\_clientAroot\_async\_clientAmodel\_nameAtemperatureAmodel\_kwargsAopenai\_api\_keyAopenai\_api\_baseAopenai\_organizationAopenai\_proxyArequest\_timeoutAstream\_usageAmax\_retriesApresence\_penaltyAfrequency\_penaltyAseedAlogprobsAtop\_logprobsAlogit\_biasAstreamingAnAtop\_pAreasoning\_effortAreasoningAverbosityAtiktoken\_model\_nameAdefault\_headersAdefault\_queryAhttp\_clientAhttp\_async\_clientAhttp\_socket\_optionsAstream\_chunk\_timeoutAstopAextra\_bodyAinclude\_response\_headersAdisabled\_paramsAcontext\_managementAincludeAservice\_tierAstoreAtruncationAuse\_previous\_response\_idAuse\_responses\_apiAoutput\_versionAmodel\_configAmodel
+AclientAasync\_clientAroot\_clientAroot\_async\_clientAmodel\_nameAtemperatureAmodel\_kwargsAopenai\_api\_keyAopenai\_api\_baseAopenai\_organizationAopenai\_proxyArequest\_timeoutAstream\_usageAmax\_retriesApresence\_penaltyAfrequency\_penaltyAseedAlogprobsAtop\_logprobsAlogit\_biasAstreamingAnAtop\_pAreasoning\_effortAreasoningAverbosityAtiktoken\_model\_nameAdefault\_headersAdefault\_queryAhttp\_clientAhttp\_async\_clientAhttp\_socket\_optionsAstream\_chunk\_timeoutAstopAextra\_bodyAinclude\_response\_headersAdisabled\_paramsAcontext\_managementAincludeAprompt\_cache\_optionsAservice\_tierAstoreAtruncationAuse\_previous\_response\_idAuse\_responses\_apiAoutput\_versionAmodel\_configAmodel
 
 MMethods
 

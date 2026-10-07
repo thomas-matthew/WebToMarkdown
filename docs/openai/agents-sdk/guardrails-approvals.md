@@ -1,5 +1,7 @@
 # Guardrails and human review
 
+> For the complete documentation index, see [llms.txt](/llms.txt). Markdown versions of documentation pages are available by appending `.md` to the page URL.
+
 Use guardrails for automatic checks and human review for approval decisions. Together, they define when a run should continue, pause, or stop.
 
 - **Guardrails** validate input, output, or tool behavior automatically.
@@ -20,12 +22,8 @@ Use input guardrails when you want a fast validation step to run before the expe
 
 Block a request with an input guardrail
 
-```typescript
-import {
-  Agent,
-  InputGuardrailTripwireTriggered,
-  run,
-} from "@openai/agents";
+```javascript
+import { Agent, InputGuardrailTripwireTriggered, run } from "@openai/agents";
 import { z } from "zod";
 
 const guardrailAgent = new Agent({
@@ -132,7 +130,7 @@ Approvals are the human-in-the-loop path for tool calls. The model can still dec
 
 Pause for approval before a sensitive action
 
-```typescript
+```javascript
 import { Agent, run, tool } from "@openai/agents";
 import { z } from "zod";
 
@@ -200,7 +198,7 @@ if __name__ == "__main__":
 ```
 
 
-This same interruption pattern applies even when the approving tool lives deeper in the workflow, such as after a handoff or inside a nested call.
+This same interruption pattern applies even when the approving tool lives deeper in the workflow, such as after a handoff or inside a nested `agent.asTool()` in TypeScript or `agent.as_tool()` in Python call.
 
 ## Approval lifecycle
 
@@ -223,6 +221,32 @@ Agent-level guardrails don't run everywhere:
 
 If you need checks around every custom tool call in a manager-style workflow, don't rely only on agent-level input or output guardrails. Put validation next to the tool that creates the side effect.
 
+## Review cybersecurity actions before execution
+
+For authorized cybersecurity workflows, evaluate each sensitive tool call
+before it executes. Use tool guardrails and approval interruptions to enforce
+the written engagement scope at the boundary where side effects occur:
+
+1. Check the proposed target, action, tool arguments, calling identity, and
+   engagement window against the approved scope.
+2. Give a separate policy component or reviewer the exact proposed action and
+   only the context needed to evaluate it.
+3. Deny out-of-scope hosts, credential theft, persistence, data exfiltration,
+   destructive changes, production access, and attempts to bypass policy.
+4. Pause ambiguous or high-risk actions for explicit human approval before the
+   tool runs.
+5. Enforce independent filesystem, network, identity, and project boundaries,
+   record decisions and execution outcomes, and fail closed if review times out
+   or becomes unavailable.
+
+Responses API and Agents SDK applications don't automatically inherit
+[Codex Auto-review](https://developers.openai.com/codex/sandboxing/auto-review). Add review and enforcement
+to your own harness. The
+[open-source Codex reviewer policy](https://github.com/openai/codex/blob/main/codex-rs/core/src/guardian/policy.md)
+illustrates one approach. Review [Models and Trusted Access](https://developers.openai.com/codex/cyber-safety)
+for approved model access and [Recommended configuration](https://developers.openai.com/codex/cyber-safety/recommended-configuration)
+for safe engagement setup.
+
 ## Streaming and delayed review use the same state model
 
 Streaming doesn't create a separate approval system. If a streamed run pauses, wait for it to settle, inspect `interruptions`, resolve the approvals, and resume from the same `state`. If the review happens later, store the serialized state and continue the same run when the decision arrives.
@@ -231,42 +255,21 @@ Streaming doesn't create a separate approval system. If a streamed run pauses, w
 
 Once the control boundaries are clear, continue with the guide that covers the runtime or tool surface around them.
 
-<div class="not-prose mt-4 grid gap-3">
-  <a
-    href="/api/docs/guides/agents/running-agents"
-    class="block no-underline hover:no-underline"
-  >
-    
-
-<span slot="icon">
-        </span>
-      See how interruptions and resumptions fit into the runtime loop.
 
 
-  </a>
-  <a
-    href="/api/docs/guides/agents/results"
-    class="block no-underline hover:no-underline"
-  >
-    
-
-<span slot="icon">
-        </span>
-      Learn which result surfaces paused runs return to your application.
+  [Running agents
 
 
-  </a>
-  <a
-    href="/api/docs/guides/tools#usage-in-the-agents-sdk"
-    class="block no-underline hover:no-underline"
-  >
-    
 
-<span slot="icon">
-        </span>
-      Decide which tool surfaces need validation or approval before side effects
-      happen.
+        See how interruptions and resumptions fit into the runtime loop.](https://developers.openai.com/api/docs/guides/agents/running-agents)
+  [Results and state
 
 
-  </a>
-</div>
+
+        Learn which result surfaces paused runs return to your application.](https://developers.openai.com/api/docs/guides/agents/results)
+  [Using tools
+
+
+
+        Decide which tool surfaces need validation or approval before side effects
+      happen.](https://developers.openai.com/api/docs/guides/tools#usage-in-the-agents-sdk)

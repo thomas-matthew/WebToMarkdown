@@ -1,20 +1,21 @@
-# GPT-5.1 prompting guide
+# Using GPT-5.1
 
-Prompt GPT-5.1 for agentic tasks, calibrated reasoning, personality steering, and tool use.
-
-## New in GPT-5.1 vs GPT-5
-- New `none` reasoning mode for low-latency interactions.
-- Better-calibrated reasoning token use across easy and challenging inputs.
-- More steerable personality, tone, and output formatting.
-- New apply_patch and shell tool guidance for coding agents.
+> For the complete documentation index, see [llms.txt](/llms.txt). Markdown versions of documentation pages are available by appending `.md` to the page URL.
 
 ## Introduction
 
-GPT-5.1 is designed to balance intelligence and speed for a variety of agentic and coding tasks, while also introducing a new `none` reasoning mode for low-latency interactions. Building on the strengths of GPT-5, GPT-5.1 is better calibrated to prompt difficulty, consuming far fewer tokens on easy inputs and more efficiently handling challenging ones. Along with these benefits, GPT-5.1 is more steerable in personality, tone, and output formatting.
+GPT-5.1 is designed to balance intelligence and speed for a variety of agentic and coding tasks, while also introducing a new `none` reasoning mode for low-latency interactions. Building on the strengths of GPT-5, GPT-5.1 is better calibrated to prompt difficulty, consuming far fewer tokens on lower-complexity inputs and more efficiently handling challenging ones. Along with these benefits, GPT-5.1 is more steerable in personality, tone, and output formatting.
 
 While GPT-5.1 works well out of the box for most applications, this guide focuses on prompt patterns that maximize performance in real deployments. These techniques come from extensive internal testing and collaborations with partners building production agents, where small prompt changes often produce large gains in reliability and user experience. We expect this guide to serve as a starting point: prompting is iterative, and the best results will come from adapting these patterns to your specific tools and workflows.
 
-## Migrating to GPT-5.1
+## What's new
+
+- New `none` reasoning mode for low-latency interactions
+- Better-calibrated reasoning token use across lower-complexity and challenging inputs
+- More steerable personality, tone, and output formatting
+- Apply patch and shell tool guidance for coding agents
+
+## Migration quickstart
 
 For developers using GPT-4.1, GPT-5.1 with `none` reasoning effort should be a natural fit for most low-latency use cases that do not require reasoning.
 
@@ -22,16 +23,25 @@ For developers using GPT-5, we have seen strong success with customers who follo
 
 1. **Persistence:** GPT-5.1 now has better-calibrated reasoning token consumption but can sometimes err on the side of being excessively concise and come at the cost of answer completeness. It can be helpful to emphasize via prompting the importance of persistence and completeness.
 2. **Output formatting and verbosity:** While overall more detailed, GPT-5.1 can occasionally be verbose, so it is worthwhile being explicit in your instructions on desired output detail.
-3. **Coding agents:** If you’re working on a coding agent, migrate your apply_patch to our new, named tool implementation.
+3. **Coding agents:** If you’re working on a coding agent, migrate your `apply_patch` tool to our new, named implementation.
 4. **Instruction following:** For other behavior issues, GPT-5.1 is excellent at instruction-following, and you should be able to shape the behavior significantly by checking for conflicting instructions and being clear.
 
-We also released GPT-5.1-codex. That model behaves a bit differently than GPT-5.1, and we recommend you check out the [Codex prompting guide](https://developers.openai.com/cookbook/examples/gpt-5/codex_prompting_guide) for more information. The current Codex model in the API is `gpt-5.2-codex` (see the [model page](https://developers.openai.com/api/docs/models/gpt-5.2-codex)).
+We also released GPT-5.1-Codex. That model behaves differently from GPT-5.1; see the [Codex prompting guide](https://developers.openai.com/cookbook/examples/gpt-5/codex_prompting_guide) for more information. For guidance on a later Codex model in the API, see [Using GPT-5.3 Codex](https://developers.openai.com/api/docs/guides/latest-model?model=gpt-5.3-codex).
 
-## Agentic steerability
+## Model, API, and feature updates
+
+- `gpt-5.1` is available in the Responses API and Chat Completions API.
+- `reasoning.effort` supports `none` (the default), `low`, `medium`, and `high`.
+- The model supports function calling and OpenAI-hosted tools, including web search, file search, image generation, code interpreter, and apply patch.
+- GPT-5.1-Codex variants are optimized separately for agentic coding workflows.
+
+## Prompting best practices
+
+### Agentic steerability
 
 GPT-5.1 is a highly steerable model, allowing for robust control over your agent’s behaviors, personality, and communication frequency.
 
-### Shaping your agent’s personality
+#### Shaping your agent’s personality
 
 GPT-5.1’s personality and response style can be adapted to your use case. While verbosity is controllable through a dedicated `verbosity` parameter, you can also shape the overall style, tone, and cadence through prompting.
 
@@ -39,7 +49,7 @@ We’ve found that personality and style work best when you define a clear agent
 
 The sample prompt below shows how we shaped the personality for a customer support agent, focusing on balancing the right level of directness and warmth in resolving an issue.
 
-```
+```text
 <final_answer_formatting>
 You value clarity, momentum, and respect measured by usefulness rather than pleasantries. Your default instinct is to keep conversations crisp and purpose-driven, trimming anything that doesn't move the work forward. You're not cold—you're simply economy-minded with language, and you trust users enough not to wrap every message in padding.
 
@@ -66,7 +76,7 @@ You value clarity, momentum, and respect measured by usefulness rather than plea
 
 In the prompt below, we’ve included sections that constrain a coding agent’s responses to be short for small changes and longer for more detailed queries. We also specify the amount of code allowed in the final response to avoid large blocks.
 
-```
+```text
 <final_answer_formatting>
 - Final answer compactness rules (enforced):
   - Tiny/small single-file change (≤ ~10 lines): 2–5 sentences or ≤3 bullets. No headings. 0–1 short snippet (≤3 lines) only if essential.
@@ -88,7 +98,7 @@ In the prompt below, we’ve included sections that constrain a coding agent’s
 
 Excess output length can be mitigated by adjusting the verbosity parameter and further reduced via prompting as GPT-5.1 adheres well to concrete length guidance:
 
-```
+```text
 <output_verbosity_spec>
 - Respond in plain text styled in Markdown, using at most 2 concise sentences.
 - Lead with what you did (or found) and context only if needed.
@@ -96,13 +106,13 @@ Excess output length can be mitigated by adjusting the verbosity parameter and f
 </output_verbosity_spec>
 ```
 
-### Eliciting user updates
+#### Eliciting user updates
 
 User updates, also called preambles, are a way for GPT-5.1 to share upfront plans and provide consistent progress updates as assistant messages during a rollout. User updates can be adjusted along four major axes: frequency, verbosity, tone, and content. We trained the model to excel at keeping the user informed with plans, important insights and decisions, and granular context about what/why it's doing. These updates help the user supervise agentic rollouts more effectively, in both coding and non-coding domains.
 
 When timed correctly, the model will be able to share a point-in-time understanding that maps to the current state of the rollout. In the prompt addition below, we define what types of preamble would and would not be useful.
 
-```
+```text
 <user_updates_spec>
 You'll work for stretches with tool calls — it's critical to keep the user updated as you work.
 
@@ -129,21 +139,21 @@ You'll work for stretches with tool calls — it's critical to keep the user upd
 
 In longer-running model executions, providing a fast initial assistant message can improve perceived latency and user experience. We can achieve this behavior with GPT-5.1 through clear prompting.
 
-```
+```text
 <user_update_immediacy>
 Always explain what you're doing in a commentary message FIRST, BEFORE sampling an analysis thinking message. This is critical in order to communicate immediately to the user.
 </user_update_immediacy>
 ```
 
-## Optimizing intelligence and instruction-following
+### Optimizing intelligence and instruction-following
 
 GPT-5.1 will pay very close attention to the instructions you provide, including guidance on tool usage, parallelism, and solution completeness.
 
-### Encouraging complete solutions
+#### Encouraging complete solutions
 
 On long agentic tasks, we’ve noticed that GPT-5.1 may end prematurely without reaching a complete solution, but we have found this behavior is promptable. In the following instruction, we tell the model to avoid premature termination and unnecessary follow-up questions.
 
-```
+```text
 <solution_persistence>
 - Treat yourself as an autonomous senior pair-programmer: once the user gives a direction, proactively gather context, plan, implement, test, and refine without waiting for additional prompts at each step.
 - Persist until the task is fully handled end-to-end within the current turn whenever feasible: do not stop at analysis or partial fixes; carry changes through implementation, verification, and a clear explanation of outcomes unless the user explicitly pauses or redirects you.
@@ -151,11 +161,11 @@ On long agentic tasks, we’ve noticed that GPT-5.1 may end prematurely without 
 </solution_persistence>
 ```
 
-### Tool-calling format
+#### Tool-calling format
 
 In order to make tool-calling most effective, we recommend describing functionality in the tool definition and how/when to use tools in the prompt. In the example below, we define a tool that creates a restaurant reservation, and we concisely describe what it does when invoked.
 
-```
+```json
 {
   "name": "create_reservation",
   "description": "Create a restaurant reservation for a guest. Use when the user asks to book a table with a given name and time.",
@@ -174,12 +184,11 @@ In order to make tool-calling most effective, we recommend describing functional
     "required": ["name", "datetime"]
   }
 }
-
 ```
 
 In the prompt, you may have a section that references the tool like this:
 
-```
+```text
 <reservation_tool_usage_rules>
 - When the user asks to book, reserve, or schedule a table, you MUST call `create_reservation`.
 - Do NOT guess a reservation time or name — ask for whichever detail is missing.
@@ -211,37 +220,37 @@ Assistant: “Done! Your reservation for Daniel at 6:00pm tonight is confirmed. 
 
 GPT-5.1 also executes parallel tool calls more efficiently. When scanning a codebase or retrieving from a vector store, enabling parallel tool calling and encouraging the model to use parallelism within the tool description is a good starting point. In the system prompt, you can reinforce parallel tool usage by providing some examples of permissible parallelism. An example instruction may look like:
 
-```
+```text
 Parallelize tool calls whenever possible. Batch reads (read_file) and edits (apply_patch) to speed up the process.
 ```
 
-### Using the “none” reasoning mode for improved efficiency
+#### Using the “none” reasoning mode for improved efficiency
 
 GPT-5.1 introduces a new reasoning mode: `none`. Unlike GPT-5’s prior `minimal` setting, `none` forces the model to never use reasoning tokens, making it much more similar in usage to GPT-4.1, GPT-4o, and other prior non-reasoning models. Importantly, developers can now use hosted tools like [web search](https://developers.openai.com/api/docs/guides/tools-web-search?api-mode=responses) and [file search](https://developers.openai.com/api/docs/guides/tools?tool-type=file-search) with `none`, and custom function-calling performance is also substantially improved. With that in mind, [prior guidance on prompting non-reasoning models](https://developers.openai.com/cookbook/examples/gpt4-1_prompting_guide) like GPT-4.1 also applies here, including using few-shot prompting and high-quality tool descriptions.
 
 While GPT-5.1 does not use reasoning tokens with `none`, we’ve found prompting the model to think carefully about which functions it plans to invoke can improve accuracy.
 
-```
+```text
 You MUST plan extensively before each function call, and reflect extensively on the outcomes of the previous function calls, ensuring user's query is completely resolved. DO NOT do this entire process by making function calls only, as this can impair your ability to solve the problem and think insightfully. In addition, ensure function calls have the correct arguments.
 ```
 
 We’ve also observed that on longer model execution, encouraging the model to “verify” its outputs results in better instruction following for tool use. Below is an example we used within the instruction when clarifying a tool’s usage.
 
-```
+```text
 When selecting a replacement variant, verify it meets all user constraints (cheapest, brand, spec, etc.). Quote the item-id and price back for confirmation before executing.
 ```
 
 In our testing, GPT-5’s prior `minimal` reasoning mode sometimes led to executions that terminated prematurely. Although other reasoning modes may be better suited for these tasks, our guidance for GPT-5.1 with `none` is similar. Below is a snippet from our Tau bench prompt.
 
-```
+```text
 Remember, you are an agent - please keep going until the user’s query is completely resolved, before ending your turn and yielding back to the user. You must be prepared to answer multiple queries and only finish the call once the user has confirmed they're done.
 ```
 
-## Maximizing coding performance from planning to execution
+### Maximizing coding performance from planning to execution
 
 One tool we recommend implementing for long-running tasks is a planning tool. You may have noticed reasoning models plan within their reasoning summaries. Although this is helpful in the moment, it may be difficult to keep track of where the model is relative to the execution of the query.
 
-```
+```text
 <plan_tool_usage>
 - For medium or larger tasks (e.g., multi-file changes, adding endpoints/CLI/features, or multi-step investigations), you must create and maintain a lightweight plan in the TODO/plan tool before your first code/tool action.
 - Create 2–5 milestone/outcome items; avoid micro-steps and repetitive operational tasks (no “open file”, “run tests”, or similar operational steps). Never use a single catch-all item like “implement the entire feature”.
@@ -258,7 +267,7 @@ One tool we recommend implementing for long-running tasks is a planning tool. Yo
 
 A plan tool can be used with minimal scaffolding. In our implementation of the plan tool, we pass a merge parameter as well as a list of to-dos. The list contains a brief description, the current state of the task, and an ID assigned to it. Below is an example of a function call that GPT-5.1 may make to record its state.
 
-```
+```json
 {
   "name": "update_plan",
   "arguments": {
@@ -279,11 +288,11 @@ A plan tool can be used with minimal scaffolding. In our implementation of the p
 }
 ```
 
-### Design system enforcement
+#### Design system enforcement
 
 When building frontend interfaces, GPT-5.1 can be steered to produce websites that match your visual design system. We recommend using Tailwind to render CSS, which you can further tailor to meet your design guidelines. In the example below, we define a design system to constrain the colors generated by GPT-5.1.
 
-```
+```text
 <design_system_enforcement>
 - Tokens-first: Do not hard-code colors (hex/hsl/oklch/rgb) in JSX/CSS. All colors must come from globals.css variables (e.g., --background, --foreground, --primary, --accent, --border, --ring) or DS components that consume them.
 - Introducing a brand or accent? Before styling, add/extend tokens in globals.css under :root and .dark, for example:
@@ -294,27 +303,92 @@ When building frontend interfaces, GPT-5.1 can be steered to produce websites th
 </design_system_enforcement>
 ```
 
-## New tool types in GPT-5.1
+### New tool types in GPT-5.1
 
 GPT-5.1 has been post-trained on specific tools that are commonly used in coding use cases. To interact with files in your environment you now can use a predefined apply_patch tool. Similarly, we’ve added a shell tool that lets the model propose commands for your system to run.
 
-### Using apply_patch
+#### Using apply_patch
 
 The apply_patch tool lets GPT-5.1 create, update, and delete files in your codebase using structured diffs. Instead of just suggesting edits, the model emits patch operations that your application applies and then reports back on, enabling iterative, multi-step code editing workflows. You can find additional usage details and context in the [GPT-4.1 prompting guide](https://developers.openai.com/cookbook/examples/gpt4-1_prompting_guide#:~:text=PYTHON_TOOL_DESCRIPTION%20%3D%20%22%22%22This,an%20exclamation%20mark.).
 
 With GPT-5.1, you can use apply_patch as a new tool type without writing custom descriptions for the tool. The description and handling are managed via the Responses API. Under the hood, this implementation uses a freeform function call rather than a JSON format. In testing, the named function decreased apply_patch failure rates by 35%.
 
+```javascript
+const response = await client.responses.create({
+  model: "gpt-5.1",
+  input: "Update the README title and fix the failing test.",
+  tools: [{ type: "apply_patch" }],
+});
+if (response.status !== "completed") {
+  throw new Error(`Response ended with status ${response.status}`);
+}
+console.log(JSON.stringify(response.output, null, 2));
 ```
+
+```python
 response = client.responses.create(
-model="gpt-5.1",
-input=RESPONSE_INPUT,
-tools=[{"type": "apply_patch"}]
+    model="gpt-5.1", input=RESPONSE_INPUT, tools=[{"type": "apply_patch"}]
 )
 ```
 
+```go
+response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
+	Model: "gpt-5.1",
+	Input: responses.ResponseNewParamsInputUnion{
+		OfString: openai.String("Update the README title and fix the failing test."),
+	},
+	Tools: []responses.ToolUnionParam{
+		{
+			OfApplyPatch: &responses.ApplyPatchToolParam{},
+		},
+	},
+})
+if err != nil {
+	log.Fatal(err)
+}
+if response.Status != responses.ResponseStatusCompleted {
+	log.Fatalf("Response ended with status %s", response.Status)
+}
+output := make([]json.RawMessage, 0, len(response.Output))
+for _, item := range response.Output {
+	output = append(output, json.RawMessage(item.RawJSON()))
+}
+if err := json.NewEncoder(os.Stdout).Encode(output); err != nil {
+	log.Fatal(err)
+}
+```
+
+```java
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.responses.ApplyPatchTool;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseStatus;
+
+ResponseCreateParams params =
+    ResponseCreateParams.builder()
+        .model("gpt-5.1")
+        .input("Update the README title and fix the failing test.")
+        .addTool(ApplyPatchTool.builder().build())
+        .build();
+
+var response = client.responses().create(params);
+if (response.status().filter(ResponseStatus.COMPLETED::equals).isEmpty())
+  throw new IllegalStateException(
+      "Response ended with status " + response.status().orElse(null));
+System.out.println(response.output());
+```
+
+```ruby
+response = client.responses.create(
+  model: "gpt-5.1", input: response_input, tools: [{ type: :apply_patch }]
+)
+```
+
+
 When the model decides to execute an apply_patch tool, you will receive an apply_patch_call function type within the response stream. Within the operation object, you’ll receive a type field (with one of `create_file`, `update_file`, or `delete_file`) and the diff to implement.
 
-```
+```text
 {
     "id": "apc_08f3d96c87a585390069118b594f7481a088b16cda7d9415fe",
     "type": "apply_patch_call",
@@ -338,28 +412,43 @@ When the model decides to execute an apply_patch tool, you will receive an apply
 
 [This repository](https://github.com/openai/openai-cookbook/blob/main/examples/gpt-5/apply_patch.py) contains the expected implementation for the apply_patch tool executable. When your system finishes executing the patch tool, the Responses API expects a tool output in the following form:
 
-```
+```python
 {
     "type": "apply_patch_call_output",
     "call_id": call["call_id"],
     "status": "completed" if success else "failed",
-    "output": log_output
+    "output": log_output,
 }
 ```
 
-### Using the shell tool
+```ruby
+output = {
+  type: :apply_patch_call_output,
+  call_id: call_id,
+  status: success ? :completed : :failed,
+  output: log_output
+}
+```
+
+
+#### Using the shell tool
 
 We’ve also built a new shell tool for GPT-5.1. The shell tool allows the model to interact with your local computer through a controlled command-line interface. The model proposes shell commands; your integration executes them and returns the outputs. This creates a simple plan-execute loop that lets models inspect the system, run utilities, and gather data until they finish the task.
 
 The shell tool is invoked in the same way as apply_patch: include it as a tool of type `shell`.
 
-```
+```python
 tools = [{"type": "shell"}]
 ```
 
+```ruby
+tools = [{ type: :shell }]
+```
+
+
 When a shell tool call is returned, the Responses API includes a `shell_call` object with a timeout, a maximum output length, and the command to run.
 
-```
+```text
 {
 	"type": "shell_call",
 	"call_id": "...",
@@ -374,29 +463,29 @@ When a shell tool call is returned, the Responses API includes a `shell_call` ob
 
 After executing the shell command, return the untruncated stdout/stderr logs as well as the exit-code details.
 
-```
+```json
 {
-	"type": "shell_call_output",
-	"call_id": "...",
-	"max_output_length": 4096,
-	"output": [
-		{
-			"stdout": "...",
-			"stderr": "...",
-			"outcome": {
-				"type": "exit",
-				"exit_code": 0
-			}
-		}
-	]
+  "type": "shell_call_output",
+  "call_id": "...",
+  "max_output_length": 4096,
+  "output": [
+    {
+      "stdout": "...",
+      "stderr": "...",
+      "outcome": {
+        "type": "exit",
+        "exit_code": 0
+      }
+    }
+  ]
 }
 ```
 
-## How to metaprompt effectively
+### How to metaprompt effectively
 
 Building prompts can be cumbersome, but it’s also the highest-leverage thing you can do to resolve most model behavior issues. Small inclusions can unexpectedly steer the model undesirably. Let’s walk through an example of an agent that plans events. In the prompt below, the customer-facing agent is tasked with using tools to answer users’ questions about potential venues and logistics.
 
-```
+```text
 You are “GreenGather,” an autonomous sustainable event-planning agent. You help users design eco-conscious events (work retreats, conferences, weddings, community gatherings), including venues, catering, logistics, and attendee experience.
 
 PRIMARY OBJECTIVE
@@ -478,7 +567,7 @@ Paste the system prompt and a small batch of failure examples into a separate an
 
 Note that in this prompt, we’re not asking for a solution yet, just a root-cause analysis.
 
-```
+```text
 You are a prompt engineer tasked with debugging a system prompt for an event-planning agent that uses tools to recommend venues, logistics, and sustainable options.
 
 You are given:
@@ -520,7 +609,7 @@ Metaprompting works best when the feedback can logically be grouped together. If
 
 Once you have that analysis, you can run a second, separate call that focuses on implementation: tightening the prompt without fully rewriting it.
 
-```
+```text
 You previously analyzed this system prompt and its failure modes.
 
 System prompt:
@@ -551,7 +640,7 @@ In this example, the first metaprompt helps GPT-5.1 point directly at the contra
 
 The output from the second prompt might look something like this:
 
-```
+```text
 patch_notes:
 - Clarified when to prioritize concision vs detail:
   - Simple or single-topic queries should stay within ~3–6 sentences.
@@ -568,8 +657,8 @@ After this iteration cycle, run the queries again to observe any regressions and
 
 As you continue to grow your agentic systems (e.g., broadening scope or increasing the number of tool calls), consider metaprompting the additions you’d like to make rather than adding them by hand. This helps maintain discrete boundaries for each tool and when they should be used.
 
-## What's next
+### What's next
 
 To summarize, GPT-5.1 builds on the foundation set by GPT-5 and adds things like quicker thinking for easy questions, steerability when it comes to model output, new tools for coding use cases, and the option to set reasoning to `none` when your tasks don't require heavy thinking.
 
-Get started with GPT-5.1 in the [docs](https://developers.openai.com/api/docs/guides/latest-model), or read the [blog post](https://openai.com/index/gpt-5-1-for-developers/) to learn more.
+Review the [GPT-5.1 model and API guidance](#model-api-and-feature-updates), or read the [blog post](https://openai.com/index/gpt-5-1-for-developers/) to learn more.

@@ -1,6 +1,6 @@
 Python[langgraph.store.postgres](/python/langgraph.store.postgres)[aio](/python/langgraph.store.postgres/aio)AsyncPostgresStore
 
-Classv3.1.0 (latest)●Since v1.0
+Classv3.1.2 (latest)●Since v1.0
 
 # AsyncPostgresStore
 
@@ -184,7 +184,7 @@ Stop the TTL sweeper task if it's running.](/python/langgraph.store.postgres/aio
 
 [AMIGRATIONS: MIGRATIONS](/python/langgraph.store.postgres/base/BasePostgresStore/MIGRATIONS)[AVECTOR\_MIGRATIONS: VECTOR\_MIGRATIONS](/python/langgraph.store.postgres/base/BasePostgresStore/VECTOR_MIGRATIONS)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/5931a5f0b313feff24e2516a586c55601b868ac1/libs/checkpoint-postgres/langgraph/store/postgres/aio.py#L42)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/fde3068970679184b68d3d068a92c83c966a4888/libs/checkpoint-postgres/langgraph/store/postgres/aio.py#L42)
 
 Version History
 

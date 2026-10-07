@@ -8,7 +8,12 @@ Python[langgraph](/python/langgraph)Functional API
 
 ### entrypoint
 
-Define a LangGraph workflow using the `entrypoint` decorator.](/python/langgraph/func/entrypoint)
+Define a LangGraph workflow using the `entrypoint` decorator.
+
+Function signature
+
+The decorated function must accept a **single parameter**, which serves as the input
+to the function. This input](/python/langgraph/func/entrypoint)
 
 ## Functions
 
@@ -16,7 +21,11 @@ Define a LangGraph workflow using the `entrypoint` decorator.](/python/langgraph
 
 ### task
 
-Define a LangGraph task using the `task` decorator.](/python/langgraph/func/task)
+Define a LangGraph task using the `task` decorator.
+
+Requires python 3.11 or higher for async functions
+
+The `task` decorator supports both sync and async functions. To use async](/python/langgraph/func/task)
 
 ## Constants
 

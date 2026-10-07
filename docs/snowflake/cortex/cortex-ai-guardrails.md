@@ -14,6 +14,8 @@
     - Zero-Copy Connectors
 
       - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
+      - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
+      - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
@@ -24,18 +26,18 @@
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/migrations "Migrations")
+13. [Migrations](/en/migrations/snowflake-aim "Migrations")
 15. [Queries](/en/guides-overview-queries "Queries")
-16. [Listings](/en/collaboration/collaboration-listings-about "Listings")
-17. [Collaboration](/en/guides-overview-sharing "Collaboration")
-19. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
+16. [Collaboration](/en/guides-overview-sharing "Collaboration")
+18. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
     * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
-    * [Cortex Code](/en/user-guide/cortex-code/cortex-code "Cortex Code")
+    * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
     * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
+    * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
     * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
     * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
@@ -46,13 +48,13 @@
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
     * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
     * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
-21. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
-23. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
-25. [Security](/en/guides-overview-secure "Security")
-27. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-28. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-30. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-31. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
+20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
+22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
+24. [Security](/en/guides-overview-secure "Security")
+26. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
+27. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
+29. [Performance optimization](/en/guides-overview-performance "Performance optimization")
+30. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
 
 [Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)Cortex AI Guardrails
 
@@ -66,7 +68,7 @@ please contact [Snowflake Support](https://docs.snowflake.com/user-guide/contact
 ## Overview[¶](#overview)
 
 Cortex AI Guardrails, part of the [Snowflake Horizon Catalog](/user-guide/snowflake-horizon), provide
-run-time protection against prompt injection and jailbreak attacks on [Cortex Code](/user-guide/cortex-code/cortex-code), [Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork), and [Cortex Agents](/user-guide/snowflake-cortex/cortex-agents).
+run-time protection against prompt injection and jailbreak attacks on [CoCo](/user-guide/cortex-code/cortex-code), [Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork), and [Cortex Agents](/user-guide/snowflake-cortex/cortex-agents).
 
 As enterprises move AI applications from pilot to production, they face increased risk from adversarial prompts
 that can threaten data integrity and security. Cortex AI Guardrails extend Snowflake’s default protections
@@ -80,8 +82,10 @@ boundaries and hardened permissions.
 
 Cortex AI Guardrails provide the following protections:
 
-* **Prompt injection detection**: Identifies and blocks attempts to override system instructions through
-  malicious prompts, including indirect prompt injections embedded in tool calls.
+* **Prompt injection detection**: Scans each tool’s outputs to detect and flag indirect
+  prompt injections that attempt to override system instructions. Combined with the base model’s
+  built-in protections against known prompt injection and jailbreak techniques, this provides layered
+  coverage to block direct and indirect attack paths.
 * **Jailbreak prevention**: Detects attempts to bypass the model’s safety protocols and security boundaries.
 * **Zero-day style protection**: Uses advanced techniques to identify sophisticated, previously unknown
   attack patterns in real time.
@@ -89,13 +93,13 @@ Cortex AI Guardrails provide the following protections:
 ## Configure Cortex AI Guardrails[¶](#configure-cortex-ai-guardrails)
 
 You can configure Cortex AI Guardrails at the account level using the `AI_SETTINGS` parameter. This
-provides centralized control over guardrail behavior for Cortex Code, Snowflake CoWork, and Cortex Agents in
+provides centralized control over guardrail behavior for CoCo, Snowflake CoWork, and Cortex Agents in
 your account. Users with the ACCOUNTADMIN role can configure Cortex AI Guardrails.
 
 Note
 
 Cortex AI Guardrails are available to Commercial (non-Gov, VPS, Sovereign) accounts that have [Cross-region inference](/user-guide/snowflake-cortex/cross-region-inference) enabled.
-The account parameter `CORTEX_ENABLED_CROSS_REGION` must be set to `ANY_REGION`, `AWS_US`, or `AWS_GLOBAL`.
+The account parameter `CORTEX_ENABLED_CROSS_REGION` must be set to `ANY_REGION`, `AWS_US`, `AWS_EU`, `AWS_JP`, `AWS_APJ`, or `AWS_GLOBAL`.
 For details on this parameter, see [CORTEX\_ENABLED\_CROSS\_REGION](/sql-reference/parameters#label-cortex-enable-cross-region).
 
 ### Enable guardrails[¶](#enable-guardrails)
@@ -157,14 +161,14 @@ SELECT *
 
 Guardrail activity is also captured in the conversation and trace logs for each client:
 
-* **Cortex Code**: Review detected threats in the conversation logs. For where those logs are stored and how to manage them, see [Conversation history](/user-guide/cortex-code/security#label-cortex-code-security-conversation-history).
-* **Snowflake CoWork** and **Cortex Agents**: Review conversation and trace data in Cortex Agent monitoring (for example in Snowsight, **AI & ML** » **Agents**, then the **Monitoring** pane for the agent). For details, see [Monitor Cortex Agent requests](/user-guide/snowflake-cortex/cortex-agents-monitor#label-cortex-agents-access-conversation-logs).
+* **CoCo**: Review detected threats in the conversation logs. For where those logs are stored and how to manage them, see [Conversation history](/user-guide/cortex-code/security#label-cortex-code-security-conversation-history).
+* **Snowflake CoWork** and **Cortex Agents**: Review conversation and trace data in Cortex Agent monitoring (for example in Snowsight, **AI & ML** » **Agents**, then the **Observability** pane for the agent). For details, see [Monitor Cortex Agent requests](/user-guide/snowflake-cortex/cortex-agents-monitor#label-cortex-agents-access-conversation-logs).
 
 ## Considerations[¶](#considerations)
 
 * While Cortex AI Guardrails are optimized for high accuracy, some legitimate prompts may occasionally be
   flagged. Review your guardrail logs periodically to identify any patterns.
-* Cortex AI Guardrails for prompt injection are currently available with [Cortex Code](/user-guide/cortex-code/cortex-code), [Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork), and [Cortex Agents](/user-guide/snowflake-cortex/cortex-agents).
+* Cortex AI Guardrails for prompt injection are currently available with [CoCo](/user-guide/cortex-code/cortex-code), [Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork), and [Cortex Agents](/user-guide/snowflake-cortex/cortex-agents).
 
 ## Cost[¶](#cost)
 
@@ -173,8 +177,9 @@ You are charged credits for the use of Cortex AI Guardrails as listed in the
 
 ## Related topics[¶](#related-topics)
 
+* [AI Observability in Snowflake Cortex](/user-guide/snowflake-cortex/ai-observability)
 * [Snowflake Horizon Catalog](/user-guide/snowflake-horizon)
-* [Cortex Code](/user-guide/cortex-code/cortex-code)
+* [Overview of Snowflake CoCo](/user-guide/cortex-code/cortex-code)
 * [Overview of Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork)
 * [Cortex Agents](/user-guide/snowflake-cortex/cortex-agents)
 * [Snowflake AI and ML](/guides-overview-ai-features)

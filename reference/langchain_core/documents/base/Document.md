@@ -1,6 +1,6 @@
 Python[langchain-core](/python/langchain-core)[documents](/python/langchain-core/documents)[base](/python/langchain-core/documents/base)Document
 
-Classv1.4.8 (latest)●Since v0.1
+Classv1.6.7 (latest)●Since v0.1
 
 # Document
 
@@ -17,7 +17,7 @@ Copy
 Document(
     self,
     page_content: str,
-    **kwargs: Any = {},
+    kwargs: Any = {},
 )
 ```
 
@@ -42,10 +42,10 @@ Copy
 * [Build a semantic search engine with LangChain](https://docs.langchain.com/oss/python/langchain/knowledge-base)
 * [(MODULE\_NAME) integration](https://docs.langchain.com/oss/python/integrations/vectorstores/TEMPLATE)
 * [AI21SemanticTextSplitter integration](https://docs.langchain.com/oss/python/integrations/document_transformers/ai21_semantic_text_splitter)
-* [Alibaba cloud mysql integration](https://docs.langchain.com/oss/python/integrations/vectorstores/alibabacloud_mysql)
-* [Apify dataset integration](https://docs.langchain.com/oss/python/integrations/document_loaders/apify_dataset)
+* [Astra DB integration](https://docs.langchain.com/oss/python/integrations/vectorstores/astradb)
+* [Azure database for postgresql - flexible server integration](https://docs.langchain.com/oss/python/integrations/vectorstores/azure_db_for_postgresql)
 
-+15 more(61 more not shown)
++15 more(24 more not shown)
 
 ## Constructors
 
@@ -56,6 +56,7 @@ constructor
 | Name | Type |
 | --- | --- |
 | page\_content | [str](https://docs.python.org/3/library/stdtypes.html#str) |
+| kwargs | [Any](https://docs.python.org/3/library/typing.html#typing.Any) |
 
 ## Attributes
 
@@ -123,7 +124,7 @@ Serialize the object to JSON.](/python/langchain-core/load/serializable/Serializ
 
 Serialize a "not implemented" object.](/python/langchain-core/load/serializable/Serializable/to_json_not_implemented)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/core/langchain_core/documents/base.py#L288)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/f40f58d50499700f98051be6bb610bee5dd11cc2/libs/core/langchain_core/documents/base.py#L288)
 
 Version History
 

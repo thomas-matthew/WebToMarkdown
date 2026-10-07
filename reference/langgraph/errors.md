@@ -12,19 +12,30 @@ Python[langgraph](/python/langgraph)Errors
 
 ### GraphDrained
 
-Raised when a graph run exits early due to a drain request.](/python/langgraph/errors/GraphDrained)[Class
+Raised when a graph run exits early due to a drain request.
+
+This indicates the graph stopped cooperatively at a superstep boundary
+because `RunControl.request_drain()` was called (e.g., in response t](/python/langgraph/errors/GraphDrained)[Class
 
 ### GraphRecursionError
 
-Raised when the graph has exhausted the maximum number of steps.](/python/langgraph/errors/GraphRecursionError)[Class
+Raised when the graph has exhausted the maximum number of steps.
+
+This prevents infinite loops. To increase the maximum number of steps,
+run your graph with a config specifying a higher `recursion\_lim](/python/langgraph/errors/GraphRecursionError)[Class
 
 ### InvalidUpdateError
 
-Raised when attempting to update a channel with an invalid set of updates.](/python/langgraph/errors/InvalidUpdateError)[Class
+Raised when attempting to update a channel with an invalid set of updates.
+
+Troubleshooting guides:
+
+* [`INVALID_CONCURRENT_GRAPH_UPDATE`](https://docs.langchain.com/oss/python/langgraph/INVALID\_CONCU](/python/langgraph/errors/InvalidUpdateError)[Class
 
 ### GraphInterrupt
 
-Raised when a subgraph is interrupted, suppressed by the root graph.](/python/langgraph/errors/GraphInterrupt)[Class
+Raised when a subgraph is interrupted, suppressed by the root graph.
+Never raised directly, or surfaced to the user.](/python/langgraph/errors/GraphInterrupt)[Class
 
 ### ParentCommand](/python/langgraph/errors/ParentCommand)[Class
 
@@ -38,15 +49,28 @@ Raised when the executor is unable to find a task (for distributed mode).](/pyth
 
 ### NodeError
 
-Failure context passed to a node-level error handler.](/python/langgraph/errors/NodeError)[Class
+Failure context passed to a node-level error handler.
+
+Inject by adding a parameter typed `NodeError` to a handler registered via
+`StateGraph.add_node(..., error_handler=...)`:
+
+```
+def handler(
+```](/python/langgraph/errors/NodeError)[Class
 
 ### NodeCancelledError
 
-Raised when a node body raises `asyncio.CancelledError` itself.](/python/langgraph/errors/NodeCancelledError)[Class
+Raised when a node body raises `asyncio.CancelledError` itself.
+
+`asyncio.CancelledError` is a `BaseException` and the pregel runner
+treats cancelled task futures as silent tear-down (e.g. when](/python/langgraph/errors/NodeCancelledError)[Class
 
 ### NodeTimeoutError
 
-Raised when a node invocation exceeds one of its configured timeouts.](/python/langgraph/errors/NodeTimeoutError)[Class
+Raised when a node invocation exceeds one of its configured timeouts.
+
+Does **not** inherit from the built-in `TimeoutError` (a subclass of
+`OSError`) so that the default `RetryPolicy` treats it as re](/python/langgraph/errors/NodeTimeoutError)[Class
 
 ### NodeInterrupt
 

@@ -14,6 +14,8 @@
     - Zero-Copy Connectors
 
       - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
+      - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
+      - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
@@ -24,33 +26,32 @@
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/migrations "Migrations")
+13. [Migrations](/en/migrations/snowflake-aim "Migrations")
 15. [Queries](/en/guides-overview-queries "Queries")
-16. [Listings](/en/collaboration/collaboration-listings-about "Listings")
-17. [Collaboration](/en/guides-overview-sharing "Collaboration")
-19. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
+16. [Collaboration](/en/guides-overview-sharing "Collaboration")
+18. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
     * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
-    * [Cortex Code](/en/user-guide/cortex-code/cortex-code "Cortex Code")
+    * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
 
       + [Privileges and model access](/en/user-guide/snowflake-cortex/aisql-privileges-and-access "Privileges and model access")
       + [Models and regional availability](/en/user-guide/snowflake-cortex/aisql-regional-availability "Models and regional availability")
       + [Cost considerations](/en/user-guide/snowflake-cortex/aisql-cost "Cost considerations")
+      + [Caching](/en/user-guide/snowflake-cortex/aisql-caching "Caching")
       + [Programmatic use (Python and CLI)](/en/user-guide/snowflake-cortex/aisql-programmatic-use "Programmatic use (Python and CLI)")
-      + [Cortex AI Function Studio](/en/user-guide/snowflake-cortex/ai-function-studio "Cortex AI Function Studio")
+      + [Cortex AI Evaluation & Optimization](/en/user-guide/snowflake-cortex/ai-function-studio "Cortex AI Evaluation & Optimization")
       + [Cortex AI Documents](/en/user-guide/snowflake-cortex/ai-documents "Cortex AI Documents")
       + [Cortex AI Multimodal](/en/user-guide/snowflake-cortex/ai-multimodal "Cortex AI Multimodal")
       + [Cortex Playground](/en/user-guide/snowflake-cortex/cortex-playground "Cortex Playground")
-      + [AI\_COMPLETE Structured Outputs](/en/user-guide/snowflake-cortex/complete-structured-outputs "AI_COMPLETE Structured Outputs")
       + [Vector Embeddings](/en/user-guide/snowflake-cortex/vector-embeddings "Vector Embeddings")
-      + [Sentiment extraction](/en/user-guide/snowflake-cortex/ai-sentiment "Sentiment extraction")
-      + [Detect and redact PII](/en/user-guide/snowflake-cortex/redact-pii "Detect and redact PII")
       + [Managing AI Function costs with Account Usage](/en/user-guide/snowflake-cortex/ai-func-cost-management "Managing AI Function costs with Account Usage")
       + [Fine-tuning](/en/user-guide/snowflake-cortex/cortex-finetuning "Fine-tuning")
+      + [Migrate from legacy SNOWFLAKE.CORTEX functions](/en/user-guide/snowflake-cortex/aisql-migrate-legacy-functions "Migrate from legacy SNOWFLAKE.CORTEX functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
     * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
+    * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
     * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
     * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
@@ -61,13 +62,13 @@
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
     * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
     * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
-21. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
-23. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
-25. [Security](/en/guides-overview-secure "Security")
-27. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-28. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-30. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-31. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
+20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
+22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
+24. [Security](/en/guides-overview-secure "Security")
+26. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
+27. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
+29. [Performance optimization](/en/guides-overview-performance "Performance optimization")
+30. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
 
 [Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)Cortex AI Functions
 
@@ -81,7 +82,7 @@ Some individual Cortex AI Functions are [Preview Features](/release-notes/previe
 the status of each function before using it in production. Functions not marked as preview features are generally
 available (GA) and can be used in production.
 
-Use Cortex AI Functions in Snowflake to run unstructured analytics on text and images with industry-leading LLMs from OpenAI, Anthropic, Meta, Mistral AI, and DeepSeek.
+Use Cortex AI Functions in Snowflake to run unstructured analytics on text and images with industry-leading LLMs from OpenAI, Anthropic, Meta, Mistral AI, DeepSeek, and xAI.
 AI Functions support use cases such as:
 
 * Extracting entities to enrich metadata and streamline validation
@@ -115,8 +116,10 @@ quick translations, that don’t require any customization.
 * [AI\_FILTER](/sql-reference/functions/ai_filter): Returns True or False for a given text or image input, allowing you to filter results in *SELECT*, *WHERE*, or *JOIN … ON* clauses.
 * [AI\_AGG](/sql-reference/functions/ai_agg): Aggregates a text column and returns insights across multiple rows based on a user-defined prompt. This function isn’t subject to context window limitations.
 * [AI\_EMBED](/sql-reference/functions/ai_embed): Generates an embedding vector for a text or image input, which can be used for similarity search, clustering, and classification tasks.
+* [AI\_MULTI\_EMBED](/sql-reference/functions/ai_multi_embed): Creates multimodal embeddings from text, images, audio, or video, returning one or more vectors with segment metadata for semantic search across modalities.
 * [AI\_EXTRACT](/sql-reference/functions/ai_extract): Extracts information from an input string or file, for example, text, images, and documents. Supports multiple languages.
 * [AI\_SENTIMENT](/sql-reference/functions/ai_sentiment): Extracts sentiment from text.
+* [AI\_SUMMARIZE](/sql-reference/functions/ai_summarize): Automatically summarizes text, images, and documents, identifying key themes, facts, and relationships across multimodal content.
 * [AI\_SUMMARIZE\_AGG](/sql-reference/functions/ai_summarize_agg): Aggregates a text column and returns a summary across multiple rows. This function isn’t subject to context window limitations.
 * [AI\_SIMILARITY](/sql-reference/functions/ai_similarity): Calculates the embedding similarity between two inputs.
 * [AI\_TRANSCRIBE](/sql-reference/functions/ai_transcribe): Transcribes audio and video files stored in a stage, extracting text, timestamps, and speaker information.
@@ -124,7 +127,6 @@ quick translations, that don’t require any customization.
   (using LAYOUT mode) from documents in an internal or external stage. Can also extract images found in a document.
 * [AI\_REDACT](/sql-reference/functions/ai_redact): Redact personally identifiable information (PII) from text.
 * [AI\_TRANSLATE](/sql-reference/functions/ai_translate): Translates text between supported languages.
-* [SUMMARIZE (SNOWFLAKE.CORTEX)](/sql-reference/functions/summarize-snowflake-cortex): Returns a summary of the text that you’ve specified.
 
 ### Helper functions[¶](#helper-functions)
 

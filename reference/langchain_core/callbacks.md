@@ -36,7 +36,10 @@ Callback Handler that tracks `AIMessage.usage_metadata`.](/python/langchain-core
 
 ### get\_usage\_metadata\_callback
 
-Get usage metadata callback.](/python/langchain-core/callbacks/usage/get_usage_metadata_callback)
+Get usage metadata callback.
+
+Get context manager for tracking usage metadata across chat model calls using
+`AIMessage.usage_metadata`.](/python/langchain-core/callbacks/usage/get_usage_metadata_callback)
 
 Copy page
 

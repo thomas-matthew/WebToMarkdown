@@ -1,5 +1,7 @@
 # Agent definitions
 
+> For the complete documentation index, see [llms.txt](/llms.txt). Markdown versions of documentation pages are available by appending `.md` to the page URL.
+
 An agent is the core unit of an SDK-based workflow. It packages a model, instructions, and optional runtime behavior such as tools, guardrails, MCP servers, handoffs, and structured outputs.
 
 ## What belongs on an agent
@@ -13,9 +15,9 @@ Use agent configuration for decisions that are intrinsic to that specialist:
 | `prompt`                                                                                                          | Stored prompt configuration for Responses-based runs        | [Models and providers](https://developers.openai.com/api/docs/guides/agents/models)                                   |
 | `model` and model settings                                                                                        | Choosing the model and tuning behavior                      | [Models and providers](https://developers.openai.com/api/docs/guides/agents/models)                                   |
 | `tools`                                                                                                           | Capabilities the agent can call directly                    | [Using tools](https://developers.openai.com/api/docs/guides/tools#usage-in-the-agents-sdk)                            |
-| | Hinting when another agent should delegate here             | [Orchestration and handoffs](https://developers.openai.com/api/docs/guides/agents/orchestration)                      |
+| `handoffDescription` in TypeScript or `handoff_description` in Python | Hinting when another agent should delegate here             | [Orchestration and handoffs](https://developers.openai.com/api/docs/guides/agents/orchestration)                      |
 | `handoffs`                                                                                                        | Delegating to another agent                                 | [Orchestration and handoffs](https://developers.openai.com/api/docs/guides/agents/orchestration)                      |
-| | Returning structured output instead of plain text           | This page                                                                                |
+| `outputType` in TypeScript or `output_type` in Python                 | Returning structured output instead of plain text           | This page                                                                                |
 | Guardrails and approvals                                                                                          | Validation, blocking, and review flows                      | [Guardrails and human review](https://developers.openai.com/api/docs/guides/agents/guardrails-approvals)              |
 | MCP servers and hosted MCP tools                                                                                  | Attaching MCP-backed capabilities                           | [Integrations and observability](https://developers.openai.com/api/docs/guides/agents/integrations-observability#mcp) |
 
@@ -25,7 +27,7 @@ Define the smallest agent that can own a clear task. Add more agents only when y
 
 Define a single agent
 
-```typescript
+```javascript
 import { Agent, tool } from "@openai/agents";
 import { z } from "zod";
 
@@ -41,7 +43,7 @@ const getWeather = tool({
 const agent = new Agent({
   name: "Weather bot",
   instructions: "You are a helpful weather bot.",
-  model: "gpt-5.5",
+  model: "gpt-6-astra",
   tools: [getWeather],
 });
 ```
@@ -59,7 +61,7 @@ def get_weather(city: str) -> str:
 agent = Agent(
     name="Weather bot",
     instructions="You are a helpful weather bot.",
-    model="gpt-5.5",
+    model="gpt-6-astra",
     tools=[get_weather],
 )
 ```
@@ -70,12 +72,12 @@ agent = Agent(
 Three configuration choices deserve extra care:
 
 - Start with static `instructions`. When the guidance depends on the current user, tenant, or runtime context, switch to a dynamic instructions callback instead of stitching strings together at the call site.
-- Keep short and concrete so routing agents know when to pick this specialist.
-- Use when downstream code needs typed data rather than free-form prose.
+- Keep `handoffDescription` in TypeScript or `handoff_description` in Python short and concrete so routing agents know when to pick this specialist.
+- Use `outputType` in TypeScript or `output_type` in Python when downstream code needs typed data rather than free-form prose.
 
 Return structured output
 
-```typescript
+```javascript
 import { Agent, run } from "@openai/agents";
 import { z } from "zod";
 
@@ -91,10 +93,7 @@ const agent = new Agent({
   outputType: calendarEvent,
 });
 
-const result = await run(
-  agent,
-  "Dinner with Priya and Sam on Friday.",
-);
+const result = await run(agent, "Dinner with Priya and Sam on Friday.");
 
 console.log(result.finalOutput);
 ```
@@ -141,25 +140,21 @@ The SDK lets you pass application state and dependencies into a run without send
 
 Pass local context to tools
 
-```typescript
-import { Agent, RunContext, run, tool } from "@openai/agents";
+```javascript
+import { Agent, run, tool } from "@openai/agents";
 import { z } from "zod";
-
-interface UserInfo {
-  name: string;
-  uid: number;
-}
 
 const fetchUserAge = tool({
   name: "fetch_user_age",
   description: "Return the age of the current user.",
   parameters: z.object({}),
-  async execute(_args, runContext?: RunContext<UserInfo>) {
+  // TypeScript users can type this as RunContext<{ name: string; uid: number }>.
+  async execute(_args, runContext) {
     return `User ${runContext?.context.name} is 47 years old`;
   },
 });
 
-const agent = new Agent<UserInfo>({
+const agent = new Agent({
   name: "Assistant",
   tools: [fetchUserAge],
 });
@@ -230,53 +225,25 @@ Split an agent when one specialist shouldn't own the full reply or when separate
 
 Once one specialist is defined cleanly, move to the guide that matches the next design question.
 
-<div class="not-prose mt-4 grid gap-3">
-  <a
-    href="/api/docs/guides/agents/models"
-    class="block no-underline hover:no-underline"
-  >
-    
-
-<span slot="icon">
-        </span>
-      Choose models, defaults, and transport strategy for this agent.
 
 
-  </a>
-  <a
-    href="/api/docs/guides/tools#usage-in-the-agents-sdk"
-    class="block no-underline hover:no-underline"
-  >
-    
-
-<span slot="icon">
-        </span>
-      Add capabilities the agent can call directly.
+  [Models and providers
 
 
-  </a>
-  <a
-    href="/api/docs/guides/agents/orchestration"
-    class="block no-underline hover:no-underline"
-  >
-    
 
-<span slot="icon">
-        </span>
-      Choose how specialists collaborate once one agent is no longer enough.
+        Choose models, defaults, and transport strategy for this agent.](https://developers.openai.com/api/docs/guides/agents/models)
+  [Using tools
 
 
-  </a>
-  <a
-    href="/api/docs/guides/agents/running-agents"
-    class="block no-underline hover:no-underline"
-  >
-    
 
-<span slot="icon">
-        </span>
-      Understand the runtime loop, state, and streaming behavior.
+        Add capabilities the agent can call directly.](https://developers.openai.com/api/docs/guides/tools#usage-in-the-agents-sdk)
+  [Orchestration and handoffs
 
 
-  </a>
-</div>
+
+        Choose how specialists collaborate once one agent is no longer enough.](https://developers.openai.com/api/docs/guides/agents/orchestration)
+  [Running agents
+
+
+
+        Understand the runtime loop, state, and streaming behavior.](https://developers.openai.com/api/docs/guides/agents/running-agents)

@@ -3,6 +3,36 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain-aws/releases
 
+## 1.2.4 — 2026-10-02
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langgraph-checkpoint-aws%3D%3D1.2.4)
+
+- feat(langgraph-checkpoint-aws): Add `checkpoint_format` option to AgentCoreMemorySaver by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1300
+
+## 1.2.3 — 2026-09-03
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langgraph-checkpoint-aws%3D%3D1.2.3)
+
+- feat(langgraph-checkpoint-aws): Enable async support on AgentCoreMemoryStore by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1257
+
+## 1.2.2 — 2026-08-13
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langgraph-checkpoint-aws%3D%3D1.2.2)
+
+- feat(langgraph-checkpoint-aws): add vector search to DynamoDBStore by @LeeroyHannigan in https://github.com/langchain-ai/langchain-aws/pull/1199
+
+## 1.2.1 — 2026-08-07
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langgraph-checkpoint-aws%3D%3D1.2.1)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.2.0 — 2026-07-02
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langgraph-checkpoint-aws%3D%3D1.2.0)
+
+- feat(langgraph-checkpoint-aws): Support hierarchical namespace search in AgentCoreMemoryStore by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1138
+
 ## 1.1.1 — 2026-06-17
 
 [Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langgraph-checkpoint-aws%3D%3D1.1.1)

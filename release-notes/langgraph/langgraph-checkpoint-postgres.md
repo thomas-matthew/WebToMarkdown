@@ -3,6 +3,18 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langgraph/releases
 
+## 3.1.2 — 2026-08-07
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/checkpointpostgres%3D%3D3.1.2)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 3.1.1 — 2026-07-30
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/checkpointpostgres%3D%3D3.1.1)
+
+- feat(checkpoint,checkpoint-postgres): add opt-in omit_expired to skip expired rows on read (#8354)
+
 ## 3.1.0 — 2026-05-12
 
 [Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/checkpointpostgres%3D%3D3.1.0)

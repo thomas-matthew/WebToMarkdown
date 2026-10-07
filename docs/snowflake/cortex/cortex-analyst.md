@@ -14,6 +14,8 @@
     - Zero-Copy Connectors
 
       - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
+      - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
+      - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
@@ -24,24 +26,22 @@
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/migrations "Migrations")
+13. [Migrations](/en/migrations/snowflake-aim "Migrations")
 15. [Queries](/en/guides-overview-queries "Queries")
-16. [Listings](/en/collaboration/collaboration-listings-about "Listings")
-17. [Collaboration](/en/guides-overview-sharing "Collaboration")
-19. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
+16. [Collaboration](/en/guides-overview-sharing "Collaboration")
+18. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
     * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
-    * [Cortex Code](/en/user-guide/cortex-code/cortex-code "Cortex Code")
+    * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
     * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
+    * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
 
       + [Semantic views](/en/user-guide/views-semantic/overview "Semantic views")
       + [Integrate with Cortex Search](/en/user-guide/snowflake-cortex/cortex-analyst/cortex-analyst-search-integration "Integrate with Cortex Search")
-      + [Verified Query suggestions](/en/user-guide/snowflake-cortex/cortex-analyst/verified-query-repository "Verified Query suggestions")
-      + [Custom instructions](/en/user-guide/snowflake-cortex/cortex-analyst/custom-instructions "Custom instructions")
       + [Onboarding questions](/en/user-guide/snowflake-cortex/cortex-analyst/suggested-questions-feature "Onboarding questions")
       + [Administrator monitoring](/en/user-guide/snowflake-cortex/cortex-analyst/admin-observability "Administrator monitoring")
       + [Evaluations](/en/user-guide/snowflake-cortex/cortex-analyst-evaluations "Evaluations")
@@ -58,25 +58,25 @@
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
     * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
     * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
-21. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
-23. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
-25. [Security](/en/guides-overview-secure "Security")
-27. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-28. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-30. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-31. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
+20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
+22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
+24. [Security](/en/guides-overview-secure "Security")
+26. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
+27. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
+29. [Performance optimization](/en/guides-overview-performance "Performance optimization")
+30. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
 
 [Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)Cortex Analyst
 
 # Cortex Analyst[¶](#cortex-analyst)
 
-Get started with Cortex Analyst
+Transition to Cortex Agents
 
-[Try it in Snowsight](https://app.snowflake.com/_deeplink/#/cortex/analyst?utm_source=docs&utm_medium=growth&utm_campaign=-us-en-all&utm_content=-app-user-guide-snowflake-cortex-cortex-analyst)
+Snowflake recommends transitioning to [Cortex Agents](/user-guide/snowflake-cortex/cortex-agents), which supports every Cortex Analyst capability with higher answer quality.
 
 ## Overview[¶](#overview)
 
-Cortex Analyst is a fully-managed, LLM-powered [Snowflake Cortex](https://www.snowflake.com/en/data-cloud/cortex/)
+Cortex Analyst is a fully managed, LLM-powered [Snowflake Cortex](https://www.snowflake.com/en/data-cloud/cortex/)
 feature that helps you create applications capable of reliably answering business questions based on your structured
 data in Snowflake. With Cortex Analyst, business users can ask questions in natural language and receive direct
 answers without writing SQL. Available as a convenient REST API, Cortex Analyst can be seamlessly integrated into any
@@ -124,7 +124,7 @@ Want to get started with Cortex Analyst quickly? Try the [Tutorial: Answer quest
 
   + Cortex Analyst does not train on Customer Data. We do not use your Customer Data to train or fine-tune any Model to
     be made available for use across our customer base. Additionally, for inference, Cortex Analyst uses the metadata
-    provided in the semantic model YAML file (e.g., table names, column names, value type, descriptions, etc.) only for
+    provided in the semantic model YAML file (for example, table names, column names, value type, descriptions, and so on) only for
     SQL-query generation. This SQL query is then executed in your Snowflake virtual warehouse to generate the final
     output.
   + Data stays within Snowflake’s governance boundary. By default, Cortex Analyst is powered by Snowflake-hosted LLMs
@@ -248,7 +248,7 @@ Copy codeExpand code block
 
 ```
 USE ROLE ACCOUNTADMIN;
-CREATE ROLE cortex_user_role;
+CREATE ROLE cortex_analyst_user_role;
 GRANT DATABASE ROLE SNOWFLAKE.CORTEX_ANALYST_USER TO ROLE cortex_analyst_user_role;
 
 GRANT ROLE cortex_analyst_user_role TO USER example_user;
@@ -453,7 +453,7 @@ GRANT READ ON STAGE sales TO ROLE sales_analyst;
 ```
 
 In Snowsight, you can refresh the page and find the newly created stages in the
-[database object explorer](/user-guide/ui-snowsight-data).
+[Horizon Catalog Explorer](/user-guide/ui-snowsight-data).
 You can open the stage page in a new tab and upload your YAML files in Snowsight.
 
 Alternatively, you can use the [Snowflake CLI client](/developer-guide/snowflake-cli/command-reference/stage-commands/copy)
@@ -486,7 +486,7 @@ For more information on creating and running Streamlit apps in Snowflake, see [A
 ### Interact with the Streamlit App[¶](#interact-with-the-streamlit-app)
 
 1. Navigate to the Streamlit app in your browser or the Streamlit in Snowflake preview pane.
-2. Start asking questions about your data in natural language (e.g. “What questions can I ask?”).
+2. Start asking questions about your data in natural language (for example, “What questions can I ask?”).
 
 ### Create a standalone Streamlit app[¶](#create-a-standalone-streamlit-app)
 
@@ -504,7 +504,7 @@ nor does Snowflake warrant that the below content is accurate.
 5. Run the Streamlit app using `streamlit run analyst_api.py`.
 
 The database and schema specified in the code is the stage location for the semantic model YAML file. The role used
-in the Snowflake connector should have access to underlying data defined in semantic model.
+in the Snowflake connector should have access to underlying data defined in the semantic model.
 
 For a more comprehensive implementation, see the [Cortex Analyst advanced SiS demo](https://github.com/Snowflake-Labs/sf-samples/tree/main/samples/cortex-analyst/Advanced%20SiS%20Demo) in the Snowflake Samples GitHub
 repository. This repository is configured with various pre-built features that make deploying Cortex Analyst seamless and robust.
@@ -569,7 +569,7 @@ Cortex Analyst’s model selection behavior may change from time to time to take
 
 ### Risks and limitations[¶](#risks-and-limitations)
 
-Cortex Analyst relies upon the availability at least one supported model configuration. Disabling specific models
+Cortex Analyst relies upon the availability of at least one supported model configuration. Disabling specific models
 reduces fallback options and increases the risk of query failures.
 
 Model-level restrictions apply to all Cortex features that can use the model; it is not possible to restrict access to a
@@ -655,6 +655,6 @@ Related content
 
 1. [Using SQL commands to create and manage semantic views](/user-guide/views-semantic/sql)
 2. [Cortex Analyst REST API](/user-guide/snowflake-cortex/cortex-analyst/rest-api)
-3. [Cortex Analyst Verified Query Repository](/user-guide/snowflake-cortex/cortex-analyst/verified-query-repository)
+3. [Cortex Analyst Verified Query Repository](/user-guide/views-semantic/verified-query-repository)
 4. [Tutorial: Answer questions about time-series revenue data with Cortex Analyst](/user-guide/snowflake-cortex/cortex-analyst/tutorials/tutorial-1)
 5. [Cortex Analyst evaluations](/user-guide/snowflake-cortex/cortex-analyst-evaluations)

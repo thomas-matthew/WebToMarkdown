@@ -14,6 +14,8 @@
     - Zero-Copy Connectors
 
       - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
+      - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
+      - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
@@ -24,24 +26,22 @@
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/migrations "Migrations")
+13. [Migrations](/en/migrations/snowflake-aim "Migrations")
 15. [Queries](/en/guides-overview-queries "Queries")
-16. [Listings](/en/collaboration/collaboration-listings-about "Listings")
-17. [Collaboration](/en/guides-overview-sharing "Collaboration")
-19. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
+16. [Collaboration](/en/guides-overview-sharing "Collaboration")
+18. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
     * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
-    * [Cortex Code](/en/user-guide/cortex-code/cortex-code "Cortex Code")
+    * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
     * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
+    * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
 
       + [Semantic views](/en/user-guide/views-semantic/overview "Semantic views")
       + [Integrate with Cortex Search](/en/user-guide/snowflake-cortex/cortex-analyst/cortex-analyst-search-integration "Integrate with Cortex Search")
-      + [Verified Query suggestions](/en/user-guide/snowflake-cortex/cortex-analyst/verified-query-repository "Verified Query suggestions")
-      + [Custom instructions](/en/user-guide/snowflake-cortex/cortex-analyst/custom-instructions "Custom instructions")
       + [Onboarding questions](/en/user-guide/snowflake-cortex/cortex-analyst/suggested-questions-feature "Onboarding questions")
       + [Administrator monitoring](/en/user-guide/snowflake-cortex/cortex-analyst/admin-observability "Administrator monitoring")
       + [Evaluations](/en/user-guide/snowflake-cortex/cortex-analyst-evaluations "Evaluations")
@@ -58,17 +58,21 @@
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
     * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
     * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
-21. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
-23. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
-25. [Security](/en/guides-overview-secure "Security")
-27. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-28. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-30. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-31. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
+20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
+22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
+24. [Security](/en/guides-overview-secure "Security")
+26. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
+27. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
+29. [Performance optimization](/en/guides-overview-performance "Performance optimization")
+30. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
 
 [Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)[Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst)REST API
 
 # Cortex Analyst REST API[¶](#cortex-analyst-rest-api)
+
+Transition to Cortex Agents
+
+Snowflake recommends transitioning to [Cortex Agents](/user-guide/snowflake-cortex/cortex-agents), which supports every Cortex Analyst capability with higher answer quality.
 
 Use this API to answer questions about your data with natural language queries.
 
@@ -281,12 +285,12 @@ for the format of streaming mode responses.
 Streaming mode lets your client receive responses as they are generated by Cortex Analyst, rather than waiting for the entire response to be generated.
 This improves the perceived responsiveness of your application, especially for long-running queries, because users begin seeing output much sooner.
 Streaming responses also provide status information that can help you understand where Cortex Analyst is in the process of generating a response, and
-warnings that can help understand what went wrong when Cortex Analyst doesn’t work as you expected.
+warnings that can help you understand what went wrong when Cortex Analyst doesn’t work as you expected.
 
 To receive a streaming response, set the `stream` field in the request body to `true`.
 Streaming responses use [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events).
 
-Cortex Analyst sends five distinct types of events in a streaming response:
+Cortex Analyst sends six distinct types of events in a streaming response:
 
 * `status`: Conveys status updates about the SQL generation process.
 * `message.content.delta`: Contains a piece of the response. This event is sent multiple times.
@@ -297,7 +301,7 @@ Cortex Analyst sends five distinct types of events in a streaming response:
 
 Of these, the `message.content.delta` events are the most crucial to understand, because they contain the actual
 response content. Each `delta` contains tokens from some field in the complete response. It is possible for each
-`delta` event to contain anywhere between a single character to the full response, and they may be of different lengths. You receive these tokens as they
+`delta` event to contain anywhere from a single character to the full response, and they may be of different lengths. You receive these tokens as they
 are generated; it is up to you to assemble them into the final response.
 
 Important
@@ -375,7 +379,7 @@ Show lessSee more
 
 Scroll to top
 
-Use the `index` field in the `message.content.delta` respnoses to determine which field in the full response the event is part of.
+Use the `index` field in the `message.content.delta` responses to determine which field in the full response the event is part of.
 For example, here the first two `delta` events use index 0, which means they are part of the first field (element 0) in the `content` array
 of the non-streaming response. Similarly, the `delta` event that contains the SQL response uses index 1.
 
@@ -392,7 +396,7 @@ Copy codeExpand code block
         "content": [
             {
                 "type": "text",
-                "text": "Your question is ambigous, here are some alternatives:"
+                "text": "Your question is ambiguous, here are some alternatives:"
             },
             {
                 "type": "suggestions",
@@ -422,7 +426,7 @@ event: message.content.delta
 data: {
   index: 0,
   type: "text",
-  text_delta: "Your question is ambigous,"
+  text_delta: "Your question is ambiguous,"
 }
 
 event: status
@@ -630,4 +634,4 @@ Related content
 
 1. [Cortex Analyst](/user-guide/snowflake-cortex/cortex-analyst)
 2. [Using SQL commands to create and manage semantic views](/user-guide/views-semantic/sql)
-3. [Cortex Analyst Verified Query Repository](/user-guide/snowflake-cortex/cortex-analyst/verified-query-repository)
+3. [Cortex Analyst Verified Query Repository](/user-guide/views-semantic/verified-query-repository)

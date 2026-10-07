@@ -1,5 +1,7 @@
 # Integrations and observability
 
+> For the complete documentation index, see [llms.txt](/llms.txt). Markdown versions of documentation pages are available by appending `.md` to the page URL.
+
 After the workflow shape is clear, the next questions are which external surfaces should live inside the agent loop and how you will inspect what actually happened at runtime.
 
 ## Choose what lives in the SDK
@@ -18,7 +20,7 @@ Use hosted MCP tools when the remote server should run through the model surface
 
 Attach a hosted MCP server
 
-```typescript
+```javascript
 import { Agent, hostedMcpTool } from "@openai/agents";
 
 const agent = new Agent({
@@ -57,12 +59,13 @@ Use local transports when your application should connect to the MCP server dire
 
 Connect a local MCP server
 
-```typescript
+```javascript
 import { Agent, MCPServerStdio, run } from "@openai/agents";
 
 const server = new MCPServerStdio({
   name: "Filesystem MCP Server",
-  fullCommand: "npx -y @modelcontextprotocol/server-filesystem ./sample_files",
+  fullCommand:
+    "npx -y @modelcontextprotocol/server-filesystem fixtures/sample_files",
 });
 
 await server.connect();
@@ -119,7 +122,7 @@ The practical split is:
 - Use **hosted MCP** for public remote servers that fit the platform trust model.
 - Use **local or private MCP** when your runtime should own connectivity, filtering, or approvals.
 
-For the platform-wide concept, trust model, and product support story, keep [MCP and Connectors](https://developers.openai.com/api/docs/guides/tools-connectors-mcp) as the canonical reference.
+For the platform-wide concept, trust model, and product support story, keep [MCP servers](https://developers.openai.com/api/docs/guides/tools-connectors-mcp) as the canonical reference.
 
 ## Tracing
 
@@ -137,7 +140,7 @@ If you need less tracing, use the SDK-level or per-run tracing controls rather t
 
 Wrap multiple runs in one trace
 
-```typescript
+```javascript
 import { Agent, run, withTrace } from "@openai/agents";
 
 const agent = new Agent({
@@ -189,41 +192,20 @@ Use traces for two jobs:
 
 Once the external surfaces are wired in, continue with the guide that covers capability design, review boundaries, or evaluation.
 
-<div class="not-prose mt-4 grid gap-3">
-  <a
-    href="/api/docs/guides/tools#usage-in-the-agents-sdk"
-    class="block no-underline hover:no-underline"
-  >
-    
-
-<span slot="icon">
-        </span>
-      See how hosted tools, function tools, and agents-as-tools fit beside MCP.
 
 
-  </a>
-  <a
-    href="/api/docs/guides/agents/guardrails-approvals"
-    class="block no-underline hover:no-underline"
-  >
-    
-
-<span slot="icon">
-        </span>
-      Add approval or validation boundaries around sensitive capabilities.
+  [Using tools
 
 
-  </a>
-  <a
-    href="/api/docs/guides/agent-evals"
-    class="block no-underline hover:no-underline"
-  >
-    
 
-<span slot="icon">
-        </span>
-      Move from one-off traces into repeatable grading once behavior stabilizes.
+        See how hosted tools, function tools, and agents-as-tools fit beside MCP.](https://developers.openai.com/api/docs/guides/tools#usage-in-the-agents-sdk)
+  [Guardrails and human review
 
 
-  </a>
-</div>
+
+        Add approval or validation boundaries around sensitive capabilities.](https://developers.openai.com/api/docs/guides/agents/guardrails-approvals)
+  [Agent workflow evaluation
+
+
+
+        Move from one-off traces into repeatable grading once behavior stabilizes.](https://developers.openai.com/api/docs/guides/agent-evals)

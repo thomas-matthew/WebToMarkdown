@@ -18,7 +18,10 @@ This page contains **reference documentation** for xAI. See [the docs](https://d
 
 ### ChatXAI
 
-ChatXAI chat model.](/python/langchain-xai/chat_models/ChatXAI)
+ChatXAI chat model.
+
+Refer to xAI's documentation
+for more nuanced details on the API's behavior and supported parameters.](/python/langchain-xai/chat_models/ChatXAI)
 
 ## Modules
 

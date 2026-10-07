@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[func](/python/langgraph/func)entrypoint
 
-Classv1.2.7 (latest)●Since v0.2
+Classv1.2.14 (latest)●Since v0.2
 
 # entrypoint
 
@@ -47,7 +47,7 @@ entrypoint(
   cache_policy: CachePolicy | None = None,
   retry_policy: RetryPolicy | Sequence[RetryPolicy] | None = None,
   timeout: float | timedelta | TimeoutPolicy | None = None,
-  **kwargs: Unpack[DeprecatedKwargs] = {}
+  kwargs: Unpack[DeprecatedKwargs] = {}
 )
 ```
 
@@ -186,9 +186,9 @@ Copy
 * [Deploy other frameworks](https://docs.langchain.com/langsmith/deploy-other-frameworks)
 * [Fault tolerance](https://docs.langchain.com/oss/python/langgraph/fault-tolerance)
 * [Functional API overview](https://docs.langchain.com/oss/python/langgraph/functional-api)
-* [Quickstart](https://docs.langchain.com/oss/python/langgraph/quickstart)
+* [MISSING\_CHECKPOINTER](https://docs.langchain.com/oss/python/langgraph/errors/MISSING_CHECKPOINTER)
 
-+2 more
++3 more
 
 ## Parameters
 
@@ -211,12 +211,13 @@ constructor
 | Name | Type |
 | --- | --- |
 | checkpointer | [BaseCheckpointSaver](/python/langgraph.checkpoint/base/BaseCheckpointSaver) | None |
-| store | [BaseStore](/python/langchain-core/stores/BaseStore) | None |
+| store | [BaseStore](/python/langgraph.store/base/BaseStore) | None |
 | cache | [BaseCache](/python/langchain-core/caches/BaseCache) | None |
 | context\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[ContextT](/python/langgraph/typing/ContextT)] | None |
 | cache\_policy | [CachePolicy](/python/langgraph/types/CachePolicy) | None |
 | retry\_policy | [RetryPolicy](/python/langgraph/types/RetryPolicy) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[RetryPolicy](/python/langgraph/types/RetryPolicy)] | None |
 | timeout | [float](https://docs.python.org/3/library/functions.html#float) | [timedelta](https://docs.python.org/3/library/datetime.html#datetime.timedelta) | [TimeoutPolicy](/python/langgraph/types/TimeoutPolicy) | None |
+| kwargs | Unpack[[DeprecatedKwargs](/python/langgraph/_internal/_typing/DeprecatedKwargs)] |
 
 ## Attributes
 
@@ -247,7 +248,7 @@ A primitive that can be returned from an entrypoint.
 This primitive allows to save a value to the checkpointer distinct from the
 return value from the entrypoint.](/python/langgraph/func/entrypoint/final)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/5931a5f0b313feff24e2516a586c55601b868ac1/libs/langgraph/langgraph/func/__init__.py#L262)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/70dd64065bffaa3b6ab61a33f1f020fb54db8efa/libs/langgraph/langgraph/func/__init__.py#L262)
 
 Version History
 

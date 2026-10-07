@@ -24,11 +24,18 @@ Stores the value received in the step immediately preceding, clears after.](/pyt
 
 ### BinaryOperatorAggregate
 
-Stores the result of applying a binary operator to the current value and each new value.](/python/langgraph/channels/binop/BinaryOperatorAggregate)[Class
+Stores the result of applying a binary operator to the current value and each new value.
+
+```
+import operator
+
+total = Channels.BinaryOperatorAggregate(int, operator.add)
+```](/python/langgraph/channels/binop/BinaryOperatorAggregate)[Class
 
 ### AnyValue
 
-Stores the last value received, assumes that if multiple values are](/python/langgraph/channels/any_value/AnyValue)
+Stores the last value received, assumes that if multiple values are
+received, they are all equal.](/python/langgraph/channels/any_value/AnyValue)
 
 Copy page
 

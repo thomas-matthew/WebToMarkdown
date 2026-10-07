@@ -1,6 +1,6 @@
 Python[langchain-openai](/python/langchain-openai)[embeddings](/python/langchain-openai/embeddings)[base](/python/langchain-openai/embeddings/base)OpenAIEmbeddings
 
-Classv1.3.3 (latest)●Since v0.1
+Classv1.6.7 (latest)●Since v0.1
 
 # OpenAIEmbeddings
 
@@ -135,12 +135,12 @@ Copy
 ## Used in Docs
 
 * [Custom workflow](https://docs.langchain.com/oss/python/langchain/multi-agent/custom-workflow)
-* [Activeloop Deep lake integration](https://docs.langchain.com/oss/python/integrations/vectorstores/activeloop_deeplake)
-* [AgentMail](https://docs.langchain.com/oss/python/integrations/document_loaders/agentmail)
-* [Amazon DocumentDB integration](https://docs.langchain.com/oss/python/integrations/vectorstores/documentdb)
-* [Apify dataset integration](https://docs.langchain.com/oss/python/integrations/document_loaders/apify_dataset)
+* [Astra DB integration](https://docs.langchain.com/oss/python/integrations/vectorstores/astradb)
+* [Chroma integration](https://docs.langchain.com/oss/python/integrations/vectorstores/chroma)
+* [CockroachDB integrations](https://docs.langchain.com/oss/python/integrations/providers/cockroachdb)
+* [CrateDB integrations](https://docs.langchain.com/oss/python/integrations/providers/cratedb)
 
-+15 more(21 more not shown)
++15 more(1 more not shown)
 
 ## Attributes
 
@@ -317,7 +317,7 @@ aembed\_query
 
 Call out to OpenAI's embedding endpoint async for embedding query text.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/aembed_query)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/partners/openai/langchain_openai/embeddings/base.py#L86)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/026c3da2b615abe52f8446e37de460b844d07a43/libs/partners/openai/langchain_openai/embeddings/base.py#L86)
 
 Version History
 

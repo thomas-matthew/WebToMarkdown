@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[pregel](/python/langgraph/pregel)[main](/python/langgraph/pregel/main)Pregel
 
-Classv1.2.7 (latest)●Since v0.6
+Classv1.2.14 (latest)●Since v0.6
 
 # Pregel
 
@@ -107,7 +107,7 @@ Pregel(
   node_error_handler_map: Mapping[str, str] | None = None,
   name: str = 'LangGraph',
   stream_transformers: Sequence[Callable[[tuple[str, ...]], Any]] | None = None,
-  **deprecated_kwargs: Unpack[DeprecatedKwargs] = {}
+  deprecated_kwargs: Unpack[DeprecatedKwargs] = {}
 )
 ```
 
@@ -333,7 +333,7 @@ constructor
 | step\_timeout | [float](https://docs.python.org/3/library/functions.html#float) | None |
 | debug | [bool](https://docs.python.org/3/library/functions.html#bool) | None |
 | checkpointer | [Checkpointer](/python/langgraph/types/Checkpointer) |
-| store | [BaseStore](/python/langgraph.store/base/BaseStore) | None |
+| store | [BaseStore](/python/langchain-core/stores/BaseStore) | None |
 | cache | [BaseCache](/python/langchain-core/caches/BaseCache) | None |
 | retry\_policy | [RetryPolicy](/python/langgraph/types/RetryPolicy) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[RetryPolicy](/python/langgraph/types/RetryPolicy)] |
 | cache\_policy | [CachePolicy](/python/langgraph/types/CachePolicy) | None |
@@ -343,6 +343,7 @@ constructor
 | node\_error\_handler\_map | [Mapping](https://docs.python.org/3/library/typing.html#typing.Mapping)[[str](https://docs.python.org/3/library/stdtypes.html#str), [str](https://docs.python.org/3/library/stdtypes.html#str)] | None |
 | name | [str](https://docs.python.org/3/library/stdtypes.html#str) |
 | stream\_transformers | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[Callable](https://docs.python.org/3/library/typing.html#typing.Callable)[[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)[[str](https://docs.python.org/3/library/stdtypes.html#str), ...]], [Any](https://docs.python.org/3/library/typing.html#typing.Any)]] | None |
+| deprecated\_kwargs | Unpack[[DeprecatedKwargs](/python/langgraph/_internal/_typing/DeprecatedKwargs)] |
 
 ## Attributes
 
@@ -570,7 +571,7 @@ get\_config\_jsonschema](/python/langgraph/pregel/main/Pregel/get_config_jsonsch
 
 [Mget\_name](/python/langchain-core/runnables/base/Runnable/get_name)[Mget\_prompts](/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe](/python/langchain-core/runnables/base/Runnable/pipe)[Mpick](/python/langchain-core/runnables/base/Runnable/pick)[Massign](/python/langchain-core/runnables/base/Runnable/assign)[Mbatch](/python/langchain-core/runnables/base/Runnable/batch)[Mbatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch](/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mastream\_log](/python/langchain-core/runnables/base/Runnable/astream_log)[Mtransform](/python/langchain-core/runnables/base/Runnable/transform)[Matransform](/python/langchain-core/runnables/base/Runnable/atransform)[Mbind](/python/langchain-core/runnables/base/Runnable/bind)[Mwith\_listeners](/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith\_alisteners](/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith\_types](/python/langchain-core/runnables/base/Runnable/with_types)[Mwith\_retry](/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap](/python/langchain-core/runnables/base/Runnable/map)[Mwith\_fallbacks](/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas\_tool](/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/5931a5f0b313feff24e2516a586c55601b868ac1/libs/langgraph/langgraph/pregel/main.py#L449)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/70dd64065bffaa3b6ab61a33f1f020fb54db8efa/libs/langgraph/langgraph/pregel/main.py#L456)
 
 Version History
 

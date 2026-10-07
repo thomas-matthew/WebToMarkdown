@@ -1,6 +1,6 @@
 Python[langchain-core](/python/langchain-core)[prompts](/python/langchain-core/prompts)[chat](/python/langchain-core/prompts/chat)ChatPromptTemplate
 
-Classv1.4.8 (latest)●Since v0.1
+Classv1.6.7 (latest)●Since v0.1
 
 # ChatPromptTemplate
 
@@ -123,7 +123,7 @@ ChatPromptTemplate(
   messages: Sequence[MessageLikeRepresentation],
   *,
   template_format: PromptTemplateFormat = 'f-string',
-  **kwargs: Any = {}
+  kwargs: Any = {}
 )
 ```
 
@@ -139,7 +139,7 @@ ChatPromptTemplate(
 * [Trace LangChain applications (Python and JS/TS)](https://docs.langchain.com/langsmith/trace-with-langchain)
 * [Trace with OpenTelemetry](https://docs.langchain.com/langsmith/trace-with-opentelemetry)
 
-+15 more(40 more not shown)
++15 more(9 more not shown)
 
 ## Parameters
 
@@ -159,6 +159,7 @@ constructor
 | --- | --- |
 | messages | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[MessageLikeRepresentation](/python/langchain-core/prompts/chat/MessageLikeRepresentation)] |
 | template\_format | [PromptTemplateFormat](/python/langchain-core/prompts/string/PromptTemplateFormat) |
+| kwargs | [Any](https://docs.python.org/3/library/typing.html#typing.Any) |
 
 ## Attributes
 
@@ -572,7 +573,7 @@ Add fallbacks to a `Runnable`, returning a new `Runnable`.](/python/langchain-co
 
 Create a `BaseTool` from a `Runnable`.](/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/8a2f1a9445ed1b467cdeb0fcb89dba2c67bd2bb3/libs/core/langchain_core/prompts/chat.py#L794)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/f40f58d50499700f98051be6bb610bee5dd11cc2/libs/core/langchain_core/prompts/chat.py#L794)
 
 Version History
 

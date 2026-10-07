@@ -1,24 +1,784 @@
-# GPT-5.4 prompting guide
+# Using GPT-5.4
 
-Prompt GPT-5.4 for long-running tasks, tool use, reliable execution, and structured outputs.
+> For the complete documentation index, see [llms.txt](/llms.txt). Markdown versions of documentation pages are available by appending `.md` to the page URL.
 
-## New in GPT-5.4 vs GPT-5.2
-- Stronger long-running task performance with more reliable multi-step execution.
-- Better control over style, tone, and structured output contracts.
-- More disciplined tool persistence, verification loops, and evidence-grounded synthesis.
-- Small-model notes for `gpt-5.4-mini` and `gpt-5.4-nano`.
+## Introduction
 
-GPT-5.4 is designed to balance long-running task performance, stronger control over style and behavior, and more disciplined execution across complex workflows. Building on advances from GPT-5 through GPT-5.3-Codex, GPT-5.4 improves token efficiency, sustains multi-step workflows more reliably, and performs well on long-horizon tasks.
+[GPT-5.4](https://developers.openai.com/api/docs/models/gpt-5.4) was released as a frontier model for professional work across the API and Codex. It helps developers analyze complex information, build production software, and automate multi-step workflows.
 
-GPT-5.4 is designed for production-grade assistants and agents that need strong multi-step reasoning, evidence-rich synthesis, and reliable performance over long contexts. It is especially effective when prompts clearly specify the output contract, tool-use expectations, and completion criteria. In practice, the biggest gains come from choosing the right reasoning effort for the task, using explicit grounding and citation rules, and giving the model a precise definition of what "done" looks like. This guide focuses on prompt patterns and migration practices that preserve those efficiency wins. For model capabilities, API parameters, and broader migration guidance, see [our latest model guide](https://developers.openai.com/api/docs/guides/latest-model).
+Within the GPT-5.4 generation, `gpt-5.4` is the general-purpose model for workflows that move between software engineering, reasoning, writing, and tool use.
+
+This guide covers key features of the GPT-5 model family and how to get the most out of GPT-5.4.
+
+## What's new
+
+Compared with the previous GPT-5.2 model, GPT-5.4 shows improvements in:
+
+- Coding, document understanding, tool use, and instruction following
+- Image perception and multimodal tasks
+- Long-running task execution and multi-step agent workflows
+- Token efficiency and end-to-end performance on tool-heavy workloads
+- Web search and multi-source synthesis for hard-to-locate information
+- Document-heavy and spreadsheet-heavy business workflows in customer service, analytics, and finance
+
+GPT-5.4 brings the coding capabilities of GPT-5.3-Codex to our flagship frontier model. Developers can generate production-quality code, build polished front-end UI, follow repo-specific patterns, and handle multi-file changes with fewer retries. It also has a strong out-of-the-box coding personality, so teams spend less time on prompt tuning.
+
+For agentic workloads, GPT-5.4 reduces end-to-end time across multi-step trajectories and often completes tasks with fewer tokens and tool calls. This makes agents more responsive and lowers the cost of operating complex workflows at scale in the API and Codex.
+
+### New features in GPT-5.4
+
+Like earlier GPT-5 models, GPT-5.4 supports custom tools, parameters to control verbosity and reasoning, and an allowed tools list. GPT-5.4 also introduces several capabilities that make it easier to build powerful agent systems, operate over larger bodies of information, and run more reliable automated workflows:
+
+- **`tool_search` in the API:** GPT-5.4 improves tool search for larger tool ecosystems by using deferred tool loading. This makes tools searchable, loads only the relevant definitions, reduces token usage, and improves tool selection accuracy in real deployments. Learn more in the [tool search guide](https://developers.openai.com/api/docs/guides/tools-tool-search).
+- **1M token context window:** GPT-5.4 supports up to a 1M token context window, making it easier to analyze entire codebases, long document collections, or extended agent trajectories in a single request. Read more in the [1M context window](#1m-context-window) section.
+- **Built-in computer use:** GPT-5.4 is the first mainline model with built-in computer-use capabilities, enabling agents to interact directly with software to complete, verify, and fix tasks in a build-run-verify-fix loop. Learn more in the [computer use guide](https://developers.openai.com/api/docs/guides/tools-computer-use).
+- **Native compaction support:** GPT-5.4 is the first mainline model trained to support compaction, enabling longer agent trajectories while preserving key context.
+
+## Model, API, and feature updates
+
+Within this model generation, `gpt-5.4` is the general-purpose model for both broad tasks and coding. For more difficult problems, `gpt-5.4-pro` uses more compute to think longer and provide more consistent answers.
+
+For smaller, faster variants, start with `gpt-5.4-mini` or `gpt-5.4-nano`.
+
+To help you pick the model that best fits your use case, consider these tradeoffs:
+
+| Variant                                         | Best for                                                                                                             |
+| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| [`gpt-5.4`](https://developers.openai.com/api/docs/models/gpt-5.4)           | General-purpose work, including complex reasoning, broad world knowledge, and code-heavy or multi-step agentic tasks |
+| [`gpt-5.4-pro`](https://developers.openai.com/api/docs/models/gpt-5.4-pro)   | Tough problems that may take longer to solve and need deeper reasoning                                               |
+| [`gpt-5.4-mini`](https://developers.openai.com/api/docs/models/gpt-5.4-mini) | High-volume coding, computer use, and agent workflows that still need strong reasoning                               |
+| [`gpt-5.4-nano`](https://developers.openai.com/api/docs/models/gpt-5.4-nano) | High-throughput tasks where speed and cost matter most                                                               |
+
+### Lower reasoning effort
+
+The `reasoning.effort` parameter controls how many reasoning tokens the model generates before producing a response. Earlier reasoning models like o3 supported only `low`, `medium`, and `high`: `low` favored speed and fewer tokens, while `high` favored more thorough reasoning.
+
+GPT-5.2 and GPT-5.4 support `none` as their lowest reasoning effort for lower-latency interactions. It is the default setting for both models. If you need more thinking, slowly increase to `medium` and experiment with results.
+
+With reasoning effort set to `none`, prompting is important. To improve the model's reasoning quality, even with the default settings, encourage it to “think” or outline its steps before answering.
+
+Reasoning effort set to none
+
+```javascript
+import OpenAI from "openai";
+const openai = new OpenAI();
+
+const response = await openai.responses.create({
+  model: "gpt-5.4",
+  input:
+    "Think carefully and outline your steps before answering. How much gold would it take to coat the Statue of Liberty in a 1mm layer?",
+  reasoning: {
+    effort: "none",
+  },
+});
+
+console.log(response);
+```
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+response = client.responses.create(
+    model="gpt-5.4",
+    input="Think carefully and outline your steps before answering. How much gold would it take to coat the Statue of Liberty in a 1mm layer?",
+    reasoning={"effort": "none"},
+)
+
+print(response)
+```
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/responses"
+	"github.com/openai/openai-go/v3/shared"
+)
+
+func main() {
+	client := openai.NewClient()
+	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
+		Model:     "gpt-5.4",
+		Input:     responses.ResponseNewParamsInputUnion{OfString: openai.String("Think carefully and outline your steps before answering. How much gold would it take to coat the Statue of Liberty in a 1mm layer?")},
+		Reasoning: shared.ReasoningParam{Effort: shared.ReasoningEffortNone},
+	})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(response)
+}
+```
+
+```java
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.Reasoning;
+import com.openai.models.ReasoningEffort;
+import com.openai.models.responses.ResponseCreateParams;
+
+ResponseCreateParams params =
+    ResponseCreateParams.builder()
+        .model("gpt-5.4")
+        .input("Explain the bug and propose a fix.")
+        .reasoning(Reasoning.builder().effort(ReasoningEffort.NONE).build())
+        .build();
+
+client.responses().create(params).output().stream()
+    .flatMap(item -> item.message().stream())
+    .flatMap(message -> message.content().stream())
+    .flatMap(content -> content.outputText().stream())
+    .forEach(text -> System.out.println(text.text()));
+```
+
+```csharp
+using OpenAI.Responses;
+#pragma warning disable OPENAI001
+
+string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
+ResponsesClient client = new(key);
+
+CreateResponseOptions options = new()
+{
+    Model = "gpt-5.4",
+    ReasoningOptions = new ResponseReasoningOptions
+    {
+        ReasoningEffortLevel = ResponseReasoningEffortLevel.None,
+    },
+};
+options.InputItems.Add(
+    ResponseItem.CreateUserMessageItem(
+        "Think carefully and outline your steps before answering. How much gold would it take to coat the Statue of Liberty in a 1mm layer?"
+    )
+);
+
+ResponseResult response = await client.CreateResponseAsync(options);
+Console.WriteLine(response.GetOutputText());
+```
+
+```ruby
+require "openai"
+
+client = OpenAI::Client.new
+response = client.responses.create(
+  model: "gpt-5.4",
+  reasoning: { effort: :minimal },
+  input: "Explain the bug and propose a fix."
+)
+puts(response.output_text)
+```
+
+```bash
+curl --request POST \
+  --url https://api.openai.com/v1/responses \
+  --header "Authorization: Bearer $OPENAI_API_KEY" \
+  --header 'Content-type: application/json' \
+  --data '{
+        "model": "gpt-5.4",
+        "input": "Think carefully and outline your steps before answering. How much gold would it take to coat the Statue of Liberty in a 1mm layer?",
+        "reasoning": {
+                "effort": "none"
+        }
+}'
+```
+
+
+### Verbosity
+
+Verbosity determines how many output tokens are generated. Lowering the number of tokens reduces overall latency. While the model's reasoning approach stays mostly the same, the model finds ways to answer more concisely—which can either improve or diminish answer quality, depending on your use case. Here are some scenarios for both ends of the verbosity spectrum:
+
+- **High verbosity:** Use when you need the model to provide thorough explanations of documents or perform extensive code refactoring.
+- **Low verbosity:** Best for situations where you want concise answers or focused code generation, such as SQL queries.
+
+GPT-5 made this option configurable as one of `high`, `medium`, or `low`. With GPT-5.4, verbosity remains configurable and defaults to `medium`.
+
+When generating code with GPT-5.4, `medium` and `high` verbosity levels yield longer, more structured code with inline explanations, while `low` verbosity produces shorter, more concise code with minimal commentary.
+
+Control verbosity
+
+```javascript
+import OpenAI from "openai";
+const openai = new OpenAI();
+
+const response = await openai.responses.create({
+  model: "gpt-5.4",
+  input:
+    "What is the answer to the ultimate question of life, the universe, and everything?",
+  text: {
+    verbosity: "low",
+  },
+});
+
+console.log(response);
+```
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+response = client.responses.create(
+    model="gpt-5.4",
+    input="What is the answer to the ultimate question of life, the universe, and everything?",
+    text={"verbosity": "low"},
+)
+
+print(response)
+```
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/responses"
+)
+
+func main() {
+	client := openai.NewClient()
+	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
+		Model: "gpt-5.4",
+		Input: responses.ResponseNewParamsInputUnion{OfString: openai.String("What is the answer to the ultimate question of life, the universe, and everything?")},
+		Text:  responses.ResponseTextConfigParam{Verbosity: responses.ResponseTextConfigVerbosityLow},
+	})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(response)
+}
+```
+
+```java
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseTextConfig;
+
+ResponseCreateParams params =
+    ResponseCreateParams.builder()
+        .model("gpt-5.4")
+        .input("Explain the bug and propose a fix.")
+        .text(ResponseTextConfig.builder().verbosity(ResponseTextConfig.Verbosity.LOW).build())
+        .build();
+
+client.responses().create(params).output().stream()
+    .flatMap(item -> item.message().stream())
+    .flatMap(message -> message.content().stream())
+    .flatMap(content -> content.outputText().stream())
+    .forEach(text -> System.out.println(text.text()));
+```
+
+```ruby
+require "openai"
+
+client = OpenAI::Client.new
+response = client.responses.create(
+  model: "gpt-5.4",
+  text: { verbosity: :low },
+  input: "Explain the bug and propose a fix."
+)
+puts(response.output_text)
+```
+
+```bash
+curl --request POST \
+  --url https://api.openai.com/v1/responses \
+  --header "Authorization: Bearer $OPENAI_API_KEY" \
+  --header 'Content-type: application/json' \
+  --data '{
+  "model": "gpt-5.4",
+  "input": "What is the answer to the ultimate question of life, the universe, and everything?",
+  "text": {
+    "verbosity": "low"
+  }
+}'
+```
+
+
+You can still steer verbosity through prompting after setting it to `low` in the API. The verbosity parameter defines a general token range at the system prompt level, but the actual output is flexible to both developer and user prompts within that range.
+
+#### 1M context window
+
+1M token context window was introduced with GPT-5.4, making it easier to analyze entire codebases, long document collections, or extended agent trajectories in a single request.
+
+We have separate standard pricing for requests under 272K and over 272K tokens, available in the [pricing docs](https://developers.openai.com/api/docs/pricing). If you use [Fast mode](https://developers.openai.com/api/docs/guides/fast-mode), any prompt above 272K tokens is automatically processed at standard rates.
+
+Long context pricing stacks with other pricing modifiers such as data residency and batch.
+
+We have different rate limits for requests under 272K tokens and over 272K tokens; this is available on the [GPT-5.4 model page](https://developers.openai.com/api/docs/models/gpt-5.4).
+
+## Using tools with GPT-5.4
+
+GPT-5.4 has been post-trained on specific tools. See the [tools docs](https://developers.openai.com/api/docs/guides/tools) for more specific guidance.
+
+### Computer use tool
+
+Computer use lets GPT-5.4 operate software through the user interface by inspecting screenshots and returning structured actions for your harness to execute. It is a good fit for browser or desktop workflows where a person could complete the task through the UI, such as navigating a site, filling out forms, or validating that a change actually worked.
+
+Use it in an isolated browser or VM, and keep a human in the loop for high-impact actions. The full guide covers the built-in Responses API loop, custom harness patterns, and code-execution-based setups.
+
+[Computer use guide
+
+
+
+      Learn how to run the built-in computer tool safely and integrate it with
+    your own harness.](https://developers.openai.com/api/docs/guides/tools-computer-use)
+
+### Tool search tool
+
+Tool search lets GPT-5.4 defer large tool surfaces until runtime so the model loads only the definitions it needs. This is most useful when you have many functions, `namespaces`, or MCP tools and want to reduce token usage, preserve cache performance, and improve latency without exposing every schema up front.
+
+Use hosted tool search when the candidate tools are already known at request time, or client-executed tool search when your application needs to decide what to load dynamically. The full guide also covers best practices for `namespaces`, MCP servers, and deferred loading.
+
+[Tool search guide
+
+
+
+      Learn how to defer tool definitions and load the right subset at runtime.](https://developers.openai.com/api/docs/guides/tools-tool-search)
+
+### Custom tools
+
+When the GPT-5 model family launched, we introduced a new capability called custom tools, which lets models send any raw text as tool call input but still constrain outputs if desired. This tool behavior remains true in GPT-5.4.
+
+[Function calling guide
+
+
+
+      Learn about custom tools in the function calling guide.](https://developers.openai.com/api/docs/guides/function-calling)
+
+#### Freeform inputs
+
+Define your tool with `type: custom` to enable models to send plaintext inputs directly to your tools, rather than being limited to structured JSON. The model can send any raw text—code, SQL queries, shell commands, configuration files, or long-form prose—directly to your tool.
+
+```json
+{
+  "type": "custom",
+  "name": "code_exec",
+  "description": "Executes arbitrary python code"
+}
+```
+
+#### Constraining outputs
+
+GPT-5.4 supports context-free grammars (`CFGs`) for custom tools, letting you provide a Lark grammar to constrain outputs to a specific syntax or DSL. Attaching a CFG, for example a SQL or DSL grammar, ensures the assistant's text matches your grammar.
+
+This enables precise, constrained tool calls or structured responses and lets you enforce strict syntactic or domain-specific formats directly in GPT-5.4's function calling, improving control and reliability for complex or constrained domains.
+
+#### Best practices for custom tools
+
+- **Write concise, explicit tool descriptions.** The model chooses what to send based on your description; state explicitly if you want it to always call the tool.
+- **Validate outputs on the server side**. Freeform strings are powerful but require safeguards against injection or unsafe commands.
+
+### Allowed tools
+
+The `allowed_tools` parameter under `tool_choice` lets you pass N tool definitions but restrict the model to only M (&lt; N) of them. List your full toolkit in `tools`, and then use an `allowed_tools` block to name the subset and specify a mode—either `auto` (the model may pick any of those) or `required` (the model must invoke one).
+
+[Function calling guide
+
+
+
+      Learn about the allowed tools option in the function calling guide.](https://developers.openai.com/api/docs/guides/function-calling)
+
+By separating all possible tools from the subset that can be used _now_, you gain greater safety, predictability, and improved prompt caching. You also avoid brittle prompt engineering, such as hard-coded call order. GPT-5.4 dynamically invokes or requires specific functions mid-conversation while reducing the risk of unintended tool usage over long contexts.
+
+|                  | **Standard Tools**                        | **Allowed Tools**                                             |
+| ---------------- | ----------------------------------------- | ------------------------------------------------------------- |
+| Model's universe | All tools listed under **`"tools": […]`** | Only the subset under **`"tools": […]`** in **`tool_choice`** |
+| Tool invocation  | Model may or may not call any tool        | Model restricted to (or required to call) chosen tools        |
+| Purpose          | Declare available capabilities            | Constrain which capabilities are actually used                |
+
+```json
+{
+  "tool_choice": {
+    "type": "allowed_tools",
+    "mode": "auto",
+    "tools": [
+      { "type": "function", "name": "get_weather" },
+      { "type": "function", "name": "search_docs" }
+    ]
+  }
+}
+```
+
+For a more detailed overview of all of these new features, see the [prompt guidance for GPT-5.4](https://developers.openai.com/api/docs/guides/latest-model?model=gpt-5.4#prompting-best-practices).
+
+### Preambles
+
+Preambles are brief, user-visible explanations that GPT-5.4 generates before invoking any tool or function, outlining its intent or plan—for example, “why I'm calling this tool.” They appear after the chain of thought and before the actual tool call, making the model's reasoning easier to understand and debug while supporting precise steering.
+
+By letting GPT-5.4 “think out loud” before each tool call, preambles boost tool-calling accuracy (and overall task success) without bloating reasoning overhead. To enable preambles, add a system or developer instruction—for example: “Before you call a tool, explain why you are calling it.” GPT-5.4 adds a concise rationale to each specified tool call. The model may also output multiple messages between tool calls, which can enhance the interaction experience—particularly for minimal reasoning or latency-sensitive use cases.
+
+For more on using preambles, see the [GPT-5 prompting cookbook](https://developers.openai.com/cookbook/examples/gpt-5/gpt-5_prompting_guide#tool-preambles).
+
+## Migration quickstart
+
+GPT-5.4 works best with the Responses API, which supports preserving reasoning context between turns to improve performance. Read below to migrate from your current model or API.
+
+### Migrating from other models to GPT-5.4
+
+Use the [OpenAI Docs
+  skill](https://github.com/openai/skills/tree/main/skills/.system/openai-docs)
+  when migrating existing prompts or workflows to GPT-5.4. It's available in our
+  public skills repository and the Codex desktop app.
+
+While the model should be close to a drop-in replacement for GPT-5.2, there are a few key changes to call out. See [Prompt guidance for GPT-5.4](https://developers.openai.com/api/docs/guides/latest-model?model=gpt-5.4#prompting-best-practices) for specific updates to make in your prompts.
+
+Using GPT-5 models with the Responses API provides improved intelligence because of the API design. The Responses API can pass the previous turn's CoT to the model. This leads to fewer generated reasoning tokens, higher cache hit rates, and less latency. To learn more, see an [in-depth guide](https://developers.openai.com/cookbook/examples/responses_api/reasoning_items) on the benefits of the Responses API.
+
+When migrating to GPT-5.4 from an older OpenAI model, start by experimenting with reasoning levels and prompting strategies. Use the [prompt optimizer](https://platform.openai.com/chat/edit?models=gpt-5.4&optimize=true) to update your prompts for GPT-5.4 based on current best practices, then follow this model-specific guidance:
+
+- **`gpt-5.2`**: `gpt-5.4` with default settings is meant to be a drop-in replacement.
+- **o3**: `gpt-5.4` with `medium` or `high` reasoning. Start with `medium` reasoning with prompt tuning, then increase to `high` if you aren't getting the results you want.
+- **`gpt-4.1`**: `gpt-5.4` with `none` reasoning. Start with `none` and tune your prompts; increase if you need better performance.
+- **`o4-mini` or `gpt-4.1-mini`**: `gpt-5.4-mini` with prompt tuning is a great replacement.
+- **`gpt-4.1-nano`**: `gpt-5.4-nano` with prompt tuning is a great replacement.
+
+### New `phase` parameter
+
+For long-running or tool-heavy GPT-5.4 flows in the Responses API, use the assistant message `phase` field to avoid early stopping and other misbehavior.
+
+`phase` is optional at the API level, but we highly recommend using it. Use `phase: "commentary"` for intermediate assistant updates (such as preambles before tool calls) and `phase: "final_answer"` for the completed answer. Do not add `phase` to user messages.
+
+If you use `previous_response_id`, that is usually the simplest path because
+  prior assistant state is preserved. If you replay assistant history manually,
+  preserve each original `phase` value.
+
+Missing or dropped `phase` can cause preambles to be treated as final answers
+in those workflows. For additional guidance and examples, see the [GPT-5.4
+prompting guide](https://developers.openai.com/api/docs/guides/latest-model?model=gpt-5.4#phase-parameter).
+
+Round-trip assistant phase values
+
+```javascript
+import OpenAI from "openai";
+const client = new OpenAI();
+
+const response = await client.responses.create({
+  model: "gpt-5.4",
+  input: [
+    {
+      role: "assistant",
+      phase: "commentary",
+      content:
+        "I’ll inspect the logs and then summarize root cause and remediation.",
+    },
+    {
+      role: "assistant",
+      phase: "final_answer",
+      content: "Root cause: cache invalidation race.",
+    },
+    {
+      role: "user",
+      content: "Great—now give me a rollout-safe fix plan.",
+    },
+  ],
+});
+
+console.log(response.output_text);
+```
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+response = client.responses.create(
+    model="gpt-5.4",
+    input=[
+        {
+            "role": "assistant",
+            "phase": "commentary",
+            "content": "I’ll inspect the logs and then summarize root cause and remediation.",
+        },
+        {
+            "role": "assistant",
+            "phase": "final_answer",
+            "content": "Root cause: cache invalidation race.",
+        },
+        {
+            "role": "user",
+            "content": "Great—now give me a rollout-safe fix plan.",
+        },
+    ],
+)
+
+print(response.output_text)
+```
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/responses"
+)
+
+func main() {
+	client := openai.NewClient()
+	commentary := responses.ResponseInputItemParamOfMessage(
+		"I’ll inspect the logs and then summarize root cause and remediation.",
+		responses.EasyInputMessageRoleAssistant,
+	)
+	commentary.OfMessage.Phase = responses.EasyInputMessagePhaseCommentary
+	finalAnswer := responses.ResponseInputItemParamOfMessage(
+		"Root cause: cache invalidation race.",
+		responses.EasyInputMessageRoleAssistant,
+	)
+	finalAnswer.OfMessage.Phase = responses.EasyInputMessagePhaseFinalAnswer
+
+	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
+		Model: "gpt-5.4",
+		Input: responses.ResponseNewParamsInputUnion{OfInputItemList: responses.ResponseInputParam{
+			commentary,
+			finalAnswer,
+			responses.ResponseInputItemParamOfMessage("Great—now give me a rollout-safe fix plan.", responses.EasyInputMessageRoleUser),
+		}},
+	})
+	if err != nil {
+		panic(err)
+	}
+	fmt.Println(response.OutputText())
+}
+```
+
+```java
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.Reasoning;
+import com.openai.models.ReasoningEffort;
+import com.openai.models.responses.ResponseCreateParams;
+
+ResponseCreateParams params =
+    ResponseCreateParams.builder()
+        .model("gpt-5.4")
+        .input("Explain the bug and propose a fix.")
+        .reasoning(Reasoning.builder().effort(ReasoningEffort.MEDIUM).build())
+        .build();
+
+client.responses().create(params).output().stream()
+    .flatMap(item -> item.message().stream())
+    .flatMap(message -> message.content().stream())
+    .flatMap(content -> content.outputText().stream())
+    .forEach(text -> System.out.println(text.text()));
+```
+
+```ruby
+require "openai"
+
+client = OpenAI::Client.new
+response = client.responses.create(
+  model: "gpt-5.4",
+  reasoning: { effort: :medium },
+  input: "Explain the bug and propose a fix."
+)
+puts(response.output_text)
+```
+
+
+### GPT-5.4 parameter compatibility
+
+The following parameters are **only supported** when using GPT-5.4 with reasoning effort set to `none`:
+
+- `temperature`
+- `top_p`
+- `logprobs`
+
+Requests that include these fields will raise an error for GPT-5.4 or GPT-5.2 with any other reasoning effort setting, or for older GPT-5 models such as `gpt-5`, `gpt-5-mini`, or `gpt-5-nano`.
+
+To achieve similar results with reasoning effort set higher, or with another GPT-5 family model, try these alternative parameters:
+
+- **Reasoning depth:** `reasoning: { effort: "none" | "low" | "medium" | "high" | "xhigh" }`
+- **Output verbosity:** `text: { verbosity: "low" | "medium" | "high" }`
+- **Output length:** `max_output_tokens`
+
+### Migrating from Chat Completions to Responses API
+
+The biggest difference, and main reason to migrate from Chat Completions to the Responses API for GPT-5.4, is support for passing chain of thought (CoT) between turns. See a full [comparison of the APIs](https://developers.openai.com/api/docs/guides/migrate-to-responses).
+
+Passing CoT exists only in the Responses API, and we've seen improved intelligence, fewer generated reasoning tokens, higher cache hit rates, and lower latency as a result of doing so. Most other parameters remain at parity, though the formatting is different. Here's how new parameters are handled differently between Chat Completions and the Responses API:
+
+**Reasoning effort**
+
+
+
+Responses API
+
+    Generate response with reasoning effort set to none
+
+```bash
+curl --request POST \
+  --url https://api.openai.com/v1/responses \
+  --header "Authorization: Bearer $OPENAI_API_KEY" \
+  --header "Content-type: application/json" \
+  --data '{
+  "model": "gpt-5.4",
+  "input": "How much gold would it take to coat the Statue of Liberty in a 1mm layer?",
+  "reasoning": {
+    "effort": "none"
+  }
+}'
+```
+
+  
+
+  
+
+    
+Chat Completions
+
+    Generate response with reasoning effort set to none
+
+```bash
+curl --request POST \
+  --url https://api.openai.com/v1/chat/completions \
+  --header "Authorization: Bearer $OPENAI_API_KEY" \
+  --header "Content-type: application/json" \
+  --data '{
+  "model": "gpt-5.4",
+  "messages": [
+    {
+      "role": "user",
+      "content": "How much gold would it take to coat the Statue of Liberty in a 1mm layer?"
+    }
+  ],
+  "reasoning_effort": "none"
+}'
+```
+
+
+
+**Verbosity**
+
+
+
+Responses API
+
+    Control verbosity
+
+```bash
+curl --request POST \
+  --url https://api.openai.com/v1/responses \
+  --header "Authorization: Bearer $OPENAI_API_KEY" \
+  --header "Content-type: application/json" \
+  --data '{
+  "model": "gpt-5.4",
+  "input": "What is the answer to the ultimate question of life, the universe, and everything?",
+  "text": {
+    "verbosity": "low"
+  }
+}'
+```
+
+  
+
+  
+
+    
+Chat Completions
+
+    Control verbosity
+
+```bash
+curl --request POST \
+  --url https://api.openai.com/v1/chat/completions \
+  --header "Authorization: Bearer $OPENAI_API_KEY" \
+  --header "Content-type: application/json" \
+  --data '{
+  "model": "gpt-5.4",
+  "messages": [
+    {
+      "role": "user",
+      "content": "What is the answer to the ultimate question of life, the universe, and everything?"
+    }
+  ],
+  "verbosity": "low"
+}'
+```
+
+
+
+**Custom tools**
+
+
+
+Responses API
+
+    Custom tool call
+
+```bash
+curl --request POST \
+  --url https://api.openai.com/v1/responses \
+  --header "Authorization: Bearer $OPENAI_API_KEY" \
+  --header "Content-type: application/json" \
+  --data '{
+  "model": "gpt-5.4",
+  "input": "Use the code_exec tool to calculate the area of a circle with radius equal to the number of r letters in blueberry",
+  "tools": [
+    {
+      "type": "custom",
+      "name": "code_exec",
+      "description": "Executes arbitrary Python code"
+    }
+  ]
+}'
+```
+
+  
+
+  
+
+    
+Chat Completions
+
+    Custom tool call
+
+```bash
+curl --request POST \
+  --url https://api.openai.com/v1/chat/completions \
+  --header "Authorization: Bearer $OPENAI_API_KEY" \
+  --header "Content-type: application/json" \
+  --data '{
+  "model": "gpt-5.4",
+  "messages": [
+    {
+      "role": "user",
+      "content": "Use the code_exec tool to calculate the area of a circle with radius equal to the number of r letters in blueberry"
+    }
+  ],
+  "tools": [
+    {
+      "type": "custom",
+      "custom": {
+        "name": "code_exec",
+        "description": "Executes arbitrary Python code"
+      }
+    }
+  ]
+}'
+```
+
+
+
+## Prompting best practices
 
 When troubleshooting cases where GPT-5.4 treats an intermediate update as the
   final answer, verify your integration preserves the assistant message `phase`
   field correctly. See [Phase parameter](#phase-parameter) for details.
 
-## Understand GPT-5.4 behavior
+### Understand GPT-5.4 behavior
 
-### Where GPT-5.4 is strongest
+#### Where GPT-5.4 is strongest
 
 GPT-5.4 tends to work especially well in these areas:
 
@@ -30,7 +790,7 @@ GPT-5.4 tends to work especially well in these areas:
 - Batched or parallel tool calling while maintaining tool-call accuracy
 - Spreadsheet, finance, and Excel workflows that need instruction following, formatting fidelity, and stronger self-verification
 
-### Where explicit prompting still helps
+#### Where explicit prompting still helps
 
 Even with those strengths, GPT-5.4 benefits from more explicit guidance in a few recurring patterns:
 
@@ -43,9 +803,9 @@ Even with those strengths, GPT-5.4 benefits from more explicit guidance in a few
 
 These patterns are observed defaults, not guarantees. Start with the smallest prompt that passes your evals, and add blocks only when they fix a measured failure mode.
 
-## Use core prompt patterns
+### Use core prompt patterns
 
-### Keep outputs compact and structured
+#### Keep outputs compact and structured
 
 To improve token efficiency with GPT-5.4, constrain verbosity and enforce structured output through clear output contracts. In practice, this acts as an additional control layer alongside the `verbosity` parameter in the Responses API, allowing you to guide both how much the model writes and how it structures the output.
 
@@ -65,7 +825,7 @@ To improve token efficiency with GPT-5.4, constrain verbosity and enforce struct
 </verbosity_controls>
 ```
 
-### Set clear defaults for follow-through
+#### Set clear defaults for follow-through
 
 Users often change the task, format, or tone mid-conversation. To keep the assistant aligned, define clear rules for when to proceed, when to ask, and how newer instructions override earlier defaults.
 
@@ -97,7 +857,7 @@ Higher-priority developer or system instructions remain binding.
 
 **Guidance:** When instructions change mid-conversation, make the update explicit, scoped, and local. State what changed, what still applies, and whether the change affects the next turn or the rest of the conversation.
 
-### Handle mid-conversation instruction updates
+#### Handle mid-conversation instruction updates
 
 For mid-conversation updates, use explicit, scoped steering messages that state:
 
@@ -134,7 +894,7 @@ Rules for this turn:
 </task_update>
 ```
 
-### Make tool use persistent when correctness depends on it
+#### Make tool use persistent when correctness depends on it
 
 Use explicit rules to keep tool use thorough, dependency-aware, and appropriately paced, especially in workflows where later actions rely on earlier retrieval or verification. A common failure mode is skipping prerequisites because the right end state seems obvious.
 
@@ -172,7 +932,7 @@ Prompt for parallelism when the work is independent and wall-clock matters. Prom
 </parallel_tool_calling>
 ```
 
-### Force completeness on long-horizon tasks
+#### Force completeness on long-horizon tasks
 
 For multi-step workflows, a common failure mode is incomplete execution: the model finishes after partial coverage, misses items in a batch, or treats empty or narrow retrieval as final. GPT-5.4 becomes more reliable when the prompt defines explicit completion rules and recovery behavior.
 
@@ -206,7 +966,7 @@ If a lookup returns empty, partial, or suspiciously narrow results:
 </empty_result_recovery>
 ```
 
-### Add a verification loop before high-impact actions
+#### Add a verification loop before high-impact actions
 
 Once the workflow appears complete, add a lightweight verification step before returning the answer or taking an irreversible action. This helps catch requirement misses, grounding issues, and format drift before commit.
 
@@ -238,13 +998,13 @@ For agents that actively take actions, add a short execution frame:
 </action_safety>
 ```
 
-## Handle specialized workflows
+### Handle specialized workflows
 
-### Choose image detail explicitly for vision and computer use
+#### Choose image detail explicitly for vision and computer use
 
 If your workflow depends on visual precision, specify the image `detail` level in the prompt or integration instead of relying on `auto`. Use `high` for standard high-fidelity image understanding. Use `original` for large, dense, or spatially sensitive images, especially [computer use, localization, OCR, and click-accuracy tasks](https://developers.openai.com/api/docs/guides/tools-computer-use) on `gpt-5.4` and future models. Use `low` only when speed and cost matter more than fine detail. For more details on image detail levels, see the [Images and Vision guide](https://developers.openai.com/api/docs/guides/images-vision).
 
-### Lock research and citations to retrieved evidence
+#### Lock research and citations to retrieved evidence
 
 When citation quality matters, make both the source boundary and the format requirement explicit. This helps reduce fabricated references, unsupported claims, and citation-format drift.
 
@@ -268,7 +1028,7 @@ When citation quality matters, make both the source boundary and the format requ
 
 If your application requires inline citations, require inline citations. If it requires footnotes, require footnotes. The key is to lock the format and prevent the model from improvising unsupported references.
 
-### Research mode
+#### Research mode
 
 Push GPT-5.4 into a disciplined research mode. Use this pattern for research, review, and synthesis tasks. Do not force it onto short execution tasks or simple deterministic transforms.
 
@@ -284,7 +1044,7 @@ Push GPT-5.4 into a disciplined research mode. Use this pattern for research, re
 
 If your host environment uses a specific research tool or requires a submit step, combine this with the host's finalization contract.
 
-### Clamp strict output formats
+#### Clamp strict output formats
 
 For SQL, JSON, or other parse-sensitive outputs, tell GPT-5.4 to emit only the target format and check it before finishing.
 
@@ -309,11 +1069,11 @@ If you are extracting document regions or OCR boxes, define the coordinate syste
 </bbox_extraction_spec>
 ```
 
-### Keep tool boundaries explicit in coding and terminal agents
+#### Keep tool boundaries explicit in coding and terminal agents
 
 In coding agents, GPT-5.4 works better when the rules for shell access and file editing are unambiguous. This is especially important when you expose tools like [Shell](https://developers.openai.com/api/docs/guides/tools-shell) or [Apply patch](https://developers.openai.com/api/docs/guides/tools-apply-patch).
 
-### User updates
+#### User updates
 
 GPT-5.4 does well with brief, outcome-based updates. Reuse the user-updates pattern from the 5.2 guide, but pair it with explicit completion and verification requirements.
 
@@ -330,7 +1090,7 @@ Recommended update spec:
 
 For coding agents, see the Prompting patterns for coding tasks section below for more specific guidance.
 
-### Prompting patterns for coding tasks
+#### Prompting patterns for coding tasks
 
 **Autonomy and persistence**
 
@@ -407,7 +1167,7 @@ Exception: If working within an existing website or design system, preserve the 
 </terminal_tool_hygiene>
 ```
 
-### Document localization and OCR boxes
+#### Document localization and OCR boxes
 
 For bbox tasks, be explicit about coordinate conventions and add drift tests.
 
@@ -421,11 +1181,11 @@ For bbox tasks, be explicit about coordinate conventions and add drift tests.
 </bbox_extraction_spec>
 ```
 
-### Use runtime and API integration notes
+#### Use runtime and API integration notes
 
 For long-running or tool-heavy agents, the runtime contract matters as much as the prompt contract.
 
-#### Phase parameter
+##### Phase parameter
 
 For GPT-5.4, `gpt-5.3-codex`, and later Responses models, the `phase` field can
 help in the small number of long-running or tool-heavy flows where preambles or
@@ -439,15 +1199,15 @@ other intermediate assistant updates are mistaken for the final answer.
 - If you replay assistant history yourself, preserve the original `phase` values.
 - Missing or dropped `phase` can cause preambles to be interpreted as final answers and degrade behavior on those multi-step tasks.
 
-### Preserve behavior in long sessions
+#### Preserve behavior in long sessions
 
 Compaction unlocks significantly longer effective context windows, where user conversations can persist for many turns without hitting context limits or long-context performance degradation, and agents can perform very long trajectories that exceed a typical context window for long-running, complex tasks.
 
 If you are using [Compaction](https://developers.openai.com/api/docs/guides/compaction) in the Responses API, compact after major milestones, treat compacted items as opaque state, and keep prompts functionally identical after compaction. The endpoint is ZDR compatible and returns an `encrypted_content` item that you can pass into future requests. GPT-5.4 tends to remain more coherent and reliable over longer, multi-turn conversations with fewer breakdowns as sessions grow.
 
-For more guidance, see the [`/responses/compact` API reference](https://developers.openai.com/api/docs/api-reference/responses/compact).
+For more guidance, see the [`/responses/compact` API reference](https://developers.openai.com/api/reference/resources/responses/methods/compact).
 
-### Control personality for customer-facing workflows
+#### Control personality for customer-facing workflows
 
 GPT-5.4 can be steered more effectively when you separate persistent personality from per-response writing controls. This is especially useful for customer-facing workflows such as emails, support replies, announcements, and blog-style content.
 
@@ -492,9 +1252,9 @@ For memos, reviews, and other professional writing tasks, general writing instru
 
 This mode is especially useful for legal, policy, research, and executive-facing writing, where the goal is not just fluency, but disciplined synthesis and clear conclusions.
 
-## Tune reasoning and migration
+### Tune reasoning and migration
 
-### Treat reasoning effort as a last-mile knob
+#### Treat reasoning effort as a last-mile knob
 
 Reasoning effort is not one-size-fits-all. Treat it as a last-mile tuning knob, not the primary way to improve quality. In many cases, stronger prompts, clear output contracts, and lightweight verification loops recover much of the performance teams might otherwise seek through higher reasoning settings.
 
@@ -529,7 +1289,7 @@ If the model still feels too literal or stops at the first plausible answer, add
 </dig_deeper_nudge>
 ```
 
-### Migrate prompts to GPT-5.4 one change at a time
+#### Migrate prompts to GPT-5.4 one change at a time
 
 Use the same one-change-at-a-time discipline as the 5.2 guide: switch model first, pin `reasoning_effort`, run evals, then iterate.
 
@@ -543,7 +1303,7 @@ These starting points work well for many migrations:
 | Research-heavy assistants | `medium` or `high`                 | Use explicit research multi-pass and citation gating.               |
 | Long-horizon agents       | `medium` or `high`                 | Add tool persistence and completeness accounting.                   |
 
-### Small-model guidance for `gpt-5.4-mini` and `gpt-5.4-nano`
+#### Small-model guidance for `gpt-5.4-mini` and `gpt-5.4-nano`
 
 `gpt-5.4-mini` and `gpt-5.4-nano` are highly steerable, but they are less likely than larger models to infer missing steps, resolve ambiguity implicitly, or package outputs the way you intended unless you specify that behavior directly. In practice, prompts for smaller models are often a bit longer and more explicit.
 
@@ -587,7 +1347,7 @@ These starting points work well for many migrations:
 - Schema-only prompts for tool workflows
 - Generic instructions without structure
 
-### Web search and deep research
+#### Web search and deep research
 
 If you are migrating a research agent in particular, make these prompt updates before increasing reasoning effort:
 
@@ -600,8 +1360,22 @@ You can start from the 5.2 research block and then layer in citation gating and 
 
 GPT-5.4 performs especially well when the task requires multi-step evidence gathering, long-context synthesis, and explicit prompt contracts. In practice, the highest-leverage prompt changes are choosing reasoning effort by task shape, defining exact output and citation formats, adding dependency-aware tool rules, and making completion criteria explicit. The model is often strong out of the box, but it is most reliable when prompts clearly specify how to search, how to verify, and what counts as done.
 
-## Next steps
+### Next steps
 
-- Read [our latest model guide](https://developers.openai.com/api/docs/guides/latest-model) for model capabilities, parameters, and API compatibility details.
+- Review [Model, API, and feature updates](#model-api-and-feature-updates) for model capabilities, parameters, and API compatibility details.
 - Read [Prompt engineering](https://developers.openai.com/api/docs/guides/prompt-engineering) for broader prompting strategies that apply across model families.
 - Read [Compaction](https://developers.openai.com/api/docs/guides/compaction) if you are building long-running GPT-5.4 sessions in the Responses API.
+
+## Further reading
+
+[GPT-5.3-Codex prompting guide](https://developers.openai.com/cookbook/examples/gpt-5/codex_prompting_guide)
+
+[GPT-5.4 blog post](https://openai.com/index/introducing-gpt-5-4/)
+
+[GPT-5 frontend guide](https://developers.openai.com/cookbook/examples/gpt-5/gpt-5_frontend)
+
+[GPT-5 model family: new features guide](https://developers.openai.com/cookbook/examples/gpt-5/gpt-5_new_params_and_tools)
+
+[Cookbook on reasoning models](https://developers.openai.com/cookbook/examples/responses_api/reasoning_items)
+
+[Comparison of Responses API vs. Chat Completions](https://developers.openai.com/api/docs/guides/migrate-to-responses)

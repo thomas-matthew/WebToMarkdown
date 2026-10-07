@@ -22,6 +22,7 @@ URL_LIST=(
     "https://reference.langchain.com/python/deepagents/ | reference/deepagents.md"
 
     # LangChain Integrations
+    "https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic | reference/integrations/ChatAnthropic.md"
     "https://reference.langchain.com/python/langchain-openai/chat_models/base/ChatOpenAI | reference/integrations/ChatOpenAI.md"
     "https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI | reference/integrations/BaseChatOpenAI.md"
     "https://reference.langchain.com/python/langchain-openai/chat_models/azure/AzureChatOpenAI | reference/integrations/AzureChatOpenAI.md"
@@ -31,6 +32,8 @@ URL_LIST=(
     "https://reference.langchain.com/python/langchain-openai/llms/base/BaseOpenAI | reference/integrations/BaseOpenAI.md"
     "https://reference.langchain.com/python/langchain-openai/llms/azure/AzureOpenAI | reference/integrations/AzureOpenAI.md"
     "https://reference.langchain.com/python/integrations/langchain_aws/ | reference/integrations/langchain_aws.md"
+    "https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock | reference/integrations/ChatBedrock.md"
+    "https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse | reference/integrations/ChatBedrockConverse.md"
     "https://reference.langchain.com/python/langchain-xai | reference/integrations/langchain_xai.md"
     "https://reference.langchain.com/python/langchain-xai/chat_models/ChatXAI | reference/integrations/ChatXAI.md"
 

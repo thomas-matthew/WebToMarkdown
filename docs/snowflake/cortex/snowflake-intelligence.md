@@ -14,6 +14,8 @@
     - Zero-Copy Connectors
 
       - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
+      - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
+      - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
@@ -24,11 +26,10 @@
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/migrations "Migrations")
+13. [Migrations](/en/migrations/snowflake-aim "Migrations")
 15. [Queries](/en/guides-overview-queries "Queries")
-16. [Listings](/en/collaboration/collaboration-listings-about "Listings")
-17. [Collaboration](/en/guides-overview-sharing "Collaboration")
-19. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
+16. [Collaboration](/en/guides-overview-sharing "Collaboration")
+18. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
     * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
@@ -36,16 +37,20 @@
       + [Getting Started](/en/user-guide/snowflake-cortex/snowflake-cowork/getting-started "Getting Started")
       + [Build agents](/en/user-guide/snowflake-cortex/snowflake-cowork/build-agents "Build agents")
       + [Artifacts](/en/user-guide/snowflake-cortex/snowflake-cowork/artifacts "Artifacts")
+      + [Automations](/en/user-guide/snowflake-cortex/snowflake-cowork/automations "Automations")
+      + [User skills](/en/user-guide/snowflake-cortex/snowflake-cowork/user-skills "User skills")
+      + [Document generation](/en/user-guide/snowflake-cortex/snowflake-cowork/document-generation "Document generation")
       + [User access and settings for agents](/en/user-guide/snowflake-cortex/snowflake-cowork/deploy-agents "User access and settings for agents")
       + [Integrate tools and data](/en/user-guide/snowflake-cortex/snowflake-cowork/integrate-tools "Integrate tools and data")
       + [Resource budgets](/en/user-guide/snowflake-cortex/snowflake-cowork/cowork-resource-budgets "Resource budgets")
       + [Shared resource budgets](/en/user-guide/snowflake-cortex/snowflake-cowork/cowork-shared-budgets "Shared resource budgets")
       + [Troubleshooting](/en/user-guide/snowflake-cortex/snowflake-cowork/troubleshooting "Troubleshooting")
       + [Reference](/en/user-guide/snowflake-cortex/snowflake-cowork/reference "Reference")
-    * [Cortex Code](/en/user-guide/cortex-code/cortex-code "Cortex Code")
+    * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
     * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
+    * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
     * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
     * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
@@ -56,13 +61,13 @@
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
     * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
     * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
-21. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
-23. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
-25. [Security](/en/guides-overview-secure "Security")
-27. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-28. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-30. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-31. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
+20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
+22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
+24. [Security](/en/guides-overview-secure "Security")
+26. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
+27. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
+29. [Performance optimization](/en/guides-overview-performance "Performance optimization")
+30. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
 
 [Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)Snowflake CoWork
 
@@ -88,13 +93,13 @@ respecting Snowflake’s robust security and governance policies.
 Business users are often stuck navigating stale dashboards that can’t keep up with their questions
 and waiting on data teams for answers. Snowflake CoWork solves this with the following capabilities:
 
-* **Natural Language Interaction**: An intuitive, conversational interface allows users to ask
+* **Natural language interaction**: An intuitive, conversational interface allows users to ask
   questions using natural language and receive deep insights.
-* **Unified Data Access**: Analyzes both structured and unstructured data from enterprise sources.
-* **Deep, Trustworthy Insights**: Breaks down questions and chooses the best tools to deliver
+* **Unified data access**: Analyzes both structured and unstructured data from enterprise sources.
+* **Deep, trustworthy insights**: Breaks down questions and chooses the best tools to deliver
   accurate, actionable insights. Provides traceability to source data
   and queries, while “Verified Answers” allow data teams to add trusted responses.
-* **Built-in Visualization**: Instantly generates and customizes charts to help visualize trends
+* **Built-in visualization**: Instantly generates and customizes charts to help visualize trends
   and patterns, with clear explanations about how each chart was created. The agent determines
   whether data is best shown as a chart or table based on the query type. Trends and comparisons
   render as visualizations, while detailed lookups return tables. Snowflake CoWork supports
@@ -105,30 +110,35 @@ and waiting on data teams for answers. Snowflake CoWork solves this with the fol
   including default chart types, colors, and formatting rules. For more information, see
   [Customize charts in Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork/chart-customization).
 * **Artifacts**: A persistent chart or table object that Snowflake CoWork generates in response to a question. Save, share, and revisit tables and charts without regenerating them. For more information, see [Artifacts in Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork/artifacts).
-* **Skills and plugins**: Discover and install shared Cortex Code skills and plugins directly from Snowflake CoWork. For more information, see [Share skills and plugins](/user-guide/snowflake-cortex/skill-catalog).
-* **Seamless Governance**: Automatically inherits and respects all existing Snowflake data governance
+* **Automations**: Turn a one-time report into a recurring one that re-runs your question with fresh data and emails you the results. Set up and manage automations conversationally or from the **Automations** tab. For more information, see [Automations in Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork/automations).
+* **User skills**: Codify a repeatable workflow once, then reuse it explicitly with `/` or from the Skills menus, or implicitly when your conversation matches the skill. Create skills conversationally, from the **+** menu (**Create new**), or by uploading a skill folder. For more information, see [User skills in Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork/user-skills).
+* **Document generation**: Turn analysis into PDF documents, PowerPoint presentations, and HTML reports you can view inline. Upload a PowerPoint template to match your organization’s style, or customize behavior with a user or agent skill. Requires the [code execution tool](/user-guide/snowflake-cortex/cortex-agents-code-execution-tool) on the associated agent. For more information, see [Document generation in Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork/document-generation).
+* **Seamless governance**: Automatically inherits and respects all existing Snowflake data governance
   controls, including row-access policies and column-level security.
-* **Full Administrative Control**: Administrators can use existing identity providers to give teams
+* **Full administrative control**: Administrators can use existing identity providers to give teams
   access only to Snowflake CoWork, making sure users only interact with the data experiences built
   for them.
 
 ### Snowflake CoWork Mobile App (iOS)[¶](#snowflake-cowork-mobile-app-ios)
 
-[Preview Feature](/release-notes/preview-features) — Open
-
-Available to all accounts.
-
-The Snowflake CoWork mobile app for iOS is available in Preview on the [App Store](https://apps.apple.com/us/app/snowflake-intelligence/id6755540372). The app supports the same features as the web app, so you can ask questions about your data, continue conversations, and review results from anywhere. It supports chat, agents, file and image attachments, voice input, citations, and role and warehouse selection, extending the core experience to mobile in a secure, touch-first format.
+The Snowflake CoWork mobile app for iOS is available on the [App Store](https://apps.apple.com/us/app/snowflake-intelligence/id6755540372). The app supports the same features as the web app, so you can ask questions about your data, continue conversations, and review results from anywhere. It supports chat, agents, file and image attachments, voice input, citations, and role and warehouse selection, extending the core experience to mobile in a secure, touch-first format.
 
 ### Additional UI options[¶](#additional-ui-options)
 
 Snowflake CoWork offers the following additional options for users from the UI:
 
+#### User memory[¶](#user-memory)
+
+User memory lets Snowflake CoWork remember preferences you ask it to save and use them in later
+conversations. For example, you can ask, “Remember that I prefer concise answers.” User memory
+applies only to interactions in Snowflake CoWork, not to direct calls to agents through the
+[Cortex Agent API](/user-guide/snowflake-cortex/cortex-agents-rest-api).
+
+To turn off user memory for yourself, open **Settings** > **Memories** in Snowflake CoWork and
+turn off **Reference saved memories**. This setting applies only to your user and doesn’t delete
+existing saved memories.
+
 #### Deep Research[¶](#deep-research)
-
-[Preview Feature](/release-notes/preview-features) — Open
-
-Available to all accounts.
 
 Deep Research is an investigation mode for complex, open-ended questions that require multi-step
 reasoning across your data. Instead of returning a single result, Snowflake CoWork decomposes the
@@ -140,7 +150,7 @@ results with confidence.
 Reach for Deep Research when you need to understand why something happened, when the answer likely
 spans multiple tables or domains, or when you want a citable report you can hand to stakeholders.
 Examples include questions like “Why has forecast accuracy been declining, and what’s driving the
-variance?” or “Which customer segments show early churn signals, and what do they share?”. For
+variance?” or “Which customer segments show early churn signals, and what do they share?” For
 specific lookups, quick metrics, or interactive follow-ups, the standard chat experience is faster
 and better suited.
 
@@ -177,14 +187,13 @@ When you upload a file, it is automatically saved in your user stage. The file i
 
 Snowflake CoWork supports the following file types for zero-setup file upload:
 
-* CSV
-* JSON
-* PDF
-* PPTX
-* TXT
-* XLSX
+* Documents: `.pdf`, `.txt`, `.md`, `.docx`, `.doc`
+* Spreadsheets: `.xlsx`, `.xls`, `.csv`
+* Presentations: `.pptx`
+* Code and data: `.json`
+* Images: `.png`, `.jpg`, `.jpeg`, `.gif`, `.svg`, `.bmp`, `.tiff`, `.tif`, `.webp`, `.heic`, `.heif`
 
-Each file must be less than 50 MB, but users can upload up to 5 files.
+Each file must be less than 50 MB, and users can upload up to 5 files.
 
 If the document requires complex processing, the user’s default warehouse might be used to run
 Snowpark code for the agent to better analyze and process the data.
@@ -197,20 +206,20 @@ Uploaded documents are stored on a personal stage and treated as customer data, 
 
 Snowflake CoWork combines multiple tools with the following architecture:
 
-[![Describes the architecture of Snowflake CoWork, including the Cortex Agent API, the orchestrator, and the tools.](/static/images/snowflake-intelligence-architecture.png)](/static/images/snowflake-intelligence-architecture.png)
+[![Describes the architecture of %sf-intelligence%, including the Cortex Agent API, the orchestrator, and the tools.](/static/images/snowflake-intelligence-architecture.png)](/static/images/snowflake-intelligence-architecture.png)
 
 When a user asks a question in Snowflake CoWork, Cortex Agents turn
 natural language into governed actions and answers. An interaction with Snowflake CoWork
 follows this workflow:
 
-1. **User input**: A user submits a natural language question. For example, “How are Q4 sales trending?”.
+1. **User input**: A user submits a natural language question. For example, “How are Q4 sales trending?”
 2. **Cortex Agent API**: The question is routed to the [Cortex Agent API](/user-guide/snowflake-cortex/cortex-agents-rest-api), which powers Snowflake CoWork.
    Agents are AI models that can be connected to one or more semantic views, semantic models, Cortex
    search services, and tools. Agents reason through tasks, choose the right tools, deliver results
    in natural language, and take actions on your behalf. You can create, update, and deploy these
    high-quality agents directly inside your Snowflake environment. Agents integrate
    directly with Snowflake CoWork. For more information, see [Cortex Agents](/user-guide/snowflake-cortex/cortex-agents).
-3. **Orchestration**: An LLM model (the orchestrator) interprets intent, selects the right tools, and
+3. **Orchestration**: An LLM (the orchestrator) interprets intent, selects the right tools, and
    plans the sequence of actions. It may use one tool, chain several together, or decide that
    the question is out of scope.
 4. **Tool execution**: Runs the tools selected by the orchestrator and returns results. You can
@@ -226,8 +235,12 @@ follows this workflow:
      [Overview of semantic views](/user-guide/views-semantic/overview).
    * **Cortex Search**: Search through your unstructured data to return relevant document text with [Cortex Search](/user-guide/snowflake-cortex/cortex-search/cortex-search-overview).
    * **Custom Tools**: Execute user-defined functions or stored procedures to perform actions.
-5. **Reflection & response**: The orchestrator reviews and refines results, then generates
+5. **Reflection and response**: The orchestrator reviews and refines results, then generates
    the final answer, including summaries, tables, or charts, in the Snowflake CoWork UI.
+
+## Cost considerations[¶](#cost-considerations)
+
+To monitor spend for a Snowflake CoWork object and act when that spend crosses a threshold, use [resource budgets](/user-guide/snowflake-cortex/snowflake-cowork/cowork-resource-budgets). To enforce per-user credit limits for individual users, and optionally block users who reach their AI quota, use [per-user quotas](/user-guide/budgets/per-user-quotas).
 
 ## Legal notices[¶](#legal-notices)
 
@@ -237,7 +250,7 @@ your use of that model is further subject to the terms for that model on that pa
 
 
 
-The data classification of inputs and outputs are as set forth in the following table.
+The data classification of inputs and outputs is as set forth in the following table.
 
 | Input data classification | Output data classification | Designation |
 | --- | --- | --- |
@@ -274,4 +287,5 @@ On this page
 
 1. [Key capabilities](#key-capabilities)
 2. [How it works](#how-it-works)
-3. [Legal notices](#legal-notices)
+3. [Cost considerations](#cost-considerations)
+4. [Legal notices](#legal-notices)

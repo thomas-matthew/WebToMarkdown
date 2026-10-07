@@ -104,19 +104,37 @@ Metadata associated with a checkpoint.](/python/langgraph.checkpoint/base/Checkp
 
 ### BaseCheckpointSaver
 
-Base class for creating a graph checkpointer.](/python/langgraph.checkpoint/base/BaseCheckpointSaver)[Class
+Base class for creating a graph checkpointer.
+
+Checkpointers allow LangGraph agents to persist their state
+within and across multiple interactions.
+
+When a checkpointer is configured, you should pass](/python/langgraph.checkpoint/base/BaseCheckpointSaver)[Class
 
 ### SerializerProtocol
 
-Protocol for serialization and deserialization of objects.](/python/langgraph.checkpoint/serde/base/SerializerProtocol)[Class
+Protocol for serialization and deserialization of objects.
+
+* `dumps_typed`: Serialize an object to a tuple `(type, bytes)`.
+* `loads_typed`: Deserialize an object from a tuple `(type, bytes)`.
+
+Valid](/python/langgraph.checkpoint/serde/base/SerializerProtocol)[Class
 
 ### CipherProtocol
 
-Protocol for encryption and decryption of data.](/python/langgraph.checkpoint/serde/base/CipherProtocol)[Class
+Protocol for encryption and decryption of data.
+
+* `encrypt`: Encrypt plaintext.
+* `decrypt`: Decrypt ciphertext.](/python/langgraph.checkpoint/serde/base/CipherProtocol)[Class
 
 ### JsonPlusSerializer
 
-Serializer that uses ormsgpack, with optional fallbacks.](/python/langgraph.checkpoint/serde/jsonplus/JsonPlusSerializer)[Class
+Serializer that uses ormsgpack, with optional fallbacks.
+
+Warning
+
+Security note: This serializer is intended for use within the `BaseCheckpointSaver`
+class and called within the Pregel lo](/python/langgraph.checkpoint/serde/jsonplus/JsonPlusSerializer)[Class
 
 ### EncryptedSerializer
 
@@ -124,11 +142,18 @@ Serializer that encrypts and decrypts data using an encryption protocol.](/pytho
 
 ### InMemorySaver
 
-An in-memory checkpoint saver.](/python/langgraph.checkpoint/memory/InMemorySaver)[Class
+An in-memory checkpoint saver.
+
+This checkpoint saver stores checkpoints in memory using a `defaultdict`.](/python/langgraph.checkpoint/memory/InMemorySaver)[Class
 
 ### PersistentDict
 
-Persistent dictionary with an API compatible with shelve and anydbm.](/python/langgraph.checkpoint/memory/PersistentDict)[Class
+Persistent dictionary with an API compatible with shelve and anydbm.
+
+The dict is kept in memory, so the dictionary operations run as fast as
+a regular dictionary.
+
+Write to disk is delayed until clos](/python/langgraph.checkpoint/memory/PersistentDict)[Class
 
 ### SqliteSaver
 
@@ -136,7 +161,10 @@ A checkpoint saver that stores checkpoints in a SQLite database.](/python/langgr
 
 ### AsyncSqliteSaver
 
-An asynchronous checkpoint saver that stores checkpoints in a SQLite database.](/python/langgraph.checkpoint.sqlite/aio/AsyncSqliteSaver)[Class
+An asynchronous checkpoint saver that stores checkpoints in a SQLite database.
+
+This class provides an asynchronous interface for saving and retrieving checkpoints
+using a SQLite database. It's design](/python/langgraph.checkpoint.sqlite/aio/AsyncSqliteSaver)[Class
 
 ### PostgresSaver
 
@@ -152,15 +180,18 @@ Asynchronous checkpointer that stores checkpoints in a Postgres database.](/pyth
 
 ### create\_checkpoint
 
-Build a new Checkpoint from the previous one and live channel state.](/python/langgraph/pregel/_checkpoint/create_checkpoint)
+Build a new Checkpoint from the previous one and live channel state.
+
+For each name in `channels_to_snapshot`, a `_DeltaSnapshot(value)` blob
+is written into `channel_values[k]`. Other delta channels](/python/langgraph/pregel/_checkpoint/create_checkpoint)
 
 ## Modules
 
 [Module
 
-### aio](/python/langgraph.checkpoint.sqlite/aio)[Module
+### utils](/python/langgraph.checkpoint.sqlite/utils)[Module
 
-### utils](/python/langgraph.checkpoint.sqlite/utils)
+### aio](/python/langgraph.checkpoint.sqlite/aio)
 
 ## Constants
 

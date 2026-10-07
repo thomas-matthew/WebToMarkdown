@@ -36,7 +36,10 @@ Automatically select the best strategy for structured output.](/python/langchain
 
 ### create\_agent
 
-Creates an agent graph that calls tools in a loop until a stopping condition is met.](/python/langchain/agents/factory/create_agent)[Function
+Creates an agent graph that calls tools in a loop until a stopping condition is met.
+
+For more details on using `create_agent`,
+visit the [Agents](https://docs.langchain.com/oss/python/langchain/agent](/python/langchain/agents/factory/create_agent)[Function
 
 ### before\_model
 
@@ -48,11 +51,19 @@ Decorator used to dynamically create a middleware with the `after_model` hook.](
 
 ### wrap\_model\_call
 
-Create middleware with `wrap_model_call` hook from a function.](/python/langchain/agents/middleware/types/wrap_model_call)[Function
+Create middleware with `wrap_model_call` hook from a function.
+
+Converts a function with handler callback into middleware that can intercept model
+calls, implement retry logic, handle errors, and rewr](/python/langchain/agents/middleware/types/wrap_model_call)[Function
 
 ### wrap\_tool\_call
 
-Create middleware with `wrap_tool_call` hook from a function.](/python/langchain/agents/middleware/types/wrap_tool_call)
+Create middleware with `wrap_tool_call` hook from a function.
+
+Async version is `awrap_tool_call`.
+
+Converts a function with handler callback into middleware that can intercept
+tool calls, implement r](/python/langchain/agents/middleware/types/wrap_tool_call)
 
 ## Types
 

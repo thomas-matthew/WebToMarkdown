@@ -1,32 +1,33 @@
 # Images and vision
 
+> For the complete documentation index, see [llms.txt](/llms.txt). Markdown versions of documentation pages are available by appending `.md` to the page URL.
+
 ## Overview
 
-<div className="mb-10 w-full max-w-full overflow-hidden">
-  </div>
 
-In this guide, you will learn about building applications involving images with the OpenAI API.
-If you know what you want to build, find your use case below to get started. If you're not sure where to start, continue reading to get an overview.
 
-### A tour of image-related use cases
+  - **[Create images](https://developers.openai.com/api/docs/guides/image-generation)**: Use GPT Image models to generate or edit images.
+- **[Process image inputs](#analyze-images)**: Use our models' vision capabilities to analyze images.
+
+
+
+<a id="a-tour-of-image-related-use-cases"></a>
 
 Recent language models can process image inputs and analyze them—a capability known as **vision**. GPT Image models can use text and image inputs to create new images or edit existing ones.
 
-The OpenAI API offers several endpoints to process images as input or generate them as output, enabling you to build powerful multimodal applications.
+Choose an endpoint based on whether you want to analyze images or generate them:
 
-| API                                                  | Supported use cases                                                   |
-| ---------------------------------------------------- | --------------------------------------------------------------------- |
-| [Responses API](https://developers.openai.com/api/docs/api-reference/responses)   | Analyze images and use them as input and/or generate images as output |
-| [Images API](https://developers.openai.com/api/docs/api-reference/images)         | Generate images as output, optionally using images as input           |
-| [Chat Completions API](https://developers.openai.com/api/docs/api-reference/chat) | Analyze images and use them as input to generate text or audio        |
+| API                                                  | Supported use cases                                                        |
+| ---------------------------------------------------- | -------------------------------------------------------------------------- |
+| [Responses API](https://developers.openai.com/api/reference/resources/responses)   | Analyze images, or generate and edit images with the image generation tool |
+| [Images API](https://developers.openai.com/api/reference/resources/images)         | Generate images as output, optionally using images as input                |
+| [Chat Completions API](https://developers.openai.com/api/reference/resources/chat) | Analyze images and generate text responses                                 |
 
 To learn more about the input and output modalities supported by our models, refer to our [models page](https://developers.openai.com/api/docs/models).
 
 ## Generate or edit images
 
-You can generate or edit images using the Image API or the Responses API.
-
-The state-of-the-art image generation model, `gpt-image-2`, can understand text and images and use broad world knowledge to generate images with strong instruction following and contextual awareness.
+With the Images API, choose `gpt-image-2.5-sunburst` to generate images from text or edit existing images. With the Responses API, choose a mainline model that supports the image generation tool; the tool handles GPT Image model selection.
 
 
 
@@ -37,9 +38,10 @@ import OpenAI from "openai";
 const openai = new OpenAI();
 
 const response = await openai.responses.create({
-    model: "gpt-5.5",
-    input: "Generate an image of gray tabby cat hugging an otter with an orange scarf",
-    tools: [{type: "image_generation"}],
+  model: "gpt-6-astra",
+  input:
+    "Generate an image of gray tabby cat hugging an otter with an orange scarf",
+  tools: [{ type: "image_generation" }],
 });
 
 // Save the image to a file
@@ -58,10 +60,10 @@ if (imageData.length > 0) {
 from openai import OpenAI
 import base64
 
-client = OpenAI() 
+client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-5.5",
+    model="gpt-6-astra",
     input="Generate an image of gray tabby cat hugging an otter with an orange scarf",
     tools=[{"type": "image_generation"}],
 )
@@ -79,9 +81,136 @@ if image_data:
         f.write(base64.b64decode(image_base64))
 ```
 
-```cli
+```go
+package main
+
+import (
+	"context"
+	"encoding/base64"
+	"os"
+
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/responses"
+)
+
+func main() {
+	client := openai.NewClient()
+
+	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
+		Model: "gpt-6-astra",
+		Input: responses.ResponseNewParamsInputUnion{
+			OfString: openai.String("Generate an image of a gray tabby cat hugging an otter with an orange scarf."),
+		},
+		Tools: []responses.ToolUnionParam{{
+			OfImageGeneration: &responses.ToolImageGenerationParam{},
+		}},
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	for _, output := range response.Output {
+		if output.Type != "image_generation_call" {
+			continue
+		}
+		image, err := base64.StdEncoding.DecodeString(output.AsImageGenerationCall().Result)
+		if err != nil {
+			panic(err)
+		}
+		if err := os.WriteFile("cat_and_otter.png", image, 0o600); err != nil {
+			panic(err)
+		}
+		return
+	}
+
+	panic("response did not include an image generation call")
+}
+```
+
+```java
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.Tool;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Base64;
+
+ResponseCreateParams params =
+    ResponseCreateParams.builder()
+        .model("gpt-6-astra")
+        .input("Generate an image of a gray tabby cat hugging an otter with an orange scarf.")
+        .addTool(Tool.ImageGeneration.builder().build())
+        .build();
+
+String imageResult =
+    client.responses().create(params).output().stream()
+        .flatMap(item -> item.imageGenerationCall().stream())
+        .flatMap(call -> call.result().stream())
+        .findFirst()
+        .orElseThrow(() -> new IllegalStateException("No generated image returned"));
+Files.write(Path.of("cat_and_otter.png"), Base64.getDecoder().decode(imageResult));
+```
+
+```csharp
+using OpenAI.Responses;
+#pragma warning disable OPENAI001
+
+string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
+ResponsesClient client = new(key);
+
+CreateResponseOptions options = new()
+{
+    Model = "gpt-6-astra",
+};
+options.InputItems.Add(
+    ResponseItem.CreateUserMessageItem(
+        "Generate an image of a gray tabby cat hugging an otter with an orange scarf."
+    )
+);
+options.Tools.Add(
+    ResponseTool.CreateImageGenerationTool(model: "gpt-image-2")
+);
+
+ResponseResult response = await client.CreateResponseAsync(options);
+ImageGenerationCallResponseItem image = response
+    .OutputItems.OfType<ImageGenerationCallResponseItem>()
+    .FirstOrDefault()
+    ?? throw new InvalidOperationException("No generated image was returned.");
+await File.WriteAllBytesAsync(
+    "cat_and_otter.png",
+    image.ImageResultBytes.ToArray()
+);
+```
+
+```ruby
+require "base64"
+require "openai"
+
+client = OpenAI::Client.new
+response = client.responses.create(
+  model: "gpt-6-astra",
+  input: "Generate an image of a gray tabby cat hugging an otter with an orange scarf.",
+  tools: [{ type: :image_generation }]
+)
+
+image_call = response.output.find do |item|
+  item.is_a?(OpenAI::Models::Responses::ResponseOutputItem::ImageGenerationCall)
+end
+unless image_call.is_a?(OpenAI::Models::Responses::ResponseOutputItem::ImageGenerationCall)
+  raise "No image generation call returned"
+end
+
+File.binwrite(
+  "cat_and_otter.png",
+  Base64.strict_decode64(image_call.result)
+)
+```
+
+```bash
 openai responses create \
-  --model gpt-5.5 \
+  --model gpt-6-astra \
   --raw-output \
   --transform 'output.#(type=="image_generation_call").result' <<'YAML' | base64 --decode > cat_and_otter.png
 tools:
@@ -97,14 +226,11 @@ You can learn more about image generation in our [Image
 
 ### Using world knowledge for image generation
 
-GPT Image models can use visual understanding of the world to generate lifelike images including real-life details without a reference.
-
-For example, if you prompt GPT Image to generate an image of a glass cabinet with the most popular semi-precious stones, the model knows enough to select gemstones like amethyst, rose quartz, jade, etc, and depict them in a realistic way.
+GPT Image models can draw on world knowledge without a reference image. For example, a prompt for a cabinet of semi-precious stones can produce a scene containing recognizable gemstones such as amethyst, rose quartz, and jade.
 
 ## Analyze images
 
-**Vision** is the ability for a model to "see" and understand images. If there is text in an image, the model can also understand the text.
-It can understand most visual elements, including objects, shapes, colors, and textures, even if there are some [limitations](#limitations).
+Use a vision-capable model to describe images, read visible text, and answer questions about objects, shapes, colors, or textures. Account for the model's [limitations](#limitations) when using its answers.
 
 ### Giving a model images as input
 
@@ -112,18 +238,18 @@ It can understand most visual elements, including objects, shapes, colors, and t
 
 
 
-You can provide images as input to generation requests in multiple ways:
+Provide an image for analysis in any of these ways:
 
 - By providing a fully qualified URL to an image file
 - By providing an image as a Base64-encoded data URL
-- By providing a file ID (created with the [Files API](https://developers.openai.com/api/docs/api-reference/files))
+- By providing a file ID (created with the [Files API](https://developers.openai.com/api/reference/resources/files))
 
 You can provide multiple images as input in a single request by including multiple images in the `content` array, but keep in mind that [images count as tokens](#calculating-costs) and will be billed accordingly.
 
 
 
-<div data-content-switcher-pane data-value="url">
-    <div class="hidden">Passing a URL</div>
+Passing a URL
+
     Analyze the content of an image
 
 ```javascript
@@ -132,17 +258,21 @@ import OpenAI from "openai";
 const openai = new OpenAI();
 
 const response = await openai.responses.create({
-    model: "gpt-5.5",
-    input: [{
-        role: "user",
-        content: [
-            { type: "input_text", text: "what's in this image?" },
-            {
-                type: "input_image",
-                image_url: "https://api.nga.gov/iiif/a2e6da57-3cd1-4235-b20e-95dcaefed6c8/full/!800,800/0/default.jpg",
-            },
-        ],
-    }],
+  model: "gpt-6-astra",
+  input: [
+    {
+      role: "user",
+      content: [
+        { type: "input_text", text: "what's in this image?" },
+        {
+          type: "input_image",
+          image_url:
+            "https://api.nga.gov/iiif/a2e6da57-3cd1-4235-b20e-95dcaefed6c8/full/!800,800/0/default.jpg",
+          detail: "auto",
+        },
+      ],
+    },
+  ],
 });
 
 console.log(response.output_text);
@@ -154,38 +284,149 @@ from openai import OpenAI
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-5.5",
-    input=[{
-        "role": "user",
-        "content": [
-            {"type": "input_text", "text": "what's in this image?"},
-            {
-                "type": "input_image",
-                "image_url": "https://api.nga.gov/iiif/a2e6da57-3cd1-4235-b20e-95dcaefed6c8/full/!800,800/0/default.jpg",
-            },
-        ],
-    }],
+    model="gpt-6-astra",
+    input=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "input_text", "text": "what's in this image?"},
+                {
+                    "type": "input_image",
+                    "image_url": "https://api.nga.gov/iiif/a2e6da57-3cd1-4235-b20e-95dcaefed6c8/full/!800,800/0/default.jpg",
+                },
+            ],
+        }
+    ],
 )
 
 print(response.output_text)
 ```
 
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/responses"
+)
+
+func main() {
+	client := openai.NewClient()
+
+	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
+		Model: "gpt-6-astra",
+		Input: responses.ResponseNewParamsInputUnion{
+			OfInputItemList: responses.ResponseInputParam{
+				responses.ResponseInputItemParamOfMessage(
+					responses.ResponseInputMessageContentListParam{
+						responses.ResponseInputContentParamOfInputText("What's in this image?"),
+						{OfInputImage: &responses.ResponseInputImageParam{
+							Detail:   responses.ResponseInputImageDetailAuto,
+							ImageURL: openai.String("https://api.nga.gov/iiif/a2e6da57-3cd1-4235-b20e-95dcaefed6c8/full/!800,800/0/default.jpg"),
+						}},
+					},
+					responses.EasyInputMessageRoleUser,
+				),
+			},
+		},
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(response.OutputText())
+}
+```
+
+```java
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseInputImage;
+import com.openai.models.responses.ResponseInputItem;
+import java.util.List;
+
+ResponseInputItem imageInput =
+    ResponseInputItem.ofMessage(
+        ResponseInputItem.Message.builder()
+            .role(ResponseInputItem.Message.Role.USER)
+            .addInputTextContent("What's in this image?")
+            .addContent(
+                ResponseInputImage.builder()
+                    .detail(ResponseInputImage.Detail.AUTO)
+                    .imageUrl(
+                        "https://api.nga.gov/iiif/a2e6da57-3cd1-4235-b20e-95dcaefed6c8/full/!800,800/0/default.jpg")
+                    .build())
+            .build());
+
+ResponseCreateParams params =
+    ResponseCreateParams.builder()
+        .model("gpt-6-astra")
+        .inputOfResponse(List.of(imageInput))
+        .build();
+
+client.responses().create(params).output().stream()
+    .flatMap(item -> item.message().stream())
+    .flatMap(message -> message.content().stream())
+    .flatMap(content -> content.outputText().stream())
+    .forEach(text -> System.out.println(text.text()));
+```
+
 ```csharp
 using OpenAI.Responses;
+#pragma warning disable OPENAI001
 
 string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
-OpenAIResponseClient client = new(model: "gpt-5.5", apiKey: key);
+ResponsesClient client = new(key);
 
-Uri imageUrl = new("https://api.nga.gov/iiif/a2e6da57-3cd1-4235-b20e-95dcaefed6c8/full/!800,800/0/default.jpg");
+Uri imageUrl = new(
+    "https://api.nga.gov/iiif/a2e6da57-3cd1-4235-b20e-95dcaefed6c8/full/!800,800/0/default.jpg"
+);
 
-OpenAIResponse response = (OpenAIResponse)client.CreateResponse([
-    ResponseItem.CreateUserMessageItem([
-        ResponseContentPart.CreateInputTextPart("What is in this image?"),
-        ResponseContentPart.CreateInputImagePart(imageUrl)
-    ])
-]);
+ResponseResult response = await client.CreateResponseAsync(
+    "gpt-6-astra",
+    [
+        ResponseItem.CreateUserMessageItem(
+            [
+                ResponseContentPart.CreateInputTextPart("What is in this image?"),
+                ResponseContentPart.CreateInputImagePart(imageUrl),
+            ]
+        ),
+    ]
+);
 
 Console.WriteLine(response.GetOutputText());
+```
+
+```ruby
+require "openai"
+
+client = OpenAI::Client.new
+
+response = client.responses.create(
+  model: "gpt-6-astra",
+  input: [
+    {
+      role: :user,
+      content: [
+        {
+          type: :input_text,
+          text: "What's in this image?"
+        },
+        {
+          type: :input_image,
+          detail: :auto,
+          image_url: "https://api.nga.gov/iiif/a2e6da57-3cd1-4235-b20e-95dcaefed6c8/full/!800,800/0/default.jpg"
+        }
+      ]
+    }
+  ]
+)
+
+puts(response.output_text)
 ```
 
 ```bash
@@ -193,7 +434,7 @@ curl https://api.openai.com/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -d '{
-    "model": "gpt-5.5",
+    "model": "gpt-6-astra",
     "input": [
       {
         "role": "user",
@@ -209,9 +450,9 @@ curl https://api.openai.com/v1/responses \
   }'
 ```
 
-```cli
+```bash
 openai responses create \
-  --model gpt-5.5 \
+  --model gpt-6-astra \
   --raw-output \
   --transform 'output.#(type=="message").content.0.text' <<'YAML'
 input:
@@ -224,9 +465,13 @@ input:
 YAML
 ```
 
-  </div>
-  <div data-content-switcher-pane data-value="base64-encoded" hidden>
-    <div class="hidden">Passing a Base64 encoded image</div>
+  
+
+  
+
+    
+Passing a Base64 encoded image
+
     Analyze the content of an image
 
 ```javascript
@@ -235,23 +480,24 @@ import OpenAI from "openai";
 
 const openai = new OpenAI();
 
-const imagePath = "path_to_your_image.jpg";
+const imagePath = "fixtures/example.jpg";
 const base64Image = fs.readFileSync(imagePath, "base64");
 
 const response = await openai.responses.create({
-    model: "gpt-5.5",
-    input: [
+  model: "gpt-6-astra",
+  input: [
+    {
+      role: "user",
+      content: [
+        { type: "input_text", text: "what's in this image?" },
         {
-            role: "user",
-            content: [
-                { type: "input_text", text: "what's in this image?" },
-                {
-                    type: "input_image",
-                    image_url: `data:image/jpeg;base64,${base64Image}`,
-                },
-            ],
+          type: "input_image",
+          image_url: `data:image/jpeg;base64,${base64Image}`,
+          detail: "auto",
         },
-    ],
+      ],
+    },
+  ],
 });
 
 console.log(response.output_text);
@@ -262,6 +508,7 @@ import base64
 from openai import OpenAI
 
 client = OpenAI()
+
 
 # Function to encode the image
 def encode_image(image_path):
@@ -277,12 +524,12 @@ base64_image = encode_image(image_path)
 
 
 response = client.responses.create(
-    model="gpt-5.5",
+    model="gpt-6-astra",
     input=[
         {
             "role": "user",
             "content": [
-                { "type": "input_text", "text": "what's in this image?" },
+                {"type": "input_text", "text": "what's in this image?"},
                 {
                     "type": "input_image",
                     "image_url": f"data:image/jpeg;base64,{base64_image}",
@@ -295,43 +542,181 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
+```go
+package main
+
+import (
+	"context"
+	"encoding/base64"
+	"fmt"
+	"os"
+
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/responses"
+)
+
+func main() {
+	client := openai.NewClient()
+	image, err := os.ReadFile("image.png")
+	if err != nil {
+		panic(err)
+	}
+	imageURL := "data:image/png;base64," + base64.StdEncoding.EncodeToString(image)
+
+	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
+		Model: "gpt-6-astra",
+		Input: responses.ResponseNewParamsInputUnion{
+			OfInputItemList: responses.ResponseInputParam{
+				responses.ResponseInputItemParamOfMessage(
+					responses.ResponseInputMessageContentListParam{
+						responses.ResponseInputContentParamOfInputText("What's in this image?"),
+						{OfInputImage: &responses.ResponseInputImageParam{
+							Detail:   responses.ResponseInputImageDetailAuto,
+							ImageURL: openai.String(imageURL),
+						}},
+					},
+					responses.EasyInputMessageRoleUser,
+				),
+			},
+		},
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(response.OutputText())
+}
+```
+
+```java
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseInputImage;
+import com.openai.models.responses.ResponseInputItem;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Base64;
+import java.util.List;
+
+String imageBase64 =
+    Base64.getEncoder()
+        .encodeToString(
+            Files.readAllBytes(Path.of(System.getenv("OPENAI_EXAMPLE_IMAGE_PATH"))));
+
+ResponseInputItem imageInput =
+    ResponseInputItem.ofMessage(
+        ResponseInputItem.Message.builder()
+            .role(ResponseInputItem.Message.Role.USER)
+            .addInputTextContent("What's in this image?")
+            .addContent(
+                ResponseInputImage.builder()
+                    .detail(ResponseInputImage.Detail.AUTO)
+                    .imageUrl("data:image/png;base64," + imageBase64)
+                    .build())
+            .build());
+
+ResponseCreateParams params =
+    ResponseCreateParams.builder()
+        .model("gpt-6-astra")
+        .inputOfResponse(List.of(imageInput))
+        .build();
+
+client.responses().create(params).output().stream()
+    .flatMap(item -> item.message().stream())
+    .flatMap(message -> message.content().stream())
+    .flatMap(content -> content.outputText().stream())
+    .forEach(text -> System.out.println(text.text()));
+```
+
 ```csharp
 using OpenAI.Responses;
+#pragma warning disable OPENAI001
 
 string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
-OpenAIResponseClient client = new(model: "gpt-5.5", apiKey: key);
+ResponsesClient client = new(key);
 
-Uri imageUrl = new("https://openai-documentation.vercel.app/images/cat_and_otter.png");
+Uri imageUrl = new(
+    "https://openai-documentation.vercel.app/images/cat_and_otter.png"
+);
+
 using HttpClient http = new();
 
-// Download an image as stream
-using var stream = await http.GetStreamAsync(imageUrl);
+// Download an image as a stream.
+using Stream stream = await http.GetStreamAsync(imageUrl);
+BinaryData imageData = BinaryData.FromStream(stream, "image/png");
 
-OpenAIResponse response1 = (OpenAIResponse)client.CreateResponse([
-    ResponseItem.CreateUserMessageItem([
-        ResponseContentPart.CreateInputTextPart("What is in this image?"),
-        ResponseContentPart.CreateInputImagePart(BinaryData.FromStream(stream), "image/png")
-    ])
-]);
+ResponseResult response1 = await client.CreateResponseAsync(
+    "gpt-6-astra",
+    [
+        ResponseItem.CreateUserMessageItem(
+            [
+                ResponseContentPart.CreateInputTextPart("What is in this image?"),
+                ResponseContentPart.CreateInputImagePart(imageData),
+            ]
+        ),
+    ]
+);
 
 Console.WriteLine($"From image stream: {response1.GetOutputText()}");
 
-// Download an image as byte array
+// Download an image as a byte array.
 byte[] bytes = await http.GetByteArrayAsync(imageUrl);
+imageData = BinaryData.FromBytes(bytes, "image/png");
 
-OpenAIResponse response2 = (OpenAIResponse)client.CreateResponse([
-    ResponseItem.CreateUserMessageItem([
-        ResponseContentPart.CreateInputTextPart("What is in this image?"),
-        ResponseContentPart.CreateInputImagePart(BinaryData.FromBytes(bytes), "image/png")
-    ])
-]);
+ResponseResult response2 = await client.CreateResponseAsync(
+    "gpt-6-astra",
+    [
+        ResponseItem.CreateUserMessageItem(
+            [
+                ResponseContentPart.CreateInputTextPart("What is in this image?"),
+                ResponseContentPart.CreateInputImagePart(imageData),
+            ]
+        ),
+    ]
+);
 
 Console.WriteLine($"From byte array: {response2.GetOutputText()}");
 ```
 
-  </div>
-  <div data-content-switcher-pane data-value="file" hidden>
-    <div class="hidden">Passing a file ID</div>
+```ruby
+require "base64"
+require "openai"
+
+client = OpenAI::Client.new
+image = Base64.strict_encode64(File.binread("image.png"))
+
+response = client.responses.create(
+  model: "gpt-6-astra",
+  input: [
+    {
+      role: :user,
+      content: [
+        {
+          type: :input_text,
+          text: "What's in this image?"
+        },
+        {
+          type: :input_image,
+          detail: :auto,
+          image_url: "data:image/png;base64,#{image}"
+        }
+      ]
+    }
+  ]
+)
+
+puts(response.output_text)
+```
+
+  
+
+  
+
+    
+Passing a file ID
+
     Analyze the content of an image
 
 ```javascript
@@ -351,10 +736,10 @@ async function createFile(filePath) {
 }
 
 // Getting the file ID
-const fileId = await createFile("path_to_your_image.jpg");
+const fileId = await createFile("fixtures/example.jpg");
 
 const response = await openai.responses.create({
-  model: "gpt-5.5",
+  model: "gpt-6-astra",
   input: [
     {
       role: "user",
@@ -363,6 +748,7 @@ const response = await openai.responses.create({
         {
           type: "input_image",
           file_id: fileId,
+          detail: "auto",
         },
       ],
     },
@@ -377,103 +763,239 @@ from openai import OpenAI
 
 client = OpenAI()
 
+
 # Function to create a file with the Files API
 def create_file(file_path):
-  with open(file_path, "rb") as file_content:
-    result = client.files.create(
-        file=file_content,
-        purpose="vision",
-    )
-    return result.id
+    with open(file_path, "rb") as file_content:
+        result = client.files.create(
+            file=file_content,
+            purpose="vision",
+        )
+        return result.id
+
 
 # Getting the file ID
 file_id = create_file("path_to_your_image.jpg")
 
 response = client.responses.create(
-    model="gpt-5.5",
-    input=[{
-        "role": "user",
-        "content": [
-            {"type": "input_text", "text": "what's in this image?"},
-            {
-                "type": "input_image",
-                "file_id": file_id,
-            },
-        ],
-    }],
+    model="gpt-6-astra",
+    input=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "input_text", "text": "what's in this image?"},
+                {
+                    "type": "input_image",
+                    "file_id": file_id,
+                },
+            ],
+        }
+    ],
 )
 
 print(response.output_text)
 ```
 
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/responses"
+)
+
+func main() {
+	client := openai.NewClient()
+	file, err := os.Open("image.png")
+	if err != nil {
+		panic(err)
+	}
+	defer file.Close()
+
+	uploaded, err := client.Files.New(context.Background(), openai.FileNewParams{
+		File:    file,
+		Purpose: openai.FilePurposeVision,
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
+		Model: "gpt-6-astra",
+		Input: responses.ResponseNewParamsInputUnion{
+			OfInputItemList: responses.ResponseInputParam{
+				responses.ResponseInputItemParamOfMessage(
+					responses.ResponseInputMessageContentListParam{
+						responses.ResponseInputContentParamOfInputText("What's in this image?"),
+						{OfInputImage: &responses.ResponseInputImageParam{
+							Detail: responses.ResponseInputImageDetailAuto,
+							FileID: openai.String(uploaded.ID),
+						}},
+					},
+					responses.EasyInputMessageRoleUser,
+				),
+			},
+		},
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(response.OutputText())
+}
+```
+
+```java
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.files.FileCreateParams;
+import com.openai.models.files.FilePurpose;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseInputImage;
+import com.openai.models.responses.ResponseInputItem;
+import java.nio.file.Path;
+import java.util.List;
+
+var file =
+    client
+        .files()
+        .create(
+            FileCreateParams.builder()
+                .file(Path.of(System.getenv("OPENAI_EXAMPLE_FILE_PATH")))
+                .purpose(FilePurpose.VISION)
+                .build());
+
+var response =
+    client
+        .responses()
+        .create(
+            ResponseCreateParams.builder()
+                .model("gpt-6-astra")
+                .inputOfResponse(
+                    List.of(
+                        ResponseInputItem.ofMessage(
+                            ResponseInputItem.Message.builder()
+                                .role(ResponseInputItem.Message.Role.USER)
+                                .addInputTextContent("What's in this image?")
+                                .addContent(
+                                    ResponseInputImage.builder()
+                                        .detail(ResponseInputImage.Detail.AUTO)
+                                        .fileId(file.id())
+                                        .build())
+                                .build())))
+                .build());
+response.output().stream()
+    .flatMap(item -> item.message().stream())
+    .flatMap(message -> message.content().stream())
+    .flatMap(content -> content.outputText().stream())
+    .forEach(text -> System.out.println(text.text()));
+```
+
 ```csharp
 using OpenAI.Files;
 using OpenAI.Responses;
+#pragma warning disable OPENAI001
 
 string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
-OpenAIResponseClient client = new(model: "gpt-5.5", apiKey: key);
+ResponsesClient client = new(key);
 
 string filename = "cat_and_otter.png";
-Uri imageUrl = new($"https://openai-documentation.vercel.app/images/{filename}");
-using var http = new HttpClient();
+Uri imageUrl = new(
+    $"https://openai-documentation.vercel.app/images/{filename}"
+);
 
-// Download an image as stream
-using var stream = await http.GetStreamAsync(imageUrl);
+using HttpClient http = new();
+
+// Download an image as a stream.
+using Stream stream = await http.GetStreamAsync(imageUrl);
 
 OpenAIFileClient files = new(key);
-OpenAIFile file = await files.UploadFileAsync(BinaryData.FromStream(stream), filename, FileUploadPurpose.Vision);
 
-OpenAIResponse response = (OpenAIResponse)client.CreateResponse([
-    ResponseItem.CreateUserMessageItem([
-        ResponseContentPart.CreateInputTextPart("what's in this image?"),
-        ResponseContentPart.CreateInputImagePart(file.Id)
-    ])
-]);
+OpenAIFile file = await files.UploadFileAsync(
+    stream,
+    filename,
+    FileUploadPurpose.Vision
+);
+
+ResponseResult response = await client.CreateResponseAsync(
+    "gpt-6-astra",
+    [
+        ResponseItem.CreateUserMessageItem(
+            [
+                ResponseContentPart.CreateInputTextPart("what's in this image?"),
+                ResponseContentPart.CreateInputImagePart(file.Id),
+            ]
+        ),
+    ]
+);
 
 Console.WriteLine(response.GetOutputText());
 ```
 
-  </div>
+```ruby
+require "openai"
+require "pathname"
+
+client = OpenAI::Client.new
+uploaded = client.files.create(
+  file: Pathname("image.png"),
+  purpose: :vision
+)
+
+response = client.responses.create(
+  model: "gpt-6-astra",
+  input: [
+    {
+      role: :user,
+      content: [
+        {
+          type: :input_text,
+          text: "What's in this image?"
+        },
+        {
+          type: :input_image,
+          detail: :auto,
+          file_id: uploaded.id
+        }
+      ]
+    }
+  ]
+)
+
+puts(response.output_text)
+```
 
 
 
 
 ### Image input requirements
 
-Input images must meet the following requirements to be used in the API.
+Use supported image files that are clear enough for the model to analyze.
 
-<table>
-  <tr>
-    <td>Supported file types</td>
-    <td>
-      - PNG (`.png`) - JPEG (`.jpeg` and `.jpg`) - WEBP (`.webp`) - Non-animated
-      GIF (`.gif`)
-    </td>
-  </tr>
-  <tr>
-    <td>Size limits</td>
-    <td>
-      - Up to 512 MB total payload size per request - Up to 1500 individual
-      image inputs per request
-    </td>
-  </tr>
-  <tr>
-    <td>Other requirements</td>
-    <td>
-      - No watermarks or logos - No NSFW content - Clear enough for a human to
-      understand
-    </td>
-  </tr>
-</table>
+| Requirement  | Supported inputs                                                                      |
+| ------------ | ------------------------------------------------------------------------------------- |
+| File types   | PNG (`.png`), JPEG (`.jpeg` or `.jpg`), WEBP (`.webp`), and non-animated GIF (`.gif`) |
+| Request size | Up to 512 MB total payload per request                                                |
+| Image count  | Up to 1,500 images per request                                                        |
+
+For [patch-based image inputs](#patch-based-image-tokenization), the API supports up to 30,000 patches per image after applying the resizing rules for the selected model and `detail` level. This limit applies across supported detail levels and to each image separately, not to the combined patch count of the request.
+
+Lower model- and detail-specific resizing budgets still apply. Images that exceed the 30,000-patch limit after processing are rejected, not automatically resized to meet it. Reduce the image's dimensions and try again.
+
+Image tokens and the rest of your prompt must also fit the model's input and context limits. A token estimate does not guarantee that a request meets every input limit. Image use must comply with our [usage policies](https://openai.com/policies/usage-policies/).
 
 ### Choose an image detail level
 
-The `detail` parameter tells the model what level of detail to use when processing and understanding the image (`low`, `high`, `original`, or `auto`). If you skip the parameter, the model will use `auto`. This behavior is the same in both the Responses API and the Chat Completions API. On `gpt-5.5`, `auto` and the default omitted behavior are equivalent to `original`.
+The `detail` parameter controls image preprocessing. Supported values depend on the model: `low`, `high`, `original`, or `auto`. If you omit the parameter, it defaults to `auto` in both the Responses API and the Chat Completions API. The [model sizing table](#model-sizing-behavior) shows the corresponding behavior.
 
 
 
 
-  ```plain
+```plain
 {
     "type": "input_image",
     "image_url": "https://api.nga.gov/iiif/a2e6da57-3cd1-4235-b20e-95dcaefed6c8/full/!800,800/0/default.jpg",
@@ -485,22 +1007,18 @@ The `detail` parameter tells the model what level of detail to use when processi
 
 Use the following guidance to choose a detail level:
 
-| Detail level | Best for                                                                                                                                       |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `low`        | Fast, low-cost understanding when fine visual detail is not important. The model receives a low-resolution 512px x 512px version of the image. |
-| `high`       | Standard high-fidelity image understanding.                                                                                                    |
-| `original`   | Large, dense, spatially sensitive, or computer-use images. Available on `gpt-5.4` and future models.                                           |
-| `auto`       | Automatic detail selection. On `gpt-5.5`, `auto` and the omitted/default behavior are equivalent to `original`.                                |
+| Detail level | Best for                                                                                                                    |
+| ------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| `low`        | Coarse image understanding. Resizing and token use depend on the model; `low` does not always use fewer tokens than `high`. |
+| `high`       | Standard high-fidelity image understanding when precise original-image coordinates are not required.                        |
+| `original`   | Large, dense, spatially sensitive, or computer-use images, when supported by the model.                                     |
+| `auto`       | Use the model's default sizing behavior, shown in the model sizing table.                                                   |
 
-For computer use, localization, and click-accuracy use cases on `gpt-5.4` and future models, we recommend `"detail": "original"`. See the [Computer use guide](https://developers.openai.com/api/docs/guides/tools-computer-use) for more detail.
-
-Read more about how models resize images in the [Model sizing
-  behavior](#model-sizing-behavior) section, and about token costs in the
-  [Calculating costs](#calculating-costs) section below.
+For tasks that require fine visual detail or precise coordinates, such as optical character recognition (OCR), small-object detection, or computer use, use `"detail": "original"` when supported. Original detail can still resize images to meet the model's pixel-dimension limit or resizing patch budget, but not to meet the separate 30,000-patch rejection limit. For coordinate-sensitive tasks, resize images to fit those limits before sending them and map returned coordinates back to the original image. See the [Computer use guide](https://developers.openai.com/api/docs/guides/tools-computer-use) for coordinate handling.
 
 ### Model sizing behavior
 
-Different models use different resizing rules before image tokenization:
+The following table summarizes sizing behavior for general-purpose vision models. Other models and specialized variants can use different limits. All resizing preserves aspect ratio without enlarging smaller images.
 
 <table>
   <tr>
@@ -510,95 +1028,126 @@ Different models use different resizing rules before image tokenization:
   </tr>
   <tr>
     <td>
-      <code>gpt-5.5</code>
+      `gpt-6-astra`
     </td>
     <td>
-      <code>low</code>, <code>high</code>, <code>original</code>,
-      <code>auto</code>
+      `low`, `high`, `original`,
+      `auto`
     </td>
     <td>
-      <code>high</code> allows up to 2,500 patches or a 2048-pixel maximum
-      dimension. <code>original</code> allows up to 10,000 patches or a
-      6000-pixel maximum dimension. If either limit is exceeded, we resize the
-      image while preserving aspect ratio to fit within the lesser of those two
-      constraints for the selected detail level. <code>auto</code> and omitted
-      <code>detail</code> use the same sizing behavior as
-      <code>original</code>. [Full resizing details
-      below.](#patch-based-image-tokenization)
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <code>gpt-5.4</code>
-    </td>
-    <td>
-      <code>low</code>, <code>high</code>, <code>original</code>,
-      <code>auto</code>
-    </td>
-    <td>
-      <code>high</code> allows up to 2,500 patches or a 2048-pixel maximum
-      dimension. <code>original</code> allows up to 10,000 patches or a
-      6000-pixel maximum dimension. If either limit is exceeded, we resize the
-      image while preserving aspect ratio to fit within the lesser of those two
-      constraints for the selected detail level. <code>auto</code> and omitted
-      <code>detail</code> use the same sizing behavior as
-      <code>high</code>.[Full resizing details
-      below.](#patch-based-image-tokenization)
+      `low` fits within 512 × 512 pixels. `high` allows up
+      to 2,500 patches and a 65,535-pixel maximum dimension. Both limits apply. 
+      `original` preserves the image's dimensions, except that images
+      larger than 65,535 pixels on either side are scaled down to fit that
+      limit. If the resulting image requires more than 
+      [30,000 patches](#image-input-requirements), the API rejects
+      the request; the image is not resized to fit the patch limit. 
+      `auto` uses the same sizing behavior as `original`.
     </td>
   </tr>
   <tr>
     <td>
-      <code>gpt-5.4-mini</code>, <code>gpt-5.4-nano</code>,
-      <code>gpt-5-mini</code>, <code>gpt-5-nano</code>, <code>gpt-5.2</code>,
-      <code>gpt-5.3-codex</code>, <code>gpt-5-codex-mini</code>,
-      <code>gpt-5.1-codex-mini</code>, <code>gpt-5.2-codex</code>,
-      <code>gpt-5.2-chat-latest</code>, <code>o4-mini</code>, and the 
-      <code>gpt-4.1-mini</code> and <code>gpt-4.1-nano</code> 2025-04-14
-      snapshot variants
+      `gpt-5.6-sol`, `gpt-5.6-terra`, 
+      `gpt-5.6-luna`
     </td>
     <td>
-      <code>low</code>, <code>high</code>, <code>auto</code>
+      `low`, `high`, `original`,
+      `auto`
     </td>
     <td>
-      <code>high</code> allows up to 1,536 patches or a 2048-pixel maximum
-      dimension. If either limit is exceeded, we resize the image while
-      preserving aspect ratio to fit within the lesser of those two constraints.
-      [Full resizing details below.](#patch-based-image-tokenization)
+      `low` fits within 512 × 512 pixels. `high` fits
+      within 2048 × 2048 pixels and 2,500 patches. `original` 
+      preserves the image's dimensions, except that images larger than 65,535
+      pixels on either side are scaled down to fit that limit. If the resulting
+      image requires more than 
+      [30,000 patches](#image-input-requirements), the API rejects
+      the request; the image is not resized to fit the patch limit. 
+      `auto` uses the same sizing behavior as `original`.
     </td>
   </tr>
   <tr>
     <td>
-      <code>GPT-4o</code>, <code>GPT-4.1</code>, <code>GPT-4o-mini</code>,
-      <code>computer-use-preview</code>, and o-series models except
-      <code>o4-mini</code>
+      `gpt-5.5`
     </td>
     <td>
-      <code>low</code>, <code>high</code>, <code>auto</code>
+      `low`, `high`, `original`,
+      `auto`
     </td>
     <td>
-      Use tile-based resizing behavior. See 
-      <a href="#gpt-4o-gpt-41-gpt-4o-mini-cua-and-o-series-except-o4-mini">
-        the detailed behavior below
-      </a>
+      `low` fits within 512 × 512 pixels. `high` allows up
+      to 2,500 patches and a 2048-pixel maximum dimension. `original` 
+      allows up to 10,000 patches and a 6000-pixel maximum dimension. Both
+      limits apply. `auto` uses the same sizing behavior as 
+      `original`.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      `gpt-5.4`, `gpt-5.4-mini`, `gpt-5.4-nano`
+    </td>
+    <td>
+      `low`, `high`, `original`,
+      `auto`
+    </td>
+    <td>
+      `low` uses a 2048-pixel maximum dimension and a 6,144-patch
+      budget, so it can use more tokens than `high`. 
+      `high` allows up to 2,500 patches and a 2048-pixel maximum
+      dimension. `original` allows up to 10,000 patches and a
+      6000-pixel maximum dimension. Both limits apply. `auto` uses
+      the same sizing behavior as `high`.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      `gpt-5.2`, `gpt-4.1-mini`
+    </td>
+    <td>
+      `low`, `high`, `auto`
+    </td>
+    <td>
+      These detail levels use the same sizing limits: a 2048-pixel maximum
+      dimension and a 6,144-patch budget. `original` is not
+      supported.
+    </td>
+  </tr>
+  <tr>
+    <td>
+      `gpt-5.1`, `gpt-4.1`, `gpt-4o`,
+      `gpt-4o-mini`
+    </td>
+    <td>
+      `low`, `high`, `auto`
+    </td>
+    <td>
+      `low` uses a fixed token count. `high` and 
+      `auto` use the 
+      [tile-based sizing rules](#tile-based-image-tokenization).
     </td>
   </tr>
 </table>
 
 ## Calculating costs
 
-Image inputs are metered and charged in token units similar to text inputs. How images are converted to text token inputs varies based on the model. You can find a vision pricing calculator in the FAQ section of the [pricing page](https://openai.com/api/pricing/).
+Vision models convert image inputs into billable input tokens. The [image input cost calculator](https://developers.openai.com/api/docs/guides/image-cost-calculator) and patch/tile rules in this section cover vision-model inputs, not GPT Image generation or editing. See [GPT Image model inputs](#gpt-image-model-inputs) for that separate pricing.
+
+Image tokens also count toward your [tokens per minute (TPM) limits](https://developers.openai.com/api/docs/guides/rate-limits). The calculator estimates one image at standard input rates; it does not include the rest of your prompt or model output.
+
+### Image input cost calculator
+
+Use the [image input cost calculator](https://developers.openai.com/api/docs/guides/image-cost-calculator) to estimate input tokens and cost for one image by model, image size, and detail level.
 
 ### Patch-based image tokenization
 
-Some models tokenize images by covering them with 32px x 32px patches. Each model defines a maximum patch budget. The token cost of an image is determined as follows:
+Some models tokenize images by covering them with 32px x 32px patches. Many model and detail-level combinations define a resizing patch budget. First, the API fits the image within the selected detail level's pixel-dimension limit, preserving aspect ratio and rounding to integer pixels without enlarging smaller images. The token cost is then determined as follows:
 
-A. Compute how many 32px x 32px patches are needed to cover the original image. A patch may extend beyond the image boundary.
+A. Compute how many 32px x 32px patches are needed to cover the image after applying the pixel-dimension limit. A patch may extend beyond the image boundary.
 
 ```
-original_patch_count = ceil(width/32)×ceil(height/32)
+patch_count = ceil(width/32)×ceil(height/32)
 ```
 
-B. If the original image would exceed the model's patch budget, scale it down proportionally until it fits within that budget. Then adjust the scale so the final resized image stays within budget after converting to integer pixel dimensions and computing patch coverage.
+B. When the selected model and detail level specify a resizing patch budget, scale the image down proportionally if it exceeds that budget. Otherwise, skip this step. Adjust the scale to stay within budget after converting to integer pixel dimensions and computing patch coverage. Keep full precision until calculating the final dimensions.
 
 ```
 shrink_factor = sqrt((32^2 * patch_budget) / (width * height))
@@ -608,68 +1157,77 @@ adjusted_shrink_factor = shrink_factor * min(
 )
 ```
 
-C. Convert the adjusted scale into integer pixel dimensions, then compute the number of patches needed to cover the resized image. This resized patch count is the image-token count before applying the model multiplier, and it is capped by the model's patch budget.
+C. If step B resized the image, round down the final scaled width and height to integer pixels. Compute the patches needed to cover the resulting image. This is the image-token count before applying the model multiplier. When a patch budget applies, this count stays within that budget.
 
 ```
 resized_patch_count = ceil(resized_width/32)×ceil(resized_height/32)
 ```
 
-D. Apply a multiplier based on the model to get the total tokens:
+If this count exceeds 30,000 patches, the API rejects the request. Check this limit before applying the token multiplier.
 
-| Model           | Multiplier |
-| --------------- | ---------- |
-| `gpt-5.4-mini`  | 1.62       |
-| `gpt-5.4-nano`  | 2.46       |
-| `gpt-5-mini`    | 1.62       |
-| `gpt-5-nano`    | 2.46       |
-| `gpt-4.1-mini*` | 1.62       |
-| `gpt-4.1-nano*` | 2.46       |
-| `o4-mini`       | 1.72       |
+D. Multiply the patch count by the model's multiplier and round up to get the billable image input tokens. Apply the model's input price to those tokens once; the multiplier does not apply to other prompt tokens or to the price again.
 
-_For `gpt-4.1-mini` and `gpt-4.1-nano`, this applies to the 2025-04-14 snapshot variants._
+| Model                                  | Multiplier |
+| -------------------------------------- | ---------- |
+| `gpt-6-astra`                          | 1.2        |
+| `gpt-5.6-sol`                          | 1.2        |
+| `gpt-5.6-terra`                        | 1.2        |
+| `gpt-5.6-luna`                         | 1.2        |
+| `gpt-5.5`                              | 1.2        |
+| `gpt-5.4`                              | 1.2        |
+| `gpt-5.4-mini`                         | 1.2        |
+| `gpt-5.4-nano`                         | 1.2        |
+| `gpt-5.2`                              | 1.2        |
+| `gpt-5-mini`\*                         | 1.2        |
+| `gpt-5-nano`\*                         | 1.5        |
+| `gpt-4.1-mini`                         | 1.62       |
+| `gpt-4.1-nano`\* (2025-04-14 snapshot) | 2.46       |
+| `o4-mini`\*                            | 1.72       |
 
-**Cost calculation examples for a model with a 1,536-patch budget**
+_For `gpt-4.1-mini`, this applies to the 2025-04-14 snapshot._
 
-- A 1024 x 1024 image has a post-resize patch count of **1024**
-  - A. `original_patch_count = ceil(1024 / 32) * ceil(1024 / 32) = 32 * 32 = 1024`
-  - B. `1024` is below the `1,536` patch budget, so no resize is needed.
-  - C. `resized_patch_count = 1024`
-  - Resized patch count before the model multiplier: `1024`
-  - Multiply by the model's token multiplier to get the billed token units.
-- A 1800 x 2400 image has a post-resize patch count of **1452**
-  - A. `original_patch_count = ceil(1800 / 32) * ceil(2400 / 32) = 57 * 75 = 4275`
-  - B. `4275` exceeds the `1,536` patch budget, so we first compute `shrink_factor = sqrt((32^2 * 1536) / (1800 * 2400)) = 0.603`.
-  - We then adjust that scale so the final integer pixel dimensions stay within budget after patch counting: `adjusted_shrink_factor = 0.603 * min(floor(1800 * 0.603 / 32) / (1800 * 0.603 / 32), floor(2400 * 0.603 / 32) / (2400 * 0.603 / 32)) = 0.586`.
-  - Resized image in integer pixels: `1056 x 1408`
-  - C. `resized_patch_count = ceil(1056 / 32) * ceil(1408 / 32) = 33 * 44 = 1452`
-  - Resized patch count before the model multiplier: `1452`
-  - Multiply by the model's token multiplier to get the billed token units.
+\* Deprecated and scheduled for shutdown. See the [deprecation schedule](https://developers.openai.com/api/docs/deprecations) for dates and replacements. These models aren't included in the calculator or the model sizing table above.
+
+**Image token calculation examples for `gpt-6-astra` with `detail: high`**
+
+This combination uses a 65,535-pixel maximum dimension, a 2,500-patch budget, and a 1.2× multiplier.
+
+- A 1024 × 1024 image needs `32 × 32 = 1024` patches. No resizing is needed. The billable image input is `ceil(1024 × 1.2) = 1229` tokens.
+- A 2048 × 2048 image initially needs `64 × 64 = 4096` patches. The patch budget reduces it to 1600 × 1600 pixels, or `50 × 50 = 2500` patches. The estimate is `ceil(2500 × 1.2) = 3000` tokens.
+- A 4096 × 512 image stays at its original size: `128 × 16 = 2048` patches and `ceil(2048 × 1.2) = 2458` tokens.
+
+Floating-point rounding in billing can make the final count differ from the estimate by one token.
 
 ### Tile-based image tokenization
 
-#### GPT-4o, GPT-4.1, GPT-4o-mini, CUA, and o-series (except o4-mini)
+<a id="gpt-4o-gpt-41-gpt-4o-mini-cua-and-o-series-except-o4-mini"></a>
 
-The token cost of an image is determined by two factors: size and detail.
+The models in this table use a base token count plus tokens for image tiles:
 
-Any image with `"detail": "low"` costs a set, base number of tokens. This amount varies by model. To calculate the cost of an image with `"detail": "high"`, we do the following:
+| Model                      | Base tokens | Tile tokens |
+| -------------------------- | ----------- | ----------- |
+| `gpt-5.1`                  | 70          | 140         |
+| `gpt-5`\*                  | 70          | 140         |
+| `gpt-4o`, `gpt-4.1`        | 85          | 170         |
+| `gpt-4o-mini`              | 2833        | 5667        |
+| `o1`\*, `o1-pro`\*, `o3`\* | 75          | 150         |
 
-- Scale to fit in a 2048px x 2048px square, maintaining original aspect ratio
-- Scale so that the image's shortest side is 768px long
-- Count the number of 512px squares in the image. Each square costs a set amount of tokens, shown below.
-- Add the base tokens to the total
+\* Deprecated and scheduled for shutdown. See the [deprecation schedule](https://developers.openai.com/api/docs/deprecations) for dates and replacements. These models aren't included in the calculator or the model sizing table above.
 
-| Model                    | Base tokens | Tile tokens |
-| ------------------------ | ----------- | ----------- |
-| gpt-5, gpt-5-chat-latest | 70          | 140         |
-| 4o, 4.1, 4.5             | 85          | 170         |
-| 4o-mini                  | 2833        | 5667        |
-| o1, o1-pro, o3           | 75          | 150         |
-| computer-use-preview     | 65          | 129         |
+With `"detail": "low"`, an image costs only the model's base tokens, regardless of dimensions. With `"detail": "high"` or `"detail": "auto"`:
 
-### GPT Image 1
+- Scale down to fit in a 2048px x 2048px square, maintaining aspect ratio. Smaller images are not enlarged.
+- If the shortest side exceeds 768px, scale it down to 768px and round down the other dimension.
+- Count the 512px squares needed to cover the image. Each square uses the model's tile tokens.
+- Add the model's base tokens to the tile tokens.
 
-For GPT Image 1, we calculate the cost of an image input the same way as described above, except that we scale down the image so that the shortest side is 512px instead of 768px.
-The price depends on the dimensions of the image and the [input fidelity](https://developers.openai.com/api/docs/guides/image-generation?image-generation-model=gpt-image-1#input-fidelity).
+### GPT Image model inputs
+
+GPT Image models use separate image-token pricing for generation and editing. The vision calculator does not estimate their input or output costs. For current rates, see [image generation pricing](https://developers.openai.com/api/docs/pricing#image-generation); for generation and editing workflows, see the [Image generation guide](https://developers.openai.com/api/docs/guides/image-generation).
+
+#### GPT Image 1
+
+The following input-token rules apply to `gpt-image-1`. Use tile-based image sizing, but scale the shortest side down to 512px instead of 768px. Token use depends on the image dimensions and the `input_fidelity` parameter in the [Images API](https://developers.openai.com/api/reference/resources/images/methods/edit).
 
 When input fidelity is set to low, the base cost is 65 image tokens, and each tile costs 129 image tokens.
 When using high input fidelity, we add a set number of tokens based on the image's aspect ratio in addition to the image tokens described above.
@@ -677,11 +1235,11 @@ When using high input fidelity, we add a set number of tokens based on the image
 - If your image is square, we add 4160 extra input image tokens.
 - If it is closer to portrait or landscape, we add 6240 extra tokens.
 
-To see pricing for image input tokens, refer to our [pricing page](https://developers.openai.com/api/docs/pricing#latest-models).
+To see pricing for image input tokens, refer to the [image pricing section](https://developers.openai.com/api/docs/pricing#multimodal-image-pricing).
 
 ## Limitations
 
-While models with vision capabilities are powerful and can be used in many situations, it's important to understand the limitations of these models. Here are some known limitations:
+Vision models can make mistakes. Account for these limitations when designing your application:
 
 - **Medical images**: The model is not suitable for interpreting specialized medical images like CT scans and shouldn't be used for medical advice.
 - **Non-English**: The model may not perform optimally when handling images with text of non-Latin alphabets, such as Japanese or Korean.
@@ -691,12 +1249,6 @@ While models with vision capabilities are powerful and can be used in many situa
 - **Spatial reasoning**: The model struggles with tasks requiring precise spatial localization, such as identifying chess positions.
 - **Accuracy**: The model may generate incorrect descriptions or captions in certain scenarios.
 - **Image shape**: The model struggles with panoramic and fisheye images.
-- **Metadata and resizing**: The model doesn't process original file names or metadata. Depending on image size and `detail` level, images may be resized before analysis, affecting their original dimensions.
+- **Metadata and resizing**: The model doesn't process original file names or metadata. Images may be resized before analysis, including with `original` detail. See [Model sizing behavior](#model-sizing-behavior) for the limits that apply to each model.
 - **Counting**: The model may give approximate counts for objects in images.
-- **CAPTCHAS**: For safety reasons, our system blocks the submission of CAPTCHAs.
-
----
-
-We process images at the token level, so each image we process counts towards your tokens per minute (TPM) limit.
-
-For the most precise and up-to-date estimates for image processing, please use our image pricing calculator available [here](https://openai.com/api/pricing/).
+- **CAPTCHAs**: For safety reasons, our system blocks the submission of CAPTCHAs.

@@ -17,21 +17,24 @@
 
        + [AI\_EXTRACT (Document AI legacy models)](/en/sql-reference/functions/ai_extract-document-ai "AI_EXTRACT (Document AI legacy models)")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_FUNCTION\_EVALUATION](/en/sql-reference/functions/ai_function_evaluation "AI_FUNCTION_EVALUATION")
+     * [AI\_FUNCTION\_OPTIMIZATION](/en/sql-reference/functions/ai_function_optimization "AI_FUNCTION_OPTIMIZATION")
      * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
      * [AI\_SIMILARITY](/en/sql-reference/functions/ai_similarity "AI_SIMILARITY")
+     * [AI\_SUMMARIZE](/en/sql-reference/functions/ai_summarize "AI_SUMMARIZE")
      * [AI\_SUMMARIZE\_AGG](/en/sql-reference/functions/ai_summarize_agg "AI_SUMMARIZE_AGG")
      * [AI\_TRANSCRIBE](/en/sql-reference/functions/ai_transcribe "AI_TRANSCRIBE")
      * [AI\_TRANSLATE](/en/sql-reference/functions/ai_translate "AI_TRANSLATE")
      * [FINETUNE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/finetune-snowflake-cortex "FINETUNE (SNOWFLAKE.CORTEX)")
      * [SENTIMENT (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/sentiment-snowflake-cortex "SENTIMENT (SNOWFLAKE.CORTEX)")
-     * [SUMMARIZE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/summarize-snowflake-cortex "SUMMARIZE (SNOWFLAKE.CORTEX)")
      * Helper functions
 
        * [AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/agent_run-snowflake-cortex "AGENT_RUN (SNOWFLAKE.CORTEX)")
        * [DATA\_AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/data_agent_run-snowflake-cortex "DATA_AGENT_RUN (SNOWFLAKE.CORTEX)")
+       * [THREAD\_MESSAGES (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/thread_messages-snowflake-cortex "THREAD_MESSAGES (SNOWFLAKE.CORTEX)")
        * [EXECUTE\_AI\_EVALUATION](/en/sql-reference/functions/execute_ai_evaluation "EXECUTE_AI_EVALUATION")
        * [GET\_AI\_EVALUATION\_DATA (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_evaluation_data-snowflake-local "GET_AI_EVALUATION_DATA (SNOWFLAKE.LOCAL)")
        * [GET\_AI\_OBSERVABILITY\_LOGS (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_observability_logs-snowflake-local "GET_AI_OBSERVABILITY_LOGS (SNOWFLAKE.LOCAL)")
@@ -57,6 +60,7 @@
    * [Notification](/en/sql-reference/functions-notification "Notification")
    * [Numeric](/en/sql-reference/functions-numeric "Numeric")
    * [Organization users and organization user groups](/en/sql-reference/functions-organization-users "Organization users and organization user groups")
+   * [Period](/en/sql-reference/functions-period "Period")
    * [Regular expressions](/en/sql-reference/functions-regexp "Regular expressions")
    * [Semi-structured and structured data](/en/sql-reference/functions-semistructured "Semi-structured and structured data")
    * [Snowpark Container Services](/en/sql-reference/functions-spcs "Snowpark Container Services")
@@ -246,7 +250,7 @@ AI_EXTRACT( file => <file>,
 
       String is currently the only supported scalar type.
     * Use the `description` field to provide context to the model; for example, to help the model localize the right table in a document. You can enter the column header name,
-      or describe the column in other way.
+      or describe the column in another way.
     * Use the `column_ordering` field to specify the order of all columns in the extracted table. The `column_ordering` field is case-sensitive and must match
       the column names defined in the `properties` field. The order should reflect the order of the columns in the document.
 
@@ -620,7 +624,7 @@ For information about granting this privilege, see [Cortex LLM privileges](/user
 
 ## Usage notes[¶](#usage-notes)
 
-* AI\_EXTRACT is optimized for documents both digital-born and scanned.
+* AI\_EXTRACT is optimized for both digital-born and scanned documents.
 * You can’t use both `text` and `file` parameters simultaneously in the same function call.
 * You can either ask questions in natural language or describe information to be extracted (such as city, street, ZIP code); for example:
 
@@ -665,9 +669,13 @@ For information about granting this privilege, see [Cortex LLM privileges](/user
   A table extraction question is equal to 10 entity extraction questions. For example, you can ask 4 table extraction questions and
   60 entity extraction questions in a single AI\_EXTRACT call.
 * The maximum output length for entity extraction is 512 tokens per question. For table extraction, the model returns answers that are a maximum of 4096 tokens.
-* Client-side encrypted stages are not supported.
 * You can request optional extraction scores by using named arguments and passing `scores => TRUE`.
   For details, see [Extraction scores](#label-ai-extract-scores).
+
+AI\_EXTRACT supports documents on stages that use client-side or server-side encryption, including in accounts that use
+PrivateLink or other [network policies](/user-guide/network-policies) that restrict public network access to stages.
+Files on external stages that use client-side encryption configured in Snowflake (for example, by using a COPY INTO
+statement) are supported.
 
 ## Cost considerations[¶](#cost-considerations)
 
@@ -703,6 +711,7 @@ AI\_EXTRACT is available to accounts in the following regions:
 | --- | --- |
 | Amazon Web Services (AWS) | * US East (N. Virginia) * US West (Oregon) * Canada (Central) * South America (Sao Paulo) * EU (Ireland) * EU (Frankfurt) * Asia Pacific (Tokyo) * Asia Pacific (Sydney) |
 | Microsoft Azure | * East US 2 (Virginia) * West US 2 (Washington) * South Central US (Texas) * North Europe (Ireland) * West Europe (Netherlands) * Southeast Asia (Singapore) * Australia East (New South Wales) * Central India (Pune) * Japan East (Tokyo) |
+| Google Cloud Platform | * Middle East Central2 (Dammam) |
 
 Expand
 
@@ -722,7 +731,7 @@ AI\_EXTRACT can produce the following error messages:
 | `Provided file cannot be found.` | The file was not found. |
 | `Provided file cannot be accessed.` | The current user does not have sufficient privileges to access the file. |
 | `The provided file format {file_extension} isn't supported.` | The document is not in a supported format. |
-| `The provided file isn't in the expected format or is client-side encrypted or is corrupted.` | The document is not stored in a stage with server-side encryption. |
+| `The provided file isn't in the expected format or is corrupted.` | The document is corrupted or isn’t in a supported format. |
 | `Empty request.` | No parameters were provided. |
 | `Missing or empty response format.` | No response format was provided. |
 | `Invalid response format.` | The response format is not valid JSON. |

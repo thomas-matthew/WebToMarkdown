@@ -3,6 +3,98 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.7.5 — 2026-09-29
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.5)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.7.4 — 2026-09-23
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.4)
+
+- feat(anthropic,openai): mid-conversation tool changes on `SystemMessage` (#40758)
+
+## 1.7.3 — 2026-09-22
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.3)
+
+- feat(anthropic): send mid-conversation `SystemMessage`s in place (#40622)
+
+## 1.7.2 — 2026-09-10
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.2)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.7.1 — 2026-09-03
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.1)
+
+- feat(anthropic): add Claude Fable 5.1 support (#40106)
+
+## 1.7.0 — 2026-08-27
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.0)
+
+- feat(anthropic): support top-level param for skills via `container`; `updates` thinking display mode (#39962)
+- feat(anthropic): support 1.0 sdk (#39938)
+- feat(anthropic): surface gateway response metadata (#39809)
+
+## 1.6.1 — 2026-08-20
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.6.1)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.6.0 — 2026-08-19
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.6.0)
+
+- feat(core): add standard model exception types (#39538)
+
+## 1.5.6 — 2026-08-13
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.5.6)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.5.5 — 2026-08-11
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.5.5)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.5.4 — 2026-08-05
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.5.4)
+
+- feat(anthropic): add `user_profile_id` convenience attribute (#39148)
+
+## 1.5.3 — 2026-07-28
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.5.3)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.5.2 — 2026-07-24
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.5.2)
+
+- feat(anthropic): add Claude Opus 5 support (#39054)
+
+## 1.5.1 — 2026-07-23
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.5.1)
+
+- feat(anthropic,fireworks,openai): support langsmith gateway through env var (#38742)
+
+## 1.5.0 — 2026-07-21
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.5.0)
+
+- feat(core): add `reasoning_effort` as a standard chat model parameter (#38887)
+
 ## 1.4.8 — 2026-06-26
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.4.8)

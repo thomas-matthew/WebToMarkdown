@@ -3,6 +3,50 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langgraph/releases
 
+## 1.2.14 — 2026-10-06
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.14)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.2.13 — 2026-10-05
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.13)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.2.12 — 2026-09-21
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.12)
+
+- feat(langgraph): add response_schema to interrupt() (#8886)
+
+## 1.2.11 — 2026-08-11
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.11)
+
+- feat(langgraph): expose `trace_policy` on `add_node` (#8523)
+
+## 1.2.10 — 2026-07-28
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.10)
+
+- feat(langgraph): type v3 stream_events return and native projections (#8389)
+- feat(langgraph): drop tags from TracePolicy (#8402)
+- feat(langgraph): expose `trace_policy` on `add_node` (#8362)
+
+## 1.2.9 — 2026-07-10
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.9)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.2.8 — 2026-07-06
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.8)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 1.2.7 — 2026-06-30
 
 [Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.7)

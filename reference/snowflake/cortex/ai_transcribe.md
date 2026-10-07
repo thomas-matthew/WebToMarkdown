@@ -15,21 +15,24 @@
      * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
      * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
      * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
+     * [AI\_FUNCTION\_EVALUATION](/en/sql-reference/functions/ai_function_evaluation "AI_FUNCTION_EVALUATION")
+     * [AI\_FUNCTION\_OPTIMIZATION](/en/sql-reference/functions/ai_function_optimization "AI_FUNCTION_OPTIMIZATION")
      * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
      * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
      * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
      * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
      * [AI\_SIMILARITY](/en/sql-reference/functions/ai_similarity "AI_SIMILARITY")
+     * [AI\_SUMMARIZE](/en/sql-reference/functions/ai_summarize "AI_SUMMARIZE")
      * [AI\_SUMMARIZE\_AGG](/en/sql-reference/functions/ai_summarize_agg "AI_SUMMARIZE_AGG")
      * [AI\_TRANSCRIBE](/en/sql-reference/functions/ai_transcribe "AI_TRANSCRIBE")
      * [AI\_TRANSLATE](/en/sql-reference/functions/ai_translate "AI_TRANSLATE")
      * [FINETUNE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/finetune-snowflake-cortex "FINETUNE (SNOWFLAKE.CORTEX)")
      * [SENTIMENT (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/sentiment-snowflake-cortex "SENTIMENT (SNOWFLAKE.CORTEX)")
-     * [SUMMARIZE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/summarize-snowflake-cortex "SUMMARIZE (SNOWFLAKE.CORTEX)")
      * Helper functions
 
        * [AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/agent_run-snowflake-cortex "AGENT_RUN (SNOWFLAKE.CORTEX)")
        * [DATA\_AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/data_agent_run-snowflake-cortex "DATA_AGENT_RUN (SNOWFLAKE.CORTEX)")
+       * [THREAD\_MESSAGES (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/thread_messages-snowflake-cortex "THREAD_MESSAGES (SNOWFLAKE.CORTEX)")
        * [EXECUTE\_AI\_EVALUATION](/en/sql-reference/functions/execute_ai_evaluation "EXECUTE_AI_EVALUATION")
        * [GET\_AI\_EVALUATION\_DATA (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_evaluation_data-snowflake-local "GET_AI_EVALUATION_DATA (SNOWFLAKE.LOCAL)")
        * [GET\_AI\_OBSERVABILITY\_LOGS (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_observability_logs-snowflake-local "GET_AI_OBSERVABILITY_LOGS (SNOWFLAKE.LOCAL)")
@@ -55,6 +58,7 @@
    * [Notification](/en/sql-reference/functions-notification "Notification")
    * [Numeric](/en/sql-reference/functions-numeric "Numeric")
    * [Organization users and organization user groups](/en/sql-reference/functions-organization-users "Organization users and organization user groups")
+   * [Period](/en/sql-reference/functions-period "Period")
    * [Regular expressions](/en/sql-reference/functions-regexp "Regular expressions")
    * [Semi-structured and structured data](/en/sql-reference/functions-semistructured "Semi-structured and structured data")
    * [Snowpark Container Services](/en/sql-reference/functions-spcs "Snowpark Container Services")
@@ -134,7 +138,7 @@ AI_TRANSCRIBE( <audio_file> [ , <options> ] [, <return_error_details> ] )
 
 ## Returns[¶](#returns)
 
-An string containing a JSON representation of the transcription result. The JSON object contains the following fields:
+A string containing a JSON representation of the transcription result. The JSON object contains the following fields:
 
 * `"audio_duration"`: The total duration of the audio file in seconds.
 * `"text"`: The transcription of the complete audio file, provided when the `timestamp_granularity` field is not specified.
@@ -174,18 +178,19 @@ See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql-privileges-and-ac
 
 * AI\_TRANSCRIBE supports the following audio and video file formats:
 
-  | Audio | FLAC, MP3, MP4, OGG, WAV, WEBM |
+  | Audio | AAC, FLAC, M4A, MP3, MP4, OGG, WAV, WEBM |
   | --- | --- |
-  | Video | MKV, MP4, OGV, WEBM |
+  | Video | MKV, MOV, MP4, OGV, WEBM |
 
   Expand
 
   Show lessSee more
 
-  Video files must contain at least one audio track in FLAC, MP3, OPUS, VORBIS, or WAV format.
+  Video files must contain at least one audio track. For all files, the audio track must be encoded with one of the
+  following supported codecs: AAC, ALAC, FLAC, MP3, Opus, Vorbis, or PCM.
 
   Factors such as sample rate, bit depth, and number of channels do not affect transcription, but they might make the
-  file too large to process if they are too high. Internally, AI\_TRANSCRIBE uses monophonic audio at 16 KHz, and
+  file too large to process if they are too high. Internally, AI\_TRANSCRIBE uses monophonic audio at 16 kHz, and
   resamples input files when they are not already in this format
 * The maximum audio file size is 700 MB.
 * The maximum audio file duration is 60 minutes when timestamp granularity is set to “word” or “speaker”.
@@ -245,8 +250,8 @@ current pricing information, see the
 
 Note
 
-AI\_TRANSCRIBE has a minimum billing duration of 1 minute. Files shorter than 1 minute are still processed, but
-are billed at 1 minute. To efficiently process large numbers of short audio files, consider batching them into a
+AI\_TRANSCRIBE has a minimum billing duration of 10 seconds. Files shorter than 10 seconds are still processed, but
+are billed at 10 seconds. To efficiently process large numbers of short audio files, consider batching them into a
 single file and using timestamps to identify the start and end of each original file in the resulting
 transcription.
 
@@ -712,7 +717,7 @@ If the function fails, it raises an error. Common error messages include:
 | No response from server | The audio file cannot be retrieved, perhaps because of an expired scoped URL. |
 | File too large. Maximum size is 734,003,200 Bytes, file exceeds this limit. | The provided audio file exceeds the maximum file size. |
 | Invalid file format. Only [‘flac’, ‘mp3’, ‘ogg’, ‘wav’, ‘webm’] files are supported, or WebM file does not contain an audio stream. | The audio file is not one of the supported formats, which are listed in the error message. WebM files support multiple media types, so make sure the file contains an audio stream. If the file is in a supported format, check that it is not corrupted. |
-| File will be too large after resampling it to 16000 Hertz. Expected size is 3,355,444,448,000.0 Bytes. | The provided audio file is too large after resampling to 16 KHz. If the provided audio has a lower sample rate, its resampled size is larger than the original, and could potentially exceed the maximum allowed file size. |
+| File will be too large after resampling it to 16000 Hertz. Expected size is 3,355,444,448,000.0 Bytes. | The provided audio file is too large after resampling to 16 kHz. If the provided audio has a lower sample rate, its resampled size is larger than the original, and could potentially exceed the maximum allowed file size. |
 | Audio duration too long: 6052.10 seconds. Maximum allowed: 3600 seconds. or Audio duration too long: 7335.28 seconds. Maximum allowed: 7200 seconds. | The provided audio file is too long. If you are using timestamp granularity, the maximum duration is 60 minutes (3600 seconds). |
 | Unsupported detected language | The audio file contains a language that is not supported by AI\_TRANSCRIBE. |
 
