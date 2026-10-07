@@ -333,7 +333,7 @@ constructor
 | step\_timeout | [float](https://docs.python.org/3/library/functions.html#float) | None |
 | debug | [bool](https://docs.python.org/3/library/functions.html#bool) | None |
 | checkpointer | [Checkpointer](/python/langgraph/types/Checkpointer) |
-| store | [BaseStore](/python/langchain-core/stores/BaseStore) | None |
+| store | [BaseStore](/python/langgraph.store/base/BaseStore) | None |
 | cache | [BaseCache](/python/langchain-core/caches/BaseCache) | None |
 | retry\_policy | [RetryPolicy](/python/langgraph/types/RetryPolicy) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[RetryPolicy](/python/langgraph/types/RetryPolicy)] |
 | cache\_policy | [CachePolicy](/python/langgraph/types/CachePolicy) | None |

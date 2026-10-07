@@ -1,4 +1,6 @@
 from pathlib import Path
+import shlex
+import subprocess
 
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
@@ -58,3 +60,55 @@ def test_reference_docs_script_processes_urls_in_parallel_batches() -> None:
     assert 'process_url "$item" &' in script
     assert 'pending_pids+=("$!")' in script
     assert 'if [ "${#pending_pids[@]}" -ge "$CONCURRENCY" ]; then' in script
+
+
+def run_cleanup(project_dir: Path, output_dir: str) -> None:
+    definitions: str = SCRIPT_PATH.read_text().split("# --- EXECUTION START ---", 1)[0]
+    commands: str = "\n".join([
+        definitions,
+        f"PROJECT_DIR={shlex.quote(str(project_dir))}",
+        f"OUTPUT_DIR={shlex.quote(output_dir)}",
+        "clean_output_directories",
+    ])
+    subprocess.run(["bash", "-c", commands], cwd=project_dir, check=True, capture_output=True)
+
+
+def test_cleanup_removes_stale_artifacts_and_preserves_other_files(tmp_path: Path) -> None:
+    for directory in ["reference", "docs", "release-notes"]:
+        nested: Path = tmp_path / directory / "old"
+        nested.mkdir(parents=True)
+        (nested / "stale.md").write_text("obsolete")
+        (tmp_path / directory / ".hidden").write_text("obsolete")
+    preserved: list[Path] = [tmp_path / "README.md", tmp_path / "output" / "custom.html"]
+    for path in preserved:
+        path.parent.mkdir(exist_ok=True)
+        path.write_text("keep")
+
+    run_cleanup(tmp_path, ".")
+
+    for directory in ["reference", "docs", "release-notes"]:
+        assert (tmp_path / directory).is_dir()
+        assert not list((tmp_path / directory).iterdir())
+    assert all(path.read_text() == "keep" for path in preserved)
+
+
+def test_cleanup_supports_custom_output_and_does_not_follow_symlinks(tmp_path: Path) -> None:
+    output: Path = tmp_path / "custom output"
+    output.mkdir()
+    outside: Path = tmp_path / "outside"
+    outside.mkdir()
+    (outside / "keep.md").write_text("keep")
+    (output / "docs").symlink_to(outside, target_is_directory=True)
+    (output / "reference").mkdir()
+    (output / "reference" / "stale.md").write_text("obsolete")
+    (tmp_path / "reference").mkdir()
+    (tmp_path / "reference" / "keep.md").write_text("keep")
+
+    run_cleanup(tmp_path, str(output))
+
+    assert (outside / "keep.md").read_text() == "keep"
+    assert not (output / "docs").is_symlink()
+    assert not list((output / "docs").iterdir())
+    assert not list((output / "reference").iterdir())
+    assert (tmp_path / "reference" / "keep.md").read_text() == "keep"
+    assert (tmp_path / "release-notes").is_dir()

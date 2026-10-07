@@ -24,9 +24,24 @@ uv sync
 uv run playwright install chromium
 ```
 
-The browser install is required only for live page fetching through `web2llms.py`.
+The browser install is required for live page fetching.
 
 ## Usage
+
+Regenerate the configured documentation with the existing workflow:
+
+```bash
+./create_reference_docs.sh
+```
+
+This remains the entrypoint for reference generation. For ChatAnthropic,
+ChatBedrock, and ChatBedrockConverse, it automatically calls an internal
+Python helper to remove navigation clutter, resolve source links, preserve
+docstring examples, and include documentation for the class's own methods.
+Before generation, the workflow clears and recreates `reference/`, `docs/`,
+and `release-notes/` so removed entries don't leave stale files. The separate
+`output/` folder is preserved. The workflow also generates release notes,
+commits changes, and pushes them.
 
 Convert a rendered web page to Markdown:
 

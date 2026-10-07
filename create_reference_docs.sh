@@ -170,22 +170,47 @@ URL_LIST=(
     "https://developers.openai.com/api/docs/guides/agent-evals.md | docs/openai/agents-sdk/agent-evals.md"
     "https://developers.openai.com/api/docs/guides/voice-agents.md | docs/openai/agents-sdk/voice-agents.md"
 
-    # === DOCS: OpenAI prompt guidance (per-model, direct .md) ===
-    "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-5.5.md | docs/openai/prompt-guidance/gpt-5.5.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-5.4.md | docs/openai/prompt-guidance/gpt-5.4.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-5.3-codex.md | docs/openai/prompt-guidance/gpt-5.3-codex.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-5.2.md | docs/openai/prompt-guidance/gpt-5.2.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-5.1.md | docs/openai/prompt-guidance/gpt-5.1.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-5.md | docs/openai/prompt-guidance/gpt-5.md"
-    "https://developers.openai.com/api/docs/guides/prompt-guidance/gpt-4.1.md | docs/openai/prompt-guidance/gpt-4.1.md"
+    # === DOCS: OpenAI prompting overview and best practices (direct .md) ===
+    "https://developers.openai.com/api/docs/guides/prompting.md | docs/openai/prompt-guidance/overview.md"
+    "https://developers.openai.com/api/docs/guides/prompt-engineering.md | docs/openai/prompt-guidance/prompt-engineering.md"
 
-    # === DOCS: Anthropic Claude prompt engineering and model context ===
-    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview | docs/anthropic/prompt-engineering/overview.md"
-    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices | docs/anthropic/prompt-engineering/claude-prompting-best-practices.md"
-    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-tools | docs/anthropic/prompt-engineering/prompting-tools.md"
-    "https://platform.claude.com/docs/en/about-claude/models/overview | docs/anthropic/models/overview.md"
-    "https://platform.claude.com/docs/en/about-claude/models/migration-guide | docs/anthropic/models/migration-guide.md"
-    "https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-7 | docs/anthropic/models/whats-new-claude-4-7.md"
+    # Model-specific guides from https://developers.openai.com/api/docs/llms.txt
+    # Family guides cover variants together; avoid duplicating the same document.
+    "https://developers.openai.com/api/docs/guides/latest-model/gpt-6-astra.md | docs/openai/prompt-guidance/gpt-6.md"
+    "https://developers.openai.com/api/docs/guides/latest-model/gpt-5.6.md | docs/openai/prompt-guidance/gpt-5.6.md"
+    "https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6.md | docs/openai/prompt-guidance/gpt-5.6-sol.md"
+    "https://developers.openai.com/api/docs/guides/latest-model/gpt-5.5.md | docs/openai/prompt-guidance/gpt-5.5.md"
+    "https://developers.openai.com/api/docs/guides/latest-model/gpt-5.4.md | docs/openai/prompt-guidance/gpt-5.4.md"
+    "https://developers.openai.com/api/docs/guides/latest-model/gpt-5.3-codex.md | docs/openai/prompt-guidance/gpt-5.3-codex.md"
+    "https://developers.openai.com/api/docs/guides/latest-model/gpt-5.2.md | docs/openai/prompt-guidance/gpt-5.2.md"
+    "https://developers.openai.com/api/docs/guides/latest-model/gpt-5.1.md | docs/openai/prompt-guidance/gpt-5.1.md"
+    "https://developers.openai.com/api/docs/guides/latest-model/gpt-5.md | docs/openai/prompt-guidance/gpt-5.md"
+    "https://developers.openai.com/api/docs/guides/latest-model/gpt-4.1.md | docs/openai/prompt-guidance/gpt-4.1.md"
+
+    # Reasoning and multimodal model prompting guides
+    "https://developers.openai.com/api/docs/guides/reasoning-best-practices.md | docs/openai/prompt-guidance/reasoning-best-practices.md"
+    "https://developers.openai.com/api/docs/guides/voice-prompting.md | docs/openai/prompt-guidance/voice-prompting.md"
+    "https://developers.openai.com/api/docs/guides/live-prompting.md | docs/openai/prompt-guidance/live-prompting.md"
+    "https://developers.openai.com/api/docs/guides/image-prompting.md | docs/openai/prompt-guidance/image-prompting.md"
+
+    # === DOCS: Anthropic Claude prompt engineering (direct .md) ===
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview.md | docs/anthropic/prompt-engineering/overview.md"
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices.md | docs/anthropic/prompt-engineering/claude-prompting-best-practices.md"
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-tools.md | docs/anthropic/prompt-engineering/prompting-tools.md"
+
+    # Model-specific guides linked from Prompting best practices
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1.md | docs/anthropic/prompt-engineering/prompting-claude-fable-5-1.md"
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5.md | docs/anthropic/prompt-engineering/prompting-claude-fable-5.md"
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5.md | docs/anthropic/prompt-engineering/prompting-claude-opus-5-5.md"
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5.md | docs/anthropic/prompt-engineering/prompting-claude-opus-5.md"
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-4-8.md | docs/anthropic/prompt-engineering/prompting-claude-opus-4-8.md"
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5-5.md | docs/anthropic/prompt-engineering/prompting-claude-sonnet-5-5.md"
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5.md | docs/anthropic/prompt-engineering/prompting-claude-sonnet-5.md"
+
+    # === DOCS: Anthropic Claude model context (direct .md) ===
+    "https://platform.claude.com/docs/en/about-claude/models/overview.md | docs/anthropic/models/overview.md"
+    "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md | docs/anthropic/models/migration-guide.md"
+    "https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-7.md | docs/anthropic/models/whats-new-claude-4-7.md"
 
     # === REFERENCE: Claude Agent SDK API ===
     # Raw .md URLs -- downloaded directly with curl, no scraping
@@ -222,6 +247,14 @@ URL_LIST=(
     "https://code.claude.com/docs/en/agent-sdk/user-input.md | docs/anthropic/agent-sdk/user-input.md"
 )
 
+clean_output_directories() {
+    # OUTPUT_DIR is normally ".": remove only the generated subdirectories.
+    # Release notes use their own project-relative destination.
+    echo ">>> Cleaning generated reference, docs, and release-notes directories..."
+    rm -rf -- "$OUTPUT_DIR/reference" "$OUTPUT_DIR/docs" "$PROJECT_DIR/release-notes"
+    mkdir -p -- "$OUTPUT_DIR/reference" "$OUTPUT_DIR/docs" "$PROJECT_DIR/release-notes"
+}
+
 process_url() {
     local item="$1"
     local url
@@ -250,8 +283,13 @@ process_url() {
     echo "    Target: $full_output_path"
 
     # If the URL already points to raw markdown, just download it directly.
-    # Otherwise, use the HTML-to-markdown scraper.
-    if [[ "$url" == *.md ]]; then
+    # These class references also need docstring repair and linked method details.
+    # Other HTML pages use the existing scraper.
+    if [[ "$relative_path" == reference/integrations/ChatAnthropic.md ||
+          "$relative_path" == reference/integrations/ChatBedrock.md ||
+          "$relative_path" == reference/integrations/ChatBedrockConverse.md ]]; then
+        python langchain_reference.py "$url" -o "$full_output_path" --include-methods
+    elif [[ "$url" == *.md ]]; then
         curl -sSL --fail -o "$full_output_path" "$url"
     else
         python web2llms.py "$url" -o "$full_output_path"
@@ -288,7 +326,7 @@ cd "$PROJECT_DIR"
 echo ">>> Activating Python virtual environment..."
 source .venv/bin/activate
 
-# 3. Loop through the list and run the URL jobs in bounded parallel batches
+# Validate concurrency before removing previous artifacts.
 case "$CONCURRENCY" in
     ''|*[!0-9]*)
         echo "Error: CONCURRENCY must be a positive integer."
@@ -301,6 +339,10 @@ if [ "$CONCURRENCY" -lt 1 ]; then
     exit 1
 fi
 
+# 3. Clean previous artifacts before regenerating documentation.
+clean_output_directories
+
+# 4. Loop through the list and run the URL jobs in bounded parallel batches
 echo ">>> Processing ${#URL_LIST[@]} URLs with concurrency $CONCURRENCY..."
 
 pending_pids=()
@@ -318,11 +360,11 @@ if [ "${#pending_pids[@]}" -gt 0 ]; then
     wait_for_pending_jobs
 fi
 
-# 3b. Generate GitHub release notes (feature-focused, re-runnable)
+# 5. Generate GitHub release notes (feature-focused, re-runnable)
 echo ">>> Generating GitHub release notes..."
 python release_notes.py
 
-# 4. Git Operations
+# 6. Git Operations
 echo ">>> Performing Git operations..."
 
 # Add all changes

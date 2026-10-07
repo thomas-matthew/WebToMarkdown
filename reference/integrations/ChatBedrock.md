@@ -1,20 +1,16 @@
-Python[langchain-aws](/python/langchain-aws)[chat\_models](/python/langchain-aws/chat_models)[bedrock](/python/langchain-aws/chat_models/bedrock)ChatBedrock
-
 Classv0.2.14 (latest)●Since v0.1
 
 # ChatBedrock
 
 A chat model that uses the Bedrock API.
 
-Copy
-
-```
+```python
 ChatBedrock()
 ```
 
 ## Bases
 
-`BaseChatModel``BedrockBase`
+`BaseChatModel` `BedrockBase`
 
 ## Used in Docs
 
@@ -23,244 +19,455 @@ ChatBedrock()
 
 ## Attributes
 
-[attribute
+### [system\_prompt\_with\_tools: str](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/system_prompt_with_tools)
 
-system\_prompt\_with\_tools: str](/python/langchain-aws/chat_models/bedrock/ChatBedrock/system_prompt_with_tools)[attribute
-
-beta\_use\_converse\_api: bool
+### [beta\_use\_converse\_api: bool](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/beta_use_converse_api)
 
 Use the new Bedrock `converse` API which provides a standardized interface to
-all Bedrock models. Support still in beta. See ChatBedrockConverse docs for more.](/python/langchain-aws/chat_models/bedrock/ChatBedrock/beta_use_converse_api)[attribute
+all Bedrock models. Support still in beta. See ChatBedrockConverse docs for more.
 
-stop\_sequences: Optional[List[str]]
+### [stop\_sequences: Optional[List[str]]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/stop_sequences)
 
 Stop sequence inference parameter from new Bedrock `converse` API providing
 a sequence of characters that causes a model to stop generating a response. See
 <https://docs.aws.amazon.com/bedrock/latest/APIReference/API_agent_InferenceConfiguration.html>
-for more.](/python/langchain-aws/chat_models/bedrock/ChatBedrock/stop_sequences)[attribute
+for more.
 
-lc\_attributes: Dict[str, Any]](/python/langchain-aws/chat_models/bedrock/ChatBedrock/lc_attributes)[attribute
+### [lc\_attributes: Dict[str, Any]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/lc_attributes)
 
-model\_config](/python/langchain-aws/chat_models/bedrock/ChatBedrock/model_config)
+### [model\_config](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/model_config)
 
 ## Methods
 
-[method
+### [is\_lc\_serializable](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/is_lc_serializable)
 
-is\_lc\_serializable
+Return whether this model can be serialized by Langchain.
 
-Return whether this model can be serialized by Langchain.](/python/langchain-aws/chat_models/bedrock/ChatBedrock/is_lc_serializable)[method
+### [get\_lc\_namespace](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/get_lc_namespace)
 
-get\_lc\_namespace
+Get the namespace of the langchain object.
 
-Get the namespace of the langchain object.](/python/langchain-aws/chat_models/bedrock/ChatBedrock/get_lc_namespace)[method
+### [set\_beta\_use\_converse\_api](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/set_beta_use_converse_api)
 
-set\_beta\_use\_converse\_api](/python/langchain-aws/chat_models/bedrock/ChatBedrock/set_beta_use_converse_api)[method
+### [get\_num\_tokens](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/get_num_tokens)
 
-get\_num\_tokens](/python/langchain-aws/chat_models/bedrock/ChatBedrock/get_num_tokens)[method
+### [get\_token\_ids](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/get_token_ids)
 
-get\_token\_ids](/python/langchain-aws/chat_models/bedrock/ChatBedrock/get_token_ids)[method
+### [set\_system\_prompt\_with\_tools](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/set_system_prompt_with_tools)
 
-set\_system\_prompt\_with\_tools
+Workaround to bind. Sets the system prompt with tools
 
-Workaround to bind. Sets the system prompt with tools](/python/langchain-aws/chat_models/bedrock/ChatBedrock/set_system_prompt_with_tools)[method
-
-bind\_tools
+### [bind\_tools](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/bind_tools)
 
 Bind tool-like objects to this chat model.
 
-Assumes model has a tool calling API.](/python/langchain-aws/chat_models/bedrock/ChatBedrock/bind_tools)[method
+Assumes model has a tool calling API.
 
-with\_structured\_output
+### [with\_structured\_output](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/with_structured_output)
 
-Model wrapper that returns outputs formatted to match the given schema.](/python/langchain-aws/chat_models/bedrock/ChatBedrock/with_structured_output)
+Model wrapper that returns outputs formatted to match the given schema.
 
-## Inherited from[BaseChatModel](/python/langchain-core/language_models/chat_models/BaseChatModel)(langchain\_core)
-
-### Attributes
-
-[Arate\_limiter](/python/langchain-core/language_models/chat_models/BaseChatModel/rate_limiter)[Adisable\_streaming](/python/langchain-core/language_models/chat_models/BaseChatModel/disable_streaming)[Aoutput\_version](/python/langchain-core/language_models/chat_models/BaseChatModel/output_version)[Aprofile](/python/langchain-core/language_models/chat_models/BaseChatModel/profile)[AOutputType](/python/langchain-core/language_models/chat_models/BaseChatModel/OutputType)
-
-### Methods
-
-[Minvoke](/python/langchain-core/language_models/chat_models/BaseChatModel/invoke)[Mainvoke](/python/langchain-core/language_models/chat_models/BaseChatModel/ainvoke)[Mstream](/python/langchain-core/language_models/chat_models/BaseChatModel/stream)[Mastream](/python/langchain-core/language_models/chat_models/BaseChatModel/astream)[Mstream\_events](/python/langchain-core/language_models/chat_models/BaseChatModel/stream_events)[Mastream\_events](/python/langchain-core/language_models/chat_models/BaseChatModel/astream_events)[Mgenerate](/python/langchain-core/language_models/chat_models/BaseChatModel/generate)[Magenerate](/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate)[Mgenerate\_prompt](/python/langchain-core/language_models/chat_models/BaseChatModel/generate_prompt)[Magenerate\_prompt](/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate_prompt)[Mdict](/python/langchain-core/language_models/chat_models/BaseChatModel/dict)[Masdict](/python/langchain-core/language_models/chat_models/BaseChatModel/asdict)[Mbind](/python/langchain-core/language_models/chat_models/BaseChatModel/bind)
-
-## Inherited from[BedrockBase](/python/langchain-aws/llms/bedrock/BedrockBase)
+## Inherited from[BaseChatModel](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel) (langchain\_core)
 
 ### Attributes
 
-[Aclient: Any](/python/langchain-aws/llms/bedrock/BedrockBase/client)[Aregion\_name: Optional[str]
-
-—
-
-The aws region e.g., `us-west-2`. Fallsback to AWS\_REGION or AWS\_DEFAULT\_REGION](/python/langchain-aws/llms/bedrock/BedrockBase/region_name)[Acredentials\_profile\_name: Optional[str]
-
-—
-
-The name of the profile in the ~/.aws/credentials or ~/.aws/config files, which](/python/langchain-aws/llms/bedrock/BedrockBase/credentials_profile_name)[Aaws\_access\_key\_id: Optional[SecretStr]
-
-—
-
-AWS access key id.](/python/langchain-aws/llms/bedrock/BedrockBase/aws_access_key_id)[Aaws\_secret\_access\_key: Optional[SecretStr]
-
-—
-
-AWS secret\_access\_key.](/python/langchain-aws/llms/bedrock/BedrockBase/aws_secret_access_key)[Aaws\_session\_token: Optional[SecretStr]
-
-—
-
-AWS session token.](/python/langchain-aws/llms/bedrock/BedrockBase/aws_session_token)[Aconfig: Any
-
-—
-
-An optional botocore.config.Config instance to pass to the client.](/python/langchain-aws/llms/bedrock/BedrockBase/config)[Aprovider: Optional[str]
-
-—
-
-The model provider, e.g., amazon, cohere, ai21, etc. When not supplied, provider](/python/langchain-aws/llms/bedrock/BedrockBase/provider)[Amodel\_id: str
-
-—
-
-Id of the model to call, e.g., amazon.titan-text-express-v1, this is](/python/langchain-aws/llms/bedrock/BedrockBase/model_id)[Amodel\_kwargs: Optional[Dict[str, Any]]
-
-—
-
-Keyword arguments to pass to the model.](/python/langchain-aws/llms/bedrock/BedrockBase/model_kwargs)[Aendpoint\_url: Optional[str]
-
-—
-
-Needed if you don't want to default to us-east-1 endpoint](/python/langchain-aws/llms/bedrock/BedrockBase/endpoint_url)[Astreaming: bool
-
-—
-
-Whether to stream the results.](/python/langchain-aws/llms/bedrock/BedrockBase/streaming)[Aprovider\_stop\_sequence\_key\_name\_map: Mapping[str, str]](/python/langchain-aws/llms/bedrock/BedrockBase/provider_stop_sequence_key_name_map)[Aprovider\_stop\_reason\_key\_map: Mapping[str, str]](/python/langchain-aws/llms/bedrock/BedrockBase/provider_stop_reason_key_map)[Aguardrails: Optional[Mapping[str, Any]]
-
-—
-
-An optional dictionary to configure guardrails for Bedrock.](/python/langchain-aws/llms/bedrock/BedrockBase/guardrails)[Atemperature: Optional[float]](/python/langchain-aws/llms/bedrock/BedrockBase/temperature)[Amax\_tokens: Optional[int]](/python/langchain-aws/llms/bedrock/BedrockBase/max_tokens)[Alc\_secrets: Dict[str, str]](/python/langchain-aws/llms/bedrock/BedrockBase/lc_secrets)
+[rate\_limiter](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/rate_limiter) [disable\_streaming](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/disable_streaming) [output\_version](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/output_version) [profile](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/profile) [OutputType](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/OutputType)
 
 ### Methods
 
-[Mvalidate\_environment
+[invoke](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/invoke) [ainvoke](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/ainvoke) [stream](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/stream) [astream](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/astream) [stream\_events](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/stream_events) [astream\_events](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/astream_events) [generate](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/generate) [agenerate](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate) [generate\_prompt](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/generate_prompt) [agenerate\_prompt](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate_prompt) [dict](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/dict) [asdict](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/asdict) [bind](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/bind)
 
-—
-
-Validate that AWS credentials to and python package exists in environment.](/python/langchain-aws/llms/bedrock/BedrockBase/validate_environment)
-
-## Inherited from[BaseLanguageModel](/python/langchain-core/language_models/base/BaseLanguageModel)(langchain\_core)
+## Inherited from[BedrockBase](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase)
 
 ### Attributes
 
-[Acache](/python/langchain-core/language_models/base/BaseLanguageModel/cache)[Averbose](/python/langchain-core/language_models/base/BaseLanguageModel/verbose)[Acallbacks](/python/langchain-core/language_models/base/BaseLanguageModel/callbacks)[Atags](/python/langchain-core/language_models/base/BaseLanguageModel/tags)[Ametadata](/python/langchain-core/language_models/base/BaseLanguageModel/metadata)[Acustom\_get\_token\_ids](/python/langchain-core/language_models/base/BaseLanguageModel/custom_get_token_ids)[AInputType](/python/langchain-core/language_models/base/BaseLanguageModel/InputType)
+[client: Any](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/client) [region\_name: Optional[str]
+
+—
+
+The aws region e.g., `us-west-2`. Fallsback to AWS\_REGION or AWS\_DEFAULT\_REGION](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/region_name)[credentials\_profile\_name: Optional[str]
+
+—
+
+The name of the profile in the ~/.aws/credentials or ~/.aws/config files, which](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/credentials_profile_name)[aws\_access\_key\_id: Optional[SecretStr]
+
+—
+
+AWS access key id.](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/aws_access_key_id)[aws\_secret\_access\_key: Optional[SecretStr]
+
+—
+
+AWS secret\_access\_key.](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/aws_secret_access_key)[aws\_session\_token: Optional[SecretStr]
+
+—
+
+AWS session token.](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/aws_session_token)[config: Any
+
+—
+
+An optional botocore.config.Config instance to pass to the client.](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/config)[provider: Optional[str]
+
+—
+
+The model provider, e.g., amazon, cohere, ai21, etc. When not supplied, provider](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/provider)[model\_id: str
+
+—
+
+Id of the model to call, e.g., amazon.titan-text-express-v1, this is](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/model_id)[model\_kwargs: Optional[Dict[str, Any]]
+
+—
+
+Keyword arguments to pass to the model.](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/model_kwargs)[endpoint\_url: Optional[str]
+
+—
+
+Needed if you don't want to default to us-east-1 endpoint](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/endpoint_url)[streaming: bool
+
+—
+
+Whether to stream the results.](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/streaming)[provider\_stop\_sequence\_key\_name\_map: Mapping[str, str]](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/provider_stop_sequence_key_name_map) [provider\_stop\_reason\_key\_map: Mapping[str, str]](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/provider_stop_reason_key_map) [guardrails: Optional[Mapping[str, Any]]
+
+—
+
+An optional dictionary to configure guardrails for Bedrock.](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/guardrails)[temperature: Optional[float]](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/temperature) [max\_tokens: Optional[int]](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/max_tokens) [lc\_secrets: Dict[str, str]](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/lc_secrets)
 
 ### Methods
 
-[Mmodel\_post\_init](/python/langchain-core/language_models/base/BaseLanguageModel/model_post_init)[Mset\_verbose](/python/langchain-core/language_models/base/BaseLanguageModel/set_verbose)[Mgenerate\_prompt](/python/langchain-core/language_models/base/BaseLanguageModel/generate_prompt)[Magenerate\_prompt](/python/langchain-core/language_models/base/BaseLanguageModel/agenerate_prompt)[Mget\_num\_tokens\_from\_messages](/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens_from_messages)
+[validate\_environment
 
-## Inherited from[RunnableSerializable](/python/langchain-core/runnables/base/RunnableSerializable)(langchain\_core)
+—
+
+Validate that AWS credentials to and python package exists in environment.](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase/validate_environment)
+
+## Inherited from[BaseLanguageModel](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel) (langchain\_core)
 
 ### Attributes
 
-[Aname](/python/langchain-core/runnables/base/RunnableSerializable/name)
+[cache](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/cache) [verbose](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/verbose) [callbacks](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/callbacks) [tags](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/tags) [metadata](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/metadata) [custom\_get\_token\_ids](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/custom_get_token_ids) [InputType](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/InputType)
 
 ### Methods
 
-[Mto\_json](/python/langchain-core/runnables/base/RunnableSerializable/to_json)[Mconfigurable\_fields](/python/langchain-core/runnables/base/RunnableSerializable/configurable_fields)[Mconfigurable\_alternatives](/python/langchain-core/runnables/base/RunnableSerializable/configurable_alternatives)
+[model\_post\_init](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/model_post_init) [set\_verbose](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/set_verbose) [generate\_prompt](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/generate_prompt) [agenerate\_prompt](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/agenerate_prompt) [get\_num\_tokens\_from\_messages](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens_from_messages)
 
-## Inherited from[Serializable](/python/langchain-core/load/serializable/Serializable)(langchain\_core)
+## Inherited from[RunnableSerializable](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable) (langchain\_core)
 
 ### Attributes
 
-[Alc\_secrets](/python/langchain-core/load/serializable/Serializable/lc_secrets)
+[name](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/name)
 
 ### Methods
 
-[Mlc\_id](/python/langchain-core/load/serializable/Serializable/lc_id)[Mto\_json](/python/langchain-core/load/serializable/Serializable/to_json)[Mto\_json\_not\_implemented](/python/langchain-core/load/serializable/Serializable/to_json_not_implemented)
+[to\_json](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/to_json) [configurable\_fields](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/configurable_fields) [configurable\_alternatives](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/configurable_alternatives)
 
-## Inherited from[Runnable](/python/langchain-core/runnables/base/Runnable)(langchain\_core)
+## Inherited from[Serializable](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable) (langchain\_core)
 
 ### Attributes
 
-[Aname](/python/langchain-core/runnables/base/Runnable/name)[AInputType](/python/langchain-core/runnables/base/Runnable/InputType)[AOutputType](/python/langchain-core/runnables/base/Runnable/OutputType)[Ainput\_schema](/python/langchain-core/runnables/base/Runnable/input_schema)[Aoutput\_schema](/python/langchain-core/runnables/base/Runnable/output_schema)[Aconfig\_specs](/python/langchain-core/runnables/base/Runnable/config_specs)
+[lc\_secrets](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/lc_secrets)
 
 ### Methods
 
-[Mget\_name](/python/langchain-core/runnables/base/Runnable/get_name)[Mget\_input\_schema](/python/langchain-core/runnables/base/Runnable/get_input_schema)[Mget\_input\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_input_jsonschema)[Mget\_output\_schema](/python/langchain-core/runnables/base/Runnable/get_output_schema)[Mget\_output\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_output_jsonschema)[Mconfig\_schema](/python/langchain-core/runnables/base/Runnable/config_schema)[Mget\_config\_jsonschema](/python/langchain-core/runnables/base/Runnable/get_config_jsonschema)[Mget\_graph](/python/langchain-core/runnables/base/Runnable/get_graph)[Mget\_prompts](/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe](/python/langchain-core/runnables/base/Runnable/pipe)[Mpick](/python/langchain-core/runnables/base/Runnable/pick)[Massign](/python/langchain-core/runnables/base/Runnable/assign)[Minvoke](/python/langchain-core/runnables/base/Runnable/invoke)[Mainvoke](/python/langchain-core/runnables/base/Runnable/ainvoke)[Mbatch](/python/langchain-core/runnables/base/Runnable/batch)[Mbatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch](/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mstream](/python/langchain-core/runnables/base/Runnable/stream)[Mastream](/python/langchain-core/runnables/base/Runnable/astream)[Mastream\_log](/python/langchain-core/runnables/base/Runnable/astream_log)[Mastream\_events](/python/langchain-core/runnables/base/Runnable/astream_events)[Mstream\_events](/python/langchain-core/runnables/base/Runnable/stream_events)[Mtransform](/python/langchain-core/runnables/base/Runnable/transform)[Matransform](/python/langchain-core/runnables/base/Runnable/atransform)[Mbind](/python/langchain-core/runnables/base/Runnable/bind)[Mwith\_config](/python/langchain-core/runnables/base/Runnable/with_config)[Mwith\_listeners](/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith\_alisteners](/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith\_types](/python/langchain-core/runnables/base/Runnable/with_types)[Mwith\_retry](/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap](/python/langchain-core/runnables/base/Runnable/map)[Mwith\_fallbacks](/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas\_tool](/python/langchain-core/runnables/base/Runnable/as_tool)
+[lc\_id](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/lc_id) [to\_json](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/to_json) [to\_json\_not\_implemented](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/to_json_not_implemented)
+
+## Inherited from[Runnable](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable) (langchain\_core)
+
+### Attributes
+
+[name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/name) [InputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/InputType) [OutputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/OutputType) [input\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/input_schema) [output\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/output_schema) [config\_specs](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_specs)
+
+### Methods
+
+[get\_name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_name) [get\_input\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_schema) [get\_input\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_jsonschema) [get\_output\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_schema) [get\_output\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_jsonschema) [config\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_schema) [get\_config\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_config_jsonschema) [get\_graph](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_graph) [get\_prompts](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_prompts) [pipe](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pipe) [pick](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pick) [assign](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/assign) [invoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/invoke) [ainvoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/ainvoke) [batch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch) [batch\_as\_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch_as_completed) [abatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch) [abatch\_as\_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch_as_completed) [stream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream) [astream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream) [astream\_log](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_log) [astream\_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_events) [stream\_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream_events) [transform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/transform) [atransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/atransform) [bind](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/bind) [with\_config](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_config) [with\_listeners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_listeners) [with\_alisteners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_alisteners) [with\_types](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_types) [with\_retry](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_retry) [map](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/map) [with\_fallbacks](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_fallbacks) [as\_tool](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/as_tool)
 
 [View source on GitHub](https://github.com/langchain-ai/langchain-aws/blob/434899a049429abd1b68d6e3efe82f58bc729a4f/libs/aws/langchain_aws/chat_models/bedrock.py#L490)
 
 Version History
 
-Copy page
+Source: [https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock)
 
-### On This Page
+---
 
-Related Documentation
+## is_lc_serializable
 
-Attributes
+> **Method** in `langchain_aws`
 
-Asystem\_prompt\_with\_toolsAbeta\_use\_converse\_apiAstop\_sequencesAlc\_attributesAmodel\_config
+📖 [View in docs](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/is_lc_serializable)
 
-Methods
+Return whether this model can be serialized by Langchain.
 
-Mis\_lc\_serializableMget\_lc\_namespaceMset\_beta\_use\_converse\_apiMget\_num\_tokensMget\_token\_idsMset\_system\_prompt\_with\_toolsMbind\_toolsMwith\_structured\_output
+### Signature
 
-from BaseChatModel
+```python
+is_lc_serializable(
+    cls,
+) -> bool
+```
 
-AAttributes
+---
 
-Arate\_limiterAdisable\_streamingAoutput\_versionAprofileAOutputType
+[View source on GitHub](https://github.com/langchain-ai/langchain-aws/blob/434899a049429abd1b68d6e3efe82f58bc729a4f/libs/aws/langchain_aws/chat_models/bedrock.py#L509)
 
-MMethods
+---
 
-MinvokeMainvokeMstreamMastreamMstream\_eventsMastream\_eventsMgenerateMagenerateMgenerate\_promptMagenerate\_promptMdictMasdictMbind
+## get_lc_namespace
 
-from BedrockBase
+> **Method** in `langchain_aws`
 
-AAttributes
+📖 [View in docs](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/get_lc_namespace)
 
-AclientAregion\_nameAcredentials\_profile\_nameAaws\_access\_key\_idAaws\_secret\_access\_keyAaws\_session\_tokenAconfigAproviderAmodel\_idAmodel\_kwargsAendpoint\_urlAstreamingAprovider\_stop\_sequence\_key\_name\_mapAprovider\_stop\_reason\_key\_mapAguardrailsAtemperatureAmax\_tokensAlc\_secrets
+Get the namespace of the langchain object.
 
-MMethods
+### Signature
 
-Mvalidate\_environment
+```python
+get_lc_namespace(
+    cls,
+) -> List[str]
+```
 
-from BaseLanguageModel
+---
 
-AAttributes
+[View source on GitHub](https://github.com/langchain-ai/langchain-aws/blob/434899a049429abd1b68d6e3efe82f58bc729a4f/libs/aws/langchain_aws/chat_models/bedrock.py#L514)
 
-AcacheAverboseAcallbacksAtagsAmetadataAcustom\_get\_token\_idsAInputType
+---
 
-MMethods
+## set_beta_use_converse_api
 
-Mmodel\_post\_initMset\_verboseMgenerate\_promptMagenerate\_promptMget\_num\_tokens\_from\_messages
+> **Method** in `langchain_aws`
 
-from RunnableSerializable
+📖 [View in docs](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/set_beta_use_converse_api)
 
-AAttributes
+### Signature
 
-Aname
+```python
+set_beta_use_converse_api(
+    cls,
+    values: Dict,
+) -> Any
+```
 
-MMethods
+---
 
-Mto\_jsonMconfigurable\_fieldsMconfigurable\_alternatives
+[View source on GitHub](https://github.com/langchain-ai/langchain-aws/blob/434899a049429abd1b68d6e3efe82f58bc729a4f/libs/aws/langchain_aws/chat_models/bedrock.py#L519)
 
-from Serializable
+---
 
-AAttributes
+## get_num_tokens
 
-Alc\_secrets
+> **Method** in `langchain_aws`
 
-MMethods
+📖 [View in docs](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/get_num_tokens)
 
-Mlc\_idMto\_jsonMto\_json\_not\_implemented
+### Signature
 
-from Runnable
+```python
+get_num_tokens(
+    self,
+    text: str,
+) -> int
+```
 
-AAttributes
+---
 
-AnameAInputTypeAOutputTypeAinput\_schemaAoutput\_schemaAconfig\_specs
+[View source on GitHub](https://github.com/langchain-ai/langchain-aws/blob/434899a049429abd1b68d6e3efe82f58bc729a4f/libs/aws/langchain_aws/chat_models/bedrock.py#L733)
 
-MMethods
+---
 
-Mget\_nameMget\_input\_schemaMget\_input\_jsonschemaMget\_output\_schemaMget\_output\_jsonschemaMconfig\_schemaMget\_config\_jsonschemaMget\_graphMget\_promptsMpipeMpickMassignMinvokeMainvokeMbatchMbatch\_as\_completedMabatchMabatch\_as\_completedMstreamMastreamMastream\_logMastream\_eventsMstream\_eventsMtransformMatransformMbindMwith\_configMwith\_listenersMwith\_alistenersMwith\_typesMwith\_retryMmapMwith\_fallbacksMas\_tool
+## get_token_ids
+
+> **Method** in `langchain_aws`
+
+📖 [View in docs](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/get_token_ids)
+
+### Signature
+
+```python
+get_token_ids(
+    self,
+    text: str,
+) -> List[int]
+```
+
+---
+
+[View source on GitHub](https://github.com/langchain-ai/langchain-aws/blob/434899a049429abd1b68d6e3efe82f58bc729a4f/libs/aws/langchain_aws/chat_models/bedrock.py#L742)
+
+---
+
+## set_system_prompt_with_tools
+
+> **Method** in `langchain_aws`
+
+📖 [View in docs](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/set_system_prompt_with_tools)
+
+Workaround to bind. Sets the system prompt with tools
+
+### Signature
+
+```python
+set_system_prompt_with_tools(
+    self,
+    xml_tools_system_prompt: str,
+) -> None
+```
+
+---
+
+[View source on GitHub](https://github.com/langchain-ai/langchain-aws/blob/434899a049429abd1b68d6e3efe82f58bc729a4f/libs/aws/langchain_aws/chat_models/bedrock.py#L759)
+
+---
+
+## bind_tools
+
+> **Method** in `langchain_aws`
+
+📖 [View in docs](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/bind_tools)
+
+Bind tool-like objects to this chat model.
+
+Assumes model has a tool calling API.
+
+### Signature
+
+```python
+bind_tools(
+    self,
+    tools: Sequence[Union[Dict[str, Any], TypeBaseModel, Callable, BaseTool]],
+    *,
+    tool_choice: Optional[Union[dict, str, Literal['auto', 'none'], bool]] = None,
+    kwargs: Any = {},
+) -> Runnable[LanguageModelInput, BaseMessage]
+```
+
+### Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `tools` | `Sequence[Union[Dict[str, Any], TypeBaseModel, Callable, BaseTool]]` | Yes | A list of tool definitions to bind to this chat model. Can be  a dictionary, pydantic model, callable, or BaseTool. Pydantic models, callables, and BaseTools will be automatically converted to their schema dictionary representation. |
+| `tool_choice` | `Optional[Union[dict, str, Literal['auto', 'none'], bool]]` | No | Which tool to require the model to call. Must be the name of the single provided function or "auto" to automatically determine which function to call (if any), or a dict of the form: {"type": "function", "function": {"name": <<tool_name>>}}. (default: `None`) |
+| `**kwargs` | `Any` | No | Any additional parameters to pass to the :class:`~langchain.runnable.Runnable` constructor. (default: `{}`) |
+
+---
+
+[View source on GitHub](https://github.com/langchain-ai/langchain-aws/blob/434899a049429abd1b68d6e3efe82f58bc729a4f/libs/aws/langchain_aws/chat_models/bedrock.py#L763)
+
+---
+
+## with_structured_output
+
+> **Method** in `langchain_aws`
+
+📖 [View in docs](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock/with_structured_output)
+
+Model wrapper that returns outputs formatted to match the given schema.
+
+### Signature
+
+```python
+with_structured_output(
+    self,
+    schema: Union[Dict, TypeBaseModel],
+    *,
+    include_raw: bool = False,
+    kwargs: Any = {},
+) -> Runnable[LanguageModelInput, Union[Dict, BaseModel]]
+```
+
+### Description
+
+**Pydantic schema (include_raw=False)::**
+
+```python
+from langchain_aws.chat_models.bedrock import ChatBedrock
+from pydantic import BaseModel
+
+class AnswerWithJustification(BaseModel):
+    '''An answer to the user question along with justification for the answer.'''
+    answer: str
+    justification: str
+
+llm =ChatBedrock(
+    model_id="anthropic.claude-3-sonnet-20240229-v1:0",
+    model_kwargs={"temperature": 0.001},
+)  # type: ignore[call-arg]
+structured_llm = llm.with_structured_output(AnswerWithJustification)
+
+structured_llm.invoke("What weighs more a pound of bricks or a pound of feathers")
+
+# -> AnswerWithJustification(
+#     answer='They weigh the same',
+#     justification='Both a pound of bricks and a pound of feathers weigh one pound. The weight is the same, but the volume or density of the objects may differ.'
+# )
+```
+
+**Pydantic schema (include_raw=True)::**
+
+```python
+from langchain_aws.chat_models.bedrock import ChatBedrock
+from pydantic import BaseModel
+
+class AnswerWithJustification(BaseModel):
+    '''An answer to the user question along with justification for the answer.'''
+    answer: str
+    justification: str
+
+llm =ChatBedrock(
+    model_id="anthropic.claude-3-sonnet-20240229-v1:0",
+    model_kwargs={"temperature": 0.001},
+)  # type: ignore[call-arg]
+structured_llm = llm.with_structured_output(AnswerWithJustification, include_raw=True)
+
+structured_llm.invoke("What weighs more a pound of bricks or a pound of feathers")
+# -> {
+#     'raw': AIMessage(content='', additional_kwargs={'tool_calls': [{'id': 'call_Ao02pnFYXD6GN1yzc0uXPsvF', 'function': {'arguments': '{"answer":"They weigh the same.","justification":"Both a pound of bricks and a pound of feathers weigh one pound. The weight is the same, but the volume or density of the objects may differ."}', 'name': 'AnswerWithJustification'}, 'type': 'function'}]}),
+#     'parsed': AnswerWithJustification(answer='They weigh the same.', justification='Both a pound of bricks and a pound of feathers weigh one pound. The weight is the same, but the volume or density of the objects may differ.'),
+#     'parsing_error': None
+# }
+```
+
+**Dict schema (include_raw=False)::**
+
+```python
+from langchain_aws.chat_models.bedrock import ChatBedrock
+
+schema = {
+    "name": "AnswerWithJustification",
+    "description": "An answer to the user question along with justification for the answer.",
+    "input_schema": {
+        "type": "object",
+        "properties": {
+            "answer": {"type": "string"},
+            "justification": {"type": "string"},
+        },
+        "required": ["answer", "justification"]
+    }
+}
+llm =ChatBedrock(
+    model_id="anthropic.claude-3-sonnet-20240229-v1:0",
+    model_kwargs={"temperature": 0.001},
+)  # type: ignore[call-arg]
+structured_llm = llm.with_structured_output(schema)
+
+structured_llm.invoke("What weighs more a pound of bricks or a pound of feathers")
+# -> {
+#     'answer': 'They weigh the same',
+#     'justification': 'Both a pound of bricks and a pound of feathers weigh one pound. The weight is the same, but the volume and density of the two substances differ.'
+# }
+```
+
+### Parameters
+
+| Name | Type | Required | Description |
+|------|------|----------|-------------|
+| `schema` | `Union[Dict, TypeBaseModel]` | Yes | The output schema as a dict or a Pydantic class. If a Pydantic class then the model output will be an object of that class. If a dict then the model output will be a dict. With a Pydantic class the returned attributes will be validated, whereas with a dict they will not be. |
+| `include_raw` | `bool` | No | If False then only the parsed structured output is returned. If an error occurs during model output parsing it will be raised. If True then both the raw model response (a BaseMessage) and the parsed model response will be returned. If an error occurs during output parsing it will be caught and returned as well. The final output is always a dict with keys "raw", "parsed", and "parsing_error". (default: `False`) |
+
+### Returns
+
+`Runnable[LanguageModelInput, Union[Dict, BaseModel]]`
+
+A Runnable that takes any ChatModel input. The output type depends on
+
+---
+
+[View source on GitHub](https://github.com/langchain-ai/langchain-aws/blob/434899a049429abd1b68d6e3efe82f58bc729a4f/libs/aws/langchain_aws/chat_models/bedrock.py#L818)
