@@ -124,7 +124,7 @@ constructor
 | pipe | AsyncPipeline | None |
 | deserializer | [Callable](https://docs.python.org/3/library/typing.html#typing.Callable)[[[bytes](https://docs.python.org/3/library/stdtypes.html#bytes) | orjson.Fragment], [dict](https://docs.python.org/3/library/stdtypes.html#dict)[[str](https://docs.python.org/3/library/stdtypes.html#str), [Any](https://docs.python.org/3/library/typing.html#typing.Any)]] | None |
 | index | [PostgresIndexConfig](/python/langgraph.store.postgres/base/PostgresIndexConfig) | None |
-| ttl | [TTLConfig](/python/langgraph-cli/schemas/TTLConfig) | None |
+| ttl | [TTLConfig](/python/langgraph.store/base/TTLConfig) | None |
 
 ## Attributes
 

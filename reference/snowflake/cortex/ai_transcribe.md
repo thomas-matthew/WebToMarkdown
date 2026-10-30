@@ -107,7 +107,7 @@ Show lessSee more
 
 ## Syntax[¶](#syntax)
 
-Copy code
+Copy codeExpand code block
 
 ```
 AI_TRANSCRIBE( <audio_file> [ , <options> ] [, <return_error_details> ] )

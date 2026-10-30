@@ -241,7 +241,7 @@ The following example shows how to use error handling when processing multiple r
    ```
 4. Redact PII from `raw_table` and insert the rows into `redaction_table` to store the redacted text and error messages.
 
-   Copy codeExpand code block
+   Copy code
 
    ```
    INSERT INTO redaction_table
