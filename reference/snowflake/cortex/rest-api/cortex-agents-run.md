@@ -16,6 +16,7 @@
       - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
       - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
       - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
+      - [About Workday Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-datacloud "About Workday Data Cloud and Snowflake")
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
@@ -23,6 +24,7 @@
     - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
     - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
     - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
+    - [Pipeline Builder](/en/user-guide/pipeline-builder/pipeline-builder-overview "Pipeline Builder")
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
@@ -33,6 +35,7 @@
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
     * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
+    * [Snowflake Artifacts](/en/user-guide/snowflake-artifacts "Snowflake Artifacts")
     * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
@@ -54,7 +57,6 @@
       + [Share Cortex agents](/en/user-guide/snowflake-cortex/cortex-agents-sharing "Share Cortex agents")
       + [Temporary agents](/en/user-guide/snowflake-cortex/cortex-agents-temporary "Temporary agents")
       + [Secure agents](/en/user-guide/snowflake-cortex/cortex-agents-secure "Secure agents")
-      + [Tutorials](/en/user-guide/snowflake-cortex/cortex-agents-tutorials "Tutorials")
       + [Resource budgets](/en/user-guide/snowflake-cortex/cortex-agents-resource-budgets "Resource budgets")
       + [Shared resource budgets](/en/user-guide/snowflake-cortex/cortex-agents-shared-budgets "Shared resource budgets")
       + [Agent skills](/en/user-guide/snowflake-cortex/cortex-agents-skills "Agent skills")
@@ -64,6 +66,7 @@
       + [MCP Connectors](/en/user-guide/snowflake-cortex/cortex-agents-mcp-connectors "MCP Connectors")
       + [Agent versioning](/en/user-guide/snowflake-cortex/cortex-agents-versioning "Agent versioning")
       + [Multi-tenancy](/en/user-guide/snowflake-cortex/cortex-agents-multi-tenancy "Multi-tenancy")
+    * [Cortex Agent SDK](/en/user-guide/snowflake-cortex/cortex-agent-sdk/cortex-agent-sdk "Cortex Agent SDK")
     * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
     * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
@@ -74,7 +77,7 @@
     * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
     * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
-    * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
+    * [ML Development and ML Ops](/en/developer-guide/snowpark-ml/overview "ML Development and ML Ops")
     * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
 20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
 22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
@@ -264,7 +267,8 @@ Show lessSee more
 | `instructions` | [AgentInstructions](#label-snowflake-agent-run-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
 | `orchestration` | [OrchestrationConfig](#label-snowflake-agent-run-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
 | `tools` | array of [Tool](#label-snowflake-agent-run-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
-| `tool_resources` | map of [ToolResource](#label-snowflake-agent-run-toolresource) | Configuration for each tool referenced in the tools array. Keys must match the name of the respective tool. |
+| `tool_resources` | map of [ToolResource](#label-snowflake-agent-run-toolresource) | Configuration for each tool referenced in the tools array. Each key must equal the name of the corresponding tool. |
+| `thinking_effort` | string | Controls the reasoning effort used by the orchestration model. Higher effort can improve complex-task quality at the cost of latency and tokens. When omitted, the service selects the appropriate default. |
 
 Expand
 
@@ -308,12 +312,16 @@ Copy codeExpand code block
   },
   "instructions": {
     "response": "You will respond in a friendly but concise manner",
-    "orchestration": "For any query related to revenue we should use Analyst; For all policy questions we should use Search"
+    "orchestration": "For any query related to revenue we should use Analyst; For all policy questions we should use Search",
+    "system": "You are a friendly agent ..."
   },
   "orchestration": {
     "budget": {
       "seconds": 30,
       "tokens": 16000
+    },
+    "capabilities": {
+      "analytical_search": true
     }
   },
   "tools": [
@@ -346,7 +354,8 @@ Copy codeExpand code block
       },
       "identifier": "DB.SCHEMA.UDF"
     }
-  }
+  },
+  "thinking_effort": "high"
 }
 ```
 
@@ -499,7 +508,8 @@ Copy codeExpand code block
           "output_tokens": {
             "total": 75
           },
-          "context_window": 128000
+          "context_window": 128000,
+          "model_role": "orchestration"
         }
       ]
     },
@@ -525,7 +535,6 @@ An event streamed when a text content block is done streaming, including all the
 | `content_index` | integer | The index in the response content array this event represents |
 | `text` | string | A text result from the agent |
 | `annotations` | array of [Annotation](#label-snowflake-agent-run-annotation) | Any annotations attached to the text result (e.g. citations) |
-| `is_elicitation` | boolean | Whether this text content is the agent asking for more information from the end user. |
 
 Expand
 
@@ -546,10 +555,11 @@ Copy codeExpand code block
       "search_result_id": "cs_61987ff6-6d56-4695-83c0-1e7cfed818c7",
       "doc_id": "4ac085cb-82d0-4eb4-94f3-2672aa0599a2",
       "doc_title": "Earnings Report",
-      "text": "The revenue for 2025 was..."
+      "text": "The revenue for 2025 was...",
+      "stage_path": "@my_db.my_schema.my_stage/docs",
+      "relative_path": "2025/earnings.pdf"
     }
-  ],
-  "is_elicitation": false
+  ]
 }
 ```
 
@@ -565,7 +575,6 @@ Event streamed when a new output text delta is generated.
 | --- | --- | --- |
 | `content_index` | integer | The index in the response content array this event represents |
 | `text` | string | The text delta |
-| `is_elicitation` | boolean | Whether this text content is the agent asking for more information from the end user. |
 
 Expand
 
@@ -578,8 +587,7 @@ Copy code
 ```
 {
   "content_index": 0,
-  "text": "Hello",
-  "is_elicitation": false
+  "text": "Hello"
 }
 ```
 
@@ -599,7 +607,7 @@ Show lessSee more
 
 **Example**
 
-Copy code
+Copy codeExpand code block
 
 ```
 {
@@ -611,10 +619,16 @@ Copy code
     "search_result_id": "cs_61987ff6-6d56-4695-83c0-1e7cfed818c7",
     "doc_id": "4ac085cb-82d0-4eb4-94f3-2672aa0599a2",
     "doc_title": "Earnings Report",
-    "text": "The revenue for 2025 was..."
+    "text": "The revenue for 2025 was...",
+    "stage_path": "@my_db.my_schema.my_stage/docs",
+    "relative_path": "2025/earnings.pdf"
   }
 }
 ```
+
+Show lessSee more
+
+Scroll to top
 
 ## `response.thinking`[¶](#responsethinking)
 
@@ -699,7 +713,7 @@ Copy codeExpand code block
   "input": {
     "location": "San Francisco, CA"
   },
-  "client_side_execute": "true",
+  "client_side_execute": true,
   "permission": {
     "options": [
       "Allow Once",
@@ -946,6 +960,32 @@ Copy codeExpand code block
 }
 ```
 
+## `response.map`[¶](#responsemap)
+
+An event streamed when a map content block is added.
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `content_index` | integer | The index in the response content array this event represents |
+| `tool_use_id` | string | The ID of the tool use that generated this map |
+| `map_spec` | string | The deck.gl MapSpec v1 specification serialized as a string. This is not Vega-Lite; it is rendered by a geospatial map renderer. |
+
+Expand
+
+Show lessSee more
+
+**Example**
+
+Copy codeExpand code block
+
+```
+{
+  "content_index": 0,
+  "tool_use_id": "toolu_123",
+  "map_spec": "{\"version\":1,\"layer\":{\"type\":\"latlon\",\"encoding\":{\"latColumn\":\"LAT\",\"lonColumn\":\"LON\"}},\"data\":{...}}"
+}
+```
+
 ## `response.status`[¶](#responsestatus)
 
 Status update for the agent execution.
@@ -1142,7 +1182,8 @@ Copy codeExpand code block
           "output_tokens": {
             "total": 75
           },
-          "context_window": 128000
+          "context_window": 128000,
+          "model_role": "orchestration"
         }
       ]
     },
@@ -1166,6 +1207,7 @@ Scroll to top
 | --- | --- | --- |
 | `response` | string | Instructions for response generation. |
 | `orchestration` | string | These custom instructions are used when the agent is planning which tools to use. |
+| `system` | string | System instructions for the agent. |
 
 Expand
 
@@ -1178,7 +1220,8 @@ Copy codeExpand code block
 ```
 {
   "response": "You will respond in a friendly but concise manner",
-  "orchestration": "For any query related to revenue we should use Analyst; For all policy questions we should use Search"
+  "orchestration": "For any query related to revenue we should use Analyst; For all policy questions we should use Search",
+  "system": "You are a friendly agent ..."
 }
 ```
 
@@ -1194,6 +1237,8 @@ Copy codeExpand code block
 > | `doc_id` | string | The unique identifier for the document. |
 > | `doc_title` | string | The title of the document. |
 > | `text` | string | The text excerpt from the document used as the citation. |
+> | `stage_path` | string | The Snowflake stage path backing the cortex search service, when the service is stage-backed. Combined with `relative_path`, resolves the citation back to the source file in the stage (`<stage_path>/<relative_path>`). Omitted for non-stage-backed services. |
+> | `relative_path` | string | Path of the cited document relative to `stage_path`. Sourced from the `RELATIVE_PATH` column returned by cortex search for stage-backed services. Omitted when the service is not stage-backed or the column is empty. |
 >
 > Expand
 >
@@ -1210,7 +1255,9 @@ Copy codeExpand code block
 >   "search_result_id": "cs_61987ff6-6d56-4695-83c0-1e7cfed818c7",
 >   "doc_id": "4ac085cb-82d0-4eb4-94f3-2672aa0599a2",
 >   "doc_title": "Earnings Report",
->   "text": "The revenue for 2025 was..."
+>   "text": "The revenue for 2025 was...",
+>   "stage_path": "@my_db.my_schema.my_stage/docs",
+>   "relative_path": "2025/earnings.pdf"
 > }
 > ```
 
@@ -1233,6 +1280,26 @@ Copy code
 {
   "seconds": 30,
   "tokens": 16000
+}
+```
+
+## `CapabilitiesConfig`[¶](#capabilitiesconfig)
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `analytical_search` | boolean | If true, enables analytical search. |
+
+Expand
+
+Show lessSee more
+
+**Example**
+
+Copy code
+
+```
+{
+  "analytical_search": true
 }
 ```
 
@@ -1402,6 +1469,28 @@ Copy code
 }
 ```
 
+## `MapContent`[¶](#mapcontent)
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `tool_use_id` | string | The ID of the tool use that generated this map |
+| `map_spec` | string | The deck.gl MapSpec v1 specification serialized as a string. This is not Vega-Lite; it is rendered by a geospatial map renderer. |
+
+Expand
+
+Show lessSee more
+
+**Example**
+
+Copy codeExpand code block
+
+```
+{
+  "tool_use_id": "toolu_123",
+  "map_spec": "{\"version\":1,\"layer\":{\"type\":\"latlon\",\"encoding\":{\"latColumn\":\"LAT\",\"lonColumn\":\"LON\"}},\"data\":{...}}"
+}
+```
+
 ## `Message`[¶](#message)
 
 Represents a single message in the conversation. Can be from the user, assistant, or a control message.
@@ -1444,7 +1533,7 @@ Scroll to top
 
 ## `MessageContentItem`[¶](#messagecontentitem)
 
-> chartpermission\_decisiontabletextthinkingtool\_resulttool\_use
+> chartcompactionmappermission\_decisiontabletextthinkingtool\_resulttool\_use
 >
 > | Field | Type | Description |
 > | --- | --- | --- |
@@ -1465,6 +1554,51 @@ Scroll to top
 >   "chart": {
 >     "tool_use_id": "toolu_123",
 >     "chart_spec": "{\"$schema\":\"https://vega.github.io/schema/vega-lite/v5.json\",\"data\":{...},\"mark\":\"bar\"}"
+>   }
+> }
+> ```
+>
+> A prior conversation summary produced by the on-demand compaction endpoint (agent:compact), carried back in by the client when continuing an agent run. When provided, it is used as prior conversation context for the continued agent run.
+>
+> | Field | Type | Description |
+> | --- | --- | --- |
+> | `type` | string | Content type identifier. |
+> | `summary` | string | The summary of the compacted conversation. Bounded to 1 MiB; requests exceeding this limit are rejected. |
+>
+> Expand
+>
+> Show lessSee more
+>
+> **Example**
+>
+> Copy code
+>
+> ```
+> {
+>   "type": "compaction",
+>   "summary": "The user asked about Q3 revenue; the agent queried the SALES table and reported $4.2M."
+> }
+> ```
+>
+> | Field | Type | Description |
+> | --- | --- | --- |
+> | `type` | string | The content type (always `map`). |
+> | `map` | [MapContent](#label-snowflake-agent-run-mapcontent) | The map. |
+>
+> Expand
+>
+> Show lessSee more
+>
+> **Example**
+>
+> Copy code
+>
+> ```
+> {
+>   "type": "map",
+>   "map": {
+>     "tool_use_id": "toolu_123",
+>     "map_spec": "{\"version\":1,\"layer\":{\"type\":\"latlon\",\"encoding\":{\"latColumn\":\"LAT\",\"lonColumn\":\"LON\"}},\"data\":{...}}"
 >   }
 > }
 > ```
@@ -1551,7 +1685,6 @@ Scroll to top
 > | --- | --- | --- |
 > | `text` | string | A text result from the agent |
 > | `annotations` | array of [Annotation](#label-snowflake-agent-run-annotation) | Any annotations attached to the text result (e.g. citations) |
-> | `is_elicitation` | boolean | Whether this text content is the agent asking for more information from the end user. |
 > | `type` | string | The content type (always `text`). |
 >
 > Expand
@@ -1572,10 +1705,11 @@ Scroll to top
 >       "search_result_id": "cs_61987ff6-6d56-4695-83c0-1e7cfed818c7",
 >       "doc_id": "4ac085cb-82d0-4eb4-94f3-2672aa0599a2",
 >       "doc_title": "Earnings Report",
->       "text": "The revenue for 2025 was..."
+>       "text": "The revenue for 2025 was...",
+>       "stage_path": "@my_db.my_schema.my_stage/docs",
+>       "relative_path": "2025/earnings.pdf"
 >     }
 >   ],
->   "is_elicitation": false,
 >   "type": "text"
 > }
 > ```
@@ -1659,7 +1793,7 @@ Scroll to top
 >     "input": {
 >       "location": "San Francisco, CA"
 >     },
->     "client_side_execute": "true",
+>     "client_side_execute": true,
 >     "permission": {
 >       "options": [
 >         "Allow Once",
@@ -1743,6 +1877,7 @@ Copy code
 | Field | Type | Description |
 | --- | --- | --- |
 | `budget` | [BudgetConfig](#label-snowflake-agent-run-budgetconfig) | Budget constraints for the agent. If more than one constraint is specified, whichever is first hit will end the request. |
+| `capabilities` | [CapabilitiesConfig](#label-snowflake-agent-run-capabilitiesconfig) | Capabilities to enable for the agent. |
 
 Expand
 
@@ -1757,6 +1892,9 @@ Copy code
   "budget": {
     "seconds": 30,
     "tokens": 16000
+  },
+  "capabilities": {
+    "analytical_search": true
   }
 }
 ```
@@ -1844,7 +1982,8 @@ Copy codeExpand code block
         "output_tokens": {
           "total": 75
         },
-        "context_window": 128000
+        "context_window": 128000,
+        "model_role": "orchestration"
       }
     ]
   },
@@ -2068,6 +2207,7 @@ Token consumption for a specific model.
 | `input_tokens` | [InputTokens](#label-snowflake-agent-run-inputtokens) |  |
 | `output_tokens` | [OutputTokens](#label-snowflake-agent-run-outputtokens) |  |
 | `context_window` | integer | The model’s context window size (in tokens). |
+| `model_role` | string | Why this model ran. `orchestration` is the model that served the request; `guardrail` is a safety scan alongside it; `side_call` supports the request without answering it. |
 
 Expand
 
@@ -2089,7 +2229,8 @@ Copy codeExpand code block
   "output_tokens": {
     "total": 75
   },
-  "context_window": 128000
+  "context_window": 128000,
+  "model_role": "orchestration"
 }
 ```
 
@@ -2466,7 +2607,7 @@ Copy codeExpand code block
   "input": {
     "location": "San Francisco, CA"
   },
-  "client_side_execute": "true",
+  "client_side_execute": true,
   "permission": {
     "options": [
       "Allow Once",
@@ -2486,7 +2627,7 @@ Permission metadata for a tool use. A non-empty options list means the client mu
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `options` | array of string | The complete set of valid options the user may choose from, including “Deny” to deny permission. |
+| `options` | array of string | The complete set of valid options the user may choose from, including “Deny” to deny permission. Superseded by grant\_options, which carries the same choices plus the grant each one would remember. |
 
 Expand
 
@@ -2535,7 +2676,8 @@ Copy codeExpand code block
       "output_tokens": {
         "total": 75
       },
-      "context_window": 128000
+      "context_window": 128000,
+      "model_role": "orchestration"
     }
   ]
 }
@@ -2693,53 +2835,56 @@ On this page
 18. [response.tool\_result.analyst.delta](#responsetool_resultanalystdelta)
 19. [response.table](#responsetable)
 20. [response.chart](#responsechart)
-21. [response.status](#responsestatus)
-22. [response.warning](#responsewarning)
-23. [error](#error)
-24. [metadata](#metadata)
-25. [Stream Agent Run](#stream-agent-run)
-26. [Path parameters](#path-parameters)
-27. [Query parameters](#query-parameters)
-28. [Response](#response)
-29. [Cancel Agent Run](#cancel-agent-run)
-30. [Path parameters](#path-parameters)
-31. [Response](#response)
-32. [Schemas](#schemas)
-33. [AgentInstructions](#agentinstructions)
-34. [Annotation](#annotation)
-35. [BudgetConfig](#budgetconfig)
-36. [ChartContent](#chartcontent)
-37. [CortexAnalystSuggestionDelta](#cortexanalystsuggestiondelta)
-38. [CortexAnalystToolResultDelta](#cortexanalysttoolresultdelta)
-39. [ExecutionEnvironment](#executionenvironment)
-40. [InputTokens](#inputtokens)
-41. [Message](#message)
-42. [MessageContentItem](#messagecontentitem)
-43. [MessageError](#messageerror)
-44. [Metadata](#metadata)
-45. [ModelConfig](#modelconfig)
-46. [OrchestrationConfig](#orchestrationconfig)
-47. [OutputTokens](#outputtokens)
-48. [PermissionDecision](#permissiondecision)
-49. [ResponseMetadata](#responsemetadata)
-50. [ResultSet](#resultset)
-51. [ResultSetMetaData](#resultsetmetadata)
-52. [RowType](#rowtype)
-53. [TableContent](#tablecontent)
-54. [ThinkingContent](#thinkingcontent)
-55. [TokensConsumed](#tokensconsumed)
-56. [Tool](#tool)
-57. [ToolChoice](#toolchoice)
-58. [ToolInputSchema](#toolinputschema)
-59. [ToolResource](#toolresource)
-60. [ToolResult](#toolresult)
-61. [ToolResultContent](#toolresultcontent)
-62. [ToolSpec](#toolspec)
-63. [ToolUse](#tooluse)
-64. [ToolUsePermission](#toolusepermission)
-65. [UsageMetadata](#usagemetadata)
-66. [Warning](#warning)
-67. [Non-streaming response (stream: false)](#non-streaming-response-stream-false)
+21. [response.map](#responsemap)
+22. [response.status](#responsestatus)
+23. [response.warning](#responsewarning)
+24. [error](#error)
+25. [metadata](#metadata)
+26. [Stream Agent Run](#stream-agent-run)
+27. [Path parameters](#path-parameters)
+28. [Query parameters](#query-parameters)
+29. [Response](#response)
+30. [Cancel Agent Run](#cancel-agent-run)
+31. [Path parameters](#path-parameters)
+32. [Response](#response)
+33. [Schemas](#schemas)
+34. [AgentInstructions](#agentinstructions)
+35. [Annotation](#annotation)
+36. [BudgetConfig](#budgetconfig)
+37. [CapabilitiesConfig](#capabilitiesconfig)
+38. [ChartContent](#chartcontent)
+39. [CortexAnalystSuggestionDelta](#cortexanalystsuggestiondelta)
+40. [CortexAnalystToolResultDelta](#cortexanalysttoolresultdelta)
+41. [ExecutionEnvironment](#executionenvironment)
+42. [InputTokens](#inputtokens)
+43. [MapContent](#mapcontent)
+44. [Message](#message)
+45. [MessageContentItem](#messagecontentitem)
+46. [MessageError](#messageerror)
+47. [Metadata](#metadata)
+48. [ModelConfig](#modelconfig)
+49. [OrchestrationConfig](#orchestrationconfig)
+50. [OutputTokens](#outputtokens)
+51. [PermissionDecision](#permissiondecision)
+52. [ResponseMetadata](#responsemetadata)
+53. [ResultSet](#resultset)
+54. [ResultSetMetaData](#resultsetmetadata)
+55. [RowType](#rowtype)
+56. [TableContent](#tablecontent)
+57. [ThinkingContent](#thinkingcontent)
+58. [TokensConsumed](#tokensconsumed)
+59. [Tool](#tool)
+60. [ToolChoice](#toolchoice)
+61. [ToolInputSchema](#toolinputschema)
+62. [ToolResource](#toolresource)
+63. [ToolResult](#toolresult)
+64. [ToolResultContent](#toolresultcontent)
+65. [ToolSpec](#toolspec)
+66. [ToolUse](#tooluse)
+67. [ToolUsePermission](#toolusepermission)
+68. [UsageMetadata](#usagemetadata)
+69. [Warning](#warning)
+70. [Non-streaming response (stream: false)](#non-streaming-response-stream-false)
 
 Related content
 

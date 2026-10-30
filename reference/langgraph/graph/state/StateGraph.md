@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[graph](/python/langgraph/graph)[state](/python/langgraph/graph/state)StateGraph
 
-Classv1.2.14 (latest)●Since v0.1
+Classv1.2.18 (latest)●Since v1.2
 
 # StateGraph
 
@@ -202,7 +202,7 @@ Compiles the `StateGraph` into a `CompiledStateGraph` object.
 The compiled graph implements the `Runnable` interface and can be invoked,
 streamed, batched, and run asynchronously.](/python/langgraph/graph/state/StateGraph/compile)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/70dd64065bffaa3b6ab61a33f1f020fb54db8efa/libs/langgraph/langgraph/graph/state.py#L131)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/graph/state.py#L131)
 
 Version History
 

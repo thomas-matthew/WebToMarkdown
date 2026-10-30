@@ -16,6 +16,7 @@
       - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
       - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
       - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
+      - [About Workday Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-datacloud "About Workday Data Cloud and Snowflake")
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
@@ -23,6 +24,7 @@
     - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
     - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
     - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
+    - [Pipeline Builder](/en/user-guide/pipeline-builder/pipeline-builder-overview "Pipeline Builder")
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
@@ -33,6 +35,7 @@
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
     * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
+    * [Snowflake Artifacts](/en/user-guide/snowflake-artifacts "Snowflake Artifacts")
     * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
@@ -54,7 +57,6 @@
       + [Share Cortex agents](/en/user-guide/snowflake-cortex/cortex-agents-sharing "Share Cortex agents")
       + [Temporary agents](/en/user-guide/snowflake-cortex/cortex-agents-temporary "Temporary agents")
       + [Secure agents](/en/user-guide/snowflake-cortex/cortex-agents-secure "Secure agents")
-      + [Tutorials](/en/user-guide/snowflake-cortex/cortex-agents-tutorials "Tutorials")
       + [Resource budgets](/en/user-guide/snowflake-cortex/cortex-agents-resource-budgets "Resource budgets")
       + [Shared resource budgets](/en/user-guide/snowflake-cortex/cortex-agents-shared-budgets "Shared resource budgets")
       + [Agent skills](/en/user-guide/snowflake-cortex/cortex-agents-skills "Agent skills")
@@ -64,6 +66,7 @@
       + [MCP Connectors](/en/user-guide/snowflake-cortex/cortex-agents-mcp-connectors "MCP Connectors")
       + [Agent versioning](/en/user-guide/snowflake-cortex/cortex-agents-versioning "Agent versioning")
       + [Multi-tenancy](/en/user-guide/snowflake-cortex/cortex-agents-multi-tenancy "Multi-tenancy")
+    * [Cortex Agent SDK](/en/user-guide/snowflake-cortex/cortex-agent-sdk/cortex-agent-sdk "Cortex Agent SDK")
     * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
     * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
@@ -74,7 +77,7 @@
     * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
     * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
-    * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
+    * [ML Development and ML Ops](/en/developer-guide/snowpark-ml/overview "ML Development and ML Ops")
     * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
 20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
 22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
@@ -153,37 +156,7 @@ Show lessSee more
 
 When creating an agent, we recommend selecting **auto** for the model. With this option, Cortex automatically selects the highest-quality model for your account, and quality improves as new models become available.
 
-Cortex Agents supports the following models. These models run through [cross-region inference](/user-guide/snowflake-cortex/cross-region-inference), so availability is shown by cross-region routing scope (the value of the `CORTEX_ENABLED_CROSS_REGION` account parameter), not by individual region. A model is available to your account when your routing scope is marked for that model. Columns match the scopes listed in [Regional availability](/user-guide/snowflake-cortex/aisql-regional-availability#label-cortex-llm-availability) and [Model availability](/user-guide/snowflake-cortex/cortex-rest-api#label-cortex-complete-llm-model-availability).
-
-| Provider | Model | Status | Cross Cloud (Any Region) | AWS Global (Cross-Region) | AWS US (Cross-Region) | AWS US Commercial Gov (Cross-Region) | AWS US FedRAMP High Plus (Cross-Region) | AWS US DoD (Cross-Region) | AWS EU (Cross-Region) | AWS APJ (Cross-Region) | AWS AU (Cross-Region) | Azure Global (Cross-Region) | Azure US (Cross-Region) | Azure US FedRAMP High Plus (Cross-Region) | Azure EU (Cross-Region) | Google Cloud US (Cross-Region) |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Anthropic | `claude-opus-5` | GA | ✔ | ✔ | ✔ |  |  |  | ✔ | ✔ | ✔ |  |  |  |  |  |
-| Anthropic | `claude-opus-4-8` | GA | ✔ | ✔ | ✔ |  |  |  | ✔ | ✔ | ✔ |  |  |  |  |  |
-| Anthropic | `claude-opus-4-7` | GA | ✔ | ✔ | ✔ |  |  |  | ✔ | ✔ | ✔ |  |  |  |  |  |
-| Anthropic | `claude-opus-4-6` | GA | ✔ | ✔ | ✔ |  |  |  | ✔ | ✔ | ✔ |  |  |  |  |  |
-| Anthropic | `claude-opus-4-5` | GA | ✔ | ✔ | ✔ |  |  |  | ✔ |  |  |  |  |  |  |  |
-| Anthropic | `claude-sonnet-5` | GA | ✔ | ✔ | ✔ |  |  |  | ✔ | ✔ | ✔ |  |  |  |  |  |
-| Anthropic | `claude-sonnet-4-6` | GA | ✔ | ✔ | ✔ | ✔ |  |  | ✔ | ✔ | ✔ |  |  |  |  |  |
-| Anthropic | `claude-sonnet-4-5` | GA | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |  |  | ✔ |  |  |
-| Anthropic | `claude-4-sonnet` (legacy) | GA | ✔ | ✔ | ✔ | ✔ |  |  | ✔ | ✔ |  |  |  |  |  |  |
-| Anthropic | `claude-haiku-4-5` | GA | ✔ | ✔ | ✔ | ✔ |  |  | ✔ | ✔ | ✔ |  |  |  |  |  |
-| OpenAI | `openai-gpt-5.4` | GA | ✔ |  |  |  |  |  |  |  |  | ✔ | ✔ |  | ✔ |  |
-| OpenAI | `openai-gpt-5.2` | GA | ✔ |  |  |  |  |  |  |  |  | ✔ | ✔ |  |  |  |
-| OpenAI | `openai-gpt-5.1` | GA | ✔ |  |  |  |  |  |  |  |  | ✔ | ✔ |  | ✔ |  |
-| OpenAI | `openai-gpt-5` | GA | ✔ |  |  |  |  |  |  |  |  | ✔ | ✔ |  | ✔ |  |
-| OpenAI | `openai-gpt-5-mini` | GA | ✔ |  |  |  |  |  |  |  |  | ✔ | ✔ |  |  |  |
-| OpenAI | `openai-gpt-4.1` (legacy) | GA | ✔ |  |  |  |  |  |  |  |  | ✔ | ✔ |  |  |  |
-| Google | `gemini-3.1-pro` | Public preview | ✔ |  |  |  |  |  |  |  |  |  |  |  |  | ✔ |
-| Google | `gemini-3.5-flash` | GA | ✔ |  |  |  |  |  |  |  |  |  |  |  |  | ✔ |
-
-Expand
-
-Show lessSee more
-
-Public preview models aren’t intended for production workloads. After a model’s legacy date, only
-accounts that already used the model can continue to call it until end-of-life; accounts that had
-not used it can’t start. Run [SHOW CORTEX BASE MODELS](/sql-reference/sql/show-cortex-base-models)
-to see legacy and end-of-life dates, and switch to a newer model before then.
+For the models Cortex Agents supports, their release stages, and the regions they run in, see [Model availability](/user-guide/snowflake-cortex/model-availability#label-cortex-model-availability-by-product).
 
 ## How it works[¶](#how-it-works)
 
@@ -234,7 +207,7 @@ For how to add and configure each tool, see [Create and manage agents](/user-gui
 
 ## Access control and authentication[¶](#access-control-and-authentication)
 
-Calling an agent requires the SNOWFLAKE.CORTEX\_USER or SNOWFLAKE.CORTEX\_AGENT\_USER database role, privileges on the agent object, and privileges on the objects used by the agent’s tools. If the user’s role is missing privileges on a tool, the request is rejected with a 4XX error. Cortex Agents determines session permissions from the querying user’s default role. Requests to the Cortex Agents API must include an authorization token.
+Calling an agent requires the `SNOWFLAKE.CORTEX_USER` or `SNOWFLAKE.CORTEX_AGENT_USER` database role, privileges on the agent object, and privileges on the objects used by the agent’s tools. Cortex Agents determines permissions from the Snowflake context of the request, and tools use the warehouses configured in the agent specification.
 
 For the full requirements, including role setup, privilege tables, and authentication methods, see [Access control and authentication](/user-guide/snowflake-cortex/cortex-agents-setup).
 

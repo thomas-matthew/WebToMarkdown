@@ -76,7 +76,10 @@ messages when a threshold is reached, preserving rec](/python/langchain/agents/m
 
 ### HumanInTheLoopMiddleware
 
-Human in the loop middleware.](/python/langchain/agents/middleware/human_in_the_loop/HumanInTheLoopMiddleware)[Class
+Pause the agent so a person can review tool calls before they run.
+
+Each tool in `interrupt_on` needs a decision before it runs: approve, edit, reject,
+or respond. The pause is a LangGraph `interrupt`](/python/langchain/agents/middleware/human_in_the_loop/HumanInTheLoopMiddleware)[Class
 
 ### ModelCallLimitMiddleware
 

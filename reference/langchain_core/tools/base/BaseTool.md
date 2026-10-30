@@ -1,6 +1,6 @@
 Python[langchain-core](/python/langchain-core)[tools](/python/langchain-core/tools)[base](/python/langchain-core/tools/base)BaseTool
 
-Classv1.6.7 (latest)●Since v0.2
+Classv1.7.1 (latest)●Since v1.7
 
 # BaseTool
 
@@ -376,7 +376,7 @@ Add fallbacks to a `Runnable`, returning a new `Runnable`.](/python/langchain-co
 
 Create a `BaseTool` from a `Runnable`.](/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/f40f58d50499700f98051be6bb610bee5dd11cc2/libs/core/langchain_core/tools/base.py#L433)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6419339aa163a49f32d9b80ff20d6adc3b446d49/libs/core/langchain_core/tools/base.py#L433)
 
 Version History
 

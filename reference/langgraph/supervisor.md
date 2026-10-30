@@ -415,6 +415,10 @@ Copy
 
 [Function
 
+### create\_supervisor
+
+Create a multi-agent supervisor.](/python/langgraph-supervisor/supervisor/create_supervisor)[Function
+
 ### create\_handoff\_tool
 
 Create a tool that can handoff control to the requested agent.](/python/langgraph-supervisor/handoff/create_handoff_tool)[Function
@@ -455,11 +459,7 @@ Examples:
 
 Attach formatted agent names to the messages passed to and from a language model.
 
-This is useful for making a message history with multiple agents more coherent.](/python/langgraph-supervisor/agent_name/with_agent_name)[Function
-
-### create\_supervisor
-
-Create a multi-agent supervisor.](/python/langgraph-supervisor/supervisor/create_supervisor)
+This is useful for making a message history with multiple agents more coherent.](/python/langgraph-supervisor/agent_name/with_agent_name)
 
 ## Modules
 
@@ -467,11 +467,11 @@ Create a multi-agent supervisor.](/python/langgraph-supervisor/supervisor/create
 
 ### langgraph\_supervisor](/python/langgraph-supervisor/langgraph_supervisor)[Module
 
+### supervisor](/python/langgraph-supervisor/supervisor)[Module
+
 ### handoff](/python/langgraph-supervisor/handoff)[Module
 
-### agent\_name](/python/langgraph-supervisor/agent_name)[Module
-
-### supervisor](/python/langgraph-supervisor/supervisor)
+### agent\_name](/python/langgraph-supervisor/agent_name)
 
 Copy page
 

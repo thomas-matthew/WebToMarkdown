@@ -16,6 +16,7 @@
       - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
       - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
       - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
+      - [About Workday Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-datacloud "About Workday Data Cloud and Snowflake")
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
@@ -23,6 +24,7 @@
     - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
     - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
     - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
+    - [Pipeline Builder](/en/user-guide/pipeline-builder/pipeline-builder-overview "Pipeline Builder")
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
@@ -33,9 +35,11 @@
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
     * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
+    * [Snowflake Artifacts](/en/user-guide/snowflake-artifacts "Snowflake Artifacts")
     * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
+    * [Cortex Agent SDK](/en/user-guide/snowflake-cortex/cortex-agent-sdk/cortex-agent-sdk "Cortex Agent SDK")
     * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
     * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
@@ -47,6 +51,7 @@
       + [Customize Cortex Search Scoring](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-customize-scoring "Customize Cortex Search Scoring")
       + [Understanding cost](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-costs "Understanding cost")
       + [Batch Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/batch-cortex-search "Batch Cortex Search")
+      + [Retrieve Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-retrieve "Retrieve Cortex Search")
       + [Monitor Cortex Search requests](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-monitor "Monitor Cortex Search requests")
       + [Resource budgets](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-resource-budgets "Resource budgets")
       + [Tutorials](/en/user-guide/snowflake-cortex/cortex-search/overview-tutorials "Tutorials")
@@ -56,7 +61,7 @@
     * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
     * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
-    * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
+    * [ML Development and ML Ops](/en/developer-guide/snowpark-ml/overview "ML Development and ML Ops")
     * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
 20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
 22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
@@ -78,7 +83,7 @@ Get started with Cortex Search
 
 Cortex Search enables low-latency, high-quality “fuzzy” search over your Snowflake data.
 It powers a broad array of search experiences for Snowflake users
-including [Retrieval Augmented Generation (RAG)](https://en.wikipedia.org/wiki/Prompt_engineering#Retrieval-augmented_generation)
+including [Retrieval Augmented Generation (RAG)](https://www.snowflake.com/en/fundamentals/rag/)
 applications leveraging Large Language Models (LLMs).
 
 Cortex Search gets you up and running with a hybrid (vector and keyword) search engine on your text data in minutes, without having to

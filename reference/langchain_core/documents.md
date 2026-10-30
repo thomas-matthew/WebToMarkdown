@@ -36,14 +36,6 @@ For multimodal content in \*\*ch](/python/langchain-core/documents/base/BaseMedi
 
 [Module
 
-### transformers
-
-Document transformers.](/python/langchain-core/documents/transformers)[Module
-
-### compressor
-
-Document compressor.](/python/langchain-core/documents/compressor)[Module
-
 ### base
 
 Base classes for media and documents.
@@ -51,7 +43,15 @@ Base classes for media and documents.
 This module contains core abstractions for **data retrieval and processing workflows**:
 
 * `BaseMedia`: Base class providing `id` and `metadata` fields
-* `Blob`:](/python/langchain-core/documents/base)
+* `Blob`:](/python/langchain-core/documents/base)[Module
+
+### transformers
+
+Document transformers.](/python/langchain-core/documents/transformers)[Module
+
+### compressor
+
+Document compressor.](/python/langchain-core/documents/compressor)
 
 Copy page
 

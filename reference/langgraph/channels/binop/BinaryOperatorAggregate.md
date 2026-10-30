@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[channels](/python/langgraph/channels)[binop](/python/langgraph/channels/binop)BinaryOperatorAggregate
 
-Classv1.2.14 (latest)●Since v0.1
+Classv1.2.18 (latest)●Since v1.2
 
 # BinaryOperatorAggregate
 
@@ -95,7 +95,7 @@ Notify the channel that a subscribed task ran.](/python/langgraph/channels/base/
 
 Notify the channel that the Pregel run is finishing.](/python/langgraph/channels/base/BaseChannel/finish)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/70dd64065bffaa3b6ab61a33f1f020fb54db8efa/libs/langgraph/langgraph/channels/binop.py#L65)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/channels/binop.py#L66)
 
 Version History
 

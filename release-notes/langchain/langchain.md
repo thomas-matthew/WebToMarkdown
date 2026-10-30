@@ -3,6 +3,31 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.4.7 — 2026-10-21
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.7)
+
+- feat(core,langchain,standard-tests): read `tool-call-delta` in stream consumers (#41246)
+- feat(core): accept address inside LangChainTracer (#41006)
+
+## 1.4.6 — 2026-10-14
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.6)
+
+- feat(langchain): add opt-in per-call interrupts to HITL middleware (#41062)
+
+## 1.4.5 — 2026-10-12
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.5)
+
+- feat(langchain): accept `summarizer` in `SummarizationMiddleware` (#41225)
+
+## 1.4.4 — 2026-10-08
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.4)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 1.4.3 — 2026-09-28
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.3)

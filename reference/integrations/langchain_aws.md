@@ -32,6 +32,117 @@ Representation of a callable function to the OpenAI API.](/python/langchain-aws/
 
 ### ToolsOutputParser](/python/langchain-aws/function_calling/ToolsOutputParser)[Class
 
+### InMemoryVectorStore
+
+InMemoryVectorStore vector database.
+
+To use, you should have the `redis` python package installed
+for AWS MemoryDB
+
+.. code-block:: bash
+
+Once running, you can connect to the MemoryDB server with](/python/langchain-aws/vectorstores/inmemorydb/base/InMemoryVectorStore)[Class
+
+### InMemoryVectorStoreRetriever
+
+Retriever for InMemoryVectorStore.](/python/langchain-aws/vectorstores/inmemorydb/base/InMemoryVectorStoreRetriever)[Class
+
+### InMemorySemanticCache
+
+Cache that uses MemoryDB as a vector-store backend.](/python/langchain-aws/vectorstores/inmemorydb/cache/InMemorySemanticCache)[Class
+
+### InMemoryDBFilterOperator
+
+InMemoryDBFilterOperator enumerator is used to create
+InMemoryDBFilterExpressions](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBFilterOperator)[Class
+
+### InMemoryDBFilter
+
+Collection of InMemoryDBFilterFields.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBFilter)[Class
+
+### InMemoryDBFilterField
+
+Base class for InMemoryDBFilterFields.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBFilterField)[Class
+
+### InMemoryDBTag
+
+InMemoryDBFilterField representing a tag in a InMemoryDB index.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBTag)[Class
+
+### InMemoryDBNum
+
+InMemoryDBFilterField representing a numeric field in a InMemoryDB index.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBNum)[Class
+
+### InMemoryDBText
+
+InMemoryDBFilterField representing a text field in a InMemoryDB index.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBText)[Class
+
+### InMemoryDBFilterExpression
+
+Logical expression of InMemoryDBFilterFields.
+
+InMemoryDBFilterExpressions can be combined using the & and | operators to create
+complex logical expressions that evaluate to the InMemoryDB Query langu](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBFilterExpression)[Class
+
+### InMemoryDBDistanceMetric
+
+Distance metrics for Redis vector fields.](/python/langchain-aws/vectorstores/inmemorydb/schema/InMemoryDBDistanceMetric)[Class
+
+### InMemoryDBField
+
+Base class for Redis fields.](/python/langchain-aws/vectorstores/inmemorydb/schema/InMemoryDBField)[Class
+
+### TextFieldSchema
+
+Schema for text fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/TextFieldSchema)[Class
+
+### TagFieldSchema
+
+Schema for tag fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/TagFieldSchema)[Class
+
+### NumericFieldSchema
+
+Schema for numeric fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/NumericFieldSchema)[Class
+
+### InMemoryDBVectorField
+
+Base class for Redis vector fields.](/python/langchain-aws/vectorstores/inmemorydb/schema/InMemoryDBVectorField)[Class
+
+### FlatVectorField
+
+Schema for flat vector fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/FlatVectorField)[Class
+
+### HNSWVectorField
+
+Schema for HNSW vector fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/HNSWVectorField)[Class
+
+### InMemoryDBModel
+
+Schema for MemoryDB index.](/python/langchain-aws/vectorstores/inmemorydb/schema/InMemoryDBModel)[Class
+
+### BedrockAgentsRunnable
+
+Invoke a Bedrock Agent](/python/langchain-aws/agents/base/BedrockAgentsRunnable)[Class
+
+### BedrockInlineAgentsRunnable
+
+Invoke Bedrock Inline Agent as a Runnable.](/python/langchain-aws/agents/base/BedrockInlineAgentsRunnable)[Class
+
+### BedrockAgentFinish
+
+AgentFinish with session id information.](/python/langchain-aws/agents/types/BedrockAgentFinish)[Class
+
+### BedrockAgentAction
+
+AgentAction with session id information.](/python/langchain-aws/agents/types/BedrockAgentAction)[Class
+
+### GuardrailConfiguration](/python/langchain-aws/agents/types/GuardrailConfiguration)[Class
+
+### KnowledgebaseConfiguration](/python/langchain-aws/agents/types/KnowledgebaseConfiguration)[Class
+
+### InlineAgentConfiguration
+
+Configurations for an Inline Agent.](/python/langchain-aws/agents/types/InlineAgentConfiguration)[Class
+
 ### BedrockEmbeddings
 
 Bedrock embedding models.
@@ -47,6 +158,22 @@ Amazon Q Runnable wrapper.
 To authenticate, the AWS client uses the following methods to
 automatically load credentials:
 https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html](/python/langchain-aws/runnables/q_business/AmazonQ)[Class
+
+### ChatPromptAdapter
+
+Adapter class to prepare the inputs from Langchain to prompt format
+that Chat model expects.](/python/langchain-aws/chat_models/bedrock/ChatPromptAdapter)[Class
+
+### ChatBedrock
+
+A chat model that uses the Bedrock API.](/python/langchain-aws/chat_models/bedrock/ChatBedrock)[Class
+
+### ChatBedrockConverse
+
+Bedrock chat model integration built on the Bedrock converse API.
+
+This implementation will eventually replace the existing ChatBedrock implementation
+once the Bedrock converse API has feature parity](/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse)[Class
 
 ### SearchFilter
 
@@ -118,120 +245,27 @@ Retrieve API result item.](/python/langchain-aws/retrievers/kendra/RetrieveResul
 
 `Amazon Kendra Index` retriever.](/python/langchain-aws/retrievers/kendra/AmazonKendraRetriever)[Class
 
-### InMemoryDBDistanceMetric
+### NeptuneRdfGraph
 
-Distance metrics for Redis vector fields.](/python/langchain-aws/vectorstores/inmemorydb/schema/InMemoryDBDistanceMetric)[Class
+Neptune wrapper for RDF graph operations.](/python/langchain-aws/graphs/neptune_rdf_graph/NeptuneRdfGraph)[Class
 
-### InMemoryDBField
+### NeptuneQueryException
 
-Base class for Redis fields.](/python/langchain-aws/vectorstores/inmemorydb/schema/InMemoryDBField)[Class
+Exception for the Neptune queries.](/python/langchain-aws/graphs/neptune_graph/NeptuneQueryException)[Class
 
-### TextFieldSchema
+### BaseNeptuneGraph](/python/langchain-aws/graphs/neptune_graph/BaseNeptuneGraph)[Class
 
-Schema for text fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/TextFieldSchema)[Class
+### NeptuneAnalyticsGraph
 
-### TagFieldSchema
+Neptune Analytics wrapper for graph operations.](/python/langchain-aws/graphs/neptune_graph/NeptuneAnalyticsGraph)[Class
 
-Schema for tag fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/TagFieldSchema)[Class
+### NeptuneGraph
 
-### NumericFieldSchema
-
-Schema for numeric fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/NumericFieldSchema)[Class
-
-### InMemoryDBVectorField
-
-Base class for Redis vector fields.](/python/langchain-aws/vectorstores/inmemorydb/schema/InMemoryDBVectorField)[Class
-
-### FlatVectorField
-
-Schema for flat vector fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/FlatVectorField)[Class
-
-### HNSWVectorField
-
-Schema for HNSW vector fields in Redis.](/python/langchain-aws/vectorstores/inmemorydb/schema/HNSWVectorField)[Class
-
-### InMemoryDBModel
-
-Schema for MemoryDB index.](/python/langchain-aws/vectorstores/inmemorydb/schema/InMemoryDBModel)[Class
-
-### InMemoryDBFilterOperator
-
-InMemoryDBFilterOperator enumerator is used to create
-InMemoryDBFilterExpressions](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBFilterOperator)[Class
-
-### InMemoryDBFilter
-
-Collection of InMemoryDBFilterFields.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBFilter)[Class
-
-### InMemoryDBFilterField
-
-Base class for InMemoryDBFilterFields.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBFilterField)[Class
-
-### InMemoryDBTag
-
-InMemoryDBFilterField representing a tag in a InMemoryDB index.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBTag)[Class
-
-### InMemoryDBNum
-
-InMemoryDBFilterField representing a numeric field in a InMemoryDB index.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBNum)[Class
-
-### InMemoryDBText
-
-InMemoryDBFilterField representing a text field in a InMemoryDB index.](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBText)[Class
-
-### InMemoryDBFilterExpression
-
-Logical expression of InMemoryDBFilterFields.
-
-InMemoryDBFilterExpressions can be combined using the & and | operators to create
-complex logical expressions that evaluate to the InMemoryDB Query langu](/python/langchain-aws/vectorstores/inmemorydb/filters/InMemoryDBFilterExpression)[Class
-
-### InMemoryVectorStore
-
-InMemoryVectorStore vector database.
-
-To use, you should have the `redis` python package installed
-for AWS MemoryDB
-
-.. code-block:: bash
-
-Once running, you can connect to the MemoryDB server with](/python/langchain-aws/vectorstores/inmemorydb/base/InMemoryVectorStore)[Class
-
-### InMemoryVectorStoreRetriever
-
-Retriever for InMemoryVectorStore.](/python/langchain-aws/vectorstores/inmemorydb/base/InMemoryVectorStoreRetriever)[Class
-
-### InMemorySemanticCache
-
-Cache that uses MemoryDB as a vector-store backend.](/python/langchain-aws/vectorstores/inmemorydb/cache/InMemorySemanticCache)[Class
+Neptune wrapper for graph operations.](/python/langchain-aws/graphs/neptune_graph/NeptuneGraph)[Class
 
 ### BedrockRerank
 
 Document compressor that uses AWS Bedrock Rerank API.](/python/langchain-aws/document_compressors/rerank/BedrockRerank)[Class
-
-### BedrockAgentFinish
-
-AgentFinish with session id information.](/python/langchain-aws/agents/types/BedrockAgentFinish)[Class
-
-### BedrockAgentAction
-
-AgentAction with session id information.](/python/langchain-aws/agents/types/BedrockAgentAction)[Class
-
-### GuardrailConfiguration](/python/langchain-aws/agents/types/GuardrailConfiguration)[Class
-
-### KnowledgebaseConfiguration](/python/langchain-aws/agents/types/KnowledgebaseConfiguration)[Class
-
-### InlineAgentConfiguration
-
-Configurations for an Inline Agent.](/python/langchain-aws/agents/types/InlineAgentConfiguration)[Class
-
-### BedrockAgentsRunnable
-
-Invoke a Bedrock Agent](/python/langchain-aws/agents/base/BedrockAgentsRunnable)[Class
-
-### BedrockInlineAgentsRunnable
-
-Invoke Bedrock Inline Agent as a Runnable.](/python/langchain-aws/agents/base/BedrockInlineAgentsRunnable)[Class
 
 ### AnthropicTool](/python/langchain-aws/llms/bedrock/AnthropicTool)[Class
 
@@ -291,41 +325,7 @@ Sagemaker Inference Endpoint models.
 To use, you must supply the endpoint name from your deployed
 Sagemaker model & the region where it is deployed.
 
-To authenticate, the AWS client uses the followin](/python/langchain-aws/llms/sagemaker_endpoint/SagemakerEndpoint)[Class
-
-### NeptuneRdfGraph
-
-Neptune wrapper for RDF graph operations.](/python/langchain-aws/graphs/neptune_rdf_graph/NeptuneRdfGraph)[Class
-
-### NeptuneQueryException
-
-Exception for the Neptune queries.](/python/langchain-aws/graphs/neptune_graph/NeptuneQueryException)[Class
-
-### BaseNeptuneGraph](/python/langchain-aws/graphs/neptune_graph/BaseNeptuneGraph)[Class
-
-### NeptuneAnalyticsGraph
-
-Neptune Analytics wrapper for graph operations.](/python/langchain-aws/graphs/neptune_graph/NeptuneAnalyticsGraph)[Class
-
-### NeptuneGraph
-
-Neptune wrapper for graph operations.](/python/langchain-aws/graphs/neptune_graph/NeptuneGraph)[Class
-
-### ChatPromptAdapter
-
-Adapter class to prepare the inputs from Langchain to prompt format
-that Chat model expects.](/python/langchain-aws/chat_models/bedrock/ChatPromptAdapter)[Class
-
-### ChatBedrock
-
-A chat model that uses the Bedrock API.](/python/langchain-aws/chat_models/bedrock/ChatBedrock)[Class
-
-### ChatBedrockConverse
-
-Bedrock chat model integration built on the Bedrock converse API.
-
-This implementation will eventually replace the existing ChatBedrock implementation
-once the Bedrock converse API has feature parity](/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse)
+To authenticate, the AWS client uses the followin](/python/langchain-aws/llms/sagemaker_endpoint/SagemakerEndpoint)
 
 ## Functions
 
@@ -356,6 +356,29 @@ Check if the thinking parameter is enabled in the request.](/python/langchain-aw
 ### get\_system\_message](/python/langchain-aws/function_calling/get_system_message)[Function
 
 ### convert\_to\_anthropic\_tool](/python/langchain-aws/function_calling/convert_to_anthropic_tool)[Function
+
+### check\_index\_exists
+
+Check if MemoryDB index exists.](/python/langchain-aws/vectorstores/inmemorydb/base/check_index_exists)[Function
+
+### check\_operator\_misuse
+
+Decorator to check for misuse of equality operators.](/python/langchain-aws/vectorstores/inmemorydb/filters/check_operator_misuse)[Function
+
+### read\_schema
+
+Read in the index schema from a dict or yaml file.
+
+Check if it is a dict and return RedisModel otherwise, check if it's a path and
+read in the file assuming it's a yaml file and return a RedisModel](/python/langchain-aws/vectorstores/inmemorydb/schema/read_schema)[Function
+
+### get\_boto\_session
+
+Construct the boto3 session](/python/langchain-aws/agents/utils/get_boto_session)[Function
+
+### parse\_agent\_response
+
+Parses the raw response from Bedrock Agent](/python/langchain-aws/agents/utils/parse_agent_response)[Function
 
 ### trim\_query
 
@@ -397,43 +420,6 @@ by generating SPARQL statements.
 *Security note*: Make sure that the database connection uses credentials
 that are narrowly-scoped to only inc](/python/langchain-aws/chains/graph_qa/neptune_sparql/create_neptune_sparql_qa_chain)[Function
 
-### clean\_excerpt
-
-Clean an excerpt from Kendra.](/python/langchain-aws/retrievers/kendra/clean_excerpt)[Function
-
-### combined\_text
-
-Combine a ResultItem title and excerpt into a single string.](/python/langchain-aws/retrievers/kendra/combined_text)[Function
-
-### read\_schema
-
-Read in the index schema from a dict or yaml file.
-
-Check if it is a dict and return RedisModel otherwise, check if it's a path and
-read in the file assuming it's a yaml file and return a RedisModel](/python/langchain-aws/vectorstores/inmemorydb/schema/read_schema)[Function
-
-### check\_operator\_misuse
-
-Decorator to check for misuse of equality operators.](/python/langchain-aws/vectorstores/inmemorydb/filters/check_operator_misuse)[Function
-
-### check\_index\_exists
-
-Check if MemoryDB index exists.](/python/langchain-aws/vectorstores/inmemorydb/base/check_index_exists)[Function
-
-### get\_boto\_session
-
-Construct the boto3 session](/python/langchain-aws/agents/utils/get_boto_session)[Function
-
-### parse\_agent\_response
-
-Parses the raw response from Bedrock Agent](/python/langchain-aws/agents/utils/parse_agent_response)[Function
-
-### extract\_tool\_calls](/python/langchain-aws/llms/bedrock/extract_tool_calls)[Function
-
-### enforce\_stop\_tokens
-
-Cut off the text as soon as any stop words occur.](/python/langchain-aws/llms/sagemaker_endpoint/enforce_stop_tokens)[Function
-
 ### convert\_messages\_to\_prompt\_llama
 
 Convert a list of messages to a prompt for llama.](/python/langchain-aws/chat_models/bedrock/convert_messages_to_prompt_llama)[Function
@@ -455,7 +441,21 @@ Convert a list of messages to a prompt for mistral.](/python/langchain-aws/chat_
 
 ### convert\_messages\_to\_prompt\_deepseek
 
-Convert a list of messages to a prompt for DeepSeek-R1.](/python/langchain-aws/chat_models/bedrock/convert_messages_to_prompt_deepseek)
+Convert a list of messages to a prompt for DeepSeek-R1.](/python/langchain-aws/chat_models/bedrock/convert_messages_to_prompt_deepseek)[Function
+
+### clean\_excerpt
+
+Clean an excerpt from Kendra.](/python/langchain-aws/retrievers/kendra/clean_excerpt)[Function
+
+### combined\_text
+
+Combine a ResultItem title and excerpt into a single string.](/python/langchain-aws/retrievers/kendra/combined_text)[Function
+
+### extract\_tool\_calls](/python/langchain-aws/llms/bedrock/extract_tool_calls)[Function
+
+### enforce\_stop\_tokens
+
+Cut off the text as soon as any stop words occur.](/python/langchain-aws/llms/sagemaker_endpoint/enforce_stop_tokens)
 
 ## Modules
 
@@ -469,6 +469,30 @@ Convert a list of messages to a prompt for DeepSeek-R1.](/python/langchain-aws/c
 
 Methods for creating function specs in the style of Bedrock Functions
 for supported model providers](/python/langchain-aws/function_calling)[Module
+
+### vectorstores](/python/langchain-aws/vectorstores)[Module
+
+### inmemorydb](/python/langchain-aws/vectorstores/inmemorydb)[Module
+
+### base
+
+Wrapper around MemoryDB vector database.](/python/langchain-aws/vectorstores/inmemorydb/base)[Module
+
+### cache](/python/langchain-aws/vectorstores/inmemorydb/cache)[Module
+
+### constants](/python/langchain-aws/vectorstores/inmemorydb/constants)[Module
+
+### filters](/python/langchain-aws/vectorstores/inmemorydb/filters)[Module
+
+### schema](/python/langchain-aws/vectorstores/inmemorydb/schema)[Module
+
+### agents](/python/langchain-aws/agents)[Module
+
+### base](/python/langchain-aws/agents/base)[Module
+
+### utils](/python/langchain-aws/agents/utils)[Module
+
+### types](/python/langchain-aws/agents/types)[Module
 
 ### embeddings](/python/langchain-aws/embeddings)[Module
 
@@ -490,47 +514,17 @@ for supported model providers](/python/langchain-aws/function_calling)[Module
 
 Question answering over an RDF or OWL graph using SPARQL.](/python/langchain-aws/chains/graph_qa/neptune_sparql)[Module
 
+### chat\_models](/python/langchain-aws/chat_models)[Module
+
+### bedrock](/python/langchain-aws/chat_models/bedrock)[Module
+
+### bedrock\_converse](/python/langchain-aws/chat_models/bedrock_converse)[Module
+
 ### retrievers](/python/langchain-aws/retrievers)[Module
 
 ### bedrock](/python/langchain-aws/retrievers/bedrock)[Module
 
 ### kendra](/python/langchain-aws/retrievers/kendra)[Module
-
-### vectorstores](/python/langchain-aws/vectorstores)[Module
-
-### inmemorydb](/python/langchain-aws/vectorstores/inmemorydb)[Module
-
-### schema](/python/langchain-aws/vectorstores/inmemorydb/schema)[Module
-
-### filters](/python/langchain-aws/vectorstores/inmemorydb/filters)[Module
-
-### constants](/python/langchain-aws/vectorstores/inmemorydb/constants)[Module
-
-### base
-
-Wrapper around MemoryDB vector database.](/python/langchain-aws/vectorstores/inmemorydb/base)[Module
-
-### cache](/python/langchain-aws/vectorstores/inmemorydb/cache)[Module
-
-### document\_compressors](/python/langchain-aws/document_compressors)[Module
-
-### rerank](/python/langchain-aws/document_compressors/rerank)[Module
-
-### agents](/python/langchain-aws/agents)[Module
-
-### utils](/python/langchain-aws/agents/utils)[Module
-
-### types](/python/langchain-aws/agents/types)[Module
-
-### base](/python/langchain-aws/agents/base)[Module
-
-### llms](/python/langchain-aws/llms)[Module
-
-### bedrock](/python/langchain-aws/llms/bedrock)[Module
-
-### sagemaker\_endpoint
-
-Sagemaker InvokeEndpoint API.](/python/langchain-aws/llms/sagemaker_endpoint)[Module
 
 ### graphs](/python/langchain-aws/graphs)[Module
 
@@ -538,15 +532,23 @@ Sagemaker InvokeEndpoint API.](/python/langchain-aws/llms/sagemaker_endpoint)[Mo
 
 ### neptune\_graph](/python/langchain-aws/graphs/neptune_graph)[Module
 
-### chat\_models](/python/langchain-aws/chat_models)[Module
+### document\_compressors](/python/langchain-aws/document_compressors)[Module
 
-### bedrock](/python/langchain-aws/chat_models/bedrock)[Module
+### rerank](/python/langchain-aws/document_compressors/rerank)[Module
 
-### bedrock\_converse](/python/langchain-aws/chat_models/bedrock_converse)
+### llms](/python/langchain-aws/llms)[Module
+
+### bedrock](/python/langchain-aws/llms/bedrock)[Module
+
+### sagemaker\_endpoint
+
+Sagemaker InvokeEndpoint API.](/python/langchain-aws/llms/sagemaker_endpoint)
 
 ## Types
 
 [Type
+
+### OutputType](/python/langchain-aws/agents/types/OutputType)[Type
 
 ### FilterValue](/python/langchain-aws/retrievers/bedrock/FilterValue)[Type
 
@@ -554,9 +556,7 @@ Sagemaker InvokeEndpoint API.](/python/langchain-aws/llms/sagemaker_endpoint)[Mo
 
 Possible types of a DocumentAttributeValue.
 
-Dates are also represented as str.](/python/langchain-aws/retrievers/kendra/DocumentAttributeValueType)[Type
-
-### OutputType](/python/langchain-aws/agents/types/OutputType)
+Dates are also represented as str.](/python/langchain-aws/retrievers/kendra/DocumentAttributeValueType)
 
 Copy page
 

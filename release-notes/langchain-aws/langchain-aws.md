@@ -3,6 +3,25 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain-aws/releases
 
+## 1.9.1 — 2026-10-26
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.9.1)
+
+- feat(aws): support Z.ai models on ChatBedrockConverse by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1427
+- feat(aws): Support requestMetadata on InvokeModel API calls by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1416
+
+## 1.9.0 — 2026-10-15
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.9.0)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.8.2 — 2026-10-12
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.8.2)
+
+- feat(aws): declare mid-conversation support in Bedrock model profiles by @richardscarrott in https://github.com/langchain-ai/langchain-aws/pull/1377
+
 ## 1.8.1 — 2026-10-06
 
 [Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.8.1)

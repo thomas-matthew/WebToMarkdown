@@ -45,7 +45,7 @@ is encoded inside the `content` field.
 
 ### ToolCall
 
-Represents an AI's request to call a tool.](/python/langchain-core/messages/content/ToolCall)[Class
+Represents an AI's request to call a tool.](/python/langchain-core/messages/tool/ToolCall)[Class
 
 ### InvalidToolCall
 
@@ -58,9 +58,8 @@ Here we add an `error` key to surface errors made during generation
 
 A chunk of a tool call (yielded when streaming).
 
-When merging `ToolCallChunks` (e.g., via `AIMessageChunk.__add__`),
-all string attributes are concatenated. Chunks are only merged if their
-values of](/python/langchain-core/messages/content/ToolCallChunk)[Class
+When merging `ToolCallChunk` objects (e.g., via `AIMessageChunk.__add__`), all
+string attributes are concatenated. Chunks are only merged if their val](/python/langchain-core/messages/tool/ToolCallChunk)[Class
 
 ### ServerToolCall
 

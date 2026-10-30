@@ -16,6 +16,7 @@
       - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
       - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
       - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
+      - [About Workday Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-datacloud "About Workday Data Cloud and Snowflake")
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
@@ -23,6 +24,7 @@
     - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
     - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
     - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
+    - [Pipeline Builder](/en/user-guide/pipeline-builder/pipeline-builder-overview "Pipeline Builder")
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
@@ -33,9 +35,11 @@
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
     * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
+    * [Snowflake Artifacts](/en/user-guide/snowflake-artifacts "Snowflake Artifacts")
     * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
+    * [Cortex Agent SDK](/en/user-guide/snowflake-cortex/cortex-agent-sdk/cortex-agent-sdk "Cortex Agent SDK")
     * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
     * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
@@ -46,7 +50,7 @@
     * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
     * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
-    * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
+    * [ML Development and ML Ops](/en/developer-guide/snowpark-ml/overview "ML Development and ML Ops")
     * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
 20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
 22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
@@ -71,6 +75,8 @@ The Snowflake-managed MCP server lets AI agents securely retrieve data from Snow
 * **Robust governance:** role-based access control (RBAC) for the MCP server and tools to manage tool discovery and invocation.
 
 For information about the MCP lifecycle, see [Lifecycle](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle). For an example of an MCP implementation, see the [Getting Started with Managed Snowflake MCP Server](https://quickstarts.snowflake.com/guide/getting-started-with-snowflake-mcp-server/index.html) Quickstart.
+
+For information about sharing MCP servers with other accounts, see [Share Snowflake-managed MCP servers](/LIMITEDACCESS/sharing-mcp-servers).
 
 ## MCP server security recommendations[¶](#mcp-server-security-recommendations)
 
@@ -131,14 +137,32 @@ Expose Cortex Analyst or Cortex Search directly when you want the external MCP c
 Snowflake currently supports the following tool types:
 
 * **CORTEX\_AGENT\_RUN:** Cortex Agent tool
+* **CODING\_AGENT:** Coding Agent tool, with no stored agent object. Snowflake adds `code_toolset_all` on every run
 * **CORTEX\_SEARCH\_SERVICE\_QUERY:** Cortex Search Service tool
 * **CORTEX\_ANALYST\_MESSAGE:** Cortex Analyst tool
 * **SYSTEM\_EXECUTE\_SQL:** SQL execution
 * **GENERIC:** tool for UDFs and stored procedures
 
+#### Configure tool annotations[¶](#configure-tool-annotations)
+
+For `GENERIC` and `CORTEX_AGENT_RUN` tools, you can override the default [MCP tool annotations](https://modelcontextprotocol.io/specification/2025-11-25/schema#toolannotations) that Snowflake returns to clients. These hints let clients distinguish tools that are read-only, destructive, idempotent, or able to interact with external entities.
+
+Add an `annotations` object to the tool definition and specify any of the following Boolean fields:
+
+* `readOnlyHint`: The tool doesn’t modify its environment.
+* `destructiveHint`: The tool might perform destructive updates. This hint applies only when `readOnlyHint` is `false`.
+* `idempotentHint`: Repeated calls with the same arguments have the same effect as one call.
+* `openWorldHint`: The tool might interact with external entities.
+
+You can omit fields that you don’t want to override. By default, `GENERIC` and `CORTEX_AGENT_RUN` tools use `readOnlyHint: false`, `destructiveHint: true`, `idempotentHint: false`, and `openWorldHint: true`.
+
+Important
+
+Tool annotations are client-facing hints, not security controls. Snowflake doesn’t validate that a tool behaves as its annotations claim. Use RBAC and least-privilege access to control the operations that the underlying UDF, stored procedure, or Cortex Agent can perform.
+
 The following examples show how to configure different tool types:
 
-Agent toolAnalyst toolSearch toolSQL execution toolUDF / Stored Procedure
+Agent toolCoding agent toolAnalyst toolSearch toolSQL execution toolUDF / Stored Procedure
 
 For the Agent tool, your client passes a message to the agent. The agent processes the request and returns a response. Use the following code to specify the tool configuration.
 
@@ -151,11 +175,35 @@ tools:
     type: "CORTEX_AGENT_RUN"
     identifier: "<database_name>.<schema_name>.<agent_name>"
     description: "Answers governed business data questions by using configured Cortex Analyst and Cortex Search resources."
+    annotations:
+      openWorldHint: false
 ```
 
 The agent tool response includes all intermediate steps by design: reasoning traces, tool calls, search results, and citations.
 This can result in large response payloads (200 KB or more). To reduce the payload size when the agent uses Cortex Search,
 configure `max_results` in the agent’s search tool resources to limit the number of search results returned per query.
+
+A coding agent tool runs a Cortex coding agent without a stored agent object. Add a tool with type `CODING_AGENT` to the MCP server specification. Snowflake adds the `code_toolset_all` tool on every run. That tool gives the agent a managed sandbox where it can write and run code. The sandbox stays attached to the conversation thread. See [Coding Agent](/user-guide/snowflake-cortex/cortex-agents-coding-agent).
+
+Omit `identifier`. There is no stored agent to point at.
+
+`config` is optional. It can include `model`, `instructions`, `tools`, `tool_resources`, and `skills`. Leave `messages`, `thread_id`, `parent_message_id`, `stream`, `background`, and `origin_application` out of `config`. The MCP call supplies those. The server returns the agent reply as one `tools/call` result.
+
+You can put other tools in `config`. Snowflake appends `code_toolset_all` after those tools. Do not also add `code_execution`. A run can include `code_toolset_all` or `code_execution`, but not both.
+
+Copy code
+
+```
+tools:
+  - title: "Coding agent"
+    name: "ask_coding_agent"
+    type: "CODING_AGENT"
+    description: "Ask the coding agent. code_toolset_all gives the agent a managed sandbox where it can write and run code. That sandbox stays attached to the conversation thread."
+    config:
+      model: "claude-sonnet-4-6"
+      instructions:
+        response: "Write and run code when that answers the question."
+```
 
 Using the Analyst tool, your client can generate SQL from natural language text. Use the following code to specify the tool configuration.
 
@@ -230,6 +278,11 @@ tools:
     identifier: "db.schema.my_function"
     type: "GENERIC"
     description: "Custom tool description"
+    annotations:
+      readOnlyHint: true
+      destructiveHint: false
+      idempotentHint: true
+      openWorldHint: false
     config:
       type: "function"
       query_timeout: 120
@@ -1137,6 +1190,57 @@ Copy code
 }
 ```
 
+### Call an agent tool[¶](#call-an-agent-tool)
+
+`CORTEX_AGENT_RUN` and `CODING_AGENT` take the same call arguments. `text` is required. Omit `thread_id` on the first turn. The server creates a Cortex thread and returns its id. Pass that id on later calls to continue the same conversation. For a coding agent, that thread also keeps the sandbox.
+
+Copy code
+
+```
+POST /api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>
+    {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+            "name": "ask_coding_agent",
+            "arguments": {
+                "text": "Summarize last quarter."
+            }
+        }
+    }
+```
+
+A later turn passes the returned id:
+
+Copy codeExpand code block
+
+```
+POST /api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>
+    {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "tools/call",
+        "params": {
+            "name": "ask_coding_agent",
+            "arguments": {
+                "text": "Break it down by region.",
+                "thread_id": 12345
+            }
+        }
+    }
+```
+
+Show lessSee more
+
+Scroll to top
+
+Omit `parent_message_id` to continue from the latest message on that thread. Pass `0` to start a new conversation on the same thread.
+
+The result text is the agent’s reply and includes `thread_id`. Pass that id on the next call.
+
+These thread arguments are available when `ENABLE_MCP_AGENT_RUN_THREAD_CONTINUATION` is enabled, which is the default. When it is off, the server hides `thread_id` and `parent_message_id`, and each call is a new run.
+
 ## Limitations[¶](#limitations)
 
 * Snowflake supports Model Context Protocol revision `2025-11-25`.
@@ -1144,7 +1248,7 @@ Copy code
 
 Snowflake-managed MCP server does not support the following constructs in the MCP protocol: resources, prompts, roots, notifications, version negotiations, life cycle phases, and sampling.
 
-Each MCP server supports a maximum of 50 tools. This limit includes all tool types: Cortex Search, Cortex Analyst, Cortex Agents, SQL execution, and custom (generic) tools. If you need more tools, create additional MCP servers. Higher tool counts can degrade tool-selection accuracy.
+Each MCP server supports a maximum of 50 tools. This limit includes all tool types: Cortex Search, Cortex Analyst, Cortex Agents, coding agents, SQL execution, and custom (generic) tools. If you need more tools, create additional MCP servers. Higher tool counts can degrade tool-selection accuracy.
 
 Tool responses are subject to size limits to prevent LLM context window saturation:
 

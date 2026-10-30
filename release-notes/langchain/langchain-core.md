@@ -3,6 +3,66 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.7.3 — 2026-10-29
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.7.3)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.7.2 — 2026-10-29
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.7.2)
+
+- feat(core): add `add_notification_metadata` and `get_notification_metadata` (#41540)
+
+## 1.7.1 — 2026-10-28
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.7.1)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.7.0 — 2026-10-22
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.7.0)
+
+- feat(core): emit `tool-call-delta` for streamed tool-call args (#41257)
+
+## 1.6.13 — 2026-10-21
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.13)
+
+- feat(core,langchain,standard-tests): read `tool-call-delta` in stream consumers (#41246)
+
+## 1.6.12 — 2026-10-16
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.12)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.6.11 — 2026-10-15
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.11)
+
+- feat(core): accept address inside LangChainTracer (#41006)
+
+## 1.6.10 — 2026-10-12
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.10)
+
+- feat(core,anthropic,openai): declare mid-conversation support in model profiles (#41180)
+
+## 1.6.9 — 2026-10-08
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.9)
+
+- feat(core): accept a callable in with_retry (#41158)
+
+## 1.6.8 — 2026-10-08
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.8)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 1.6.7 — 2026-10-06
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.6.7)

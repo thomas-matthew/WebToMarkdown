@@ -3,6 +3,18 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.7.7 — 2026-10-27
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.7)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.7.6 — 2026-10-12
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.6)
+
+- feat(core,anthropic,openai): declare mid-conversation support in model profiles (#41180)
+
 ## 1.7.5 — 2026-09-29
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.5)

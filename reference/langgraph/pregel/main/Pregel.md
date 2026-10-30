@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[pregel](/python/langgraph/pregel)[main](/python/langgraph/pregel/main)Pregel
 
-Classv1.2.14 (latest)●Since v0.6
+Classv1.2.18 (latest)●Since v1.2
 
 # Pregel
 
@@ -510,8 +510,10 @@ stream\_events
 
 Stream events from this graph.
 
-For `version="v1"` / `"v2"`, yields `StreamEvent` dicts (see
-`Runnable.stream_events`). For `version="v3"`, returns a
+For `version="v1"` / `"v2"`, delegates to
+`Runnable.(a)stream_events`; synchronous v1/v2 event streaming is
+not implemented in langchain-core, so use `astream_events` for
+those versions. For `version="v3"`, returns a
 `GraphRunStream` whose typed projections the caller drives by
 iterating — no background thread.
 
@@ -571,7 +573,7 @@ get\_config\_jsonschema](/python/langgraph/pregel/main/Pregel/get_config_jsonsch
 
 [Mget\_name](/python/langchain-core/runnables/base/Runnable/get_name)[Mget\_prompts](/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe](/python/langchain-core/runnables/base/Runnable/pipe)[Mpick](/python/langchain-core/runnables/base/Runnable/pick)[Massign](/python/langchain-core/runnables/base/Runnable/assign)[Mbatch](/python/langchain-core/runnables/base/Runnable/batch)[Mbatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch](/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch\_as\_completed](/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mastream\_log](/python/langchain-core/runnables/base/Runnable/astream_log)[Mtransform](/python/langchain-core/runnables/base/Runnable/transform)[Matransform](/python/langchain-core/runnables/base/Runnable/atransform)[Mbind](/python/langchain-core/runnables/base/Runnable/bind)[Mwith\_listeners](/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith\_alisteners](/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith\_types](/python/langchain-core/runnables/base/Runnable/with_types)[Mwith\_retry](/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap](/python/langchain-core/runnables/base/Runnable/map)[Mwith\_fallbacks](/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas\_tool](/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/70dd64065bffaa3b6ab61a33f1f020fb54db8efa/libs/langgraph/langgraph/pregel/main.py#L456)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/pregel/main.py#L460)
 
 Version History
 

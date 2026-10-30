@@ -3,6 +3,30 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.7.3 — 2026-10-26
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.7.3)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.7.2 — 2026-10-14
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.7.2)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.7.1 — 2026-10-12
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.7.1)
+
+- feat(core,anthropic,openai): declare mid-conversation support in model profiles (#41180)
+
+## 1.7.0 — 2026-10-08
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.7.0)
+
+- feat(openai): support decisions api (#41125)
+
 ## 1.6.7 — 2026-09-30
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.6.7)

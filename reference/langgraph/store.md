@@ -26,9 +26,9 @@ from langgraph.store.postgres import AsyncPostgresSt
 
 [Module
 
-### aio](/python/langgraph.store.postgres/aio)[Module
+### base](/python/langgraph.store.postgres/base)[Module
 
-### base](/python/langgraph.store.postgres/base)
+### aio](/python/langgraph.store.postgres/aio)
 
 ## Constants
 

@@ -1,6 +1,6 @@
 Python[langchain-core](/python/langchain-core)[prompts](/python/langchain-core/prompts)[chat](/python/langchain-core/prompts/chat)ChatPromptTemplate
 
-Classv1.6.7 (latest)●Since v0.1
+Classv1.7.1 (latest)●Since v1.7
 
 # ChatPromptTemplate
 
@@ -136,7 +136,7 @@ ChatPromptTemplate(
 * [How to evaluate a runnable](https://docs.langchain.com/langsmith/langchain-runnable)
 * [Manage prompts programmatically](https://docs.langchain.com/langsmith/manage-prompts-programmatically)
 * [Redact sensitive data with the OpenTelemetry Gateway architecture](https://docs.langchain.com/langsmith/otel-gateway-trace-redaction)
-* [Trace LangChain applications (Python and JS/TS)](https://docs.langchain.com/langsmith/trace-with-langchain)
+* [Trace LangChain agents (Python and JS/TS)](https://docs.langchain.com/langsmith/trace-with-langchain)
 * [Trace with OpenTelemetry](https://docs.langchain.com/langsmith/trace-with-opentelemetry)
 
 +15 more(9 more not shown)
@@ -573,7 +573,7 @@ Add fallbacks to a `Runnable`, returning a new `Runnable`.](/python/langchain-co
 
 Create a `BaseTool` from a `Runnable`.](/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/f40f58d50499700f98051be6bb610bee5dd11cc2/libs/core/langchain_core/prompts/chat.py#L794)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6419339aa163a49f32d9b80ff20d6adc3b446d49/libs/core/langchain_core/prompts/chat.py#L794)
 
 Version History
 

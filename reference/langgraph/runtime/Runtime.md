@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[runtime](/python/langgraph/runtime)Runtime
 
-Classv1.2.14 (latest)●Since v0.6
+Classv1.2.18 (latest)●Since v1.2
 
 # Runtime
 
@@ -100,7 +100,7 @@ Runtime(
 * [Going to production](https://docs.langchain.com/oss/python/deepagents/going-to-production)
 * [Graph API overview](https://docs.langchain.com/oss/python/langgraph/graph-api)
 
-+9 more
++11 more
 
 ## Constructors
 
@@ -192,7 +192,7 @@ patch\_execution\_info
 
 Return a new runtime with selected execution\_info fields replaced.](/python/langgraph/runtime/Runtime/patch_execution_info)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/70dd64065bffaa3b6ab61a33f1f020fb54db8efa/libs/langgraph/langgraph/runtime.py#L124)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/runtime.py#L124)
 
 Version History
 

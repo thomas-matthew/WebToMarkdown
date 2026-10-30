@@ -216,11 +216,13 @@ URL_LIST=(
     # Raw .md URLs -- downloaded directly with curl, no scraping
     "https://code.claude.com/docs/en/agent-sdk/python.md | reference/anthropic/agent-sdk/python.md"
     "https://code.claude.com/docs/en/agent-sdk/typescript.md | reference/anthropic/agent-sdk/typescript.md"
-    "https://code.claude.com/docs/en/agent-sdk/typescript-v2-preview.md | reference/anthropic/agent-sdk/typescript-v2-preview.md"
 
     # === DOCS: Claude Agent SDK guides ===
     "https://code.claude.com/docs/en/agent-sdk/overview.md | docs/anthropic/agent-sdk/overview.md"
     "https://code.claude.com/docs/en/agent-sdk/quickstart.md | docs/anthropic/agent-sdk/quickstart.md"
+    "https://code.claude.com/docs/en/agent-sdk/troubleshooting.md | docs/anthropic/agent-sdk/troubleshooting.md"
+    "https://code.claude.com/docs/en/agent-sdk/configuration.md | docs/anthropic/agent-sdk/configuration.md"
+    "https://code.claude.com/docs/en/agent-sdk/examples.md | docs/anthropic/agent-sdk/examples.md"
     "https://code.claude.com/docs/en/agent-sdk/agent-loop.md | docs/anthropic/agent-sdk/agent-loop.md"
     "https://code.claude.com/docs/en/agent-sdk/claude-code-features.md | docs/anthropic/agent-sdk/claude-code-features.md"
     "https://code.claude.com/docs/en/agent-sdk/cost-tracking.md | docs/anthropic/agent-sdk/cost-tracking.md"
@@ -236,8 +238,8 @@ URL_LIST=(
     "https://code.claude.com/docs/en/agent-sdk/plugins.md | docs/anthropic/agent-sdk/plugins.md"
     "https://code.claude.com/docs/en/agent-sdk/secure-deployment.md | docs/anthropic/agent-sdk/secure-deployment.md"
     "https://code.claude.com/docs/en/agent-sdk/sessions.md | docs/anthropic/agent-sdk/sessions.md"
+    "https://code.claude.com/docs/en/agent-sdk/session-storage.md | docs/anthropic/agent-sdk/session-storage.md"
     "https://code.claude.com/docs/en/agent-sdk/skills.md | docs/anthropic/agent-sdk/skills.md"
-    "https://code.claude.com/docs/en/agent-sdk/slash-commands.md | docs/anthropic/agent-sdk/slash-commands.md"
     "https://code.claude.com/docs/en/agent-sdk/streaming-output.md | docs/anthropic/agent-sdk/streaming-output.md"
     "https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode.md | docs/anthropic/agent-sdk/streaming-vs-single-mode.md"
     "https://code.claude.com/docs/en/agent-sdk/structured-outputs.md | docs/anthropic/agent-sdk/structured-outputs.md"

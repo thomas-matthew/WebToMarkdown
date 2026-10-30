@@ -1,4 +1,4 @@
-Classv1.7.5 (latest)●Since v0.2
+Classv1.7.7 (latest)●Since v1.6
 
 # ChatAnthropic
 
@@ -83,7 +83,7 @@ each time to the model is invoked.
 * [Models](https://docs.langchain.com/oss/python/langchain/models)
 * [Use the functional API](https://docs.langchain.com/oss/python/langgraph/use-functional-api)
 
-+10 more
++11 more
 
 ## Attributes
 
@@ -400,7 +400,7 @@ This uses Anthropic's official [token counting API](https://platform.claude.com/
 
 [get\_name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_name) [get\_input\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_schema) [get\_input\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_jsonschema) [get\_output\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_schema) [get\_output\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_jsonschema) [config\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_schema) [get\_config\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_config_jsonschema) [get\_graph](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_graph) [get\_prompts](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_prompts) [pipe](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pipe) [pick](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pick) [assign](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/assign) [invoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/invoke) [ainvoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/ainvoke) [batch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch) [batch\_as\_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch_as_completed) [abatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch) [abatch\_as\_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch_as_completed) [stream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream) [astream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream) [astream\_log](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_log) [astream\_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_events) [stream\_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream_events) [transform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/transform) [atransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/atransform) [bind](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/bind) [with\_config](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_config) [with\_listeners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_listeners) [with\_alisteners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_alisteners) [with\_types](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_types) [with\_retry](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_retry) [map](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/map) [with\_fallbacks](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_fallbacks) [as\_tool](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/d6167c0b0dafb5f3898faa28e01df0b8db5ef76a/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1326)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6eb169b56cea0b535b9af0ca504bb367f6407455/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1320)
 
 Version History
 
@@ -426,7 +426,7 @@ is_lc_serializable(
 
 ---
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/d6167c0b0dafb5f3898faa28e01df0b8db5ef76a/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1639)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6eb169b56cea0b535b9af0ca504bb367f6407455/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1633)
 
 ---
 
@@ -454,7 +454,7 @@ get_lc_namespace(
 
 ---
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/d6167c0b0dafb5f3898faa28e01df0b8db5ef76a/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1644)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6eb169b56cea0b535b9af0ca504bb367f6407455/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1638)
 
 ---
 
@@ -477,7 +477,7 @@ set_default_max_tokens(
 
 ---
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/d6167c0b0dafb5f3898faa28e01df0b8db5ef76a/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1689)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6eb169b56cea0b535b9af0ca504bb367f6407455/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1686)
 
 ---
 
@@ -500,7 +500,7 @@ build_extra(
 
 ---
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/d6167c0b0dafb5f3898faa28e01df0b8db5ef76a/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1701)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6eb169b56cea0b535b9af0ca504bb367f6407455/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1698)
 
 ---
 
@@ -571,7 +571,7 @@ model_with_tools.invoke(
 
 ---
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/d6167c0b0dafb5f3898faa28e01df0b8db5ef76a/libs/partners/anthropic/langchain_anthropic/chat_models.py#L2661)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6eb169b56cea0b535b9af0ca504bb367f6407455/libs/partners/anthropic/langchain_anthropic/chat_models.py#L2664)
 
 ---
 
@@ -651,7 +651,7 @@ If `include_raw` is `True`, then `Runnable` outputs a `dict` with keys:
 
 ---
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/d6167c0b0dafb5f3898faa28e01df0b8db5ef76a/libs/partners/anthropic/langchain_anthropic/chat_models.py#L2866)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6eb169b56cea0b535b9af0ca504bb367f6407455/libs/partners/anthropic/langchain_anthropic/chat_models.py#L2869)
 
 ---
 
@@ -735,4 +735,4 @@ get_num_tokens_from_messages(
 
 ---
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/d6167c0b0dafb5f3898faa28e01df0b8db5ef76a/libs/partners/anthropic/langchain_anthropic/chat_models.py#L3033)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6eb169b56cea0b535b9af0ca504bb367f6407455/libs/partners/anthropic/langchain_anthropic/chat_models.py#L3036)

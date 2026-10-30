@@ -1,6 +1,6 @@
 Python[langchain-core](/python/langchain-core)[documents](/python/langchain-core/documents)[base](/python/langchain-core/documents/base)Document
 
-Classv1.6.7 (latest)●Since v0.1
+Classv1.7.1 (latest)●Since v1.7
 
 # Document
 
@@ -124,7 +124,7 @@ Serialize the object to JSON.](/python/langchain-core/load/serializable/Serializ
 
 Serialize a "not implemented" object.](/python/langchain-core/load/serializable/Serializable/to_json_not_implemented)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/f40f58d50499700f98051be6bb610bee5dd11cc2/libs/core/langchain_core/documents/base.py#L288)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6419339aa163a49f32d9b80ff20d6adc3b446d49/libs/core/langchain_core/documents/base.py#L288)
 
 Version History
 

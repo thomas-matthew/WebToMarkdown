@@ -3,6 +3,14 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langgraph/releases
 
+## 1.1.1 — 2026-10-15
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/prebuilt%3D%3D1.1.1)
+
+- feat(sdk-py): add websocket stream transports (#7830)
+- feat(sdk-py): add messages and tool call projections (#7823)
+- feat(sdk-py): add v3 streaming primitives and SSE transport (#7818)
+
 ## 1.1.0 — 2026-05-12
 
 [Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/prebuilt%3D%3D1.1.0)

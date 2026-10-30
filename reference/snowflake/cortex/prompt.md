@@ -53,6 +53,7 @@
    * [File](/en/sql-reference/functions-file "File")
    * [Geospatial](/en/sql-reference/functions-geospatial "Geospatial")
    * [Hash](/en/sql-reference/functions-hash-scalar "Hash")
+   * [IPADDRESS](/en/sql-reference/functions-ipaddress "IPADDRESS")
    * [Metadata](/en/sql-reference/functions-metadata "Metadata")
    * [ML Model Monitors](/en/sql-reference/functions-model-monitors "ML Model Monitors")
    * [Notification](/en/sql-reference/functions-notification "Notification")

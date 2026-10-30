@@ -16,6 +16,7 @@
       - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
       - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
       - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
+      - [About Workday Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-datacloud "About Workday Data Cloud and Snowflake")
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
@@ -23,6 +24,7 @@
     - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
     - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
     - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
+    - [Pipeline Builder](/en/user-guide/pipeline-builder/pipeline-builder-overview "Pipeline Builder")
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
@@ -33,6 +35,7 @@
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
     * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
+    * [Snowflake Artifacts](/en/user-guide/snowflake-artifacts "Snowflake Artifacts")
     * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
@@ -54,7 +57,6 @@
       + [Share Cortex agents](/en/user-guide/snowflake-cortex/cortex-agents-sharing "Share Cortex agents")
       + [Temporary agents](/en/user-guide/snowflake-cortex/cortex-agents-temporary "Temporary agents")
       + [Secure agents](/en/user-guide/snowflake-cortex/cortex-agents-secure "Secure agents")
-      + [Tutorials](/en/user-guide/snowflake-cortex/cortex-agents-tutorials "Tutorials")
       + [Resource budgets](/en/user-guide/snowflake-cortex/cortex-agents-resource-budgets "Resource budgets")
       + [Shared resource budgets](/en/user-guide/snowflake-cortex/cortex-agents-shared-budgets "Shared resource budgets")
       + [Agent skills](/en/user-guide/snowflake-cortex/cortex-agents-skills "Agent skills")
@@ -64,6 +66,7 @@
       + [MCP Connectors](/en/user-guide/snowflake-cortex/cortex-agents-mcp-connectors "MCP Connectors")
       + [Agent versioning](/en/user-guide/snowflake-cortex/cortex-agents-versioning "Agent versioning")
       + [Multi-tenancy](/en/user-guide/snowflake-cortex/cortex-agents-multi-tenancy "Multi-tenancy")
+    * [Cortex Agent SDK](/en/user-guide/snowflake-cortex/cortex-agent-sdk/cortex-agent-sdk "Cortex Agent SDK")
     * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
     * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
@@ -74,7 +77,7 @@
     * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
     * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
-    * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
+    * [ML Development and ML Ops](/en/developer-guide/snowpark-ml/overview "ML Development and ML Ops")
     * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
 20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
 22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
@@ -143,9 +146,10 @@ Show lessSee more
 | `profile` | [AgentProfile](#label-snowflake-agent-object-agentprofile) | Agent profile information (display name, avatar, color, etc.). |
 | `models` | [ModelConfig](#label-snowflake-agent-object-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
 | `instructions` | [AgentInstructions](#label-snowflake-agent-object-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
-| `orchestration` | [OrchestrationConfig](#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (for example, seconds, tokens) and capabilities such as `analytical_search`. |
+| `orchestration` | [OrchestrationConfig](#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
 | `tools` | array of [Tool](#label-snowflake-agent-object-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
-| `tool_resources` | map of [ToolResource](#label-snowflake-agent-object-toolresource) | Configuration for each tool referenced in the tools array. Keys must match the name of the respective tool. |
+| `tool_resources` | map of [ToolResource](#label-snowflake-agent-object-toolresource) | Configuration for each tool referenced in the tools array. Each key must equal the name of the corresponding tool. |
+| `thinking_effort` | string | Controls the reasoning effort used by the orchestration model. Higher effort can improve complex-task quality at the cost of latency and tokens. When omitted, the service selects the appropriate default. |
 
 Expand
 
@@ -167,12 +171,16 @@ Copy codeExpand code block
   },
   "instructions": {
     "response": "You will respond in a friendly but concise manner",
-    "orchestration": "For any query related to revenue we should use Analyst; For all policy questions we should use Search"
+    "orchestration": "For any query related to revenue we should use Analyst; For all policy questions we should use Search",
+    "system": "You are a friendly agent ..."
   },
   "orchestration": {
     "budget": {
       "seconds": 30,
       "tokens": 16000
+    },
+    "capabilities": {
+      "analytical_search": true
     }
   },
   "tools": [
@@ -205,7 +213,8 @@ Copy codeExpand code block
       },
       "identifier": "DB.SCHEMA.UDF"
     }
-  }
+  },
+  "thinking_effort": "high"
 }
 ```
 
@@ -327,9 +336,10 @@ Show lessSee more
 | `profile` | [AgentProfile](#label-snowflake-agent-object-agentprofile) | Agent profile information (display name, avatar, color, etc.). |
 | `models` | [ModelConfig](#label-snowflake-agent-object-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
 | `instructions` | [AgentInstructions](#label-snowflake-agent-object-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
-| `orchestration` | [OrchestrationConfig](#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (for example, seconds, tokens) and capabilities such as `analytical_search`. |
+| `orchestration` | [OrchestrationConfig](#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
 | `tools` | array of [Tool](#label-snowflake-agent-object-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
-| `tool_resources` | map of [ToolResource](#label-snowflake-agent-object-toolresource) | Configuration for each tool referenced in the tools array. Keys must match the name of the respective tool. |
+| `tool_resources` | map of [ToolResource](#label-snowflake-agent-object-toolresource) | Configuration for each tool referenced in the tools array. Each key must equal the name of the corresponding tool. |
+| `thinking_effort` | string | Controls the reasoning effort used by the orchestration model. Higher effort can improve complex-task quality at the cost of latency and tokens. When omitted, the service selects the appropriate default. |
 
 Expand
 
@@ -350,12 +360,16 @@ Copy codeExpand code block
   },
   "instructions": {
     "response": "You will respond in a friendly but concise manner",
-    "orchestration": "For any query related to revenue we should use Analyst; For all policy questions we should use Search"
+    "orchestration": "For any query related to revenue we should use Analyst; For all policy questions we should use Search",
+    "system": "You are a friendly agent ..."
   },
   "orchestration": {
     "budget": {
       "seconds": 30,
       "tokens": 16000
+    },
+    "capabilities": {
+      "analytical_search": true
     }
   },
   "tools": [
@@ -388,7 +402,8 @@ Copy codeExpand code block
       },
       "identifier": "DB.SCHEMA.UDF"
     }
-  }
+  },
+  "thinking_effort": "high"
 }
 ```
 
@@ -561,6 +576,7 @@ The `OrchestrationConfig` schema documents `budget`. The same object also accept
 | --- | --- | --- |
 | `response` | string | Instructions for response generation. |
 | `orchestration` | string | These custom instructions are used when the agent is planning which tools to use. |
+| `system` | string | System instructions for the agent. |
 
 Expand
 
@@ -573,7 +589,8 @@ Copy codeExpand code block
 ```
 {
   "response": "You will respond in a friendly but concise manner",
-  "orchestration": "For any query related to revenue we should use Analyst; For all policy questions we should use Search"
+  "orchestration": "For any query related to revenue we should use Analyst; For all policy questions we should use Search",
+  "system": "You are a friendly agent ..."
 }
 ```
 
@@ -618,6 +635,26 @@ Copy code
 {
   "seconds": 30,
   "tokens": 16000
+}
+```
+
+## `CapabilitiesConfig`[¶](#capabilitiesconfig)
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `analytical_search` | boolean | If true, enables analytical search. |
+
+Expand
+
+Show lessSee more
+
+**Example**
+
+Copy code
+
+```
+{
+  "analytical_search": true
 }
 ```
 
@@ -672,7 +709,7 @@ Copy code
 | Field | Type | Description |
 | --- | --- | --- |
 | `budget` | [BudgetConfig](#label-snowflake-agent-object-budgetconfig) | Budget constraints for the agent. If more than one constraint is specified, whichever is first hit will end the request. |
-| `capabilities` | object | Optional orchestration capabilities. Set `analytical_search` to `true` to allow the agent to run analytical search when a Cortex Search tool is configured. Default: `false`. See [Analytical search](/user-guide/snowflake-cortex/cortex-agents-analytical-search#label-enable-analytical-search). |
+| `capabilities` | [CapabilitiesConfig](#label-snowflake-agent-object-capabilitiesconfig) | Capabilities to enable for the agent. |
 
 Expand
 
@@ -965,13 +1002,14 @@ On this page
 17. [AgentInstructions](#agentinstructions)
 18. [AgentProfile](#agentprofile)
 19. [BudgetConfig](#budgetconfig)
-20. [ExecutionEnvironment](#executionenvironment)
-21. [ModelConfig](#modelconfig)
-22. [OrchestrationConfig](#orchestrationconfig)
-23. [Tool](#tool)
-24. [ToolInputSchema](#toolinputschema)
-25. [ToolResource](#toolresource)
-26. [ToolSpec](#toolspec)
+20. [CapabilitiesConfig](#capabilitiesconfig)
+21. [ExecutionEnvironment](#executionenvironment)
+22. [ModelConfig](#modelconfig)
+23. [OrchestrationConfig](#orchestrationconfig)
+24. [Tool](#tool)
+25. [ToolInputSchema](#toolinputschema)
+26. [ToolResource](#toolresource)
+27. [ToolSpec](#toolspec)
 
 Related content
 

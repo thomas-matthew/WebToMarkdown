@@ -82,10 +82,17 @@ Raised by a node to interrupt execution.](/python/langgraph/errors/NodeInterrupt
 
 [Function
 
-### create\_error\_message](/python/langgraph/errors/create_error_message)
+### create\_error\_message](/python/langgraph/errors/create_error_message)[Function
+
+### is\_invalid\_resume
+
+Whether `error` was raised because a resume value didn't match `response_schema`.
+
+`interrupt()` raises a `pydantic.ValidationError` in that case. `ToolNode` uses
+this to tell it apart from invalid to](/python/langgraph/errors/is_invalid_resume)
 
 Copy page
 
 ### On This Page
 
-Classes13Functions1
+Classes13Functions2

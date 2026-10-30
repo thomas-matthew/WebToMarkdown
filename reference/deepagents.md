@@ -51,7 +51,6 @@ from deepagents import create_deep_agent
 
 agent = create_deep_agent(
     model="openai:gpt-6-astra",
-    tools=[my_custom_tool],
     system_prompt="You are a research assistant.",
 )
 result = agent.invoke({"messages": "Research LangGraph and write a summary"})
@@ -105,7 +104,7 @@ Deep Agents follows a "trust the LLM" model. The agent can do anything its tools
 
 As an open-source project in a rapidly developing field, we are extremely open to contributions, whether it be in the form of a new feature, improved infrastructure, or better documentation.
 
-For detailed information on how to contribute, see the [Contributing Guide](https://docs.langchain.com/oss/python/contributing/overview).
+For local setup and package-specific checks, see the [Development Guide](https://github.com/langchain-ai/deepagents/blob/main/libs/DEVELOPMENT.md). For contribution policy, see the [Contributing Guide](https://docs.langchain.com/oss/python/contributing/overview).
 
 ## Classes
 
@@ -115,101 +114,169 @@ For detailed information on how to contribute, see the [Contributing Guide](http
 
 AgentState with `DeltaChannel` on messages to reduce checkpoint growth from O(N²) to O(N).](/python/deepagents/graph/DeepAgentState)[Class
 
-### ProviderProfile
+### AsyncSubAgent
 
-Declarative configuration for constructing a chat model.
+Specification for an async subagent running on a remote Agent Protocol server.
 
-Beta
+Async subagents connect to any Agent Protocol-compliant server via the](/python/deepagents/middleware/async_subagents/AsyncSubAgent)[Class
 
-`deepagents.profiles` exposes beta APIs that may receive minor changes in
-future releases. Refer to the [versioning document](/python/deepagents/profiles/provider/provider_profiles/ProviderProfile)[Class
+### AsyncTask
 
-### GeneralPurposeSubagentProfile
+A tracked async subagent task persisted in agent state.](/python/deepagents/middleware/async_subagents/AsyncTask)[Class
 
-Edits applied to the auto-added `general-purpose` subagent.
+### AsyncSubAgentState
 
-Beta
+State extension for async subagent task tracking.](/python/deepagents/middleware/async_subagents/AsyncSubAgentState)[Class
 
-`deepagents.profiles` exposes beta APIs that may receive minor changes in
-future releases. Refer to the [versioning docum](/python/deepagents/profiles/harness/harness_profiles/GeneralPurposeSubagentProfile)[Class
+### StartAsyncTaskSchema
 
-### HarnessProfileConfig
+Input schema for the `start_async_task` tool.](/python/deepagents/middleware/async_subagents/StartAsyncTaskSchema)[Class
 
-Declarative harness-profile config for YAML/JSON-backed profiles.
+### CheckAsyncTaskSchema
 
-Beta
+Input schema for the `check_async_task` tool.](/python/deepagents/middleware/async_subagents/CheckAsyncTaskSchema)[Class
 
-`deepagents.profiles` exposes beta APIs that may receive minor changes in
-future releases. Refer to the [versioning](/python/deepagents/profiles/harness/harness_profiles/HarnessProfileConfig)[Class
+### UpdateAsyncTaskSchema
 
-### HarnessProfile
+Input schema for the `update_async_task` tool.](/python/deepagents/middleware/async_subagents/UpdateAsyncTaskSchema)[Class
 
-Runtime configuration for deep agent behavior.
+### CancelAsyncTaskSchema
 
-Beta
+Input schema for the `cancel_async_task` tool.](/python/deepagents/middleware/async_subagents/CancelAsyncTaskSchema)[Class
 
-`deepagents.profiles` exposes beta APIs that may receive minor changes in
-future releases. Refer to the [versioning documentation](htt](/python/deepagents/profiles/harness/harness_profiles/HarnessProfile)[Class
+### ListAsyncTasksSchema
 
-### NemotronToolCallShim
+Input schema for the `list_async_tasks` tool.](/python/deepagents/middleware/async_subagents/ListAsyncTasksSchema)[Class
 
-Repair small Nemotron filesystem tool-call and tool-result quirks.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronToolCallShim)[Class
+### TaskEvent
 
-### ReadFileContinuationNoticeMiddleware
+How an async subagent's task ended or paused, as reported to the agent that started it.
 
-Append a continuation notice to exactly-at-limit `read_file` results.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/ReadFileContinuationNoticeMiddleware)[Class
+A notification message carries it in `additional_kwargs["deepagents_notification"]`,
+so apps can tell these mes](/python/deepagents/middleware/async_subagents/TaskEvent)[Class
 
-### ModelRateLimitRetryMiddleware
+### AsyncSubAgentMiddleware
 
-Retry transient provider 429s around model calls.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/ModelRateLimitRetryMiddleware)[Class
+Middleware for async subagents running on remote Agent Protocol servers.
 
-### ChatNVIDIAMessageCompatibilityMiddleware
+This middleware adds tools for launching, monitoring, and updating
+background tasks on remote Agent Protocol servers. Unlike t](/python/deepagents/middleware/async_subagents/AsyncSubAgentMiddleware)[Class
 
-Mirror standard LangChain tool-call fields into ChatNVIDIA payload metadata.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/ChatNVIDIAMessageCompatibilityMiddleware)[Class
+### CompactConversationSchema
 
-### NemotronReasoningTagCleanupMiddleware
+Input schema for the `compact_conversation` tool.](/python/deepagents/middleware/summarization/CompactConversationSchema)[Class
 
-Remove preserved `<think>` blocks from normal assistant content.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronReasoningTagCleanupMiddleware)[Class
+### SummarizationEvent
 
-### NemotronTextToolCallParser
+Represents a summarization event.](/python/deepagents/middleware/summarization/SummarizationEvent)[Class
 
-Repair tool calls emitted as text content instead of structured calls.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronTextToolCallParser)[Class
+### TriggerClause
 
-### NemotronProgressBudgetMiddleware
+Dictionary-based summarization trigger with AND semantics.](/python/deepagents/middleware/summarization/TriggerClause)[Class
 
-Stop Ultra3-specific tool loops before they consume runaway context.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronProgressBudgetMiddleware)[Class
+### TruncateArgsSettings
 
-### NemotronPolicyNudgeState
+Settings for truncating large tool-call arguments in older messages.
 
-State schema for one-shot Nemotron policy nudges.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronPolicyNudgeState)[Class
+This is a lightweight, pre-summarization optimization that fires at a lower
+token threshold than full conversation compaction. Whe](/python/deepagents/middleware/summarization/TruncateArgsSettings)[Class
 
-### NemotronPolicyNudgeMiddleware
+### SummarizationState
 
-Inject lightweight policy nudges for common Ultra3 agent-control misses.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronPolicyNudgeMiddleware)[Class
+State for the summarization middleware.
 
-### FollowupDisciplineState
+Extends AgentState with a private field for tracking summarization events.](/python/deepagents/middleware/summarization/SummarizationState)[Class
 
-State schema for `FollowupDisciplineMiddleware`.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/FollowupDisciplineState)[Class
+### SummarizationDefaults
 
-### FollowupDisciplineMiddleware
+Default settings computed from model profile.](/python/deepagents/middleware/summarization/SummarizationDefaults)[Class
 
-Send Ultra3 back once when it asks redundant follow-up questions.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/FollowupDisciplineMiddleware)[Class
+### SummarizationToolMiddleware
 
-### EntityResolutionGuardState
+Middleware that provides a `compact_conversation` tool for manual compaction.
 
-State schema for `EntityResolutionGuardMiddleware`.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/EntityResolutionGuardState)[Class
+This middleware composes with a `SummarizationMiddleware` instance, reusing
+its summarization engine (model, backend, tri](/python/deepagents/middleware/summarization/SummarizationToolMiddleware)[Class
 
-### EntityResolutionGuardMiddleware
+### SkillMetadata
 
-Send Ultra3 back once when it finalizes with unresolved or mis-bound IDs.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/EntityResolutionGuardMiddleware)[Class
+Metadata for a skill per Agent Skills specification (https://agentskills.io/specification).](/python/deepagents/middleware/skills/SkillMetadata)[Class
 
-### FinalAnswerGuardState
+### SkillsState
 
-State schema for `FinalAnswerGuardMiddleware`.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/FinalAnswerGuardState)[Class
+State for the skills middleware.](/python/deepagents/middleware/skills/SkillsState)[Class
 
-### FinalAnswerGuardMiddleware
+### SkillsStateUpdate
 
-Send Ultra3 back once when a final answer drops obvious required details.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/FinalAnswerGuardMiddleware)[Class
+State update for the skills middleware.](/python/deepagents/middleware/skills/SkillsStateUpdate)[Class
+
+### SkillsMiddleware
+
+Middleware for loading and exposing agent skills to the system prompt.
+
+Loads skills from backend sources and injects them into the system prompt
+using progressive disclosure (metadata first, full con](/python/deepagents/middleware/skills/SkillsMiddleware)[Class
+
+### MemoryState
+
+State schema for `MemoryMiddleware`.](/python/deepagents/middleware/memory/MemoryState)[Class
+
+### MemoryStateUpdate
+
+State update for `MemoryMiddleware`.](/python/deepagents/middleware/memory/MemoryStateUpdate)[Class
+
+### MemoryMiddleware
+
+Middleware for loading agent memory from `AGENTS.md` files.
+
+Loads memory content from configured sources and injects into the system
+prompt. Supports multiple sources that are combined together. See](/python/deepagents/middleware/memory/MemoryMiddleware)[Class
+
+### CriterionPass
+
+Per-criterion grader verdict when the criterion passes.](/python/deepagents/middleware/rubric/CriterionPass)[Class
+
+### CriterionFail
+
+Per-criterion grader verdict when the criterion fails.](/python/deepagents/middleware/rubric/CriterionFail)[Class
+
+### RubricEvaluation
+
+One grader evaluation, appended to `_rubric_evaluations` each iteration.
+
+Consumers can read any field without guarding against absence since all
+fields are always populated by `_build_evaluation` and](/python/deepagents/middleware/rubric/RubricEvaluation)[Class
+
+### RubricState
+
+State schema for `RubricMiddleware`.
+
+Only `rubric` is part of the public I/O schema -- callers write a
+rubric and read the improved agent response back from `messages`.
+
+Everything else is bookkeepin](/python/deepagents/middleware/rubric/RubricState)[Class
+
+### GraderResponse
+
+Structured output the grader sub-agent must emit.
+
+Passed as `response_format=GraderResponse` to `create_agent` so the
+underlying provider's structured output strategy is auto-selected.](/python/deepagents/middleware/rubric/GraderResponse)[Class
+
+### RubricMiddleware
+
+Middleware that drives self-evaluated iteration against a rubric.
+
+The middleware activates only when a caller passes a `rubric` on
+invocation state. With no rubric, both `before_agent` and `after\_age](/python/deepagents/middleware/rubric/RubricMiddleware)[Class
+
+### PatchToolCallsMiddleware
+
+Middleware to patch dangling tool calls in the messages history.](/python/deepagents/middleware/patch_tool_calls/PatchToolCallsMiddleware)[Class
+
+### VideoExtractionError
+
+Raised when PyAV cannot produce frames for the requested window.](/python/deepagents/middleware/_video/VideoExtractionError)[Class
 
 ### SubAgent
 
@@ -243,6 +310,13 @@ to invoke subagents.
 
 Subagents are useful for handling complex task](/python/deepagents/middleware/subagents/SubAgentMiddleware)[Class
 
+### ContentPreview
+
+A rendered preview plus a record of what was left out to build it.
+
+The flags are reported by the code that built `text`, never inferred from
+the rendered bytes — a literal `... [N lines truncated] ..](/python/deepagents/middleware/_message_eviction/ContentPreview)[Class
+
 ### UnsupportedContentMiddleware
 
 Replace multimodal input blocks the active model can't accept with a text notice.
@@ -252,7 +326,11 @@ to a text-only model) fails, and si](/python/deepagents/middleware/unsupported_c
 
 ### FilesystemPermission
 
-A single access rule for filesystem operations.](/python/deepagents/middleware/filesystem/FilesystemPermission)[Class
+A single access rule for filesystem operations.
+
+With `FilesystemBackend` (directly or behind a `CompositeBackend` route),
+rules are matched against both the requested path and its symlink-resolved
+ta](/python/deepagents/middleware/filesystem/FilesystemPermission)[Class
 
 ### FilesystemState
 
@@ -306,174 +384,6 @@ This middleware adds filesystem tools to the agent: `ls`, `read_file`, `write_fi
 
 Fi](/python/deepagents/middleware/filesystem/FilesystemMiddleware)[Class
 
-### AsyncSubAgent
-
-Specification for an async subagent running on a remote Agent Protocol server.
-
-Async subagents connect to any Agent Protocol-compliant server via the](/python/deepagents/middleware/async_subagents/AsyncSubAgent)[Class
-
-### AsyncTask
-
-A tracked async subagent task persisted in agent state.](/python/deepagents/middleware/async_subagents/AsyncTask)[Class
-
-### AsyncSubAgentState
-
-State extension for async subagent task tracking.](/python/deepagents/middleware/async_subagents/AsyncSubAgentState)[Class
-
-### StartAsyncTaskSchema
-
-Input schema for the `start_async_task` tool.](/python/deepagents/middleware/async_subagents/StartAsyncTaskSchema)[Class
-
-### CheckAsyncTaskSchema
-
-Input schema for the `check_async_task` tool.](/python/deepagents/middleware/async_subagents/CheckAsyncTaskSchema)[Class
-
-### UpdateAsyncTaskSchema
-
-Input schema for the `update_async_task` tool.](/python/deepagents/middleware/async_subagents/UpdateAsyncTaskSchema)[Class
-
-### CancelAsyncTaskSchema
-
-Input schema for the `cancel_async_task` tool.](/python/deepagents/middleware/async_subagents/CancelAsyncTaskSchema)[Class
-
-### ListAsyncTasksSchema
-
-Input schema for the `list_async_tasks` tool.](/python/deepagents/middleware/async_subagents/ListAsyncTasksSchema)[Class
-
-### AsyncSubAgentMiddleware
-
-Middleware for async subagents running on remote Agent Protocol servers.
-
-This middleware adds tools for launching, monitoring, and updating
-background tasks on remote Agent Protocol servers. Unlike t](/python/deepagents/middleware/async_subagents/AsyncSubAgentMiddleware)[Class
-
-### SkillMetadata
-
-Metadata for a skill per Agent Skills specification (https://agentskills.io/specification).](/python/deepagents/middleware/skills/SkillMetadata)[Class
-
-### SkillsState
-
-State for the skills middleware.](/python/deepagents/middleware/skills/SkillsState)[Class
-
-### SkillsStateUpdate
-
-State update for the skills middleware.](/python/deepagents/middleware/skills/SkillsStateUpdate)[Class
-
-### SkillsMiddleware
-
-Middleware for loading and exposing agent skills to the system prompt.
-
-Loads skills from backend sources and injects them into the system prompt
-using progressive disclosure (metadata first, full con](/python/deepagents/middleware/skills/SkillsMiddleware)[Class
-
-### CompactConversationSchema
-
-Input schema for the `compact_conversation` tool.](/python/deepagents/middleware/summarization/CompactConversationSchema)[Class
-
-### SummarizationEvent
-
-Represents a summarization event.](/python/deepagents/middleware/summarization/SummarizationEvent)[Class
-
-### TriggerClause
-
-Dictionary-based summarization trigger with AND semantics.](/python/deepagents/middleware/summarization/TriggerClause)[Class
-
-### TruncateArgsSettings
-
-Settings for truncating large tool-call arguments in older messages.
-
-This is a lightweight, pre-summarization optimization that fires at a lower
-token threshold than full conversation compaction. Whe](/python/deepagents/middleware/summarization/TruncateArgsSettings)[Class
-
-### SummarizationState
-
-State for the summarization middleware.
-
-Extends AgentState with a private field for tracking summarization events.](/python/deepagents/middleware/summarization/SummarizationState)[Class
-
-### SummarizationDefaults
-
-Default settings computed from model profile.](/python/deepagents/middleware/summarization/SummarizationDefaults)[Class
-
-### SummarizationToolMiddleware
-
-Middleware that provides a `compact_conversation` tool for manual compaction.
-
-This middleware composes with a `SummarizationMiddleware` instance, reusing
-its summarization engine (model, backend, tri](/python/deepagents/middleware/summarization/SummarizationToolMiddleware)[Class
-
-### MemoryState
-
-State schema for `MemoryMiddleware`.](/python/deepagents/middleware/memory/MemoryState)[Class
-
-### MemoryStateUpdate
-
-State update for `MemoryMiddleware`.](/python/deepagents/middleware/memory/MemoryStateUpdate)[Class
-
-### MemoryMiddleware
-
-Middleware for loading agent memory from `AGENTS.md` files.
-
-Loads memory content from configured sources and injects into the system
-prompt. Supports multiple sources that are combined together. See](/python/deepagents/middleware/memory/MemoryMiddleware)[Class
-
-### ContentPreview
-
-A rendered preview plus a record of what was left out to build it.
-
-The flags are reported by the code that built `text`, never inferred from
-the rendered bytes — a literal `... [N lines truncated] ..](/python/deepagents/middleware/_message_eviction/ContentPreview)[Class
-
-### CriterionPass
-
-Per-criterion grader verdict when the criterion passes.](/python/deepagents/middleware/rubric/CriterionPass)[Class
-
-### CriterionFail
-
-Per-criterion grader verdict when the criterion fails.](/python/deepagents/middleware/rubric/CriterionFail)[Class
-
-### RubricEvaluation
-
-One grader evaluation, appended to `_rubric_evaluations` each iteration.
-
-Consumers can read any field without guarding against absence since all
-fields are always populated by `_build_evaluation` and](/python/deepagents/middleware/rubric/RubricEvaluation)[Class
-
-### RubricState
-
-State schema for `RubricMiddleware`.
-
-Only `rubric` is part of the public I/O schema -- callers write a
-rubric and read the improved agent response back from `messages`.
-
-Everything else is bookkeepin](/python/deepagents/middleware/rubric/RubricState)[Class
-
-### GraderResponse
-
-Structured output the grader sub-agent must emit.
-
-Passed as `response_format=GraderResponse` to `create_agent` so the
-underlying provider's structured output strategy is auto-selected.](/python/deepagents/middleware/rubric/GraderResponse)[Class
-
-### RubricMiddleware
-
-Middleware that drives self-evaluated iteration against a rubric.
-
-The middleware activates only when a caller passes a `rubric` on
-invocation state. With no rubric, both `before_agent` and `after\_age](/python/deepagents/middleware/rubric/RubricMiddleware)[Class
-
-### PatchToolCallsMiddleware
-
-Middleware to patch dangling tool calls in the messages history.](/python/deepagents/middleware/patch_tool_calls/PatchToolCallsMiddleware)[Class
-
-### VideoExtractionError
-
-Raised when PyAV cannot produce frames for the requested window.](/python/deepagents/middleware/_video/VideoExtractionError)[Class
-
-### LangSmithSandbox
-
-LangSmith sandbox implementation conforming to `SandboxBackendProtocol`.](/python/deepagents/backends/langsmith/LangSmithSandbox)[Class
-
 ### LocalShellBackend
 
 Filesystem backend with unrestricted local shell command execution.
@@ -481,32 +391,16 @@ Filesystem backend with unrestricted local shell command execution.
 This backend extends `FilesystemBackend` to add shell command execution
 capabilities. Commands are executed directly on the host sy](/python/deepagents/backends/local_shell/LocalShellBackend)[Class
 
-### InvalidGlobPatternError
+### LangSmithSandbox
 
-A glob pattern the shared matcher refuses to compile.
+LangSmith sandbox implementation conforming to `SandboxBackendProtocol`.](/python/deepagents/backends/langsmith/LangSmithSandbox)[Class
 
-Subclasses `ValueError` so existing `except ValueError` handlers keep
-working. Callers that catch this specific type can label the failure a
-\*pat](/python/deepagents/backends/utils/InvalidGlobPatternError)[Class
+### BaseSandbox
 
-### FilesystemBackend
+Base sandbox implementation with `execute()` as the core abstract method.
 
-Backend that reads and writes files directly from the filesystem.
-
-Files are accessed using their actual filesystem paths. Relative paths are
-resolved relative to the current working directory. Conten](/python/deepagents/backends/filesystem/FilesystemBackend)[Class
-
-### ContextHubBackend
-
-Backend that stores files in a LangSmith Hub agent repo (persistent).](/python/deepagents/backends/context_hub/ContextHubBackend)[Class
-
-### StateBackend
-
-Backend that stores files in agent state (ephemeral).
-
-Uses LangGraph's state management and checkpointing. Files persist within
-a conversation thread but not across threads. State is automatically
-ch](/python/deepagents/backends/state/StateBackend)[Class
+This class provides default implementations for all protocol methods.
+File listing, grep, and glob use shell commands via `ex](/python/deepagents/backends/sandbox/BaseSandbox)[Class
 
 ### FileDownloadResponse
 
@@ -611,12 +505,28 @@ remote hosts).
 
 Adds `execute()`/`aexecute()` for shell comm](/python/deepagents/backends/protocol/SandboxBackendProtocol)[Class
 
-### BaseSandbox
+### InvalidGlobPatternError
 
-Base sandbox implementation with `execute()` as the core abstract method.
+A glob pattern the shared matcher refuses to compile.
 
-This class provides default implementations for all protocol methods.
-File listing, grep, and glob use shell commands via `ex](/python/deepagents/backends/sandbox/BaseSandbox)[Class
+Subclasses `ValueError` so existing `except ValueError` handlers keep
+working. Callers that catch this specific type can label the failure a
+\*pat](/python/deepagents/backends/utils/InvalidGlobPatternError)[Class
+
+### StateBackend
+
+Backend that stores files in agent state (ephemeral).
+
+Uses LangGraph's state management and checkpointing. Files persist within
+a conversation thread but not across threads. State is automatically
+ch](/python/deepagents/backends/state/StateBackend)[Class
+
+### FilesystemBackend
+
+Backend that reads and writes files directly from the filesystem.
+
+Files are accessed using their actual filesystem paths. Relative paths are
+resolved relative to the current working directory. Conten](/python/deepagents/backends/filesystem/FilesystemBackend)[Class
 
 ### CompositeBackend
 
@@ -625,12 +535,112 @@ Routes file operations to different backends by path prefix.
 Matches paths against route prefixes (longest first) and delegates to the
 corresponding backend. Unmatched paths use the default backend.](/python/deepagents/backends/composite/CompositeBackend)[Class
 
+### ContextHubBackend
+
+Backend that stores files in a LangSmith Hub agent repo (persistent).](/python/deepagents/backends/context_hub/ContextHubBackend)[Class
+
 ### StoreBackend
 
 Backend that stores files in LangGraph's BaseStore (persistent).
 
 Uses LangGraph's Store for persistent, cross-conversation storage.
-Files are organized via namespaces and persist across all threads.](/python/deepagents/backends/store/StoreBackend)
+Files are organized via namespaces and persist across all threads.](/python/deepagents/backends/store/StoreBackend)[Class
+
+### ProviderProfile
+
+Declarative configuration for constructing a chat model.
+
+Beta
+
+`deepagents.profiles` exposes beta APIs that may receive minor changes in
+future releases. Refer to the [versioning document](/python/deepagents/profiles/provider/provider_profiles/ProviderProfile)[Class
+
+### GeneralPurposeSubagentProfile
+
+Edits applied to the auto-added `general-purpose` subagent.
+
+Beta
+
+`deepagents.profiles` exposes beta APIs that may receive minor changes in
+future releases. Refer to the [versioning docum](/python/deepagents/profiles/harness/harness_profiles/GeneralPurposeSubagentProfile)[Class
+
+### HarnessProfileConfig
+
+Declarative harness-profile config for YAML/JSON-backed profiles.
+
+Beta
+
+`deepagents.profiles` exposes beta APIs that may receive minor changes in
+future releases. Refer to the [versioning](/python/deepagents/profiles/harness/harness_profiles/HarnessProfileConfig)[Class
+
+### HarnessProfile
+
+Runtime configuration for deep agent behavior.
+
+Beta
+
+`deepagents.profiles` exposes beta APIs that may receive minor changes in
+future releases. Refer to the [versioning documentation](htt](/python/deepagents/profiles/harness/harness_profiles/HarnessProfile)[Class
+
+### NemotronToolCallShim
+
+Repair small Nemotron filesystem tool-call and tool-result quirks.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronToolCallShim)[Class
+
+### ReadFileContinuationNoticeMiddleware
+
+Append a continuation notice to exactly-at-limit `read_file` results.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/ReadFileContinuationNoticeMiddleware)[Class
+
+### ModelRateLimitRetryMiddleware
+
+Retry transient provider 429s around model calls.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/ModelRateLimitRetryMiddleware)[Class
+
+### ChatNVIDIAMessageCompatibilityMiddleware
+
+Mirror standard LangChain tool-call fields into ChatNVIDIA payload metadata.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/ChatNVIDIAMessageCompatibilityMiddleware)[Class
+
+### NemotronReasoningTagCleanupMiddleware
+
+Remove preserved `<think>` blocks from normal assistant content.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronReasoningTagCleanupMiddleware)[Class
+
+### NemotronTextToolCallParser
+
+Repair tool calls emitted as text content instead of structured calls.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronTextToolCallParser)[Class
+
+### NemotronProgressBudgetMiddleware
+
+Stop Ultra3-specific tool loops before they consume runaway context.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronProgressBudgetMiddleware)[Class
+
+### NemotronPolicyNudgeState
+
+State schema for one-shot Nemotron policy nudges.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronPolicyNudgeState)[Class
+
+### NemotronPolicyNudgeMiddleware
+
+Inject lightweight policy nudges for common Ultra3 agent-control misses.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronPolicyNudgeMiddleware)[Class
+
+### FollowupDisciplineState
+
+State schema for `FollowupDisciplineMiddleware`.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/FollowupDisciplineState)[Class
+
+### FollowupDisciplineMiddleware
+
+Send Ultra3 back once when it asks redundant follow-up questions.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/FollowupDisciplineMiddleware)[Class
+
+### EntityResolutionGuardState
+
+State schema for `EntityResolutionGuardMiddleware`.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/EntityResolutionGuardState)[Class
+
+### EntityResolutionGuardMiddleware
+
+Send Ultra3 back once when it finalizes with unresolved or mis-bound IDs.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/EntityResolutionGuardMiddleware)[Class
+
+### FinalAnswerGuardState
+
+State schema for `FinalAnswerGuardMiddleware`.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/FinalAnswerGuardState)[Class
+
+### FinalAnswerGuardMiddleware
+
+Send Ultra3 back once when a final answer drops obvious required details.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/FinalAnswerGuardMiddleware)
 
 ## Functions
 
@@ -681,121 +691,19 @@ By default, this agent has access to the following tools:
 * `execute`: run shell commands
 * `task](/python/deepagents/graph/create_deep_agent)[Function
 
-### validate\_profile\_key
+### warn\_deprecated
 
-Validate a `provider` or `provider:model` profile registry key.
+Emit a deprecation warning with caller-controlled stack attribution.
 
-The first colon separates the provider from the complete model identifier.
-Providers must not contain colons, while model identifiers m](/python/deepagents/profiles/_keys/validate_profile_key)[Function
+`langchain_core.warn_deprecated` formats a standard message but hardcodes
+`stacklevel=4` in its internal `warnings.warn` call. Tha](/python/deepagents/_api/deprecation/warn_deprecated)[Function
 
-### check\_openrouter\_version
+### reset\_deprecation\_dedupe
 
-Raise if the installed `langchain-openrouter` is below the minimum.
+Reset the `@deprecated` decorator's dedupe flag for testing.
 
-If the package is not installed at all the check is skipped;
-`init_chat_model` will surface its own missing-dependency error downst](/python/deepagents/profiles/provider/_openrouter/check_openrouter_version)[Function
-
-### register
-
-Register the built-in OpenRouter provider profile.](/python/deepagents/profiles/provider/_openrouter/register)[Function
-
-### register
-
-Register the built-in NVIDIA provider profile.](/python/deepagents/profiles/provider/_nvidia/register)[Function
-
-### register\_provider\_profile
-
-Register a `ProviderProfile` for a provider or specific model.
-
-Beta
-
-`deepagents.profiles` exposes beta APIs that may receive minor changes in
-future releases. Refer to the [versioning do](/python/deepagents/profiles/provider/provider_profiles/register_provider_profile)[Function
-
-### get\_provider\_profile
-
-Look up the `ProviderProfile` for a model spec.
-
-Beta
-
-`deepagents.profiles` exposes beta APIs that may receive minor changes in
-future releases. Refer to the [versioning documentation](ht](/python/deepagents/profiles/provider/provider_profiles/get_provider_profile)[Function
-
-### apply\_provider\_profile
-
-Compose `init_chat_model` kwargs from the registered profile for `spec`.
-
-Beta
-
-`deepagents.profiles` exposes beta APIs that may receive minor changes in
-future releases. Refer to the [ver](/python/deepagents/profiles/provider/provider_profiles/apply_provider_profile)[Function
-
-### register
-
-Register the built-in OpenAI provider profile.](/python/deepagents/profiles/provider/_openai/register)[Function
-
-### register
-
-Register the built-in Claude Sonnet 4.6 harness profile.](/python/deepagents/profiles/harness/_anthropic_sonnet_4_6/register)[Function
-
-### register\_harness\_profile
-
-Register a harness profile for a provider or specific model.
-
-Beta
-
-`deepagents.profiles` exposes beta APIs that may receive minor changes in
-future releases. Refer to the [versioning docu](/python/deepagents/profiles/harness/harness_profiles/register_harness_profile)[Function
-
-### register
-
-Register the built-in Nemotron 3 Ultra harness profile.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/register)[Function
-
-### register
-
-Register the built-in Codex harness profile for each Codex spec.](/python/deepagents/profiles/harness/_openai_codex/register)[Function
-
-### register
-
-Register the built-in Claude Haiku 4.5 harness profile.](/python/deepagents/profiles/harness/_anthropic_haiku_4_5/register)[Function
-
-### register
-
-Register the built-in Claude Opus 4.7 harness profile.](/python/deepagents/profiles/harness/_anthropic_opus_4_7/register)[Function
-
-### append\_prompt\_caching\_middleware
-
-Append provider-specific prompt caching middleware.](/python/deepagents/middleware/_prompt_caching/append_prompt_caching_middleware)[Function
-
-### create\_sub\_agent
-
-Create a runnable agent from a raw `SubAgent` spec.
-
-This is the shared entrypoint for the `create_agent` path used by
-raw subagent specs. Pre-compiled `CompiledSubAgent` runnables are already
-created](/python/deepagents/middleware/subagents/create_sub_agent)[Function
-
-### private\_state\_field\_names
-
-Return fields annotated with `PrivateStateAttr` across state schemas.
-
-Annotations are resolved at runtime, so a schema whose `PrivateStateAttr`
-annotation references a `TYPE_CHECKING`-only name canno](/python/deepagents/middleware/_state/private_state_field_names)[Function
-
-### supports\_execution
-
-Check if a backend supports command execution.
-
-For `CompositeBackend`,
-checks if the default backend supports execution.
-For other backends, checks i](/python/deepagents/middleware/filesystem/supports_execution)[Function
-
-### disclosed\_skill\_tool\_names
-
-Return the names of the skill tools disclosed to the latest model call.
-
-Use it in middleware that gates tool calls itself, so the gate admits the
-skill tools the model has been shown. The agent's own](/python/deepagents/middleware/skills/disclosed_skill_tool_names)[Function
+The langchain\_core `@deprecated` decorator emits each warning at most once
+per process via a closure-bound `warned` flag. Tests that asser](/python/deepagents/_api/deprecation/reset_deprecation_dedupe)[Function
 
 ### compute\_summarization\_defaults
 
@@ -821,6 +729,27 @@ Convenience factory: builds a `SummarizationMiddleware` via
 
 Append text to a system message.](/python/deepagents/middleware/_utils/append_to_system_message)[Function
 
+### is\_anthropic\_chat\_model
+
+Return whether `model` is a `langchain_anthropic` chat model.
+
+Reads `sys.modules` rather than importing `langchain_anthropic`: an instance
+of `ChatAnthropic` implies its module is loaded, and importi](/python/deepagents/middleware/_utils/is_anthropic_chat_model)[Function
+
+### disclosed\_skill\_tool\_names
+
+Return the names of the skill tools disclosed to the latest model call.
+
+Use it in middleware that gates tool calls itself, so the gate admits the
+skill tools the model has been shown. The agent's own](/python/deepagents/middleware/skills/disclosed_skill_tool_names)[Function
+
+### private\_state\_field\_names
+
+Return fields annotated with `PrivateStateAttr` across state schemas.
+
+Annotations are resolved at runtime, so a schema whose `PrivateStateAttr`
+annotation references a `TYPE_CHECKING`-only name canno](/python/deepagents/middleware/_state/private_state_field_names)[Function
+
 ### video\_dependencies\_available
 
 Return whether the optional video dependencies appear to be installed.
@@ -832,19 +761,33 @@ Uses `importlib.util.find_spec`, which checks that `av` and Pillow are
 
 Decode sampled frames from a video byte payload.](/python/deepagents/middleware/_video/extract_video_frames)[Function
 
-### warn\_deprecated
+### create\_sub\_agent
 
-Emit a deprecation warning with caller-controlled stack attribution.
+Create a runnable agent from a raw `SubAgent` spec.
 
-`langchain_core.warn_deprecated` formats a standard message but hardcodes
-`stacklevel=4` in its internal `warnings.warn` call. Tha](/python/deepagents/_api/deprecation/warn_deprecated)[Function
+This is the shared entrypoint for the `create_agent` path used by
+raw subagent specs. Pre-compiled `CompiledSubAgent` runnables are already
+created](/python/deepagents/middleware/subagents/create_sub_agent)[Function
 
-### reset\_deprecation\_dedupe
+### append\_prompt\_caching\_middleware
 
-Reset the `@deprecated` decorator's dedupe flag for testing.
+Append provider-specific prompt caching middleware.](/python/deepagents/middleware/_prompt_caching/append_prompt_caching_middleware)[Function
 
-The langchain\_core `@deprecated` decorator emits each warning at most once
-per process via a closure-bound `warned` flag. Tests that asser](/python/deepagents/_api/deprecation/reset_deprecation_dedupe)[Function
+### supports\_execution
+
+Check if a backend supports command execution.
+
+For `CompositeBackend`,
+checks if the default backend supports execution.
+For other backends, checks i](/python/deepagents/middleware/filesystem/supports_execution)[Function
+
+### execute\_accepts\_timeout
+
+Check whether a backend class's `execute` accepts a `timeout` kwarg.
+
+Older backend packages didn't lower-bound their SDK dependency, so they
+may not accept the `timeout` keyword added to
+[`SandboxBac](/python/deepagents/backends/protocol/execute_accepts_timeout)[Function
 
 ### compile\_grep\_include\_glob
 
@@ -943,13 +886,87 @@ Return a hint when a pattern looks like an (unsupported) regex.
 `grep` matches literal text, so regex metacharacters are searched verbatim
 and silently miss. Callers gate this on a no-match result; t](/python/deepagents/backends/utils/regex_literal_hint)[Function
 
-### execute\_accepts\_timeout
+### validate\_profile\_key
 
-Check whether a backend class's `execute` accepts a `timeout` kwarg.
+Validate a `provider` or `provider:model` profile registry key.
 
-Older backend packages didn't lower-bound their SDK dependency, so they
-may not accept the `timeout` keyword added to
-[`SandboxBac](/python/deepagents/backends/protocol/execute_accepts_timeout)[Function
+The first colon separates the provider from the complete model identifier.
+Providers must not contain colons, while model identifiers m](/python/deepagents/profiles/_keys/validate_profile_key)[Function
+
+### check\_openrouter\_version
+
+Raise if the installed `langchain-openrouter` is below the minimum.
+
+If the package is not installed at all the check is skipped;
+`init_chat_model` will surface its own missing-dependency error downst](/python/deepagents/profiles/provider/_openrouter/check_openrouter_version)[Function
+
+### register
+
+Register the built-in OpenRouter provider profile.](/python/deepagents/profiles/provider/_openrouter/register)[Function
+
+### register\_provider\_profile
+
+Register a `ProviderProfile` for a provider or specific model.
+
+Beta
+
+`deepagents.profiles` exposes beta APIs that may receive minor changes in
+future releases. Refer to the [versioning do](/python/deepagents/profiles/provider/provider_profiles/register_provider_profile)[Function
+
+### get\_provider\_profile
+
+Look up the `ProviderProfile` for a model spec.
+
+Beta
+
+`deepagents.profiles` exposes beta APIs that may receive minor changes in
+future releases. Refer to the [versioning documentation](ht](/python/deepagents/profiles/provider/provider_profiles/get_provider_profile)[Function
+
+### apply\_provider\_profile
+
+Compose `init_chat_model` kwargs from the registered profile for `spec`.
+
+Beta
+
+`deepagents.profiles` exposes beta APIs that may receive minor changes in
+future releases. Refer to the [ver](/python/deepagents/profiles/provider/provider_profiles/apply_provider_profile)[Function
+
+### register
+
+Register the built-in OpenAI provider profile.](/python/deepagents/profiles/provider/_openai/register)[Function
+
+### register
+
+Register the built-in NVIDIA provider profile.](/python/deepagents/profiles/provider/_nvidia/register)[Function
+
+### register
+
+Register the built-in Claude Sonnet 4.6 harness profile.](/python/deepagents/profiles/harness/_anthropic_sonnet_4_6/register)[Function
+
+### register
+
+Register the built-in Codex harness profile for each Codex spec.](/python/deepagents/profiles/harness/_openai_codex/register)[Function
+
+### register\_harness\_profile
+
+Register a harness profile for a provider or specific model.
+
+Beta
+
+`deepagents.profiles` exposes beta APIs that may receive minor changes in
+future releases. Refer to the [versioning docu](/python/deepagents/profiles/harness/harness_profiles/register_harness_profile)[Function
+
+### register
+
+Register the built-in Claude Opus 4.7 harness profile.](/python/deepagents/profiles/harness/_anthropic_opus_4_7/register)[Function
+
+### register
+
+Register the built-in Claude Haiku 4.5 harness profile.](/python/deepagents/profiles/harness/_anthropic_haiku_4_5/register)[Function
+
+### register
+
+Register the built-in Nemotron 3 Ultra harness profile.](/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/register)[Function
 
 ### get\_default\_model
 
@@ -977,6 +994,146 @@ Primary graph assembly module for Deep Agents.
 
 Provides `create_deep_agent`, the main entry
 point for constructing a fully configured deep agent with planning, f](/python/deepagents/graph)[Module
+
+### deprecation
+
+Adapter for `langchain_core`'s private deprecation helpers.
+
+Centralizes the import surface so an upstream rename or move is a one-file
+change.
+
+Re-exports:
+
+* `deprecated`: decorator for callables, cl](/python/deepagents/_api/deprecation)[Module
+
+### middleware
+
+Middleware for the Deep Agents agent.
+
+Overview
+
+The LLM receives tools through two paths:
+
+1. **SDK middleware** (this package) -- tools, system-prompt injection, and
+   request interception that](/python/deepagents/middleware)[Module
+
+### async\_subagents
+
+Middleware for async subagents running on remote Agent Protocol servers.
+
+Async subagents use the LangGraph SDK to launch background runs on remote
+[Agent Protocol](https://github.com/langchain-ai/age](/python/deepagents/middleware/async_subagents)[Module
+
+### summarization
+
+Summarization middleware for automatic and tool-based conversation compaction.
+
+This module provides two middleware classes and a convenience factory:
+
+* `SummarizationMiddleware` — automatically comp](/python/deepagents/middleware/summarization)[Module
+
+### skills
+
+Skills middleware for loading and exposing agent skills to the system prompt.
+
+This module implements Anthropic's agent skills pattern with progressive disclosure,
+loading skills from backend storage](/python/deepagents/middleware/skills)[Module
+
+### memory
+
+Middleware for loading agent memory/context from AGENTS.md files.
+
+This module implements support for the AGENTS.md specification (https://agents.md/),
+loading memory/context from configurable sources](/python/deepagents/middleware/memory)[Module
+
+### rubric
+
+Rubric middleware for self-evaluated agent iteration.
+
+`RubricMiddleware` lets a caller declare *what done looks like* via a
+rubric. Each time the agent would otherwise finish — i.e. the model
+returns](/python/deepagents/middleware/rubric)[Module
+
+### patch\_tool\_calls
+
+Middleware to patch dangling tool calls in the messages history.](/python/deepagents/middleware/patch_tool_calls)[Module
+
+### permissions
+
+Backward-compatible re-export for filesystem permissions.](/python/deepagents/middleware/permissions)[Module
+
+### subagents
+
+Middleware for providing subagents to an agent via a `task` tool.](/python/deepagents/middleware/subagents)[Module
+
+### unsupported\_content
+
+Replace input content blocks the active model can't accept.](/python/deepagents/middleware/unsupported_content)[Module
+
+### filesystem
+
+Middleware for providing filesystem tools to an agent.](/python/deepagents/middleware/filesystem)[Module
+
+### backends
+
+Memory backends for pluggable file storage.](/python/deepagents/backends)[Module
+
+### local\_shell
+
+`LocalShellBackend`: Filesystem backend with unrestricted local shell execution.
+
+This backend extends `FilesystemBackend` to add shell command execution on
+the local host system. It provides NO sandb](/python/deepagents/backends/local_shell)[Module
+
+### langsmith
+
+LangSmith sandbox backend implementation.](/python/deepagents/backends/langsmith)[Module
+
+### sandbox
+
+Base sandbox implementation.
+
+`BaseSandbox` implements
+`SandboxBackendProtocol`.
+
+File listing, grep,](/python/deepagents/backends/sandbox)[Module
+
+### protocol
+
+Protocol definition for pluggable memory backends.
+
+This module defines the `BackendProtocol` that all backend implementations
+must follow. Backends can store files in different locations (state, file](/python/deepagents/backends/protocol)[Module
+
+### utils
+
+Shared utility functions for memory backend implementations.
+
+This module contains both user-facing string formatters and structured
+helpers used by backends and the composite router. Structured helpe](/python/deepagents/backends/utils)[Module
+
+### state
+
+`StateBackend`: Store files in LangGraph agent state (ephemeral).](/python/deepagents/backends/state)[Module
+
+### filesystem
+
+`FilesystemBackend`: Read and write files directly from the filesystem.](/python/deepagents/backends/filesystem)[Module
+
+### composite
+
+Composite backend that routes file operations by path prefix.
+
+Routes operations to different backends based on path prefixes. Use this when
+you need different storage strategies for different paths (](/python/deepagents/backends/composite)[Module
+
+### context\_hub
+
+`ContextHubBackend`: Store files in a LangSmith Hub agent repo (persistent).](/python/deepagents/backends/context_hub)[Module
+
+### store
+
+`StoreBackend`: Adapter for LangGraph's BaseStore (persistent, cross-thread).](/python/deepagents/backends/store)[Module
 
 ### profiles
 
@@ -1014,147 +1171,7 @@ Beta APIs for configuring deep agent runtime behavior.
 Beta
 
 `deepagents.profiles` exposes beta APIs that may receive minor changes in
-future releases. Refer to the [versioning documentat](/python/deepagents/profiles/harness/harness_profiles)[Module
-
-### middleware
-
-Middleware for the Deep Agents agent.
-
-Overview
-
-The LLM receives tools through two paths:
-
-1. **SDK middleware** (this package) -- tools, system-prompt injection, and
-   request interception that](/python/deepagents/middleware)[Module
-
-### subagents
-
-Middleware for providing subagents to an agent via a `task` tool.](/python/deepagents/middleware/subagents)[Module
-
-### unsupported\_content
-
-Replace input content blocks the active model can't accept.](/python/deepagents/middleware/unsupported_content)[Module
-
-### filesystem
-
-Middleware for providing filesystem tools to an agent.](/python/deepagents/middleware/filesystem)[Module
-
-### async\_subagents
-
-Middleware for async subagents running on remote Agent Protocol servers.
-
-Async subagents use the LangGraph SDK to launch background runs on remote
-[Agent Protocol](https://github.com/langchain-ai/age](/python/deepagents/middleware/async_subagents)[Module
-
-### skills
-
-Skills middleware for loading and exposing agent skills to the system prompt.
-
-This module implements Anthropic's agent skills pattern with progressive disclosure,
-loading skills from backend storage](/python/deepagents/middleware/skills)[Module
-
-### summarization
-
-Summarization middleware for automatic and tool-based conversation compaction.
-
-This module provides two middleware classes and a convenience factory:
-
-* `SummarizationMiddleware` — automatically comp](/python/deepagents/middleware/summarization)[Module
-
-### memory
-
-Middleware for loading agent memory/context from AGENTS.md files.
-
-This module implements support for the AGENTS.md specification (https://agents.md/),
-loading memory/context from configurable sources](/python/deepagents/middleware/memory)[Module
-
-### rubric
-
-Rubric middleware for self-evaluated agent iteration.
-
-`RubricMiddleware` lets a caller declare *what done looks like* via a
-rubric. Each time the agent would otherwise finish — i.e. the model
-returns](/python/deepagents/middleware/rubric)[Module
-
-### patch\_tool\_calls
-
-Middleware to patch dangling tool calls in the messages history.](/python/deepagents/middleware/patch_tool_calls)[Module
-
-### permissions
-
-Backward-compatible re-export for filesystem permissions.](/python/deepagents/middleware/permissions)[Module
-
-### deprecation
-
-Adapter for `langchain_core`'s private deprecation helpers.
-
-Centralizes the import surface so an upstream rename or move is a one-file
-change.
-
-Re-exports:
-
-* `deprecated`: decorator for callables, cl](/python/deepagents/_api/deprecation)[Module
-
-### backends
-
-Memory backends for pluggable file storage.](/python/deepagents/backends)[Module
-
-### langsmith
-
-LangSmith sandbox backend implementation.](/python/deepagents/backends/langsmith)[Module
-
-### local\_shell
-
-`LocalShellBackend`: Filesystem backend with unrestricted local shell execution.
-
-This backend extends `FilesystemBackend` to add shell command execution on
-the local host system. It provides NO sandb](/python/deepagents/backends/local_shell)[Module
-
-### utils
-
-Shared utility functions for memory backend implementations.
-
-This module contains both user-facing string formatters and structured
-helpers used by backends and the composite router. Structured helpe](/python/deepagents/backends/utils)[Module
-
-### filesystem
-
-`FilesystemBackend`: Read and write files directly from the filesystem.](/python/deepagents/backends/filesystem)[Module
-
-### context\_hub
-
-`ContextHubBackend`: Store files in a LangSmith Hub agent repo (persistent).](/python/deepagents/backends/context_hub)[Module
-
-### state
-
-`StateBackend`: Store files in LangGraph agent state (ephemeral).](/python/deepagents/backends/state)[Module
-
-### protocol
-
-Protocol definition for pluggable memory backends.
-
-This module defines the `BackendProtocol` that all backend implementations
-must follow. Backends can store files in different locations (state, file](/python/deepagents/backends/protocol)[Module
-
-### sandbox
-
-Base sandbox implementation.
-
-`BaseSandbox` implements
-`SandboxBackendProtocol`.
-
-File listing, grep,](/python/deepagents/backends/sandbox)[Module
-
-### composite
-
-Composite backend that routes file operations by path prefix.
-
-Routes operations to different backends based on path prefixes. Use this when
-you need different storage strategies for different paths (](/python/deepagents/backends/composite)[Module
-
-### store
-
-`StoreBackend`: Adapter for LangGraph's BaseStore (persistent, cross-thread).](/python/deepagents/backends/store)
+future releases. Refer to the [versioning documentat](/python/deepagents/profiles/harness/harness_profiles)
 
 ## Types
 
@@ -1187,4 +1204,4 @@ Copy page
 
 ### On This Page
 
-DescriptionClasses96Functions52Modules30Types3
+DescriptionClasses97Functions53Modules30Types3

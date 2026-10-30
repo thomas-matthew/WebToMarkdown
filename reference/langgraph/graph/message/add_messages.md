@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[graph](/python/langgraph/graph)[message](/python/langgraph/graph/message)add\_messages
 
-Functionv1.2.14 (latest)●Since v0.1
+Functionv1.2.18 (latest)●Since v1.2
 
 # add\_messages
 
@@ -140,7 +140,7 @@ Copy
 | `right`\* | `Messages` | The list of `Messages` (or single `Message`) to merge into the base list. |
 | `format` | `Literal['langchain-openai'] | None` | Default:`None`  The format to return messages in. If `None` then `Messages` will be returned as is. If `langchain-openai` then `Messages` will be returned as `BaseMessage` objects with their contents formatted to match OpenAI message format, meaning contents can be string, `'text'` blocks, or `'image_url'` blocks and tool responses are returned as their own `ToolMessage` objects.  Requirement  Must have `langchain-core>=0.3.11` installed to use this feature. |
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/70dd64065bffaa3b6ab61a33f1f020fb54db8efa/libs/langgraph/langgraph/graph/message.py#L60)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/graph/message.py#L63)
 
 Version History
 

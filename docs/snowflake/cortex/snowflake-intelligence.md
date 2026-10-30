@@ -16,6 +16,7 @@
       - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
       - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
       - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
+      - [About Workday Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-datacloud "About Workday Data Cloud and Snowflake")
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
@@ -23,6 +24,7 @@
     - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
     - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
     - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
+    - [Pipeline Builder](/en/user-guide/pipeline-builder/pipeline-builder-overview "Pipeline Builder")
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
@@ -36,7 +38,7 @@
 
       + [Getting Started](/en/user-guide/snowflake-cortex/snowflake-cowork/getting-started "Getting Started")
       + [Build agents](/en/user-guide/snowflake-cortex/snowflake-cowork/build-agents "Build agents")
-      + [Artifacts](/en/user-guide/snowflake-cortex/snowflake-cowork/artifacts "Artifacts")
+      + [Chart and Thread artifacts](/en/user-guide/snowflake-cortex/snowflake-cowork/artifacts "Chart and Thread artifacts")
       + [Automations](/en/user-guide/snowflake-cortex/snowflake-cowork/automations "Automations")
       + [User skills](/en/user-guide/snowflake-cortex/snowflake-cowork/user-skills "User skills")
       + [Document generation](/en/user-guide/snowflake-cortex/snowflake-cowork/document-generation "Document generation")
@@ -46,9 +48,11 @@
       + [Shared resource budgets](/en/user-guide/snowflake-cortex/snowflake-cowork/cowork-shared-budgets "Shared resource budgets")
       + [Troubleshooting](/en/user-guide/snowflake-cortex/snowflake-cowork/troubleshooting "Troubleshooting")
       + [Reference](/en/user-guide/snowflake-cortex/snowflake-cowork/reference "Reference")
+    * [Snowflake Artifacts](/en/user-guide/snowflake-artifacts "Snowflake Artifacts")
     * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
+    * [Cortex Agent SDK](/en/user-guide/snowflake-cortex/cortex-agent-sdk/cortex-agent-sdk "Cortex Agent SDK")
     * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
     * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
@@ -59,7 +63,7 @@
     * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
     * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
-    * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
+    * [ML Development and ML Ops](/en/developer-guide/snowpark-ml/overview "ML Development and ML Ops")
     * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
 20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
 22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
@@ -109,10 +113,10 @@ and waiting on data teams for answers. Snowflake CoWork solves this with the fol
   map charts are not supported. Users can customize chart preferences through agent instructions,
   including default chart types, colors, and formatting rules. For more information, see
   [Customize charts in Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork/chart-customization).
-* **Artifacts**: A persistent chart or table object that Snowflake CoWork generates in response to a question. Save, share, and revisit tables and charts without regenerating them. For more information, see [Artifacts in Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork/artifacts).
+* **Artifacts**: Save charts and tables to revisit an analysis, or share a conversation as a snapshot. For these workflows, see [Chart and Thread artifacts in Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork/artifacts). For the common artifact types, ownership, and sharing model, see [Snowflake Artifacts](/user-guide/snowflake-artifacts).
 * **Automations**: Turn a one-time report into a recurring one that re-runs your question with fresh data and emails you the results. Set up and manage automations conversationally or from the **Automations** tab. For more information, see [Automations in Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork/automations).
 * **User skills**: Codify a repeatable workflow once, then reuse it explicitly with `/` or from the Skills menus, or implicitly when your conversation matches the skill. Create skills conversationally, from the **+** menu (**Create new**), or by uploading a skill folder. For more information, see [User skills in Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork/user-skills).
-* **Document generation**: Turn analysis into PDF documents, PowerPoint presentations, and HTML reports you can view inline. Upload a PowerPoint template to match your organization’s style, or customize behavior with a user or agent skill. Requires the [code execution tool](/user-guide/snowflake-cortex/cortex-agents-code-execution-tool) on the associated agent. For more information, see [Document generation in Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork/document-generation).
+* **Document generation**: Turn analysis into PDF documents, Word documents, PowerPoint presentations, and HTML reports you can view inline. Upload a PowerPoint template to match your organization’s style, or customize behavior with a user or agent skill. Requires the [code execution tool](/user-guide/snowflake-cortex/cortex-agents-code-execution-tool) on the associated agent. For more information, see [Document generation in Snowflake CoWork](/user-guide/snowflake-cortex/snowflake-cowork/document-generation).
 * **Seamless governance**: Automatically inherits and respects all existing Snowflake data governance
   controls, including row-access policies and column-level security.
 * **Full administrative control**: Administrators can use existing identity providers to give teams

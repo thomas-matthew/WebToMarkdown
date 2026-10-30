@@ -1,6 +1,6 @@
 Python[langgraph.store.postgres](/python/langgraph.store.postgres)[aio](/python/langgraph.store.postgres/aio)AsyncPostgresStore
 
-Classv3.1.2 (latest)●Since v1.0
+Classv3.2.0 (latest)●Since v3.2
 
 # AsyncPostgresStore
 
@@ -124,7 +124,7 @@ constructor
 | pipe | AsyncPipeline | None |
 | deserializer | [Callable](https://docs.python.org/3/library/typing.html#typing.Callable)[[[bytes](https://docs.python.org/3/library/stdtypes.html#bytes) | orjson.Fragment], [dict](https://docs.python.org/3/library/stdtypes.html#dict)[[str](https://docs.python.org/3/library/stdtypes.html#str), [Any](https://docs.python.org/3/library/typing.html#typing.Any)]] | None |
 | index | [PostgresIndexConfig](/python/langgraph.store.postgres/base/PostgresIndexConfig) | None |
-| ttl | [TTLConfig](/python/langgraph.store/base/TTLConfig) | None |
+| ttl | [TTLConfig](/python/langgraph-cli/schemas/TTLConfig) | None |
 
 ## Attributes
 
@@ -184,7 +184,7 @@ Stop the TTL sweeper task if it's running.](/python/langgraph.store.postgres/aio
 
 [AMIGRATIONS: MIGRATIONS](/python/langgraph.store.postgres/base/BasePostgresStore/MIGRATIONS)[AVECTOR\_MIGRATIONS: VECTOR\_MIGRATIONS](/python/langgraph.store.postgres/base/BasePostgresStore/VECTOR_MIGRATIONS)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/fde3068970679184b68d3d068a92c83c966a4888/libs/checkpoint-postgres/langgraph/store/postgres/aio.py#L42)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/d4149cc1f5384364d1a21092b4c2f582a6e7af8f/libs/checkpoint-postgres/langgraph/store/postgres/aio.py#L42)
 
 Version History
 

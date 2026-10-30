@@ -1,6 +1,6 @@
 Python[langchain-openai](/python/langchain-openai)[embeddings](/python/langchain-openai/embeddings)[base](/python/langchain-openai/embeddings/base)OpenAIEmbeddings
 
-Classv1.6.7 (latest)●Since v0.1
+Classv1.7.3 (latest)●Since v1.3
 
 # OpenAIEmbeddings
 
@@ -317,7 +317,7 @@ aembed\_query
 
 Call out to OpenAI's embedding endpoint async for embedding query text.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/aembed_query)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/026c3da2b615abe52f8446e37de460b844d07a43/libs/partners/openai/langchain_openai/embeddings/base.py#L86)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/575db57ab3658e38ba1d8c40c2bf62110c8a0c27/libs/partners/openai/langchain_openai/embeddings/base.py#L86)
 
 Version History
 

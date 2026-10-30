@@ -1,6 +1,6 @@
 Python[langgraph](/python/langgraph)[func](/python/langgraph/func)entrypoint
 
-Classv1.2.14 (latest)●Since v0.2
+Classv1.2.18 (latest)●Since v1.2
 
 # entrypoint
 
@@ -211,7 +211,7 @@ constructor
 | Name | Type |
 | --- | --- |
 | checkpointer | [BaseCheckpointSaver](/python/langgraph.checkpoint/base/BaseCheckpointSaver) | None |
-| store | [BaseStore](/python/langgraph.store/base/BaseStore) | None |
+| store | [BaseStore](/python/langchain-core/stores/BaseStore) | None |
 | cache | [BaseCache](/python/langchain-core/caches/BaseCache) | None |
 | context\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[ContextT](/python/langgraph/typing/ContextT)] | None |
 | cache\_policy | [CachePolicy](/python/langgraph/types/CachePolicy) | None |
@@ -248,7 +248,7 @@ A primitive that can be returned from an entrypoint.
 This primitive allows to save a value to the checkpointer distinct from the
 return value from the entrypoint.](/python/langgraph/func/entrypoint/final)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/70dd64065bffaa3b6ab61a33f1f020fb54db8efa/libs/langgraph/langgraph/func/__init__.py#L262)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/func/__init__.py#L262)
 
 Version History
 

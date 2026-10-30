@@ -1396,19 +1396,19 @@ require "pathname"
 
 client = OpenAI::Client.new
 result = client.images.generate(
-  model: "gpt-image-2",
+  model: "gpt-image-2.5-sunburst",
   prompt: "Create an original logo for Field & Flour, a local bakery. Use warm, simple shapes on a fully transparent background, with clean alpha edges and no shadow or checkerboard.",
   size: "1024x1536", quality: :medium, background: :transparent, output_format: :png, n: 4
 )
 Array(result.data).each_with_index do |item, index|
-  File.binwrite("logo-generation-#{index + 1}-gpt-image-2.png", Base64.strict_decode64(item.b64_json || raise("No PNG returned")))
+  File.binwrite("logo-generation-#{index + 1}-gpt-image-2.5-sunburst.png", Base64.strict_decode64(item.b64_json || raise("No PNG returned")))
 end
 result = client.images.edit(
-  model: "gpt-image-2", image: OpenAI::FilePart.new(Pathname("input_images/shampoo.webp"), content_type: "image/webp"),
+  model: "gpt-image-2.5-sunburst", image: OpenAI::FilePart.new(Pathname("input_images/shampoo.webp"), content_type: "image/webp"),
   prompt: "Extract the product onto a fully transparent background. Preserve its geometry and label, with clean edges and no shadow or restyling.",
   size: "1024x1536", quality: :medium, background: :transparent, output_format: :png
 )
-File.binwrite("extract-product-gpt-image-2.png", Base64.strict_decode64(Array(result.data).fetch(0).b64_json || raise("No PNG returned")))
+File.binwrite("extract-product-gpt-image-2.5-sunburst.png", Base64.strict_decode64(Array(result.data).fetch(0).b64_json || raise("No PNG returned")))
 ```
 
 
@@ -1527,7 +1527,7 @@ Use `client.images.generate` for generation and `client.images.edit` for edits. 
         </h2>
         
 
-          Overview and request settings for existing GPT Image 1 workflows.
+          Legacy request settings for migrating GPT Image 1 workflows.
         
 
       </header>
@@ -1535,16 +1535,17 @@ Use `client.images.generate` for generation and `client.images.edit` for edits. 
 
 ## Overview
 
-**Deprecated model.** `gpt-image-1` is scheduled to shut down on October 23,
-  2026. See the [deprecation
-  notice](https://developers.openai.com/api/docs/deprecations#2026-04-22-legacy-gpt-model-snapshots) and
-  validate existing workflows with `gpt-image-2` before migrating.
+**Retired model.** `gpt-image-1` was shut down on October 23, 2026. Use
+  `gpt-image-2.5-sunburst` or `gpt-image-2.5-flare` instead. See the
+  [deprecation
+  notice](https://developers.openai.com/api/docs/deprecations#2026-04-22-legacy-gpt-model-snapshots) for
+  migration details.
 
-GPT Image 1 supports image generation and editing with reference images and masks. Use this reference to maintain existing integrations. For shared techniques such as describing a scene, preserving details, and refining an edit, see the [prompting guide](https://developers.openai.com/api/docs/guides/image-prompting?model=gpt-image-2.5).
+GPT Image 1 supported image generation and editing with reference images and masks. Use this reference when migrating existing integrations. For shared techniques such as describing a scene, preserving details, and refining an edit, see the [prompting guide](https://developers.openai.com/api/docs/guides/image-prompting?model=gpt-image-2.5).
 
 ## Model parameters
 
-Use `client.images.generate` for generation and `client.images.edit` for edits. See the [image generation guide](https://developers.openai.com/api/docs/guides/image-generation) for API setup and request examples.
+These settings describe legacy GPT Image 1 requests. See the [image generation guide](https://developers.openai.com/api/docs/guides/image-generation) for supported models, API setup, and current request examples.
 
 | Parameter            | GPT Image 1                                                                                                                                                                                                                              |
 | -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

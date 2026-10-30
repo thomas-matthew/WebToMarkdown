@@ -16,6 +16,7 @@
       - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
       - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
       - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
+      - [About Workday Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-datacloud "About Workday Data Cloud and Snowflake")
 11. Data engineering
 
     - [Data loading](/en/guides-overview-loading-data "Data loading")
@@ -23,6 +24,7 @@
     - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
     - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
     - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
+    - [Pipeline Builder](/en/user-guide/pipeline-builder/pipeline-builder-overview "Pipeline Builder")
     - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
     - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
 12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
@@ -33,9 +35,11 @@
 
     * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
     * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
+    * [Snowflake Artifacts](/en/user-guide/snowflake-artifacts "Snowflake Artifacts")
     * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
     * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
     * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
+    * [Cortex Agent SDK](/en/user-guide/snowflake-cortex/cortex-agent-sdk/cortex-agent-sdk "Cortex Agent SDK")
     * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
     * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
     * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
@@ -48,7 +52,7 @@
     * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
     * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
     * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
-    * [ML Development and ML Ops](/en//developer-guide/snowpark-ml/overview "ML Development and ML Ops")
+    * [ML Development and ML Ops](/en/developer-guide/snowpark-ml/overview "ML Development and ML Ops")
     * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
 20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
 22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
@@ -74,21 +78,21 @@ For how REST API usage fits alongside other AI features, see [AI Observability i
 
 ## Choose your API[¶](#choose-your-api)
 
-Cortex REST API supports two industry-standard API specifications. Pick the one that best fits your stack:
+Cortex REST API supports three industry-standard API specifications. Pick the one that best fits your stack:
 
-|  | **Chat Completions API** | **Messages API** |
-| --- | --- | --- |
-| Compatibility | [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat/create) | [Anthropic Messages API](https://docs.anthropic.com/en/api/messages) |
-| Endpoint | `/api/v2/cortex/v1/chat/completions` | `/api/v2/cortex/v1/messages` |
-| Supported models | All models (OpenAI, Claude, Llama, Mistral, DeepSeek, Snowflake) | Claude models only |
-| SDK support | OpenAI Python and JavaScript SDKs | Anthropic Python SDK |
-| Best for | Most use cases; multi-model flexibility | Existing Anthropic integrations; Anthropic API parity |
+|  | **Chat Completions API** | **Messages API** | **Responses API** (preview) |
+| --- | --- | --- | --- |
+| Compatibility | [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat/create) | [Anthropic Messages API](https://docs.anthropic.com/en/api/messages) | [OpenAI Responses API](https://platform.openai.com/docs/api-reference/responses/create) |
+| Endpoint | `/api/v2/cortex/v1/chat/completions` | `/api/v2/cortex/v1/messages` | `/api/v2/cortex/v1/responses` |
+| Supported models | All models (OpenAI, Claude, Llama, Mistral, DeepSeek, Snowflake) | Claude models only | OpenAI models only |
+| SDK support | OpenAI Python and JavaScript SDKs | Anthropic Python SDK | OpenAI Python and JavaScript SDKs |
+| Best for | Most use cases; multi-model flexibility | Existing Anthropic integrations; Anthropic API parity | Existing integrations and clients built on the OpenAI Responses API |
 
 Expand
 
 Show lessSee more
 
-Both APIs share the same authentication, model catalog, and rate limits. The only difference is the
+All three APIs share the same authentication, model catalog, and rate limits. The only difference is the
 request/response format and which models each endpoint supports. For pricing, see the
 [Snowflake Service Consumption Table](https://www.snowflake.com/legal-files/CreditConsumptionTable.pdf).
 
@@ -267,6 +271,81 @@ In the preceding examples, replace the following:
 * `<SNOWFLAKE_PAT>`: Your Snowflake Programmatic Access Token (PAT).
 * `model`: The Claude model name. See [Model availability](#label-cortex-complete-llm-model-availability) for supported models.
 
+### Responses API quickstart[¶](#responses-api-quickstart)
+
+[![Snowflake logo in black (no text)](/static/images/logo-snowflake-black.png)](/static/images/logo-snowflake-black.png) [Preview Feature](/release-notes/preview-features) — Open
+
+Available to all accounts.
+
+The Responses API follows the OpenAI specification and supports OpenAI models only. You can use the OpenAI SDK
+directly. The API doesn’t keep conversation state, so send the full conversation in `input` with every request. See
+[Limitations](#label-cortex-rest-api-responses-limitations).
+
+PythonJavaScript/TypeScriptcurl
+
+Copy codeExpand code block
+
+```
+from openai import OpenAI
+
+client = OpenAI(
+  api_key="<SNOWFLAKE_PAT>",
+  base_url="https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1"
+)
+
+response = client.responses.create(
+  model="openai-gpt-5.6-sol",
+  instructions="You are a helpful assistant.",
+  input="How does a snowflake get its unique pattern?",
+  store=False,
+)
+
+print(response.output_text)
+```
+
+Show lessSee more
+
+Scroll to top
+
+Copy code
+
+```
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  apiKey: "<SNOWFLAKE_PAT>",
+  baseURL: "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1"
+});
+
+const response = await client.responses.create({
+  model: "openai-gpt-5.6-sol",
+  instructions: "You are a helpful assistant.",
+  input: "How does a snowflake get its unique pattern?",
+  store: false,
+});
+
+console.log(response.output_text);
+```
+
+Copy code
+
+```
+curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/responses" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer <SNOWFLAKE_PAT>" \
+  -d '{
+    "model": "openai-gpt-5.6-sol",
+    "input": "How does a snowflake get its unique pattern?",
+    "store": false
+  }'
+```
+
+In the preceding examples, replace the following:
+
+* `<account-identifier>`: Your Snowflake account identifier.
+* `<SNOWFLAKE_PAT>`: Your Snowflake Programmatic Access Token (PAT).
+* `model`: The OpenAI model name. See [Model availability](#label-cortex-complete-llm-model-availability) for supported models.
+
 ## Setting up authentication[¶](#setting-up-authentication)
 
 To authenticate to the Cortex REST API, you can use the methods described in
@@ -361,106 +440,58 @@ GRANT DATABASE ROLE SNOWFLAKE.CORTEX_REST_API_USER TO ROLE api_consumer;
 
 ## Model availability[¶](#model-availability)
 
-The following tables show the models available in the Cortex REST API for each region.
-After a model’s legacy date, only accounts that already used the model can continue to
-call it until end-of-life; accounts that had not used it can’t start.
+The following table shows the models the Cortex REST API serves and the release stage of each one.
 
-Cross-region and Cross-cloudNorth AmericaEuropeAsia-Pacific
+For the regions and cross-region routing scopes each model runs in, see [Regional availability](/user-guide/snowflake-cortex/model-availability#label-cortex-model-availability-by-region).
 
-| Model | Cross Cloud (Any Region) | AWS Global (Cross-Region) | AWS US (Cross-Region) | AWS US Commercial Gov (Cross-Region) | AWS US FedRAMP High Plus (Cross-Region) | AWS US DoD (Cross-Region) | AWS EU (Cross-Region) | AWS APJ (Cross-Region) | AWS JP (Cross-Region) | AWS AU (Cross-Region) | Azure Global (Cross-Region) | Azure US (Cross-Region) | Azure US FedRAMP High Plus (Cross-Region)† | Azure EU (Cross-Region) |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| `claude-opus-5-5` | \* | \* | \* |  |  |  | \* | \* | \* | \* |  |  |  |  |
-| `claude-opus-5` | ✔ | ✔ | ✔ |  |  |  | ✔ |  |  |  |  |  |  |  |
-| `claude-opus-4-8` | ✔ | ✔ | ✔ |  |  |  | ✔ |  |  |  |  |  |  |  |
-| `claude-opus-4-7` | ✔ | ✔ | ✔ |  |  |  | ✔ |  |  |  |  |  |  |  |
-| `claude-opus-4-6` | ✔ | ✔ | ✔ |  |  |  | ✔ | ✔ |  | ✔ |  |  |  |  |
-| `claude-opus-4-5` | ✔ | ✔ | ✔ |  |  |  | ✔ |  |  |  |  |  |  |  |
-| `claude-fable-5-1` | \*\* | \*\* | \*\* |  |  |  |  |  |  |  |  |  |  |  |
-| `claude-fable-5` | \*\* | \*\* | \*\* |  |  |  |  |  |  |  |  |  |  |  |
-| `claude-sonnet-5` | ✔ | ✔ | ✔ |  |  |  | ✔ | ✔ |  | ✔ |  |  |  |  |
-| `claude-sonnet-5-5` | \* | \* | \* |  |  |  |  |  |  |  |  |  |  |  |
-| `claude-sonnet-4-6` | ✔ | ✔ | ✔ | ✔ |  |  | ✔ | ✔ | ✔ | ✔ |  |  |  |  |
-| `claude-sonnet-4-5` | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |  |  | ✔ |  |
-| `claude-4-sonnet` | ✔ | ✔ | ✔ | ✔ |  |  | ✔ | ✔ | ✔ |  |  |  |  |  |
-| `claude-haiku-4-5` | ✔ | ✔ | ✔ | ✔ |  |  | ✔ | ✔ | ✔ | ✔ |  |  |  |  |
-| `openai-gpt-6-astra` | ✔ | ✔ | ✔ |  |  |  |  |  |  |  |  |  |  |  |
-| `openai-gpt-6-luna` | \* | \* | \* |  |  |  |  |  |  |  |  |  |  |  |
-| `openai-gpt-6-sol` | \* | \* | \* |  |  |  |  |  |  |  |  |  |  |  |
-| `openai-gpt-5.6-luna` | ✔ | ✔ | ✔ |  |  |  |  |  |  |  |  |  |  |  |
-| `openai-gpt-5.6-sol` | ✔ | ✔ | ✔ |  |  |  |  |  |  |  |  |  |  |  |
-| `openai-gpt-5.6-terra` | ✔ | ✔ | ✔ |  |  |  |  |  |  |  |  |  |  |  |
-| `openai-gpt-5.5` | \*\* |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| `openai-gpt-5.4` | \* |  |  | \* | \* | \* |  |  |  |  | \* | \* | † | \* |
-| `openai-gpt-5.2` | ✔ |  |  |  |  |  |  |  |  |  | ✔ | ✔ |  |  |
-| `openai-gpt-5.1` | ✔ |  |  |  |  |  |  |  |  |  | ✔ | ✔ |  | ✔ |
-| `openai-gpt-5` | ✔ |  |  |  |  |  |  |  |  |  | ✔ | ✔ |  | ✔ |
-| `openai-gpt-5-mini` | ✔ |  |  |  |  |  |  |  |  |  | ✔ | ✔ |  |  |
-| `openai-gpt-5-nano` | ✔ |  |  |  |  |  |  |  |  |  | ✔ | ✔ |  |  |
-| `openai-gpt-4.1` | ✔ |  |  |  |  |  |  |  |  |  | ✔ | ✔ |  |  |
-| `llama4-maverick` | ✔ | ✔ | ✔ |  |  |  |  |  |  |  |  |  |  |  |
-| `llama3.1-8b` | ✔ | ✔ | ✔ | ✔ |  |  | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |  | ✔ |
-| `llama3.1-70b` | ✔ | ✔ | ✔ | ✔ |  |  | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |  | ✔ |
-| `llama3.1-405b` | ✔ | ✔ | ✔ |  |  |  |  |  |  |  | ✔ | ✔ |  |  |
-| `deepseek-v4-flash` | \*\* |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| `deepseek-r1` | ✔ | ✔ | ✔ |  |  |  |  |  |  |  |  |  |  |  |
-| `glm-5.3` | \*\* |  |  |  |  |  |  |  |  |  |  |  |  |  |
-| `kimi-k3` | \*\* | \*\* | \*\* |  |  |  |  |  |  |  |  |  |  |  |
-| `mistral-7b` | ✔ | ✔ |  | ✔ |  |  |  | ✔ | ✔ | ✔ |  |  |  |  |
-| `mistral-large` | ✔ | ✔ |  |  |  |  |  |  |  |  |  |  |  |  |
-| `mistral-large2` | ✔ | ✔ | ✔ | ✔ |  |  | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |  | ✔ |
-| `snowflake-llama-3.3-70b` | ✔ | ✔ | ✔ |  |  |  |  |  |  |  |  |  |  |  |
+| Model | Status |
+| --- | --- |
+| `claude-opus-5-5` | Public preview |
+| `claude-opus-5` | GA |
+| `claude-opus-4-8` | GA |
+| `claude-opus-4-7` | GA |
+| `claude-opus-4-6` | GA |
+| `claude-opus-4-5` | GA |
+| `claude-fable-5-1` | Private preview |
+| `claude-fable-5` | Private preview |
+| `claude-sonnet-5` | GA |
+| `claude-sonnet-5-5` | Public preview |
+| `claude-sonnet-4-6` | GA |
+| `claude-sonnet-4-5` | GA |
+| `claude-haiku-5-5` | Public preview |
+| `claude-haiku-4-5` | GA |
+| `openai-gpt-6-astra` | GA |
+| `openai-gpt-6-luna` | Public preview |
+| `openai-gpt-6-sol` | Public preview |
+| `openai-gpt-6.1-sol` | Public preview |
+| `openai-gpt-5.6-luna` | GA |
+| `openai-gpt-5.6-sol` | GA |
+| `openai-gpt-5.6-terra` | GA |
+| `openai-gpt-5.5` | Private preview |
+| `openai-gpt-5.4` | GA |
+| `openai-gpt-5.2` | GA |
+| `openai-gpt-5.1` | GA |
+| `openai-gpt-5` | GA |
+| `openai-gpt-5-mini` | GA |
+| `openai-gpt-5-nano` | GA |
+| `openai-gpt-4.1` | Legacy |
+| `llama4-maverick` | Legacy |
+| `llama3.1-8b` | GA |
+| `llama3.1-70b` | Legacy |
+| `deepseek-v4-flash` | Private preview |
+| `glm-5.3` | Public preview |
+| `kimi-k3` | Public preview |
+| `mistral-7b` | Legacy |
+| `mistral-large2` | Legacy |
+| `grok-4.7` | Public preview |
+| `grok-4.6` | Public preview |
+| `snowflake-decision-fast` | Private preview |
 
 Expand
 
 Show lessSee more
 
-| Model | AWS US West 2 (Oregon) | AWS US East 1 (N. Virginia) | Azure East US 2 (Virginia) |
-| --- | --- | --- | --- |
-| `llama4-maverick` | ✔ |  |  |
-| `llama3.1-8b` | ✔ | ✔ | ✔ |
-| `llama3.1-70b` | ✔ | ✔ | ✔ |
-| `llama3.1-405b` | ✔ | ✔ | ✔ |
-| `deepseek-r1` | ✔ |  |  |
-| `mistral-7b` | ✔ | ✔ | ✔ |
-| `mistral-large` | ✔ | ✔ | ✔ |
-| `mistral-large2` | ✔ | ✔ | ✔ |
-| `snowflake-llama-3.3-70b` | ✔ |  |  |
-
-Expand
-
-Show lessSee more
-
-| Model | AWS Europe Central 1 (Frankfurt) | AWS Europe West 1 (Ireland) | AWS Europe West 2 (London) | Azure West Europe (Netherlands) |
-| --- | --- | --- | --- | --- |
-| `claude-opus-4-6` |  |  | ✔ |  |
-| `claude-sonnet-4-6` |  |  | ✔ |  |
-| `llama3.1-8b` | ✔ |  |  | ✔ |
-| `llama3.1-70b` | ✔ | ✔ |  | ✔ |
-| `mistral-7b` | ✔ |  |  | ✔ |
-| `mistral-large` | ✔ |  |  | ✔ |
-| `mistral-large2` | ✔ | ✔ |  | ✔ |
-
-Expand
-
-Show lessSee more
-
-| Model | AWS AP Southeast 2 (Sydney) | AWS AP Northeast 1 (Tokyo) |
-| --- | --- | --- |
-| `llama3.1-8b` |  | ✔ |
-| `llama3.1-70b` | ✔ | ✔ |
-| `mistral-7b` |  | ✔ |
-| `mistral-large` |  | ✔ |
-| `mistral-large2` | ✔ | ✔ |
-
-Expand
-
-Show lessSee more
-
-\* Indicates a public preview function or model. Public preview features aren’t suitable for production workloads.
-
-\*\* Indicates a private preview model. Private preview models are available only to accounts that Snowflake has explicitly enabled, and they aren’t suitable for production workloads.
-
-† Models are available to Azure US FedRAMP High Plus accounts through cross-region inference with processing on AWS in the United States. See [US FedRAMP High and DoD gov regions](/user-guide/snowflake-cortex/cross-region-inference#label-cortex-cross-region-fedramp-dod).
+Public preview models aren’t suitable for production workloads. Private preview models are available only to accounts that Snowflake has explicitly enabled. After a model’s legacy date, only accounts that already used the model can continue to call it until end-of-life; accounts that hadn’t used it can’t start.
 
 You can also use any [fine-tuned](/user-guide/snowflake-cortex/cortex-finetuning) model in any supported region.
 
@@ -2754,6 +2785,131 @@ For full request and response schema details, see the
 503 `inference timed out`
 :   The request took too long.
 
+## Responses API reference[¶](#responses-api-reference)
+
+[![Snowflake logo in black (no text)](/static/images/logo-snowflake-black.png)](/static/images/logo-snowflake-black.png) [Preview Feature](/release-notes/preview-features) — Open
+
+Available to all accounts.
+
+### POST /api/v2/cortex/v1/responses[¶](#post-apiv2cortexv1responses)
+
+Generates a model response using an OpenAI model. The request and response format follows the
+[OpenAI Responses API specification](https://platform.openai.com/docs/api-reference/responses/create).
+
+Expand code block
+
+```
+POST https://<account_identifier>.snowflakecomputing.com/api/v2/cortex/v1/responses
+```
+
+Note
+
+The Responses API supports **OpenAI models only**. For other models, use the Chat Completions API or the
+Messages API.
+
+The Responses API’s public preview status applies only to OpenAI models that are in public preview or
+generally available.
+
+#### Required headers[¶](#required-headers)
+
+`Authorization: Bearer token`
+:   Authorization for the request. `token` is a JSON web token (JWT), OAuth token, or
+    [programmatic access token](/user-guide/programmatic-access-tokens). For details, see
+    [Authenticating Snowflake REST APIs with Snowflake](/developer-guide/snowflake-rest-api/authentication).
+
+`Content-Type: application/json`
+:   Specifies that the body of the request is in JSON format.
+
+#### Optional headers[¶](#optional-headers)
+
+`X-Snowflake-Authorization-Token-Type: type`
+:   Defines the type of authorization token.
+
+    If you omit the `X-Snowflake-Authorization-Token-Type` header, Snowflake determines the token type by examining the token.
+
+    Even though this header is optional, you can choose to specify this header. You can set the header to one of the following values:
+
+    * `KEYPAIR_JWT` (for key-pair authentication)
+    * `OAUTH` (for OAuth)
+    * `PROGRAMMATIC_ACCESS_TOKEN` (for [programmatic access tokens](/user-guide/programmatic-access-tokens))
+
+`Accept: application/json, text/event-stream`
+:   Specifies that the response will either contain JSON (error case) or server-sent events.
+
+#### Required JSON fields[¶](#required-json-fields)
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `model` | string | The OpenAI model to use (see [Model availability](#label-cortex-complete-llm-model-availability)). Required on every request. |
+| `input` | string or array | The input to the model: a text string, or an array of input items. Each message item has a `role` (`system`, `developer`, `user`, or `assistant`) and `content`. |
+
+Expand
+
+Show lessSee more
+
+#### Commonly used optional JSON fields[¶](#commonly-used-optional-json-fields)
+
+| Field | Type | Default | Description |
+| --- | --- | --- | --- |
+| `instructions` | string | null | A system or developer message inserted into the model’s context. |
+| `max_output_tokens` | integer | Varies by model | Maximum tokens in the response, including reasoning tokens. |
+| `stream` | boolean | false | Whether to stream back partial progress as server-sent events. |
+| `tools` | array | null | A list of tools the model may call. Each tool must have `type: "function"`, with `name`, `description`, and `parameters` at the top level. |
+| `tool_choice` | string or object | `"auto"` | Controls how the model selects tools. Options: `"auto"`, `"required"`, `"none"`, or an object specifying a particular function. |
+| `text` | object | null | Constrains the output format. Use `{"format": {"type": "json_schema", ...}}` for structured output. |
+| `reasoning` | object | null | Set `reasoning.effort` to control reasoning. Values: `"none"`, `"minimal"`, `"low"`, `"medium"`, `"high"`. |
+| `store` | boolean | false | Always treated as `false`, whatever value you send, so responses aren’t stored. See [Limitations](#label-cortex-rest-api-responses-limitations). |
+
+Expand
+
+Show lessSee more
+
+For full request and response schema details, see the
+[OpenAI Responses API documentation](https://platform.openai.com/docs/api-reference/responses).
+
+#### Supported features[¶](#supported-features)
+
+The Responses API supports the following features for OpenAI models:
+
+* Text generation, with multi-turn conversations passed in `input`
+* Streaming (`"stream": true`)
+* System and developer instructions (via the top-level `instructions` field or `system`/`developer` input items)
+* Tool calling with client-side function tools
+* Structured output (`text.format` with `json_schema`)
+* Reasoning (`reasoning.effort`)
+
+#### Limitations[¶](#limitations)
+
+* **OpenAI models only.** Requests for Claude, Llama, Mistral, and other models are rejected.
+* **No conversation state.** `store` is always treated as `false`, so responses
+  aren’t stored. You can’t retrieve a response with `GET /responses/{id}` or continue one with `previous_response_id`.
+  Send the full conversation history in `input` on every request.
+* **No background mode.** Requests are synchronous. `"background": true` is rejected.
+* `model` is required on every request.
+
+#### Status codes[¶](#status-codes)
+
+200 `OK`
+:   Request completed successfully.
+
+400 `invalid_request_error`
+:   The request body is malformed, contains invalid values, or uses an unsupported field or tool.
+
+400 `unknown model model_name`
+:   The specified model does not exist or is not an OpenAI model.
+
+402 `budget exceeded`
+:   The model consumption budget was exceeded.
+
+403 `Not Authorized`
+:   Account not enabled for REST API, or the default role does not have the `snowflake.cortex_user` database role.
+
+429 `too many requests`
+:   The usage quota has been exceeded. Try again later.
+
+503 `inference timed out`
+:   The request took too long.
+
 ## Rate limits[¶](#rate-limits)
 
 To ensure high performance for all Snowflake customers, Cortex REST API requests are subject to rate limits.
@@ -3096,30 +3252,33 @@ On this page
 4. [Prerequisites](#prerequisites)
 5. [Chat Completions quickstart](#chat-completions-quickstart)
 6. [Messages API quickstart](#messages-api-quickstart)
-7. [Setting up authentication](#setting-up-authentication)
-8. [Setting up authorization](#setting-up-authorization)
-9. [Limiting access using the Cortex REST API user role](#limiting-access-using-the-cortex-rest-api-user-role)
-10. [Model availability](#model-availability)
-11. [Features](#features)
-12. [Streaming](#streaming)
-13. [Tool calling](#tool-calling)
-14. [Structured output](#structured-output)
-15. [Image input](#image-input)
-16. [Prompt caching](#prompt-caching)
-17. [Thinking and reasoning](#thinking-and-reasoning)
-18. [Beta features (Messages API)](#beta-features-messages-api)
-19. [Chat Completions API reference](#chat-completions-api-reference)
-20. [POST /api/v2/cortex/v1/chat/completions](#post-apiv2cortexv1chatcompletions)
-21. [Messages API reference](#messages-api-reference)
-22. [POST /api/v2/cortex/v1/messages](#post-apiv2cortexv1messages)
-23. [Rate limits](#rate-limits)
-24. [Increase rate limits with cross-region inference](#increase-rate-limits-with-cross-region-inference)
-25. [View your rate limits](#view-your-rate-limits)
-26. [Troubleshooting rate limit events](#troubleshooting-rate-limit-events)
-27. [Known issues](#known-issues)
-28. [Session token expiration](#session-token-expiration)
-29. [Cost considerations](#cost-considerations)
-30. [Monitoring usage](#monitoring-usage)
-31. [Required privileges](#required-privileges)
-32. [Usage examples](#usage-examples)
-33. [Exporting historical data](#exporting-historical-data)
+7. [Responses API quickstart](#responses-api-quickstart)
+8. [Setting up authentication](#setting-up-authentication)
+9. [Setting up authorization](#setting-up-authorization)
+10. [Limiting access using the Cortex REST API user role](#limiting-access-using-the-cortex-rest-api-user-role)
+11. [Model availability](#model-availability)
+12. [Features](#features)
+13. [Streaming](#streaming)
+14. [Tool calling](#tool-calling)
+15. [Structured output](#structured-output)
+16. [Image input](#image-input)
+17. [Prompt caching](#prompt-caching)
+18. [Thinking and reasoning](#thinking-and-reasoning)
+19. [Beta features (Messages API)](#beta-features-messages-api)
+20. [Chat Completions API reference](#chat-completions-api-reference)
+21. [POST /api/v2/cortex/v1/chat/completions](#post-apiv2cortexv1chatcompletions)
+22. [Messages API reference](#messages-api-reference)
+23. [POST /api/v2/cortex/v1/messages](#post-apiv2cortexv1messages)
+24. [Responses API reference](#responses-api-reference)
+25. [POST /api/v2/cortex/v1/responses](#post-apiv2cortexv1responses)
+26. [Rate limits](#rate-limits)
+27. [Increase rate limits with cross-region inference](#increase-rate-limits-with-cross-region-inference)
+28. [View your rate limits](#view-your-rate-limits)
+29. [Troubleshooting rate limit events](#troubleshooting-rate-limit-events)
+30. [Known issues](#known-issues)
+31. [Session token expiration](#session-token-expiration)
+32. [Cost considerations](#cost-considerations)
+33. [Monitoring usage](#monitoring-usage)
+34. [Required privileges](#required-privileges)
+35. [Usage examples](#usage-examples)
+36. [Exporting historical data](#exporting-historical-data)

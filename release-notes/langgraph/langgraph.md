@@ -3,6 +3,30 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langgraph/releases
 
+## 1.2.18 — 2026-10-26
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.18)
+
+- feat(langgraph): default delta snapshots to 100 updates (#9420). `DeltaChannel` now takes a full snapshot every 100 updates instead of 1000: faster reads on long threads, more storage. Pass `snapshot_frequency=1000` to keep the old behavior.
+
+## 1.2.17 — 2026-10-24
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.17)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.2.16 — 2026-10-16
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.16)
+
+- feat(checkpoint-postgres): add prune to PostgresSaver and AsyncPostgresSaver (#9290)
+
+## 1.2.15 — 2026-10-12
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.15)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 1.2.14 — 2026-10-06
 
 [Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.14)
