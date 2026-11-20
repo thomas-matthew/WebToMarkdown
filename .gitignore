@@ -93,3 +93,6 @@ Thumbs.db
 
 # Claude Code local session/scheduling state
 .claude/
+
+# Staging area used while regenerating docs
+.staging/

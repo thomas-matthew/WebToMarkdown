@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Fetch feature-focused GitHub release notes for selected LangChain-ecosystem
-packages and persist them as markdown artifacts under ``reference/release-notes/``.
+packages and persist them as markdown artifacts under ``context/release-notes/``.
 
 Designed to run as a step inside ``create_reference_docs.sh``. It is re-runnable:
 each run re-fetches every release and overwrites the artifacts, so newly released
@@ -23,11 +23,13 @@ import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
+from typing import Any
 
 GITHUB = "https://github.com"
-OUTPUT_ROOT = Path("release-notes")
+OUTPUT_ROOT = Path("context/release-notes")
 
 Version = tuple[int, ...]
+Release = dict[str, Any]  # one release object from the GitHub API
 
 
 @dataclass(frozen=True)
@@ -36,7 +38,7 @@ class PackageSpec:
 
     name: str               # output artifact name
     repo: str               # "owner/repo"
-    group: str              # output subdirectory under reference/release-notes/
+    group: str              # output subdirectory under context/release-notes/
     tag_mode: str           # "equals" -> tag is "<tag_key>==<version>"
     #                         "bare"   -> tag is a bare "<version>" (no "==")
     tag_key: str            # left-hand side of the "==" tag (unused for "bare")
@@ -155,11 +157,11 @@ def extract_features(body: str, seen_prs: set[str]) -> list[str]:
     return features
 
 
-def _parse_json_stream(text: str) -> list[dict]:
+def _parse_json_stream(text: str) -> list[Release]:
     """Parse one or more concatenated JSON arrays (what ``gh api --paginate``
     emits) into a single flat list of objects."""
     decoder = json.JSONDecoder()
-    items: list[dict] = []
+    items: list[Release] = []
     idx, length = 0, len(text)
     while idx < length:
         while idx < length and text[idx].isspace():
@@ -174,7 +176,7 @@ def _parse_json_stream(text: str) -> list[dict]:
     return items
 
 
-def fetch_releases(repo: str) -> list[dict]:
+def fetch_releases(repo: str) -> list[Release]:
     """Fetch every release for ``repo`` via the authenticated GitHub CLI."""
     result = subprocess.run(
         ["gh", "api", f"repos/{repo}/releases", "--paginate",
@@ -186,9 +188,9 @@ def fetch_releases(repo: str) -> list[dict]:
     return _parse_json_stream(result.stdout)
 
 
-def build_artifact(spec: PackageSpec, raw_releases: list[dict]) -> tuple[str, int, int]:
+def build_artifact(spec: PackageSpec, raw_releases: list[Release]) -> tuple[str, int, int]:
     """Build the markdown artifact for ``spec``. Returns (content, versions, features)."""
-    selected: list[tuple[Version, str, dict]] = []
+    selected: list[tuple[Version, str, Release]] = []
     for release in raw_releases:
         version_str = match_tag(spec, release.get("tag_name") or "")
         if version_str is None:
@@ -236,9 +238,9 @@ def build_artifact(spec: PackageSpec, raw_releases: list[dict]) -> tuple[str, in
     return "\n".join(lines).rstrip() + "\n", len(selected), feature_total
 
 
-def write_artifact(spec: PackageSpec, content: str) -> Path:
+def write_artifact(spec: PackageSpec, content: str, root: Path = OUTPUT_ROOT) -> Path:
     """Write ``content`` to the package's artifact path, creating parent dirs."""
-    path = OUTPUT_ROOT / spec.group / f"{spec.name}.md"
+    path = root / spec.group / f"{spec.name}.md"
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8")
     return path
@@ -252,6 +254,12 @@ def main() -> int:
         metavar="NAME",
         help="only process the given package name(s); may be repeated",
     )
+    parser.add_argument(
+        "--output-dir",
+        type=Path,
+        default=OUTPUT_ROOT,
+        help=f"directory to write release notes into (default: {OUTPUT_ROOT})",
+    )
     args = parser.parse_args()
 
     specs = PACKAGES
@@ -262,7 +270,7 @@ def main() -> int:
             print(f"No packages match {sorted(wanted)}", file=sys.stderr)
             return 1
 
-    cache: dict[str, list[dict]] = {}
+    cache: dict[str, list[Release]] = {}
     for repo in sorted({s.repo for s in specs}):
         print(f"-> Fetching releases for {repo} ...")
         try:
@@ -279,14 +287,14 @@ def main() -> int:
     rows: list[tuple[str, int, int, str]] = []
     for spec in specs:
         content, version_count, feature_count = build_artifact(spec, cache[spec.repo])
-        path = write_artifact(spec, content)
+        path = write_artifact(spec, content, args.output_dir)
         rows.append((spec.name, version_count, feature_count, str(path)))
 
     name_width = max(len(row[0]) for row in rows)
     print("\nRelease notes generated:")
     print(f"  {'package'.ljust(name_width)}  versions  features  path")
-    for name, version_count, feature_count, path in rows:
-        print(f"  {name.ljust(name_width)}  {version_count:>8}  {feature_count:>8}  {path}")
+    for name, version_count, feature_count, artifact_path in rows:
+        print(f"  {name.ljust(name_width)}  {version_count:>8}  {feature_count:>8}  {artifact_path}")
     return 0
 
 

@@ -5,17 +5,20 @@ set -e
 
 # --- CONFIGURATION ---
 
-PROJECT_DIR="/Users/thomasmathew/Dev/personal/WebToMarkdown"
-OUTPUT_DIR="."
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Everything generated goes under this folder (reference/, docs/, release-notes/).
+# Its hand-written CLAUDE.md guide is left untouched by regeneration.
+OUTPUT_DIR="context"
 COMMIT_MSG="Auto-update: Generated new artifacts via web2llms"
-CONCURRENCY="${CONCURRENCY:-4}"
+CONCURRENCY="${CONCURRENCY:-8}"
 
 # --- URL MAPPING (Bash 3.2 Compatible) ---
 # Syntax: "URL | reference|docs/SUBDIRECTORY/FILENAME"
 # Note: Use the pipe character '|' to separate the URL and the Filepath
-# Paths are split into:
+# Paths are relative to OUTPUT_DIR and split into:
 #   reference/  -- API references, SQL/Python function refs, REST endpoint specs
 #   docs/       -- Conceptual guides, overviews, prompt engineering, model docs
+# When you add a new source or topic, also update OUTPUT_DIR/CLAUDE.md.
 
 URL_LIST=(
     # === REFERENCE: LangChain Python API ===
@@ -144,7 +147,7 @@ URL_LIST=(
     "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api | docs/snowflake/cortex/cortex-rest-api.md"
     "https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-ai-guardrails | docs/snowflake/cortex/cortex-ai-guardrails.md"
     "https://docs.snowflake.com/en/user-guide/snowflake-cortex/ai-observability | docs/snowflake/cortex/ai-observability.md"
-    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/snowflake-intelligence | docs/snowflake/cortex/snowflake-intelligence.md"
+    "https://docs.snowflake.com/en/user-guide/snowflake-cortex/snowflake-cowork | docs/snowflake/cortex/snowflake-cowork.md"
 
     # === DOCS: OpenAI Core concepts (direct .md) ===
     "https://developers.openai.com/api/docs/guides/text.md | docs/openai/core-concepts/text.md"
@@ -177,6 +180,7 @@ URL_LIST=(
     # Model-specific guides from https://developers.openai.com/api/docs/llms.txt
     # Family guides cover variants together; avoid duplicating the same document.
     "https://developers.openai.com/api/docs/guides/latest-model/gpt-6-astra.md | docs/openai/prompt-guidance/gpt-6.md"
+    "https://developers.openai.com/api/docs/guides/latest-model/gpt-6.2-astra.md | docs/openai/prompt-guidance/gpt-6.2.md"
     "https://developers.openai.com/api/docs/guides/latest-model/gpt-5.6.md | docs/openai/prompt-guidance/gpt-5.6.md"
     "https://developers.openai.com/api/docs/guides/prompt-guidance-gpt-5p6.md | docs/openai/prompt-guidance/gpt-5.6-sol.md"
     "https://developers.openai.com/api/docs/guides/latest-model/gpt-5.5.md | docs/openai/prompt-guidance/gpt-5.5.md"
@@ -186,6 +190,12 @@ URL_LIST=(
     "https://developers.openai.com/api/docs/guides/latest-model/gpt-5.1.md | docs/openai/prompt-guidance/gpt-5.1.md"
     "https://developers.openai.com/api/docs/guides/latest-model/gpt-5.md | docs/openai/prompt-guidance/gpt-5.md"
     "https://developers.openai.com/api/docs/guides/latest-model/gpt-4.1.md | docs/openai/prompt-guidance/gpt-4.1.md"
+
+    # Upgrade guides (what to change in prompts when moving to a newer model)
+    "https://developers.openai.com/api/docs/guides/upgrading-to-gpt-5p6-sol.md | docs/openai/prompt-guidance/upgrading-to-gpt-5.6-sol.md"
+    "https://developers.openai.com/api/docs/guides/upgrading-to-gpt-5p5.md | docs/openai/prompt-guidance/upgrading-to-gpt-5.5.md"
+    "https://developers.openai.com/api/docs/guides/upgrading-to-gpt-5p4.md | docs/openai/prompt-guidance/upgrading-to-gpt-5.4.md"
+    "https://developers.openai.com/api/docs/guides/prompt-optimizer.md | docs/openai/prompt-guidance/prompt-optimizer.md"
 
     # Reasoning and multimodal model prompting guides
     "https://developers.openai.com/api/docs/guides/reasoning-best-practices.md | docs/openai/prompt-guidance/reasoning-best-practices.md"
@@ -255,6 +265,48 @@ URL_LIST=(
     # === DOCS: OpenAI Agents SDK (direct .md) ===
     "https://developers.openai.com/api/docs/guides/agents/sdk.md | docs/openai/agents-sdk/sdk.md"
 
+    # === DOCS: OpenAI Codex SDK (direct .md) ===
+    # Separate from the Agents SDK: embeds the Codex coding agent in your own code.
+    "https://learn.chatgpt.com/docs/codex-sdk.md | docs/openai/codex-sdk/overview.md"
+    "https://raw.githubusercontent.com/openai/codex/main/sdk/python/docs/getting-started.md | docs/openai/codex-sdk/python-getting-started.md"
+    "https://raw.githubusercontent.com/openai/codex/main/sdk/python/docs/faq.md | docs/openai/codex-sdk/python-faq.md"
+    "https://learn.chatgpt.com/docs/app-server.md | docs/openai/codex-sdk/app-server.md"
+    "https://learn.chatgpt.com/docs/non-interactive-mode.md | docs/openai/codex-sdk/non-interactive-mode.md"
+    "https://learn.chatgpt.com/docs/github-action.md | docs/openai/codex-sdk/github-action.md"
+    "https://learn.chatgpt.com/docs/prompting.md | docs/openai/codex-sdk/prompting.md"
+    "https://learn.chatgpt.com/guides/prompting-gpt-6-2-astra.md | docs/openai/codex-sdk/prompting-gpt-6.2.md"
+
+    # === REFERENCE: OpenAI Codex SDK API (direct .md) ===
+    "https://raw.githubusercontent.com/openai/codex/main/sdk/typescript/README.md | reference/openai/codex-sdk/typescript.md"
+    "https://raw.githubusercontent.com/openai/codex/main/sdk/python/README.md | reference/openai/codex-sdk/python.md"
+    "https://raw.githubusercontent.com/openai/codex/main/sdk/python/docs/api-reference.md | reference/openai/codex-sdk/python-api-reference.md"
+    "https://learn.chatgpt.com/docs/config-file/config-reference.md | reference/openai/codex-sdk/config-reference.md"
+    "https://raw.githubusercontent.com/openai/codex/main/codex-rs/app-server/README.md | reference/openai/codex-sdk/app-server-integration.md"
+
+    # === DOCS: Codex agent configuration used by the SDK (direct .md) ===
+    # What the SDK settings control: sandboxMode, approvalPolicy, apiKey/baseUrl,
+    # model/modelReasoningEffort, config/configOverrides (MCP, hooks, skills),
+    # and AGENTS.md instructions picked up from workingDirectory.
+    "https://learn.chatgpt.com/docs/config-file/config-basic.md | docs/openai/codex-sdk/agent-config/config-basic.md"
+    "https://learn.chatgpt.com/docs/config-file/config-advanced.md | docs/openai/codex-sdk/agent-config/config-advanced.md"
+    "https://learn.chatgpt.com/docs/auth.md | docs/openai/codex-sdk/agent-config/auth.md"
+    "https://learn.chatgpt.com/docs/models.md | docs/openai/codex-sdk/agent-config/models.md"
+    "https://learn.chatgpt.com/docs/sandboxing.md | docs/openai/codex-sdk/agent-config/sandboxing.md"
+    "https://learn.chatgpt.com/docs/permissions.md | docs/openai/codex-sdk/agent-config/permissions.md"
+    "https://learn.chatgpt.com/docs/agent-approvals-security.md | docs/openai/codex-sdk/agent-config/approvals-and-security.md"
+    "https://learn.chatgpt.com/docs/agent-configuration/agents-md.md | docs/openai/codex-sdk/agent-config/agents-md.md"
+    "https://learn.chatgpt.com/docs/agent-configuration/subagents.md | docs/openai/codex-sdk/agent-config/subagents.md"
+    "https://learn.chatgpt.com/docs/extend/mcp.md | docs/openai/codex-sdk/agent-config/mcp.md"
+    "https://learn.chatgpt.com/docs/hooks.md | docs/openai/codex-sdk/agent-config/hooks.md"
+    "https://learn.chatgpt.com/docs/build-skills.md | docs/openai/codex-sdk/agent-config/skills.md"
+
+    # === DOCS: Building on Codex - blog and cookbook guides (direct .md) ===
+    "https://developers.openai.com/blog/codex-as-a-platform.md | docs/openai/codex-sdk/guides/codex-as-a-platform.md"
+    "https://developers.openai.com/blog/securing-persistent-agents-like-openclaw-at-openai.md | docs/openai/codex-sdk/guides/securing-persistent-agents.md"
+    "https://developers.openai.com/cookbook/examples/codex/build_iterative_repair_loops_with_codex.md | docs/openai/codex-sdk/guides/iterative-repair-loops.md"
+    "https://developers.openai.com/cookbook/examples/partners/harness_aware_plugin_evals/harness_aware_plugin_evals.md | docs/openai/codex-sdk/guides/harness-aware-plugin-evals.md"
+    "https://developers.openai.com/cookbook/examples/gpt-5/codex_prompting_guide.md | docs/openai/codex-sdk/guides/codex-prompting-guide.md"
+
     # === DOCS: OpenAI Tools (direct .md) ===
     "https://developers.openai.com/api/docs/guides/tools-apply-patch.md | docs/openai/tools/tools-apply-patch.md"
     "https://developers.openai.com/api/docs/guides/tools-code-interpreter.md | docs/openai/tools/tools-code-interpreter.md"
@@ -264,7 +316,6 @@ URL_LIST=(
     "https://developers.openai.com/api/docs/guides/tools-connectors-mcp.md | docs/openai/tools/tools-connectors-mcp.md"
     "https://developers.openai.com/api/docs/guides/tools-file-search.md | docs/openai/tools/tools-file-search.md"
     "https://developers.openai.com/api/docs/guides/tools-image-generation.md | docs/openai/tools/tools-image-generation.md"
-    "https://developers.openai.com/api/docs/guides/tools-local-shell.md | docs/openai/tools/tools-local-shell.md"
     "https://developers.openai.com/api/docs/guides/tools-programmatic-tool-calling.md | docs/openai/tools/tools-programmatic-tool-calling.md"
     "https://developers.openai.com/api/docs/guides/tools-shell.md | docs/openai/tools/tools-shell.md"
     "https://developers.openai.com/api/docs/guides/tools-skills.md | docs/openai/tools/tools-skills.md"
@@ -308,10 +359,11 @@ URL_LIST=(
     # === DOCS: Anthropic Claude prompt engineering (direct .md) ===
     "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview.md | docs/anthropic/prompt-engineering/overview.md"
     "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices.md | docs/anthropic/prompt-engineering/claude-prompting-best-practices.md"
-    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-tools.md | docs/anthropic/prompt-engineering/prompting-tools.md"
 
     # Model-specific guides linked from Prompting best practices
     "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1.md | docs/anthropic/prompt-engineering/prompting-claude-fable-5-1.md"
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2.md | docs/anthropic/prompt-engineering/prompting-claude-fable-5-2.md"
+    "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5.md | docs/anthropic/prompt-engineering/prompting-claude-haiku-5-5.md"
     "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5.md | docs/anthropic/prompt-engineering/prompting-claude-fable-5.md"
     "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5-5.md | docs/anthropic/prompt-engineering/prompting-claude-opus-5-5.md"
     "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5.md | docs/anthropic/prompt-engineering/prompting-claude-opus-5.md"
@@ -320,14 +372,26 @@ URL_LIST=(
     "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-sonnet-5.md | docs/anthropic/prompt-engineering/prompting-claude-sonnet-5.md"
 
     # === DOCS: Anthropic Claude model context (direct .md) ===
-    "https://platform.claude.com/docs/en/about-claude/models/overview.md | docs/anthropic/models/overview.md"
+    "https://platform.claude.com/docs/en/models/overview.md | docs/anthropic/models/overview.md"
     "https://platform.claude.com/docs/en/about-claude/models/migration-guide.md | docs/anthropic/models/migration-guide.md"
-    "https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-7.md | docs/anthropic/models/whats-new-claude-4-7.md"
+    "https://platform.claude.com/docs/en/about-claude/models/choosing-a-model.md | docs/anthropic/models/choosing-a-model.md"
+    "https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions.md | docs/anthropic/models/model-ids-and-versions.md"
+
+    # Per-model "what's new" and migration guides
+    "https://platform.claude.com/docs/en/models/fable-5-2/whats-new-fable-5-2.md | docs/anthropic/models/whats-new-fable-5-2.md"
+    "https://platform.claude.com/docs/en/models/fable-5-2/migration-guide.md | docs/anthropic/models/migration-guide-fable-5-2.md"
+    "https://platform.claude.com/docs/en/models/haiku-5-5/whats-new-haiku-5-5.md | docs/anthropic/models/whats-new-haiku-5-5.md"
+    "https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide.md | docs/anthropic/models/migration-guide-haiku-5-5.md"
+    "https://platform.claude.com/docs/en/models/opus-5-5/whats-new-opus-5-5.md | docs/anthropic/models/whats-new-opus-5-5.md"
+    "https://platform.claude.com/docs/en/models/opus-5-5/migration-guide.md | docs/anthropic/models/migration-guide-opus-5-5.md"
+    "https://platform.claude.com/docs/en/models/sonnet-5-5/whats-new-sonnet-5-5.md | docs/anthropic/models/whats-new-sonnet-5-5.md"
+    "https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide.md | docs/anthropic/models/migration-guide-sonnet-5-5.md"
 
     # === REFERENCE: Claude Agent SDK API ===
     # Raw .md URLs -- downloaded directly with curl, no scraping
     "https://code.claude.com/docs/en/agent-sdk/python.md | reference/anthropic/agent-sdk/python.md"
     "https://code.claude.com/docs/en/agent-sdk/typescript.md | reference/anthropic/agent-sdk/typescript.md"
+    "https://code.claude.com/docs/en/env-vars.md | reference/anthropic/agent-sdk/env-vars.md"
 
     # === DOCS: Claude Agent SDK guides ===
     "https://code.claude.com/docs/en/agent-sdk/overview.md | docs/anthropic/agent-sdk/overview.md"
@@ -361,53 +425,118 @@ URL_LIST=(
     "https://code.claude.com/docs/en/agent-sdk/user-input.md | docs/anthropic/agent-sdk/user-input.md"
 )
 
-clean_output_directories() {
-    # OUTPUT_DIR is normally ".": remove only the generated subdirectories.
-    # Release notes use their own project-relative destination.
-    echo ">>> Cleaning generated reference, docs, and release-notes directories..."
-    rm -rf -- "$OUTPUT_DIR/reference" "$OUTPUT_DIR/docs" "$PROJECT_DIR/release-notes"
-    mkdir -p -- "$OUTPUT_DIR/reference" "$OUTPUT_DIR/docs" "$PROJECT_DIR/release-notes"
+# Each run builds into a staging directory and only replaces the live folders
+# at the end. A page that fails (after retries) keeps its previous version, so
+# a timeout never deletes committed documentation.
+staging_dir() {
+    echo "$OUTPUT_DIR/.staging"
+}
+
+prepare_staging() {
+    local staging
+    staging="$(staging_dir)"
+    echo ">>> Preparing staging directory: $staging"
+    rm -rf -- "$staging"
+    mkdir -p -- "$staging/reference" "$staging/docs" "$staging/release-notes"
+    : > "$staging/failures.txt"
+}
+
+record_failure() {
+    echo "$1" >> "$(staging_dir)/failures.txt"
+}
+
+# Copy the live version of a failed artifact into staging (or drop a partial
+# download if there was no previous version).
+carry_forward() {
+    local live_path="$1"
+    local staged_path="$2"
+
+    rm -rf -- "$staged_path"
+    if [ -e "$live_path" ]; then
+        mkdir -p -- "$(dirname "$staged_path")"
+        cp -R -- "$live_path" "$staged_path"
+        echo "    Kept previous version of $live_path"
+    else
+        echo "    No previous version of $live_path to keep"
+    fi
+}
+
+fetch_url() {
+    local url="$1"
+    local relative_path="$2"
+    local target="$3"
+
+    # These class references also need docstring repair and linked method details.
+    # URLs that already point to raw markdown are downloaded directly.
+    # Other HTML pages use the scraper.
+    if [[ "$relative_path" == reference/integrations/ChatAnthropic.md ||
+          "$relative_path" == reference/integrations/ChatBedrock.md ||
+          "$relative_path" == reference/integrations/ChatBedrockConverse.md ]]; then
+        python langchain_reference.py "$url" -o "$target" --include-methods
+    elif [[ "$url" == *.md ]]; then
+        curl -sSL --fail --retry 3 --retry-all-errors --retry-delay 2 -o "$target" "$url"
+    else
+        python web2llms.py "$url" -o "$target"
+    fi
 }
 
 process_url() {
     local item="$1"
     local url
     local relative_path
-    local full_output_path
-    local target_dir
+    local staged_path
 
     # Split the string by " | "
     # ${item%% | *} gets everything BEFORE the separator (The URL)
     # ${item##* | } gets everything AFTER the separator (The Path)
     url="${item%% | *}"
     relative_path="${item##* | }"
+    staged_path="$(staging_dir)/$relative_path"
 
-    # Combine with the main output directory
-    full_output_path="$OUTPUT_DIR/$relative_path"
-
-    # Get the directory part of the path
-    target_dir=$(dirname "$full_output_path")
-
-    # Ensure the specific subdirectory exists
-    if [ ! -d "$target_dir" ]; then
-        mkdir -p "$target_dir"
-    fi
+    mkdir -p -- "$(dirname "$staged_path")"
 
     echo " -> Processing: $url"
-    echo "    Target: $full_output_path"
+    echo "    Target: $OUTPUT_DIR/$relative_path"
 
-    # If the URL already points to raw markdown, just download it directly.
-    # These class references also need docstring repair and linked method details.
-    # Other HTML pages use the existing scraper.
-    if [[ "$relative_path" == reference/integrations/ChatAnthropic.md ||
-          "$relative_path" == reference/integrations/ChatBedrock.md ||
-          "$relative_path" == reference/integrations/ChatBedrockConverse.md ]]; then
-        python langchain_reference.py "$url" -o "$full_output_path" --include-methods
-    elif [[ "$url" == *.md ]]; then
-        curl -sSL --fail -o "$full_output_path" "$url"
-    else
-        python web2llms.py "$url" -o "$full_output_path"
+    # A tool that exits 0 but writes nothing (or an empty file) also counts as a failure.
+    if fetch_url "$url" "$relative_path" "$staged_path" && [ -s "$staged_path" ]; then
+        return 0
     fi
+
+    echo "    FAILED: $url"
+    record_failure "$item"
+    carry_forward "$OUTPUT_DIR/$relative_path" "$staged_path"
+}
+
+# process_url records page failures itself, so a job that exits non-zero has
+# crashed (for example, it couldn't write to staging). Stop the run.
+job_crashed() {
+    echo "Error: one or more URL processing jobs crashed."
+    exit 1
+}
+
+# Wait until a slot frees up. Unlike fixed batches, this starts the next job
+# as soon as any job finishes, so one slow page doesn't hold up the others.
+# Bash 3.2 has no `wait -n`, so check each job and sleep briefly when all are busy.
+wait_for_free_slot() {
+    local pid
+    local running
+
+    while [ "${#pending_pids[@]}" -ge "$CONCURRENCY" ]; do
+        running=()
+        for pid in "${pending_pids[@]}"; do
+            if kill -0 "$pid" 2>/dev/null; then
+                running+=("$pid")
+            elif ! wait "$pid"; then
+                job_crashed
+            fi
+        done
+        pending_pids=("${running[@]}")
+
+        if [ "${#pending_pids[@]}" -ge "$CONCURRENCY" ]; then
+            sleep 0.2
+        fi
+    done
 }
 
 wait_for_pending_jobs() {
@@ -423,9 +552,66 @@ wait_for_pending_jobs() {
     pending_pids=()
 
     if [ "$failed" -ne 0 ]; then
-        echo "Error: one or more URL processing jobs failed."
-        exit 1
+        job_crashed
     fi
+}
+
+# Run every URL_LIST entry with at most CONCURRENCY jobs at a time.
+run_url_jobs() {
+    local item
+
+    echo ">>> Processing ${#URL_LIST[@]} URLs with concurrency $CONCURRENCY..."
+    pending_pids=()
+
+    for item in "${URL_LIST[@]}"; do
+        wait_for_free_slot
+        process_url "$item" &
+        pending_pids+=("$!")
+    done
+
+    wait_for_pending_jobs
+}
+
+generate_release_notes() {
+    local staged
+    staged="$(staging_dir)/release-notes"
+
+    if ! python release_notes.py --output-dir "$staged"; then
+        echo "    FAILED: release notes"
+        record_failure "release-notes"
+        carry_forward "$OUTPUT_DIR/release-notes" "$staged"
+    fi
+}
+
+# Swap the staged folders into place. Entries removed from URL_LIST disappear
+# because staging only holds the current entries. rm -rf on a symlinked folder
+# removes the link itself, never the files it points to.
+publish_staging() {
+    local staging
+    local directory
+    staging="$(staging_dir)"
+
+    echo ">>> Replacing reference, docs, and release-notes with the new versions..."
+    for directory in reference docs release-notes; do
+        rm -rf -- "${OUTPUT_DIR:?}/$directory"
+        mv -- "$staging/$directory" "$OUTPUT_DIR/$directory"
+    done
+}
+
+# Print failures, remove staging, and return non-zero if anything failed.
+finish_staging() {
+    local staging
+    local failures
+    staging="$(staging_dir)"
+    failures="$(cat "$staging/failures.txt")"
+    rm -rf -- "$staging"
+
+    if [ -n "$failures" ]; then
+        echo ">>> These entries failed and kept their previous version:"
+        echo "$failures" | sed 's/^/    /'
+        return 1
+    fi
+    return 0
 }
 
 # --- EXECUTION START ---
@@ -440,7 +626,7 @@ cd "$PROJECT_DIR"
 echo ">>> Activating Python virtual environment..."
 source .venv/bin/activate
 
-# Validate concurrency before removing previous artifacts.
+# Validate concurrency before doing any work.
 case "$CONCURRENCY" in
     ''|*[!0-9]*)
         echo "Error: CONCURRENCY must be a positive integer."
@@ -453,47 +639,44 @@ if [ "$CONCURRENCY" -lt 1 ]; then
     exit 1
 fi
 
-# 3. Clean previous artifacts before regenerating documentation.
-clean_output_directories
+# 3. Build everything into a fresh staging directory.
+prepare_staging
 
-# 4. Loop through the list and run the URL jobs in bounded parallel batches
-echo ">>> Processing ${#URL_LIST[@]} URLs with concurrency $CONCURRENCY..."
-
-pending_pids=()
-
-for item in "${URL_LIST[@]}"; do
-    process_url "$item" &
-    pending_pids+=("$!")
-
-    if [ "${#pending_pids[@]}" -ge "$CONCURRENCY" ]; then
-        wait_for_pending_jobs
-    fi
-done
-
-if [ "${#pending_pids[@]}" -gt 0 ]; then
-    wait_for_pending_jobs
-fi
+# 4. Run the URL jobs, keeping up to CONCURRENCY running at once
+run_url_jobs
 
 # 5. Generate GitHub release notes (feature-focused, re-runnable)
 echo ">>> Generating GitHub release notes..."
-python release_notes.py
+generate_release_notes
 
-# 6. Git Operations
-echo ">>> Performing Git operations..."
+# 6. Replace the live folders with the staged ones.
+publish_staging
+run_status=0
+finish_staging || run_status=1
 
-# Add all changes
-git add .
-
-# Check if there are actually changes to commit
-if ! git diff-index --quiet HEAD; then
-    git commit -m "$COMMIT_MSG"
-    
-    echo ">>> Pushing to remote..."
-    git push
-    
-    echo ">>> Success! Changes pushed."
+# 7. Git Operations (set NO_PUSH=1 to regenerate without committing)
+if [ "${NO_PUSH:-0}" = "1" ]; then
+    echo ">>> NO_PUSH=1: skipping commit and push."
 else
-    echo ">>> No changes detected. Skipping commit and push."
+    echo ">>> Performing Git operations..."
+    git add .
+
+    # Check if there are actually changes to commit
+    if ! git diff-index --quiet HEAD; then
+        git commit -m "$COMMIT_MSG"
+
+        echo ">>> Pushing to remote..."
+        git push
+
+        echo ">>> Success! Changes pushed."
+    else
+        echo ">>> No changes detected. Skipping commit and push."
+    fi
+fi
+
+if [ "$run_status" -ne 0 ]; then
+    echo ">>> Workflow finished with failures (see list above)."
+    exit 1
 fi
 
 echo ">>> Workflow complete."

@@ -174,6 +174,7 @@ def test_shell_entrypoint_routes_reference_jobs(tmp_path: Path) -> None:
         definitions,
         f"OUTPUT_DIR={shlex.quote(str(tmp_path))}",
         'python() { printf "%s\\n" "$*" >> ' + shlex.quote(str(log)) + '; }',
+        "prepare_staging",
     ]
     for name in ["ChatAnthropic", "ChatBedrock", "ChatBedrockConverse"]:
         item: str = f"{URL} | reference/integrations/{name}.md"
