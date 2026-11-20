@@ -1,89 +1,11 @@
-1. [Overview](/en/reference "Overview")
-2. [SQL data types reference](/en/sql-reference-data-types "SQL data types reference")
-3. [SQL command reference](/en/sql-reference-commands "SQL command reference")
-4. [Function and stored procedure reference](/en/sql-reference-functions "Function and stored procedure reference")
-
-   * [Summary of functions](/en/sql-reference/intro-summary-operators-functions "Summary of functions")
-   * [All functions (alphabetical)](/en/sql-reference/functions-all "All functions (alphabetical)")
-   * [Aggregate](/en/sql-reference/functions-aggregation "Aggregate")
-   * AI Functions
-
-     * [AI\_AGG](/en/sql-reference/functions/ai_agg "AI_AGG")
-     * [AI\_CLASSIFY](/en/sql-reference/functions/ai_classify "AI_CLASSIFY")
-     * [AI\_COMPLETE](/en/sql-reference/functions/ai_complete "AI_COMPLETE")
-     * [AI\_COUNT\_TOKENS](/en/sql-reference/functions/ai_count_tokens "AI_COUNT_TOKENS")
-     * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
-     * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
-     * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
-     * [AI\_FUNCTION\_EVALUATION](/en/sql-reference/functions/ai_function_evaluation "AI_FUNCTION_EVALUATION")
-     * [AI\_FUNCTION\_OPTIMIZATION](/en/sql-reference/functions/ai_function_optimization "AI_FUNCTION_OPTIMIZATION")
-     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
-     * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
-     * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
-     * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
-     * [AI\_SIMILARITY](/en/sql-reference/functions/ai_similarity "AI_SIMILARITY")
-     * [AI\_SUMMARIZE](/en/sql-reference/functions/ai_summarize "AI_SUMMARIZE")
-     * [AI\_SUMMARIZE\_AGG](/en/sql-reference/functions/ai_summarize_agg "AI_SUMMARIZE_AGG")
-     * [AI\_TRANSCRIBE](/en/sql-reference/functions/ai_transcribe "AI_TRANSCRIBE")
-     * [AI\_TRANSLATE](/en/sql-reference/functions/ai_translate "AI_TRANSLATE")
-     * [FINETUNE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/finetune-snowflake-cortex "FINETUNE (SNOWFLAKE.CORTEX)")
-     * [SENTIMENT (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/sentiment-snowflake-cortex "SENTIMENT (SNOWFLAKE.CORTEX)")
-     * Helper functions
-
-       * [AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/agent_run-snowflake-cortex "AGENT_RUN (SNOWFLAKE.CORTEX)")
-       * [DATA\_AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/data_agent_run-snowflake-cortex "DATA_AGENT_RUN (SNOWFLAKE.CORTEX)")
-       * [THREAD\_MESSAGES (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/thread_messages-snowflake-cortex "THREAD_MESSAGES (SNOWFLAKE.CORTEX)")
-       * [EXECUTE\_AI\_EVALUATION](/en/sql-reference/functions/execute_ai_evaluation "EXECUTE_AI_EVALUATION")
-       * [GET\_AI\_EVALUATION\_DATA (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_evaluation_data-snowflake-local "GET_AI_EVALUATION_DATA (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_OBSERVABILITY\_LOGS (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_observability_logs-snowflake-local "GET_AI_OBSERVABILITY_LOGS (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_OBSERVABILITY\_EVENTS (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_observability_events-snowflake-local "GET_AI_OBSERVABILITY_EVENTS (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_RECORD\_TRACE (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_record_trace-snowflake-local "GET_AI_RECORD_TRACE (SNOWFLAKE.LOCAL)")
-       * [SEARCH\_PREVIEW (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/search_preview-snowflake-cortex "SEARCH_PREVIEW (SNOWFLAKE.CORTEX)")
-       * [SPLIT\_TEXT\_MARKDOWN\_HEADER (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/split_text_markdown_header-snowflake-cortex "SPLIT_TEXT_MARKDOWN_HEADER (SNOWFLAKE.CORTEX)")
-       * [SPLIT\_TEXT\_RECURSIVE\_CHARACTER (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/split_text_recursive_character-snowflake-cortex "SPLIT_TEXT_RECURSIVE_CHARACTER (SNOWFLAKE.CORTEX)")
-   * [Bitwise expression](/en/sql-reference/expressions-byte-bit "Bitwise expression")
-   * [Conditional expression](/en/sql-reference/expressions-conditional "Conditional expression")
-   * [Context](/en/sql-reference/functions-context "Context")
-   * [Conversion](/en/sql-reference/functions-conversion "Conversion")
-   * [Data generation](/en/sql-reference/functions-data-generation "Data generation")
-   * [Data metric](/en/sql-reference/functions-data-metric "Data metric")
-   * [Date & time](/en/sql-reference/functions-date-time "Date & time")
-   * [Differential privacy](/en/sql-reference/functions-differential-privacy "Differential privacy")
-   * [Encryption](/en/sql-reference/functions-encryption "Encryption")
-   * [File](/en/sql-reference/functions-file "File")
-   * [Geospatial](/en/sql-reference/functions-geospatial "Geospatial")
-   * [Hash](/en/sql-reference/functions-hash-scalar "Hash")
-   * [IPADDRESS](/en/sql-reference/functions-ipaddress "IPADDRESS")
-   * [Metadata](/en/sql-reference/functions-metadata "Metadata")
-   * [ML Model Monitors](/en/sql-reference/functions-model-monitors "ML Model Monitors")
-   * [Notification](/en/sql-reference/functions-notification "Notification")
-   * [Numeric](/en/sql-reference/functions-numeric "Numeric")
-   * [Organization users and organization user groups](/en/sql-reference/functions-organization-users "Organization users and organization user groups")
-   * [Period](/en/sql-reference/functions-period "Period")
-   * [Regular expressions](/en/sql-reference/functions-regexp "Regular expressions")
-   * [Semi-structured and structured data](/en/sql-reference/functions-semistructured "Semi-structured and structured data")
-   * [Snowpark Container Services](/en/sql-reference/functions-spcs "Snowpark Container Services")
-   * [String & binary](/en/sql-reference/functions-string "String & binary")
-   * [System](/en/sql-reference/functions-system "System")
-   * [Table](/en/sql-reference/functions-table "Table")
-   * [Vector](/en/sql-reference/functions-vector "Vector")
-   * [Window](/en/sql-reference/functions-window "Window")
-   * [Stored procedures](/en/sql-reference-stored-procedures "Stored procedures")
-5. [Class reference](/en/sql-reference-classes "Class reference")
-6. [Scripting reference](/en/sql-reference-snowflake-scripting "Scripting reference")
-7. [General reference](/en/sql-reference "General reference")
-8. [API reference](/en/api-reference "API reference")
-
-[Reference](/en/reference)[Function and stored procedure reference](/en/sql-reference-functions)AI FunctionsAI\_FILTER
-
 Categories:
-:   [String & binary functions](/sql-reference/functions-string) (AI Functions)
+:   [String & binary functions](https://docs.snowflake.com/sql-reference/functions-string) (AI Functions)
 
-# AI\_FILTER[¶](#ai_filter)
+# AI\_FILTER
 
 Classifies free-form prompt inputs into a boolean. Currently supports both text and image filtering.
 
-## Region availability[¶](#region-availability)
+## Region availability
 
 The following table shows the regions where you can use the AI\_FILTER function for both text and images:
 
@@ -92,15 +14,9 @@ The following table shows the regions where you can use the AI\_FILTER function 
 | TEXT | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ | ✔ |
 | IMAGE | ✔ | ✔ | ✔ |  |  |  |  |  | ✔ |
 
-Expand
-
-Show lessSee more
-
-## Syntax[¶](#syntax)
+## Syntax
 
 Applying AI\_FILTER to an input string:
-
-Copy code
 
 ```
 AI_FILTER( <input> [, <return_error_details> ] )
@@ -108,21 +24,17 @@ AI_FILTER( <input> [, <return_error_details> ] )
 
 Applying AI\_FILTER to single image:
 
-Copy code
-
 ```
 AI_FILTER( <predicate> , <input> [, <return_error_details> ] )
 ```
 
-Applying AI\_FILTER to multiple columns with both text and images, leveraging the [PROMPT](/sql-reference/functions/prompt):
-
-Copy codeExpand code block
+Applying AI\_FILTER to multiple columns with both text and images, leveraging the [PROMPT](https://docs.snowflake.com/sql-reference/functions/prompt):
 
 ```
 AI_FILTER( PROMPT('<template_string>',  <col_1>, … ) [, <return_error_details> ] )
 ```
 
-## Arguments[¶](#arguments)
+## Arguments
 
 **Required:**
 
@@ -142,22 +54,22 @@ AI_FILTER( PROMPT('<template_string>',  <col_1>, … ) [, <return_error_details>
 
 **If you’re using the PROMPT() function to format the inputs:**
 
-For more complicated prompts, especially with multiple file columns, you can use the [PROMPT](/sql-reference/functions/prompt) to help with creating an `input`.
+For more complicated prompts, especially with multiple file columns, you can use the [PROMPT](https://docs.snowflake.com/sql-reference/functions/prompt) to help with creating an `input`.
 
-The PROMPT() function supports formatting across both strings and FILE datatypes. For detailed usage, see [Examples](#label-cortex-ai-filter-examples).
+The PROMPT() function supports formatting across both strings and FILE datatypes. For detailed usage, see [Examples](https://docs.snowflake.com/en/sql-reference/functions/ai_filter#label-cortex-ai-filter-examples).
 
 **Optional:**
 
 `return_error_details`
 :   A BOOLEAN flag that indicates whether to return error details in case of error. When set to TRUE, the function returns
     an OBJECT that contains the value and the error message, one of which is NULL depending on whether the function
-    succeeded or failed. See [Error behavior](#error-behavior) for details.
+    succeeded or failed. See [Error behavior](https://docs.snowflake.com/en/sql-reference/functions/ai_filter#error-behavior) for details.
 
-## Returns[¶](#returns)
+## Returns
 
 Returns a Boolean value that indicates whether the statement evaluates to TRUE or FALSE for the specified text.
 
-## Error behavior[¶](#error-behavior)
+## Error behavior
 
 By default, if AI\_FILTER can’t process the input, the function returns NULL. If the query processes multiple rows,
 rows with errors return NULL and don’t prevent the query from completing.
@@ -169,19 +81,15 @@ argument. The following table shows the return value based on the `return_error_
 > | --- | --- | --- |
 > | FALSE Not passed | NULL |  |
 > | TRUE | OBJECT with `value` and `error` fields | `value`: A BOOLEAN value indicating the filter result, or NULL if an error occurred. `error`: A VARCHAR value that contains the error message if an error occurred, or NULL if the function succeeded. |
->
-> Expand
->
-> Show lessSee more
 
-For more information about error handling for AI functions, see [Snowflake Cortex AI Function: Multirow error handling improvements](/release-notes/bcr-bundles/2026_02/bcr-2184).
+For more information about error handling for AI functions, see [Snowflake Cortex AI Function: Multirow error handling improvements](https://docs.snowflake.com/release-notes/bcr-bundles/2026_02/bcr-2184).
 
-## Access control requirements[¶](#access-control-requirements)
+## Access control requirements
 
-Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
-See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this privilege.
+Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
+See [Cortex LLM privileges](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this privilege.
 
-## Performance and cost optimization[¶](#performance-and-cost-optimization)
+## Performance and cost optimization
 
 By default, AI\_FILTER includes a built-in performance optimization on qualifying queries. This optimization can provide 2 to 10 times faster performance and up to 60% lower token usage with a minimal impact on quality.
 
@@ -189,7 +97,7 @@ This optimization is triggered automatically when the query engine detects a sui
 
 > To disable this optimization for your account, contact your account manager.
 
-## Usage notes[¶](#usage-notes)
+## Usage notes
 
 For optimal performance, follow these guidelines:
 
@@ -198,13 +106,11 @@ For optimal performance, follow these guidelines:
 * Provide details for the input text instruction. For example, instead of a statement like “sounds satisfied”, use “In the following support transcript, the customer sounds satisfied”.
 * Consider phrasing the input in the form of a question. For example, “In the following support transcript, does the customer sound satisfied?”
 
-## Examples[¶](#examples)
+## Examples
 
-### AI\_FILTER: Text[¶](#ai_filter-text)
+### AI\_FILTER: Text
 
 Can be called as a simple scalar Boolean function on string constants.
-
-Copy code
 
 ```
 SELECT AI_FILTER('Is Canada in North America?');
@@ -214,9 +120,7 @@ SELECT AI_FILTER('Is Canada in North America?');
 TRUE
 ```
 
-You can [CONCAT , ||](/sql-reference/functions/concat) instructions with text columns to use this function:
-
-Copy code
+You can [CONCAT , ||](https://docs.snowflake.com/sql-reference/functions/concat) instructions with text columns to use this function:
 
 ```
 WITH reviews AS (
@@ -227,9 +131,7 @@ SELECT * FROM reviews
 WHERE AI_FILTER(CONCAT('The reviewer enjoyed the restaurant: ', review));
 ```
 
-For easier templated formatting across multiple columns, Snowflake provides [PROMPT](/sql-reference/functions/prompt); for example:
-
-Copy codeExpand code block
+For easier templated formatting across multiple columns, Snowflake provides [PROMPT](https://docs.snowflake.com/sql-reference/functions/prompt); for example:
 
 ```
 WITH reviews AS (
@@ -250,8 +152,6 @@ WHERE AI_FILTER(PROMPT('The reviewer enjoyed the restaurant: {0}', review));
 ```
 
 While evaluating the quality of AI\_FILTER, it can be helpful to compare candidate predicates across columns.
-
-Copy code
 
 ```
 WITH country AS (
@@ -282,13 +182,11 @@ FROM country CROSS JOIN region ;
 +-------------+-------+--------+
 ```
 
-### Using AI\_FILTER with a JOIN[¶](#using-ai_filter-with-a-join)
+### Using AI\_FILTER with a JOIN
 
 You can use AI\_FILTER with a JOIN to express linking two tables with a natural language prompt that AI can reason on.
 
 The following example joins the RESUMES table with the JOBS table using a prompt with the AI\_FILTER function.
-
-Copy codeExpand code block
 
 ```
 SELECT *
@@ -297,13 +195,11 @@ JOIN JOBS
 ON AI_FILTER(PROMPT('Evaluate if this resume {0} fits this job description {1}', RESUME.contents, JOBS.jd));
 ```
 
-### AI\_FILTER: Images[¶](#ai_filter-images)
+### AI\_FILTER: Images
 
 The following examples filter image files based on an instruction.
 
 Filter images by providing an instruction predicate and the image file column:
-
-Copy code
 
 ```
 WITH pictures AS (
@@ -315,8 +211,6 @@ SELECT
 FL_GET_RELATIVE_PATH(img) AS file_path FROM pictures
 WHERE AI_FILTER('Is this a picture of a cat?', img);
 ```
-
-Copy code
 
 ```
 WITH pictures AS (
@@ -341,7 +235,7 @@ WHERE AI_FILTER(PROMPT('{0} is a cat picture', img));
 +--------------------------+
 ```
 
-## Limitations[¶](#limitations)
+## Limitations
 
 * Snowflake AI functions don’t work on FILEs created from stage files from the following stage types:
   + Internal stages with encryption mode `TYPE = 'SNOWFLAKE_FULL'`
@@ -352,48 +246,6 @@ WHERE AI_FILTER(PROMPT('{0} is a cat picture', img));
   + User stage, table stage
   + Stage with double-quoted names
 
-## Legal notices[¶](#legal-notices)
+## Legal notices
 
-Refer to [Snowflake AI and ML](/guides-overview-ai-features) for legal notices.
-
-Was this page helpful?
-
-YesNo
-
-[Visit Snowflake](https://www.snowflake.com)
-
-[Join the conversation](https://community.snowflake.com/s/)
-
-[Develop with Snowflake](https://developers.snowflake.com)
-
-[Share your feedback](/feedback)
-
-[Read the latest on our blog](https://www.snowflake.com/blog/)
-
-[Get your own certification](https://learn.snowflake.com)
-
-[Privacy Notice](https://www.snowflake.com/privacy-policy/)[Site Terms](https://www.snowflake.com/legal/snowflake-site-terms/)Cookies Settings© 2026 Snowflake, Inc. All Rights Reserved.
-
-### Alternative interfaces
-
-[Snowflake Python APIs](/developer-guide/snowflake-python-api/snowflake-python-overview)[Snowflake REST APIs](/developer-guide/snowflake-rest-api/snowflake-rest-api)[Snowflake CLI](/developer-guide/snowflake-cli/index)
-
-See all interfaces
-
-On this page
-
-1. [Region availability](#region-availability)
-2. [Syntax](#syntax)
-3. [Arguments](#arguments)
-4. [Returns](#returns)
-5. [Error behavior](#error-behavior)
-6. [Access control requirements](#access-control-requirements)
-7. [Performance and cost optimization](#performance-and-cost-optimization)
-8. [Usage notes](#usage-notes)
-9. [Examples](#examples)
-10. [Limitations](#limitations)
-11. [Legal notices](#legal-notices)
-
-Related content
-
-1. [Snowflake Cortex AI Functions (including LLM functions)](/user-guide/snowflake-cortex/aisql)
+Refer to [Snowflake AI and ML](https://docs.snowflake.com/guides-overview-ai-features) for legal notices.

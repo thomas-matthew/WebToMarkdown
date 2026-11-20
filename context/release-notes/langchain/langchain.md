@@ -3,6 +3,43 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.5.2 — 2026-11-18
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.5.2)
+
+- feat(langchain): tag synthetic HITL tool messages with source metadata (#41928)
+
+## 1.5.1 — 2026-11-18
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.5.1)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.5.0 — 2026-11-11
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.5.0)
+
+- feat(langchain): Remove EOL'd Python 3.10 from langchain_v1 (#41301)
+- feat(langchain): add model router and auto mode middleware (#41766)
+
+## 1.4.10 — 2026-11-10
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.10)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.4.9 — 2026-11-04
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.9)
+
+- feat(core): standardize model refusal content blocks (#41582)
+
+## 1.4.8 — 2026-11-02
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.8)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 1.4.7 — 2026-10-21
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain%3D%3D1.4.7)

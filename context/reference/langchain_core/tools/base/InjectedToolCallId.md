@@ -1,6 +1,4 @@
-Python[langchain-core](/python/langchain-core)[tools](/python/langchain-core/tools)[base](/python/langchain-core/tools/base)InjectedToolCallId
-
-Classv1.7.1 (latest)●Since v1.7
+Classv1.8.3 (latest)●Since v1.8
 
 # InjectedToolCallId
 
@@ -29,8 +27,6 @@ def foo(
 
 Copy
 
-Copy
-
 ```
 InjectedToolCallId()
 ```
@@ -43,12 +39,6 @@ InjectedToolCallId()
 
 * [Subagents](https://docs.langchain.com/oss/python/langchain/multi-agent/subagents)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6419339aa163a49f32d9b80ff20d6adc3b446d49/libs/core/langchain_core/tools/base.py#L1756)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/d4dafe5839c4a6b07d71cc78697df0de9e627e21/libs/core/langchain_core/tools/base.py#L1757)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Related Documentation

@@ -1,118 +1,23 @@
-1. [Overview](/en/guides "Overview")
-2. [Snowflake Horizon Catalog](/en/user-guide/snowflake-horizon "Snowflake Horizon Catalog")
-4. [Applications and tools for connecting to Snowflake](/en/guides-overview-connecting "Applications and tools for connecting to Snowflake")
-6. [Virtual warehouses](/en/user-guide/warehouses "Virtual warehouses")
-7. [Databases, Tables, & Views](/en/guides-overview-db "Databases, Tables, & Views")
-8. [Data types](/en/data-types "Data types")
-10. Data Integration
-
-    - [Snowflake Openflow](/en/user-guide/data-integration/openflow/about "Snowflake Openflow")
-    - Apache Iceberg™
-
-      - [Apache Iceberg™ Tables](/en/user-guide/tables-iceberg "Apache Iceberg™ Tables")
-      - [Snowflake Open Catalog](/en/user-guide/opencatalog/overview "Snowflake Open Catalog")
-    - Zero-Copy Connectors
-
-      - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
-      - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
-      - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
-      - [About Workday Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-datacloud "About Workday Data Cloud and Snowflake")
-11. Data engineering
-
-    - [Data loading](/en/guides-overview-loading-data "Data loading")
-    - [Dynamic tables](/en/user-guide/dynamic-tables/overview "Dynamic tables")
-    - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
-    - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
-    - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
-    - [Pipeline Builder](/en/user-guide/pipeline-builder/pipeline-builder-overview "Pipeline Builder")
-    - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
-    - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
-12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/snowflake-aim "Migrations")
-15. [Queries](/en/guides-overview-queries "Queries")
-16. [Collaboration](/en/guides-overview-sharing "Collaboration")
-18. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
-
-    * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
-    * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
-    * [Snowflake Artifacts](/en/user-guide/snowflake-artifacts "Snowflake Artifacts")
-    * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
-    * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
-    * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
-
-      + [Get started](/en/user-guide/snowflake-cortex/cortex-agents-get-started "Get started")
-      + [Create and manage agents](/en/user-guide/snowflake-cortex/cortex-agents-manage "Create and manage agents")
-      + [Access control and authentication](/en/user-guide/snowflake-cortex/cortex-agents-setup "Access control and authentication")
-      + REST API
-
-        + [Agent Object](/en/user-guide/snowflake-cortex/cortex-agents-rest-api "Agent Object")
-        + [Agent Run](/en/user-guide/snowflake-cortex/cortex-agents-run "Agent Run")
-        + [Threads](/en/user-guide/snowflake-cortex/cortex-agents-threads-rest-api "Threads")
-        + [Feedback](/en/user-guide/snowflake-cortex/cortex-agents-feedback-rest-api "Feedback")
-        + [Compact](/en/user-guide/snowflake-cortex/cortex-agents-compact "Compact")
-      + [Use threads with Agents](/en/user-guide/snowflake-cortex/cortex-agents-threads "Use threads with Agents")
-      + [Microsoft Teams integration](/en/user-guide/snowflake-cortex/cortex-agents-teams-integration "Microsoft Teams integration")
-      + [Monitoring](/en/user-guide/snowflake-cortex/cortex-agents-monitor "Monitoring")
-      + [Evaluations](/en/user-guide/snowflake-cortex/cortex-agents-evaluations "Evaluations")
-      + [Share Cortex agents](/en/user-guide/snowflake-cortex/cortex-agents-sharing "Share Cortex agents")
-      + [Temporary agents](/en/user-guide/snowflake-cortex/cortex-agents-temporary "Temporary agents")
-      + [Secure agents](/en/user-guide/snowflake-cortex/cortex-agents-secure "Secure agents")
-      + [Resource budgets](/en/user-guide/snowflake-cortex/cortex-agents-resource-budgets "Resource budgets")
-      + [Shared resource budgets](/en/user-guide/snowflake-cortex/cortex-agents-shared-budgets "Shared resource budgets")
-      + [Agent skills](/en/user-guide/snowflake-cortex/cortex-agents-skills "Agent skills")
-      + [Code execution tool](/en/user-guide/snowflake-cortex/cortex-agents-code-execution-tool "Code execution tool")
-      + [Agent toolsets](/en/user-guide/snowflake-cortex/cortex-agents-toolsets "Agent toolsets")
-      + [Coding Agent](/en/user-guide/snowflake-cortex/cortex-agents-coding-agent "Coding Agent")
-      + [MCP Connectors](/en/user-guide/snowflake-cortex/cortex-agents-mcp-connectors "MCP Connectors")
-      + [Agent versioning](/en/user-guide/snowflake-cortex/cortex-agents-versioning "Agent versioning")
-      + [Multi-tenancy](/en/user-guide/snowflake-cortex/cortex-agents-multi-tenancy "Multi-tenancy")
-    * [Cortex Agent SDK](/en/user-guide/snowflake-cortex/cortex-agent-sdk/cortex-agent-sdk "Cortex Agent SDK")
-    * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
-    * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
-    * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
-    * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
-    * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
-    * [Cortex Inference](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex Inference")
-    * [Cortex AI Guardrails](/en/user-guide/snowflake-cortex/cortex-ai-guardrails "Cortex AI Guardrails")
-    * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
-    * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
-    * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
-    * [ML Development and ML Ops](/en/developer-guide/snowpark-ml/overview "ML Development and ML Ops")
-    * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
-20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
-22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
-24. [Security](/en/guides-overview-secure "Security")
-26. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-27. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-29. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-30. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
-
-[Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)[Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents)REST APIThreads
-
-# Threads API[¶](#threads-api)
+# Threads API
 
 Use this API to create threads that are used to interact with Cortex Agents.
 
-## Create thread[¶](#create-thread)
+## Create thread
 
 `POST /api/v2/cortex/threads`
 
 Creates a new thread and returns a thread metadata object.
 
-### Request[¶](#request)
+### Request
 
-#### Request headers[¶](#request-headers)
+#### Request headers
 
 | Header | Description |
 | --- | --- |
-| `Authorization` | (Required) Authorization token. For more information, see [Authentication](/user-guide/snowflake-cortex/cortex-agents-setup#label-chat-api-authenticate-example). |
+| `Authorization` | (Required) Authorization token. For more information, see [Authentication](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-setup#label-chat-api-authenticate-example). |
 | `Content-Type` | (Required) application/json |
 
-Expand
-
-Show lessSee more
-
-#### Request body[¶](#request-body)
+#### Request body
 
 The request body can include the following field:
 
@@ -120,13 +25,7 @@ The request body can include the following field:
 | --- | --- | --- |
 | `origin_application` | string | (Optional) Name of the application that created the thread. Allows grouping threads by application. Limited to 16 bytes. |
 
-Expand
-
-Show lessSee more
-
 Example:
-
-Copy code
 
 ```
 {
@@ -134,7 +33,7 @@ Copy code
 }
 ```
 
-### Response[¶](#response)
+### Response
 
 Returns a thread metadata object.
 
@@ -146,13 +45,7 @@ Returns a thread metadata object.
 | `created_on` | integer | Time when the thread was created (milliseconds since UNIX epoch). |
 | `updated_on` | integer | Time when the thread was last updated (milliseconds since UNIX epoch). |
 
-Expand
-
-Show lessSee more
-
 Example:
-
-Copy code
 
 ```
 {
@@ -164,25 +57,21 @@ Copy code
 }
 ```
 
-## Describe thread[¶](#describe-thread)
+## Describe thread
 
 `GET /api/v2/cortex/threads/{id}`
 
 Describes a thread and returns a batch of messages in that thread, based on the page\_size and the last\_message\_id, in descending order of creation. This request is only successful if the thread ID belongs to the user. To return only messages of a particular type, use the `message_type` query parameter.
 
-### Request[¶](#request)
+### Request
 
-#### Path parameters[¶](#path-parameters)
+#### Path parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `id` | integer | (Required) UUID for the thread. |
 
-Expand
-
-Show lessSee more
-
-#### Query parameters[¶](#query-parameters)
+#### Query parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
@@ -190,35 +79,23 @@ Show lessSee more
 | `last_message_id` | integer | (Optional) The ID of the last message received. Used to set the offset for next batch. Can be empty for the first batch of messages. |
 | `message_type` | string | (Optional) When set, only messages of the specified type are returned. Valid values are `conversation` (messages exchanged between the user and the agent) and `compaction` (summary messages generated when a thread is compacted). When omitted, messages of all types are returned. |
 
-Expand
-
-Show lessSee more
-
-#### Request headers[¶](#request-headers)
+#### Request headers
 
 | Header | Description |
 | --- | --- |
 | `Authorization` | (Required) Authorization token. |
 | `Content-Type` | (Required) application/json |
 
-Expand
-
-Show lessSee more
-
-### Response[¶](#response)
+### Response
 
 Returns a thread metadata object and an array of messages.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| [metadata](#label-snowflake-threads-rest-api) | object | Metadata for the thread, including the name, application that created the thread, and the time that it was created. |
+| [metadata](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-threads-rest-api#label-snowflake-threads-rest-api) | object | Metadata for the thread, including the name, application that created the thread, and the time that it was created. |
 | `messages` | array | Array of message objects. |
 
-Expand
-
-Show lessSee more
-
-#### metadata[¶](#metadata)
+#### metadata
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -228,11 +105,7 @@ Show lessSee more
 | `created_on` | integer | Time when the thread was created (milliseconds since UNIX epoch). |
 | `updated_on` | integer | Time when the thread was last updated (milliseconds since UNIX epoch). An update includes adding any new messages to the thread. |
 
-Expand
-
-Show lessSee more
-
-#### Messages[¶](#messages)
+#### Messages
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -244,13 +117,7 @@ Show lessSee more
 | `request_id` | string | Request ID for the original message. |
 | `message_type` | string | The type of the message. Either `conversation` (a message exchanged between the user and the agent) or `compaction` (a summary message generated when a thread is compacted). |
 
-Expand
-
-Show lessSee more
-
 Example:
-
-Copy codeExpand code block
 
 ```
 {
@@ -284,52 +151,34 @@ Copy codeExpand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
-## Update thread[¶](#update-thread)
+## Update thread
 
 `POST /api/v2/cortex/threads/{id}`
 
 Updates a thread.
 
-### Request[¶](#request)
+### Request
 
-#### Path parameters[¶](#path-parameters)
+#### Path parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `id` | integer | (Required) UUID for the thread. |
 
-Expand
-
-Show lessSee more
-
-#### Request headers[¶](#request-headers)
+#### Request headers
 
 | Header | Description |
 | --- | --- |
 | `Authorization` | (Required) Authorization token. |
 | `Content-Type` | (Required) application/json |
 
-Expand
-
-Show lessSee more
-
-#### Request body[¶](#request-body)
+#### Request body
 
 | Field | Type | Description |
 | --- | --- | --- |
 | `thread_name` | string | (Optional) Name of the thread. |
 
-Expand
-
-Show lessSee more
-
 Example:
-
-Copy code
 
 ```
 {
@@ -337,50 +186,36 @@ Copy code
 }
 ```
 
-### Response[¶](#response)
+### Response
 
-Returns the status of the thread update.
+On success, returns `200 OK` with an empty response body.
 
-Copy code
-
-```
-{"status": "Thread xxxx successfully updated."}
-```
-
-## List threads[¶](#list-threads)
+## List threads
 
 `GET /api/v2/cortex/threads`
 
 Lists all threads belonging to the user.
 
-### Request[¶](#request)
+### Request
 
-#### Query parameters[¶](#query-parameters)
+#### Query parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `origin_application` | string | (Optional) Filter the list of threads by this origin application. Without specifying this field, all threads are returned. |
 
-Expand
-
-Show lessSee more
-
-#### Request headers[¶](#request-headers)
+#### Request headers
 
 | Header | Description |
 | --- | --- |
 | `Authorization` | (Required) Authorization token. |
 | `Content-Type` | (Required) application/json |
 
-Expand
-
-Show lessSee more
-
-### Response[¶](#response)
+### Response
 
 Returns an array of thread metadata objects.
 
-#### Thread metadata[¶](#thread-metadata)
+#### Thread metadata
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -390,13 +225,7 @@ Returns an array of thread metadata objects.
 | `created_on` | integer | Time when the thread was created (milliseconds since UNIX epoch). |
 | `updated_on` | integer | Time when the thread was last updated (milliseconds since UNIX epoch). An update includes adding any new messages to the thread. |
 
-Expand
-
-Show lessSee more
-
 Example:
-
-Copy code
 
 ```
 [
@@ -410,83 +239,33 @@ Copy code
 ]
 ```
 
-## Delete thread[¶](#delete-thread)
+## Delete thread
 
 `DELETE /api/v2/cortex/threads/{id}`
 
 Deletes a thread and all the messages in that thread.
 
-### Request[¶](#request)
+### Request
 
-#### Path parameters[¶](#path-parameters)
+#### Path parameters
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | `id` | integer | (Required) UUID for the thread. |
 
-Expand
-
-Show lessSee more
-
-#### Request headers[¶](#request-headers)
+#### Request headers
 
 | Header | Description |
 | --- | --- |
 | `Authorization` | (Required) Authorization token. |
 | `Content-Type` | (Required) application/json |
 
-Expand
-
-Show lessSee more
-
-### Response[¶](#response)
+### Response
 
 Returns a success response if the thread is deleted.
-
-Copy code
 
 ```
 {
   "success": true
 }
 ```
-
-Was this page helpful?
-
-YesNo
-
-[Visit Snowflake](https://www.snowflake.com)
-
-[Join the conversation](https://community.snowflake.com/s/)
-
-[Develop with Snowflake](https://developers.snowflake.com)
-
-[Share your feedback](/feedback)
-
-[Read the latest on our blog](https://www.snowflake.com/blog/)
-
-[Get your own certification](https://learn.snowflake.com)
-
-[Privacy Notice](https://www.snowflake.com/privacy-policy/)[Site Terms](https://www.snowflake.com/legal/snowflake-site-terms/)Cookies Settings© 2026 Snowflake, Inc. All Rights Reserved.
-
-On this page
-
-1. [Create thread](#create-thread)
-2. [Request](#request)
-3. [Response](#response)
-4. [Describe thread](#describe-thread)
-5. [Request](#request)
-6. [Response](#response)
-7. [Update thread](#update-thread)
-8. [Request](#request)
-9. [Response](#response)
-10. [List threads](#list-threads)
-11. [Request](#request)
-12. [Response](#response)
-13. [Delete thread](#delete-thread)
-14. [Request](#request)
-15. [Response](#response)
-
-Related content
-
-1. [Cortex Agents](/user-guide/snowflake-cortex/cortex-agents)

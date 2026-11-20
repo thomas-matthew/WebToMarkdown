@@ -27,7 +27,7 @@ Text-out
 
     Text meta-prompt
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -76,9 +76,9 @@ The final prompt you output should adhere to the following structure below. Do n
 
 [optional: edge cases, details, and an area to call or repeat out specific important considerations]`;
 
-async function generatePrompt(taskOrPrompt) {
+async function generatePrompt(taskOrPrompt: string) {
   const completion = await client.chat.completions.create({
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     messages: [
       { role: "system", content: metaPrompt },
       {
@@ -150,7 +150,7 @@ The final prompt you output should adhere to the following structure below. Do n
 
 def generate_prompt(task_or_prompt: str):
     completion = client.chat.completions.create(
-        model="gpt-6-astra",
+        model="gpt-6.2-astra",
         messages=[
             {
                 "role": "system",
@@ -227,7 +227,7 @@ func run() error {
 		"\n" +
 		"[optional: edge cases, details, and an area to call or repeat out specific important considerations]\n"
 	completion, err := client.Chat.Completions.New(context.Background(), openai.ChatCompletionNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Messages: []openai.ChatCompletionMessageParamUnion{
 			openai.SystemMessage(metaPrompt), openai.UserMessage("Task, Goal, or Current Prompt: Help a customer resolve a billing issue."),
 		}})
@@ -294,7 +294,7 @@ String metaPrompt =
 
 ChatCompletionCreateParams params =
     ChatCompletionCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .addSystemMessage(metaPrompt)
         .addUserMessage(
             "Task, Goal, or Current Prompt:\nWrite a concise product launch announcement.")
@@ -309,7 +309,7 @@ client.chat().completions().create(params).choices().stream()
 using OpenAI.Chat;
 
 string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
-string model = "gpt-6-astra";
+string model = "gpt-6.2-astra";
 ChatClient client = new(model, key);
 
 string metaPrompt = """"
@@ -414,7 +414,7 @@ PROMPT
 
 def generate_prompt(client, meta_prompt, task_or_prompt)
   completion = client.chat.completions.create(
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     messages: [
       {
         role: :system,
@@ -442,7 +442,7 @@ Audio-out
 
     Audio meta-prompt
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -482,9 +482,9 @@ The final prompt you output should adhere to the following structure below. Do n
 
 [optional: edge cases, details, and an area to call or repeat out specific important considerations]`;
 
-async function generatePrompt(taskOrPrompt) {
+async function generatePrompt(taskOrPrompt: string) {
   const completion = await client.chat.completions.create({
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     messages: [
       { role: "system", content: metaPrompt },
       {
@@ -547,7 +547,7 @@ The final prompt you output should adhere to the following structure below. Do n
 
 def generate_prompt(task_or_prompt: str):
     completion = client.chat.completions.create(
-        model="gpt-6-astra",
+        model="gpt-6.2-astra",
         messages=[
             {
                 "role": "system",
@@ -615,7 +615,7 @@ func run() error {
 		"\n" +
 		"[optional: edge cases, details, and an area to call or repeat out specific important considerations]\n"
 	completion, err := client.Chat.Completions.New(context.Background(), openai.ChatCompletionNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Messages: []openai.ChatCompletionMessageParamUnion{
 			openai.SystemMessage(metaPrompt), openai.UserMessage("Task, Goal, or Current Prompt: Help a customer resolve a billing issue."),
 		}})
@@ -673,7 +673,7 @@ String metaPrompt =
 
 ChatCompletionCreateParams params =
     ChatCompletionCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .addSystemMessage(metaPrompt)
         .addUserMessage(
             "Task, Goal, or Current Prompt:\n"
@@ -689,7 +689,7 @@ client.chat().completions().create(params).choices().stream()
 using OpenAI.Chat;
 
 string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
-string model = "gpt-6-astra";
+string model = "gpt-6.2-astra";
 ChatClient client = new(model, key);
 
 string metaPrompt = """"
@@ -776,7 +776,7 @@ PROMPT
 
 def generate_prompt(client, meta_prompt, task_or_prompt)
   completion = client.chat.completions.create(
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     messages: [
       {
         role: :system,
@@ -807,7 +807,7 @@ Text-out
 
     Text meta-prompt for edits
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -875,9 +875,9 @@ The final prompt you output should adhere to the following structure below. Do n
 [optional: edge cases, details, and an area to call or repeat out specific important considerations]
 [NOTE: you must start with a <reasoning> section. the immediate next token you produce should be <reasoning>]`;
 
-async function generatePrompt(taskOrPrompt) {
+async function generatePrompt(taskOrPrompt: string) {
   const completion = await client.chat.completions.create({
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     messages: [
       { role: "system", content: metaPrompt },
       {
@@ -968,7 +968,7 @@ The final prompt you output should adhere to the following structure below. Do n
 
 def generate_prompt(task_or_prompt: str):
     completion = client.chat.completions.create(
-        model="gpt-6-astra",
+        model="gpt-6.2-astra",
         messages=[
             {
                 "role": "system",
@@ -1064,7 +1064,7 @@ func run() error {
 		"[optional: edge cases, details, and an area to call or repeat out specific important considerations]\n" +
 		"[NOTE: you must start with a <reasoning> section. the immediate next token you produce should be <reasoning>]\n"
 	completion, err := client.Chat.Completions.New(context.Background(), openai.ChatCompletionNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Messages: []openai.ChatCompletionMessageParamUnion{
 			openai.SystemMessage(metaPrompt), openai.UserMessage("Task, Goal, or Current Prompt: Help a customer resolve a billing issue."),
 		}})
@@ -1150,7 +1150,7 @@ String metaPrompt =
 
 ChatCompletionCreateParams params =
     ChatCompletionCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .addSystemMessage(metaPrompt)
         .addUserMessage(
             "Task, Goal, or Current Prompt:\nMake this product launch announcement clearer and more concise.")
@@ -1165,7 +1165,7 @@ client.chat().completions().create(params).choices().stream()
 using OpenAI.Chat;
 
 string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
-string model = "gpt-6-astra";
+string model = "gpt-6.2-astra";
 ChatClient client = new(model, key);
 
 string metaPrompt = """"
@@ -1308,7 +1308,7 @@ PROMPT
 
 def generate_prompt(client, meta_prompt, task_or_prompt)
   completion = client.chat.completions.create(
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     messages: [
       {
         role: :system,
@@ -1336,7 +1336,7 @@ Audio-out
 
     Audio meta-prompt for edits
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -1395,9 +1395,9 @@ The final prompt you output should adhere to the following structure below. Do n
 [optional: edge cases, details, and an area to call or repeat out specific important considerations]
 [NOTE: you must start with a <reasoning> section. the immediate next token you produce should be <reasoning>]`;
 
-async function generatePrompt(taskOrPrompt) {
+async function generatePrompt(taskOrPrompt: string) {
   const completion = await client.chat.completions.create({
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     messages: [
       { role: "system", content: metaPrompt },
       {
@@ -1481,7 +1481,7 @@ The final prompt you output should adhere to the following structure below. Do n
 
 def generate_prompt(task_or_prompt: str):
     completion = client.chat.completions.create(
-        model="gpt-6-astra",
+        model="gpt-6.2-astra",
         messages=[
             {
                 "role": "system",
@@ -1568,7 +1568,7 @@ func run() error {
 		"[optional: edge cases, details, and an area to call or repeat out specific important considerations]\n" +
 		"[NOTE: you must start with a <reasoning> section. the immediate next token you produce should be <reasoning>]\n"
 	completion, err := client.Chat.Completions.New(context.Background(), openai.ChatCompletionNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Messages: []openai.ChatCompletionMessageParamUnion{
 			openai.SystemMessage(metaPrompt), openai.UserMessage("Task, Goal, or Current Prompt: Help a customer resolve a billing issue."),
 		}})
@@ -1645,7 +1645,7 @@ String metaPrompt =
 
 ChatCompletionCreateParams params =
     ChatCompletionCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .addSystemMessage(metaPrompt)
         .addUserMessage(
             "Task, Goal, or Current Prompt:\nMake this voice assistant prompt warmer and more direct.")
@@ -1660,7 +1660,7 @@ client.chat().completions().create(params).choices().stream()
 using OpenAI.Chat;
 
 string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
-string model = "gpt-6-astra";
+string model = "gpt-6.2-astra";
 ChatClient client = new(model, key);
 
 string metaPrompt = """"
@@ -1785,7 +1785,7 @@ PROMPT
 
 def generate_prompt(client, meta_prompt, task_or_prompt)
   completion = client.chat.completions.create(
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     messages: [
       {
         role: :system,
@@ -1864,7 +1864,7 @@ Structured output schema
 
     Structured output meta-schema
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -2092,9 +2092,9 @@ Output: {
     "additionalProperties": false
 }`;
 
-async function generateSchema(description) {
+async function generateSchema(description: string) {
   const completion = await client.chat.completions.create({
-    model: "gpt-5.6-terra",
+    model: "gpt-6.1-terra",
     response_format: { type: "json_schema", json_schema: metaSchema },
     messages: [
       { role: "system", content: metaPrompt },
@@ -2114,72 +2114,65 @@ console.log(
 
 ```python
 from openai import OpenAI
+from jsonschema import Draft202012Validator, ValidationError
 import json
 
 client = OpenAI()
 
+SCHEMA_DEFINITION = {
+    "type": "object",
+    "properties": {
+        "description": {"type": "string"},
+        "type": {
+            "type": "string",
+            "enum": ["object", "array", "string", "number", "boolean", "null"],
+        },
+        "properties": {
+            "type": "object",
+            "additionalProperties": {"$ref": "#/$defs/schema_definition"},
+        },
+        "items": {
+            "anyOf": [
+                {"$ref": "#/$defs/schema_definition"},
+                {"type": "array", "items": {"$ref": "#/$defs/schema_definition"}},
+            ]
+        },
+        "required": {"type": "array", "items": {"type": "string"}},
+        "additionalProperties": {"type": "boolean"},
+        "enum": {"type": "array", "minItems": 1, "uniqueItems": True},
+        "$ref": {"type": "string"},
+        "$defs": {
+            "type": "object",
+            "additionalProperties": {"$ref": "#/$defs/schema_definition"},
+        },
+        "anyOf": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"$ref": "#/$defs/schema_definition"},
+        },
+    },
+    "additionalProperties": False,
+    "if": {"required": ["type"], "properties": {"type": {"const": "object"}}},
+    "then": {"required": ["properties"]},
+}
+
 META_SCHEMA = {
     "name": "metaschema",
     "schema": {
-        "type": "object",
+        **SCHEMA_DEFINITION,
+        "required": ["type"],
         "properties": {
             "name": {"type": "string", "description": "The name of the schema"},
-            "type": {
-                "type": "string",
-                "enum": ["object", "array", "string", "number", "boolean", "null"],
-            },
-            "properties": {
-                "type": "object",
-                "additionalProperties": {"$ref": "#/$defs/schema_definition"},
-            },
-            "items": {
-                "anyOf": [
-                    {"$ref": "#/$defs/schema_definition"},
-                    {"type": "array", "items": {"$ref": "#/$defs/schema_definition"}},
-                ]
-            },
-            "required": {"type": "array", "items": {"type": "string"}},
-            "additionalProperties": {"type": "boolean"},
+            **SCHEMA_DEFINITION["properties"],
         },
-        "required": ["type"],
-        "additionalProperties": False,
-        "if": {"properties": {"type": {"const": "object"}}},
-        "then": {"required": ["properties"]},
         "$defs": {
             "schema_definition": {
-                "type": "object",
-                "properties": {
-                    "type": {
-                        "type": "string",
-                        "enum": [
-                            "object",
-                            "array",
-                            "string",
-                            "number",
-                            "boolean",
-                            "null",
-                        ],
-                    },
-                    "properties": {
-                        "type": "object",
-                        "additionalProperties": {"$ref": "#/$defs/schema_definition"},
-                    },
-                    "items": {
-                        "anyOf": [
-                            {"$ref": "#/$defs/schema_definition"},
-                            {
-                                "type": "array",
-                                "items": {"$ref": "#/$defs/schema_definition"},
-                            },
-                        ]
-                    },
-                    "required": {"type": "array", "items": {"type": "string"}},
-                    "additionalProperties": {"type": "boolean"},
-                },
-                "required": ["type"],
-                "additionalProperties": False,
-                "if": {"properties": {"type": {"const": "object"}}},
-                "then": {"required": ["properties"]},
+                **SCHEMA_DEFINITION,
+                "anyOf": [
+                    {"required": ["type"]},
+                    {"required": ["$ref"]},
+                    {"required": ["anyOf"]},
+                ],
             }
         },
     },
@@ -2353,22 +2346,43 @@ Output: {
 
 
 def generate_schema(description: str):
-    completion = client.chat.completions.create(
-        model="gpt-5.6-terra",
-        response_format={"type": "json_schema", "json_schema": META_SCHEMA},
-        messages=[
-            {
-                "role": "system",
-                "content": META_PROMPT,
-            },
-            {
-                "role": "user",
-                "content": "Description:\n" + description,
-            },
-        ],
-    )
-
-    return json.loads(completion.choices[0].message.content)
+    messages = [
+        {"role": "system", "content": META_PROMPT},
+        {"role": "user", "content": "Description:\n" + description},
+    ]
+    validator = Draft202012Validator(META_SCHEMA["schema"])
+    # Generation is non-strict. Validate locally and allow one correction.
+    for attempt in range(2):
+        completion = client.chat.completions.create(
+            model="gpt-6.1-terra",
+            response_format={"type": "json_schema", "json_schema": META_SCHEMA},
+            messages=messages,
+        )
+        choice = completion.choices[0]
+        if choice.finish_reason != "stop" or choice.message.refusal:
+            raise ValueError("Schema generation did not complete successfully")
+        content = choice.message.content
+        schema = json.loads(content)
+        try:
+            validator.validate(schema)
+        except ValidationError as error:
+            if attempt == 1:
+                raise
+            messages.extend(
+                [
+                    {"role": "assistant", "content": content},
+                    {
+                        "role": "user",
+                        "content": (
+                            "Correct the schema to satisfy the original meta-schema. "
+                            f"Validation error at {error.json_path}: {error.message}. "
+                            "Return only the corrected JSON."
+                        ),
+                    },
+                ]
+            )
+        else:
+            return schema
 ```
 
 ```go
@@ -2561,6 +2575,9 @@ func run() error {
       "type": "string",
       "description": "The name of the schema"
     },
+    "description": {
+      "type": "string"
+    },
     "type": {
       "type": "string",
       "enum": [
@@ -2599,13 +2616,34 @@ func run() error {
     },
     "additionalProperties": {
       "type": "boolean"
+    },
+    "enum": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "$ref": {
+      "type": "string"
+    },
+    "$defs": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/$defs/schema_definition"
+      }
+    },
+    "anyOf": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/schema_definition"
+      }
     }
   },
-  "required": [
-    "type"
-  ],
   "additionalProperties": false,
   "if": {
+    "required": [
+      "type"
+    ],
     "properties": {
       "type": {
         "const": "object"
@@ -2617,6 +2655,9 @@ func run() error {
       "properties"
     ]
   },
+  "required": [
+    "type"
+  ],
   "$defs": {
     "schema_definition": {
       "type": "object",
@@ -2662,13 +2703,34 @@ func run() error {
         },
         "additionalProperties": {
           "type": "boolean"
+        },
+        "enum": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true
+        },
+        "$ref": {
+          "type": "string"
+        },
+        "$defs": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/schema_definition"
+          }
+        },
+        "anyOf": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/schema_definition"
+          }
         }
       },
-      "required": [
-        "type"
-      ],
       "additionalProperties": false,
       "if": {
+        "required": [
+          "type"
+        ],
         "properties": {
           "type": {
             "const": "object"
@@ -2679,14 +2741,31 @@ func run() error {
         "required": [
           "properties"
         ]
-      }
+      },
+      "anyOf": [
+        {
+          "required": [
+            "type"
+          ]
+        },
+        {
+          "required": [
+            "$ref"
+          ]
+        },
+        {
+          "required": [
+            "anyOf"
+          ]
+        }
+      ]
     }
   }
 }`), &schema); err != nil {
 		return err
 	}
 	completion, err := client.Chat.Completions.New(context.Background(), openai.ChatCompletionNewParams{
-		Model: "gpt-5.6-terra",
+		Model: "gpt-6.1-terra",
 		Messages: []openai.ChatCompletionMessageParamUnion{
 			openai.SystemMessage(metaPrompt), openai.UserMessage("Description: Schedule a meeting with a title and start time."),
 		}, ResponseFormat: openai.ChatCompletionNewParamsResponseFormatUnion{OfJSONSchema: &shared.ResponseFormatJSONSchemaParam{JSONSchema: shared.ResponseFormatJSONSchemaJSONSchemaParam{Name: "metaschema", Schema: schema}}}})
@@ -2711,6 +2790,7 @@ import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
 import com.openai.core.JsonValue;
 import com.openai.models.chat.completions.ChatCompletionCreateParams;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -2881,152 +2961,75 @@ String metaPrompt =
     }
     """
         .strip();
-Map<String, Object> metaSchema =
+// The same recursive grammar governs properties, arrays, references, and unions.
+Map<String, Object> schemaRef = Map.of("$ref", "#/$defs/schema_definition");
+Map<String, Object> schemaProperties =
     Map.ofEntries(
-        Map.entry("name", "metaschema"),
+        Map.entry("description", Map.of("type", "string")),
         Map.entry(
-            "schema",
-            Map.ofEntries(
-                Map.entry("type", "object"),
-                Map.entry(
-                    "properties",
-                    Map.ofEntries(
-                        Map.entry(
-                            "name",
-                            Map.ofEntries(
-                                Map.entry("type", "string"),
-                                Map.entry("description", "The name of the schema"))),
-                        Map.entry(
-                            "type",
-                            Map.ofEntries(
-                                Map.entry("type", "string"),
-                                Map.entry(
-                                    "enum",
-                                    List.of(
-                                        "object", "array", "string", "number", "boolean",
-                                        "null")))),
-                        Map.entry(
-                            "properties",
-                            Map.ofEntries(
-                                Map.entry("type", "object"),
-                                Map.entry(
-                                    "additionalProperties",
-                                    Map.ofEntries(
-                                        Map.entry("$ref", "#/$defs/schema_definition"))))),
-                        Map.entry(
-                            "items",
-                            Map.ofEntries(
-                                Map.entry(
-                                    "anyOf",
-                                    List.of(
-                                        Map.ofEntries(
-                                            Map.entry("$ref", "#/$defs/schema_definition")),
-                                        Map.ofEntries(
-                                            Map.entry("type", "array"),
-                                            Map.entry(
-                                                "items",
-                                                Map.ofEntries(
-                                                    Map.entry(
-                                                        "$ref",
-                                                        "#/$defs/schema_definition")))))))),
-                        Map.entry(
-                            "required",
-                            Map.ofEntries(
-                                Map.entry("type", "array"),
-                                Map.entry(
-                                    "items", Map.ofEntries(Map.entry("type", "string"))))),
-                        Map.entry(
-                            "additionalProperties",
-                            Map.ofEntries(Map.entry("type", "boolean"))))),
-                Map.entry("required", List.of("type")),
-                Map.entry("additionalProperties", false),
-                Map.entry(
-                    "if",
-                    Map.ofEntries(
-                        Map.entry(
-                            "properties",
-                            Map.ofEntries(
-                                Map.entry(
-                                    "type", Map.ofEntries(Map.entry("const", "object"))))))),
-                Map.entry("then", Map.ofEntries(Map.entry("required", List.of("properties")))),
-                Map.entry(
-                    "$defs",
-                    Map.ofEntries(
-                        Map.entry(
-                            "schema_definition",
-                            Map.ofEntries(
-                                Map.entry("type", "object"),
-                                Map.entry(
-                                    "properties",
-                                    Map.ofEntries(
-                                        Map.entry(
-                                            "type",
-                                            Map.ofEntries(
-                                                Map.entry("type", "string"),
-                                                Map.entry(
-                                                    "enum",
-                                                    List.of(
-                                                        "object", "array", "string", "number",
-                                                        "boolean", "null")))),
-                                        Map.entry(
-                                            "properties",
-                                            Map.ofEntries(
-                                                Map.entry("type", "object"),
-                                                Map.entry(
-                                                    "additionalProperties",
-                                                    Map.ofEntries(
-                                                        Map.entry(
-                                                            "$ref",
-                                                            "#/$defs/schema_definition"))))),
-                                        Map.entry(
-                                            "items",
-                                            Map.ofEntries(
-                                                Map.entry(
-                                                    "anyOf",
-                                                    List.of(
-                                                        Map.ofEntries(
-                                                            Map.entry(
-                                                                "$ref",
-                                                                "#/$defs/schema_definition")),
-                                                        Map.ofEntries(
-                                                            Map.entry("type", "array"),
-                                                            Map.entry(
-                                                                "items",
-                                                                Map.ofEntries(
-                                                                    Map.entry(
-                                                                        "$ref",
-                                                                        "#/$defs/schema_definition")))))))),
-                                        Map.entry(
-                                            "required",
-                                            Map.ofEntries(
-                                                Map.entry("type", "array"),
-                                                Map.entry(
-                                                    "items",
-                                                    Map.ofEntries(
-                                                        Map.entry("type", "string"))))),
-                                        Map.entry(
-                                            "additionalProperties",
-                                            Map.ofEntries(Map.entry("type", "boolean"))))),
-                                Map.entry("required", List.of("type")),
-                                Map.entry("additionalProperties", false),
-                                Map.entry(
-                                    "if",
-                                    Map.ofEntries(
-                                        Map.entry(
-                                            "properties",
-                                            Map.ofEntries(
-                                                Map.entry(
-                                                    "type",
-                                                    Map.ofEntries(
-                                                        Map.entry("const", "object"))))))),
-                                Map.entry(
-                                    "then",
-                                    Map.ofEntries(
-                                        Map.entry("required", List.of("properties")))))))))));
+            "type",
+            Map.of(
+                "type",
+                "string",
+                "enum",
+                List.of("object", "array", "string", "number", "boolean", "null"))),
+        Map.entry("properties", Map.of("type", "object", "additionalProperties", schemaRef)),
+        Map.entry(
+            "items",
+            Map.of("anyOf", List.of(schemaRef, Map.of("type", "array", "items", schemaRef)))),
+        Map.entry("required", Map.of("type", "array", "items", Map.of("type", "string"))),
+        Map.entry("additionalProperties", Map.of("type", "boolean")),
+        Map.entry("enum", Map.of("type", "array", "minItems", 1, "uniqueItems", true)),
+        Map.entry("$ref", Map.of("type", "string")),
+        Map.entry("$defs", Map.of("type", "object", "additionalProperties", schemaRef)),
+        Map.entry("anyOf", Map.of("type", "array", "minItems", 1, "items", schemaRef)));
+Map<String, Object> objectCondition =
+    Map.of(
+        "required", List.of("type"), "properties", Map.of("type", Map.of("const", "object")));
+Map<String, Object> objectRequirements = Map.of("required", List.of("properties"));
+Map<String, Object> schemaDefinition =
+    Map.of(
+        "type",
+        "object",
+        "properties",
+        schemaProperties,
+        "additionalProperties",
+        false,
+        "if",
+        objectCondition,
+        "then",
+        objectRequirements,
+        "anyOf",
+        List.of(
+            Map.of("required", List.of("type")),
+            Map.of("required", List.of("$ref")),
+            Map.of("required", List.of("anyOf"))));
+var rootProperties = new LinkedHashMap<>(schemaProperties);
+rootProperties.put("name", Map.of("type", "string", "description", "The name of the schema"));
+Map<String, Object> metaSchema =
+    Map.of(
+        "name",
+        "metaschema",
+        "schema",
+        Map.of(
+            "type",
+            "object",
+            "properties",
+            rootProperties,
+            "required",
+            List.of("type"),
+            "additionalProperties",
+            false,
+            "if",
+            objectCondition,
+            "then",
+            objectRequirements,
+            "$defs",
+            Map.of("schema_definition", schemaDefinition)));
 
 ChatCompletionCreateParams params =
     ChatCompletionCreateParams.builder()
-        .model("gpt-5.6-terra")
+        .model("gpt-6.1-terra")
         .addSystemMessage(metaPrompt)
         .addUserMessage("Description:\nDescribe a calendar event.")
         .putAdditionalBodyProperty(
@@ -3044,7 +3047,7 @@ using System.Text.Json;
 using OpenAI.Chat;
 
 string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
-string model = "gpt-5.6-terra";
+string model = "gpt-6.1-terra";
 ChatClient client = new(model, key);
 
 string metaPrompt = """"
@@ -3259,6 +3262,12 @@ options.ResponseFormat = ChatResponseFormat.CreateJsonSchemaFormat("metaschema",
         },
         "additionalProperties": {
           "type": "boolean"
+        },
+        "$defs": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/$defs/schema_definition"
+          }
         }
       },
       "required": [
@@ -3281,6 +3290,12 @@ options.ResponseFormat = ChatResponseFormat.CreateJsonSchemaFormat("metaschema",
         "schema_definition": {
           "type": "object",
           "properties": {
+            "description": {
+              "type": "string"
+            },
+            "enum": {
+              "type": "array"
+            },
             "type": {
               "type": "string",
               "enum": [
@@ -3319,24 +3334,50 @@ options.ResponseFormat = ChatResponseFormat.CreateJsonSchemaFormat("metaschema",
             },
             "additionalProperties": {
               "type": "boolean"
+            },
+            "$ref": {
+              "type": "string"
+            },
+            "anyOf": {
+              "type": "array",
+              "items": {
+                "$ref": "#/$defs/schema_definition"
+              }
             }
           },
-          "required": [
-            "type"
-          ],
           "additionalProperties": false,
           "if": {
             "properties": {
               "type": {
                 "const": "object"
               }
-            }
+            },
+            "required": [
+              "type"
+            ]
           },
           "then": {
             "required": [
               "properties"
             ]
-          }
+          },
+          "anyOf": [
+            {
+              "required": [
+                "$ref"
+              ]
+            },
+            {
+              "required": [
+                "type"
+              ]
+            },
+            {
+              "required": [
+                "anyOf"
+              ]
+            }
+          ]
         }
       }
     }
@@ -3350,112 +3391,107 @@ Console.WriteLine(parsed.RootElement);
 require "openai"
 require "json"
 
+SCHEMA_DEFINITION = {
+  "type" => "object",
+  "properties" => {
+    "description" => {
+      "type" => "string"
+    },
+    "type" => {
+      "type" => "string",
+      "enum" => [
+        "object",
+        "array",
+        "string",
+        "number",
+        "boolean",
+        "null"
+      ]
+    },
+    "properties" => {
+      "type" => "object",
+      "additionalProperties" => {
+        "$ref" => "#/$defs/schema_definition"
+      }
+    },
+    "items" => {
+      "anyOf" => [
+        {
+          "$ref" => "#/$defs/schema_definition"
+        },
+        {
+          "type" => "array",
+          "items" => {
+            "$ref" => "#/$defs/schema_definition"
+          }
+        }
+      ]
+    },
+    "required" => {
+      "type" => "array",
+      "items" => {
+        "type" => "string"
+      }
+    },
+    "additionalProperties" => {
+      "type" => "boolean"
+    },
+    "enum" => {
+      "type" => "array",
+      "minItems" => 1,
+      "uniqueItems" => true
+    },
+    "$ref" => {
+      "type" => "string"
+    },
+    "$defs" => {
+      "type" => "object",
+      "additionalProperties" => {
+        "$ref" => "#/$defs/schema_definition"
+      }
+    },
+    "anyOf" => {
+      "type" => "array",
+      "minItems" => 1,
+      "items" => {
+        "$ref" => "#/$defs/schema_definition"
+      }
+    }
+  },
+  "additionalProperties" => false,
+  "if" => {
+    "required" => [
+      "type"
+    ],
+    "properties" => {
+      "type" => {
+        "const" => "object"
+      }
+    }
+  },
+  "then" => {
+    "required" => [
+      "properties"
+    ]
+  }
+}
+
 META_SCHEMA = {
   "name" => "metaschema",
-  "schema" => {
-    "type" => "object",
-    "properties" => {
-      "description" => { "type" => "string" },
+  "schema" => SCHEMA_DEFINITION.merge(
+    "required" => ["type"],
+    "properties" => SCHEMA_DEFINITION.fetch("properties").merge(
       "name" => {
         "type" => "string",
         "description" => "The name of the schema"
-      },
-      "type" => {
-        "type" => "string",
-        "enum" => ["object", "array", "string", "number", "boolean", "null"]
-      },
-      "properties" => {
-        "type" => "object",
-        "additionalProperties" => {
-          "$ref" => "#/$defs/schema_definition"
-        }
-      },
-      "items" => {
-        "anyOf" => [
-          {
-            "$ref" => "#/$defs/schema_definition"
-          }, {
-            "type" => "array",
-            "items" => {
-              "$ref" => "#/$defs/schema_definition"
-            }
-          }
-        ]
-      },
-      "required" => {
-        "type" => "array",
-        "items" => {
-          "type" => "string"
-        }
-      },
-      "additionalProperties" => {
-        "type" => "boolean"
       }
-    },
-    "required" => ["type"],
-    "additionalProperties" => false,
-    "if" => {
-      "properties" => {
-        "type" => {
-          "const" => "object"
-        }
-      }
-    },
-    "then" => {
-      "required" => ["properties"]
-    },
+    ),
     "$defs" => {
-      "schema_definition" => {
-        "type" => "object",
-        "properties" => {
-          "description" => { "type" => "string" },
-          "type" => {
-            "type" => "string",
-            "enum" => ["object", "array", "string", "number", "boolean", "null"]
-          },
-          "properties" => {
-            "type" => "object",
-            "additionalProperties" => {
-              "$ref" => "#/$defs/schema_definition"
-            }
-          },
-          "items" => {
-            "anyOf" => [
-              {
-                "$ref" => "#/$defs/schema_definition"
-              }, {
-                "type" => "array",
-                "items" => {
-                  "$ref" => "#/$defs/schema_definition"
-                }
-              }
-            ]
-          },
-          "required" => {
-            "type" => "array",
-            "items" => {
-              "type" => "string"
-            }
-          },
-          "additionalProperties" => {
-            "type" => "boolean"
-          }
-        },
-        "required" => ["type"],
-        "additionalProperties" => false,
-        "if" => {
-          "properties" => {
-            "type" => {
-              "const" => "object"
-            }
-          }
-        },
-        "then" => {
-          "required" => ["properties"]
-        }
-      }
+      "schema_definition" => SCHEMA_DEFINITION.merge(
+        "anyOf" => [{ "required" => ["type"] }, { "required" => ["$ref"] }, { "required" => ["anyOf"] }]
+      )
     }
-  }
+  )
 }
 
 META_PROMPT = <<~PROMPT.strip
@@ -3626,7 +3662,7 @@ PROMPT
 
 client = OpenAI::Client.new
 completion = client.chat.completions.create(
-  model: "gpt-5.6-terra",
+  model: "gpt-6.1-terra",
   response_format: {
     type: :json_schema,
     json_schema: META_SCHEMA
@@ -3657,7 +3693,7 @@ Function schema
 
     Structured output meta-schema
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -3869,9 +3905,9 @@ Output: {
     }
 }`;
 
-async function generateFunctionSchema(description) {
+async function generateFunctionSchema(description: string) {
   const completion = await client.chat.completions.create({
-    model: "gpt-5.6-terra",
+    model: "gpt-6.1-terra",
     response_format: { type: "json_schema", json_schema: metaSchema },
     messages: [
       { role: "system", content: metaPrompt },
@@ -3922,6 +3958,8 @@ META_SCHEMA = {
             "schema_definition": {
                 "type": "object",
                 "properties": {
+                    "description": {"type": "string"},
+                    "enum": {"type": "array", "minItems": 1, "uniqueItems": True},
                     "type": {
                         "type": "string",
                         "enum": [
@@ -4088,7 +4126,7 @@ Output: {
 
 def generate_function_schema(description: str):
     completion = client.chat.completions.create(
-        model="gpt-5.6-terra",
+        model="gpt-6.1-terra",
         response_format={"type": "json_schema", "json_schema": META_SCHEMA},
         messages=[
             {
@@ -4316,6 +4354,11 @@ func run() error {
         },
         "additionalProperties": {
           "type": "boolean"
+        },
+        "enum": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true
         }
       },
       "required": [
@@ -4340,7 +4383,7 @@ func run() error {
 		return err
 	}
 	completion, err := client.Chat.Completions.New(context.Background(), openai.ChatCompletionNewParams{
-		Model: "gpt-5.6-terra",
+		Model: "gpt-6.1-terra",
 		Messages: []openai.ChatCompletionMessageParamUnion{
 			openai.SystemMessage(metaPrompt), openai.UserMessage("Description: Schedule a meeting with a title and start time."),
 		}, ResponseFormat: openai.ChatCompletionNewParamsResponseFormatUnion{OfJSONSchema: &shared.ResponseFormatJSONSchemaParam{JSONSchema: shared.ResponseFormatJSONSchemaJSONSchemaParam{Name: "function-metaschema", Schema: schema}}}})
@@ -4501,30 +4544,36 @@ Map<String, Object> schemaDefinition =
         "type", "object",
         "properties",
             Map.of(
+                "enum",
+                Map.of("type", "array", "minItems", 1, "uniqueItems", true),
+                "description",
+                Map.of("type", "string"),
                 "type",
-                    Map.of(
-                        "type",
-                        "string",
-                        "enum",
-                        List.of("object", "array", "string", "number", "boolean", "null")),
+                Map.of(
+                    "type",
+                    "string",
+                    "enum",
+                    List.of("object", "array", "string", "number", "boolean", "null")),
                 "properties",
-                    Map.of(
-                        "type",
-                        "object",
-                        "additionalProperties",
-                        Map.of("$ref", "#/$defs/schema_definition")),
+                Map.of(
+                    "type",
+                    "object",
+                    "additionalProperties",
+                    Map.of("$ref", "#/$defs/schema_definition")),
                 "items",
-                    Map.of(
-                        "anyOf",
-                        List.of(
-                            Map.of("$ref", "#/$defs/schema_definition"),
-                            Map.of(
-                                "type",
-                                "array",
-                                "items",
-                                Map.of("$ref", "#/$defs/schema_definition")))),
-                "required", Map.of("type", "array", "items", Map.of("type", "string")),
-                "additionalProperties", Map.of("type", "boolean")),
+                Map.of(
+                    "anyOf",
+                    List.of(
+                        Map.of("$ref", "#/$defs/schema_definition"),
+                        Map.of(
+                            "type",
+                            "array",
+                            "items",
+                            Map.of("$ref", "#/$defs/schema_definition")))),
+                "required",
+                Map.of("type", "array", "items", Map.of("type", "string")),
+                "additionalProperties",
+                Map.of("type", "boolean")),
         "required", List.of("type"),
         "additionalProperties", false,
         "if", Map.of("properties", Map.of("type", Map.of("const", "object"))),
@@ -4553,7 +4602,7 @@ Map<String, Object> functionSchema =
 
 ChatCompletionCreateParams params =
     ChatCompletionCreateParams.builder()
-        .model("gpt-5.6-terra")
+        .model("gpt-6.1-terra")
         .addSystemMessage(metaPrompt)
         .addUserMessage("Description:\nSchedule a meeting with a title and start time.")
         .putAdditionalBodyProperty(
@@ -4576,7 +4625,7 @@ using System.Text.Json;
 using OpenAI.Chat;
 
 string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
-string model = "gpt-5.6-terra";
+string model = "gpt-6.1-terra";
 ChatClient client = new(model, key);
 
 string metaPrompt = """"
@@ -4733,6 +4782,8 @@ options.ResponseFormat = ChatResponseFormat.CreateJsonSchemaFormat("function-met
         "schema_definition": {
           "type": "object",
           "properties": {
+            "description": { "type": "string" },
+            "enum": { "type": "array" },
             "type": {
               "type": "string",
               "enum": [
@@ -4827,6 +4878,11 @@ META_SCHEMA = {
         "type" => "object",
         "properties" => {
           "description" => { "type" => "string" },
+          "enum" => {
+            "type" => "array",
+            "minItems" => 1,
+            "uniqueItems" => true
+          },
           "type" => {
             "type" => "string",
             "enum" => ["object", "array", "string", "number", "boolean", "null"]
@@ -5005,7 +5061,7 @@ PROMPT
 
 client = OpenAI::Client.new
 completion = client.chat.completions.create(
-  model: "gpt-5.6-terra",
+  model: "gpt-6.1-terra",
   response_format: {
     type: :json_schema,
     json_schema: META_SCHEMA

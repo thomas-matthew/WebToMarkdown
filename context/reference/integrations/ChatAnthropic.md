@@ -1,4 +1,4 @@
-Classv1.7.7 (latest)●Since v1.6
+Classv1.7.11 (latest)●Since v1.6
 
 # ChatAnthropic
 
@@ -78,10 +78,10 @@ each time to the model is invoked.
 ## Used in Docs
 
 * [Build a SQL assistant with on-demand skills](https://docs.langchain.com/oss/python/langchain/multi-agent/skills-sql-assistant)
+* [How to filter experiments in the UI](https://docs.langchain.com/langsmith/filter-experiments-ui)
 * [Human-in-the-loop](https://docs.langchain.com/oss/python/deepagents/human-in-the-loop)
 * [MESSAGE\_COERCION\_FAILURE](https://docs.langchain.com/oss/python/langchain/errors/MESSAGE_COERCION_FAILURE)
 * [Models](https://docs.langchain.com/oss/python/langchain/models)
-* [Use the functional API](https://docs.langchain.com/oss/python/langgraph/use-functional-api)
 
 +11 more
 
@@ -400,7 +400,7 @@ This uses Anthropic's official [token counting API](https://platform.claude.com/
 
 [get\_name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_name) [get\_input\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_schema) [get\_input\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_jsonschema) [get\_output\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_schema) [get\_output\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_jsonschema) [config\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_schema) [get\_config\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_config_jsonschema) [get\_graph](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_graph) [get\_prompts](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_prompts) [pipe](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pipe) [pick](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pick) [assign](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/assign) [invoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/invoke) [ainvoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/ainvoke) [batch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch) [batch\_as\_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch_as_completed) [abatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch) [abatch\_as\_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch_as_completed) [stream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream) [astream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream) [astream\_log](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_log) [astream\_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_events) [stream\_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream_events) [transform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/transform) [atransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/atransform) [bind](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/bind) [with\_config](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_config) [with\_listeners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_listeners) [with\_alisteners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_alisteners) [with\_types](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_types) [with\_retry](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_retry) [map](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/map) [with\_fallbacks](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_fallbacks) [as\_tool](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/as_tool)
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6eb169b56cea0b535b9af0ca504bb367f6407455/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1320)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/b660fc7a4371db238d088fb4f8f9c0a40fa26251/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1352)
 
 Version History
 
@@ -426,7 +426,7 @@ is_lc_serializable(
 
 ---
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6eb169b56cea0b535b9af0ca504bb367f6407455/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1633)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/b660fc7a4371db238d088fb4f8f9c0a40fa26251/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1668)
 
 ---
 
@@ -454,7 +454,7 @@ get_lc_namespace(
 
 ---
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6eb169b56cea0b535b9af0ca504bb367f6407455/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1638)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/b660fc7a4371db238d088fb4f8f9c0a40fa26251/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1673)
 
 ---
 
@@ -477,7 +477,7 @@ set_default_max_tokens(
 
 ---
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6eb169b56cea0b535b9af0ca504bb367f6407455/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1686)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/b660fc7a4371db238d088fb4f8f9c0a40fa26251/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1721)
 
 ---
 
@@ -500,7 +500,7 @@ build_extra(
 
 ---
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6eb169b56cea0b535b9af0ca504bb367f6407455/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1698)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/b660fc7a4371db238d088fb4f8f9c0a40fa26251/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1733)
 
 ---
 
@@ -571,7 +571,7 @@ model_with_tools.invoke(
 
 ---
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6eb169b56cea0b535b9af0ca504bb367f6407455/libs/partners/anthropic/langchain_anthropic/chat_models.py#L2664)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/b660fc7a4371db238d088fb4f8f9c0a40fa26251/libs/partners/anthropic/langchain_anthropic/chat_models.py#L2747)
 
 ---
 
@@ -627,8 +627,8 @@ print(response)
 | Name | Type | Required | Description |
 |------|------|----------|-------------|
 | `schema` | `dict \| type` | Yes | The output schema. Can be passed in as:  - An Anthropic tool schema, - An OpenAI function/tool schema, - A JSON Schema, - A `TypedDict` class, - Or a Pydantic class.  If `schema` is a Pydantic class then the model output will be a Pydantic instance of that class, and the model-generated fields will be validated by the Pydantic class. Otherwise the model output will be a dict and will not be validated.  See `langchain_core.utils.function_calling.convert_to_openai_tool` for more on how to properly specify types and descriptions of schema fields when specifying a Pydantic or `TypedDict` class. |
-| `include_raw` | `bool` | No |  If `False` then only the parsed structured output is returned.  If an error occurs during model output parsing it will be raised.  If `True` then both the raw model response (a `BaseMessage`) and the parsed model response will be returned.  If an error occurs during output parsing it will be caught and returned as well.  The final output is always a `dict` with keys `'raw'`, `'parsed'`, and `'parsing_error'`. (default: `False`) |
-| `method` | `Literal['function_calling', 'json_schema']` | No | The structured output method to use. Options are:  - `'function_calling'` (default): Use forced tool calling to get     structured output. When `thinking` is enabled, or on models     that don't support forced tool use (Claude Opus 5.5, Claude     Fable 5.1, Claude Sonnet 5.5), the tool call isn't forced,     and a missing tool call raises `OutputParserException`. - `'json_schema'`: Use Claude's dedicated     [structured output](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)     feature. (default: `'function_calling'`) |
+| `include_raw` | `bool` | No |  If `False` then only the parsed structured output is returned.  If an error occurs during model output parsing it will be raised.  If `True` then both the raw model response (a `BaseMessage`) and the parsed model response will be returned.  If an error occurs during output parsing it will be caught and returned as well.  The final output is always a `dict` with keys `'raw'`, `'parsed'`, and `'parsing_error'`.  If the model refuses, `ModelRefusalError` is raised, or returned as `'parsing_error'` when `include_raw` is `True`. (default: `False`) |
+| `method` | `Literal['function_calling', 'json_schema']` | No | The structured output method to use. Options are:  - `'function_calling'` (default): Use forced tool calling to get     structured output. When `thinking` is enabled, or on models     that don't support forced tool use (Claude Opus 5.5, Claude     Fable 5.1, Claude Sonnet 5.5), the tool call isn't forced,     and a missing tool call raises `OutputParserException`     (`ModelRefusalError` if the model refused). - `'json_schema'`: Use Claude's dedicated     [structured output](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)     feature. (default: `'function_calling'`) |
 | `kwargs` | `Any` | No | Additional keyword arguments are ignored. (default: `{}`) |
 
 ### Returns
@@ -651,7 +651,7 @@ If `include_raw` is `True`, then `Runnable` outputs a `dict` with keys:
 
 ---
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6eb169b56cea0b535b9af0ca504bb367f6407455/libs/partners/anthropic/langchain_anthropic/chat_models.py#L2869)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/b660fc7a4371db238d088fb4f8f9c0a40fa26251/libs/partners/anthropic/langchain_anthropic/chat_models.py#L2952)
 
 ---
 
@@ -735,4 +735,4 @@ get_num_tokens_from_messages(
 
 ---
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6eb169b56cea0b535b9af0ca504bb367f6407455/libs/partners/anthropic/langchain_anthropic/chat_models.py#L3036)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/b660fc7a4371db238d088fb4f8f9c0a40fa26251/libs/partners/anthropic/langchain_anthropic/chat_models.py#L3123)

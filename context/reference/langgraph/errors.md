@@ -1,53 +1,80 @@
-Python[langgraph](/python/langgraph)Errors
-
 # Errors
 
 ## Classes
 
-[Class
+Class
 
-### ErrorCode](/python/langgraph/errors/ErrorCode)[Class
+### [ErrorCode](https://reference.langchain.com/python/langgraph/errors/ErrorCode)
 
-### GraphBubbleUp](/python/langgraph/errors/GraphBubbleUp)[Class
+Class
 
-### GraphDrained
+### [GraphBubbleUp](https://reference.langchain.com/python/langgraph/errors/GraphBubbleUp)
+
+Class
+
+### [GraphDrained](https://reference.langchain.com/python/langgraph/errors/GraphDrained)
 
 Raised when a graph run exits early due to a drain request.
 
 This indicates the graph stopped cooperatively at a superstep boundary
-because `RunControl.request_drain()` was called (e.g., in response t](/python/langgraph/errors/GraphDrained)[Class
+because `RunControl.request_drain()` was called (e.g., in response t
 
-### GraphRecursionError
+Class
+
+### [GraphRecursionError](https://reference.langchain.com/python/langgraph/errors/GraphRecursionError)
 
 Raised when the graph has exhausted the maximum number of steps.
 
 This prevents infinite loops. To increase the maximum number of steps,
-run your graph with a config specifying a higher `recursion\_lim](/python/langgraph/errors/GraphRecursionError)[Class
+run your graph with a config specifying a higher `recursion\_lim
 
-### InvalidUpdateError
+Class
+
+### [InvalidUpdateError](https://reference.langchain.com/python/langgraph/errors/InvalidUpdateError)
 
 Raised when attempting to update a channel with an invalid set of updates.
 
 Troubleshooting guides:
 
-* [`INVALID_CONCURRENT_GRAPH_UPDATE`](https://docs.langchain.com/oss/python/langgraph/INVALID\_CONCU](/python/langgraph/errors/InvalidUpdateError)[Class
+* [`INVALID_CONCURRENT_GRAPH_UPDATE`](https://docs.langchain.com/oss/python/langgraph/INVALID\_CONCU
 
-### GraphInterrupt
+Class
+
+### [GraphInterrupt](https://reference.langchain.com/python/langgraph/errors/GraphInterrupt)
 
 Raised when a subgraph is interrupted, suppressed by the root graph.
-Never raised directly, or surfaced to the user.](/python/langgraph/errors/GraphInterrupt)[Class
+Never raised directly, or surfaced to the user.
 
-### ParentCommand](/python/langgraph/errors/ParentCommand)[Class
+Class
 
-### EmptyInputError
+### [ParentCommand](https://reference.langchain.com/python/langgraph/errors/ParentCommand)
 
-Raised when graph receives an empty input.](/python/langgraph/errors/EmptyInputError)[Class
+Class
 
-### TaskNotFound
+### [EmptyInputError](https://reference.langchain.com/python/langgraph/errors/EmptyInputError)
 
-Raised when the executor is unable to find a task (for distributed mode).](/python/langgraph/errors/TaskNotFound)[Class
+Raised when graph receives an empty input.
 
-### NodeError
+Class
+
+### [TaskNotFound](https://reference.langchain.com/python/langgraph/errors/TaskNotFound)
+
+Raised when the executor is unable to find a task (for distributed mode).
+
+Class
+
+### [UnknownInterruptError](https://reference.langchain.com/python/langgraph/errors/UnknownInterruptError)
+
+Raised in strict resume mode when a resume doesn't match the pending interrupts.
+
+`reason` says how it doesn't match:
+
+* `"not_pending"`: the resume names interrupts that aren't pending, listed in
+  `
+
+Class
+
+### [NodeError](https://reference.langchain.com/python/langgraph/errors/NodeError)
 
 Failure context passed to a node-level error handler.
 
@@ -56,43 +83,45 @@ Inject by adding a parameter typed `NodeError` to a handler registered via
 
 ```
 def handler(
-```](/python/langgraph/errors/NodeError)[Class
+```
 
-### NodeCancelledError
+Class
+
+### [NodeCancelledError](https://reference.langchain.com/python/langgraph/errors/NodeCancelledError)
 
 Raised when a node body raises `asyncio.CancelledError` itself.
 
 `asyncio.CancelledError` is a `BaseException` and the pregel runner
-treats cancelled task futures as silent tear-down (e.g. when](/python/langgraph/errors/NodeCancelledError)[Class
+treats cancelled task futures as silent tear-down (e.g. when
 
-### NodeTimeoutError
+Class
+
+### [NodeTimeoutError](https://reference.langchain.com/python/langgraph/errors/NodeTimeoutError)
 
 Raised when a node invocation exceeds one of its configured timeouts.
 
 Does **not** inherit from the built-in `TimeoutError` (a subclass of
-`OSError`) so that the default `RetryPolicy` treats it as re](/python/langgraph/errors/NodeTimeoutError)[Class
+`OSError`) so that the default `RetryPolicy` treats it as re
 
-### NodeInterrupt
+Class
+
+### [NodeInterrupt](https://reference.langchain.com/python/langgraph/errors/NodeInterrupt)
 
 deprecated
 
-Raised by a node to interrupt execution.](/python/langgraph/errors/NodeInterrupt)
+Raised by a node to interrupt execution.
 
 ## Functions
 
-[Function
+Function
 
-### create\_error\_message](/python/langgraph/errors/create_error_message)[Function
+### [create\_error\_message](https://reference.langchain.com/python/langgraph/errors/create_error_message)
 
-### is\_invalid\_resume
+Function
+
+### [is\_invalid\_resume](https://reference.langchain.com/python/langgraph/errors/is_invalid_resume)
 
 Whether `error` was raised because a resume value didn't match `response_schema`.
 
 `interrupt()` raises a `pydantic.ValidationError` in that case. `ToolNode` uses
-this to tell it apart from invalid to](/python/langgraph/errors/is_invalid_resume)
-
-Copy page
-
-### On This Page
-
-Classes13Functions2
+this to tell it apart from invalid to

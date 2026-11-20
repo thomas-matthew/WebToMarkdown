@@ -2,7 +2,7 @@
 
 > For the complete documentation index, see [llms.txt](/llms.txt). Markdown versions of documentation pages are available by appending `.md` to the page URL.
 
-Learn how to use OpenAI's Batch API to send asynchronous groups of requests with 50% lower costs, a separate pool of significantly higher rate limits, and a clear 24-hour turnaround time. The service is ideal for processing jobs that don't require immediate responses. You can also [explore the API reference directly here](https://developers.openai.com/api/reference/resources/batches).
+Learn how to use OpenAI's Batch API to send asynchronous groups of requests with 50% lower costs, a queued-token limit separate from per-minute limits, and a clear 24-hour turnaround time. The service is ideal for processing jobs that don't require immediate responses. You can also [explore the API reference directly here](https://developers.openai.com/api/reference/resources/batches).
 
 ## Overview
 
@@ -38,55 +38,25 @@ For a given input file, the parameters in each line's `body` field are the same 
 
 When targeting `/v1/moderations`, include an `input` field in every request body. Batch accepts plain-text inputs and content arrays with text or image inputs using `omni-moderation-latest`. The Batch worker rejects requests that set `stream=true`, matching the synchronous moderation endpoint.
 
+The Batch API doesn't support `omni-moderation-csam-latest`. Approved organizations can use the [CSAM classifier](https://developers.openai.com/api/docs/guides/csam-classifier) with a synchronous request.
+
 ```jsonl
-{"custom_id": "request-1", "method": "POST", "url": "/v1/chat/completions", "body": {"model": "gpt-3.5-turbo-0125", "messages": [{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Hello world!"}],"max_tokens": 1000}}
-{"custom_id": "request-2", "method": "POST", "url": "/v1/chat/completions", "body": {"model": "gpt-3.5-turbo-0125", "messages": [{"role": "system", "content": "You are an unhelpful assistant."},{"role": "user", "content": "Hello world!"}],"max_tokens": 1000}}
+{"custom_id": "request-1", "method": "POST", "url": "/v1/responses", "body": {"model": "gpt-6-luna", "input": "Reply with the word blue.", "reasoning": {"effort": "none"}, "max_output_tokens": 64}}
+{"custom_id": "request-2", "method": "POST", "url": "/v1/responses", "body": {"model": "gpt-6-luna", "input": "Reply with the word green.", "reasoning": {"effort": "none"}, "max_output_tokens": 64}}
 ```
 
 #### Moderation input examples
 
-Text-only request:
+This input file contains a text-only request followed by a request with text and image input:
 
 ```jsonl
-{
-  "custom_id": "moderation-text-1",
-  "method": "POST",
-  "url": "/v1/moderations",
-  "body": {
-    "model": "omni-moderation-latest",
-    "input": "This is a harmless test sentence."
-  }
-}
-```
-
-Request with text and image input:
-
-```jsonl
-{
-  "custom_id": "moderation-mm-1",
-  "method": "POST",
-  "url": "/v1/moderations",
-  "body": {
-    "model": "omni-moderation-latest",
-    "input": [
-      {
-        "type": "text",
-        "text": "Describe this image"
-      },
-      {
-        "type": "image_url",
-        "image_url": {
-          "url": "https://api.nga.gov/iiif/a2e6da57-3cd1-4235-b20e-95dcaefed6c8/full/!800,800/0/default.jpg"
-        }
-      }
-    ]
-  }
-}
+{"custom_id": "moderation-text-1", "method": "POST", "url": "/v1/moderations", "body": {"model": "omni-moderation-latest", "input": "This is a harmless test sentence."}}
+{"custom_id": "moderation-mm-1", "method": "POST", "url": "/v1/moderations", "body": {"model": "omni-moderation-latest", "input": [{"type": "text", "text": "Describe this image"}, {"type": "image_url", "image_url": {"url": "https://api.nga.gov/iiif/a2e6da57-3cd1-4235-b20e-95dcaefed6c8/full/!800,800/0/default.jpg"}}]}}
 ```
 
 Prefer referencing remote assets with `image_url` (instead of base64 blobs) to
   keep your `.jsonl` files well below the 200&nbsp;MB Batch upload limit,
-  especially for multimodal Moderations requests.
+  especially for multimodal moderation requests.
 
 ### 2. Upload your batch input file
 
@@ -94,7 +64,7 @@ Similar to our [Fine-tuning API](https://developers.openai.com/api/docs/guides/m
 
 Upload files for Batch API
 
-```javascript
+```typescript
 import fs from "fs";
 import OpenAI from "openai";
 const openai = new OpenAI();
@@ -198,13 +168,13 @@ Once you've successfully uploaded your input file, you can use the input File ob
 
 Create the Batch
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const openai = new OpenAI();
 
 const batch = await openai.batches.create({
   input_file_id: "file-abc123",
-  endpoint: "/v1/chat/completions",
+  endpoint: "/v1/responses",
   completion_window: "24h",
 });
 
@@ -214,7 +184,7 @@ console.log(batch);
 ```python
 batch = client.batches.create(
     input_file_id=batch_input_file.id,
-    endpoint="/v1/chat/completions",
+    endpoint="/v1/responses",
     completion_window="24h",
     metadata={"description": "nightly eval job"},
 )
@@ -235,7 +205,7 @@ func main() {
 	client := openai.NewClient()
 	batch, err := client.Batches.New(context.Background(), openai.BatchNewParams{
 		InputFileID:      "file-abc123",
-		Endpoint:         openai.BatchNewParamsEndpointV1ChatCompletions,
+		Endpoint:         openai.BatchNewParamsEndpointV1Responses,
 		CompletionWindow: openai.BatchNewParamsCompletionWindow24h,
 	})
 	if err != nil {
@@ -279,7 +249,7 @@ curl https://api.openai.com/v1/batches \
   -H "Content-Type: application/json" \
   -d '{
     "input_file_id": "file-abc123",
-    "endpoint": "/v1/chat/completions",
+    "endpoint": "/v1/responses",
     "completion_window": "24h"
   }'
 ```
@@ -287,7 +257,7 @@ curl https://api.openai.com/v1/batches \
 ```bash
 openai batches create \
   --input-file-id file-abc123 \
-  --endpoint /v1/chat/completions \
+  --endpoint /v1/responses \
   --completion-window 24h
 ```
 
@@ -298,7 +268,7 @@ This request will return a [Batch object](https://developers.openai.com/api/refe
 {
   "id": "batch_abc123",
   "object": "batch",
-  "endpoint": "/v1/chat/completions",
+  "endpoint": "/v1/responses",
   "errors": null,
   "input_file_id": "file-abc123",
   "completion_window": "24h",
@@ -326,7 +296,7 @@ You can check the status of a batch at any time, which will also return a Batch 
 
 Check the status of a batch
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const openai = new OpenAI();
 
@@ -409,7 +379,7 @@ Once the batch is complete, you can download the output by making a request agai
 
 Retrieving the batch results
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const openai = new OpenAI();
 
@@ -497,16 +467,18 @@ openai files content \
 The output `.jsonl` file will have one response line for every successful request line in the input file. Any failed requests in the batch will have their error information written to an error file that can be found via the batch's `error_file_id`.
 
 Note that the output line order **may not match** the input line order.
-  Instead of relying on order to process your results, use the custom_id field
+  Instead of relying on order to process your results, use the `custom_id` field
   which will be present in each line of your output file and allow you to map
   requests in your input to results in your output.
 
+The following output is abbreviated to show the ID mapping and generated text. Read each message’s `output_text` content from `response.body.output`.
+
 ```jsonl
-{"id": "batch_req_123", "custom_id": "request-2", "response": {"status_code": 200, "request_id": "req_123", "body": {"id": "chatcmpl-123", "object": "chat.completion", "created": 1711652795, "model": "gpt-3.5-turbo-0125", "choices": [{"index": 0, "message": {"role": "assistant", "content": "Hello."}, "logprobs": null, "finish_reason": "stop"}], "usage": {"prompt_tokens": 22, "completion_tokens": 2, "total_tokens": 24}, "system_fingerprint": "fp_123"}}, "error": null}
-{"id": "batch_req_456", "custom_id": "request-1", "response": {"status_code": 200, "request_id": "req_789", "body": {"id": "chatcmpl-abc", "object": "chat.completion", "created": 1711652789, "model": "gpt-3.5-turbo-0125", "choices": [{"index": 0, "message": {"role": "assistant", "content": "Hello! How can I assist you today?"}, "logprobs": null, "finish_reason": "stop"}], "usage": {"prompt_tokens": 20, "completion_tokens": 9, "total_tokens": 29}, "system_fingerprint": "fp_3ba"}}, "error": null}
+{"id": "batch_req_2", "custom_id": "request-2", "response": {"status_code": 200, "request_id": "req_2", "body": {"id": "resp_2", "object": "response", "status": "completed", "output": [{"type": "message", "role": "assistant", "content": [{"type": "output_text", "text": "green"}]}]}}, "error": null}
+{"id": "batch_req_1", "custom_id": "request-1", "response": {"status_code": 200, "request_id": "req_1", "body": {"id": "resp_1", "object": "response", "status": "completed", "output": [{"type": "message", "role": "assistant", "content": [{"type": "output_text", "text": "blue"}]}]}}, "error": null}
 ```
 
-The output file will automatically be deleted 30 days after the batch is complete.
+By default, batch output and error files expire 30 days after file creation. Set `output_expires_after` in the [batch creation request](https://developers.openai.com/api/reference/resources/batches/methods/create) to choose an expiration period from 1 hour to 30 days, measured from file creation.
 
 ### 6. Cancel a batch
 
@@ -514,7 +486,7 @@ If necessary, you can cancel an ongoing batch. The batch's status will change to
 
 Cancelling a batch
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const openai = new OpenAI();
 
@@ -589,7 +561,7 @@ At any time, you can see all your batches. For users with many batches, you can 
 
 Getting a list of all batches
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const openai = new OpenAI();
 
@@ -665,19 +637,19 @@ openai batches list \
 
 ## Model availability
 
-Most models support the Batch API. Check the [model reference](https://developers.openai.com/api/docs/models) for your model. GPT-6 Sol and Luna support EU data residency with Standard, Flex, and Batch processing. See [data residency eligibility](https://developers.openai.com/api/docs/guides/your-data#which-models-and-features-are-eligible-for-data-residency).
+Most models support the Batch API. Check the [model reference](https://developers.openai.com/api/docs/models) for your model. GPT-6.2 Astra and GPT-6.2 Sol support US and EU data residency with Batch processing. GPT-6 Sol and Luna support EU data residency with Standard, Flex, and Batch processing. See [data residency eligibility](https://developers.openai.com/api/docs/guides/data-residency#which-models-and-features-are-eligible-for-data-residency).
 
-GPT Image 2.5 supports batch image generation and editing with `gpt-image-2.5-flare` and `gpt-image-2.5-sunburst`, including their `2026-09-08` snapshots. Use `/v1/images/generations` or `/v1/images/edits` and see [image generation pricing](https://developers.openai.com/api/docs/pricing?multimodal-image-pricing=batch#image-generation) for Batch rates.
+GPT-Image-2.5 supports batch image generation and editing with `gpt-image-2.5-flare` and `gpt-image-2.5-sunburst`, including their `2026-09-08` snapshots. Use `/v1/images/generations` or `/v1/images/edits` and see [image generation pricing](https://developers.openai.com/api/docs/pricing?multimodal-image-pricing=batch#image-generation) for Batch rates.
 
 ## Rate limits
 
-Batch API rate limits are separate from existing per-model rate limits. The Batch API has three types of rate limits:
+The Batch API has three types of limits:
 
 1. **Per-batch limits:** A single batch may include up to 50,000 requests, and a batch input file can be up to 200 MB in size. Note that `/v1/embeddings` batches are also restricted to a maximum of 50,000 embedding inputs across all requests in the batch.
-2. **Queued prompt tokens per model:** Each model has a maximum number of prompt tokens that can be queued for batch processing. You can find these limits on the [Platform Settings page](https://platform.openai.com/settings/organization/limits).
+2. **Queued input tokens per model:** Batch API jobs share the [Batch/Background Rate Limit](https://developers.openai.com/api/docs/guides/rate-limits#how-do-these-rate-limits-work) with Background mode requests using `2h` or `8h` completion windows. The API counts input tokens at submission. You can find your limits in [Settings > Organization > Limits](https://platform.openai.com/settings/organization/limits).
 3. **Batch creation rate limit:** You can create up to 2,000 batches per hour. If you need to submit more requests, increase the number of requests per batch.
 
-The Batch API currently has no output-token limit. Because Batch API rate limits are a new, separate pool, **using the Batch API will not consume tokens from your standard per-model rate limits**, thereby offering you a convenient way to increase the number of requests and processed tokens you can use when querying our API.
+The Batch API currently has no output-token limit. Batch API jobs don't count toward standard per-model request or token rate limits.
 
 ## Batch expiration
 

@@ -1,70 +1,6 @@
-1. [Overview](/en/guides "Overview")
-2. [Snowflake Horizon Catalog](/en/user-guide/snowflake-horizon "Snowflake Horizon Catalog")
-4. [Applications and tools for connecting to Snowflake](/en/guides-overview-connecting "Applications and tools for connecting to Snowflake")
-6. [Virtual warehouses](/en/user-guide/warehouses "Virtual warehouses")
-7. [Databases, Tables, & Views](/en/guides-overview-db "Databases, Tables, & Views")
-8. [Data types](/en/data-types "Data types")
-10. Data Integration
+# Snowflake-managed MCP server
 
-    - [Snowflake Openflow](/en/user-guide/data-integration/openflow/about "Snowflake Openflow")
-    - Apache Iceberg™
-
-      - [Apache Iceberg™ Tables](/en/user-guide/tables-iceberg "Apache Iceberg™ Tables")
-      - [Snowflake Open Catalog](/en/user-guide/opencatalog/overview "Snowflake Open Catalog")
-    - Zero-Copy Connectors
-
-      - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
-      - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
-      - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
-      - [About Workday Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-datacloud "About Workday Data Cloud and Snowflake")
-11. Data engineering
-
-    - [Data loading](/en/guides-overview-loading-data "Data loading")
-    - [Dynamic tables](/en/user-guide/dynamic-tables/overview "Dynamic tables")
-    - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
-    - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
-    - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
-    - [Pipeline Builder](/en/user-guide/pipeline-builder/pipeline-builder-overview "Pipeline Builder")
-    - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
-    - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
-12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/snowflake-aim "Migrations")
-15. [Queries](/en/guides-overview-queries "Queries")
-16. [Collaboration](/en/guides-overview-sharing "Collaboration")
-18. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
-
-    * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
-    * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
-    * [Snowflake Artifacts](/en/user-guide/snowflake-artifacts "Snowflake Artifacts")
-    * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
-    * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
-    * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
-    * [Cortex Agent SDK](/en/user-guide/snowflake-cortex/cortex-agent-sdk/cortex-agent-sdk "Cortex Agent SDK")
-    * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
-    * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
-    * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
-    * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
-    * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
-    * [Cortex Inference](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex Inference")
-    * [Cortex AI Guardrails](/en/user-guide/snowflake-cortex/cortex-ai-guardrails "Cortex AI Guardrails")
-    * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
-    * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
-    * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
-    * [ML Development and ML Ops](/en/developer-guide/snowpark-ml/overview "ML Development and ML Ops")
-    * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
-20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
-22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
-24. [Security](/en/guides-overview-secure "Security")
-26. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-27. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-29. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-30. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
-
-[Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)Snowflake-managed MCP server
-
-# Snowflake-managed MCP server[¶](#snowflake-managed-mcp-server)
-
-## Overview[¶](#overview)
+## Overview
 
 Model Context Protocol (MCP) is an [open-source standard](https://modelcontextprotocol.io/docs/getting-started/intro) that lets AI agents securely interact with business applications and external data systems, such as databases and content repositories. MCP lets enterprise businesses reduce integration challenges and quickly deliver outcomes from models. Since its launch, MCP has become foundational for agentic applications, providing a consistent and secure mechanism for invoking tools and retrieving data.
 
@@ -76,13 +12,19 @@ The Snowflake-managed MCP server lets AI agents securely retrieve data from Snow
 
 For information about the MCP lifecycle, see [Lifecycle](https://modelcontextprotocol.io/specification/2025-11-25/basic/lifecycle). For an example of an MCP implementation, see the [Getting Started with Managed Snowflake MCP Server](https://quickstarts.snowflake.com/guide/getting-started-with-snowflake-mcp-server/index.html) Quickstart.
 
-For information about sharing MCP servers with other accounts, see [Share Snowflake-managed MCP servers](/LIMITEDACCESS/sharing-mcp-servers).
+The [Cortex AI Cookbook](https://docs.snowflake.com/developer-guide/cortex-ai-cookbook/overview) has recipes that build on the managed MCP server:
 
-## MCP server security recommendations[¶](#mcp-server-security-recommendations)
+* [Snowflake-managed MCP or the Cortex Agents REST API](https://docs.snowflake.com/developer-guide/cortex-ai-cookbook/mcp-or-agent-rest-api): choose between MCP and the REST API, with identity, grant, topology, and rollout practices for MCP servers. Start here.
+* [Long-running Cortex Agent runs over managed MCP](https://docs.snowflake.com/developer-guide/cortex-ai-cookbook/long-running-agents-over-mcp): keep agent runs inside an MCP client’s per-call time limit.
+* [LangChain agents on Cortex AI Gateway with MCP tools and traces](https://docs.snowflake.com/developer-guide/cortex-ai-cookbook/langchain-mcp-agent-tracing): connect an external agent framework to an MCP server with a programmatic access token.
+
+For information about sharing MCP servers with other accounts, see [Share Snowflake-managed MCP servers](https://docs.snowflake.com/LIMITEDACCESS/sharing-mcp-servers).
+
+## MCP server security recommendations
 
 Important
 
-When you configure hostnames for MCP server connections, use hyphens (`-`) instead of underscores (`_`). MCP servers have connection issues with hostnames containing underscores.
+When you configure hostnames for MCP server connections, use hyphens (`-`) instead of underscores (`_`). MCP servers have connection issues with hostnames containing underscores. For an example, see [MCP server URL](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-server-url).
 
 Using multiple MCP servers without verifying tools and descriptions could lead to vulnerabilities such as tool poisoning or tool shadowing. Snowflake recommends verifying third-party MCP servers before using them. This includes any MCP server from another Snowflake user or account. Verify all tools offered by third-party MCP servers.
 
@@ -92,16 +34,16 @@ When using a Programmatic Access Token (PAT), set it to use the least-privileged
 
 Configure proper permissions for the MCP server and tools following the least-privilege principle. Access to the MCP Server does not give access to the tools. Permission needs to be granted for each tool.
 
+Tool results leave Snowflake. The answer, any data it contains, generated SQL, and citations go to the MCP client and, through the client, to its model provider, under that party’s terms. A tool returns only what the calling role can read, so decide what each tool may return before you expose it.
+
 Avoid configurations that can create recursive loops. For example, an external client calling a Cortex Agent tool through MCP, which in turn invokes another MCP server that calls back into a Cortex Agent, can produce expensive, unbounded loops. Snowflake enforces a maximum recursion depth of 10 invocations. Ensure your agent and tool configurations don’t create circular invocation paths.
 
-## Create an MCP server object[¶](#create-an-mcp-server-object)
+## Create an MCP server object
 
 Create an object, specifying the tools and other metadata. MCP clients that connect with the server, after requisite authentication, are able to discover and invoke these tools.
 
 1. Navigate to the database and schema where you want to create the MCP server.
 2. Create the MCP server by using the following syntax:
-
-   Copy code
 
    ```
    CREATE [ OR REPLACE ] MCP SERVER [ IF NOT EXISTS ] <server_name>
@@ -111,8 +53,6 @@ Create an object, specifying the tools and other metadata. MCP clients that conn
 For business data applications that require governed orchestration, Snowflake recommends exposing a Cortex Agent as the client-facing MCP tool. Configure the agent with the Cortex Analyst, Cortex Search, and custom tools that it needs, and then expose the agent through the MCP server. This configuration gives the external MCP client one governed interface and lets the agent select the appropriate resources for each request.
 
 The following example exposes only a Cortex Agent:
-
-Copy codeExpand code block
 
 ```
 CREATE OR REPLACE MCP SERVER <database_name>.<schema_name>.<server_name>
@@ -132,7 +72,7 @@ Use precise, domain-specific names and descriptions when you expose multiple age
 
 Expose Cortex Analyst or Cortex Search directly when you want the external MCP client to select those resources independently. A directly exposed Cortex Analyst tool generates SQL and returns the statement to the client. A SQL execution tool runs queries without Cortex Agent orchestration.
 
-### Configure tool types[¶](#configure-tool-types)
+### Configure tool types
 
 Snowflake currently supports the following tool types:
 
@@ -143,7 +83,7 @@ Snowflake currently supports the following tool types:
 * **SYSTEM\_EXECUTE\_SQL:** SQL execution
 * **GENERIC:** tool for UDFs and stored procedures
 
-#### Configure tool annotations[¶](#configure-tool-annotations)
+#### Configure tool annotations
 
 For `GENERIC` and `CORTEX_AGENT_RUN` tools, you can override the default [MCP tool annotations](https://modelcontextprotocol.io/specification/2025-11-25/schema#toolannotations) that Snowflake returns to clients. These hints let clients distinguish tools that are read-only, destructive, idempotent, or able to interact with external entities.
 
@@ -166,8 +106,6 @@ Agent toolCoding agent toolAnalyst toolSearch toolSQL execution toolUDF / Stored
 
 For the Agent tool, your client passes a message to the agent. The agent processes the request and returns a response. Use the following code to specify the tool configuration.
 
-Copy codeExpand code block
-
 ```
 tools:
   - title: "Governed business data agent"
@@ -179,19 +117,19 @@ tools:
       openWorldHint: false
 ```
 
-The agent tool response includes all intermediate steps by design: reasoning traces, tool calls, search results, and citations.
-This can result in large response payloads (200 KB or more). To reduce the payload size when the agent uses Cortex Search,
-configure `max_results` in the agent’s search tool resources to limit the number of search results returned per query.
+The full agent tool response is available to MCP clients. See [`content_cel_filter`](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-content-cel-filter) to learn how clients can control which parts they retrieve.
 
-A coding agent tool runs a Cortex coding agent without a stored agent object. Add a tool with type `CODING_AGENT` to the MCP server specification. Snowflake adds the `code_toolset_all` tool on every run. That tool gives the agent a managed sandbox where it can write and run code. The sandbox stays attached to the conversation thread. See [Coding Agent](/user-guide/snowflake-cortex/cortex-agents-coding-agent).
+To route questions across several agents from one tool, set `identifier` to a router agent or a Snowflake CoWork profile. A profile is a router agent, so both work the same way. See [Route questions between agents with the agent router](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-router) and [Call the profile from an MCP client](https://docs.snowflake.com/user-guide/snowflake-cortex/snowflake-cowork/call-cowork-profile-from-api#label-call-cowork-profile-from-mcp).
+
+A coding agent tool runs a Cortex coding agent without a stored agent object. Add a tool with type `CODING_AGENT` to the MCP server specification. Snowflake adds the `code_toolset_all` tool on every run. That tool gives the agent a managed sandbox where it can write and run code. The sandbox stays attached to the conversation thread. See [Coding Agent](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-coding-agent).
 
 Omit `identifier`. There is no stored agent to point at.
 
-`config` is optional. It can include `model`, `instructions`, `tools`, `tool_resources`, and `skills`. Leave `messages`, `thread_id`, `parent_message_id`, `stream`, `background`, and `origin_application` out of `config`. The MCP call supplies those. The server returns the agent reply as one `tools/call` result.
+`config` is optional. It can include any field of the [Cortex Agents run request](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-run), such as `model`, `instructions`, `tools`, `tool_resources`, and `skills`.
 
 You can put other tools in `config`. Snowflake appends `code_toolset_all` after those tools. Do not also add `code_execution`. A run can include `code_toolset_all` or `code_execution`, but not both.
 
-Copy code
+The appended tool uses the default permission policy, `always_ask`. A state-modifying tool such as `write`, `edit`, or `bash` then waits for approval, and the MCP call ends before that tool runs. Set `tool_resources.code_toolset_all.permission_policy.type` to `always_allow` when the call should run those tools in one request. `always_allow` removes the approval gate: the agent runs any command and modifies any resource its role can reach. Use it only in a trusted automation. See [Sandbox permission policy](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-coding-agent#label-coding-agent-permission-policy). To let the caller answer the prompt instead, see [Answer a permission prompt](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-permission-decisions).
 
 ```
 tools:
@@ -203,6 +141,10 @@ tools:
       model: "claude-sonnet-4-6"
       instructions:
         response: "Write and run code when that answers the question."
+      tool_resources:
+        code_toolset_all:
+          permission_policy:
+            type: always_allow
 ```
 
 Using the Analyst tool, your client can generate SQL from natural language text. Use the following code to specify the tool configuration.
@@ -210,8 +152,6 @@ Using the Analyst tool, your client can generate SQL from natural language text.
 Note
 
 The Snowflake-managed MCP server only supports using semantic views with Cortex Analyst. It does not support semantic models.
-
-Copy code
 
 ```
 tools:
@@ -222,9 +162,7 @@ tools:
     title: "Semantic view for revenue"
 ```
 
-Using the Search tool requests, your client can perform unstructured search on their data.
-
-Copy code
+Using the Search tool, your client can perform unstructured search on its data.
 
 ```
 tools:
@@ -237,7 +175,7 @@ tools:
 
 For the SQL execution tool, your client can execute SQL queries on Snowflake. You can optionally configure the following options:
 
-* `read_only`: When set to `true`, only read operations (SELECT queries) are allowed. Defaults to `true`.
+* `read_only`: When set to `true`, only read operations (SELECT queries) are allowed. Defaults to `true`. If the `CORTEX_MCP_SERVER_FORCE_SQL_EXEC_READ_ONLY` account parameter is set to `TRUE`, the SQL execution tool is always read-only, regardless of this setting.
 * `query_timeout`: Maximum time in seconds for query execution.
 * `warehouse`: The warehouse to use for query execution. If not specified, the default warehouse is used.
 
@@ -246,8 +184,6 @@ Important
 Snowflake generally recommends exposing a Cortex Agent as the only client-facing tool on a given MCP server used for governed business questions. Exposing `SYSTEM_EXECUTE_SQL` on the same server allows the MCP client to bypass the agent’s semantic views, verified queries, and orchestration; if direct SQL is required, expose it through a separate MCP server with a dedicated least-privileged role.
 
 Use the following code to specify the tool configuration:
-
-Copy code
 
 ```
 tools:
@@ -269,8 +205,6 @@ You can specify the following in the tool configuration:
 * `warehouse`: The warehouse to use. If you don’t specify a warehouse, the default warehouse is used.
 * `query_timeout`: Maximum time in seconds for tool execution.
 * `input_schema`: Corresponds to the function signature.
-
-Copy code
 
 ```
 tools:
@@ -299,8 +233,6 @@ Use the following examples to create and configure custom tools using UDFs and s
 UDF examplesStored procedure examplesTool configuration examples
 
 The following examples demonstrate creating UDFs that can be used as custom tools:
-
-Copy codeExpand code block
 
 ```
 -- create a simple udf
@@ -364,13 +296,7 @@ def get_numbers(x: float, y: float) -> list:
 $$;
 ```
 
-Show lessSee more
-
-Scroll to top
-
 The following examples demonstrate creating stored procedures that can be used as custom tools:
-
-Copy code
 
 ```
 -- create a simple stored procedure
@@ -436,8 +362,6 @@ $$;
 
 The following examples demonstrate configuring custom tools for UDFs and stored procedures:
 
-Copy code
-
 ```
 CREATE MCP SERVER my_mcp_server
   FROM SPECIFICATION $$
@@ -446,7 +370,7 @@ CREATE MCP SERVER my_mcp_server
         identifier: "EXAMPLE_DATABASE.AGENTS.MULTIPLY_BY_TEN"
         name: "multiply_by_ten"
         type: "GENERIC"
-        description: "Multiplied input value by ten and returns the result."
+        description: "Multiplies input value by ten and returns the result."
         config:
           type: "function"
           warehouse: "COMPUTE_SERVICE_WAREHOUSE"
@@ -494,7 +418,7 @@ CREATE MCP SERVER my_mcp_server
         identifier: "EXAMPLE_DATABASE.AGENTS.MULTIPLY_BY_TEN_SP"
         name: "multiply_by_ten_sp"
         type: "GENERIC"
-        description: "Multiplied input value by ten and returns the result."
+        description: "Multiplies input value by ten and returns the result."
         config:
           type: "procedure"
           warehouse: "COMPUTE_SERVICE_WAREHOUSE"
@@ -541,13 +465,67 @@ CREATE MCP SERVER my_mcp_server
   $$;
 ```
 
-### Manage MCP server objects[¶](#manage-mcp-server-objects)
+### Serve every agent the caller can use
+
+Use `selection: "all"` to let the MCP client choose from every agent the user can access, up to 50 per user. New agents appear as soon as you grant USAGE on them, with no change to the server. Because grants alone decide which agents each user sees, grant USAGE on an agent only to the roles that should use it from MCP clients. To choose which agents are offered, or to write their tool names and descriptions, list them in `tools` instead.
+
+To serve every Cortex Agent that the caller’s role can use, without listing each agent in `tools`, add a `tool_config` entry to the specification:
+
+```
+CREATE OR REPLACE MCP SERVER <database_name>.<schema_name>.<server_name>
+  FROM SPECIFICATION $$
+  tool_config:
+    - type: "CORTEX_AGENT_RUN"
+      selection: "all"
+  $$;
+```
+
+On each `tools/list` request, Snowflake generates one `CORTEX_AGENT_RUN` tool for each active Cortex Agent in the account that the caller’s role has the USAGE privilege on. Temporary agents aren’t included. Snowflake checks privileges again on every request, so a granted or revoked agent shows up on the client’s next `tools/list` request.
+
+Each generated tool is built from the agent:
+
+* **Name:** `sf_` followed by the lowercase database, schema, and agent names, separated by hyphens. For example, the agent `PROD_DB.AGENTS.SALES_AGENT` becomes `sf_prod_db-agents-sales_agent`.
+* **Title:** The display name from the agent’s profile, followed by the database and schema, for example `Sales Bot (PROD_DB.AGENTS)`. If the agent has no display name, the title is the agent name.
+* **Description:** The agent’s comment, followed by a line with the agent’s fully qualified name.
+* **Arguments:** The same arguments as an explicit agent tool. See [Call an agent tool](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-agent-tools).
+
+Snowflake skips an agent in these cases:
+
+* The database, schema, or agent name must be enclosed in double quotes, or contains `$`.
+* The generated name would be longer than 64 characters.
+* An explicit tool in `tools` already runs the agent, or already uses the generated name.
+
+To serve a skipped agent, add it to `tools` as an explicit `CORTEX_AGENT_RUN` tool. Explicit tools are listed before generated tools. If the specification has a `tool_config` entry, explicit tool names can’t start with `sf_`.
+
+A server lists at most 50 generated tools for a caller, and explicit tools don’t count toward this limit. To find agents, Snowflake examines at most 1,000 agents per request. A client can still call a generated tool by name when the agent didn’t fit in the list. The `instructions` that the server returns from `initialize` and `server/discover` tell the client about the limit and the skipped agents.
+
+If the caller’s role can’t use the agent, or the agent doesn’t exist, a call to a generated tool name returns `Unknown tool: <name>`.
+
+**Help the client pick the right agent.** The client chooses an agent based on each tool’s name and description. If a user can access several agents that cover similar topics, the client might not always pick the best one. To help it choose, give each agent a clear comment, or list a smaller set as explicit `CORTEX_AGENT_RUN` tools with your own names and descriptions.
+
+**Set a comment on each agent.** The generated description is the agent’s comment, followed by the line `Snowflake Cortex Agent: <fully qualified name>`. An agent without a comment has only that line, which doesn’t tell the client what the agent is for. In the comment, say what the agent answers, what data it covers, and when not to use it. Snowflake truncates a comment that is too long, so put the most important information first. The display name in the agent’s profile sets the title, not the description, so it doesn’t replace the comment.
+
+For example, the agent `SALES_DB.AGENTS.REVENUE_AGENT` has this comment:
+
+```
+Answers questions about quarterly revenue, bookings, and pipeline by region. Don't use it for support tickets or product usage.
+```
+
+The client receives this description:
+
+```
+Answers questions about quarterly revenue, bookings, and pipeline by region. Don't use it for support tickets or product usage.
+
+Snowflake Cortex Agent: SALES_DB.AGENTS.REVENUE_AGENT
+```
+
+For an MCP server in a Snowflake Native App, Snowflake generates tools only for agents that have the same owner as the MCP server. See [Use Cortex Agents and MCP servers in an app](https://docs.snowflake.com/developer-guide/native-apps/agents-mcp-servers).
+
+### Manage MCP server objects
 
 After you create an MCP server, use the following commands to inspect or remove it:
 
 1. To show MCP servers, use the following commands:
-
-   Copy code
 
    ```
    SHOW MCP SERVERS IN DATABASE <database_name>;
@@ -557,8 +535,6 @@ After you create an MCP server, use the following commands to inspect or remove 
 
    The following shows the output of the command:
 
-   Expand code block
-
    ```
    |               created_on               |       name        | database_name | schema_name |    owner     |           comment            |
    ------------------------------------------+-------------------+---------------+-------------+--------------+------------------------------
@@ -567,15 +543,11 @@ After you create an MCP server, use the following commands to inspect or remove 
    ```
 2. To describe an MCP server, use the following command:
 
-   Copy code
-
    ```
    DESCRIBE MCP SERVER <server_name>;
    ```
 
    The following shows the output of the command:
-
-   Expand code block
 
    ```
    |      name       | database_name | schema_name |    owner     | comment |     server_spec        |               created_on               |
@@ -584,27 +556,30 @@ After you create an MCP server, use the following commands to inspect or remove 
    ```
 3. To drop an MCP server, use the following command:
 
-   Copy code
-
    ```
    DROP MCP SERVER <server_name>;
    ```
 
-## MCP server URL[¶](#mcp-server-url)
+There’s no ALTER command for a Snowflake-managed MCP server. To change its specification, run `CREATE OR REPLACE MCP SERVER` with the full new specification. Replacing a server drops every grant on it, so put the `GRANT USAGE ON MCP SERVER` statements in the same script as the `CREATE OR REPLACE` statement and run them together.
+
+## MCP server URL
 
 To connect to the MCP server, use the URL endpoint with the following format:
-
-Copy codeExpand code block
 
 ```
 https://<account_url>/api/v2/databases/{database}/schemas/{schema}/mcp-servers/{name}
 ```
 
-For information about formatting your account URL, see [Account identifiers](/user-guide/admin-account-identifier).
+For information about formatting your account URL, see [Account identifiers](https://docs.snowflake.com/user-guide/admin-account-identifier).
 
-## Access control[¶](#access-control)
+Use the account URL that combines your organization name and account name. If the account name contains underscores, replace each underscore with a hyphen; Snowflake accepts this form automatically, and MCP clients have connection issues with hostnames that contain underscores. For example, for the organization `acme` and the account `marketing_test_account`:
 
-### Required privileges[¶](#required-privileges)
+* Use: `https://acme-marketing-test-account.snowflakecomputing.com/api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>`
+* Don’t use: `https://acme-marketing_test_account.snowflakecomputing.com/api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>`
+
+## Access control
+
+### Required privileges
 
 You can use the following privileges to manage access to the MCP server and the underlying tools.
 
@@ -612,22 +587,24 @@ You can use the following privileges to manage access to the MCP server and the 
 | --- | --- | --- |
 | CREATE | MCP SERVER | Required to create the MCP server |
 | OWNERSHIP | MCP SERVER | Required to update the object configuration |
-| MODIFY | MCP SERVER | Provides update, drop, describe, show, and use (`tools/list` and `tools/call`) on the object configuration |
-| USAGE | MCP SERVER | Required to connect with the MCP server and discover tools |
+| MODIFY | MCP SERVER | Provides drop and describe on the MCP server. Doesn’t allow `tools/list` or `tools/call`; those require USAGE |
+| USAGE | MCP SERVER | Required to connect with the MCP server, discover tools (`tools/list`), and call tools (`tools/call`) |
 | USAGE | Cortex Search Service | Required to invoke the Cortex Search tool in the MCP server |
 | SELECT | Semantic View | Required to invoke the Cortex Analyst tool in the MCP server |
 | USAGE | Cortex Agent | Required to invoke the Cortex Agent as a tool in the MCP server |
 | USAGE | User-defined function (UDF) or stored procedure | Required to invoke the UDF or stored procedure as a tool in the MCP server |
 
-Expand
+### Access requirements for the SQL execution tool
 
-Show lessSee more
+To invoke the SQL execution tool (`SYSTEM_EXECUTE_SQL`), the role used to connect to the MCP server needs the following, in addition to USAGE on the MCP server:
 
-### Grant access to a Cortex Agent-based MCP server[¶](#grant-access-to-a-cortex-agent-based-mcp-server)
+* The SNOWFLAKE.CORTEX\_USER or SNOWFLAKE.CORTEX\_AGENT\_USER database role. The SQL execution tool runs through the Cortex Agents API, so calls from a role that has neither database role fail with an authorization error.
+* USAGE on the warehouse that runs the queries. The tool uses the `warehouse` set in the tool configuration, or, if no warehouse is set, the default warehouse of the user who connects.
+* Privileges on the objects that the SQL statements reference. Queries run with the caller’s role, so, for example, the role needs SELECT to read a table, and INSERT, UPDATE, or DELETE to modify it when `read_only` is `false` and the `CORTEX_MCP_SERVER_FORCE_SQL_EXEC_READ_ONLY` account parameter isn’t set to `TRUE`.
+
+### Grant access to a Cortex Agent-based MCP server
 
 The following example creates a dedicated access role and grants it access to an MCP server that exposes a Cortex Agent:
-
-Copy codeExpand code block
 
 ```
 CREATE ROLE <mcp_access_role>;
@@ -643,9 +620,9 @@ GRANT USAGE ON AGENT <database_name>.<schema_name>.<agent_name> TO ROLE <mcp_acc
 GRANT ROLE <mcp_access_role> TO USER <username>;
 ```
 
-The role also needs privileges on the resources configured for the agent. Grant only the privileges for the resources that the agent uses. For example:
+`tools/list` omits `CORTEX_AGENT_RUN` tools when the active role does not have `USAGE` on the referenced agent.
 
-Copy codeExpand code block
+The role also needs privileges on the resources configured for the agent. Grant only the privileges for the resources that the agent uses. For example:
 
 ```
 GRANT USAGE ON CORTEX SEARCH SERVICE <database_name>.<schema_name>.<search_service_name>
@@ -664,19 +641,15 @@ GRANT USAGE ON PROCEDURE <database_name>.<schema_name>.<procedure_name>(<argumen
   TO ROLE <mcp_access_role>;
 ```
 
-Show lessSee more
-
-Scroll to top
-
-For more information about agent privileges and the privileges required by agent tools, see [Access control and authentication](/user-guide/snowflake-cortex/cortex-agents-setup).
+For more information about agent privileges and the privileges required by agent tools, see [Access control and authentication](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-setup).
 
 Grant the MCP access role only to users who need it. Don’t grant the role to `PUBLIC` or grant broad access to all current and future tables solely to support an MCP client.
 
-## Set up OAuth authentication[¶](#set-up-oauth-authentication)
+## Set up OAuth authentication
 
-Configure authentication on the MCP client. The Snowflake-managed MCP server supports [OAuth 2.0](/user-guide/oauth-snowflake-overview) aligned with the [authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) recommendation in the MCP protocol. The Snowflake-managed MCP server doesn’t support dynamic client registration.
+Configure authentication on the MCP client. The Snowflake-managed MCP server supports [OAuth 2.0](https://docs.snowflake.com/user-guide/oauth-snowflake-overview) aligned with the [authorization](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) recommendation in the MCP protocol. The Snowflake-managed MCP server doesn’t support dynamic client registration.
 
-By default, MCP servers use Snowflake OAuth. To bind MCP servers to an External OAuth identity provider such as Okta or Microsoft Entra ID, see [Configure External OAuth authentication](#label-cortex-mcp-external-oauth).
+By default, MCP servers use Snowflake OAuth. To bind MCP servers to an External OAuth identity provider such as Okta or Microsoft Entra ID, see [Configure External OAuth authentication](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-external-oauth).
 
 A single OAuth security integration (client ID and secret) can be shared across all users in an account. Each user still authenticates individually with their own credentials to obtain an access token, but the client ID and secret from the integration are the same for everyone. A single integration can also issue tokens that work across multiple MCP servers within the same account.
 
@@ -689,15 +662,13 @@ URL, not the PrivateLink URL. Additionally, enable
 This causes Snowflake to redirect the user’s browser to the PrivateLink authorization
 endpoint while the token endpoint remains on the public URL so the SaaS vendor’s server
 can reach it. For details, see
-[Using Snowflake OAuth with PrivateLink and SaaS clients](/user-guide/oauth-snowflake-overview#label-oauth-private-connectivity).
+[Using Snowflake OAuth with PrivateLink and SaaS clients](https://docs.snowflake.com/user-guide/oauth-snowflake-overview#label-oauth-private-connectivity).
 
-1. First, create the security integration. For information about this command, see [CREATE SECURITY INTEGRATION (Snowflake OAuth)](/sql-reference/sql/create-security-integration-oauth-snowflake).
+1. First, create the security integration. For information about this command, see [CREATE SECURITY INTEGRATION (Snowflake OAuth)](https://docs.snowflake.com/sql-reference/sql/create-security-integration-oauth-snowflake).
 
    Use `OAUTH_CLIENT_TYPE = 'CONFIDENTIAL'` when the client can store and send a client secret, such as VS Code or Cursor. Use `OAUTH_CLIENT_TYPE = 'PUBLIC'` when the client can’t send a client secret and uses PKCE instead, such as Claude Desktop. For Claude Desktop, set the redirect URI to `https://claude.ai/api/mcp/auth_callback`.
 
    Confidential client:
-
-   Copy codeExpand code block
 
    ```
    CREATE [ OR REPLACE ] SECURITY INTEGRATION [IF NOT EXISTS] <integration_name>
@@ -711,8 +682,6 @@ can reach it. For details, see
    ```
 
    Public client (PKCE):
-
-   Copy codeExpand code block
 
    ```
    CREATE [ OR REPLACE ] SECURITY INTEGRATION [IF NOT EXISTS] <integration_name>
@@ -730,8 +699,6 @@ can reach it. For details, see
    If your MCP client requires multiple redirect URIs (for example, VS Code registers more than one callback URL),
    use `OAUTH_ALTERNATE_REDIRECT_URIS` to specify additional URIs:
 
-   Copy codeExpand code block
-
    ```
    CREATE [ OR REPLACE ] SECURITY INTEGRATION [IF NOT EXISTS] <integration_name>
      TYPE = OAUTH
@@ -743,15 +710,13 @@ can reach it. For details, see
      OAUTH_USE_SECONDARY_ROLES = NONE
      ALLOWED_ROLES_LIST = ('<mcp_access_role>')
    ```
-2. Then, call the system function to retrieve your client id and keys for client configuration. The integration name is case sensitive and must be in uppercase.
-
-   Copy code
+2. Then, call the system function to retrieve your client ID and keys for client configuration. The integration name is case sensitive and must be in uppercase.
 
    ```
    SELECT SYSTEM$SHOW_OAUTH_CLIENT_SECRETS('<integration_name>');
    ```
 
-### Role behavior in OAuth sessions[¶](#role-behavior-in-oauth-sessions)
+### Role behavior in OAuth sessions
 
 OAuth scopes control only the **primary** role for the MCP session. Secondary roles are separate
 and are controlled by the OAuth security integration, not by `OAUTH_SCOPES_SUPPORTED`.
@@ -767,9 +732,7 @@ Special primary-role scopes:
   `EXTERNAL_OAUTH_ANY_ROLE_MODE = ENABLE` or `ENABLE_FOR_PRIVILEGE` on the security integration.
 * `session:role:<role_name>`: Use that named role as the primary role.
 
-To control which primary-role scopes MCP clients discover, set the `OAUTH_SCOPES_SUPPORTED` parameter at the account, database, or schema level. This parameter is independent of External OAuth: set it alone to customize scopes for Snowflake OAuth, or set it together with `OAUTH_AUTHORIZATION_SERVER` when you bind MCP servers to an external identity provider (IdP). For accepted scope values and SET-time validation rules, see [OAUTH\_SCOPES\_SUPPORTED](/sql-reference/parameters#label-oauth-scopes-supported).
-
-Copy codeExpand code block
+To control which primary-role scopes MCP clients discover, set the `OAUTH_SCOPES_SUPPORTED` parameter at the account, database, or schema level. This parameter is independent of External OAuth: set it alone to customize scopes for Snowflake OAuth, or set it together with `OAUTH_AUTHORIZATION_SERVER` when you bind MCP servers to an external identity provider (IdP). For accepted scope values and SET-time validation rules, see [OAUTH\_SCOPES\_SUPPORTED](https://docs.snowflake.com/sql-reference/parameters#label-oauth-scopes-supported).
 
 ```
 ALTER SCHEMA analytics_db.mcp_schema
@@ -786,19 +749,17 @@ Secondary roles aren’t controlled by OAuth scopes. For Snowflake OAuth, they f
 
 * Recommended for MCP: leave `OAUTH_USE_SECONDARY_ROLES = NONE` (the default) and restrict
   `ALLOWED_ROLES_LIST` to the MCP access role, so the session uses only the user’s
-  `DEFAULT_ROLE` as the primary role. See [Prefer a least-privileged MCP OAuth configuration](#label-cortex-mcp-migrate-oauth-integration).
+  `DEFAULT_ROLE` as the primary role. See [Prefer a least-privileged MCP OAuth configuration](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-migrate-oauth-integration).
 * To activate the user’s default secondary roles when the session opens, set
   `OAUTH_USE_SECONDARY_ROLES = IMPLICIT`. Snowflake OAuth doesn’t support in-session secondary
-  role switching with [USE SECONDARY ROLES](/sql-reference/sql/use-secondary-roles). For details,
-  see [CREATE SECURITY INTEGRATION (Snowflake OAuth)](/sql-reference/sql/create-security-integration-oauth-snowflake).
-* For External OAuth, see [Using secondary roles with External OAuth](/user-guide/oauth-ext-overview#label-ext-oauth-secondary-roles).
+  role switching with [USE SECONDARY ROLES](https://docs.snowflake.com/sql-reference/sql/use-secondary-roles). For details,
+  see [CREATE SECURITY INTEGRATION (Snowflake OAuth)](https://docs.snowflake.com/sql-reference/sql/create-security-integration-oauth-snowflake).
+* For External OAuth, see [Using secondary roles with External OAuth](https://docs.snowflake.com/user-guide/oauth-ext-overview#label-ext-oauth-secondary-roles).
 
 To ensure the correct primary role is used when clients rely on `session:role:all` or the user’s `DEFAULT_ROLE`:
 
 * Set each user’s `DEFAULT_ROLE` to the role that has the required privileges on the MCP server and its tools.
 * Ensure each user has a `DEFAULT_WAREHOUSE` set (sessions fail to initialize if this is null).
-
-Copy codeExpand code block
 
 ```
 ALTER USER <username> SET DEFAULT_ROLE = '<mcp_access_role>' DEFAULT_WAREHOUSE = '<warehouse_name>';
@@ -815,21 +776,19 @@ secondary roles. Snowflake enforces the security integration setting regardless 
 requests, so default secondary roles aren’t activated unless you set
 `OAUTH_USE_SECONDARY_ROLES = IMPLICIT`.
 
-### Configure External OAuth authentication[¶](#configure-external-oauth-authentication)
+### Configure External OAuth authentication
 
-By default, MCP servers use Snowflake OAuth for authentication. To let MCP clients authenticate against your organization’s existing identity provider (IdP) such as Okta or Microsoft Entra ID, set `OAUTH_AUTHORIZATION_SERVER` to bind MCP servers to an External OAuth security integration. Optionally set `OAUTH_SCOPES_SUPPORTED` to advertise specific scopes in Protected Resource Metadata. You can also set `OAUTH_SCOPES_SUPPORTED` on its own for Snowflake OAuth; see [Role behavior in OAuth sessions](#label-cortex-mcp-role-behavior).
+By default, MCP servers use Snowflake OAuth for authentication. To let MCP clients authenticate against your organization’s existing identity provider (IdP) such as Okta or Microsoft Entra ID, set `OAUTH_AUTHORIZATION_SERVER` to bind MCP servers to an External OAuth security integration. Optionally set `OAUTH_SCOPES_SUPPORTED` to advertise specific scopes in Protected Resource Metadata. You can also set `OAUTH_SCOPES_SUPPORTED` on its own for Snowflake OAuth; see [Role behavior in OAuth sessions](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-role-behavior).
 
 When an External OAuth integration is bound to a schema, database, or account, Snowflake advertises the external issuer’s metadata in [Protected Resource Metadata (RFC 9728)](https://www.rfc-editor.org/rfc/rfc9728). MCP clients that support OAuth resource metadata discovery fetch this information automatically to find the correct authorization server and scopes.
 
-#### Default behavior[¶](#default-behavior)
+#### Default behavior
 
 When neither parameter is set, MCP servers use Snowflake OAuth and advertise `session:role:all` as the supported scope.
 
-#### Steps to configure External OAuth for MCP servers[¶](#steps-to-configure-external-oauth-for-mcp-servers)
+#### Steps to configure External OAuth for MCP servers
 
-1. Create an External OAuth security integration for your IdP. For details, see [CREATE SECURITY INTEGRATION (External OAuth)](/sql-reference/sql/create-security-integration-oauth-external).
-
-   Copy codeExpand code block
+1. Create an External OAuth security integration for your IdP. For details, see [CREATE SECURITY INTEGRATION (External OAuth)](https://docs.snowflake.com/sql-reference/sql/create-security-integration-oauth-external).
 
    ```
    CREATE OR REPLACE SECURITY INTEGRATION external_oauth_okta
@@ -842,9 +801,7 @@ When neither parameter is set, MCP servers use Snowflake OAuth and advertise `se
      EXTERNAL_OAUTH_TOKEN_USER_MAPPING_CLAIM = 'sub'
      EXTERNAL_OAUTH_SNOWFLAKE_USER_MAPPING_ATTRIBUTE = 'login_name';
    ```
-2. Set `OAUTH_AUTHORIZATION_SERVER` at the account, database, or schema level to bind MCP servers in that scope to the integration. For parameter details, see [OAUTH\_AUTHORIZATION\_SERVER](/sql-reference/parameters#label-oauth-authorization-server).
-
-   Copy codeExpand code block
+2. Set `OAUTH_AUTHORIZATION_SERVER` at the account, database, or schema level to bind MCP servers in that scope to the integration. For parameter details, see [OAUTH\_AUTHORIZATION\_SERVER](https://docs.snowflake.com/sql-reference/parameters#label-oauth-authorization-server).
 
    ```
    -- Schema level (applies to all MCP servers in the schema)
@@ -856,16 +813,12 @@ When neither parameter is set, MCP servers use Snowflake OAuth and advertise `se
    -- Account level (applies to all MCP servers in the account)
    ALTER ACCOUNT SET OAUTH_AUTHORIZATION_SERVER = external_oauth_okta;
    ```
-3. Optionally, set `OAUTH_SCOPES_SUPPORTED` to advertise specific scopes in the Protected Resource Metadata response. This parameter is independent of `OAUTH_AUTHORIZATION_SERVER`: you can set it alone for Snowflake OAuth, or together with an External OAuth binding as shown here. For accepted scope values, see [OAUTH\_SCOPES\_SUPPORTED](/sql-reference/parameters#label-oauth-scopes-supported). For how scopes interact with primary and secondary roles, see [Role behavior in OAuth sessions](#label-cortex-mcp-role-behavior).
-
-   Copy codeExpand code block
+3. Optionally, set `OAUTH_SCOPES_SUPPORTED` to advertise specific scopes in the Protected Resource Metadata response. This parameter is independent of `OAUTH_AUTHORIZATION_SERVER`: you can set it alone for Snowflake OAuth, or together with an External OAuth binding as shown here. For accepted scope values, see [OAUTH\_SCOPES\_SUPPORTED](https://docs.snowflake.com/sql-reference/parameters#label-oauth-scopes-supported). For how scopes interact with primary and secondary roles, see [Role behavior in OAuth sessions](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-role-behavior).
 
    ```
    ALTER SCHEMA analytics_db.mcp_schema SET OAUTH_SCOPES_SUPPORTED = 'session:role:ANALYST,session:role:DATA_ENGINEER';
    ```
 4. Create the MCP server. The server inherits the OAuth binding from the enclosing schema, database, or account.
-
-   Copy code
 
    ```
    CREATE MCP SERVER analytics_db.mcp_schema.docs_mcp_server
@@ -881,7 +834,7 @@ When neither parameter is set, MCP servers use Snowflake OAuth and advertise `se
 
 When a client connects to `docs_mcp_server`, Snowflake returns a `401` response with a `WWW-Authenticate` header pointing to the Protected Resource Metadata endpoint. The client fetches the metadata document, which advertises the Okta issuer URL from `external_oauth_okta` in `authorization_servers`, and then initiates the Okta OAuth flow. After obtaining a token, the client retries the request. Snowflake accepts the OAuth token only when it was issued by the bound External OAuth integration; a Snowflake OAuth token, or a token from a different External OAuth integration, is rejected. This issuer check applies only to OAuth calls against MCP server endpoints; other authenticators and non-MCP endpoints aren’t affected.
 
-#### Parameter inheritance[¶](#parameter-inheritance)
+#### Parameter inheritance
 
 `OAUTH_AUTHORIZATION_SERVER` and `OAUTH_SCOPES_SUPPORTED` follow Snowflake’s standard parameter inheritance. Each parameter resolves independently by checking the following levels in order:
 
@@ -896,7 +849,7 @@ When `OAUTH_AUTHORIZATION_SERVER` is set and `OAUTH_SCOPES_SUPPORTED` isn’t, S
 * If the bound integration has `EXTERNAL_OAUTH_ANY_ROLE_MODE = ENABLE` or `ENABLE_FOR_PRIVILEGE`, the Protected Resource Metadata response includes `session:role-any`.
 * Otherwise, the Protected Resource Metadata response includes an empty `scopes_supported` list, and the MCP client uses its own configured scopes or prompts the user.
 
-#### Failure modes[¶](#failure-modes)
+#### Failure modes
 
 The following conditions change what Snowflake advertises in the Protected Resource Metadata response, and how token enforcement behaves:
 
@@ -907,15 +860,11 @@ The following conditions change what Snowflake advertises in the Protected Resou
 | A role specified in `OAUTH_SCOPES_SUPPORTED` is dropped or renamed | Snowflake continues to publish the configured scope string in Protected Resource Metadata. Authentication using that scope fails during the OAuth flow. |
 | `OAUTH_SCOPES_SUPPORTED` is set but `OAUTH_AUTHORIZATION_SERVER` isn’t | The scopes apply to Snowflake OAuth discovery. |
 
-Expand
+For information about External OAuth, see [External OAuth overview](https://docs.snowflake.com/user-guide/oauth-ext-overview#label-ext-oauth-mcp-integration).
 
-Show lessSee more
+For information about the parameters, see [OAUTH\_AUTHORIZATION\_SERVER](https://docs.snowflake.com/sql-reference/parameters#label-oauth-authorization-server) and [OAUTH\_SCOPES\_SUPPORTED](https://docs.snowflake.com/sql-reference/parameters#label-oauth-scopes-supported).
 
-For information about External OAuth, see [External OAuth overview](/user-guide/oauth-ext-overview#label-ext-oauth-mcp-integration).
-
-For information about the parameters, see [OAUTH\_AUTHORIZATION\_SERVER](/sql-reference/parameters#label-oauth-authorization-server) and [OAUTH\_SCOPES\_SUPPORTED](/sql-reference/parameters#label-oauth-scopes-supported).
-
-### Prefer a least-privileged MCP OAuth configuration[¶](#prefer-a-least-privileged-mcp-oauth-configuration)
+### Prefer a least-privileged MCP OAuth configuration
 
 Snowflake recommends configuring MCP OAuth so the session uses the connecting user’s
 `DEFAULT_ROLE` without activating default secondary roles. That pattern matches the
@@ -931,8 +880,6 @@ If an existing MCP OAuth integration uses `OAUTH_USE_SECONDARY_ROLES = IMPLICIT`
 4. Set the access role and warehouse as the user’s defaults.
 5. Disable secondary roles and restrict the integration to the MCP access role:
 
-   Copy code
-
    ```
    ALTER SECURITY INTEGRATION <integration_name>
      SET OAUTH_USE_SECONDARY_ROLES = NONE;
@@ -942,11 +889,9 @@ If an existing MCP OAuth integration uses `OAUTH_USE_SECONDARY_ROLES = IMPLICIT`
    ```
 6. Reconnect the MCP client and verify the effective role, visible tools, agent routing, and resource access.
 
-## Connect from common MCP clients[¶](#connect-from-common-mcp-clients)
+## Connect from common MCP clients
 
 Once you have created the MCP server and the OAuth security integration, you can connect from any MCP-compatible client by pointing it at your MCP server URL:
-
-Copy codeExpand code block
 
 ```
 https://<account_url>/api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>
@@ -954,7 +899,7 @@ https://<account_url>/api/v2/databases/<database>/schemas/<schema>/mcp-servers/<
 
 Important
 
-You may need to use hyphens (`-`) instead of underscores (`_`) in your account URL with some clients.
+When you configure the account URL in an MCP client, use hyphens (`-`) instead of underscores (`_`) in the hostname. MCP servers have connection issues with hostnames containing underscores. For an example, see [MCP server URL](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-server-url).
 
 The following examples show how to register the Snowflake-hosted MCP server in commonly used clients. Replace the URL with your own MCP server URL.
 
@@ -965,8 +910,6 @@ Claude (both `claude.ai` and Claude Desktop) supports Snowflake MCP servers in t
 1. In Claude, open **Settings** → **Connectors**.
 2. Click **Add custom connector** or search for Snowflake in **Browse connectors**.
 3. Provide a **Name** (for example, `Snowflake`) and the **MCP Server URL**:
-
-   Copy codeExpand code block
 
    ```
    https://<account_url>/api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>
@@ -987,8 +930,6 @@ ChatGPT supports remote MCP servers as **Connectors** in Developer Mode. For Ope
    * **Name**: `Snowflake` (or any label).
    * **MCP Server URL**:
 
-     Copy code
-
      ```
      https://<account_url>/api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>
      ```
@@ -1004,8 +945,6 @@ Set `OAUTH_REDIRECT_URI` on your security integration to the redirect URI ChatGP
 Cursor supports remote MCP servers via `mcp.json`. For the full Cursor configuration reference, see [Model Context Protocol](https://cursor.com/docs/mcp) in the Cursor documentation. You can also browse for the Snowflake plugin in the Cursor marketplace.
 
 Edit `~/.cursor/mcp.json` (global) or `<project>/.cursor/mcp.json` (project) and add an entry under `mcpServers`:
-
-Copy code
 
 ```
 {
@@ -1025,23 +964,47 @@ After saving, open **Cursor Settings** → **MCP**, locate the `snowflake` serve
 
 For any other MCP client that supports remote (HTTP) MCP servers, register the Snowflake-hosted MCP server using your URL:
 
-Copy code
-
 ```
 https://<account_url>/api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>
 ```
 
-## Network policies for MCP clients[¶](#network-policies-for-mcp-clients)
+If the client accepts custom HTTP headers instead of OAuth, see [Connect with a programmatic access token](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-connect-with-token).
 
-If your Snowflake account has [network policies](/user-guide/network-policies) enabled, you must allow inbound connections from your MCP client’s outbound IP addresses. When a remote MCP client (such as Claude, ChatGPT, or Cursor) connects to your Snowflake-managed MCP server, the request originates from the client provider’s infrastructure, not from the end user’s browser. If those IP addresses are not permitted by your network policy, the connection will be blocked.
+## Connect with a programmatic access token
+
+Snowflake recommends OAuth for MCP clients that people sign in to. For a client that can’t use OAuth but can send custom HTTP headers, such as a script, an agent framework, or a service, you can authenticate with a [programmatic access token](https://docs.snowflake.com/user-guide/programmatic-access-tokens) (PAT) instead. Send these headers on every request:
+
+* `Authorization: Bearer <token_secret>`
+* `X-Snowflake-Authorization-Token-Type: PROGRAMMATIC_ACCESS_TOKEN` (optional)
+* `Content-Type: application/json`
+* `Accept: application/json, text/event-stream`
+
+The following example lists the tools on a server:
+
+```
+curl -X POST "https://<account_url>/api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>" \
+  -H "Authorization: Bearer $SNOWFLAKE_PAT" \
+  -H "X-Snowflake-Authorization-Token-Type: PROGRAMMATIC_ACCESS_TOKEN" \
+  -H "Content-Type: application/json" \
+  -H "Accept: application/json, text/event-stream" \
+  -d '{"jsonrpc": "2.0", "id": 1, "method": "tools/list", "params": {}}'
+```
+
+Before you use a PAT with an MCP server:
+
+* Make sure the user is subject to a network policy that allows the client’s IP addresses. A service user can’t generate or use a PAT without one, and a person user can generate a PAT without one but can’t authenticate with it. An [authentication policy](https://docs.snowflake.com/user-guide/authentication-policies) with a programmatic access token policy can change this requirement. For details, see [Network policy requirements](https://docs.snowflake.com/user-guide/programmatic-access-tokens#label-pat-prerequisites-network).
+* Restrict the token to the least-privileged role that can use the MCP server and its tools. See [Configuring role restrictions for programmatic access tokens](https://docs.snowflake.com/user-guide/programmatic-access-tokens#label-pat-configure-role-restrictions).
+* Keep the token out of client configuration files that might be shared or committed to source control. Read it from an environment variable or a secret store where the client supports it.
+
+## Network policies for MCP clients
+
+If your Snowflake account has [network policies](https://docs.snowflake.com/user-guide/network-policies) enabled, you must allow inbound connections from your MCP client’s outbound IP addresses. When a remote MCP client (such as Claude, ChatGPT, or Cursor) connects to your Snowflake-managed MCP server, the request originates from the client provider’s infrastructure, not from the end user’s browser. If those IP addresses are not permitted by your network policy, the connection will be blocked.
 
 When a network policy blocks the token request, Snowflake can return `error: invalid_client` from the `/oauth/token-request` endpoint. That
 error is the same response clients see for incorrect credentials or an unsupported authentication method, so check your network policy if
 client credentials and authentication method look correct.
 
-To allow an MCP client to reach your Snowflake account, create a [network rule](/user-guide/network-rules) that includes the client provider’s outbound IP addresses, then add that rule to your account’s network policy:
-
-Copy codeExpand code block
+To allow an MCP client to reach your Snowflake account, create a [network rule](https://docs.snowflake.com/user-guide/network-rules) that includes the client provider’s outbound IP addresses, then add that rule to your account’s network policy:
 
 ```
 CREATE NETWORK RULE mcp_client_ingress_rule
@@ -1059,9 +1022,9 @@ Note
 This applies to all MCP client providers, not just Claude. Check your provider’s documentation for their outbound IP addresses used for remote MCP connections.
 
 For Snowflake OAuth client authentication at the token endpoint, see
-[Configure Snowflake OAuth for custom clients](/user-guide/oauth-custom#label-oauth-client-authentication).
+[Configure Snowflake OAuth for custom clients](https://docs.snowflake.com/user-guide/oauth-custom#label-oauth-client-authentication).
 
-## Troubleshoot MCP client connections[¶](#troubleshoot-mcp-client-connections)
+## Troubleshoot MCP client connections
 
 If your MCP client can’t connect or a tool doesn’t behave as expected, use this table to identify the likely cause:
 
@@ -1077,11 +1040,7 @@ If your MCP client can’t connect or a tool doesn’t behave as expected, use t
 | A SaaS client can’t reach a PrivateLink account | The client is using a private endpoint | Use the public MCP server URL and set `USE_PRIVATELINK_FOR_AUTHORIZATION_ENDPOINT = TRUE` on the OAuth integration. |
 | A remote MCP client is blocked by a network policy | The client’s outbound IP addresses aren’t allowed | Add the MCP client provider’s outbound IP addresses to the account network policy. |
 
-Expand
-
-Show lessSee more
-
-## Interact with the MCP server using a custom MCP client[¶](#interact-with-the-mcp-server-using-a-custom-mcp-client)
+## Interact with the MCP server using a custom MCP client
 
 For information about building a custom MCP client, see [Build an MCP client](https://modelcontextprotocol.io/docs/develop/build-client).
 
@@ -1089,11 +1048,48 @@ Note
 
 The Snowflake MCP server currently only supports tool capabilities.
 
-### Discover and invoke tools[¶](#discover-and-invoke-tools)
+### Discover and invoke tools
 
 The MCP clients can discover and invoke tools with `tools/list` and `tools/call` requests.
 
-To discover or invoke tools, issue a POST call as shown in the [tools/list request](https://modelcontextprotocol.io/specification/2025-11-25/server/tools#calling-tools):
+A `tools/list` entry has `name`, `description`, and `inputSchema`. `title` is present when the specification sets it. `annotations` is present by default. The server does not return `outputSchema`.
+
+To discover or invoke tools, send a JSON-RPC request in a POST call to the MCP server URL. For the request format, see [Tools](https://modelcontextprotocol.io/specification/2025-11-25/server/tools) in the MCP specification.
+
+The following example lists the tools on the server:
+
+```
+POST /api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>
+    {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/list",
+        "params": {}
+    }
+```
+
+The following example shows the shape of the response:
+
+```
+{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+        "tools": [
+            {
+                "name": "<tool_name>",
+                "title": "<tool_title>",
+                "description": "<tool_description>",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {}
+                },
+                "annotations": {}
+            }
+        ]
+    }
+}
+```
 
 As of August 20, 2026, the server returns `tools/call` responses as a
 [Server-Sent Events (SSE)](https://modelcontextprotocol.io/specification/2025-11-25/basic/transports)
@@ -1104,13 +1100,14 @@ Accept: application/json, text/event-stream
 ```
 
 The response examples in this section show the JSON payload that the server sends in each `data:` event.
-The stream closes with a `data: [DONE]` event. Clients that follow the MCP specification (2025-11-25)
+While the tool runs, the server sends an SSE comment line (`: keep-alive`) about every 5 seconds so that proxies don’t close the idle connection.
+If the request sets `_meta.progressToken`, the server also sends a `notifications/progress` event with each keep-alive.
+The last event in the stream is the complete JSON-RPC response for the request; the server doesn’t send a separate end-of-stream event.
+Clients that follow the MCP specification (2025-11-25)
 handle this automatically. For details, see
-[MCP: Streaming responses for tool calls (August 2026)](/release-notes/bcr-bundles/un-bundled/bcr-2405).
+[MCP: Streaming responses for tool calls (August 2026)](https://docs.snowflake.com/release-notes/bcr-bundles/un-bundled/bcr-2405).
 
 For the Analyst tool, your client passes messages in the request. The SQL statement is listed in the output. You must pass the name of the tool that you’re invoking in the request in the `name` parameter.
-
-Copy code
 
 ```
 POST /api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>
@@ -1128,8 +1125,6 @@ POST /api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>
 ```
 
 The following example shows the response:
-
-Copy code
 
 ```
 {
@@ -1153,8 +1148,6 @@ For Search tool requests, your client can pass the query and the following optio
 
 The search results and request ID are returned in the output. You must pass the name of the tool that you’re invoking in the request as the `name` parameter.
 
-Copy codeExpand code block
-
 ```
 POST /api/v2/databases/{database}/schemas/{schema}/mcp-servers/{name}
     {
@@ -1172,13 +1165,7 @@ POST /api/v2/databases/{database}/schemas/{schema}/mcp-servers/{name}
   }
 ```
 
-Show lessSee more
-
-Scroll to top
-
 The following example shows the response:
-
-Copy code
 
 ```
 {
@@ -1190,11 +1177,9 @@ Copy code
 }
 ```
 
-### Call an agent tool[¶](#call-an-agent-tool)
+### Call an agent tool
 
-`CORTEX_AGENT_RUN` and `CODING_AGENT` take the same call arguments. `text` is required. Omit `thread_id` on the first turn. The server creates a Cortex thread and returns its id. Pass that id on later calls to continue the same conversation. For a coding agent, that thread also keeps the sandbox.
-
-Copy code
+`CORTEX_AGENT_RUN` and `CODING_AGENT` take the same call arguments. `text` is required. Omit `thread_id` and `parent_message_id` on the first turn. The server creates a Cortex thread and returns `thread_id` and `message_id`. Pass both on later calls to continue the same conversation. For a coding agent, that thread also keeps the sandbox.
 
 ```
 POST /api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>
@@ -1211,9 +1196,7 @@ POST /api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>
     }
 ```
 
-A later turn passes the returned id:
-
-Copy codeExpand code block
+A later turn passes the returned ids:
 
 ```
 POST /api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>
@@ -1225,34 +1208,129 @@ POST /api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>
             "name": "ask_coding_agent",
             "arguments": {
                 "text": "Break it down by region.",
-                "thread_id": 12345
+                "thread_id": "12345",
+                "parent_message_id": "67890"
             }
         }
     }
 ```
 
-Show lessSee more
+`parent_message_id` is required when `thread_id` is set. Pass the `message_id` from the previous result to continue from that message. Pass `"0"` to start a new branch at the thread root. Send both ids as strings.
 
-Scroll to top
+### Answer a permission prompt
 
-Omit `parent_message_id` to continue from the latest message on that thread. Pass `0` to start a new conversation on the same thread.
+A sandbox tool such as `write` can end the turn while it waits for approval. Each pending permission has `tool_use_id`, `tool`, `summary`, and `options`. Clients should take user input, and call the same tool with the `thread_id`, `parent_message_id` of the waiting message, and one decision in `permission_decisions` per pending permission. A decision is the `tool_use_id` and one offered option, or `Deny` with an optional `reason`. If a pending decision is left out, it is treated as a denial.
 
-The result text is the agent’s reply and includes `thread_id`. Pass that id on the next call.
+```
+POST /api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>
+    {
+        "jsonrpc": "2.0",
+        "id": 3,
+        "method": "tools/call",
+        "params": {
+            "name": "ask_coding_agent",
+            "arguments": {
+                "thread_id": "12345",
+                "parent_message_id": "67890",
+                "permission_decisions": [
+                    {
+                        "tool_use_id": "toolu_write",
+                        "decision": "Allow this command"
+                    }
+                ]
+            }
+        }
+    }
+```
 
-These thread arguments are available when `ENABLE_MCP_AGENT_RUN_THREAD_CONTINUATION` is enabled, which is the default. When it is off, the server hides `thread_id` and `parent_message_id`, and each call is a new run.
+The call automatically runs one more turn of the agent.
 
-## Limitations[¶](#limitations)
+### Choose which content blocks come back
+
+The calling client can set `content_cel_filter` on a synchronous agent call or on `AGENT_RUN_RESULT` to select the content blocks returned. To re-read a finished run with a different filter, it can call [`AGENT_RUN_RESULT`](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-agent-supplementary-tools).
+
+* `compact` (the default) keeps a compact subset with the information that is likely relevant to most clients.
+* `full` keeps every content block.
+* `outline` replaces `content` with one short entry per block (its index, type, and size), so a later call can pick one part, for example `content.filter(c, c.type == 'table')` or `[content[3]]`.
+* Any other string is a [CEL](https://cel.dev) expression. `content` is the list of blocks and `response` is the whole message. The expression’s value replaces `content`. For example, `content.filter(c, c.type == 'text')` keeps the text blocks.
+
+If a CEL expression fails to evaluate, the result contains the outline and the error, so the client can retry with a corrected expression.
+
+### Cortex Agent supplementary tools
+
+If the server specification includes at least one `CORTEX_AGENT_RUN` or `CODING_AGENT` tool, or `tools/list` returns at least one [generated agent tool](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-agent-selection-all), Snowflake automatically adds these tools to `tools/list`. Snowflake adds exactly these three tools once per server, regardless of how many agent tools the server has. They don’t appear in `DESCRIBE MCP SERVER` or `GET_DDL` output, and they don’t count toward the [maximum of 50 tools per MCP server](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-limitations).
+
+| Tool | Purpose |
+| --- | --- |
+| `ASYNC_AGENT_RUN_STATUS` | Reads one run. Returns `in_progress`, `input_required`, `completed`, `cancelled`, or `failed`, and a `next_step`. |
+| `AGENT_RUN_RESULT` | Returns the stored assistant message of a finished run, synchronous or background. Accepts `content_cel_filter`. |
+| `ASYNC_AGENT_RUN_CANCEL` | Stops a run that is `in_progress`. A run that has already finished returns its current status. |
+
+Note that all these tools respect Snowflake access control; a user cannot use these tools to access runs or threads that they don’t have access to.
+
+`AGENT_RUN_RESULT` is useful without `background` too. For example, a client can request `outline` on the agent call, then read only the blocks it needs from the result.
+
+### Run an agent tool in the background
+
+For `CORTEX_AGENT_RUN` and `CODING_AGENT` tools, callers can set the `background` argument to `true` to return immediately with a run handle. The run can be polled and managed with the [Cortex Agent supplementary tools](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-agent-supplementary-tools).
+
+```
+POST /api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>
+    {
+        "jsonrpc": "2.0",
+        "id": 1,
+        "method": "tools/call",
+        "params": {
+            "name": "customer_agent",
+            "arguments": {
+                "text": "What was revenue last quarter?",
+                "background": true
+            }
+        }
+    }
+```
+
+The result includes `run_id`, `thread_id`, `status` (`in_progress`), and `next_step`. `run_id` is `{thread_id}-{user_message_id}`.
+
+Poll status with that id:
+
+```
+POST /api/v2/databases/<database>/schemas/<schema>/mcp-servers/<name>
+    {
+        "jsonrpc": "2.0",
+        "id": 2,
+        "method": "tools/call",
+        "params": {
+            "name": "ASYNC_AGENT_RUN_STATUS",
+            "arguments": {
+                "run_id": "12345-7"
+            }
+        }
+    }
+```
+
+When `status` is `completed`, `next_step` names `AGENT_RUN_RESULT`. Call it with the same `run_id`. `content[0].text` is the JSON text of `structuredContent`, and that object is the assistant message plus `run_id`, `thread_id`, and `message_id`. To continue that thread, call the same agent tool with `thread_id` and `parent_message_id` set to that `message_id`.
+
+`input_required` means the run is waiting for a permission decision. Status and result both return `pending_permissions`, `message_id`, and a readable `text`. Answer by calling the agent tool again with `permission_decisions`, `thread_id`, `parent_message_id`, and `background` set to `true`. See [Answer a permission prompt](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-permission-decisions).
+
+To stop a run, call `ASYNC_AGENT_RUN_CANCEL` with the same `run_id`.
+
+## Limitations
 
 * Snowflake supports Model Context Protocol revision `2025-11-25`.
 * The Snowflake-managed MCP server is available in government regions, except Azure US Gov Virginia (non-FedRAMP High), and hasn’t yet completed formal FedRAMP assessment. For authorization status, contact your Snowflake account team.
+* Agent invocations through the Snowflake-managed MCP server are subject to [Cortex Agents rate limits](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents#label-cortex-agents-rate-limits).
+* Every MCP request runs as an authenticated Snowflake user. The agent tool arguments don’t include the per-request `variables` that the Cortex Agents REST API uses to identify end users who don’t have Snowflake accounts. To serve those users, call the REST API instead; see [Multi-tenancy for Cortex Agents](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-multi-tenancy).
 
-Snowflake-managed MCP server does not support the following constructs in the MCP protocol: resources, prompts, roots, notifications, version negotiations, life cycle phases, and sampling.
+The Snowflake-managed MCP server supports the MCP lifecycle (`initialize` with protocol version negotiation, and `notifications/initialized`), `ping`, tools, and `notifications/progress` for in-progress `tools/call` requests. It doesn’t support the following constructs in the MCP protocol: resources, prompts, roots, and sampling.
 
-Each MCP server supports a maximum of 50 tools. This limit includes all tool types: Cortex Search, Cortex Analyst, Cortex Agents, coding agents, SQL execution, and custom (generic) tools. If you need more tools, create additional MCP servers. Higher tool counts can degrade tool-selection accuracy.
+A `tools/call` request times out after 15 minutes. For agent runs that might take longer, call the agent tool with [`background` set to `true`](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-background-agent-run).
+
+Each MCP server supports a maximum of 50 tools. This limit includes all tool types: Cortex Search, Cortex Analyst, Cortex Agents, coding agents, SQL execution, and custom (generic) tools. If you need more tools, create additional MCP servers. Higher tool counts can degrade tool-selection accuracy. Tools generated from `tool_config` don’t count toward this limit. They have their own limit of 50 per caller. See [Serve every agent the caller can use](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-agent-selection-all).
 
 Tool responses are subject to size limits to prevent LLM context window saturation:
 
-* **Generic tools**: Responses are truncated at 250 KB.
+* **Generic tools**: Responses are truncated at 250 KB. This limit applies only to tools called through the Snowflake-managed MCP server. When an agent is invoked directly, custom tool results are limited to 32 KB. See [Custom tool result limit](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-manage#label-cortex-agents-custom-tool-result-limit).
 * **SQL execution tool**: Responses are truncated at 250 KB.
 
 If a query result exceeds the size limit, the response is truncated. To work around this limit, use narrower queries that return fewer columns or rows.
@@ -1261,38 +1339,6 @@ By default, MCP OAuth sessions use the connecting user’s `DEFAULT_ROLE` as the
 You can advertise other primary-role scopes with `OAUTH_SCOPES_SUPPORTED`. Secondary roles are
 controlled by the OAuth security integration; the recommended MCP configuration leaves them
 disabled (`OAUTH_USE_SECONDARY_ROLES = NONE`). For details, see
-[Role behavior in OAuth sessions](#label-cortex-mcp-role-behavior).
+[Role behavior in OAuth sessions](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-role-behavior).
 
 MCP server objects aren’t replicated in failover groups. If you use replication, you must recreate MCP server objects on the secondary account. OAuth security integrations are replicated.
-
-Was this page helpful?
-
-YesNo
-
-[Visit Snowflake](https://www.snowflake.com)
-
-[Join the conversation](https://community.snowflake.com/s/)
-
-[Develop with Snowflake](https://developers.snowflake.com)
-
-[Share your feedback](/feedback)
-
-[Read the latest on our blog](https://www.snowflake.com/blog/)
-
-[Get your own certification](https://learn.snowflake.com)
-
-[Privacy Notice](https://www.snowflake.com/privacy-policy/)[Site Terms](https://www.snowflake.com/legal/snowflake-site-terms/)Cookies Settings© 2026 Snowflake, Inc. All Rights Reserved.
-
-On this page
-
-1. [Overview](#overview)
-2. [MCP server security recommendations](#mcp-server-security-recommendations)
-3. [Create an MCP server object](#create-an-mcp-server-object)
-4. [MCP server URL](#mcp-server-url)
-5. [Access control](#access-control)
-6. [Set up OAuth authentication](#set-up-oauth-authentication)
-7. [Connect from common MCP clients](#connect-from-common-mcp-clients)
-8. [Network policies for MCP clients](#network-policies-for-mcp-clients)
-9. [Troubleshoot MCP client connections](#troubleshoot-mcp-client-connections)
-10. [Interact with the MCP server using a custom MCP client](#interact-with-the-mcp-server-using-a-custom-mcp-client)
-11. [Limitations](#limitations)

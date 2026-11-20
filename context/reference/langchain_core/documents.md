@@ -1,28 +1,30 @@
-Python[langchain-core](/python/langchain-core)Documents
-
 # Documents
 
 ## Classes
 
-[Class
+Class
 
-### Document
+### [Document](https://reference.langchain.com/python/langchain-core/documents/base/Document)
 
 Class for storing a piece of text and associated metadata.
 
 Note
 
 `Document` is for **retrieval workflows**, not chat I/O. For sending text
-to an LLM in a conversation, use message types f](/python/langchain-core/documents/base/Document)[Class
+to an LLM in a conversation, use message types f
 
-### Blob
+Class
+
+### [Blob](https://reference.langchain.com/python/langchain-core/documents/base/Blob)
 
 Raw data abstraction for document loading and file processing.
 
 Represents raw bytes or text, either in-memory or by file reference. Used
-primarily by document loaders to decouple data loading from pa](/python/langchain-core/documents/base/Blob)[Class
+primarily by document loaders to decouple data loading from pa
 
-### BaseMedia
+Class
+
+### [BaseMedia](https://reference.langchain.com/python/langchain-core/documents/base/BaseMedia)
 
 Base class for content used in retrieval and data processing workflows.
 
@@ -30,31 +32,29 @@ Provides common fields for content that needs to be stored, indexed, or searched
 
 Note
 
-For multimodal content in \*\*ch](/python/langchain-core/documents/base/BaseMedia)
+For multimodal content in \*\*ch
 
 ## Modules
 
-[Module
+Module
 
-### base
+### [transformers](https://reference.langchain.com/python/langchain-core/documents/transformers)
+
+Document transformers.
+
+Module
+
+### [base](https://reference.langchain.com/python/langchain-core/documents/base)
 
 Base classes for media and documents.
 
 This module contains core abstractions for **data retrieval and processing workflows**:
 
 * `BaseMedia`: Base class providing `id` and `metadata` fields
-* `Blob`:](/python/langchain-core/documents/base)[Module
+* `Blob`:
 
-### transformers
+Module
 
-Document transformers.](/python/langchain-core/documents/transformers)[Module
+### [compressor](https://reference.langchain.com/python/langchain-core/documents/compressor)
 
-### compressor
-
-Document compressor.](/python/langchain-core/documents/compressor)
-
-Copy page
-
-### On This Page
-
-Classes3Modules3
+Document compressor.

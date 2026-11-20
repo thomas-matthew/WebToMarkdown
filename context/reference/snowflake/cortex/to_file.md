@@ -1,118 +1,11 @@
-1. [Overview](/en/reference "Overview")
-2. [SQL data types reference](/en/sql-reference-data-types "SQL data types reference")
-3. [SQL command reference](/en/sql-reference-commands "SQL command reference")
-4. [Function and stored procedure reference](/en/sql-reference-functions "Function and stored procedure reference")
-
-   * [Summary of functions](/en/sql-reference/intro-summary-operators-functions "Summary of functions")
-   * [All functions (alphabetical)](/en/sql-reference/functions-all "All functions (alphabetical)")
-   * [Aggregate](/en/sql-reference/functions-aggregation "Aggregate")
-   * AI Functions
-
-     * [AI\_AGG](/en/sql-reference/functions/ai_agg "AI_AGG")
-     * [AI\_CLASSIFY](/en/sql-reference/functions/ai_classify "AI_CLASSIFY")
-     * [AI\_COMPLETE](/en/sql-reference/functions/ai_complete "AI_COMPLETE")
-     * [AI\_COUNT\_TOKENS](/en/sql-reference/functions/ai_count_tokens "AI_COUNT_TOKENS")
-     * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
-     * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
-     * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
-     * [AI\_FUNCTION\_EVALUATION](/en/sql-reference/functions/ai_function_evaluation "AI_FUNCTION_EVALUATION")
-     * [AI\_FUNCTION\_OPTIMIZATION](/en/sql-reference/functions/ai_function_optimization "AI_FUNCTION_OPTIMIZATION")
-     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
-     * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
-     * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
-     * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
-     * [AI\_SIMILARITY](/en/sql-reference/functions/ai_similarity "AI_SIMILARITY")
-     * [AI\_SUMMARIZE](/en/sql-reference/functions/ai_summarize "AI_SUMMARIZE")
-     * [AI\_SUMMARIZE\_AGG](/en/sql-reference/functions/ai_summarize_agg "AI_SUMMARIZE_AGG")
-     * [AI\_TRANSCRIBE](/en/sql-reference/functions/ai_transcribe "AI_TRANSCRIBE")
-     * [AI\_TRANSLATE](/en/sql-reference/functions/ai_translate "AI_TRANSLATE")
-     * [FINETUNE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/finetune-snowflake-cortex "FINETUNE (SNOWFLAKE.CORTEX)")
-     * [SENTIMENT (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/sentiment-snowflake-cortex "SENTIMENT (SNOWFLAKE.CORTEX)")
-     * Helper functions
-
-       * [AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/agent_run-snowflake-cortex "AGENT_RUN (SNOWFLAKE.CORTEX)")
-       * [DATA\_AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/data_agent_run-snowflake-cortex "DATA_AGENT_RUN (SNOWFLAKE.CORTEX)")
-       * [THREAD\_MESSAGES (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/thread_messages-snowflake-cortex "THREAD_MESSAGES (SNOWFLAKE.CORTEX)")
-       * [EXECUTE\_AI\_EVALUATION](/en/sql-reference/functions/execute_ai_evaluation "EXECUTE_AI_EVALUATION")
-       * [GET\_AI\_EVALUATION\_DATA (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_evaluation_data-snowflake-local "GET_AI_EVALUATION_DATA (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_OBSERVABILITY\_LOGS (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_observability_logs-snowflake-local "GET_AI_OBSERVABILITY_LOGS (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_OBSERVABILITY\_EVENTS (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_observability_events-snowflake-local "GET_AI_OBSERVABILITY_EVENTS (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_RECORD\_TRACE (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_record_trace-snowflake-local "GET_AI_RECORD_TRACE (SNOWFLAKE.LOCAL)")
-       * [SEARCH\_PREVIEW (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/search_preview-snowflake-cortex "SEARCH_PREVIEW (SNOWFLAKE.CORTEX)")
-       * [SPLIT\_TEXT\_MARKDOWN\_HEADER (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/split_text_markdown_header-snowflake-cortex "SPLIT_TEXT_MARKDOWN_HEADER (SNOWFLAKE.CORTEX)")
-       * [SPLIT\_TEXT\_RECURSIVE\_CHARACTER (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/split_text_recursive_character-snowflake-cortex "SPLIT_TEXT_RECURSIVE_CHARACTER (SNOWFLAKE.CORTEX)")
-   * [Bitwise expression](/en/sql-reference/expressions-byte-bit "Bitwise expression")
-   * [Conditional expression](/en/sql-reference/expressions-conditional "Conditional expression")
-   * [Context](/en/sql-reference/functions-context "Context")
-   * [Conversion](/en/sql-reference/functions-conversion "Conversion")
-   * [Data generation](/en/sql-reference/functions-data-generation "Data generation")
-   * [Data metric](/en/sql-reference/functions-data-metric "Data metric")
-   * [Date & time](/en/sql-reference/functions-date-time "Date & time")
-   * [Differential privacy](/en/sql-reference/functions-differential-privacy "Differential privacy")
-   * [Encryption](/en/sql-reference/functions-encryption "Encryption")
-   * [File](/en/sql-reference/functions-file "File")
-
-     + Files on stages
-     + [GET\_STAGE\_LOCATION](/en/sql-reference/functions/get_stage_location "GET_STAGE_LOCATION")
-     + [GET\_RELATIVE\_PATH](/en/sql-reference/functions/get_relative_path "GET_RELATIVE_PATH")
-     + [GET\_ABSOLUTE\_PATH](/en/sql-reference/functions/get_absolute_path "GET_ABSOLUTE_PATH")
-     + [GET\_PRESIGNED\_URL](/en/sql-reference/functions/get_presigned_url "GET_PRESIGNED_URL")
-     + [BUILD\_SCOPED\_FILE\_URL](/en/sql-reference/functions/build_scoped_file_url "BUILD_SCOPED_FILE_URL")
-     + [BUILD\_STAGE\_FILE\_URL](/en/sql-reference/functions/build_stage_file_url "BUILD_STAGE_FILE_URL")
-     + AI Functions
-     + [AI\_COMPLETE](/en/sql-reference/functions/ai_complete "AI_COMPLETE")
-     + [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
-     + [AI\_TRANSCRIBE](/en/sql-reference/functions/ai_transcribe "AI_TRANSCRIBE")
-     + FILE objects
-     + [FL\_GET\_CONTENT\_TYPE](/en/sql-reference/functions/fl_get_content_type "FL_GET_CONTENT_TYPE")
-     + [FL\_GET\_ETAG](/en/sql-reference/functions/fl_get_etag "FL_GET_ETAG")
-     + [FL\_GET\_FILE\_TYPE](/en/sql-reference/functions/fl_get_file_type "FL_GET_FILE_TYPE")
-     + [FL\_GET\_LAST\_MODIFIED](/en/sql-reference/functions/fl_get_last_modified "FL_GET_LAST_MODIFIED")
-     + [FL\_GET\_RELATIVE\_PATH](/en/sql-reference/functions/fl_get_relative_path "FL_GET_RELATIVE_PATH")
-     + [FL\_GET\_SCOPED\_FILE\_URL](/en/sql-reference/functions/fl_get_scoped_file_url "FL_GET_SCOPED_FILE_URL")
-     + [FL\_GET\_SIZE](/en/sql-reference/functions/fl_get_size "FL_GET_SIZE")
-     + [FL\_GET\_STAGE](/en/sql-reference/functions/fl_get_stage "FL_GET_STAGE")
-     + [FL\_GET\_STAGE\_FILE\_URL](/en/sql-reference/functions/fl_get_stage_file_url "FL_GET_STAGE_FILE_URL")
-     + [FL\_IS\_AUDIO](/en/sql-reference/functions/fl_is_audio "FL_IS_AUDIO")
-     + [FL\_IS\_COMPRESSED](/en/sql-reference/functions/fl_is_compressed "FL_IS_COMPRESSED")
-     + [FL\_IS\_DOCUMENT](/en/sql-reference/functions/fl_is_document "FL_IS_DOCUMENT")
-     + [FL\_IS\_IMAGE](/en/sql-reference/functions/fl_is_image "FL_IS_IMAGE")
-     + [FL\_IS\_VIDEO](/en/sql-reference/functions/fl_is_video "FL_IS_VIDEO")
-     + [TO\_FILE](/en/sql-reference/functions/to_file "TO_FILE")
-     + [TRY\_TO\_FILE](/en/sql-reference/functions/try_to_file "TRY_TO_FILE")
-   * [Geospatial](/en/sql-reference/functions-geospatial "Geospatial")
-   * [Hash](/en/sql-reference/functions-hash-scalar "Hash")
-   * [IPADDRESS](/en/sql-reference/functions-ipaddress "IPADDRESS")
-   * [Metadata](/en/sql-reference/functions-metadata "Metadata")
-   * [ML Model Monitors](/en/sql-reference/functions-model-monitors "ML Model Monitors")
-   * [Notification](/en/sql-reference/functions-notification "Notification")
-   * [Numeric](/en/sql-reference/functions-numeric "Numeric")
-   * [Organization users and organization user groups](/en/sql-reference/functions-organization-users "Organization users and organization user groups")
-   * [Period](/en/sql-reference/functions-period "Period")
-   * [Regular expressions](/en/sql-reference/functions-regexp "Regular expressions")
-   * [Semi-structured and structured data](/en/sql-reference/functions-semistructured "Semi-structured and structured data")
-   * [Snowpark Container Services](/en/sql-reference/functions-spcs "Snowpark Container Services")
-   * [String & binary](/en/sql-reference/functions-string "String & binary")
-   * [System](/en/sql-reference/functions-system "System")
-   * [Table](/en/sql-reference/functions-table "Table")
-   * [Vector](/en/sql-reference/functions-vector "Vector")
-   * [Window](/en/sql-reference/functions-window "Window")
-   * [Stored procedures](/en/sql-reference-stored-procedures "Stored procedures")
-5. [Class reference](/en/sql-reference-classes "Class reference")
-6. [Scripting reference](/en/sql-reference-snowflake-scripting "Scripting reference")
-7. [General reference](/en/sql-reference "General reference")
-8. [API reference](/en/api-reference "API reference")
-
-[Reference](/en/reference)[Function and stored procedure reference](/en/sql-reference-functions)[File](/en/sql-reference/functions-file)TO\_FILE
-
 Categories:
-:   [File functions](/sql-reference/functions-file) (AI Functions)
+:   [File functions](https://docs.snowflake.com/sql-reference/functions-file) (AI Functions)
 
-# TO\_FILE[¶](#to_file)
+# TO\_FILE
 
-Constructs a value of type [FILE](/sql-reference/data-types-unstructured#label-data-types-file) from a file location or from metadata.
+Constructs a value of type [FILE](https://docs.snowflake.com/sql-reference/data-types-unstructured#label-data-types-file) from a file location or from metadata.
 
-# Syntax[¶](#syntax)
+# Syntax
 
 Use one of the following:
 
@@ -124,7 +17,7 @@ TO_FILE( <file_url> )
 TO_FILE( <metadata> )
 ```
 
-## Arguments[¶](#arguments)
+## Arguments
 
 Specify the file by providing:
 
@@ -151,11 +44,11 @@ Only one of these methods can be used at a time.
     * STAGE\_FILE\_URL
     * SCOPED\_FILE\_URL
 
-## Returns[¶](#returns)
+## Returns
 
-A [FILE](/sql-reference/data-types-unstructured) that represents the staged file.
+A [FILE](https://docs.snowflake.com/sql-reference/data-types-unstructured) that represents the staged file.
 
-## Usage notes[¶](#usage-notes)
+## Usage notes
 
 Raises an error when:
 
@@ -163,13 +56,11 @@ Raises an error when:
 * The file is on a stage that the user lacks privileges to access.
 * The supplied metadata doesn’t contain the required FILE fields.
 
-## Examples[¶](#examples)
+## Examples
 
-### Creating FILE objects using TO\_FILE[¶](#creating-file-objects-using-to_file)
+### Creating FILE objects using TO\_FILE
 
 A simple use of the TO\_FILE function with a stage name and relative path:
-
-Copy code
 
 ```
 SELECT TO_FILE('@mystage', 'image.png');
@@ -194,15 +85,11 @@ Result:
 
 A simple use of the TO\_FILE function with a staged file URL:
 
-Copy code
-
 ```
 SELECT TO_FILE(BUILD_STAGE_FILE_URL('@mystage', 'image.png'));
 ```
 
 Result:
-
-Expand code block
 
 ```
 +--------------------------------------------------------------------------------------------------------------------+
@@ -220,19 +107,11 @@ Expand code block
 +--------------------------------------------------------------------------------------------------------------------+
 ```
 
-Show lessSee more
-
-Scroll to top
-
 Or use the FILE\_URL from a file in the directory of your stage:
-
-Copy code
 
 ```
 SELECT TO_FILE(FILE_URL) FROM DIRECTORY(@mystage) LIMIT 1;
 ```
-
-Expand code block
 
 ```
 +--------------------------------------------------------------------------------------------------------------------+
@@ -250,13 +129,7 @@ Expand code block
 +--------------------------------------------------------------------------------------------------------------------+
 ```
 
-Show lessSee more
-
-Scroll to top
-
 This example uses TO\_FILE function directly with a scoped file URL:
-
-Copy codeExpand code block
 
 ```
 SELECT TO_FILE(`https://snowflake.account.snowflakecomputing.com/api/files/01ba4df2-0100-0001-0000-00040002e2b6/299017/Y6JShH6KjV`);
@@ -274,13 +147,7 @@ SELECT TO_FILE(`https://snowflake.account.snowflakecomputing.com/api/files/01ba4
 +-----------------------------------------------------------------------------------------------------------------------------------------------+|
 ```
 
-Show lessSee more
-
-Scroll to top
-
 This shows an example of constructing a FILE from an object containing the required metadata:
-
-Copy codeExpand code block
 
 ```
 SELECT TO_FILE(OBJECT_CONSTRUCT('STAGE', 'MYSTAGE', 'RELATIVE_PATH', 'image.png', 'ETAG', '<ETAG value>',
@@ -300,19 +167,13 @@ SELECT TO_FILE(OBJECT_CONSTRUCT('STAGE', 'MYSTAGE', 'RELATIVE_PATH', 'image.png'
 +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ```
 
-Show lessSee more
-
-Scroll to top
-
-### Adding FILE to a table[¶](#adding-file-to-a-table)
+### Adding FILE to a table
 
 The following example demonstrates how to create FILE and store it in a table, then perform various operations using that
 column, including saving and loading from Parquet, SnowPipe, datasets, materialized views, dynamic tables, and cloning
 with time travel.
 
 Creating a table with a FILE column:
-
-Copy codeExpand code block
 
 ```
 CREATE OR REPLACE TABLE sample_table (a INT, f FILE NOT NULL);
@@ -323,8 +184,6 @@ SELECT * FROM sample_table WHERE fl_get_file_type(f) = 'image';
 ```
 
 To write a table containing a FILE column to a stage as a Parquet file and load it back:
-
-Copy codeExpand code block
 
 ```
 -- Write to stage as Parquet
@@ -344,13 +203,7 @@ SELECT * FROM @TEST_STAGE_PARQUET/file_copy.parquet_0_0_0.snappy.parquet(FILE_FO
 SELECT * FROM @TEST_STAGE_PARQUET (PATTERN => '.*.parquet', FILE_FORMAT => parquet_format);
 ```
 
-Show lessSee more
-
-Scroll to top
-
 Create a dataset from a Parquet file:
-
-Copy codeExpand code block
 
 ```
 CREATE OR REPLACE DATASET mydataset;
@@ -361,8 +214,6 @@ ALTER DATASET mydataset ADD VERSION 'v1' FROM
 ```
 
 Copy Parquet files into a table:
-
-Copy code
 
 ```
 CREATE OR REPLACE TABLE t1_copy_parquet (a INT, f OBJECT NOT NULL);
@@ -377,8 +228,6 @@ SELECT FL_GET_STAGE(f), FL_GET_RELATIVE_PATH(f) FROM t1_copy_parquet;
 
 Create a Snowpipe:
 
-Copy code
-
 ```
 CREATE OR REPLACE TABLE t1_copy_parquet_snowpipe (f OBJECT NOT NULL);
 CREATE OR REPLACE PIPE test_pipe AS
@@ -392,8 +241,6 @@ ALTER PIPE TEST_PIPE REFRESH;
 
 Create a materialized view or a dynamic table from the table:
 
-Copy code
-
 ```
 CREATE OR REPLACE MATERIALIZED VIEW MV AS SELECT * FROM SAMPLE_TABLE;
 
@@ -405,8 +252,6 @@ AS SELECT f FROM sample_table;
 
 Store files in an array in a table column:
 
-Copy codeExpand code block
-
 ```
 CREATE OR REPLACE TABLE files_array_table(files ARRAY);
 INSERT INTO files_array_table SELECT ARRAY_CONSTRUCT(TO_FILE('@mystage', 'image.png'));
@@ -414,28 +259,22 @@ CREATE OR REPLACE TABLE files_array_table_copy(files ARRAY);
 INSERT INTO files_array_table_copy SELECT files[0] FROM files_array_table;
 ```
 
-### Examples of errors[¶](#examples-of-errors)
+### Examples of errors
 
 These examples illustrate common mistakes in using TO\_FILE that result in the function raising an error.
 
 The following example constructs a FILE from a metadata object but omits a required field:
-
-Copy codeExpand code block
 
 ```
 SELECT TO_FILE(OBJECT_CONSTRUCT('RELATIVE_PATH', 'image.png', 'ETAG', '<ETAG value>',
   'LAST_MODIFIED', 'Wed, 11 Dec 2024 20:24:00 GMT', 'SIZE', 105859, 'CONTENT_TYPE', 'image/png'));
 ```
 
-Expand code block
-
 ```
 Invalid file metadata. Must provide (STAGE and RELATIVE_PATH), SCOPED_FILE_URL, or STAGE_FILE_URL.
 ```
 
 The following example is similar, but omits the ETAG field, which is required.
-
-Copy codeExpand code block
 
 ```
 SELECT TO_FILE(OBJECT_CONSTRUCT('STAGE', 'MYSTAGE', 'RELATIVE_PATH', 'image.png',
@@ -448,8 +287,6 @@ Invalid file metadata. Missing required fields: ETAG.
 
 The following example shows attempts to GROUP BY, ORDER BY, and CLUSTER BY a FILE column, which is not supported
 because FILE values cannot be compared.
-
-Copy codeExpand code block
 
 ```
 SELECT f, count(*) FROM sample_table GROUP BY f;
@@ -466,13 +303,9 @@ This final example uses an incorrect stage name, specifically a slash at the end
 Snowflake already adds a slash between the stage name and relative path, so this results in
 two slashes, and the combined stage path does not specify any file.
 
-Copy code
-
 ```
 SELECT TO_FILE('@mystage/', 'image.png');
 ```
-
-Expand code block
 
 ```
 Remote file '@mystage//image.png' was not found. There are several potential causes.
@@ -482,39 +315,6 @@ being loaded or files are not being loaded into two different tables concurrentl
 with auto purge option.
 ```
 
-## Known limitations[¶](#known-limitations)
+## Known limitations
 
 * TO\_FILE cannot be used in INSERT INTO TABLE <t> VALUES clause. Use INSERT INTO TABLE <t> SELECT instead.
-
-Was this page helpful?
-
-YesNo
-
-[Visit Snowflake](https://www.snowflake.com)
-
-[Join the conversation](https://community.snowflake.com/s/)
-
-[Develop with Snowflake](https://developers.snowflake.com)
-
-[Share your feedback](/feedback)
-
-[Read the latest on our blog](https://www.snowflake.com/blog/)
-
-[Get your own certification](https://learn.snowflake.com)
-
-[Privacy Notice](https://www.snowflake.com/privacy-policy/)[Site Terms](https://www.snowflake.com/legal/snowflake-site-terms/)Cookies Settings© 2026 Snowflake, Inc. All Rights Reserved.
-
-### Alternative interfaces
-
-[Snowflake Python APIs](/developer-guide/snowflake-python-api/snowflake-python-overview)[Snowflake REST APIs](/developer-guide/snowflake-rest-api/snowflake-rest-api)[Snowflake CLI](/developer-guide/snowflake-cli/index)
-
-See all interfaces
-
-On this page
-
-1. [Syntax](#syntax)
-2. [Arguments](#arguments)
-3. [Returns](#returns)
-4. [Usage notes](#usage-notes)
-5. [Examples](#examples)
-6. [Known limitations](#known-limitations)

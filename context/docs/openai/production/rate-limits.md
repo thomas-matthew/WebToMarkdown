@@ -22,7 +22,7 @@ Please work through this document in its entirety to better understand how
 
 Rate limits use metrics such as **RPM** (requests per minute), **RPD** (requests per day), **TPM** (tokens per minute), **TPD** (tokens per day), **IPM** (images per minute), and audio minutes per minute for some streaming audio models. Rate limits can be hit across any of the options depending on what occurs first. For example, you might send 20 requests with only 100 tokens to the ChatCompletions endpoint and that would fill your limit (if your RPM was 20), even if you didn't send 150k tokens (if your TPM limit was 150k) within those 20 requests.
 
-[Batch API](https://developers.openai.com/api/reference/resources/batches/methods/create) queue limits are calculated based on the total number of input tokens queued for a given model. Tokens from pending batch jobs are counted against your queue limit. Once a batch job is completed, its tokens are no longer counted against that model's limit.
+The **Batch/Background Rate Limit** caps the total input tokens queued for a model. It applies to [Batch API](https://developers.openai.com/api/docs/guides/batch) jobs and [Background mode](https://developers.openai.com/api/docs/guides/background) requests with `2h` or `8h` completion windows. The API counts input tokens at submission. Once a batch job completes, its tokens no longer count toward the limit. Background requests with the default `soonest` window use the regular request and token limits.
 
 Other important things worth noting:
 
@@ -36,6 +36,10 @@ Other important things worth noting:
 ## Usage tiers
 
 The three paid usage tiers are **Build**, **Launch**, and **Grow**. Your organization's usage tier upgrades automatically as its total credit purchases reach each threshold. Higher tiers generally provide higher rate limits across models.
+
+Usage tiers describe rate limits. A model's rate-limit entry does not confirm
+  access for your organization, project, or API key. If a model is missing,
+  [check model availability](#model-availability).
 
 | Tier   | Qualification                                                         | Usage limits     |
 | ------ | --------------------------------------------------------------------- | ---------------- |
@@ -136,6 +140,15 @@ curl https://api.openai.com/v1/fine_tuning/model_limits \
 ```
 
 
+## Model availability
+
+Model access and rate limits are separate. Meeting a usage-tier threshold doesn't grant access to every model. If a documented model is missing from Playground or `GET /v1/models`, or a request returns `model_not_found`:
+
+1. **Check the model ID and endpoint.** Use the exact ID from the [model documentation](https://developers.openai.com/api/docs/models), confirm that it supports your endpoint, and check for retirement or availability notices.
+2. **Compare the organization, project, and credentials.** Select the intended organization and project in Playground. Call [List models](https://developers.openai.com/api/reference/resources/models/methods/list) with the same API key and any `OpenAI-Organization` and `OpenAI-Project` headers used by the failed request. A model visible in your dashboard session may still be unavailable to a different API key.
+3. **Review project restrictions and model requirements.** Ask someone who can manage the project to check its model permissions and data-retention settings. Follow any model-specific access requirements and review any rollout notices in the model documentation. A missing model alone does not identify the cause.
+4. **Refresh and check again.** After changing access settings, refresh the model list or Playground. If the model is still unavailable, contact support with the model ID, organization and project IDs, request time, error message, and the `x-request-id` response header, if available. Don't share your API key.
+
 ## Error mitigation
 
 ### Handle rapid traffic increases and model overload
@@ -153,7 +166,7 @@ A `slow_down` error can occur even when your traffic is within its requests-per-
 
 As a rule of thumb, once your traffic reaches 1 million input tokens per minute (TPM), increase it by no more than 50% every 15 minutes. The exact point at which the ramp-rate limit applies can vary by model and traffic conditions.
 
-Enterprise customers whose pay-as-you-go traffic routinely hits ramp-rate limits can consider [Scale Tier](https://openai.com/api-scale-tier/) for more predictable capacity on eligible models. For GPT-5.6 and later models, see [Reserved Tier](https://openai.com/api-reserved-tier/). Capacity tiers don't change how you should handle a `slow_down` response: follow `Retry-After` when it's present, reduce traffic, and ramp gradually.
+Enterprise customers whose pay-as-you-go traffic routinely hits ramp-rate limits can consider [Scale Tier](https://openai.com/api-scale-tier/) for more predictable capacity on eligible models. For GPT-5.6 and later models, see [Reserved Tier](https://developers.openai.com/api/docs/guides/reserved-tier). Capacity tiers don't change how you should handle a `slow_down` response: follow `Retry-After` when it's present, reduce traffic, and ramp gradually.
 
 #### Update existing error handlers
 
@@ -194,46 +207,205 @@ This approach has many benefits:
 
 Note that unsuccessful requests contribute to your per-minute limit, so continuously resending a request won’t work.
 
-The legacy Completions examples below use `gpt-3.5-turbo-instruct`, which was shut down on [September 28, 2026](https://developers.openai.com/api/docs/deprecations#2025-09-26-legacy-gpt-model-snapshots). You can use the same retry pattern with current models by migrating to [Responses or Chat Completions](https://developers.openai.com/api/docs/guides/migrate-to-responses).
+The following examples retry a `gpt-6-luna` request to the [Responses API](https://developers.openai.com/api/reference/resources/responses/methods/create). Each wrapper limits attempts and disables the SDK’s built-in retries.
 
 The Python examples below demonstrate fallback backoff. They don't inspect `Retry-After`: before using them, add handling for valid server hints so the wrappers don't retry sooner than requested. Disable SDK retries or account for them in your application's retry limits.
 
 
 
-##### Example 1: Using the Tenacity library
+##### Example 1: Use a retry library
 
 
 
-Tenacity is an Apache 2.0 licensed general-purpose retrying library, written in Python, to simplify the task of adding retry behavior to just about anything.
-To add exponential backoff to your requests, you can use the `tenacity.retry` decorator. The below example uses the `tenacity.wait_random_exponential` function to add random exponential backoff to a request.
 
-Using the Tenacity library
+
+
+The Python example uses [Tenacity](https://tenacity.readthedocs.io/), a third-party retry library. Its `retry` decorator and `wait_random_exponential` function add random exponential backoff.
+
+
+
+
+
+
+
+The Go example uses [`github.com/avast/retry-go/v4`](https://github.com/avast/retry-go). It limits the request to six attempts and honors `Retry-After` within a one-minute delay budget. If a server delay exceeds the one-minute budget or a quota error occurs, the function returns to the caller.
+
+
+
+
+
+
+
+Install `openai` and `p-retry` in your project, save the complete TypeScript program as `retry.ts`, and set `OPENAI_API_KEY`. Run `node --experimental-strip-types retry.ts`. The wrapper disables SDK retries, retries requests that hit transient rate limits, and honors `Retry-After` within its delay budget.
+
+
+
+
+Retry with exponential backoff
+
+```typescript
+import OpenAI from "openai";
+import { setTimeout as sleep } from "node:timers/promises";
+
+// Stop on permanent errors or server delays beyond this example's budget.
+function retryDelay(error: unknown): number | undefined {
+  if (
+    !(error instanceof OpenAI.RateLimitError) ||
+    error.code === "insufficient_quota" ||
+    error.code === "billing_hard_limit_reached"
+  )
+    return undefined;
+  const hint = error.headers?.get("retry-after")?.trim();
+  if (!hint) return 0;
+  let delay = Number(hint) * 1000;
+  if (Number.isNaN(delay)) delay = Date.parse(hint) - Date.now();
+  if (Number.isNaN(delay) || delay < 0) return 0;
+  return delay <= 60000 ? delay : undefined;
+}
+const client = new OpenAI({ maxRetries: 0 });
+const operation = () =>
+  client.responses.create({
+    model: "gpt-6-luna",
+    input: "Say hello in one sentence.",
+    reasoning: { effort: "low" },
+    max_output_tokens: 1024,
+  });
+
+import pRetry from "p-retry";
+const response = await pRetry(operation, {
+  retries: 5,
+  minTimeout: 1000,
+  maxTimeout: 60000,
+  randomize: true,
+  onFailedAttempt: async ({ error, retriesLeft }) => {
+    const delay = retryDelay(error);
+    if (delay === undefined) throw error;
+    if (retriesLeft && delay) await sleep(delay);
+  },
+});
+if (response.status !== "completed")
+  throw new Error("Response did not complete");
+console.log(response.output_text);
+```
 
 ```python
-from openai import OpenAI
+from openai import OpenAI, RateLimitError
 from tenacity import (
     retry,
+    retry_if_exception_type,
     stop_after_attempt,
     wait_random_exponential,
 )  # for exponential backoff
 
-client = OpenAI()
+client = OpenAI(max_retries=0)
 
 
-@retry(wait=wait_random_exponential(min=1, max=60), stop=stop_after_attempt(6))
-def completion_with_backoff(**kwargs):
-    return client.completions.create(**kwargs)
-
-
-completion_with_backoff(
-    model="gpt-3.5-turbo-instruct",
-    prompt="Once upon a time,",
+@retry(
+    retry=retry_if_exception_type(RateLimitError),
+    wait=wait_random_exponential(min=1, max=60),
+    stop=stop_after_attempt(6),
+    reraise=True,
 )
+def response_with_backoff(**kwargs):
+    return client.responses.create(**kwargs)
+
+
+response = response_with_backoff(
+    model="gpt-6-luna",
+    input="Say hello in one sentence.",
+    reasoning={"effort": "none"},
+    max_output_tokens=64,
+)
+print(response.output_text)
+```
+
+```go
+package main
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	retry "github.com/avast/retry-go/v4"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/option"
+	"github.com/openai/openai-go/v3/responses"
+	"github.com/openai/openai-go/v3/shared"
+	"math"
+	"net/http"
+	"strconv"
+	"strings"
+	"time"
+)
+
+// retryDelay rejects permanent errors and server delays beyond this example's budget.
+func retryDelay(err error) (time.Duration, bool) {
+	var apiError *openai.Error
+	if !errors.As(err, &apiError) || apiError.StatusCode != http.StatusTooManyRequests || apiError.Code == "insufficient_quota" || apiError.Code == "billing_hard_limit_reached" {
+		return 0, false
+	}
+	if apiError.Response == nil {
+		return 0, true
+	}
+	hint := strings.TrimSpace(apiError.Response.Header.Get("Retry-After"))
+	seconds, parseErr := strconv.ParseFloat(hint, 64)
+	if parseErr != nil {
+		if date, dateErr := http.ParseTime(hint); dateErr == nil {
+			seconds, parseErr = time.Until(date).Seconds(), nil
+		}
+	}
+	if parseErr != nil || math.IsNaN(seconds) || seconds < 0 {
+		return 0, true
+	}
+	if seconds > 60 {
+		return 0, false
+	}
+	return time.Duration(seconds * float64(time.Second)), true
+}
+
+func main() {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Minute)
+	defer cancel()
+	client := openai.NewClient(option.WithMaxRetries(0))
+	operation := func() (*responses.Response, error) {
+		return client.Responses.New(ctx, responses.ResponseNewParams{Model: "gpt-6-luna", Input: responses.ResponseNewParamsInputUnion{OfString: openai.String("Say hello in one sentence.")}, Reasoning: shared.ReasoningParam{Effort: shared.ReasoningEffortLow}, MaxOutputTokens: openai.Int(1024)})
+	}
+	response, err := retry.DoWithData(operation, retry.Context(ctx), retry.Attempts(6), retry.Delay(time.Second), retry.MaxDelay(time.Minute), retry.LastErrorOnly(true), retry.RetryIf(func(err error) bool { _, ok := retryDelay(err); return ok }), retry.DelayType(func(n uint, err error, config *retry.Config) time.Duration {
+		wait := retry.CombineDelay(retry.BackOffDelay, retry.RandomDelay)(n, err, config)
+		serverDelay, _ := retryDelay(err)
+		if serverDelay > wait {
+			return serverDelay
+		}
+		return wait
+	}))
+	if err != nil {
+		panic(err)
+	}
+	if response.Status != "completed" {
+		panic("Response did not complete")
+	}
+	fmt.Println(response.OutputText())
+}
+```
+
+```ruby
+require "openai"
+require "retriable"
+
+client = OpenAI::Client.new(max_retries: 0)
+response = Retriable.retriable(on: OpenAI::Errors::RateLimitError, tries: 6, base_interval: 1, max_interval: 60, multiplier: 2) do
+  client.responses.create(
+    model: "gpt-6-luna",
+    input: "Say hello in one sentence.",
+    reasoning: { effort: :low },
+    max_output_tokens: 1024
+  )
+end
+puts(response.output_text)
 ```
 
 
-Note that the Tenacity library is a third-party tool, and OpenAI makes no guarantees about
-its reliability or security.
+These retry libraries are third-party tools; review their behavior and security for your application.
 
 
 
@@ -241,35 +413,200 @@ its reliability or security.
 
 
 
-##### Example 2: Using the backoff library
+##### Example 2: Use a backoff library
 
 
 
-Another python library that provides function decorators for backoff and retry is [backoff](https://pypi.org/project/backoff/):
 
-Using the backoff library
+
+
+The Python example uses [backoff](https://pypi.org/project/backoff/), which provides decorators for retry behavior.
+
+
+
+
+
+
+
+The Go example uses [`github.com/cenkalti/backoff/v5`](https://github.com/cenkalti/backoff). It limits the request to six attempts, honors `Retry-After` within a one-minute delay budget, and returns permanent errors without retrying.
+
+
+
+
+
+
+
+Install `openai` and `exponential-backoff` in your project, save the complete TypeScript program as `retry.ts`, and set `OPENAI_API_KEY`. Run `node --experimental-strip-types retry.ts`. The wrapper disables SDK retries, retries requests that hit transient rate limits, and honors `Retry-After` within its delay budget.
+
+
+
+
+Retry with a backoff schedule
+
+```typescript
+import OpenAI from "openai";
+import { setTimeout as sleep } from "node:timers/promises";
+
+// Stop on permanent errors or server delays beyond this example's budget.
+function retryDelay(error: unknown): number | undefined {
+  if (
+    !(error instanceof OpenAI.RateLimitError) ||
+    error.code === "insufficient_quota" ||
+    error.code === "billing_hard_limit_reached"
+  )
+    return undefined;
+  const hint = error.headers?.get("retry-after")?.trim();
+  if (!hint) return 0;
+  let delay = Number(hint) * 1000;
+  if (Number.isNaN(delay)) delay = Date.parse(hint) - Date.now();
+  if (Number.isNaN(delay) || delay < 0) return 0;
+  return delay <= 60000 ? delay : undefined;
+}
+const client = new OpenAI({ maxRetries: 0 });
+const operation = () =>
+  client.responses.create({
+    model: "gpt-6-luna",
+    input: "Say hello in one sentence.",
+    reasoning: { effort: "low" },
+    max_output_tokens: 1024,
+  });
+
+import { backOff } from "exponential-backoff";
+const response = await backOff(operation, {
+  numOfAttempts: 6,
+  startingDelay: 1000,
+  maxDelay: 60000,
+  jitter: "full",
+  retry: async (error: unknown, attempt: number) => {
+    const delay = retryDelay(error);
+    if (delay === undefined || attempt >= 6) return false;
+    if (delay) await sleep(delay);
+    return true;
+  },
+});
+if (response.status !== "completed")
+  throw new Error("Response did not complete");
+console.log(response.output_text);
+```
 
 ```python
 import backoff
 import openai
 from openai import OpenAI
 
-client = OpenAI()
+client = OpenAI(max_retries=0)
 
 
-@backoff.on_exception(backoff.expo, openai.RateLimitError)
-def completions_with_backoff(**kwargs):
-    return client.completions.create(**kwargs)
+@backoff.on_exception(backoff.expo, openai.RateLimitError, max_tries=6)
+def response_with_backoff(**kwargs):
+    return client.responses.create(**kwargs)
 
 
-completions_with_backoff(
-    model="gpt-3.5-turbo-instruct",
-    prompt="Once upon a time,",
+response = response_with_backoff(
+    model="gpt-6-luna",
+    input="Say hello in one sentence.",
+    reasoning={"effort": "none"},
+    max_output_tokens=64,
 )
+print(response.output_text)
+```
+
+```go
+package main
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"github.com/cenkalti/backoff/v5"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/option"
+	"github.com/openai/openai-go/v3/responses"
+	"github.com/openai/openai-go/v3/shared"
+	"math"
+	"net/http"
+	"strconv"
+	"strings"
+	"time"
+)
+
+// retryDelay rejects permanent errors and server delays beyond this example's budget.
+func retryDelay(err error) (time.Duration, bool) {
+	var apiError *openai.Error
+	if !errors.As(err, &apiError) || apiError.StatusCode != http.StatusTooManyRequests || apiError.Code == "insufficient_quota" || apiError.Code == "billing_hard_limit_reached" {
+		return 0, false
+	}
+	if apiError.Response == nil {
+		return 0, true
+	}
+	hint := strings.TrimSpace(apiError.Response.Header.Get("Retry-After"))
+	seconds, parseErr := strconv.ParseFloat(hint, 64)
+	if parseErr != nil {
+		if date, dateErr := http.ParseTime(hint); dateErr == nil {
+			seconds, parseErr = time.Until(date).Seconds(), nil
+		}
+	}
+	if parseErr != nil || math.IsNaN(seconds) || seconds < 0 {
+		return 0, true
+	}
+	if seconds > 60 {
+		return 0, false
+	}
+	return time.Duration(seconds * float64(time.Second)), true
+}
+
+func main() {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Minute)
+	defer cancel()
+	client := openai.NewClient(option.WithMaxRetries(0))
+	operation := func() (*responses.Response, error) {
+		return client.Responses.New(ctx, responses.ResponseNewParams{Model: "gpt-6-luna", Input: responses.ResponseNewParamsInputUnion{OfString: openai.String("Say hello in one sentence.")}, Reasoning: shared.ReasoningParam{Effort: shared.ReasoningEffortLow}, MaxOutputTokens: openai.Int(1024)})
+	}
+	schedule := backoff.NewExponentialBackOff()
+	schedule.InitialInterval = time.Second
+	schedule.MaxInterval = 40 * time.Second // Default jitter keeps each fallback delay below one minute.
+	response, err := backoff.Retry(ctx, func() (*responses.Response, error) {
+		value, err := operation()
+		if err == nil {
+			return value, nil
+		}
+		delay, retryable := retryDelay(err)
+		if !retryable {
+			return value, backoff.Permanent(err)
+		}
+		if delay > 0 {
+			return value, errors.Join(err, backoff.RetryAfter(int(math.Ceil(delay.Seconds()))))
+		}
+		return value, err
+	}, backoff.WithBackOff(schedule), backoff.WithMaxTries(6))
+	if err != nil {
+		panic(err)
+	}
+	if response.Status != "completed" {
+		panic("Response did not complete")
+	}
+	fmt.Println(response.OutputText())
+}
+```
+
+```ruby
+require "openai"
+require "retryable"
+
+client = OpenAI::Client.new(max_retries: 0)
+response = Retryable.retryable(on: OpenAI::Errors::RateLimitError, tries: 6, sleep: ->(attempt) { rand * (2**attempt) }) do
+  client.responses.create(
+    model: "gpt-6-luna",
+    input: "Say hello in one sentence.",
+    reasoning: { effort: :low },
+    max_output_tokens: 1024
+  )
+end
+puts(response.output_text)
 ```
 
 
-Like Tenacity, the backoff library is a third-party tool, and OpenAI makes no guarantees about its reliability or security.
+These backoff libraries are third-party tools; review their behavior and security for your application.
 
 
 
@@ -283,6 +620,55 @@ Like Tenacity, the backoff library is a third-party tool, and OpenAI makes no gu
 If you don't want to use third-party libraries, you can implement your own backoff logic following this example:
 Using manual backoff implementation
 
+```typescript
+import OpenAI from "openai";
+import { setTimeout as sleep } from "node:timers/promises";
+
+// Stop on permanent errors or server delays beyond this example's budget.
+function retryDelay(error: unknown): number | undefined {
+  if (
+    !(error instanceof OpenAI.RateLimitError) ||
+    error.code === "insufficient_quota" ||
+    error.code === "billing_hard_limit_reached"
+  )
+    return undefined;
+  const hint = error.headers?.get("retry-after")?.trim();
+  if (!hint) return 0;
+  let delay = Number(hint) * 1000;
+  if (Number.isNaN(delay)) delay = Date.parse(hint) - Date.now();
+  if (Number.isNaN(delay) || delay < 0) return 0;
+  return delay <= 60000 ? delay : undefined;
+}
+const client = new OpenAI({ maxRetries: 0 });
+const operation = () =>
+  client.responses.create({
+    model: "gpt-6-luna",
+    input: "Say hello in one sentence.",
+    reasoning: { effort: "low" },
+    max_output_tokens: 1024,
+  });
+
+async function withExponentialBackoff<T>(
+  request: () => Promise<T>
+): Promise<T> {
+  for (let attempt = 0; ; attempt++) {
+    try {
+      return await request();
+    } catch (error) {
+      const serverDelay = retryDelay(error);
+      if (serverDelay === undefined || attempt >= 10) throw error;
+      const jitteredDelay =
+        Math.random() * Math.min(60000, 1000 * 2 ** attempt);
+      await sleep(Math.max(serverDelay, jitteredDelay));
+    }
+  }
+}
+const response = await withExponentialBackoff(operation);
+if (response.status !== "completed")
+  throw new Error("Response did not complete");
+console.log(response.output_text);
+```
+
 ```python
 # imports
 import random
@@ -291,7 +677,7 @@ import time
 import openai
 from openai import OpenAI
 
-client = OpenAI()
+client = OpenAI(max_retries=0)
 
 # define a retry decorator
 
@@ -341,8 +727,132 @@ def retry_with_exponential_backoff(
 
 
 @retry_with_exponential_backoff
-def completions_with_backoff(**kwargs):
-    return client.completions.create(**kwargs)
+def response_with_backoff(**kwargs):
+    return client.responses.create(**kwargs)
+
+
+response = response_with_backoff(
+    model="gpt-6-luna",
+    input="Say hello in one sentence.",
+    reasoning={"effort": "none"},
+    max_output_tokens=64,
+)
+print(response.output_text)
+```
+
+```go
+package main
+
+import (
+	"context"
+	"errors"
+	"fmt"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/option"
+	"github.com/openai/openai-go/v3/responses"
+	"github.com/openai/openai-go/v3/shared"
+	"math"
+	"math/rand/v2"
+	"net/http"
+	"strconv"
+	"strings"
+	"time"
+)
+
+func retryWithExponentialBackoff[T any](ctx context.Context, operation func() (T, error)) (T, error) {
+	delay := time.Second
+	for retries := 0; ; retries++ {
+		value, err := operation()
+		var apiError *openai.Error
+		if err == nil || !errors.As(err, &apiError) || apiError.StatusCode != http.StatusTooManyRequests || apiError.Code == "insufficient_quota" || apiError.Code == "billing_hard_limit_reached" || retries >= 10 {
+			return value, err
+		}
+		delay = time.Duration(float64(delay) * 2 * (1 + rand.Float64()))
+		if delay > time.Minute {
+			delay = time.Minute
+		}
+		wait := delay
+		if apiError.Response != nil {
+			hint := strings.TrimSpace(apiError.Response.Header.Get("Retry-After"))
+			seconds, parseErr := strconv.ParseFloat(hint, 64)
+			if parseErr != nil {
+				if date, dateErr := http.ParseTime(hint); dateErr == nil {
+					seconds, parseErr = time.Until(date).Seconds(), nil
+				}
+			}
+			if parseErr == nil && !math.IsNaN(seconds) && seconds >= 0 {
+				// Defer a request whose server delay exceeds this retry budget.
+				if seconds > 60 {
+					return value, err
+				}
+				serverDelay := time.Duration(seconds*float64(time.Second)) + time.Duration(rand.Float64()*float64(time.Second))
+				if serverDelay > wait {
+					wait = serverDelay
+				}
+			}
+		}
+		timer := time.NewTimer(wait)
+		select {
+		case <-ctx.Done():
+			timer.Stop()
+			var zero T
+			return zero, ctx.Err()
+		case <-timer.C:
+		}
+	}
+}
+
+func main() {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Minute)
+	defer cancel()
+	client := openai.NewClient(option.WithMaxRetries(0))
+	response, err := retryWithExponentialBackoff(ctx, func() (*responses.Response, error) {
+		return client.Responses.New(ctx, responses.ResponseNewParams{
+			Model:           "gpt-6-luna",
+			Input:           responses.ResponseNewParamsInputUnion{OfString: openai.String("Say hello in one sentence.")},
+			Reasoning:       shared.ReasoningParam{Effort: shared.ReasoningEffortLow},
+			MaxOutputTokens: openai.Int(1024),
+		})
+	})
+	if err != nil {
+		panic(err)
+	}
+	if response.Status != "completed" {
+		panic("Response did not complete")
+	}
+	fmt.Println(response.OutputText())
+}
+```
+
+```ruby
+require "openai"
+
+client = OpenAI::Client.new(max_retries: 0)
+
+def retry_with_exponential_backoff(initial_delay: 1, exponential_base: 2, jitter: true, max_retries: 10)
+  retries = 0
+  delay = initial_delay
+  begin
+    yield
+  rescue OpenAI::Errors::RateLimitError
+    raise if retries >= max_retries
+
+    retries += 1
+    delay *= exponential_base * (1 + (jitter ? rand : 0))
+    sleep(delay)
+    retry
+  end
+end
+
+response = retry_with_exponential_backoff do
+  client.responses.create(
+    model: "gpt-6-luna",
+    input: "Say hello in one sentence.",
+    reasoning: { effort: :low },
+    max_output_tokens: 1024
+  )
+end
+puts(response.output_text)
 ```
 
 Again, OpenAI makes no guarantees on the security or efficiency of this solution but it can be a good starting place for your own solution.

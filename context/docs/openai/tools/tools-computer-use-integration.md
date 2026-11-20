@@ -117,11 +117,11 @@ npm install openai@7.33.0
 
 On Windows, use `py -3` instead of `python3` and `.venv\Scripts\python.exe` instead of `.venv/bin/python`.
 
-Save the matching sample as `dispatch.py` or `dispatch.mjs` in the same directory.
+Save the matching sample as `dispatch.py` or `dispatch.mts` in the same directory.
 
 Write and verify a dispatch note
 
-```javascript
+```typescript
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { setTimeout as delay } from "node:timers/promises";
@@ -130,7 +130,7 @@ import OpenAI, { ComputerToolset } from "openai";
 const note = "Dispatch #1042: ready for pickup.";
 const exec = promisify(execFile);
 
-async function desktop(...args) {
+async function desktop(...args: string[]) {
   const { stdout } = await exec(
     "docker",
     ["exec", "cua-visual-desktop", ...args],
@@ -144,7 +144,7 @@ async function desktop(...args) {
 }
 
 class EditorDriver {
-  async screenshot() {
+  async screenshot(): Promise<OpenAI.Responses.ResponseComputerToolCallOutputScreenshot> {
     const image = await desktop("import", "-window", "root", "png:-");
     return {
       type: "computer_screenshot",
@@ -165,7 +165,7 @@ class EditorDriver {
     await desktop("xdotool", "windowactivate", "--sync", window);
   }
 
-  async type(action) {
+  async type(action: { text: string }) {
     if (action.text !== note)
       throw new Error("Only the dispatch note is allowed.");
     await this.focusEditor();
@@ -180,16 +180,18 @@ class EditorDriver {
     );
   }
 
-  async keypress(action) {
-    const keys = action.keys.join("+");
+  async keypress(action: { keys: string[] }) {
+    const keys = action.keys.map((key: string) => key.toUpperCase()).join("+");
     if (keys !== "CTRL+A" && keys !== "CTRL+S") {
-      throw new Error("Only Select All and Save are allowed.");
+      throw new Error(
+        `Only Select All and Save are allowed; received ${JSON.stringify(action.keys)}.`
+      );
     }
     await this.focusEditor();
     await desktop("xdotool", "key", "--clearmodifiers", keys.toLowerCase());
   }
 
-  refuse(action) {
+  refuse(action: OpenAI.Responses.ComputerAction) {
     throw new Error(`This exercise does not allow ${action.type}.`);
   }
 
@@ -216,7 +218,7 @@ try {
     await tools.run(
       client,
       {
-        model: "gpt-6.1-sol",
+        model: "gpt-6.2-sol",
         store: false,
         input:
           `The open editor has dispatch.txt. Replace its content with exactly "${note}". ` +
@@ -296,9 +298,11 @@ class EditorDriver:
         )
 
     def keypress(self, action):
-        keys = tuple(action.keys)
+        keys = tuple(key.upper() for key in action.keys)
         if keys not in (("CTRL", "A"), ("CTRL", "S")):
-            raise ValueError("Only Select All and Save are allowed.")
+            raise ValueError(
+                f"Only Select All and Save are allowed; received {action.keys!r}."
+            )
         self.focus_editor()
         desktop("xdotool", "key", "--clearmodifiers", "ctrl+" + keys[1].lower())
 
@@ -319,7 +323,7 @@ try:
             tools.run(
                 client,
                 {
-                    "model": "gpt-6.1-sol",
+                    "model": "gpt-6.2-sol",
                     "store": False,
                     "input": (
                         f'The open editor has dispatch.txt. Replace its content with exactly "{NOTE}". '
@@ -362,7 +366,7 @@ finally:
 ```bash
 .venv/bin/python dispatch.py
 # Or:
-node dispatch.mjs
+node --experimental-strip-types dispatch.mts
 ```
 
 The SDK selects the editor's text, types a fictional note, saves it, and captures the desktop. It independently reads the guest file and prints `Verified: Dispatch #1042: ready for pickup.` The text should also appear in the viewer. The driver focuses the editor before every action and refuses inputs beyond the fixed note, Select All, and Save. Wait for the command to finish before typing in the viewer again.
@@ -378,7 +382,7 @@ Set `OPENAI_API_KEY` on the host using the [API key setup instructions](https://
 ```bash
 .venv/bin/python dispatch.py --live
 # Or:
-node dispatch.mjs --live
+node --experimental-strip-types dispatch.mts --live
 ```
 
 This run uses at most six Responses requests and verifies the file in the same way. It stops if the model requests a safety check or an input this driver does not support. API usage is billed to your project. Only the host SDK reads the API key; screenshots and prompts go to OpenAI.
@@ -419,14 +423,59 @@ Recommended safeguards for local browser automation:
 
 Install Playwright:
 
-- Python: `pip install playwright` and then `playwright install`
-- JavaScript: `npm i playwright` and then `npx playwright install`
 
-Then launch a browser instance. Keep the browser and page alive while you run the remaining steps. In Python, those steps belong inside the `with sync_playwright()` block:
+
+
+Install Playwright with `pip install playwright` and then `playwright install`.
+
+
+
+
+
+
+
+Install Playwright with `npm i playwright` and then `npx playwright install`.
+
+
+
+
+
+
+
+With Node.js installed, run `gem install playwright-ruby-client -v 1.61.0`, `npm install playwright@1.61.1`, and then `npx playwright install chromium`.
+
+
+
+
+
+
+
+For Ruby, run the installation commands in your project directory. Before running the sample, set `PLAYWRIGHT_CLI_EXECUTABLE_PATH` to the absolute path of `node_modules/.bin/playwright` in that directory.
+
+
+
+
+Then launch a browser instance. Keep the browser and page alive while you run the remaining steps.
+
+
+
+
+In Python, those steps belong inside the `with sync_playwright()` block.
+
+
+
+
+
+
+
+In Ruby, run those steps in the block passed to `with_browser`.
+
+
+
 
 Start a browser instance
 
-```javascript
+```typescript
 import { chromium } from "playwright";
 
 const browser = await chromium.launch({
@@ -446,12 +495,33 @@ from playwright.sync_api import sync_playwright
 
 with sync_playwright() as p:
     browser = p.chromium.launch(
-        headless=False,
+        headless=True,
         chromium_sandbox=True,
         env={},
         args=["--disable-extensions", "--disable-file-system"],
     )
     page = browser.new_page(viewport={"width": 1280, "height": 720})
+```
+
+```ruby
+require "playwright"
+
+def with_browser
+  Playwright.create(playwright_cli_executable_path: ENV.fetch("PLAYWRIGHT_CLI_EXECUTABLE_PATH")) do |playwright|
+    playwright.chromium.launch(
+      headless: true, chromiumSandbox: true, env: [],
+      args: ["--disable-extensions", "--disable-file-system"]
+    ) do |browser|
+      page = browser.new_page(
+        viewport: {
+          width: 1280,
+          height: 720
+        }
+      )
+      yield page
+    end
+  end
+end
 ```
 
 
@@ -534,16 +604,16 @@ Create a helper that passes the command arguments directly to the container:
 
 Execute commands on the container
 
-```javascript
+```typescript
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 
 const execFileAsync = promisify(execFile);
 
 async function dockerExec(
-  containerName,
-  executable,
-  args = [],
+  containerName: string,
+  executable: string,
+  args: Array<string | number> = [],
   { decode = true, env = {} } = {}
 ) {
   const environmentArgs = Object.entries(env).flatMap(([name, value]) => [
@@ -605,6 +675,25 @@ class VM:
 vm = VM(display=":99", container_name="cua-image")
 ```
 
+```ruby
+def docker_exec(container_name, executable, args, decode: true, env: {})
+  environment = env.flat_map { |name, value| ["--env", "#{name}=#{value}"] }
+  command = ["docker", "exec", *environment, container_name, executable, *args.map(&:to_s)]
+  output = IO.popen(command, "rb", &:read)
+  status = $?
+  raise "docker exec failed (#{status&.exitstatus})" unless status&.success?
+  return output unless decode
+
+  output.force_encoding(Encoding::UTF_8)
+  raise EncodingError, "Command output is not UTF-8" unless output.valid_encoding?
+
+  output
+end
+
+VM = Struct.new(:display, :container_name)
+vm = VM.new(display: ":99", container_name: "cua-image")
+```
+
 
 When you finish, stop the container:
 
@@ -652,9 +741,9 @@ Playwright
 
     Normalization helpers
 
-```javascript
+```typescript
 // Map model-emitted key names to the names Playwright expects.
-const normalizeKey = (key) => {
+const normalizeKey = (key: string) => {
   switch (key) {
     case "ENTER":
     case "RETURN":
@@ -710,7 +799,7 @@ const normalizeKey = (key) => {
 
 // Translate API button names to Playwright's supported button names.
 const normalizePlaywrightButton = (button = "left") => {
-  const buttons = {
+  const buttons: Partial<Record<string, "left" | "right" | "middle">> = {
     left: "left",
     right: "right",
     wheel: "middle",
@@ -725,7 +814,9 @@ const normalizePlaywrightButton = (button = "left") => {
 };
 
 // Accept drag paths as either [x, y] pairs or {x, y} objects.
-const normalizeDragPath = (path) => {
+const normalizeDragPath = (
+  path: Array<[number, number] | { x: number; y: number }>
+) => {
   if (!Array.isArray(path)) {
     throw new Error("drag action requires a path array");
   }
@@ -801,6 +892,79 @@ def normalize_drag_path(path):
     return [(point.x, point.y) for point in path]
 ```
 
+```ruby
+def normalize_key(key)
+  names = {
+    "ENTER" => "Enter",
+
+    "RETURN" => "Enter",
+
+    "ESC" => "Escape",
+
+    "ESCAPE" => "Escape",
+    "TAB" => "Tab",
+
+    "SPACE" => "Space",
+
+    "BACKSPACE" => "Backspace",
+
+    "DELETE" => "Delete",
+
+    "DEL" => "Delete",
+    "HOME" => "Home",
+
+    "END" => "End",
+
+    "PAGEUP" => "PageUp",
+
+    "PAGEDOWN" => "PageDown",
+    "UP" => "ArrowUp",
+
+    "DOWN" => "ArrowDown",
+
+    "LEFT" => "ArrowLeft",
+
+    "RIGHT" => "ArrowRight",
+    "ARROWUP" => "ArrowUp",
+
+    "ARROWDOWN" => "ArrowDown",
+
+    "ARROWLEFT" => "ArrowLeft",
+
+    "ARROWRIGHT" => "ArrowRight",
+    "CTRL" => "Control",
+
+    "CONTROL" => "Control",
+
+    "SHIFT" => "Shift",
+
+    "OPTION" => "Alt",
+
+    "ALT" => "Alt",
+    "META" => "Meta",
+
+    "CMD" => "Meta",
+
+    "COMMAND" => "Meta"
+  }
+  names.fetch(key, key)
+end
+
+def normalize_playwright_button(button = "left")
+  {
+    "left" => "left",
+    "right" => "right",
+    "wheel" => "middle"
+  }.fetch(button.to_s) do
+    raise ArgumentError, "Unsupported Playwright mouse button: #{button}"
+  end
+end
+
+def normalize_drag_path(path)
+  path.map { |point| [point.x, point.y_] }
+end
+```
+
   
 
   
@@ -810,9 +974,9 @@ Docker
 
     Normalization helpers
 
-```javascript
+```typescript
 // Map model-emitted key names to the names xdotool expects.
-const normalizeXdotoolKey = (key) => {
+const normalizeXdotoolKey = (key: string) => {
   switch (key) {
     case "ENTER":
     case "RETURN":
@@ -868,7 +1032,7 @@ const normalizeXdotoolKey = (key) => {
 
 // Translate API button names to X11 button numbers.
 const normalizeXdotoolButton = (button = "left") => {
-  const buttons = {
+  const buttons: Partial<Record<string, number>> = {
     left: 1,
     wheel: 2,
     right: 3,
@@ -883,9 +1047,13 @@ const normalizeXdotoolButton = (button = "left") => {
 };
 
 // Translate API scroll deltas to vertical and horizontal X11 wheel clicks.
-const getXdotoolScrollButtons = (scrollX, scrollY) => {
-  const scrollButtons = [];
-  const appendClicks = (delta, negativeButton, positiveButton) => {
+const getXdotoolScrollButtons = (scrollX: number, scrollY: number) => {
+  const scrollButtons: number[] = [];
+  const appendClicks = (
+    delta: number,
+    negativeButton: number,
+    positiveButton: number
+  ) => {
     if (!delta) {
       return;
     }
@@ -900,7 +1068,9 @@ const getXdotoolScrollButtons = (scrollX, scrollY) => {
 };
 
 // Accept drag paths as either [x, y] pairs or {x, y} objects.
-const normalizeDragPath = (path) => {
+const normalizeDragPath = (
+  path: Array<[number, number] | { x: number; y: number }>
+) => {
   if (!Array.isArray(path)) {
     throw new Error("drag action requires a path array");
   }
@@ -990,6 +1160,89 @@ def normalize_drag_path(path):
     return [(point.x, point.y) for point in path]
 ```
 
+```ruby
+def normalize_xdotool_key(key)
+  names = {
+    "ENTER" => "Return",
+
+    "RETURN" => "Return",
+
+    "ESC" => "Escape",
+
+    "ESCAPE" => "Escape",
+    "TAB" => "Tab",
+
+    "SPACE" => "space",
+
+    "BACKSPACE" => "BackSpace",
+
+    "DELETE" => "Delete",
+
+    "DEL" => "Delete",
+    "HOME" => "Home",
+
+    "END" => "End",
+
+    "PAGEUP" => "Page_Up",
+
+    "PAGEDOWN" => "Page_Down",
+    "UP" => "Up",
+
+    "DOWN" => "Down",
+
+    "LEFT" => "Left",
+
+    "RIGHT" => "Right",
+    "ARROWUP" => "Up",
+
+    "ARROWDOWN" => "Down",
+
+    "ARROWLEFT" => "Left",
+
+    "ARROWRIGHT" => "Right",
+    "CTRL" => "ctrl",
+
+    "CONTROL" => "ctrl",
+
+    "SHIFT" => "shift",
+
+    "OPTION" => "alt",
+
+    "ALT" => "alt",
+    "META" => "super",
+
+    "CMD" => "super",
+
+    "COMMAND" => "super"
+  }
+  names.fetch(key, key)
+end
+
+def normalize_xdotool_button(button = "left")
+  {
+    "left" => 1,
+    "wheel" => 2,
+    "right" => 3,
+    "back" => 8,
+    "forward" => 9
+  }.fetch(button.to_s) do
+    raise ArgumentError, "Unsupported xdotool mouse button: #{button}"
+  end
+end
+
+def get_xdotool_scroll_buttons(scroll_x, scroll_y)
+  [[scroll_y, 4, 5], [scroll_x, 6, 7]].flat_map do |delta, negative, positive|
+    next [] if delta.zero?
+
+    [delta.negative? ? negative : positive] * [(delta / 100.0).round(half: :even).abs, 1].max
+  end
+end
+
+def normalize_drag_path(path)
+  path.map { |point| [point.x, point.y_] }
+end
+```
+
 
 
 
@@ -1004,20 +1257,23 @@ Playwright
 
     Execute Computer use actions
 
-```javascript
+```typescript
+import type { Page } from "playwright";
+import type { ComputerAction } from "openai/resources/responses/responses";
+
 // Reuse normalizeKey from the helper above.
 // Reuse normalizePlaywrightButton from the helper above.
 // Reuse normalizeDragPath from the helper above.
 
-function rejectModifiers(action) {
-  if (action.keys?.length) {
+function rejectModifiers(action: ComputerAction) {
+  if ("keys" in action && action.keys?.length) {
     throw new Error(
       "This handler does not support modifier keys. Use the modifier-aware handler below."
     );
   }
 }
 
-async function handleComputerActions(page, actions) {
+async function handleComputerActions(page: Page, actions: ComputerAction[]) {
   for (const action of actions) {
     switch (action.type) {
       case "click": {
@@ -1067,7 +1323,7 @@ async function handleComputerActions(page, actions) {
       case "screenshot":
         break;
       default:
-        throw new Error(`Unsupported action: ${action.type}`);
+        throw new Error("Unsupported computer action");
     }
   }
 }
@@ -1138,6 +1394,53 @@ def handle_computer_actions(page, actions):
                 raise ValueError(f"Unsupported action: {action.type}")
 ```
 
+```ruby
+def perform_browser_action(page, action)
+  case action.type
+  when :click
+    page.mouse.click(action.x, action.y_, button: normalize_playwright_button(action.button))
+  when :double_click
+    page.mouse.dblclick(action.x, action.y_)
+  when :drag
+    path = normalize_drag_path(action.path)
+    raise ArgumentError, "A drag requires at least two path points" if path.length < 2
+
+    page.mouse.move(*path.first)
+    page.mouse.down
+    begin
+      path.drop(1).each { |point| page.mouse.move(*point) }
+    ensure
+      page.mouse.up
+    end
+  when :move
+    page.mouse.move(action.x, action.y_)
+  when :scroll
+    page.mouse.move(action.x, action.y_)
+    page.mouse.wheel(action.scroll_x, action.scroll_y)
+  when :keypress
+    page.keyboard.press(action.keys.map { |key| normalize_key(key) }.join("+"))
+  when :type
+    page.keyboard.type(action.text)
+  when :wait
+    sleep 2
+  when :screenshot
+    # Capture the screenshot after applying the actions.
+  else
+    raise ArgumentError, "Unsupported action: #{action.type}"
+  end
+end
+
+def handle_computer_actions(page, actions)
+  actions.each do |action|
+    if action.type != :keypress && action.respond_to?(:keys) && !Array(action.keys).empty?
+      raise ArgumentError, "Use the modifier-aware handler for mouse modifiers"
+    end
+
+    perform_browser_action(page, action)
+  end
+end
+```
+
   
 
   
@@ -1147,20 +1450,25 @@ Docker
 
     Execute Computer use actions
 
-```javascript
+```typescript
+import type { ComputerAction } from "openai/resources/responses/responses";
+
 // Reuse normalizeXdotoolKey from the helper above.
 // Reuse normalizeXdotoolButton and getXdotoolScrollButtons from the helper above.
 // Reuse normalizeDragPath from the helper above.
 
-function rejectModifiers(action) {
-  if (action.keys?.length) {
+function rejectModifiers(action: ComputerAction) {
+  if ("keys" in action && action.keys?.length) {
     throw new Error(
       "This handler does not support modifier keys. Use the modifier-aware handler below."
     );
   }
 }
 
-async function handleComputerActions(vm, actions) {
+async function handleComputerActions(
+  vm: { containerName: string; display: string },
+  actions: ComputerAction[]
+) {
   for (const action of actions) {
     switch (action.type) {
       case "click": {
@@ -1257,7 +1565,7 @@ async function handleComputerActions(vm, actions) {
       case "screenshot":
         break;
       default:
-        throw new Error(`Unsupported action: ${action.type}`);
+        throw new Error("Unsupported computer action");
     }
   }
 }
@@ -1376,6 +1684,59 @@ def handle_computer_actions(vm, actions):
                 raise ValueError(f"Unsupported action: {action.type}")
 ```
 
+```ruby
+def run_xdotool(vm, *args)
+  docker_exec(vm.container_name, "xdotool", args, env: { "DISPLAY" => vm.display })
+end
+
+def perform_desktop_action(vm, action)
+  case action.type
+  when :click
+    button = normalize_xdotool_button(action.button)
+    run_xdotool(vm, "mousemove", action.x, action.y_, "click", button)
+  when :double_click
+    run_xdotool(vm, "mousemove", action.x, action.y_, "click", "--repeat", 2, 1)
+  when :drag
+    path = normalize_drag_path(action.path)
+    raise ArgumentError, "A drag requires at least two path points" if path.length < 2
+
+    run_xdotool(vm, "mousemove", path.fetch(0).fetch(0), path.fetch(0).fetch(1), "mousedown", 1)
+    begin
+      path.drop(1).each { |point| run_xdotool(vm, "mousemove", point.fetch(0), point.fetch(1)) }
+    ensure
+      run_xdotool(vm, "mouseup", 1)
+    end
+  when :move
+    run_xdotool(vm, "mousemove", action.x, action.y_)
+  when :scroll
+    run_xdotool(vm, "mousemove", action.x, action.y_)
+    get_xdotool_scroll_buttons(action.scroll_x, action.scroll_y).each do |button|
+      run_xdotool(vm, "click", button)
+    end
+  when :keypress
+    run_xdotool(vm, "key", action.keys.map { |key| normalize_xdotool_key(key) }.join("+"))
+  when :type
+    run_xdotool(vm, "type", "--delay", 0, "--", action.text)
+  when :wait
+    sleep 2
+  when :screenshot
+    # Capture the screenshot after applying the actions.
+  else
+    raise ArgumentError, "Unsupported action: #{action.type}"
+  end
+end
+
+def handle_computer_actions(vm, actions)
+  actions.each do |action|
+    if action.type != :keypress && action.respond_to?(:keys) && !Array(action.keys).empty?
+      raise ArgumentError, "Use the modifier-aware handler for mouse modifiers"
+    end
+
+    perform_desktop_action(vm, action)
+  end
+end
+```
+
 
 
 For mouse interactions that need held modifiers, use the mouse action's `keys` array. Use `keypress` for standalone keyboard input.
@@ -1420,12 +1781,19 @@ Playwright
 
     Execute modifier-assisted Computer use actions
 
-```javascript
+```typescript
+import type { Page } from "playwright";
+import type { ComputerAction } from "openai/resources/responses/responses";
+
 // Reuse normalizeKey from the helper above.
 // Reuse normalizePlaywrightButton from the helper above.
 // Reuse normalizeDragPath from the helper above.
 
-async function withModifiers(page, keys, callback) {
+async function withModifiers(
+  page: Page,
+  keys: string[] | null | undefined,
+  callback: () => Promise<void>
+) {
   const normalizedKeys = (keys ?? []).map(normalizeKey);
   const pressedKeys = [];
 
@@ -1443,7 +1811,7 @@ async function withModifiers(page, keys, callback) {
   }
 }
 
-async function handleComputerActions(page, actions) {
+async function handleComputerActions(page: Page, actions: ComputerAction[]) {
   for (const action of actions) {
     switch (action.type) {
       case "click":
@@ -1497,7 +1865,7 @@ async function handleComputerActions(page, actions) {
       case "screenshot":
         break;
       default:
-        throw new Error(`Unsupported action: ${action.type}`);
+        throw new Error("Unsupported computer action");
     }
   }
 }
@@ -1596,6 +1964,32 @@ def handle_computer_actions(page, actions):
                 raise ValueError(f"Unsupported action: {action.type}")
 ```
 
+```ruby
+def with_modifiers(page, keys)
+  pressed = []
+  begin
+    Array(keys).each do |key|
+      normalized = normalize_key(key)
+      page.keyboard.down(normalized)
+      pressed << normalized
+    end
+    yield
+  ensure
+    pressed.reverse_each { |key| page.keyboard.up(key) }
+  end
+end
+
+def handle_computer_actions_with_modifiers(page, actions)
+  actions.each do |action|
+    if [:click, :double_click, :drag, :move, :scroll].include?(action.type)
+      with_modifiers(page, action.keys) { perform_browser_action(page, action) }
+    else
+      perform_browser_action(page, action)
+    end
+  end
+end
+```
+
   
 
   
@@ -1605,12 +1999,18 @@ Docker
 
     Execute modifier-assisted Computer use actions
 
-```javascript
+```typescript
+import type { ComputerAction } from "openai/resources/responses/responses";
+
 // Reuse normalizeXdotoolKey from the helper above.
 // Reuse normalizeXdotoolButton and getXdotoolScrollButtons from the helper above.
 // Reuse normalizeDragPath from the helper above.
 
-async function withModifiers(vm, keys, callback) {
+async function withModifiers(
+  vm: { containerName: string; display: string },
+  keys: string[] | null | undefined,
+  callback: () => Promise<void>
+) {
   const normalizedKeys = (keys ?? []).map(normalizeXdotoolKey);
   const pressedKeys = [];
 
@@ -1632,7 +2032,10 @@ async function withModifiers(vm, keys, callback) {
   }
 }
 
-async function handleComputerActions(vm, actions) {
+async function handleComputerActions(
+  vm: { containerName: string; display: string },
+  actions: ComputerAction[]
+) {
   for (const action of actions) {
     switch (action.type) {
       case "click": {
@@ -1735,7 +2138,7 @@ async function handleComputerActions(vm, actions) {
       case "screenshot":
         break;
       default:
-        throw new Error(`Unsupported action: ${action.type}`);
+        throw new Error("Unsupported computer action");
     }
   }
 }
@@ -1885,6 +2288,32 @@ def handle_computer_actions(vm, actions):
                 raise ValueError(f"Unsupported action: {action.type}")
 ```
 
+```ruby
+def with_modifiers(vm, keys)
+  pressed = []
+  begin
+    Array(keys).each do |key|
+      normalized = normalize_xdotool_key(key)
+      run_xdotool(vm, "keydown", normalized)
+      pressed << normalized
+    end
+    yield
+  ensure
+    pressed.reverse_each { |key| run_xdotool(vm, "keyup", key) }
+  end
+end
+
+def handle_computer_actions_with_modifiers(vm, actions)
+  actions.each do |action|
+    if [:click, :double_click, :drag, :move, :scroll].include?(action.type)
+      with_modifiers(vm, action.keys) { perform_desktop_action(vm, action) }
+    else
+      perform_desktop_action(vm, action)
+    end
+  end
+end
+```
+
 
 
 
@@ -1903,12 +2332,15 @@ This function assumes you have an action handler and a screenshot helper. Add pe
 
 Repeat the Computer use loop
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
 
-async function computerUseLoop(target, response) {
+async function computerUseLoop(
+  target: Parameters<typeof handleComputerActions>[0],
+  response: OpenAI.Responses.Response
+) {
   while (true) {
     const computerCall = response.output.find(
       (item) => item.type === "computer_call"
@@ -1916,19 +2348,22 @@ async function computerUseLoop(target, response) {
     if (!computerCall) {
       return response;
     }
+    if (!computerCall.actions) {
+      throw new Error("Expected batched computer actions.");
+    }
 
     await handleComputerActions(target, computerCall.actions);
 
     const screenshot = await captureScreenshot(target);
     const screenshotBase64 = Buffer.from(screenshot).toString("base64");
     const output = {
-      type: "computer_screenshot",
+      type: "computer_screenshot" as const,
       image_url: `data:image/png;base64,${screenshotBase64}`,
       detail: "original",
     };
 
     response = await client.responses.create({
-      model: "gpt-6.1-sol",
+      model: "gpt-6.2-sol",
       tools: [{ type: "computer" }],
       previous_response_id: response.id,
       input: [
@@ -1966,7 +2401,7 @@ def computer_use_loop(target, response):
         screenshot_base64 = base64.b64encode(screenshot).decode("utf-8")
 
         response = client.responses.create(
-            model="gpt-6.1-sol",
+            model="gpt-6.2-sol",
             tools=[{"type": "computer"}],
             previous_response_id=response.id,
             input=[
@@ -2194,7 +2629,7 @@ while (true) {
           .responses()
           .create(
               ResponseCreateParams.builder()
-                  .model("gpt-6.1-sol")
+                  .model("gpt-6.2-sol")
                   .previousResponseId(response.id())
                   .putAdditionalBodyProperty(
                       "tools", JsonValue.from(List.of(Map.of("type", "computer"))))
@@ -2218,6 +2653,39 @@ response.output().stream()
     .flatMap(message -> message.content().stream())
     .flatMap(content -> content.outputText().stream())
     .forEach(text -> System.out.println(text.text()));
+```
+
+```ruby
+require "base64"
+
+def computer_use_loop(client, target, response)
+  loop do
+    call = response.output.find { |item| item.type == :computer_call }
+    return response unless call
+    raise "Computer action requires user approval" unless Array(call.pending_safety_checks).empty?
+
+    actions = call.actions || [call.action].compact
+    raise "Computer call did not contain an action" if actions.empty?
+
+    handle_computer_actions(target, actions)
+    screenshot = Base64.strict_encode64(capture_screenshot(target))
+    response = client.responses.create(
+      model: "gpt-6.2-sol", tools: [{ type: :computer }], previous_response_id: response.id,
+      input: [
+        {
+          type: :computer_call_output,
+
+          call_id: call.call_id,
+          output: {
+            type: :computer_screenshot,
+            image_url: "data:image/png;base64,#{screenshot}",
+            detail: :original
+          }
+        }
+      ]
+    )
+  end
+end
 ```
 
 
@@ -2257,8 +2725,10 @@ Playwright
 
     Capture a screenshot
 
-```javascript
-async function captureScreenshot(page) {
+```typescript
+import type { Page } from "playwright";
+
+async function captureScreenshot(page: Page) {
   return await page.screenshot({ type: "png" });
 }
 ```
@@ -2266,6 +2736,12 @@ async function captureScreenshot(page) {
 ```python
 def capture_screenshot(page):
     return page.screenshot(type="png")
+```
+
+```ruby
+def capture_screenshot(page)
+  page.screenshot(type: "png")
+end
 ```
 
   
@@ -2277,8 +2753,11 @@ Docker
 
     Capture a screenshot
 
-```javascript
-async function captureScreenshot(vm) {
+```typescript
+async function captureScreenshot(vm: {
+  containerName: string;
+  display: string;
+}) {
   return await dockerExec(
     vm.containerName,
     "import",
@@ -2297,6 +2776,15 @@ def capture_screenshot(vm):
         env={"DISPLAY": vm.display},
         decode=False,
     )
+```
+
+```ruby
+def capture_screenshot(vm)
+  docker_exec(
+    vm.container_name, "import", ["-window", "root", "png:-"],
+    env: { "DISPLAY" => vm.display }, decode: false
+  )
+end
 ```
 
 
@@ -2385,7 +2873,7 @@ The Java adapter is a standalone execution-service example with partial workflow
 
 Connect the API client to your execution service
 
-```javascript
+```typescript
 import readline from "node:readline/promises";
 import { z } from "zod";
 
@@ -2402,7 +2890,11 @@ const executionOutput = z
   )
   .nonempty();
 
-async function executeInSandbox(code, sessionId, endpoint) {
+async function executeInSandbox(
+  code: string,
+  sessionId: string,
+  endpoint: string
+): Promise<OpenAI.Responses.ResponseFunctionCallOutputItemList> {
   console.log(code);
   const terminal = readline.createInterface({
     input: process.stdin,
@@ -2696,7 +3188,39 @@ end
 ```
 
 
-Python, JavaScript, Ruby, and Go have complete [API loop examples](https://developers.openai.com/api/docs/guides/tools-computer-use#connect-your-own-runtime) for this execution-service contract. Use `run_computer_use` in Python or Ruby, or `runComputerUse` in JavaScript or Go, with your endpoint and task. The Go example also takes a context, SDK client, terminal scanner, and output writer; use its included adapter to preserve those inputs across calls. The loop preserves the runtime session and uses `previous_response_id` to continue the model conversation. It stops after 20 responses if the task has not finished.
+Complete [API loop examples](https://developers.openai.com/api/docs/guides/tools-computer-use#connect-your-own-runtime) are available for this execution-service contract. The loop preserves the runtime session and uses `previous_response_id` to continue the model conversation. It stops after 20 responses if the task has not finished.
+
+
+
+
+Use `run_computer_use` with your endpoint and task.
+
+
+
+
+
+
+
+Use `run_computer_use` with your endpoint and task.
+
+
+
+
+
+
+
+Use `runComputerUse` with your endpoint and task.
+
+
+
+
+
+
+
+Use `runComputerUse` with your endpoint and task. The Go example also takes a context, SDK client, terminal scanner, and output writer; use its included adapter to preserve those inputs across calls.
+
+
+
 
 This adapter asks for approval before every generated script as a conservative demonstration. A production runtime must enforce the action-specific rules in [Handle user confirmation and consent](#handle-user-confirmation-and-consent). Removing the prompt does not supply those controls.
 
@@ -2852,7 +3376,7 @@ To migrate from the legacy preview integration, update the model, tool definitio
 
 Legacy preview request
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();

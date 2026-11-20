@@ -3,6 +3,27 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain-aws/releases
 
+## 1.10.0 — 2026-11-20
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.10.0)
+
+- feat(aws): add normalized finish reason to response metadata by @thushanth-bengre-langchain in https://github.com/langchain-ai/langchain-aws/pull/1513
+- feat(aws): Support ultrafast service tier on ChatBedrockConverse by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1506
+
+## 1.9.3 — 2026-11-10
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.9.3)
+
+- feat(aws): Web Search API support and fixed-rule options in the AgentCore web search toolkit by @sundargthb in https://github.com/langchain-ai/langchain-aws/pull/1472
+- feat(aws): Support Claude Fable 5.2 by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1476
+
+## 1.9.2 — 2026-11-06
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.9.2)
+
+- feat(aws): Support Claude mid-conversation system messages on ChatBedrockConverse by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1438
+- feat(aws): Support `ca` and `in` Bedrock cross-region inference profiles by @michaelnchin in https://github.com/langchain-ai/langchain-aws/pull/1444
+
 ## 1.9.1 — 2026-10-26
 
 [Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langchain-aws%3D%3D1.9.1)

@@ -1,82 +1,16 @@
-1. [Overview](/en/guides "Overview")
-2. [Snowflake Horizon Catalog](/en/user-guide/snowflake-horizon "Snowflake Horizon Catalog")
-4. [Applications and tools for connecting to Snowflake](/en/guides-overview-connecting "Applications and tools for connecting to Snowflake")
-6. [Virtual warehouses](/en/user-guide/warehouses "Virtual warehouses")
-7. [Databases, Tables, & Views](/en/guides-overview-db "Databases, Tables, & Views")
-8. [Data types](/en/data-types "Data types")
-10. Data Integration
-
-    - [Snowflake Openflow](/en/user-guide/data-integration/openflow/about "Snowflake Openflow")
-    - Apache Iceberg™
-
-      - [Apache Iceberg™ Tables](/en/user-guide/tables-iceberg "Apache Iceberg™ Tables")
-      - [Snowflake Open Catalog](/en/user-guide/opencatalog/overview "Snowflake Open Catalog")
-    - Zero-Copy Connectors
-
-      - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
-      - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
-      - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
-      - [About Workday Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-datacloud "About Workday Data Cloud and Snowflake")
-11. Data engineering
-
-    - [Data loading](/en/guides-overview-loading-data "Data loading")
-    - [Dynamic tables](/en/user-guide/dynamic-tables/overview "Dynamic tables")
-    - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
-    - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
-    - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
-    - [Pipeline Builder](/en/user-guide/pipeline-builder/pipeline-builder-overview "Pipeline Builder")
-    - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
-    - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
-12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/snowflake-aim "Migrations")
-15. [Queries](/en/guides-overview-queries "Queries")
-16. [Collaboration](/en/guides-overview-sharing "Collaboration")
-18. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
-
-    * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
-    * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
-    * [Snowflake Artifacts](/en/user-guide/snowflake-artifacts "Snowflake Artifacts")
-    * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
-    * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
-    * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
-    * [Cortex Agent SDK](/en/user-guide/snowflake-cortex/cortex-agent-sdk/cortex-agent-sdk "Cortex Agent SDK")
-    * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
-    * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
-    * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
-    * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
-    * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
-    * [Cortex Inference](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex Inference")
-
-      + [Vector embedding API](/en/user-guide/snowflake-cortex/cortex-rest-api/embed-api "Vector embedding API")
-    * [Cortex AI Guardrails](/en/user-guide/snowflake-cortex/cortex-ai-guardrails "Cortex AI Guardrails")
-    * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
-    * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
-    * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
-    * [ML Development and ML Ops](/en/developer-guide/snowpark-ml/overview "ML Development and ML Ops")
-    * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
-20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
-22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
-24. [Security](/en/guides-overview-secure "Security")
-26. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-27. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-29. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-30. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
-
-[Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)Cortex Inference
-
-# Cortex REST API[¶](#cortex-rest-api)
+# Cortex REST API
 
 The Cortex REST API gives you access to leading frontier models from Anthropic, OpenAI, Meta, Mistral, and more
 through your preferred endpoint or SDK. All inference runs within the Snowflake perimeter, so your data remains
 secure and within your governance boundary. See below on how to get started.
 
-## Monitor usage[¶](#monitor-usage)
+## Monitor usage
 
-Cortex REST API calls do not write to `AI_OBSERVABILITY_EVENTS`. To monitor token consumption and credits, query [CORTEX\_REST\_API\_USAGE\_HISTORY](/sql-reference/account-usage/cortex_rest_api_usage_history) in the Account Usage schema. The view includes request IDs, model names, user IDs, token counts, and credits per request.
+Cortex REST API calls do not write to `AI_OBSERVABILITY_EVENTS`. To monitor token consumption and credits, query [CORTEX\_REST\_API\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_rest_api_usage_history) in the Account Usage schema. The view includes request IDs, model names, user IDs, token counts, and credits per request.
 
-For how REST API usage fits alongside other AI features, see [AI Observability in Snowflake Cortex](/user-guide/snowflake-cortex/ai-observability) and [AI cost management and governance](/user-guide/snowflake-cortex/governance-and-availability/ai-cost-management-and-governance).
+For how REST API usage fits alongside other AI features, see [AI Observability in Snowflake Cortex](https://docs.snowflake.com/user-guide/snowflake-cortex/ai-observability) and [AI cost management and governance](https://docs.snowflake.com/user-guide/snowflake-cortex/governance-and-availability/ai-cost-management-and-governance).
 
-## Choose your API[¶](#choose-your-api)
+## Choose your API
 
 Cortex REST API supports three industry-standard API specifications. Pick the one that best fits your stack:
 
@@ -84,35 +18,29 @@ Cortex REST API supports three industry-standard API specifications. Pick the on
 | --- | --- | --- | --- |
 | Compatibility | [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat/create) | [Anthropic Messages API](https://docs.anthropic.com/en/api/messages) | [OpenAI Responses API](https://platform.openai.com/docs/api-reference/responses/create) |
 | Endpoint | `/api/v2/cortex/v1/chat/completions` | `/api/v2/cortex/v1/messages` | `/api/v2/cortex/v1/responses` |
-| Supported models | All models (OpenAI, Claude, Llama, Mistral, DeepSeek, Snowflake) | Claude models only | OpenAI models only |
+| Supported models | All models (OpenAI, Claude, Llama, Mistral, DeepSeek, Snowflake) | Claude models only | OpenAI models on AWS only |
 | SDK support | OpenAI Python and JavaScript SDKs | Anthropic Python SDK | OpenAI Python and JavaScript SDKs |
 | Best for | Most use cases; multi-model flexibility | Existing Anthropic integrations; Anthropic API parity | Existing integrations and clients built on the OpenAI Responses API |
-
-Expand
-
-Show lessSee more
 
 All three APIs share the same authentication, model catalog, and rate limits. The only difference is the
 request/response format and which models each endpoint supports. For pricing, see the
 [Snowflake Service Consumption Table](https://www.snowflake.com/legal-files/CreditConsumptionTable.pdf).
 
-## Quickstart[¶](#quickstart)
+## Quickstart
 
-### Prerequisites[¶](#prerequisites)
+### Prerequisites
 
 Before you begin, you need:
 
 1. Your **Snowflake account URL** (for example, `https://<account-identifier>.snowflakecomputing.com`).
-2. A **Snowflake Programmatic Access Token (PAT)** for authentication. See [Generating a programmatic access token](/user-guide/programmatic-access-tokens#label-pat-generate).
-3. A **model name** to use in requests. See [Model availability](#label-cortex-complete-llm-model-availability) for available models.
+2. A **Snowflake Programmatic Access Token (PAT)** for authentication. See [Generating a programmatic access token](https://docs.snowflake.com/user-guide/programmatic-access-tokens#label-pat-generate).
+3. A **model name** to use in requests. See [Model availability](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api#label-cortex-complete-llm-model-availability) for available models.
 
-### Chat Completions quickstart[¶](#chat-completions-quickstart)
+### Chat Completions quickstart
 
 The Chat Completions API follows the OpenAI specification. You can use the OpenAI SDK directly.
 
 PythonJavaScript/TypeScriptcurl
-
-Copy codeExpand code block
 
 ```
 from openai import OpenAI
@@ -133,12 +61,6 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-Show lessSee more
-
-Scroll to top
-
-Copy code
-
 ```
 import OpenAI from "openai";
 
@@ -158,8 +80,6 @@ const response = await client.chat.completions.create({
 console.log(response.choices[0].message.content);
 ```
 
-Copy code
-
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/completions" \
   -H "Content-Type: application/json" \
@@ -176,9 +96,9 @@ In the preceding examples, replace the following:
 
 * `<account-identifier>`: Your Snowflake account identifier.
 * `<SNOWFLAKE_PAT>`: Your Snowflake Programmatic Access Token (PAT).
-* `model`: The model name. See [Model availability](#label-cortex-complete-llm-model-availability) for supported models.
+* `model`: The model name. See [Model availability](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api#label-cortex-complete-llm-model-availability) for supported models.
 
-### Messages API quickstart[¶](#messages-api-quickstart)
+### Messages API quickstart
 
 The Messages API follows the Anthropic specification and supports Claude models only.
 
@@ -186,8 +106,6 @@ PythonJavaScript/TypeScriptcurl
 
 The Anthropic SDK sends credentials via `x-api-key` by default, but Snowflake expects a `Bearer` token.
 Use an `httpx` client to set the correct authorization header.
-
-Copy codeExpand code block
 
 ```
 import httpx
@@ -217,13 +135,7 @@ response = client.messages.create(
 print(response.content[0].text)
 ```
 
-Show lessSee more
-
-Scroll to top
-
 Like Python, override the default auth header with a `Bearer` token via `defaultHeaders`.
-
-Copy code
 
 ```
 import Anthropic from "@anthropic-ai/sdk";
@@ -249,8 +161,6 @@ const response = await client.messages.create({
 console.log(response.content[0].text);
 ```
 
-Copy code
-
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messages" \
   -H "Content-Type: application/json" \
@@ -269,21 +179,19 @@ In the preceding examples, replace the following:
 
 * `<account-identifier>`: Your Snowflake account identifier.
 * `<SNOWFLAKE_PAT>`: Your Snowflake Programmatic Access Token (PAT).
-* `model`: The Claude model name. See [Model availability](#label-cortex-complete-llm-model-availability) for supported models.
+* `model`: The Claude model name. See [Model availability](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api#label-cortex-complete-llm-model-availability) for supported models.
 
-### Responses API quickstart[¶](#responses-api-quickstart)
+### Responses API quickstart
 
-[![Snowflake logo in black (no text)](/static/images/logo-snowflake-black.png)](/static/images/logo-snowflake-black.png) [Preview Feature](/release-notes/preview-features) — Open
+[![Snowflake logo in black (no text)](https://docs.snowflake.com/static/images/logo-snowflake-black.png)](https://docs.snowflake.com/static/images/logo-snowflake-black.png) [Preview Feature](https://docs.snowflake.com/release-notes/preview-features) — Open
 
 Available to all accounts.
 
-The Responses API follows the OpenAI specification and supports OpenAI models only. You can use the OpenAI SDK
+The Responses API follows the OpenAI specification and supports OpenAI models on AWS only. You can use the OpenAI SDK
 directly. The API doesn’t keep conversation state, so send the full conversation in `input` with every request. See
-[Limitations](#label-cortex-rest-api-responses-limitations).
+[Limitations](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api#label-cortex-rest-api-responses-limitations).
 
 PythonJavaScript/TypeScriptcurl
-
-Copy codeExpand code block
 
 ```
 from openai import OpenAI
@@ -303,12 +211,6 @@ response = client.responses.create(
 print(response.output_text)
 ```
 
-Show lessSee more
-
-Scroll to top
-
-Copy code
-
 ```
 import OpenAI from "openai";
 
@@ -327,8 +229,6 @@ const response = await client.responses.create({
 console.log(response.output_text);
 ```
 
-Copy code
-
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/responses" \
   -H "Content-Type: application/json" \
@@ -344,21 +244,21 @@ In the preceding examples, replace the following:
 
 * `<account-identifier>`: Your Snowflake account identifier.
 * `<SNOWFLAKE_PAT>`: Your Snowflake Programmatic Access Token (PAT).
-* `model`: The OpenAI model name. See [Model availability](#label-cortex-complete-llm-model-availability) for supported models.
+* `model`: The OpenAI model name. See [Model availability](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api#label-cortex-complete-llm-model-availability) for supported models.
 
-## Setting up authentication[¶](#setting-up-authentication)
+## Setting up authentication
 
 To authenticate to the Cortex REST API, you can use the methods described in
-[Authenticating Snowflake REST APIs with Snowflake](/developer-guide/snowflake-rest-api/authentication).
+[Authenticating Snowflake REST APIs with Snowflake](https://docs.snowflake.com/developer-guide/snowflake-rest-api/authentication).
 
 Set the `Authorization` header to include your token (for example, a JSON web token (JWT), OAuth token, or
-[programmatic access token](/user-guide/programmatic-access-tokens)).
+[programmatic access token](https://docs.snowflake.com/user-guide/programmatic-access-tokens)).
 
 Tip
 
 Consider creating a dedicated user for Cortex REST API requests.
 
-## Setting up authorization[¶](#setting-up-authorization)
+## Setting up authorization
 
 To send a REST API request, your default role must be granted *either* the SNOWFLAKE.CORTEX\_USER database role
 *or* the SNOWFLAKE.CORTEX\_REST\_API\_USER database role. SNOWFLAKE.CORTEX\_USER provides access to all
@@ -370,8 +270,6 @@ role automatically, and all roles inherit PUBLIC.
 
 If your Snowflake administrator has revoked this grant, they must re-grant it:
 
-Copy code
-
 ```
 GRANT DATABASE ROLE SNOWFLAKE.CORTEX_USER TO ROLE my_role;
 GRANT ROLE my_role TO USER my_user;
@@ -380,15 +278,17 @@ GRANT ROLE my_role TO USER my_user;
 Important
 
 REST API requests use the user’s default role, so that role must have the necessary privileges. You can change
-a user’s default role with [ALTER USER … SET DEFAULT\_ROLE](/sql-reference/sql/alter-user).
-
-Copy code
+a user’s default role with [ALTER USER … SET DEFAULT\_ROLE](https://docs.snowflake.com/sql-reference/sql/alter-user).
 
 ```
 ALTER USER my_user SET DEFAULT_ROLE=my_role
 ```
 
-### Limiting access using the Cortex REST API user role[¶](#limiting-access-using-the-cortex-rest-api-user-role)
+The REST API also respects [model access control](https://docs.snowflake.com/user-guide/snowflake-cortex/governance-and-availability/model-access-control#label-cortex-llm-access-control).
+After you grant or revoke access to a model, REST requests can take up to 5 minutes to reflect the change.
+Cortex AI Functions reflect these changes sooner.
+
+### Limiting access using the Cortex REST API user role
 
 To provide selective access to the Cortex REST API for specific users, use the
 SNOWFLAKE.CORTEX\_REST\_API\_USER database role. This role grants access to the Cortex REST API without granting
@@ -398,14 +298,12 @@ or Cortex Search.
 CORTEX\_REST\_API\_USER is not granted to the PUBLIC role by default. An account administrator must explicitly
 grant this role to roles that require access to the Cortex REST API. The SNOWFLAKE.CORTEX\_REST\_API\_USER
 database role can’t be granted directly to a user. For more information, see
-[Using SNOWFLAKE database roles](/sql-reference/snowflake-db-roles#label-using-snowflake-db-roles).
+[Using SNOWFLAKE database roles](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-using-snowflake-db-roles).
 
 Important
 
 If your user roles already have the CORTEX\_USER role, you must revoke access to the CORTEX\_USER role
 before the CORTEX\_REST\_API\_USER role can take effect as a fine-grained control.
-
-Copy code
 
 ```
 REVOKE DATABASE ROLE SNOWFLAKE.CORTEX_USER FROM ROLE PUBLIC;
@@ -419,8 +317,6 @@ To provide access to the Cortex REST API, use the ACCOUNTADMIN role to do the fo
 The following example creates the custom role `cortex_rest_api_role`, grants it the CORTEX\_REST\_API\_USER
 database role, and assigns the role to `example_user`:
 
-Copy codeExpand code block
-
 ```
 USE ROLE ACCOUNTADMIN;
 CREATE ROLE cortex_rest_api_role;
@@ -432,80 +328,25 @@ GRANT ROLE cortex_rest_api_role TO USER example_user;
 You can also grant access to the Cortex REST API through existing roles. For example, if you have an
 `api_consumer` role used by a group of users, you can grant access with a single GRANT statement:
 
-Copy codeExpand code block
-
 ```
 GRANT DATABASE ROLE SNOWFLAKE.CORTEX_REST_API_USER TO ROLE api_consumer;
 ```
 
-## Model availability[¶](#model-availability)
+## Model availability
 
-The following table shows the models the Cortex REST API serves and the release stage of each one.
+For the models the Cortex REST API serves, their release stages, and the regions and cross-region routing scopes each model runs in, see [Model availability for Snowflake Cortex AI](https://docs.snowflake.com/user-guide/snowflake-cortex/model-availability). In the Product availability tables, the Cortex Inference column shows the REST API.
 
-For the regions and cross-region routing scopes each model runs in, see [Regional availability](/user-guide/snowflake-cortex/model-availability#label-cortex-model-availability-by-region).
+You can also use any [fine-tuned](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-finetuning) model in any supported region.
 
-| Model | Status |
-| --- | --- |
-| `claude-opus-5-5` | Public preview |
-| `claude-opus-5` | GA |
-| `claude-opus-4-8` | GA |
-| `claude-opus-4-7` | GA |
-| `claude-opus-4-6` | GA |
-| `claude-opus-4-5` | GA |
-| `claude-fable-5-1` | Private preview |
-| `claude-fable-5` | Private preview |
-| `claude-sonnet-5` | GA |
-| `claude-sonnet-5-5` | Public preview |
-| `claude-sonnet-4-6` | GA |
-| `claude-sonnet-4-5` | GA |
-| `claude-haiku-5-5` | Public preview |
-| `claude-haiku-4-5` | GA |
-| `openai-gpt-6-astra` | GA |
-| `openai-gpt-6-luna` | Public preview |
-| `openai-gpt-6-sol` | Public preview |
-| `openai-gpt-6.1-sol` | Public preview |
-| `openai-gpt-5.6-luna` | GA |
-| `openai-gpt-5.6-sol` | GA |
-| `openai-gpt-5.6-terra` | GA |
-| `openai-gpt-5.5` | Private preview |
-| `openai-gpt-5.4` | GA |
-| `openai-gpt-5.2` | GA |
-| `openai-gpt-5.1` | GA |
-| `openai-gpt-5` | GA |
-| `openai-gpt-5-mini` | GA |
-| `openai-gpt-5-nano` | GA |
-| `openai-gpt-4.1` | Legacy |
-| `llama4-maverick` | Legacy |
-| `llama3.1-8b` | GA |
-| `llama3.1-70b` | Legacy |
-| `deepseek-v4-flash` | Private preview |
-| `glm-5.3` | Public preview |
-| `kimi-k3` | Public preview |
-| `mistral-7b` | Legacy |
-| `mistral-large2` | Legacy |
-| `grok-4.7` | Public preview |
-| `grok-4.6` | Public preview |
-| `snowflake-decision-fast` | Private preview |
+## Features
 
-Expand
-
-Show lessSee more
-
-Public preview models aren’t suitable for production workloads. Private preview models are available only to accounts that Snowflake has explicitly enabled. After a model’s legacy date, only accounts that already used the model can continue to call it until end-of-life; accounts that hadn’t used it can’t start.
-
-You can also use any [fine-tuned](/user-guide/snowflake-cortex/cortex-finetuning) model in any supported region.
-
-## Features[¶](#features)
-
-### Streaming[¶](#streaming)
+### Streaming
 
 Both APIs support streaming responses using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events/Using_server-sent_events).
 
-#### Chat Completions streaming[¶](#chat-completions-streaming)
+#### Chat Completions streaming
 
 PythonJavaScript/TypeScriptcurl
-
-Copy codeExpand code block
 
 ```
 from openai import OpenAI
@@ -527,12 +368,6 @@ response = client.chat.completions.create(
 for chunk in response:
     print(chunk.choices[0].delta.content, end="", flush=True)
 ```
-
-Show lessSee more
-
-Scroll to top
-
-Copy code
 
 ```
 import OpenAI from "openai";
@@ -556,8 +391,6 @@ for await (const event of stream) {
 }
 ```
 
-Copy code
-
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/completions" \
   -H "Content-Type: application/json" \
@@ -574,11 +407,9 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/
   }'
 ```
 
-#### Messages API streaming[¶](#messages-api-streaming)
+#### Messages API streaming
 
 PythonJavaScript/TypeScriptcurl
-
-Copy codeExpand code block
 
 ```
 import httpx
@@ -608,12 +439,6 @@ with client.messages.stream(
         print(text, end="", flush=True)
 ```
 
-Show lessSee more
-
-Scroll to top
-
-Copy code
-
 ```
 import Anthropic from "@anthropic-ai/sdk";
 
@@ -642,8 +467,6 @@ for await (const event of stream) {
 }
 ```
 
-Copy code
-
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messages" \
   -H "Content-Type: application/json" \
@@ -659,7 +482,7 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messa
   }'
 ```
 
-### Tool calling[¶](#tool-calling)
+### Tool calling
 
 Tool calling lets the model invoke external functions during a conversation. The flow works in steps:
 
@@ -670,11 +493,9 @@ Tool calling lets the model invoke external functions during a conversation. The
 
 Tool calling is supported for OpenAI and Claude models.
 
-#### Chat Completions tool calling[¶](#chat-completions-tool-calling)
+#### Chat Completions tool calling
 
 PythonJavaScript/TypeScriptcurl
-
-Copy codeExpand code block
 
 ```
 import json
@@ -741,12 +562,6 @@ if message.tool_calls:
 
     print(final_response.choices[0].message.content)
 ```
-
-Show lessSee more
-
-Scroll to top
-
-Copy code
 
 ```
 import OpenAI from "openai";
@@ -816,8 +631,6 @@ if (message.tool_calls) {
 
 **Step 1 — Send the request with tools:**
 
-Copy code
-
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/completions" \
   -H "Content-Type: application/json" \
@@ -851,8 +664,6 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/
 
 The model responds with a `tool_calls` array:
 
-Copy code
-
 ```
 {
   "choices": [
@@ -877,8 +688,6 @@ Copy code
 ```
 
 **Step 2 — Execute the tool and send the result back:**
-
-Copy code
 
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/completions" \
@@ -929,11 +738,9 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/
   }'
 ```
 
-#### Messages API tool calling[¶](#messages-api-tool-calling)
+#### Messages API tool calling
 
 PythonJavaScript/TypeScriptcurl
-
-Copy codeExpand code block
 
 ```
 import json
@@ -1012,12 +819,6 @@ if response.stop_reason == "tool_use":
     print(final_response.content[0].text)
 ```
 
-Show lessSee more
-
-Scroll to top
-
-Copy code
-
 ```
 import Anthropic from "@anthropic-ai/sdk";
 
@@ -1093,8 +894,6 @@ if (response.stop_reason === "tool_use") {
 
 **Step 1 — Send the request with tools:**
 
-Copy code
-
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messages" \
   -H "Content-Type: application/json" \
@@ -1127,8 +926,6 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messa
 
 The model responds with a `tool_use` content block:
 
-Copy code
-
 ```
 {
   "role": "assistant",
@@ -1149,8 +946,6 @@ Copy code
 ```
 
 **Step 2 — Execute the tool and send the result back:**
-
-Copy code
 
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messages" \
@@ -1204,18 +999,16 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messa
   }'
 ```
 
-### Structured output[¶](#structured-output)
+### Structured output
 
 You can request structured JSON output that conforms to a specific schema. Both the Chat Completions API and
 the Messages API support structured output.
 
-#### Chat Completions structured output[¶](#chat-completions-structured-output)
+#### Chat Completions structured output
 
 Use the `response_format` field with a JSON schema to constrain the model’s output.
 
 PythonJavaScript/TypeScriptcurl
-
-Copy codeExpand code block
 
 ```
 import json
@@ -1260,12 +1053,6 @@ data = json.loads(response.choices[0].message.content)
 print(data)
 ```
 
-Show lessSee more
-
-Scroll to top
-
-Copy code
-
 ```
 import OpenAI from "openai";
 
@@ -1308,8 +1095,6 @@ const data = JSON.parse(response.choices[0].message.content);
 console.log(data);
 ```
 
-Copy code
-
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/completions" \
   -H "Content-Type: application/json" \
@@ -1350,14 +1135,12 @@ Note
 Claude models support only `json_schema` as the response format type. OpenAI models support additional
 response format types as documented in the [OpenAI API reference](https://platform.openai.com/docs/api-reference/chat/create).
 
-#### Messages API structured output[¶](#messages-api-structured-output)
+#### Messages API structured output
 
 Use the `output_config` parameter with a JSON schema to constrain the model’s output. The response contains
 valid JSON in a `text` content block that matches your schema.
 
 PythonJavaScript/TypeScriptcurl
-
-Copy codeExpand code block
 
 ```
 import json
@@ -1412,12 +1195,6 @@ data = json.loads(response.content[0].text)
 print(data)
 ```
 
-Show lessSee more
-
-Scroll to top
-
-Copy code
-
 ```
 import Anthropic from "@anthropic-ai/sdk";
 
@@ -1466,8 +1243,6 @@ const data = JSON.parse(response.content[0].text);
 console.log(data);
 ```
 
-Copy code
-
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messages" \
   -H "Content-Type: application/json" \
@@ -1505,7 +1280,7 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messa
   }'
 ```
 
-### Image input[¶](#image-input)
+### Image input
 
 You can include images in your requests for models that support vision. Images must be provided as base64-encoded strings.
 Images are limited to 20 per conversation with a 20 MiB max request size.
@@ -1515,11 +1290,9 @@ Image input is supported for:
 * Claude models (`claude-sonnet-4-5` and newer)
 * OpenAI models (`openai-gpt-4.1` and newer)
 
-#### Chat Completions image input[¶](#chat-completions-image-input)
+#### Chat Completions image input
 
 PythonJavaScript/TypeScriptcurl
-
-Copy codeExpand code block
 
 ```
 import base64
@@ -1558,12 +1331,6 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-Show lessSee more
-
-Scroll to top
-
-Copy code
-
 ```
 import OpenAI from "openai";
 import fs from "fs";
@@ -1600,8 +1367,6 @@ const response = await client.chat.completions.create({
 console.log(response.choices[0].message.content);
 ```
 
-Copy code
-
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/completions" \
   -H "Content-Type: application/json" \
@@ -1628,14 +1393,12 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/
   }'
 ```
 
-#### Messages API image input[¶](#messages-api-image-input)
+#### Messages API image input
 
 The Messages API uses a different image format — a `source` block with `type`, `media_type`, and `data` fields
 instead of a data URL.
 
 PythonJavaScript/TypeScriptcurl
-
-Copy codeExpand code block
 
 ```
 import base64
@@ -1686,12 +1449,6 @@ response = client.messages.create(
 print(response.content[0].text)
 ```
 
-Show lessSee more
-
-Scroll to top
-
-Copy code
-
 ```
 import Anthropic from "@anthropic-ai/sdk";
 import fs from "fs";
@@ -1736,8 +1493,6 @@ const response = await client.messages.create({
 console.log(response.content[0].text);
 ```
 
-Copy code
-
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messages" \
   -H "Content-Type: application/json" \
@@ -1768,7 +1523,7 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messa
   }'
 ```
 
-### Prompt caching[¶](#prompt-caching)
+### Prompt caching
 
 Prompt caching lets you reuse previously processed context (such as large system prompts, documents, or
 conversation history) across requests, reducing latency and cost.
@@ -1776,14 +1531,12 @@ conversation history) across requests, reducing latency and cost.
 * **OpenAI models**: Caching is **implicit**. Prompts with 1,024+ tokens are automatically cached — no request changes needed.
 * **Claude models**: Caching is **explicit**. Add `cache_control` breakpoints to content blocks you want cached. Only the `ephemeral` cache type is supported, with a **5-minute TTL**. A maximum of 4 cache breakpoints per request.
 
-#### Chat Completions prompt caching[¶](#chat-completions-prompt-caching)
+#### Chat Completions prompt caching
 
 For Claude models via Chat Completions, add `cache_control` to content blocks. OpenAI models are cached
 automatically and do not require this field.
 
 PythonJavaScript/TypeScriptcurl
-
-Copy codeExpand code block
 
 ```
 from openai import OpenAI
@@ -1813,12 +1566,6 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-Show lessSee more
-
-Scroll to top
-
-Copy code
-
 ```
 import OpenAI from "openai";
 
@@ -1847,8 +1594,6 @@ const response = await client.chat.completions.create({
 console.log(response.choices[0].message.content);
 ```
 
-Copy code
-
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/completions" \
   -H "Content-Type: application/json" \
@@ -1871,14 +1616,12 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/
   }'
 ```
 
-#### Messages API prompt caching[¶](#messages-api-prompt-caching)
+#### Messages API prompt caching
 
 Use `cache_control` on system or user content blocks. Only the `ephemeral` cache type is supported,
 with a 5-minute TTL. A maximum of 4 cache breakpoints can be set per request.
 
 PythonJavaScript/TypeScriptcurl
-
-Copy codeExpand code block
 
 ```
 import httpx
@@ -1915,12 +1658,6 @@ response = client.messages.create(
 print(response.content[0].text)
 ```
 
-Show lessSee more
-
-Scroll to top
-
-Copy code
-
 ```
 import Anthropic from "@anthropic-ai/sdk";
 
@@ -1952,8 +1689,6 @@ const response = await client.messages.create({
 console.log(response.content[0].text);
 ```
 
-Copy code
-
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messages" \
   -H "Content-Type: application/json" \
@@ -1980,16 +1715,14 @@ Note
 Anthropic prompt caching uses a **5-minute** TTL. Cached content not accessed within the TTL window is evicted.
 OpenAI prompt caching is implicit and managed automatically — no `cache_control` fields needed.
 
-### Thinking and reasoning[¶](#thinking-and-reasoning)
+### Thinking and reasoning
 
-#### Chat Completions reasoning[¶](#chat-completions-reasoning)
+#### Chat Completions reasoning
 
 For Claude models, use the `reasoning` object. For OpenAI reasoning models, use the `reasoning_effort` field
 (values: `none`, `minimal`, `low`, `medium`, `high`).
 
 PythonJavaScript/TypeScriptcurl
-
-Copy codeExpand code block
 
 ```
 from openai import OpenAI
@@ -2014,12 +1747,6 @@ response = client.chat.completions.create(
 print(response.choices[0].message.content)
 ```
 
-Show lessSee more
-
-Scroll to top
-
-Copy code
-
 ```
 import OpenAI from "openai";
 
@@ -2041,8 +1768,6 @@ const response = await client.chat.completions.create({
 console.log(response.choices[0].message.content);
 ```
 
-Copy code
-
 ```
 # Claude models — use the reasoning object
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/completions" \
@@ -2060,8 +1785,6 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/
   }'
 ```
 
-Copy code
-
 ```
 # OpenAI reasoning models — use reasoning_effort
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/completions" \
@@ -2076,7 +1799,7 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/
   }'
 ```
 
-#### Messages API thinking[¶](#messages-api-thinking)
+#### Messages API thinking
 
 Some Claude models support **adaptive thinking**, where the model adjusts how much reasoning it applies based on task
 complexity. The following models support adaptive thinking:
@@ -2093,15 +1816,9 @@ For the Messages API, use the `thinking` parameter with `type: "adaptive"` to en
 | `medium` | Moderate thinking. May skip thinking for very simple queries. |
 | `low` | Minimizes thinking. Skips thinking for simple tasks where speed matters most. |
 
-Expand
-
-Show lessSee more
-
 The following examples demonstrate how to make a Messages API call with adaptive thinking enabled:
 
 PythonJavaScript/TypeScriptcurl
-
-Copy codeExpand code block
 
 ```
 import httpx
@@ -2139,12 +1856,6 @@ for block in response.content:
         print(f"Answer: {block.text}")
 ```
 
-Show lessSee more
-
-Scroll to top
-
-Copy code
-
 ```
 import Anthropic from "@anthropic-ai/sdk";
 
@@ -2179,8 +1890,6 @@ for (const block of response.content) {
 }
 ```
 
-Copy code
-
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messages" \
   -H "Content-Type: application/json" \
@@ -2201,8 +1910,6 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messa
 The response includes thinking blocks with summarized thinking and thinking signatures.
 Pass these blocks back in multi-turn conversations to maintain reasoning context:
 
-Copy codeExpand code block
-
 ```
 {
   "role": "assistant",
@@ -2215,9 +1922,9 @@ Copy codeExpand code block
 
 For a full description of the Messages API support for Adaptive Thinking, see [Claude API Docs – Adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/adaptive-thinking).
 
-### Beta features (Messages API)[¶](#beta-features-messages-api)
+### Beta features (Messages API)
 
-[![Snowflake logo in black (no text)](/static/images/logo-snowflake-black.png)](/static/images/logo-snowflake-black.png) [Preview Feature](/release-notes/preview-features) — Open
+[![Snowflake logo in black (no text)](https://docs.snowflake.com/static/images/logo-snowflake-black.png)](https://docs.snowflake.com/static/images/logo-snowflake-black.png) [Preview Feature](https://docs.snowflake.com/release-notes/preview-features) — Open
 
 Available to all accounts.
 
@@ -2237,15 +1944,9 @@ values as a comma-separated string.
 | `tool-search-tool-2025-10-19` | Tool search tool |
 | `tool-examples-2025-10-29` | Tool use examples |
 
-Expand
-
-Show lessSee more
-
 The following example demonstrates using tool examples with `claude-sonnet-4-6`:
 
 PythonJavaScript/TypeScriptcurl
-
-Copy codeExpand code block
 
 ```
 import httpx
@@ -2304,12 +2005,6 @@ if response.stop_reason == "tool_use":
   print(f"Arguments: {tool_use.input}")
 ```
 
-Show lessSee more
-
-Scroll to top
-
-Copy code
-
 ```
 import Anthropic from "@anthropic-ai/sdk";
 
@@ -2362,8 +2057,6 @@ if (response.stop_reason === "tool_use") {
 }
 ```
 
-Copy code
-
 ```
 curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messages" \
   -H "Content-Type: application/json" \
@@ -2403,36 +2096,32 @@ curl "https://<account-identifier>.snowflakecomputing.com/api/v2/cortex/v1/messa
 
 You can combine multiple beta features by passing a comma-separated string:
 
-Copy codeExpand code block
-
 ```
 -H "anthropic-beta: tool-examples-2025-10-29,tool-search-tool-2025-10-19"
 ```
 
-## Chat Completions API reference[¶](#chat-completions-api-reference)
+## Chat Completions API reference
 
-### POST /api/v2/cortex/v1/chat/completions[¶](#post-apiv2cortexv1chatcompletions)
+### POST /api/v2/cortex/v1/chat/completions
 
 Generates a chat completion using the specified model. The request and response format follows the
 [OpenAI Chat Completions API specification](https://platform.openai.com/docs/api-reference/chat/create).
-
-Expand code block
 
 ```
 POST https://<account_identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/completions
 ```
 
-#### Required headers[¶](#required-headers)
+#### Required headers
 
 `Authorization: Bearer token`
 :   Authorization for the request. `token` is a JSON web token (JWT), OAuth token, or
-    [programmatic access token](/user-guide/programmatic-access-tokens). For details, see
-    [Authenticating Snowflake REST APIs with Snowflake](/developer-guide/snowflake-rest-api/authentication).
+    [programmatic access token](https://docs.snowflake.com/user-guide/programmatic-access-tokens). For details, see
+    [Authenticating Snowflake REST APIs with Snowflake](https://docs.snowflake.com/developer-guide/snowflake-rest-api/authentication).
 
 `Content-Type: application/json`
 :   Specifies that the body of the request is in JSON format.
 
-#### Optional headers[¶](#optional-headers)
+#### Optional headers
 
 `X-Snowflake-Authorization-Token-Type: type`
 :   Defines the type of authorization token.
@@ -2443,23 +2132,19 @@ POST https://<account_identifier>.snowflakecomputing.com/api/v2/cortex/v1/chat/c
 
     * `KEYPAIR_JWT` (for key-pair authentication)
     * `OAUTH` (for OAuth)
-    * `PROGRAMMATIC_ACCESS_TOKEN` (for [programmatic access tokens](/user-guide/programmatic-access-tokens))
+    * `PROGRAMMATIC_ACCESS_TOKEN` (for [programmatic access tokens](https://docs.snowflake.com/user-guide/programmatic-access-tokens))
 
 `Accept: application/json, text/event-stream`
 :   Specifies that the response will either contain JSON (error case) or server-sent events.
 
-#### Required JSON fields[¶](#required-json-fields)
+#### Required JSON fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `model` | string | The model to use (see [Model availability](#label-cortex-complete-llm-model-availability)). You may also use the fully qualified name of any [fine-tuned](/user-guide/snowflake-cortex/cortex-finetuning) model in the format `database.schema.model`. |
+| `model` | string | The model to use (see [Model availability](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api#label-cortex-complete-llm-model-availability)). You may also use the fully qualified name of any [fine-tuned](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-finetuning) model in the format `database.schema.model`. |
 | `messages` | array | An array of message objects representing the conversation. Each message must have a `role` (`system`, `user`, `assistant`, or `tool`) and `content` (string or array of content parts). |
 
-Expand
-
-Show lessSee more
-
-#### Commonly used optional JSON fields[¶](#commonly-used-optional-json-fields)
+#### Commonly used optional JSON fields
 
 | Field | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -2473,14 +2158,10 @@ Show lessSee more
 | `reasoning_effort` | string | null | For OpenAI reasoning models. Values: `none`, `"minimal"`, `"low"`, `"medium"`, `"high"`. |
 | `reasoning` | object | null | For Claude models. Set `reasoning.effort` or `reasoning.max_tokens` to enable thinking. |
 
-Expand
-
-Show lessSee more
-
-See the [detailed compatibility chart](#label-cortex-openai-sdk-compatibility) for the full list of supported
+See the [detailed compatibility chart](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api#label-cortex-openai-sdk-compatibility) for the full list of supported
 fields per model family.
 
-#### Status codes[¶](#status-codes)
+#### Status codes
 
 200 `OK`
 :   Request completed successfully.
@@ -2513,7 +2194,7 @@ fields per model family.
 503 `inference timed out`
 :   The request took too long.
 
-#### Limitations[¶](#limitations)
+#### Limitations
 
 * If unset, `max_completion_tokens` defaults to 4096. Each model has its own output token limit.
 * Tool calling is supported for OpenAI and Claude models only.
@@ -2526,7 +2207,7 @@ fields per model family.
 * `max_tokens` is deprecated. Use `max_completion_tokens` instead.
 * Error messages are generated by Snowflake, not by the model provider.
 
-#### Detailed compatibility chart[¶](#detailed-compatibility-chart)
+#### Detailed compatibility chart
 
 The following tables summarize which request and response fields are supported when using the Chat Completions API
 with different Snowflake-hosted model families.
@@ -2588,10 +2269,6 @@ with different Snowflake-hosted model families.
 | `verbosity` | ✔ Supported | ❌ Ignored | ❌ Ignored |
 | `web_search_options` | ❌ Error | ❌ Ignored | ❌ Ignored |
 
-Expand
-
-Show lessSee more
-
 **Response fields**
 
 | Field | OpenAI Models | Claude Models | Other Models |
@@ -2635,10 +2312,6 @@ Show lessSee more
 | `service_tier` | ✔ Supported | ❌ Not supported | ❌ Not supported |
 | `system_fingerprint` | ✔ Supported | ❌ Not supported | ❌ Not supported |
 
-Expand
-
-Show lessSee more
-
 **Request headers**
 
 | Header | Support |
@@ -2646,10 +2319,6 @@ Show lessSee more
 | `Authorization` | ✔ Required |
 | `Content-Type` | ✔ Supported (`application/json`) |
 | `Accept` | ✔ Supported (`application/json`, `text/event-stream`) |
-
-Expand
-
-Show lessSee more
 
 **Response headers**
 
@@ -2666,11 +2335,7 @@ Show lessSee more
 | `x-ratelimit-reset-tokens` | ❌ Not supported |
 | `retry-after` | ❌ Not supported |
 
-Expand
-
-Show lessSee more
-
-#### Learn more[¶](#learn-more)
+#### Learn more
 
 For additional usage examples, see the [OpenAI Chat Completions API reference](https://platform.openai.com/docs/guides/completions/)
 or the [OpenAI Cookbook](https://cookbook.openai.com/).
@@ -2681,14 +2346,12 @@ for Claude models. These features are exposed as extra fields on the request:
 1. For prompt caching, use the `cache_control` field. See the [OpenRouter prompt caching documentation](https://openrouter.ai/docs/features/prompt-caching).
 2. For reasoning tokens, use the `reasoning` field. See the [OpenRouter reasoning documentation](https://openrouter.ai/docs/use-cases/reasoning-tokens).
 
-## Messages API reference[¶](#messages-api-reference)
+## Messages API reference
 
-### POST /api/v2/cortex/v1/messages[¶](#post-apiv2cortexv1messages)
+### POST /api/v2/cortex/v1/messages
 
 Generates a response using a Claude model. The request and response format follows the
 [Anthropic Messages API specification](https://docs.anthropic.com/en/api/messages).
-
-Expand code block
 
 ```
 POST https://<account_identifier>.snowflakecomputing.com/api/v2/cortex/v1/messages
@@ -2698,12 +2361,12 @@ Note
 
 The Messages API supports **Claude models only**. For other models, use the Chat Completions API.
 
-#### Required headers[¶](#required-headers)
+#### Required headers
 
 `Authorization: Bearer token`
 :   Authorization for the request. `token` is a JSON web token (JWT), OAuth token, or
-    [programmatic access token](/user-guide/programmatic-access-tokens). For details, see
-    [Authenticating Snowflake REST APIs with Snowflake](/developer-guide/snowflake-rest-api/authentication).
+    [programmatic access token](https://docs.snowflake.com/user-guide/programmatic-access-tokens). For details, see
+    [Authenticating Snowflake REST APIs with Snowflake](https://docs.snowflake.com/developer-guide/snowflake-rest-api/authentication).
 
 `Content-Type: application/json`
 :   Specifies that the body of the request is in JSON format.
@@ -2711,7 +2374,7 @@ The Messages API supports **Claude models only**. For other models, use the Chat
 `anthropic-version: 2023-06-01`
 :   Required Anthropic API version header.
 
-#### Optional headers[¶](#optional-headers)
+#### Optional headers
 
 `X-Snowflake-Authorization-Token-Type: type`
 :   Defines the type of authorization token.
@@ -2722,24 +2385,20 @@ The Messages API supports **Claude models only**. For other models, use the Chat
 
     * `KEYPAIR_JWT` (for key-pair authentication)
     * `OAUTH` (for OAuth)
-    * `PROGRAMMATIC_ACCESS_TOKEN` (for [programmatic access tokens](/user-guide/programmatic-access-tokens))
+    * `PROGRAMMATIC_ACCESS_TOKEN` (for [programmatic access tokens](https://docs.snowflake.com/user-guide/programmatic-access-tokens))
 
 `anthropic-beta: feature`
 :   Enables beta features. Only Bedrock-compatible beta headers are supported.
 
-#### Required JSON fields[¶](#required-json-fields)
+#### Required JSON fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `model` | string | The Claude model to use (see [Model availability](#label-cortex-complete-llm-model-availability)). |
+| `model` | string | The Claude model to use (see [Model availability](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api#label-cortex-complete-llm-model-availability)). |
 | `max_tokens` | integer | The maximum number of tokens to generate. |
 | `messages` | array | An array of message objects. Each message has a `role` (`user` or `assistant`) and `content` (string or array of content blocks). |
 
-Expand
-
-Show lessSee more
-
-#### Supported features[¶](#supported-features)
+#### Supported features
 
 The Messages API supports the standard Anthropic Messages API feature set for Claude models, including:
 
@@ -2755,14 +2414,14 @@ The Messages API supports the standard Anthropic Messages API feature set for Cl
 For full request and response schema details, see the
 [Anthropic Messages API documentation](https://docs.anthropic.com/en/api/messages).
 
-#### Limitations[¶](#limitations)
+#### Limitations
 
 * **Claude models only.** OpenAI, Llama, Mistral, and other models are not available through this endpoint.
 * **No flex processing or priority tier.** The `service_tier` field is not supported.
 * **Bedrock beta headers only.** Only Bedrock-compatible `anthropic-beta` header values are supported.
 * Error messages are generated by Snowflake, not by Anthropic.
 
-#### Status codes[¶](#status-codes)
+#### Status codes
 
 200 `OK`
 :   Request completed successfully.
@@ -2785,18 +2444,16 @@ For full request and response schema details, see the
 503 `inference timed out`
 :   The request took too long.
 
-## Responses API reference[¶](#responses-api-reference)
+## Responses API reference
 
-[![Snowflake logo in black (no text)](/static/images/logo-snowflake-black.png)](/static/images/logo-snowflake-black.png) [Preview Feature](/release-notes/preview-features) — Open
+[![Snowflake logo in black (no text)](https://docs.snowflake.com/static/images/logo-snowflake-black.png)](https://docs.snowflake.com/static/images/logo-snowflake-black.png) [Preview Feature](https://docs.snowflake.com/release-notes/preview-features) — Open
 
 Available to all accounts.
 
-### POST /api/v2/cortex/v1/responses[¶](#post-apiv2cortexv1responses)
+### POST /api/v2/cortex/v1/responses
 
 Generates a model response using an OpenAI model. The request and response format follows the
 [OpenAI Responses API specification](https://platform.openai.com/docs/api-reference/responses/create).
-
-Expand code block
 
 ```
 POST https://<account_identifier>.snowflakecomputing.com/api/v2/cortex/v1/responses
@@ -2804,23 +2461,23 @@ POST https://<account_identifier>.snowflakecomputing.com/api/v2/cortex/v1/respon
 
 Note
 
-The Responses API supports **OpenAI models only**. For other models, use the Chat Completions API or the
+The Responses API supports **OpenAI models on AWS only**. For other models, use the Chat Completions API or the
 Messages API.
 
 The Responses API’s public preview status applies only to OpenAI models that are in public preview or
 generally available.
 
-#### Required headers[¶](#required-headers)
+#### Required headers
 
 `Authorization: Bearer token`
 :   Authorization for the request. `token` is a JSON web token (JWT), OAuth token, or
-    [programmatic access token](/user-guide/programmatic-access-tokens). For details, see
-    [Authenticating Snowflake REST APIs with Snowflake](/developer-guide/snowflake-rest-api/authentication).
+    [programmatic access token](https://docs.snowflake.com/user-guide/programmatic-access-tokens). For details, see
+    [Authenticating Snowflake REST APIs with Snowflake](https://docs.snowflake.com/developer-guide/snowflake-rest-api/authentication).
 
 `Content-Type: application/json`
 :   Specifies that the body of the request is in JSON format.
 
-#### Optional headers[¶](#optional-headers)
+#### Optional headers
 
 `X-Snowflake-Authorization-Token-Type: type`
 :   Defines the type of authorization token.
@@ -2831,23 +2488,19 @@ generally available.
 
     * `KEYPAIR_JWT` (for key-pair authentication)
     * `OAUTH` (for OAuth)
-    * `PROGRAMMATIC_ACCESS_TOKEN` (for [programmatic access tokens](/user-guide/programmatic-access-tokens))
+    * `PROGRAMMATIC_ACCESS_TOKEN` (for [programmatic access tokens](https://docs.snowflake.com/user-guide/programmatic-access-tokens))
 
 `Accept: application/json, text/event-stream`
 :   Specifies that the response will either contain JSON (error case) or server-sent events.
 
-#### Required JSON fields[¶](#required-json-fields)
+#### Required JSON fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `model` | string | The OpenAI model to use (see [Model availability](#label-cortex-complete-llm-model-availability)). Required on every request. |
+| `model` | string | The OpenAI model to use (see [Model availability](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api#label-cortex-complete-llm-model-availability)). Required on every request. |
 | `input` | string or array | The input to the model: a text string, or an array of input items. Each message item has a `role` (`system`, `developer`, `user`, or `assistant`) and `content`. |
 
-Expand
-
-Show lessSee more
-
-#### Commonly used optional JSON fields[¶](#commonly-used-optional-json-fields)
+#### Commonly used optional JSON fields
 
 | Field | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -2858,16 +2511,12 @@ Show lessSee more
 | `tool_choice` | string or object | `"auto"` | Controls how the model selects tools. Options: `"auto"`, `"required"`, `"none"`, or an object specifying a particular function. |
 | `text` | object | null | Constrains the output format. Use `{"format": {"type": "json_schema", ...}}` for structured output. |
 | `reasoning` | object | null | Set `reasoning.effort` to control reasoning. Values: `"none"`, `"minimal"`, `"low"`, `"medium"`, `"high"`. |
-| `store` | boolean | false | Always treated as `false`, whatever value you send, so responses aren’t stored. See [Limitations](#label-cortex-rest-api-responses-limitations). |
-
-Expand
-
-Show lessSee more
+| `store` | boolean | false | Always treated as `false`, whatever value you send, so responses aren’t stored. See [Limitations](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api#label-cortex-rest-api-responses-limitations). |
 
 For full request and response schema details, see the
 [OpenAI Responses API documentation](https://platform.openai.com/docs/api-reference/responses).
 
-#### Supported features[¶](#supported-features)
+#### Supported features
 
 The Responses API supports the following features for OpenAI models:
 
@@ -2878,16 +2527,16 @@ The Responses API supports the following features for OpenAI models:
 * Structured output (`text.format` with `json_schema`)
 * Reasoning (`reasoning.effort`)
 
-#### Limitations[¶](#limitations)
+#### Limitations
 
-* **OpenAI models only.** Requests for Claude, Llama, Mistral, and other models are rejected.
+* **OpenAI models on AWS only.** Requests for Claude, Llama, Mistral, and other models are rejected.
 * **No conversation state.** `store` is always treated as `false`, so responses
   aren’t stored. You can’t retrieve a response with `GET /responses/{id}` or continue one with `previous_response_id`.
   Send the full conversation history in `input` on every request.
 * **No background mode.** Requests are synchronous. `"background": true` is rejected.
 * `model` is required on every request.
 
-#### Status codes[¶](#status-codes)
+#### Status codes
 
 200 `OK`
 :   Request completed successfully.
@@ -2910,7 +2559,7 @@ The Responses API supports the following features for OpenAI models:
 503 `inference timed out`
 :   The request took too long.
 
-## Rate limits[¶](#rate-limits)
+## Rate limits
 
 To ensure high performance for all Snowflake customers, Cortex REST API requests are subject to rate limits.
 Requests exceeding the limits may receive an HTTP 429 response. Snowflake may occasionally adjust these limits.
@@ -2946,14 +2595,10 @@ If you need to increase the limits, contact Snowflake Support.
 | `openai-gpt-5.1` | 600,000 | 3,000 | 16,384 |
 | `openai-gpt-5.2` | 1,200,000 | 3,000 | 16,384 |
 
-Expand
-
-Show lessSee more
-
-### Increase rate limits with cross-region inference[¶](#increase-rate-limits-with-cross-region-inference)
+### Increase rate limits with cross-region inference
 
 If you’ve opted into Cross Cloud, AWS Global, or Azure Global cross-region inference
-(see [cross-region inference](/user-guide/snowflake-cortex/cross-region-inference)) in your Snowflake account,
+(see [cross-region inference](https://docs.snowflake.com/user-guide/snowflake-cortex/cross-region-inference)) in your Snowflake account,
 the rate limits are higher for the following models:
 
 **Cortex REST API rate limits with cross-region inference**
@@ -2971,23 +2616,17 @@ the rate limits are higher for the following models:
 | `openai-gpt-5.1` | 1,000,000 | 10,000 | 16,384 |
 | `openai-gpt-5.2` | 1,000,000 | 10,000 | 16,384 |
 
-Expand
-
-Show lessSee more
-
-### View your rate limits[¶](#view-your-rate-limits)
+### View your rate limits
 
 To see the rate limits that apply to your account, query the
-[CORTEX\_REST\_API\_RATE\_LIMIT\_POLICIES](/sql-reference/account-usage/cortex_rest_api_rate_limit_policies)
+[CORTEX\_REST\_API\_RATE\_LIMIT\_POLICIES](https://docs.snowflake.com/sql-reference/account-usage/cortex_rest_api_rate_limit_policies)
 Account Usage view. The view returns the RPM and TPM limits for each model.
-
-Copy codeExpand code block
 
 ```
 SELECT * FROM SNOWFLAKE.ACCOUNT_USAGE.CORTEX_REST_API_RATE_LIMIT_POLICIES;
 ```
 
-### Troubleshooting rate limit events[¶](#troubleshooting-rate-limit-events)
+### Troubleshooting rate limit events
 
 Offending either the TPM or RPM limits will result in a 429 response code. If
 your REST API usage is below the requests per minute rate limit but still
@@ -3004,11 +2643,11 @@ requests, but recovers quickly given the window is short. Please contact
 Snowflake Support if you are subject to the overestimation and want to increase
 the limits.
 
-## Known issues[¶](#known-issues)
+## Known issues
 
-### Session token expiration[¶](#session-token-expiration)
+### Session token expiration
 
-We recommend authenticating with one of the three methods defined in [Authenticating Snowflake REST APIs with Snowflake](/developer-guide/snowflake-rest-api/authentication). However, if you choose to authenticate with a Snowflake session token, you must handle token refresh to ensure uninterrupted API access.
+We recommend authenticating with one of the three methods defined in [Authenticating Snowflake REST APIs with Snowflake](https://docs.snowflake.com/developer-guide/snowflake-rest-api/authentication). However, if you choose to authenticate with a Snowflake session token, you must handle token refresh to ensure uninterrupted API access.
 
 Session tokens expire periodically. If a request is executed with an expired session token, the REST API returns a `200 OK` response that includes error code `390112`. When this occurs, the operation is not performed.
 
@@ -3020,12 +2659,12 @@ To handle this behavior, your application should:
 Note
 
 This behavior only affects applications using Snowflake session tokens. If you authenticate using
-[key pair authentication](/developer-guide/snowflake-rest-api/authentication#label-sfrest-api-authenticating-key-pair),
-[OAuth](/developer-guide/snowflake-rest-api/authentication#label-sfrest-authenticating-oauth), or
-[programmatic access tokens (PATs)](/developer-guide/snowflake-rest-api/authentication#label-sfrest-authenticating-pat),
+[key pair authentication](https://docs.snowflake.com/developer-guide/snowflake-rest-api/authentication#label-sfrest-api-authenticating-key-pair),
+[OAuth](https://docs.snowflake.com/developer-guide/snowflake-rest-api/authentication#label-sfrest-authenticating-oauth), or
+[programmatic access tokens (PATs)](https://docs.snowflake.com/developer-guide/snowflake-rest-api/authentication#label-sfrest-authenticating-pat),
 you do not need to implement this error handling.
 
-## Cost considerations[¶](#cost-considerations)
+## Cost considerations
 
 Snowflake Cortex REST API requests incur compute costs based on the number of tokens processed. Refer to the
 [Snowflake Service Consumption Table](https://www.snowflake.com/legal-files/CreditConsumptionTable.pdf) for each model’s cost in dollars per million tokens.
@@ -3036,33 +2675,29 @@ approximately equal to four characters of text. The equivalence of raw input or 
 Both input and output tokens incur compute cost. If you use the API to provide a conversational or chat user experience,
 all previous prompts and responses are processed to generate each new response, with corresponding costs.
 
-## Monitoring usage[¶](#monitoring-usage)
+## Monitoring usage
 
 Use the following views in the `SNOWFLAKE.ACCOUNT_USAGE` schema to monitor Cortex REST API
 consumption, token usage, and rate limit utilization:
 
-* [CORTEX\_REST\_API\_USAGE\_HISTORY](/sql-reference/account-usage/cortex_rest_api_usage_history):
+* [CORTEX\_REST\_API\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_rest_api_usage_history):
   Request-level usage including model, tokens, user, region, and timestamps.
-* [CORTEX\_REST\_API\_RATE\_LIMIT\_POLICIES](/sql-reference/account-usage/cortex_rest_api_rate_limit_policies):
-  Configured RPM and TPM limits per model. For a basic query, see [View your rate limits](#label-cortex-rest-api-view-rate-limits).
+* [CORTEX\_REST\_API\_RATE\_LIMIT\_POLICIES](https://docs.snowflake.com/sql-reference/account-usage/cortex_rest_api_rate_limit_policies):
+  Configured RPM and TPM limits per model. For a basic query, see [View your rate limits](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api#label-cortex-rest-api-view-rate-limits).
 
-### Required privileges[¶](#required-privileges)
+### Required privileges
 
 To query ACCOUNT\_USAGE views, your role needs imported privileges on the SNOWFLAKE database.
 If you encounter a permissions issue, run the following:
-
-Copy code
 
 ```
 USE ROLE ACCOUNTADMIN;
 GRANT IMPORTED PRIVILEGES ON DATABASE SNOWFLAKE TO ROLE <role_name>;
 ```
 
-### Usage examples[¶](#usage-examples)
+### Usage examples
 
-#### Total requests and tokens (last 7 days)[¶](#total-requests-and-tokens-last-7-days)
-
-Copy code
+#### Total requests and tokens (last 7 days)
 
 ```
 SELECT
@@ -3074,9 +2709,7 @@ FROM SNOWFLAKE.ACCOUNT_USAGE.CORTEX_REST_API_USAGE_HISTORY
 WHERE START_TIME >= DATEADD('day', -7, CURRENT_TIMESTAMP());
 ```
 
-#### Daily request and token volume[¶](#daily-request-and-token-volume)
-
-Copy code
+#### Daily request and token volume
 
 ```
 SELECT
@@ -3092,9 +2725,7 @@ GROUP BY 1, 2
 ORDER BY 1, 2;
 ```
 
-#### Peak RPM and TPM per model[¶](#peak-rpm-and-tpm-per-model)
-
-Copy codeExpand code block
+#### Peak RPM and TPM per model
 
 ```
 WITH per_minute AS (
@@ -3119,13 +2750,7 @@ GROUP BY 1
 ORDER BY peak_rpm DESC;
 ```
 
-Show lessSee more
-
-Scroll to top
-
-#### Rate limit utilization (last 24 hours)[¶](#rate-limit-utilization-last-24-hours)
-
-Copy codeExpand code block
+#### Rate limit utilization (last 24 hours)
 
 ```
 WITH per_minute AS (
@@ -3152,13 +2777,7 @@ GROUP BY q.MODEL_NAME, q.RPM, q.TPM
 ORDER BY pct_rpm_used DESC;
 ```
 
-Show lessSee more
-
-Scroll to top
-
-#### Usage by user[¶](#usage-by-user)
-
-Copy code
+#### Usage by user
 
 ```
 SELECT
@@ -3175,9 +2794,7 @@ GROUP BY 1, 2
 ORDER BY total_tokens DESC;
 ```
 
-#### Usage by inference region[¶](#usage-by-inference-region)
-
-Copy code
+#### Usage by inference region
 
 ```
 SELECT
@@ -3190,11 +2807,9 @@ GROUP BY 1
 ORDER BY requests DESC;
 ```
 
-### Exporting historical data[¶](#exporting-historical-data)
+### Exporting historical data
 
 You can export usage data to a stage for long-term retention or external analysis:
-
-Copy codeExpand code block
 
 ```
 COPY INTO @my_stage/cortex_rest_api_export/
@@ -3216,69 +2831,8 @@ FILE_FORMAT = (TYPE = 'PARQUET')
 OVERWRITE = TRUE;
 ```
 
-Show lessSee more
-
-Scroll to top
-
 Note
 
 * ACCOUNT\_USAGE views can have up to 45 minutes of latency.
 * The `TOKENS_GRANULAR` column is a VARIANT containing `"input"` and `"output"` token counts.
 * Rate limit policies reflect the current configuration, not historical values.
-
-Was this page helpful?
-
-YesNo
-
-[Visit Snowflake](https://www.snowflake.com)
-
-[Join the conversation](https://community.snowflake.com/s/)
-
-[Develop with Snowflake](https://developers.snowflake.com)
-
-[Share your feedback](/feedback)
-
-[Read the latest on our blog](https://www.snowflake.com/blog/)
-
-[Get your own certification](https://learn.snowflake.com)
-
-[Privacy Notice](https://www.snowflake.com/privacy-policy/)[Site Terms](https://www.snowflake.com/legal/snowflake-site-terms/)Cookies Settings© 2026 Snowflake, Inc. All Rights Reserved.
-
-On this page
-
-1. [Monitor usage](#monitor-usage)
-2. [Choose your API](#choose-your-api)
-3. [Quickstart](#quickstart)
-4. [Prerequisites](#prerequisites)
-5. [Chat Completions quickstart](#chat-completions-quickstart)
-6. [Messages API quickstart](#messages-api-quickstart)
-7. [Responses API quickstart](#responses-api-quickstart)
-8. [Setting up authentication](#setting-up-authentication)
-9. [Setting up authorization](#setting-up-authorization)
-10. [Limiting access using the Cortex REST API user role](#limiting-access-using-the-cortex-rest-api-user-role)
-11. [Model availability](#model-availability)
-12. [Features](#features)
-13. [Streaming](#streaming)
-14. [Tool calling](#tool-calling)
-15. [Structured output](#structured-output)
-16. [Image input](#image-input)
-17. [Prompt caching](#prompt-caching)
-18. [Thinking and reasoning](#thinking-and-reasoning)
-19. [Beta features (Messages API)](#beta-features-messages-api)
-20. [Chat Completions API reference](#chat-completions-api-reference)
-21. [POST /api/v2/cortex/v1/chat/completions](#post-apiv2cortexv1chatcompletions)
-22. [Messages API reference](#messages-api-reference)
-23. [POST /api/v2/cortex/v1/messages](#post-apiv2cortexv1messages)
-24. [Responses API reference](#responses-api-reference)
-25. [POST /api/v2/cortex/v1/responses](#post-apiv2cortexv1responses)
-26. [Rate limits](#rate-limits)
-27. [Increase rate limits with cross-region inference](#increase-rate-limits-with-cross-region-inference)
-28. [View your rate limits](#view-your-rate-limits)
-29. [Troubleshooting rate limit events](#troubleshooting-rate-limit-events)
-30. [Known issues](#known-issues)
-31. [Session token expiration](#session-token-expiration)
-32. [Cost considerations](#cost-considerations)
-33. [Monitoring usage](#monitoring-usage)
-34. [Required privileges](#required-privileges)
-35. [Usage examples](#usage-examples)
-36. [Exporting historical data](#exporting-historical-data)

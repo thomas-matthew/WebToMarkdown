@@ -1,85 +1,10 @@
-1. [Overview](/en/guides "Overview")
-2. [Snowflake Horizon Catalog](/en/user-guide/snowflake-horizon "Snowflake Horizon Catalog")
-4. [Applications and tools for connecting to Snowflake](/en/guides-overview-connecting "Applications and tools for connecting to Snowflake")
-6. [Virtual warehouses](/en/user-guide/warehouses "Virtual warehouses")
-7. [Databases, Tables, & Views](/en/guides-overview-db "Databases, Tables, & Views")
-8. [Data types](/en/data-types "Data types")
-10. Data Integration
-
-    - [Snowflake Openflow](/en/user-guide/data-integration/openflow/about "Snowflake Openflow")
-    - Apache Iceberg™
-
-      - [Apache Iceberg™ Tables](/en/user-guide/tables-iceberg "Apache Iceberg™ Tables")
-      - [Snowflake Open Catalog](/en/user-guide/opencatalog/overview "Snowflake Open Catalog")
-    - Zero-Copy Connectors
-
-      - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
-      - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
-      - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
-      - [About Workday Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-datacloud "About Workday Data Cloud and Snowflake")
-11. Data engineering
-
-    - [Data loading](/en/guides-overview-loading-data "Data loading")
-    - [Dynamic tables](/en/user-guide/dynamic-tables/overview "Dynamic tables")
-    - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
-    - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
-    - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
-    - [Pipeline Builder](/en/user-guide/pipeline-builder/pipeline-builder-overview "Pipeline Builder")
-    - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
-    - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
-12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/snowflake-aim "Migrations")
-15. [Queries](/en/guides-overview-queries "Queries")
-16. [Collaboration](/en/guides-overview-sharing "Collaboration")
-18. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
-
-    * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
-    * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
-    * [Snowflake Artifacts](/en/user-guide/snowflake-artifacts "Snowflake Artifacts")
-    * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
-    * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
-    * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
-    * [Cortex Agent SDK](/en/user-guide/snowflake-cortex/cortex-agent-sdk/cortex-agent-sdk "Cortex Agent SDK")
-    * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
-    * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
-    * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
-    * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
-
-      + [Query a Cortex Search Service](/en/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service "Query a Cortex Search Service")
-      + [Use with Cortex Agents](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-agents "Use with Cortex Agents")
-      + [Replicate a Cortex Search Service](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-replication "Replicate a Cortex Search Service")
-      + [Customize Cortex Search Scoring](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-customize-scoring "Customize Cortex Search Scoring")
-      + [Understanding cost](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-costs "Understanding cost")
-      + [Batch Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/batch-cortex-search "Batch Cortex Search")
-      + [Retrieve Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-retrieve "Retrieve Cortex Search")
-      + [Monitor Cortex Search requests](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-monitor "Monitor Cortex Search requests")
-      + [Resource budgets](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-resource-budgets "Resource budgets")
-      + [Tutorials](/en/user-guide/snowflake-cortex/cortex-search/overview-tutorials "Tutorials")
-    * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
-    * [Cortex Inference](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex Inference")
-    * [Cortex AI Guardrails](/en/user-guide/snowflake-cortex/cortex-ai-guardrails "Cortex AI Guardrails")
-    * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
-    * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
-    * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
-    * [ML Development and ML Ops](/en/developer-guide/snowpark-ml/overview "ML Development and ML Ops")
-    * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
-20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
-22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
-24. [Security](/en/guides-overview-secure "Security")
-26. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-27. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-29. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-30. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
-
-[Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)Cortex Search
-
-# Cortex Search[¶](#cortex-search)
+# Cortex Search
 
 Get started with Cortex Search
 
 [Try it in Snowsight](https://app.snowflake.com/_deeplink/#/cortex/search?utm_source=docs&utm_medium=growth&utm_campaign=-us-en-all&utm_content=-app-user-guide-snowflake-cortex-cortex-search-cortex-search-overview)
 
-## Overview[¶](#overview)
+## Overview
 
 Cortex Search enables low-latency, high-quality “fuzzy” search over your Snowflake data.
 It powers a broad array of search experiences for Snowflake users
@@ -89,10 +14,10 @@ applications leveraging Large Language Models (LLMs).
 Cortex Search gets you up and running with a hybrid (vector and keyword) search engine on your text data in minutes, without having to
 worry about embedding, infrastructure maintenance, search quality parameter tuning, or ongoing index refreshes. This means you can spend
 less time on infrastructure and search quality tuning, and more time developing high-quality chat and search
-experiences using your data. Check out the [Cortex Search tutorials](/user-guide/snowflake-cortex/cortex-search/overview-tutorials)
+experiences using your data. Check out the [Cortex Search tutorials](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/overview-tutorials)
 for step-by-step instructions on using Cortex Search to power AI chat and search applications.
 
-## When to use Cortex Search[¶](#when-to-use-cortex-search)
+## When to use Cortex Search
 
 The two primary use cases for Cortex Search are retrieval augmented generation (RAG) and enterprise search.
 
@@ -101,35 +26,33 @@ The two primary use cases for Cortex Search are retrieval augmented generation (
 * **Enterprise search**: Use Cortex Search as a backend for a high-quality search bar embedded in your application.
 * **Powering agents with unstructured data**: Use Cortex Search as the retrieval layer for Cortex Agents.
   Combine standard retrieval with analytical search for comprehensive analysis over large document sets.
-  See [Use Cortex Search with Agents](/user-guide/snowflake-cortex/cortex-search/cortex-search-agents).
+  See [Use Cortex Search with Agents](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-agents).
 
-### Cortex Search for RAG[¶](#cortex-search-for-rag)
+### Cortex Search for RAG
 
 Retrieval augmented generation (RAG) is a technique for retrieving data from a knowledge base to enhance the generated
 response of a large language model. The following architecture diagram shows how you can combine Cortex Search with
-[Cortex LLM Functions](/user-guide/snowflake-cortex/aisql) to create
+[Cortex LLM Functions](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql) to create
 enterprise chatbots with RAG using your Snowflake data as a knowledge base.
 
-![Using Cortex Search for RAG in Snowflake](/static/images/cortex-search-rag.png)
+![Using Cortex Search for RAG in Snowflake](https://docs.snowflake.com/static/images/cortex-search-rag.png)
 
 Cortex Search is the retrieval engine that provides the Large Language Model with the context it needs
 to return answers that are grounded in your most up-to-date proprietary data.
 
 For information about connecting Cortex Search to agents, including standard RAG configuration and
 analytical search (for corpus-wide analysis, aggregation, and trend queries), see
-[Use Cortex Search with Agents](/user-guide/snowflake-cortex/cortex-search/cortex-search-agents).
+[Use Cortex Search with Agents](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-agents).
 
-## Example: Create and query a Cortex Search service[¶](#example-create-and-query-a-cortex-search-service)
+## Example: Create and query a Cortex Search service
 
 This example takes you through the steps of creating a Cortex Search Service and querying
-it using the REST API. Refer to the [Querying a Cortex Search Service](/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax) topic for
+it using the REST API. Refer to the [Querying a Cortex Search Service](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax) topic for
 more details about querying the service.
 
 This example uses a sample customer support transcript dataset.
 
 Run the following commands to set up the example database and schema.
-
-Copy code
 
 ```
 CREATE DATABASE IF NOT EXISTS cortex_search_db;
@@ -141,8 +64,6 @@ CREATE OR REPLACE SCHEMA cortex_search_db.services;
 ```
 
 Run the following SQL commands to create the dataset.
-
-Copy codeExpand code block
 
 ```
 CREATE OR REPLACE TABLE support_transcripts (
@@ -158,7 +79,7 @@ INSERT INTO support_transcripts VALUES
     ('I received a faulty router, can I get it replaced?', 'North America', 'AG1004');
 ```
 
-### Create the service[¶](#create-the-service)
+### Create the service
 
 You can create a Cortex Search Service with a single SQL query or from the Snowflake AI & ML Studio. When you create a
 Cortex Search Service, Snowflake performs transformations on your source data to get it ready for low-latency serving. The following
@@ -169,12 +90,10 @@ Note
 When you create a search service, the search index is built as part of the create process. This means the CREATE CORTEX SEARCH SERVICE
 statement may take longer to complete for larger datasets.
 
-#### Use SQL[¶](#use-sql)
+#### Use SQL
 
 The following example demonstrates how to create a Cortex Search Service
-with [CREATE CORTEX SEARCH SERVICE](/sql-reference/sql/create-cortex-search) on the sample customer support transcript dataset created in the previous section.
-
-Copy codeExpand code block
+with [CREATE CORTEX SEARCH SERVICE](https://docs.snowflake.com/sql-reference/sql/create-cortex-search) on the sample customer support transcript dataset created in the previous section.
 
 ```
 CREATE OR REPLACE CORTEX SEARCH SERVICE transcript_search_service
@@ -191,10 +110,6 @@ CREATE OR REPLACE CORTEX SEARCH SERVICE transcript_search_service
     FROM support_transcripts
 );
 ```
-
-Show lessSee more
-
-Scroll to top
 
 This command triggers the building of the search service for your data. In this example:
 
@@ -215,11 +130,11 @@ Note
 * Columns in the ATTRIBUTES field must be included in the source query, either via
   explicit enumeration or wildcard, (`*`).
 
-#### Use Snowsight[¶](#use-snowsight)
+#### Use Snowsight
 
 Follow these steps to create a Cortex Search Service in Snowsight:
 
-1. Sign in to [Snowsight](/user-guide/ui-snowsight-gs#label-snowsight-getting-started-sign-in).
+1. Sign in to [Snowsight](https://docs.snowflake.com/user-guide/ui-snowsight-gs#label-snowsight-getting-started-sign-in).
 2. Choose a role that is granted the SNOWFLAKE.CORTEX\_USER database role.
 3. In the navigation menu, select **AI & ML** » **Cortex Search**.
 4. Select **Create**.
@@ -242,7 +157,7 @@ Follow these steps to create a Cortex Search Service in Snowsight:
    Note
 
    If you want to specify multiple data sources or perform transformations when defining your service,
-   [use SQL](#label-cortex-search-overview-example-sql).
+   [use SQL](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview#label-cortex-search-overview-example-sql).
 9. If you selected **Table or view**:
 
    * Select the columns you want included in the search results, for example, `transcript_text`, `region`, and `agent_id`, then select **Next**.
@@ -262,14 +177,12 @@ The final step confirms that your service has been created and displays the serv
 Note
 
 When you create the service from Snowsight, the name of the service is double-quoted. For details on what that means when
-referencing the service in SQL, see [Double-quoted identifiers](/sql-reference/identifiers-syntax#label-delimited-identifier).
+referencing the service in SQL, see [Double-quoted identifiers](https://docs.snowflake.com/sql-reference/identifiers-syntax#label-delimited-identifier).
 
-### Grant usage permissions[¶](#grant-usage-permissions)
+### Grant usage permissions
 
 After the service and index are created, you can grant usage on the service, its database,
 and schema to other roles like customer\_support.
-
-Copy codeExpand code block
 
 ```
 GRANT USAGE ON DATABASE cortex_search_db TO ROLE customer_support;
@@ -278,12 +191,10 @@ GRANT USAGE ON SCHEMA services TO ROLE customer_support;
 GRANT USAGE ON CORTEX SEARCH SERVICE transcript_search_service TO ROLE customer_support;
 ```
 
-### Preview the service[¶](#preview-the-service)
+### Preview the service
 
 To confirm that the service is populated with data properly, you can preview the service via the
-[SEARCH\_PREVIEW function](/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-sql-preview) from a SQL environment:
-
-Copy codeExpand code block
+[SEARCH\_PREVIEW function](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-sql-preview) from a SQL environment:
 
 ```
 SELECT PARSE_JSON(
@@ -302,13 +213,7 @@ SELECT PARSE_JSON(
 )['results'] as results;
 ```
 
-Show lessSee more
-
-Scroll to top
-
 Sample successful query response:
-
-Copy codeExpand code block
 
 ```
 [
@@ -321,9 +226,7 @@ Copy codeExpand code block
 
 This response confirms that the service is populated with data and serving reasonable results for the given query.
 
-You can also use the [CORTEX\_SEARCH\_DATA\_SCAN](/sql-reference/functions/cortex_search_data_scan) table function to inspect the contents of the service.
-
-Copy code
+You can also use the [CORTEX\_SEARCH\_DATA\_SCAN](https://docs.snowflake.com/sql-reference/functions/cortex_search_data_scan) table function to inspect the contents of the service.
 
 ```
 SELECT
@@ -336,8 +239,6 @@ FROM
   );
 ```
 
-Expand code block
-
 ```
 + ---------------------------------------------------------- + --------------- + -------- + ------------------------------ +
 |                      transcript_text                       |     region      | agent_id | _GENERATED_EMBEDDINGS_MY_MODEL |
@@ -347,15 +248,13 @@ Expand code block
 + ---------------------------------------------------------- + --------------- + -------- + ------------------------------ +
 ```
 
-### Query the service from your application[¶](#query-the-service-from-your-application)
+### Query the service from your application
 
 Once you’ve created the search service, granted usage on it to your role, and previewed it, you can
-now query it from your application using the [Python API](/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-python).
+now query it from your application using the [Python API](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-python).
 
 The following code shows how to use the Python API to retrieve the support ticket most relevant to
 a query about `internet issues`, filtered to return results in the `North America` region:
-
-Copy codeExpand code block
 
 ```
 from snowflake.core import Root
@@ -381,13 +280,7 @@ resp = transcript_search_service.search(
 print(resp.to_json())
 ```
 
-Show lessSee more
-
-Scroll to top
-
 Sample successful query response:
-
-Copy codeExpand code block
 
 ```
 {
@@ -403,30 +296,32 @@ Copy codeExpand code block
 
 Cortex Search Services return all columns specified in the `columns` field in your query.
 
-## Required privileges[¶](#required-privileges)
+## Required privileges
 
 * To create a Cortex Search Service, your role must have the required privileges to use the Cortex embedding functions, which
-  requires granting the [SNOWFLAKE.CORTEX\_USER](/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user) database role
-  or the [SNOWFLAKE.CORTEX\_EMBED\_USER](/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-embed-user) database
+  requires granting the [SNOWFLAKE.CORTEX\_USER](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user) database role
+  or the [SNOWFLAKE.CORTEX\_EMBED\_USER](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-embed-user) database
   role to the service creator role. You must also have the following privileges:
 
   + The CREATE CORTEX SEARCH SERVICE or OWNERSHIP privilege on the schema where you create the service.
   + The SELECT privilege on the underlying table(s) or view(s) that the service queries.
   + The USAGE privilege on the warehouse that refreshes the service.
 * Change tracking must be enabled on all underlying objects used by a Cortex Search Service.
-  For more information about change tracking requirements, see [Change Tracking Requirements](/sql-reference/sql/create-cortex-search#label-cortex-search-change-tracking-requirements).
+  For more information about change tracking requirements, see [Change Tracking Requirements](https://docs.snowflake.com/sql-reference/sql/create-cortex-search#label-cortex-search-change-tracking-requirements).
 * To query a Cortex Search Service, the role of the querying user must have USAGE privileges on the service itself,
-  as well as on the database and schema in which the service resides. See [Cortex Search Access Control Requirements](/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-access-controls).
+  as well as on the database and schema in which the service resides. See [Cortex Search Access Control Requirements](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-access-controls).
 * To suspend or resume a Cortex Search Service using the ALTER command, the role of the querying user must have the OPERATE privilege on
-  the service. See [ALTER CORTEX SEARCH SERVICE](/sql-reference/sql/alter-cortex-search).
+  the service. See [ALTER CORTEX SEARCH SERVICE](https://docs.snowflake.com/sql-reference/sql/alter-cortex-search).
+* To view refresh history for a Cortex Search Service, the role must have the MONITOR, OPERATE, or OWNERSHIP privilege on
+  the service. See [CORTEX\_SEARCH\_REFRESH\_HISTORY](https://docs.snowflake.com/sql-reference/functions/cortex_search_refresh_history).
 
 Important
 
-Cortex Search Services perform searches with [owner’s rights](/developer-guide/stored-procedure/stored-procedures-rights) and follow
+Cortex Search Services perform searches with [owner’s rights](https://docs.snowflake.com/developer-guide/stored-procedure/stored-procedures-rights) and follow
 the same security model as other Snowflake objects that run with owner’s rights. For more information, see
-[Cortex Search Access Control Requirements](/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-access-controls)
+[Cortex Search Access Control Requirements](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-access-controls)
 
-## Understanding Cortex Search quality[¶](#understanding-cortex-search-quality)
+## Understanding Cortex Search quality
 
 Cortex Search leverages an ensemble of retrieval and ranking models to provide you with a high level of search quality with little to no tuning required.
 Under the hood, Cortex Search takes a “hybrid” approach to retrieving and ranking documents. Each search query utilizes:
@@ -437,9 +332,9 @@ Under the hood, Cortex Search takes a “hybrid” approach to retrieving and ra
 
 This hybrid retrieval approach, coupled with a semantic reranking step, achieves high search quality across a broad range of datasets and queries.
 
-You can customize the scoring of search results by applying numeric boosts, time decays, adjusting component weights, or disabling reranking. For more information, see [Customizing Cortex Search scoring](/user-guide/snowflake-cortex/cortex-search/cortex-search-customize-scoring).
+You can customize the scoring of search results by applying numeric boosts, time decays, adjusting component weights, or disabling reranking. For more information, see [Customizing Cortex Search scoring](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-customize-scoring).
 
-### Cortex Search Embedding Models[¶](#cortex-search-embedding-models)
+### Cortex Search Embedding Models
 
 Cortex Search allows users to select a hosted embedding model to be leveraged in the vector search stage of retrieval.
 The following embedding models are available in Cortex Search.
@@ -457,25 +352,19 @@ Snowflake Service Consumption table shall govern.
 | `snowflake-arctic-embed-l-v2.0-8k` | 1024 | 8192 | Multilingual | Snowflake’s price-performant multilingual embedding model, with an increased context window of 8000 tokens. This open-source, 568M-parameter model yields high quality on both English and non-English datasets. |
 | `voyage-multilingual-2` | 1024 | 32,000 | Multilingual | Voyage’s multilingual embedding model. This model yields high quality on both English and non-English datasets. For more information, see the [Voyage Multilingual 2 blog post](https://blog.voyageai.com/2024/06/10/voyage-multilingual-2-multilingual-embedding-model/) |
 
-Expand
-
-Show lessSee more
-
 Some embedding models are only available in certain cloud regions for Cortex Search.
-For an availability list by model by region, see [Cortex Search Regional Availability](#label-cortex-search-overview-regional-availability).
+For an availability list by model by region, see [Cortex Search Regional Availability](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview#label-cortex-search-overview-regional-availability).
 
 Each model has different performance, cost, context window size, and quality characteristics. Carefully review the model specifications to determine the best
 model for your specific workload. Refer to the [Snowflake Service Consumption Table](https://www.snowflake.com/legal-files/CreditConsumptionTable.pdf) for the most accurate view of each model’s cost in credits per million tokens.
 
-### Tokens, model context windows, and text splitting[¶](#tokens-model-context-windows-and-text-splitting)
+### Tokens, model context windows, and text splitting
 
 A token is a sequence of characters and is the smallest unit of text that can be processed by a large language model.
 As an approximation, one token is equivalent to about 3/4 of an English word, or around 4 characters.
 To calculate the number of tokens in a string, use the
-[COUNT\_TOKENS Cortex Function](/sql-reference/functions/count_tokens-snowflake-cortex). For example, calculating the
+[COUNT\_TOKENS Cortex Function](https://docs.snowflake.com/sql-reference/functions/count_tokens-snowflake-cortex). For example, calculating the
 tokens for a string to be embedded with the `snowflake-arctic-embed-m-v1.5` model:
-
-Copy codeExpand code block
 
 ```
 SELECT SNOWFLAKE.CORTEX.COUNT_TOKENS('snowflake-arctic-embed-m', '<input_text>') as token_count
@@ -487,38 +376,32 @@ context window size, Cortex Search truncates the string to the size of the conte
 vector space for semantic search. However, Cortex Search uses the full body of text for keyword-based retrieval.
 
 Snowflake provides built-in functions to assist in splitting of text into smaller chunks. For more information, see
-[SPLIT\_TEXT\_RECURSIVE\_CHARACTER](/sql-reference/functions/split_text_recursive_character-snowflake-cortex).
+[SPLIT\_TEXT\_RECURSIVE\_CHARACTER](https://docs.snowflake.com/sql-reference/functions/split_text_recursive_character-snowflake-cortex).
 
 For best search results with Cortex Search, Snowflake recommends splitting the text in your search column into chunks of no more than 512 tokens (about 385 English words). While there are longer-context embedding models available today, such as `snowflake-arctic-embed-l-v2.0-8k`, [research](https://www.snowflake.com/en/engineering-blog/impact-retrieval-chunking-finance-rag/) shows that *a smaller chunk size typically results in higher retrieval and downstream LLM response quality*. With smaller chunks, retrieval can be more precise for a given query and, in a retrieval-augmented generation (RAG) scenario, the downstream LLM receives text chunks that are more relevant to the query.
 
-## Refreshes[¶](#refreshes)
+## Refreshes
 
 The content served in a Cortex Search Service is based on the results of a specific query.
 When the data underlying a Cortex Search Service changes, the service
 updates to reflect those changes. These updates are referred to as a refresh. This process
 is automated, and it involves analyzing the query that underlies the table.
 
-Cortex Search Services have the same refresh properties as Dynamic Tables. See [Dynamic table refresh modes](/user-guide/dynamic-tables/refresh-modes) topic to
+Cortex Search Services have the same refresh properties as Dynamic Tables. See [Dynamic table refresh modes](https://docs.snowflake.com/user-guide/dynamic-tables/refresh-modes) topic to
 understand the refresh characteristics of a Cortex Search Service.
 
 The source query for a Cortex Search Service must be a candidate for dynamic table incremental refresh. For details on those requirements,
-see [Incremental refresh constraints](/user-guide/dynamic-tables/supported-queries#label-dynamic-tables-limits-incremental-refresh). This restriction is designed to prevent any unwanted runaway costs associated
+see [Incremental refresh constraints](https://docs.snowflake.com/user-guide/dynamic-tables/supported-queries#label-dynamic-tables-limits-incremental-refresh). This restriction is designed to prevent any unwanted runaway costs associated
 with vector embedding computation. For more information about the constructs that are not supported for dynamic table incremental refresh,
-see [Supported queries for dynamic tables](/user-guide/dynamic-tables/supported-queries).
+see [Supported queries for dynamic tables](https://docs.snowflake.com/user-guide/dynamic-tables/supported-queries).
 
-
-
-
-
-### Primary keys[¶](#primary-keys)
+### Primary keys
 
 A primary key of a Cortex Search Service is an optional set of columns that uniquely identify each row in the source
 query (that is, only one row has that exact combination of values in the designated columns). To be used with Cortex
-Search Services, primary key columns must be of the [TEXT](/sql-reference/data-types-text) data type.
+Search Services, primary key columns must be of the [TEXT](https://docs.snowflake.com/sql-reference/data-types-text) data type.
 
 A primary key can be specified when creating the service as follows:
-
-Copy code
 
 ```
 CREATE OR REPLACE CORTEX SEARCH SERVICE transcript_search_service
@@ -534,7 +417,7 @@ CREATE OR REPLACE CORTEX SEARCH SERVICE transcript_search_service
 ```
 
 The primary key columns of existing services can be modified with `ALTER CORTEX SEARCH SERVICE ... SET PRIMARY KEY (...)`.
-For detailed syntax, see [ALTER CORTEX SEARCH SERVICE](/sql-reference/sql/alter-cortex-search).
+For detailed syntax, see [ALTER CORTEX SEARCH SERVICE](https://docs.snowflake.com/sql-reference/sql/alter-cortex-search).
 
 Services with primary keys can use an optimized refresh path where each refresh cycle processes only the rows
 that changed since the last refresh, rather than re-embedding all data. This can result in significant reductions
@@ -543,21 +426,21 @@ to the cost and latency of a refresh.
 Over time, these incremental updates accumulate fragmented index segments. The service periodically compacts
 these segments with a full index rebuild to maintain optimal search performance. You can control how often this
 compaction occurs by setting the `FULL_INDEX_BUILD_INTERVAL_DAYS` property on the service. A full index rebuild
-does not re-embed unchanged data. For syntax details, see [CREATE CORTEX SEARCH SERVICE](/sql-reference/sql/create-cortex-search) and
-[ALTER CORTEX SEARCH SERVICE](/sql-reference/sql/alter-cortex-search).
+does not re-embed unchanged data. For syntax details, see [CREATE CORTEX SEARCH SERVICE](https://docs.snowflake.com/sql-reference/sql/create-cortex-search) and
+[ALTER CORTEX SEARCH SERVICE](https://docs.snowflake.com/sql-reference/sql/alter-cortex-search).
 
 Note
 
 `FULL_INDEX_BUILD_INTERVAL_DAYS` is a soft target. Full rebuilds may occur more frequently than the specified interval to optimize serving performance based on factors such as service target lag, change rate in the service source data, and overall service size.
 
-Queries to services with primary keys may also make use of the `@primarykey` [filter operator](/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-filter-syntax).
+Queries to services with primary keys may also make use of the `@primarykey` [filter operator](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-filter-syntax).
 
 Important
 
 The set of primary key column values must be unique for each row in the source query. Duplicates are
 ignored in the resulting search index.
 
-## Multi-index Cortex Search[¶](#multi-index-cortex-search)
+## Multi-index Cortex Search
 
 Cortex Search can index multiple columns or use custom vector embeddings for queries, allowing you additional flexibility in how your Cortex Search Service interprets data and responds to user requests. You should use Multi-index Cortex Search when you have a use case that features one or more of:
 
@@ -576,10 +459,10 @@ For example, for a product catalog search use case, you can create a multi-index
 * Product descriptions are *vector indexes* for semantic matching.
 * Category and brand names are both text *and* vector indexes to support both lexical and semantic matches.
 
-For examples of creating a multi-index Cortex Search service, see [CREATE CORTEX SEARCH SERVICE … TEXT INDEXES … VECTOR INDEXES](/sql-reference/sql/create-cortex-search).
-For examples of querying a multi-index service, see [Query a Cortex Search service - Multi-index queries](/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-multi-query).
+For examples of creating a multi-index Cortex Search service, see [CREATE CORTEX SEARCH SERVICE … TEXT INDEXES … VECTOR INDEXES](https://docs.snowflake.com/sql-reference/sql/create-cortex-search).
+For examples of querying a multi-index service, see [Query a Cortex Search service - Multi-index queries](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-multi-query).
 
-### User-provided vector embeddings[¶](#user-provided-vector-embeddings)
+### User-provided vector embeddings
 
 Multi-index Cortex Search allows you to use pre-computed vector embeddings from any embedding model (including
 open-source, commercial, and custom-trained models). Use user-provided vector embeddings when:
@@ -595,7 +478,7 @@ embedding cost.
 Note
 
 You cannot load vectors directly into a Snowflake table. Instead, cast an array of numbers to the VECTOR data type when inserting or updating data in the source table for your Cortex Search Service.
-See [Vector conversion](/sql-reference/data-types-vector#label-data-type-vector-conversion) for details and examples of how to do this.
+See [Vector conversion](https://docs.snowflake.com/sql-reference/data-types-vector#label-data-type-vector-conversion) for details and examples of how to do this.
 
 Cortex Search chooses one of the following modes at search time, depending on whether you provide a query vector or query text in your search request:
 
@@ -604,44 +487,40 @@ Cortex Search chooses one of the following modes at search time, depending on wh
 | Fully user-managed | Provide vectors in a VECTOR column | Provide a query vector via multi\_index\_query |
 | User-managed with managed query embeddings | Provide vectors in a VECTOR column | Cortex Search embeds query text using the specified model |
 
-Expand
-
-Show lessSee more
-
-## Suspension of indexing and serving[¶](#suspension-of-indexing-and-serving)
+## Suspension of indexing and serving
 
 A Cortex Search Service has two states that can be running or suspended independently: indexing
-and serving. Use [ALTER CORTEX SEARCH SERVICE](/sql-reference/sql/alter-cortex-search) to
+and serving. Use [ALTER CORTEX SEARCH SERVICE](https://docs.snowflake.com/sql-reference/sql/alter-cortex-search) to
 manually suspend or resume indexing, serving, or both.
 
 Indexing also suspends automatically after repeated refresh failures, as a built-in safeguard.
 Separately, you can configure serving to auto-suspend after a period of query inactivity to reduce
 cost on idle services.
 
-### Indexing suspension on refresh errors[¶](#indexing-suspension-on-refresh-errors)
+### Indexing suspension on refresh errors
 
 Much like Dynamic Tables, Cortex Search Services automatically suspend their indexing state when they encounter five
 consecutive refresh failures related to the source query. If you encounter this failure for your service, you can view the specific SQL
-error using either [DESCRIBE CORTEX SEARCH SERVICE](/sql-reference/sql/desc-cortex-search) or the [CORTEX\_SEARCH\_SERVICES view](/sql-reference/info-schema/cortex_search). The output from
+error using either [DESCRIBE CORTEX SEARCH SERVICE](https://docs.snowflake.com/sql-reference/sql/desc-cortex-search) or the [CORTEX\_SEARCH\_SERVICES view](https://docs.snowflake.com/sql-reference/info-schema/cortex_search). The output from
 both includes the following columns:
 
 * The INDEXING\_STATE column, which is SUSPENDED for a suspended service.
 * The INDEXING\_ERROR column, which contains the specific SQL error encountered in the source query.
 
 Once the root issue is resolved, you can resume the service with `ALTER CORTEX SEARCH SERVICE <name> RESUME INDEXING`.
-For detailed syntax, see [ALTER CORTEX SEARCH SERVICE](/sql-reference/sql/alter-cortex-search).
+For detailed syntax, see [ALTER CORTEX SEARCH SERVICE](https://docs.snowflake.com/sql-reference/sql/alter-cortex-search).
 
-### Auto-suspend serving on inactivity[¶](#auto-suspend-serving-on-inactivity)
+### Auto-suspend serving on inactivity
 
-[Preview Feature](/release-notes/preview-features) — Open
+[Preview Feature](https://docs.snowflake.com/release-notes/preview-features) — Open
 
 Available to all accounts.
 
 To reduce serving cost when a service isn’t in use, set the `AUTO_SUSPEND` property to a number
 of seconds of query inactivity. After that period passes, the service automatically suspends its
 serving compute, and resumes when it next receives a query. Set `AUTO_SUSPEND` when creating a
-service in [CREATE CORTEX SEARCH SERVICE](/sql-reference/sql/create-cortex-search), or on an existing service with
-[ALTER CORTEX SEARCH SERVICE](/sql-reference/sql/alter-cortex-search). Minimum: 1800 seconds (30 minutes).
+service in [CREATE CORTEX SEARCH SERVICE](https://docs.snowflake.com/sql-reference/sql/create-cortex-search), or on an existing service with
+[ALTER CORTEX SEARCH SERVICE](https://docs.snowflake.com/sql-reference/sql/alter-cortex-search). Minimum: 1800 seconds (30 minutes).
 
 You can also resume an auto-suspended service early with
 `ALTER CORTEX SEARCH SERVICE <name> RESUME`. After a manual resume, the next auto-suspension can
@@ -657,34 +536,30 @@ Usage notes:
 * The service suspends within 5 minutes after the inactivity threshold passes.
 
 To check whether a service is currently serving and whether auto-suspend is configured, use
-[SHOW CORTEX SEARCH SERVICES](/sql-reference/sql/show-cortex-search) or [DESCRIBE CORTEX SEARCH SERVICE](/sql-reference/sql/desc-cortex-search) and
+[SHOW CORTEX SEARCH SERVICES](https://docs.snowflake.com/sql-reference/sql/show-cortex-search) or [DESCRIBE CORTEX SEARCH SERVICE](https://docs.snowflake.com/sql-reference/sql/desc-cortex-search) and
 look at the `SERVING_STATE` and `AUTO_SUSPEND` columns.
 
-## Cost considerations[¶](#cost-considerations)
+## Cost considerations
 
 A Cortex Search Service incurs cost in the following ways:
 
 | Category | Description |
 | --- | --- |
-| Virtual warehouse compute | A Cortex Search Service requires a [virtual warehouse](/user-guide/cost-understanding-compute#label-virtual-warehouse-credit-usage) to refresh the service: to run queries against base objects when they are initialized and refreshed, including orchestrating text embedding jobs and building the search index. These operations use compute resources, which consume [credits](/user-guide/cost-understanding-compute#label-what-are-credits). If no changes are identified during a refresh, virtual warehouse credits aren’t consumed since there’s no new data to refresh. |
-| EMBED\_TEXT tokens compute | A Cortex Search Service automatically embeds each text row in the search column specified in the `ON` parameter into vector space to enable semantic search, which incurs a credit cost per token embedded. This involves calling [EMBED\_TEXT\_768](/sql-reference/functions/embed_text-snowflake-cortex) or [EMBED\_TEXT\_1024](/sql-reference/functions/embed_text_1024-snowflake-cortex) to convert each document as a series of numbers that encodes its meaning. Embeddings are computed each time a row is inserted or updated. Embeddings are processed incrementally in the evaluation of the source query, so the embedding cost is only incurred for added or changed documents. See [Vector Embeddings](/user-guide/snowflake-cortex/vector-embeddings) for more information on vector embedding costs. |
+| Virtual warehouse compute | A Cortex Search Service requires a [virtual warehouse](https://docs.snowflake.com/user-guide/cost-understanding-compute#label-virtual-warehouse-credit-usage) to refresh the service: to run queries against base objects when they are initialized and refreshed, including orchestrating text embedding jobs and building the search index. These operations use compute resources, which consume [credits](https://docs.snowflake.com/user-guide/cost-understanding-compute#label-what-are-credits). If no changes are identified during a refresh, virtual warehouse credits aren’t consumed since there’s no new data to refresh. |
+| EMBED\_TEXT tokens compute | A Cortex Search Service automatically embeds each text row in the search column specified in the `ON` parameter into vector space to enable semantic search, which incurs a credit cost per token embedded. This involves calling [EMBED\_TEXT\_768](https://docs.snowflake.com/sql-reference/functions/embed_text-snowflake-cortex) or [EMBED\_TEXT\_1024](https://docs.snowflake.com/sql-reference/functions/embed_text_1024-snowflake-cortex) to convert each document as a series of numbers that encodes its meaning. Embeddings are computed each time a row is inserted or updated. Embeddings are processed incrementally in the evaluation of the source query, so the embedding cost is only incurred for added or changed documents. See [Vector Embeddings](https://docs.snowflake.com/user-guide/snowflake-cortex/vector-embeddings) for more information on vector embedding costs. |
 | Multi-index Cortex Search | Multi-index Cortex Search Services have costs dependent on how you embed tokens and the number of columns you index. Larger embedding vectors or higher numbers of index columns incur higher costs. Embeddings are computed each time a row is inserted or updated. Embeddings are processed incrementally in the evaluation of the source query, so the embedding cost is only incurred for added or changed documents. |
 | Serving compute | A Cortex Search Service uses multi-tenant serving compute, separate from a user-provided Virtual Warehouse, to establish a low-latency, high-throughput service. The compute cost for this component is incurred per GB per month (GB/mo) of uncompressed indexed data, where indexed data is the user-provided data in the Cortex Search source query, plus vector embeddings computed on the user’s behalf. You incur these costs while the service is available to respond to queries, even if no queries are served during a given period. For the Cortex Search Serving credit rate per GB/mo of indexed data, see the [Snowflake Service Consumption Table](https://www.snowflake.com/legal-files/CreditConsumptionTable.pdf). |
 | Storage | Cortex Search Services materialize the source query into a table stored in your account. This table is transformed into data structures that are optimized for low-latency serving, also stored in your account. Storage for the table and intermediate data structures are based on a flat rate per terabyte (TB). |
-| Cloud services compute | Cortex Search Services use [Cloud Services compute](/user-guide/cost-understanding-compute#label-cloud-services-credit-usage) to identify changes in underlying base objects and whether the virtual warehouse needs to be invoked. Cloud services compute cost is subject to the constraint that Snowflake only bills if the daily cloud services cost is greater than 10% of the daily warehouse cost for the account. |
+| Cloud services compute | Cortex Search Services use [Cloud Services compute](https://docs.snowflake.com/user-guide/cost-understanding-compute#label-cloud-services-credit-usage) to identify changes in underlying base objects and whether the virtual warehouse needs to be invoked. Cloud services compute cost is subject to the constraint that Snowflake only bills if the daily cloud services cost is greater than 10% of the daily warehouse cost for the account. |
 
-Expand
+For best practices on managing the costs of a Cortex Search Service, see [Understanding cost for Cortex Search Services](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-costs).
 
-Show lessSee more
-
-For best practices on managing the costs of a Cortex Search Service, see [Understanding cost for Cortex Search Services](/user-guide/snowflake-cortex/cortex-search/cortex-search-costs).
-
-To set monthly spending limits and configure automated actions when spend exceeds thresholds, see [Resource budgets for Cortex Search](/user-guide/snowflake-cortex/cortex-search/cortex-search-resource-budgets).
+To set monthly spending limits and configure automated actions when spend exceeds thresholds, see [Resource budgets for Cortex Search](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-resource-budgets).
 
 To view the **AI Services**-related consumption costs for each Cortex Search Service in your account, aggregated daily,
-see the [CORTEX\_SEARCH\_DAILY\_USAGE\_HISTORY view](/sql-reference/account-usage/cortex_search_daily_usage_history).
+see the [CORTEX\_SEARCH\_DAILY\_USAGE\_HISTORY view](https://docs.snowflake.com/sql-reference/account-usage/cortex_search_daily_usage_history).
 
-## Known limitations[¶](#known-limitations)
+## Known limitations
 
 Usage of Cortex Search is subject to the following limitations:
 
@@ -703,17 +578,17 @@ Usage of Cortex Search is subject to the following limitations:
   To increase throughput beyond 20 QPS for a single search service or 140 QPS across all services in your account, contact
   your Snowflake account team.
 * **Query constructs**: Cortex Search Service source queries must adhere to the same query restrictions
-  that Dynamic Tables have. See the [Don’t use dynamic tables when your pipeline has any of the following…](/user-guide/dynamic-tables/decision-guide#label-dynamic-tables-limitations) for more detail.
+  that Dynamic Tables have. See the [Don’t use dynamic tables when your pipeline has any of the following…](https://docs.snowflake.com/user-guide/dynamic-tables/decision-guide#label-dynamic-tables-limitations) for more detail.
 * **Data retention**: Cortex Search Services have the same requirements as dynamic tables around data retentions.
-  Specifically, you can’t set the [DATA\_RETENTION\_TIME\_IN\_DAYS](/sql-reference/parameters#label-data-retention-time-in-days) object parameter in your base tables to zero
+  Specifically, you can’t set the [DATA\_RETENTION\_TIME\_IN\_DAYS](https://docs.snowflake.com/sql-reference/parameters#label-data-retention-time-in-days) object parameter in your base tables to zero
   or set this parameter on the schema or database containing the search service. Additionally, search services
-  can become stale if they are not refreshed within [MAX\_DATA\_EXTENSION\_TIME\_IN\_DAYS](/sql-reference/parameters#label-max-data-extension-time-in-days). Once stale, they must be
-  recreated to resume refreshes. See the [Don’t use dynamic tables when your pipeline has any of the following…](/user-guide/dynamic-tables/decision-guide#label-dynamic-tables-limitations) for more detail.
-* **Cloning**: Cortex Search Services do not currently support [cloning](/user-guide/object-clone).
+  can become stale if they are not refreshed within [MAX\_DATA\_EXTENSION\_TIME\_IN\_DAYS](https://docs.snowflake.com/sql-reference/parameters#label-max-data-extension-time-in-days). Once stale, they must be
+  recreated to resume refreshes. See the [Don’t use dynamic tables when your pipeline has any of the following…](https://docs.snowflake.com/user-guide/dynamic-tables/decision-guide#label-dynamic-tables-limitations) for more detail.
+* **Cloning**: Cortex Search Services do not currently support [cloning](https://docs.snowflake.com/user-guide/object-clone).
   Snowflake intends to provide this capability in some future release, but cannot guarantee a specific timeline.
 * **Table immutability**: While running, your Cortex Search Services require tables they access aren’t modified or dropped. To safely update tables used by a Cortex Search Service, stop the service before making your changes.
 
-## Regional availability[¶](#regional-availability)
+## Regional availability
 
 Support for this feature is available to accounts in the following Snowflake regions. Availability for specific embedding models
 within a region is denoted with a checkmark.
@@ -753,17 +628,13 @@ within a region is denoted with a checkmark.
 | GCP | US Central 1 (Iowa) | ✔ | ✔ | ✔ |  |
 | GCP | US East 4 (N. Virginia) | ✔ | ✔ | ✔ |  |
 
-Expand
-
-Show lessSee more
-
 Note
 
-You can specify the [cross-region inference parameter](/user-guide/snowflake-cortex/cross-region-inference#label-use-cross-region-inference) in any of
+You can specify the [cross-region inference parameter](https://docs.snowflake.com/user-guide/snowflake-cortex/cross-region-inference#label-use-cross-region-inference) in any of
 the above regions to access models which aren’t directly supported from your default region.
 
 Cortex Search is available in the following regions **only** using cross-region inference.
-To use Cortex Search with cross-region inference, use the [cross-region inference parameter](/user-guide/snowflake-cortex/cross-region-inference#label-use-cross-region-inference).
+To use Cortex Search with cross-region inference, use the [cross-region inference parameter](https://docs.snowflake.com/user-guide/snowflake-cortex/cross-region-inference#label-use-cross-region-inference).
 
 * AWS Europe (Paris)
 * AWS Europe (Zurich)
@@ -771,82 +642,24 @@ To use Cortex Search with cross-region inference, use the [cross-region inferenc
 * AWS Asia Pacific (Osaka)
 * Azure Canada Central (Toronto)
 * Azure Central US (Iowa)
+* Azure Mexico Central (Querétaro)
 * Azure UAE North (Dubai)
+* GCP Australia Southeast 2 (Melbourne)
 
 Note
 
 When using cross-region inference, query latency between regions depends on the cloud provider infrastructure and network status.
 Snowflake recommends that you test your specific use-case with cross-region inference enabled.
 
-## Legal notices[¶](#legal-notices)
-
-
-
+## Legal notices
 
 The data classification of inputs and outputs are as set forth in the following table.
 
 | Input data classification | Output data classification | Designation |
 | --- | --- | --- |
-| Usage Data | Customer Data | Generally available functions are Covered AI Features. Preview functions are Preview AI Features.  [[1]](#footnote-1) |
-
-Expand
-
-Show lessSee more
+| Usage Data | Customer Data | Generally available functions are Covered AI Features. Preview functions are Preview AI Features.  [1] |
 
 [1]
 Represents the defined term used in the AI Terms and Acceptable Use Policy.
 
-For additional information, refer to [Snowflake AI and ML](/guides-overview-ai-features).
-
-Was this page helpful?
-
-YesNo
-
-[Visit Snowflake](https://www.snowflake.com)
-
-[Join the conversation](https://community.snowflake.com/s/)
-
-[Develop with Snowflake](https://developers.snowflake.com)
-
-[Share your feedback](/feedback)
-
-[Read the latest on our blog](https://www.snowflake.com/blog/)
-
-[Get your own certification](https://learn.snowflake.com)
-
-[Privacy Notice](https://www.snowflake.com/privacy-policy/)[Site Terms](https://www.snowflake.com/legal/snowflake-site-terms/)Cookies Settings© 2026 Snowflake, Inc. All Rights Reserved.
-
-On this page
-
-1. [Overview](#overview)
-2. [When to use Cortex Search](#when-to-use-cortex-search)
-3. [Cortex Search for RAG](#cortex-search-for-rag)
-4. [Example: Create and query a Cortex Search service](#example-create-and-query-a-cortex-search-service)
-5. [Create the service](#create-the-service)
-6. [Grant usage permissions](#grant-usage-permissions)
-7. [Preview the service](#preview-the-service)
-8. [Query the service from your application](#query-the-service-from-your-application)
-9. [Required privileges](#required-privileges)
-10. [Understanding Cortex Search quality](#understanding-cortex-search-quality)
-11. [Cortex Search Embedding Models](#cortex-search-embedding-models)
-12. [Tokens, model context windows, and text splitting](#tokens-model-context-windows-and-text-splitting)
-13. [Refreshes](#refreshes)
-14. [Primary keys](#primary-keys)
-15. [Multi-index Cortex Search](#multi-index-cortex-search)
-16. [User-provided vector embeddings](#user-provided-vector-embeddings)
-17. [Suspension of indexing and serving](#suspension-of-indexing-and-serving)
-18. [Indexing suspension on refresh errors](#indexing-suspension-on-refresh-errors)
-19. [Auto-suspend serving on inactivity](#auto-suspend-serving-on-inactivity)
-20. [Cost considerations](#cost-considerations)
-21. [Known limitations](#known-limitations)
-22. [Regional availability](#regional-availability)
-23. [Legal notices](#legal-notices)
-
-Related content
-
-1. [ALTER CORTEX SEARCH SERVICE](/sql-reference/sql/alter-cortex-search)
-2. [CREATE CORTEX SEARCH SERVICE](/sql-reference/sql/create-cortex-search)
-3. [DESCRIBE CORTEX SEARCH SERVICE](/sql-reference/sql/desc-cortex-search)
-4. [DROP CORTEX SEARCH SERVICE](/sql-reference/sql/drop-cortex-search)
-5. [SHOW CORTEX SEARCH SERVICES](/sql-reference/sql/show-cortex-search)
-6. [Resource budgets for Cortex Search](/user-guide/snowflake-cortex/cortex-search/cortex-search-resource-budgets)
+For additional information, refer to [Snowflake AI and ML](https://docs.snowflake.com/guides-overview-ai-features).

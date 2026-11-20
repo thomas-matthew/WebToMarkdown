@@ -3,6 +3,18 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain-aws/releases
 
+## 1.3.0 — 2026-11-19
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langgraph-checkpoint-aws%3D%3D1.3.0)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.2.7 — 2026-11-06
+
+[Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langgraph-checkpoint-aws%3D%3D1.2.7)
+
+- feat(langgraph-checkpoint-aws): add consistent_read option to DynamoDBSaver by @hconn-riparian in https://github.com/langchain-ai/langchain-aws/pull/1453
+
 ## 1.2.6 — 2026-10-23
 
 [Release on GitHub](https://github.com/langchain-ai/langchain-aws/releases/tag/langgraph-checkpoint-aws%3D%3D1.2.6)

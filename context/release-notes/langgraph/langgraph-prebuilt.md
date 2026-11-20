@@ -3,6 +3,18 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langgraph/releases
 
+## 1.1.3 — 2026-11-19
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/prebuilt%3D%3D1.1.3)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.1.2 — 2026-11-14
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/prebuilt%3D%3D1.1.2)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 1.1.1 — 2026-10-15
 
 [Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/prebuilt%3D%3D1.1.1)

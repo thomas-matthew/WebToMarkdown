@@ -23,7 +23,7 @@ Every session exposes an event stream that shows what the agent is doing in real
 
 Follow live session events
 
-```javascript
+```typescript
 // Replace the illustrative IDs and URLs below with your own resource values.
 import OpenAI from "openai";
 
@@ -99,14 +99,14 @@ if err := events.Err(); err != nil {
 
 ```java
 // Replace the illustrative IDs and URLs below with your own resource values.
-import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.core.ObjectMappers;
 import com.openai.core.http.StreamResponse;
 import com.openai.models.beta.agents.AgentSessionEvent;
 
 OpenAIClient client = OpenAIOkHttpClient.fromEnv();
-var json = new JsonMapper();
+var json = ObjectMappers.jsonMapper();
 try (StreamResponse<AgentSessionEvent> events =
     client.beta().agents().sessions().events().streamStreaming("sess_123")) {
   var iterator = events.stream().iterator();
@@ -171,7 +171,7 @@ To inspect work that has already happened, retrieve the session’s saved items:
 
 Inspect saved session items
 
-```javascript
+```typescript
 // Replace the illustrative IDs and URLs below with your own resource values.
 import OpenAI from "openai";
 const client = new OpenAI();
@@ -267,12 +267,12 @@ Session turns are available through the public API. Use the `turn_id` from a com
 
 Identify delegated command execution
 
-```javascript
+```typescript
 // Replace the illustrative session and turn IDs with values from your command item.
 import OpenAI from "openai";
 const client = new OpenAI();
 
-async function findTurn(sessionId, turnId) {
+async function findTurn(sessionId: string, turnId: string) {
   for await (const turn of client.beta.agents.sessions.turns.list(sessionId, {
     limit: 100,
   })) {
@@ -309,14 +309,29 @@ console.log(turn.subagent_id || "main agent");
 # Replace the illustrative IDs and URLs below with your own resource values.
 from openai import OpenAI
 
-client = OpenAI()
 
-session_id = "sess_123"
-turns = client.beta.agents.sessions.turns.list(session_id, limit=20, order="desc")
-print(turns.to_json())
-turn_id = "turn_123"
-turn = client.beta.agents.sessions.turns.retrieve(turn_id, session_id=session_id)
-print(turn.subagent_id)
+def find_turn(client, session_id, turn_id):
+    # Native SDK pagination searches every page for the owning agent.
+    for turn in client.beta.agents.sessions.turns.list(session_id, limit=100):
+        if turn.id == turn_id:
+            return client.beta.agents.sessions.turns.retrieve(
+                turn_id, session_id=session_id
+            )
+
+    for subagent in client.beta.agents.sessions.subagents.list(session_id, limit=100):
+        turns = client.beta.agents.sessions.subagents.turns.list(
+            subagent.id, session_id=session_id, limit=100
+        )
+        for turn in turns:
+            if turn.id == turn_id:
+                return client.beta.agents.sessions.subagents.turns.retrieve(
+                    turn_id, session_id=session_id, subagent_id=subagent.id
+                )
+    raise ValueError(f"Turn {turn_id} not found in session {session_id}")
+
+
+turn = find_turn(OpenAI(), "sess_123", "turn_123")
+print(turn.subagent_id or "main agent")
 ```
 
 ```go
@@ -375,35 +390,62 @@ func findTurn(ctx context.Context, client *openai.Client, sessionID, turnID stri
 ```
 
 ```java
-// Replace the illustrative IDs and URLs below with your own resource values.
+// Replace the illustrative session and turn IDs with values from your command item.
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.beta.agents.sessions.subagents.SubagentListParams;
+import com.openai.models.beta.agents.sessions.turns.Turn;
 import com.openai.models.beta.agents.sessions.turns.TurnListParams;
 import com.openai.models.beta.agents.sessions.turns.TurnRetrieveParams;
 
 OpenAIClient client = OpenAIOkHttpClient.fromEnv();
-var result =
-    client
-        .beta()
-        .agents()
-        .sessions()
-        .turns()
-        .list(
-            TurnListParams.builder()
-                .sessionId("sess_123")
-                .limit(20L)
-                .order(TurnListParams.Order.of("desc"))
-                .build());
-System.out.println(result.items());
-var turn =
-    client
-        .beta()
-        .agents()
-        .sessions()
-        .turns()
-        .retrieve(
-            TurnRetrieveParams.builder().turnId("turn_123").sessionId("sess_123").build());
-System.out.println(turn.subagentId());
+var turn = findTurn(client, "sess_123", "turn_123");
+System.out.println(turn.subagentId().orElse("main agent"));
+
+// Discover the owning agent using native SDK pagination before retrieving the turn.
+static Turn findTurn(OpenAIClient client, String sessionId, String turnId) {
+  var sessions = client.beta().agents().sessions();
+  var turns =
+      sessions.turns().list(TurnListParams.builder().sessionId(sessionId).limit(100L).build());
+  for (var turn : turns.autoPager()) {
+    if (turn.id().equals(turnId)) {
+      return sessions
+          .turns()
+          .retrieve(TurnRetrieveParams.builder().sessionId(sessionId).turnId(turnId).build());
+    }
+  }
+  var subagents =
+      sessions
+          .subagents()
+          .list(SubagentListParams.builder().sessionId(sessionId).limit(100L).build());
+  for (var subagent : subagents.autoPager()) {
+    var childTurns =
+        sessions
+            .subagents()
+            .turns()
+            .list(
+                com.openai.models.beta.agents.sessions.subagents.turns.TurnListParams.builder()
+                    .sessionId(sessionId)
+                    .subagentId(subagent.id())
+                    .limit(100L)
+                    .build());
+    for (var turn : childTurns.autoPager()) {
+      if (turn.id().equals(turnId)) {
+        return sessions
+            .subagents()
+            .turns()
+            .retrieve(
+                com.openai.models.beta.agents.sessions.subagents.turns.TurnRetrieveParams
+                    .builder()
+                    .sessionId(sessionId)
+                    .subagentId(subagent.id())
+                    .turnId(turnId)
+                    .build());
+      }
+    }
+  }
+  throw new IllegalArgumentException("Turn " + turnId + " not found in session " + sessionId);
+}
 ```
 
 ```ruby

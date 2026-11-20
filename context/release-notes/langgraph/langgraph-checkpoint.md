@@ -3,6 +3,12 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langgraph/releases
 
+## 4.3.2 — 2026-11-14
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/checkpoint%3D%3D4.3.2)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 4.3.1 — 2026-10-26
 
 [Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/checkpoint%3D%3D4.3.1)

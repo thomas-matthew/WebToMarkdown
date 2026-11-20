@@ -27,7 +27,7 @@ Define the smallest agent that can own a clear task. Add more agents only when y
 
 Define a single agent
 
-```javascript
+```typescript
 import { Agent, tool } from "@openai/agents";
 import { z } from "zod";
 
@@ -43,7 +43,7 @@ const getWeather = tool({
 const agent = new Agent({
   name: "Weather bot",
   instructions: "You are a helpful weather bot.",
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   tools: [getWeather],
 });
 ```
@@ -61,7 +61,7 @@ def get_weather(city: str) -> str:
 agent = Agent(
     name="Weather bot",
     instructions="You are a helpful weather bot.",
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     tools=[get_weather],
 )
 ```
@@ -77,7 +77,7 @@ Three configuration choices deserve extra care:
 
 Return structured output
 
-```javascript
+```typescript
 import { Agent, run } from "@openai/agents";
 import { z } from "zod";
 
@@ -140,16 +140,18 @@ The SDK lets you pass application state and dependencies into a run without send
 
 Pass local context to tools
 
-```javascript
-import { Agent, run, tool } from "@openai/agents";
+```typescript
+import { Agent, run, tool, type RunContext } from "@openai/agents";
 import { z } from "zod";
 
 const fetchUserAge = tool({
   name: "fetch_user_age",
   description: "Return the age of the current user.",
   parameters: z.object({}),
-  // TypeScript users can type this as RunContext<{ name: string; uid: number }>.
-  async execute(_args, runContext) {
+  async execute(
+    _args: unknown,
+    runContext: RunContext<{ name: string; uid: number }> | undefined
+  ) {
     return `User ${runContext?.context.name} is 47 years old`;
   },
 });
@@ -227,23 +229,21 @@ Once one specialist is defined cleanly, move to the guide that matches the next 
 
 
 
-  [Models and providers
+  [Models and providers](https://developers.openai.com/api/docs/guides/agents/models)
+
+Choose models, defaults, and transport strategy for this agent.
 
 
+  [Using tools](https://developers.openai.com/api/docs/guides/tools#usage-in-the-agents-sdk)
 
-        Choose models, defaults, and transport strategy for this agent.](https://developers.openai.com/api/docs/guides/agents/models)
-  [Using tools
-
-
-
-        Add capabilities the agent can call directly.](https://developers.openai.com/api/docs/guides/tools#usage-in-the-agents-sdk)
-  [Orchestration and handoffs
+Add capabilities the agent can call directly.
 
 
+  [Orchestration and handoffs](https://developers.openai.com/api/docs/guides/agents/orchestration)
 
-        Choose how specialists collaborate once one agent is no longer enough.](https://developers.openai.com/api/docs/guides/agents/orchestration)
-  [Running agents
+Choose how specialists collaborate once one agent is no longer enough.
 
 
+  [Running agents](https://developers.openai.com/api/docs/guides/agents/running-agents)
 
-        Understand the runtime loop, state, and streaming behavior.](https://developers.openai.com/api/docs/guides/agents/running-agents)
+Understand the runtime loop, state, and streaming behavior.

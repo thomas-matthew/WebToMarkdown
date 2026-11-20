@@ -3,6 +3,50 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.8.5 — 2026-11-19
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.8.5)
+
+- feat(core): standardize finish reason on message-finish events (#41926)
+
+## 1.8.4 — 2026-11-19
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.8.4)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.8.3 — 2026-11-19
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.8.3)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.8.2 — 2026-11-18
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.8.2)
+
+- feat(openai): support GPT-6.2 Astra and Sol (#41922)
+- feat(openai): send `langsmith_gateway` headers from the client (#41901)
+
+## 1.8.1 — 2026-11-17
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.8.1)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.8.0 — 2026-11-13
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.8.0)
+
+- feat(openai): add OpenAIClassifier for the GA Decisions API (#41787)
+- feat(partners): Remove EOL'd Python 3.10 from partner packages (#41268)
+
+## 1.7.4 — 2026-11-04
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.7.4)
+
+- feat(core): standardize model refusal content blocks (#41582)
+
 ## 1.7.3 — 2026-10-26
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-openai%3D%3D1.7.3)

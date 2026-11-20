@@ -1,12 +1,8 @@
-Python[langgraph](/python/langgraph)[constants](/python/langgraph/constants)START
-
-Attributev1.2.18 (latest)●Since v1.2
+Attributev1.2.23 (latest)●Since v1.2
 
 # START
 
 The first (maybe virtual) node in graph-style Pregel.
-
-Copy
 
 ```
 START = sys.intern('__start__')
@@ -20,14 +16,8 @@ START = sys.intern('__start__')
 * [Custom workflow](https://docs.langchain.com/oss/python/langchain/multi-agent/custom-workflow)
 * [Fault tolerance](https://docs.langchain.com/oss/python/langgraph/fault-tolerance)
 
-+15 more(8 more not shown)
++15 more(7 more not shown)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/constants.py#L30)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/58a6e1cc5b7dfc3619fc6e7e7573b040d554649b/libs/langgraph/langgraph/constants.py#L30)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Related Documentation

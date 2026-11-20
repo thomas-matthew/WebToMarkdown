@@ -1,20 +1,16 @@
-Python[langgraph](/python/langgraph)[config](/python/langgraph/config)get\_stream\_writer
-
-Functionv1.2.18 (latest)●Since v1.2
+Functionv1.2.23 (latest)●Since v1.2
 
 # get\_stream\_writer
 
-Access LangGraph [`StreamWriter`](/python/langgraph/types/StreamWriter) from inside a graph node or entrypoint task at runtime.
+Access LangGraph [`StreamWriter`](https://reference.langchain.com/python/langgraph/types/StreamWriter) from inside a graph node or entrypoint task at runtime.
 
-Can be called from inside any [`StateGraph`](/python/langgraph/graph/state/StateGraph) node or
-functional API [`task`](/python/langgraph/func/task).
+Can be called from inside any [`StateGraph`](https://reference.langchain.com/python/langgraph/graph/state/StateGraph) node or
+functional API [`task`](https://reference.langchain.com/python/langgraph/func/task).
 
 Async with Python < 3.11
 
 If you are using Python < 3.11 and are running LangGraph asynchronously,
 `get_stream_writer()` won't work since it uses [`contextvar`](https://docs.python.org/3/library/contextvars.html) propagation (only available in [Python >= 3.11](https://docs.python.org/3/library/asyncio-task.html#asyncio.create_task)).
-
-Copy
 
 ```
 get_stream_writer() -> StreamWriter
@@ -88,12 +84,6 @@ Copy
 * [Streaming](https://docs.langchain.com/oss/python/langchain/streaming)
 * [Streaming](https://docs.langchain.com/oss/python/langgraph/streaming)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/config.py#L126)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/58a6e1cc5b7dfc3619fc6e7e7573b040d554649b/libs/langgraph/langgraph/config.py#L126)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Related Documentation

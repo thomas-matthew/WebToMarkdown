@@ -4,6 +4,8 @@
 
 Admin APIs let you automate organization management workflows such as user invitations, audit log review, project administration, API key management, spend limits and alerts, data retention, and rate limit operations. Use them for back-office automation, security workflows, and operational tooling that should run outside the dashboard.
 
+For the distinction between an administrative credential, a user-owned project key, and a workload's service account, see [API keys and service accounts](https://developers.openai.com/api/docs/guides/api-keys).
+
 For endpoint details, see the [Administration API reference](https://developers.openai.com/api/reference/administration/overview), including [Admin API keys](https://developers.openai.com/api/reference/resources/admin/subresources/organization/subresources/admin_api_keys), [Invites](https://developers.openai.com/api/reference/resources/admin/subresources/organization/subresources/invites), [Users](https://developers.openai.com/api/reference/resources/admin/subresources/organization/subresources/users), [Projects](https://developers.openai.com/api/reference/resources/admin/subresources/organization/subresources/projects), [Spend limits](https://developers.openai.com/api/reference/resources/admin/subresources/organization/subresources/spend_limit), and [Audit logs](https://developers.openai.com/api/reference/resources/admin/subresources/organization/subresources/audit_logs).
 
 ## Use an Admin API key with the SDK
@@ -22,7 +24,7 @@ Set `OPENAI_ADMIN_KEY`, then initialize the SDK for your language.
 
 Set up the SDK with an Admin API key
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI({
@@ -40,27 +42,24 @@ client = OpenAI(
 ```
 
 ```go
-package main
-
 import (
+	"context"
+	"fmt"
 	"os"
 
 	"github.com/openai/openai-go/v3"
 	"github.com/openai/openai-go/v3/option"
 )
 
-func main() {
-	client := openai.NewClient(
-		option.WithAdminAPIKey(os.Getenv("OPENAI_ADMIN_KEY")),
-	)
-
-	_ = client
-}
+client := openai.NewClient(
+	option.WithAdminAPIKey(os.Getenv("OPENAI_ADMIN_KEY")),
+)
 ```
 
 ```java
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.admin.organization.auditlogs.AuditLogListParams;
 
 OpenAIClient client =
     OpenAIOkHttpClient.builder().adminApiKey(System.getenv("OPENAI_ADMIN_KEY")).build();
@@ -77,11 +76,11 @@ openai = OpenAI::Client.new(
 
 ## Restrict model access for projects
 
-Use project model permissions to set an allowlist or denylist for a project. Set `mode` to `allow_list` to allow only the listed models, or set `mode` to `deny_list` to block the listed models while allowing other available models. Model IDs must be visible to the organization, including visible fine-tuned model snapshots.
+Use project model permissions to set an allowlist or deny list for a project. Set `mode` to `allow_list` to allow only the listed models, or set `mode` to `deny_list` to block the listed models while allowing other available models. Model IDs must be visible to the organization, including visible fine-tuned model snapshots.
 
 Set a project model allowlist/denylist
 
-```javascript
+```typescript
 const modelPermissions =
   await client.admin.organization.projects.modelPermissions.update("proj_abc", {
     mode: "allow_list",
@@ -174,7 +173,7 @@ Use project spend alerts to notify your team when project spend reaches a thresh
 
 Create a project spend limit alert
 
-```javascript
+```typescript
 const spendAlert = await client.admin.organization.projects.spendAlerts.create(
   "proj_abc",
   {
@@ -200,7 +199,7 @@ spend_alert = client.admin.organization.projects.spend_alerts.create(
     notification_channel={
         "recipients": ["billing@example.com"],
         "type": "email",
-        "subject_prefix": "[OpenAI spend]",
+        "subject_prefix": "OpenAI spend",
     },
     threshold_amount=50000,
 )
@@ -250,7 +249,7 @@ ProjectSpendAlert spendAlert =
                 .notificationChannel(
                     SpendAlertCreateParams.NotificationChannel.builder()
                         .addRecipient("billing@example.com")
-                        .subjectPrefix("[OpenAI spend]")
+                        .subjectPrefix("OpenAI spend")
                         .build())
                 .thresholdAmount(50000L)
                 .build());
@@ -281,7 +280,7 @@ Use project data retention controls to override or inherit the organization's re
 
 Set project data retention
 
-```javascript
+```typescript
 const dataRetention =
   await client.admin.organization.projects.dataRetention.update("proj_abc", {
     retention_type: "organization_default",
@@ -351,7 +350,7 @@ Use the Invites endpoint to send an organization invitation to an email address.
 
 Invite a user by email
 
-```javascript
+```typescript
 const invite = await client.admin.organization.invites.create({
   email: "user@example.com",
   role: "reader",
@@ -417,7 +416,7 @@ Use the Audit Logs endpoint to list recent user actions and configuration change
 
 Retrieve audit logs
 
-```javascript
+```typescript
 const auditLogs = await client.admin.organization.auditLogs.list({
   limit: 10,
 });
@@ -448,8 +447,6 @@ for _, auditLog := range auditLogs.Data {
 ```
 
 ```java
-import com.openai.models.admin.organization.auditlogs.AuditLogListParams;
-
 var page =
     client
         .admin()

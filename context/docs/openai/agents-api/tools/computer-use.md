@@ -21,7 +21,7 @@ To run a browser task:
 
 Follow the [Agents API quickstart prerequisites](https://developers.openai.com/api/docs/guides/agents-api/quickstart#prerequisites)
 to create an API key and export `OPENAI_API_KEY`, then install the
-[OpenAI SDK for your language](https://developers.openai.com/api/docs/libraries). For the JavaScript examples,
+[OpenAI SDK for your language](https://developers.openai.com/api/docs/libraries). For the TypeScript examples,
 install `openai` and `prompt-sync`. The cURL examples require Bash and `jq`.
 
 To enable browser access:
@@ -29,7 +29,7 @@ To enable browser access:
 - Add `{ "type": "computer_use" }` to `agent.tools`.
 - Set `environment.type` to `openai_hosted` and `environment.desktop.enabled` to `true`.
 
-The JavaScript examples below form one walkthrough: create a session, handle
+The TypeScript examples below form one walkthrough: create a session, handle
 website approvals, then send a task and print the answer. Start by creating a
 browser session with screenshots enabled. This does not start a task.
 
@@ -60,7 +60,7 @@ fi
 printf 'Session ID: %s\n' "$session_id"
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 import { open } from "node:fs/promises";
 
@@ -142,16 +142,21 @@ fmt.Println("Session ID:", session.ID)
 ```java
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.beta.agents.AgentBrowserAuthenticationCancelParam;
+import com.openai.models.beta.agents.AgentBrowserOriginAccessParam;
 import com.openai.models.beta.agents.AgentSession;
 import com.openai.models.beta.agents.AgentSessionInputMessageParam;
 import com.openai.models.beta.agents.AgentSessionInputParam;
 import com.openai.models.beta.agents.AgentSessionInputParam.AgentSessionInputComputerUseApprovalRequestResult;
-import com.openai.models.beta.agents.AgentSessionInputParam.AgentSessionInputComputerUseApprovalRequestResult.Response;
 import com.openai.models.beta.agents.AgentToolParam;
 import com.openai.models.beta.agents.EnvironmentParam;
 import com.openai.models.beta.agents.sessions.SessionCreateParams;
 import com.openai.models.beta.agents.sessions.events.EventCreateParams;
 import com.openai.models.beta.agents.sessions.items.ItemListParams;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Base64;
 import java.util.HashSet;
@@ -191,36 +196,6 @@ var session =
 System.out.println("Session ID: " + session.id());
 ```
 
-```csharp
-using System.ClientModel;
-using System.ClientModel.Primitives;
-using System.Text.Json;
-using OpenAI;
-using OpenAI.Agents;
-#pragma warning disable OPENAI001
-
-string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
-OpenAIClientOptions options = new() { RetryPolicy = new ClientRetryPolicy(maxRetries: 0) };
-AgentClient client = new OpenAIClient(new ApiKeyCredential(key), options).GetAgentClient();
-AgentSession session = await client.CreateAgentSessionAsync(
-    new AgentSessionCreationOptions
-    {
-        Agent = new SessionAgentConfigParam
-        {
-            Model = "gpt-6-astra",
-            Instructions = "Read public documentation in the browser. Do not sign in or change any website data. Report the page title and URL you find.",
-            Tools = [new AgentToolConfigParamComputerUse { IncludeScreenshots = true }],
-        },
-        Environment = new EnvironmentParamOpenaiHosted
-        {
-            Desktop = new DesktopParam(true),
-            Network = new NetworkPolicyParam(NetworkAccessParam.Enabled),
-        },
-    }
-);
-Console.WriteLine($"Session ID: {session.Id}");
-```
-
 ```ruby
 require "base64"
 require "openai"
@@ -252,6 +227,10 @@ puts "Session ID: #{session.id}"
 The browser requires the user's approval before accessing each new website
 origin, including public websites. Enabling network access does not approve
 these requests.
+
+Enabling [automatic review](https://developers.openai.com/api/docs/guides/agents-api/sessions/approvals)
+also preserves browser origin approvals and [sign-in](#handle-sign-in)
+requests. Continue handling them in your application.
 
 To handle an origin approval:
 
@@ -302,7 +281,7 @@ curl --fail-with-body "https://api.openai.com/v1/agents/sessions/$session_id/eve
   }'
 ```
 
-```javascript
+```typescript
 import { createInterface } from "node:readline";
 
 const inputLines = createInterface({
@@ -312,7 +291,11 @@ const inputLines = createInterface({
 const answers = inputLines[Symbol.asyncIterator]();
 
 /** @param {OpenAI} client */
-async function respondToOriginApproval(client, sessionId, approval) {
+async function respondToOriginApproval(
+  client: OpenAI,
+  sessionId: string,
+  approval: OpenAI.Beta.Agents.AgentSession.SessionRequiredActionResourceComputerUseApprovalRequest
+) {
   const request = approval.request;
   if (request.type === "browser_origin_access") {
     console.log("Requested origin:", request.origin);
@@ -348,7 +331,7 @@ async function respondToOriginApproval(client, sessionId, approval) {
       ],
     });
   } else {
-    throw new Error(`Unsupported approval request: ${request.type}`);
+    throw new Error("Unsupported approval request");
   }
 }
 ```
@@ -441,35 +424,33 @@ func respondToOriginApproval(ctx context.Context, client *openai.Client, session
 static void respondToOriginApproval(
     OpenAIClient client,
     String sessionId,
-    AgentSession.RequiredAction.ComputerUseApprovalRequest approval) {
-  var console = System.console();
-  if (console == null)
-    throw new IllegalStateException("Run this example in an interactive terminal.");
+    AgentSession.RequiredAction.ComputerUseApprovalRequest approval,
+    BufferedReader approvals)
+    throws IOException {
   var result =
       AgentSessionInputComputerUseApprovalRequestResult.builder().requestId(approval.requestId());
   if (approval.request().browserOriginAccess().isPresent()) {
     var request = approval.request().browserOriginAccess().get();
-    console.printf("Origin: %s%n", request.origin());
-    console.printf("Reason: %s%n", request.reason().orElse("Not supplied"));
+    System.out.printf("Origin: %s%n", request.origin());
+    System.out.printf("Reason: %s%n", request.reason().orElse("Not supplied"));
     String decision;
     while (true) {
-      String input =
-          console.readLine("Allow browser access? [approve/deny/cancel; default deny] ");
+      System.out.print("Allow browser access? [approve/deny/cancel; default deny] ");
+      System.out.flush();
+      String input = approvals.readLine();
       if (input == null) throw new IllegalStateException("Approval input closed.");
       decision = input.strip().toLowerCase(java.util.Locale.ROOT);
       if (decision.isEmpty()) decision = "deny";
       if (List.of("approve", "deny", "cancel").contains(decision)) break;
-      console.printf("Enter approve, deny, or cancel.%n");
+      System.out.printf("Enter approve, deny, or cancel.%n");
     }
     result.response(
-        Response.BrowserOriginAccess.builder()
-            .decision(Response.BrowserOriginAccess.Decision.of(decision))
+        AgentBrowserOriginAccessParam.builder()
+            .decision(AgentBrowserOriginAccessParam.Decision.of(decision))
             .build());
   } else if (approval.request().browserAuthentication().isPresent()) {
-    console.printf("Sign-in is outside this public-page task; cancelling the request.%n");
-    result.response(
-        Response.BrowserAuthentication.ofCancel(
-            Response.BrowserAuthentication.Cancel.builder().build()));
+    System.out.printf("Sign-in is outside this public-page task; cancelling the request.%n");
+    result.response(AgentBrowserAuthenticationCancelParam.builder().build());
   } else {
     throw new IllegalStateException("Unsupported computer-use approval request.");
   }
@@ -480,55 +461,6 @@ static void respondToOriginApproval(
       .sessions()
       .events()
       .create(EventCreateParams.builder().sessionId(sessionId).addEvent(result.build()).build());
-}
-```
-
-```csharp
-static async Task RespondToOriginApprovalAsync(
-    AgentClient client, string sessionId,
-    SessionRequiredActionResourceComputerUseApprovalRequest approval)
-{
-    if (Console.IsInputRedirected)
-    {
-        throw new InvalidOperationException("Run this example in an interactive terminal.");
-    }
-    ComputerUseApprovalResponseParam response;
-    if (approval.Request is ComputerUseApprovalRequestKindResourceBrowserOriginAccess origin)
-    {
-        Console.WriteLine($"Origin: {origin.Origin}");
-        Console.WriteLine($"Reason: {origin.Reason ?? "Not supplied"}");
-        string choice;
-        while (true)
-        {
-            Console.Write("Allow browser access? [approve/deny/cancel; default deny] ");
-            choice = (Console.ReadLine() ?? throw new EndOfStreamException("Approval input closed.")).Trim().ToLowerInvariant();
-            if (choice.Length == 0) choice = "deny";
-            if (choice is "approve" or "deny" or "cancel") break;
-            Console.WriteLine("Enter approve, deny, or cancel.");
-        }
-        BrowserOriginAccessDecisionParam decision = choice switch
-        {
-            "approve" => BrowserOriginAccessDecisionParam.Approve,
-            "cancel" => BrowserOriginAccessDecisionParam.Cancel,
-            _ => BrowserOriginAccessDecisionParam.Deny,
-        };
-        response = new ComputerUseApprovalResponseParamBrowserOriginAccess(decision);
-    }
-    else if (approval.Request is ComputerUseApprovalRequestKindResourceBrowserAuthentication)
-    {
-        Console.WriteLine("Sign-in is outside this public-page task; cancelling the request.");
-        response = new ComputerUseApprovalResponseParamBrowserAuthenticationCancel();
-    }
-    else
-    {
-        throw new InvalidOperationException("Unsupported computer-use approval request.");
-    }
-    await client.CreateAgentSessionEventsAsync(
-        sessionId,
-        new CreateSessionEventsParams(
-            [new SessionInputParamAgentSessionInputComputerUseApprovalRequestResult(approval.RequestId, response)]
-        )
-    );
 }
 ```
 
@@ -644,7 +576,7 @@ curl --fail-with-body "https://api.openai.com/v1/agents/sessions/$session_id/eve
   }'
 ```
 
-```javascript
+```typescript
 let screenshot;
 const events = await client.beta.agents.sessions.events.stream(session.id);
 const handledRequests = new Set();
@@ -890,6 +822,7 @@ eventLoop:
 ```
 
 ```java
+var approvals = new BufferedReader(new InputStreamReader(System.in, StandardCharsets.UTF_8));
 byte[] lastScreenshot = null;
 var handledRequests = new HashSet<String>();
 try (var events = client.beta().agents().sessions().events().streamStreaming(session.id())) {
@@ -922,7 +855,7 @@ try (var events = client.beta().agents().sessions().events().streamStreaming(ses
         if (action.computerUseApprovalRequest().isEmpty()) continue;
         var approval = action.computerUseApprovalRequest().get();
         if (!handledRequests.contains(approval.requestId())) {
-          respondToOriginApproval(client, session.id(), approval);
+          respondToOriginApproval(client, session.id(), approval, approvals);
           handledRequests.add(approval.requestId());
         }
       }
@@ -959,94 +892,6 @@ try (var events = client.beta().agents().sessions().events().streamStreaming(ses
   if (!completed) {
     throw new IllegalStateException("Stream closed before the browser task finished.");
   }
-}
-```
-
-```csharp
-byte[]? lastScreenshot = null;
-HashSet<string> handledRequests = new(StringComparer.Ordinal);
-await using var events = await client.GetAgentSessionEventsAsync(session.Id);
-await client.CreateAgentSessionEventsAsync(
-    session.Id,
-    new CreateSessionEventsParams(
-        [
-            new SessionInputParamAgentSessionInputMessage(
-                [
-                    new InputMessageParam(
-                        [new InputContentParamInputText("Open https://developers.openai.com in the browser. Find the Agents API quickstart, then report its page title and URL.")]
-                    ),
-                ]
-            ),
-        ]
-    )
-);
-bool completed = false;
-await foreach (var message in events)
-{
-    using JsonDocument document = JsonDocument.Parse(message.Data.ToMemory());
-    JsonElement current = document.RootElement;
-    string? type = current.GetProperty("type").GetString();
-    if (type == "agent.session.requires_action")
-    {
-        AgentSession latest = await client.RetrieveAgentSessionAsync(session.Id);
-        foreach (SessionRequiredActionResource action in latest.RequiredActions)
-        {
-            if (action is SessionRequiredActionResourceComputerUseApprovalRequest approval
-                && !handledRequests.Contains(approval.RequestId))
-            {
-                await RespondToOriginApprovalAsync(client, session.Id, approval);
-                handledRequests.Add(approval.RequestId);
-            }
-        }
-    }
-    else if (type == "agent.session.turn.item.done")
-    {
-        // Preserve streamed screenshots; retrieved history may omit image bytes.
-        JsonElement item = current.GetProperty("item");
-        if (item.GetProperty("type").GetString() == "computer_use_call"
-            && item.TryGetProperty("output", out JsonElement output)
-            && output.ValueKind == JsonValueKind.Object
-            && output.GetProperty("type").GetString() == "computer_screenshot")
-        {
-            const string prefix = "data:image/jpeg;base64,";
-            string imageUrl = output.GetProperty("image_url").GetString()!;
-            if (imageUrl.StartsWith(prefix, StringComparison.Ordinal))
-            {
-                lastScreenshot = Convert.FromBase64String(imageUrl[prefix.Length..]);
-            }
-        }
-    }
-    else if (type == "agent.session.turn.output_text.done")
-    {
-        Console.WriteLine(current.GetProperty("text").GetString());
-    }
-    else if (type is "agent.session.turn.completed" or "agent.session.turn.failed" or "agent.session.turn.cancelled")
-    {
-        JsonElement turn = current.GetProperty("turn");
-        if (turn.TryGetProperty("subagent_id", out JsonElement subagent)
-            && subagent.ValueKind != JsonValueKind.Null)
-        {
-            continue;
-        }
-        if (type != "agent.session.turn.completed")
-        {
-            throw new InvalidOperationException($"Browser task ended: {type}");
-        }
-        completed = true;
-        break;
-    }
-    else if (type == "error")
-    {
-        throw new InvalidOperationException(current.GetProperty("error").GetProperty("message").GetString());
-    }
-    else if (type is "agent.session.failed" or "agent.session.environment.failed")
-    {
-        throw new InvalidOperationException($"Session failed: {type}");
-    }
-}
-if (!completed)
-{
-    throw new InvalidOperationException("Stream closed before the browser task finished.");
 }
 ```
 
@@ -1200,7 +1045,7 @@ printf 'Saved activity JSON: %s\n' "$activity_file"
 # Use the returned last_id and keep order=asc on every page.
 ```
 
-```javascript
+```typescript
 for await (const item of client.beta.agents.sessions.items.list(session.id, {
   order: "asc",
   limit: 100,
@@ -1304,43 +1149,6 @@ if (lastScreenshot != null) {
   System.out.println("Saved screenshot: " + screenshotPath);
 } else {
   System.out.println("No screenshot was returned.");
-}
-```
-
-```csharp
-await foreach (AgentSessionItem item in client.GetAgentSessionItemsAsync(
-    session.Id, limit: 100, order: AgentSessionItemCollectionOrder.Ascending))
-{
-    if (item is not ComputerUseCallItemResource activity)
-    {
-        continue;
-    }
-    Console.WriteLine($"{activity.Title ?? "Browser activity"}: {activity.Status}");
-
-}
-if (lastScreenshot is not null)
-{
-    FileStreamOptions fileOptions = new()
-    {
-        Mode = FileMode.CreateNew,
-        Access = FileAccess.Write,
-        Share = FileShare.None,
-    };
-    if (!OperatingSystem.IsWindows())
-    {
-        fileOptions.UnixCreateMode = UnixFileMode.UserRead | UnixFileMode.UserWrite;
-    }
-    await using FileStream file = new("browser-screenshot.jpg", fileOptions);
-    if (!OperatingSystem.IsWindows())
-    {
-        File.SetUnixFileMode(file.SafeFileHandle, UnixFileMode.UserRead | UnixFileMode.UserWrite);
-    }
-    await file.WriteAsync(lastScreenshot);
-    Console.WriteLine("Saved screenshot: browser-screenshot.jpg");
-}
-else
-{
-    Console.WriteLine("No screenshot was returned.");
 }
 ```
 
@@ -1547,13 +1355,17 @@ curl --fail-with-body --retry 0 "https://api.openai.com/v1/agents/sessions/$sess
   --data-binary @browser-auth-response.json
 ```
 
-```javascript
+```typescript
 import promptSync from "prompt-sync";
 
 const prompt = promptSync({ sigint: true });
 
 /** @param {OpenAI} client */
-async function respondToComputerUseApproval(client, sessionId, approval) {
+async function respondToComputerUseApproval(
+  client: OpenAI,
+  sessionId: string,
+  approval: OpenAI.Beta.Agents.AgentSession.SessionRequiredActionResourceComputerUseApprovalRequest
+) {
   const request = approval.request;
   if (request.type === "browser_origin_access") {
     console.log("Requested origin:", request.origin);
@@ -1579,7 +1391,7 @@ async function respondToComputerUseApproval(client, sessionId, approval) {
     return;
   }
   if (request.type !== "browser_authentication") {
-    throw new Error(`Unsupported approval request: ${request.type}`);
+    throw new Error("Unsupported approval request");
   }
   async function cancelSignIn() {
     await client.beta.agents.sessions.events.create(
@@ -1609,7 +1421,7 @@ async function respondToComputerUseApproval(client, sessionId, approval) {
     return;
   }
 
-  let selectedOption;
+  let selectedOption: (typeof request.options)[number] | undefined;
   let activeFields = request.fields;
   if (request.options.length > 0) {
     request.options.forEach((option, index) => {
@@ -1630,9 +1442,10 @@ async function respondToComputerUseApproval(client, sessionId, approval) {
       choice < 1 ||
       choice > request.options.length
     );
-    selectedOption = request.options[choice - 1];
+    const option = request.options[choice - 1];
+    selectedOption = option;
     activeFields = request.fields.filter((field) =>
-      selectedOption.field_ids.includes(field.id)
+      option.field_ids.includes(field.id)
     );
   }
 
@@ -2009,11 +1822,13 @@ collectFields:
 ```java
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.beta.agents.AgentBrowserAuthenticationCancelParam;
+import com.openai.models.beta.agents.AgentBrowserAuthenticationSubmitParam;
+import com.openai.models.beta.agents.AgentBrowserOriginAccessParam;
 import com.openai.models.beta.agents.AgentSession;
 import com.openai.models.beta.agents.AgentSessionInputMessageParam;
 import com.openai.models.beta.agents.AgentSessionInputParam;
 import com.openai.models.beta.agents.AgentSessionInputParam.AgentSessionInputComputerUseApprovalRequestResult;
-import com.openai.models.beta.agents.AgentSessionInputParam.AgentSessionInputComputerUseApprovalRequestResult.Response;
 import com.openai.models.beta.agents.AgentToolParam;
 import com.openai.models.beta.agents.EnvironmentParam;
 import com.openai.models.beta.agents.sessions.SessionCreateParams;
@@ -2026,9 +1841,7 @@ static void cancelAuthentication(OpenAIClient client, String sessionId, String r
   var cancellation =
       AgentSessionInputComputerUseApprovalRequestResult.builder()
           .requestId(requestId)
-          .response(
-              Response.BrowserAuthentication.ofCancel(
-                  Response.BrowserAuthentication.Cancel.builder().build()))
+          .response(AgentBrowserAuthenticationCancelParam.builder().build())
           .build();
   client
       .withOptions(options -> options.maxRetries(0))
@@ -2063,8 +1876,8 @@ static void respondToComputerUseApproval(
       console.printf("Enter approve, deny, or cancel.%n");
     }
     result.response(
-        Response.BrowserOriginAccess.builder()
-            .decision(Response.BrowserOriginAccess.Decision.of(decision))
+        AgentBrowserOriginAccessParam.builder()
+            .decision(AgentBrowserOriginAccessParam.Decision.of(decision))
             .build());
   } else if (approval.request().browserAuthentication().isPresent()) {
     var challenge = approval.request().browserAuthentication().get();
@@ -2077,7 +1890,7 @@ static void respondToComputerUseApproval(
       cancelAuthentication(client, sessionId, approval.requestId());
       return;
     }
-    var response = Response.BrowserAuthentication.Submit.builder().fields(List.of());
+    var response = AgentBrowserAuthenticationSubmitParam.builder().fields(List.of());
     var activeFields = challenge.fields();
     if (!challenge.options().isEmpty()) {
       for (int i = 0; i < challenge.options().size(); i++) {
@@ -2143,7 +1956,7 @@ static void respondToComputerUseApproval(
             continue;
           }
           response.addField(
-              Response.BrowserAuthentication.Submit.Field.builder()
+              AgentBrowserAuthenticationSubmitParam.Field.builder()
                   .fieldId(field.id())
                   .value(value)
                   .build());
@@ -2154,7 +1967,7 @@ static void respondToComputerUseApproval(
       if (!challenge.options().isEmpty() || activeFields.isEmpty() || fieldsSubmitted > 0) break;
       console.printf("Enter at least one field to submit this form, or cancel.%n");
     }
-    result.response(Response.BrowserAuthentication.ofSubmit(response.build()));
+    result.response(response.build());
   } else {
     throw new IllegalStateException("Unsupported computer-use approval request.");
   }
@@ -2167,185 +1980,6 @@ static void respondToComputerUseApproval(
       .events()
       .create(EventCreateParams.builder().sessionId(sessionId).addEvent(result.build()).build());
   // Admission does not establish sign-in or navigation success; keep following the session.
-}
-```
-
-```csharp
-using System.ClientModel;
-using System.ClientModel.Primitives;
-using System.Globalization;
-using System.Text;
-using System.Text.Json;
-using OpenAI;
-using OpenAI.Agents;
-#pragma warning disable OPENAI001
-
-static string ReadLine(string prompt)
-{
-    Console.Write(prompt);
-    return Console.ReadLine() ?? "cancel";
-}
-
-static string ReadHidden(string prompt)
-{
-    if (Console.IsInputRedirected)
-    {
-        throw new InvalidOperationException("Run this sign-in example in a terminal.");
-    }
-    Console.Write(prompt);
-    StringBuilder value = new();
-    while (true)
-    {
-        ConsoleKeyInfo key = Console.ReadKey(intercept: true);
-        if (key.Key == ConsoleKey.Enter)
-        {
-            Console.WriteLine();
-            return value.ToString();
-        }
-        if (key.Key == ConsoleKey.Backspace)
-        {
-            if (value.Length > 0)
-            {
-                value.Length--;
-            }
-        }
-        else if (!char.IsControl(key.KeyChar))
-        {
-            value.Append(key.KeyChar);
-        }
-    }
-}
-
-static async Task RespondToComputerUseApprovalAsync(
-    AgentClient client, string sessionId,
-    SessionRequiredActionResourceComputerUseApprovalRequest approval)
-{
-    if (Console.IsInputRedirected)
-    {
-        throw new InvalidOperationException("Run this example in an interactive terminal.");
-    }
-    ComputerUseApprovalResponseParam response;
-    if (approval.Request is ComputerUseApprovalRequestKindResourceBrowserOriginAccess origin)
-    {
-        Console.WriteLine($"Origin: {origin.Origin}");
-        Console.WriteLine($"Reason: {origin.Reason ?? "Not supplied"}");
-        string choice;
-        while (true)
-        {
-            Console.Write("Allow browser access? [approve/deny/cancel; default deny] ");
-            choice = (Console.ReadLine() ?? throw new EndOfStreamException("Approval input closed.")).Trim().ToLowerInvariant();
-            if (choice.Length == 0) choice = "deny";
-            if (choice is "approve" or "deny" or "cancel") break;
-            Console.WriteLine("Enter approve, deny, or cancel.");
-        }
-        BrowserOriginAccessDecisionParam decision = choice switch
-        {
-            "approve" => BrowserOriginAccessDecisionParam.Approve,
-            "cancel" => BrowserOriginAccessDecisionParam.Cancel,
-            _ => BrowserOriginAccessDecisionParam.Deny,
-        };
-        response = new ComputerUseApprovalResponseParamBrowserOriginAccess(decision);
-    }
-    else if (approval.Request is ComputerUseApprovalRequestKindResourceBrowserAuthentication challenge)
-    {
-        async Task CancelAuthenticationAsync()
-        {
-            await client.CreateAgentSessionEventsAsync(
-                sessionId,
-                new CreateSessionEventsParams(
-                    [new SessionInputParamAgentSessionInputComputerUseApprovalRequestResult(
-                        approval.RequestId, new ComputerUseApprovalResponseParamBrowserAuthenticationCancel())]
-                )
-            );
-        }
-
-        Console.WriteLine(challenge.Reason ?? "The agent needs you to sign in.");
-        Console.WriteLine($"Credential origin: {challenge.CredentialOrigin ?? "Not supplied"}");
-        string consent = ReadLine("Have you verified the sign-in destination? [y/N] ").Trim();
-        if (!consent.Equals("y", StringComparison.OrdinalIgnoreCase)
-            && !consent.Equals("yes", StringComparison.OrdinalIgnoreCase))
-        {
-            await CancelAuthenticationAsync();
-            return;
-        }
-
-        ComputerUseApprovalResponseParamBrowserAuthenticationSubmit submission = new([]);
-        var activeFields = challenge.Fields.ToList();
-        if (challenge.Options.Count > 0)
-        {
-            for (int index = 0; index < challenge.Options.Count; index++)
-            {
-                Console.WriteLine($"{index + 1}. {challenge.Options[index].Label}");
-            }
-            while (true)
-            {
-                string choice = ReadLine("Choose a sign-in method, or enter cancel: ").Trim();
-                if (choice.Equals("cancel", StringComparison.OrdinalIgnoreCase))
-                {
-                    await CancelAuthenticationAsync();
-                    return;
-                }
-                if (!int.TryParse(choice, NumberStyles.None, CultureInfo.InvariantCulture, out int index)
-                    || index < 1 || index > challenge.Options.Count)
-                {
-                    Console.WriteLine("Enter a method number from the list, or cancel.");
-                    continue;
-                }
-                var option = challenge.Options[index - 1];
-                submission.SelectedOption = option.Id;
-                var fieldsById = challenge.Fields.ToDictionary(field => field.Id, StringComparer.Ordinal);
-                activeFields = option.FieldIds.Select(id => fieldsById[id]).ToList();
-                break;
-            }
-        }
-        while (true)
-        {
-            foreach (var field in activeFields)
-            {
-                while (true)
-                {
-                    string choices = field.Required
-                        ? "enter/cancel; default enter" : "enter/skip/cancel; default skip";
-                    string choice = ReadLine($"{field.Label} [{choices}]: ").Trim().ToLowerInvariant();
-                    if (choice == "cancel")
-                    {
-                        await CancelAuthenticationAsync();
-                        return;
-                    }
-                    if (choice.Length == 0) choice = field.Required ? "enter" : "skip";
-                    if (choice == "skip" && !field.Required) break;
-                    if (choice != "enter")
-                    {
-                        Console.WriteLine("Choose one of the displayed options.");
-                        continue;
-                    }
-                    string value = ReadHidden($"{field.Label}: ");
-                    if (value.Length == 0)
-                    {
-                        if (!field.Required) break;
-                        Console.WriteLine("This field is required.");
-                        continue;
-                    }
-                    submission.Fields.Add(new BrowserAuthenticationFieldValueParam(field.Id, value));
-                    break;
-                }
-            }
-            if (challenge.Options.Count > 0 || activeFields.Count == 0 || submission.Fields.Count > 0) break;
-            Console.WriteLine("Enter at least one field to submit this form, or cancel.");
-        }
-        response = submission;
-    }
-    else
-    {
-        throw new InvalidOperationException("Unsupported computer-use approval request.");
-    }
-    await client.CreateAgentSessionEventsAsync(
-        sessionId,
-        new CreateSessionEventsParams(
-            [new SessionInputParamAgentSessionInputComputerUseApprovalRequestResult(approval.RequestId, response)]
-        )
-    );
-    // Admission does not establish sign-in or navigation success; keep following the session.
 }
 ```
 
@@ -2514,7 +2148,7 @@ curl --no-buffer --fail-with-body https://api.openai.com/v1/agents/sessions \
 # Keep this stream open while responding to origin and sign-in approvals there.
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -2908,107 +2542,6 @@ try {
 }
 ```
 
-```csharp
-string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
-// An uncertain approval must not resend credentials automatically.
-OpenAIClientOptions options = new() { RetryPolicy = new ClientRetryPolicy(maxRetries: 0) };
-AgentClient client = new OpenAIClient(new ApiKeyCredential(key), options).GetAgentClient();
-AgentSession session = await client.CreateAgentSessionAsync(
-    new AgentSessionCreationOptions
-    {
-        Agent = new SessionAgentConfigParam
-        {
-            Model = "gpt-6-astra",
-            Instructions = "Read the requested GitHub issue list in the browser. Request sign-in when needed. Do not create, edit, comment on, or close issues.",
-            Tools = [new AgentToolConfigParamComputerUse { IncludeScreenshots = false }],
-        },
-        Environment = new EnvironmentParamOpenaiHosted
-        {
-            Desktop = new DesktopParam(true),
-            Network = new NetworkPolicyParam(NetworkAccessParam.Enabled),
-        },
-    }
-);
-Console.WriteLine($"Session ID: {session.Id}");
-HashSet<string> handledRequests = new(StringComparer.Ordinal);
-try
-{
-    await using var events = await client.GetAgentSessionEventsAsync(session.Id);
-    await client.CreateAgentSessionEventsAsync(
-        session.Id,
-        new CreateSessionEventsParams(
-            [
-                new SessionInputParamAgentSessionInputMessage(
-                    [
-                        new InputMessageParam(
-                            // Replace this illustrative URL with your private repository.
-                            [new InputContentParamInputText("Open https://github.com/acme/private-repo/issues in the browser. Sign in if needed, then report the title and URL of the most recently updated open issue. Do not make changes.")]
-                        ),
-                    ]
-                ),
-            ]
-        )
-    );
-    bool completed = false;
-    await foreach (var message in events)
-    {
-        using JsonDocument document = JsonDocument.Parse(message.Data.ToMemory());
-        JsonElement current = document.RootElement;
-        string? type = current.GetProperty("type").GetString();
-        if (type == "agent.session.requires_action")
-        {
-            AgentSession latest = await client.RetrieveAgentSessionAsync(session.Id);
-            foreach (SessionRequiredActionResource action in latest.RequiredActions)
-            {
-                if (action is SessionRequiredActionResourceComputerUseApprovalRequest approval
-                    && !handledRequests.Contains(approval.RequestId))
-                {
-                    await RespondToComputerUseApprovalAsync(client, session.Id, approval);
-                    handledRequests.Add(approval.RequestId);
-                }
-            }
-        }
-        else if (type == "agent.session.turn.output_text.done")
-        {
-            Console.WriteLine(current.GetProperty("text").GetString());
-        }
-        else if (type is "agent.session.turn.completed" or "agent.session.turn.failed" or "agent.session.turn.cancelled")
-        {
-            JsonElement turn = current.GetProperty("turn");
-            if (turn.TryGetProperty("subagent_id", out JsonElement subagent)
-                && subagent.ValueKind != JsonValueKind.Null)
-            {
-                continue;
-            }
-            if (type != "agent.session.turn.completed")
-            {
-                throw new InvalidOperationException($"Browser task ended: {type}");
-            }
-            completed = true;
-            break;
-        }
-        else if (type == "error")
-        {
-            throw new InvalidOperationException(current.GetProperty("error").GetProperty("message").GetString());
-        }
-        else if (type is "agent.session.failed" or "agent.session.environment.failed")
-        {
-            throw new InvalidOperationException($"Session failed: {type}");
-        }
-    }
-    if (!completed)
-    {
-        throw new InvalidOperationException("Stream closed before the browser task finished.");
-    }
-}
-catch
-{
-    Console.Error.WriteLine($"Session {session.Id} was kept. Retrieve it and check pending actions before sending anything again.");
-    throw;
-}
-await client.DeleteAgentSessionAsync(session.Id);
-```
-
 ```ruby
 require "openai"
 
@@ -3205,7 +2738,7 @@ curl --fail-with-body -X DELETE "https://api.openai.com/v1/agents/sessions/$sess
   -H "Authorization: Bearer $OPENAI_API_KEY"
 ```
 
-```javascript
+```typescript
 await client.beta.agents.sessions.delete(session.id);
 ```
 
@@ -3229,10 +2762,6 @@ defer func() {
 
 ```java
 client.beta().agents().sessions().delete(session.id());
-```
-
-```csharp
-await client.DeleteAgentSessionAsync(session.Id);
 ```
 
 ```ruby

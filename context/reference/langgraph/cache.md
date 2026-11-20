@@ -1,58 +1,74 @@
-Python[langgraph](/python/langgraph)Caching
-
 # Caching
 
 ## Classes
 
-[Class
+Class
 
-### BaseChannel
+### [ManagedValue](https://reference.langchain.com/python/langgraph/managed/base/ManagedValue)
 
-Base class for all channels.](/python/langgraph/channels/base/BaseChannel)[Class
+Class
 
-### InMemorySaver
+### [InMemorySaver](https://reference.langchain.com/python/langgraph.checkpoint/memory/InMemorySaver)
 
 An in-memory checkpoint saver.
 
-This checkpoint saver stores checkpoints in memory using a `defaultdict`.](/python/langgraph.checkpoint/memory/InMemorySaver)[Class
+This checkpoint saver stores checkpoints in memory using a `defaultdict`.
 
-### PersistentDict
+Class
+
+### [PersistentDict](https://reference.langchain.com/python/langgraph.checkpoint/memory/PersistentDict)
 
 Persistent dictionary with an API compatible with shelve and anydbm.
 
 The dict is kept in memory, so the dictionary operations run as fast as
 a regular dictionary.
 
-Write to disk is delayed until clos](/python/langgraph.checkpoint/memory/PersistentDict)[Class
+Write to disk is delayed until clos
 
-### SqliteSaver
+Class
 
-A checkpoint saver that stores checkpoints in a SQLite database.](/python/langgraph.checkpoint.sqlite/SqliteSaver)
+### [SqliteSaver](https://reference.langchain.com/python/langgraph.checkpoint.sqlite/SqliteSaver)
+
+A checkpoint saver that stores checkpoints in a SQLite database.
+
+## Functions
+
+Function
+
+### [is\_managed\_value](https://reference.langchain.com/python/langgraph/managed/base/is_managed_value)
 
 ## Modules
 
-[Module
+Module
 
-### utils](/python/langgraph.checkpoint.sqlite/utils)[Module
+### [utils](https://reference.langchain.com/python/langgraph.checkpoint.sqlite/utils)
 
-### aio](/python/langgraph.checkpoint.sqlite/aio)
+Module
+
+### [aio](https://reference.langchain.com/python/langgraph.checkpoint.sqlite/aio)
 
 ## Constants
 
-[Attribute
+Attribute
 
-### Value](/python/langgraph/channels/base/Value)[Attribute
+### [V](https://reference.langchain.com/python/langgraph/managed/base/V)
 
-### Update](/python/langgraph/channels/base/Update)[Attribute
+Attribute
 
-### Checkpoint](/python/langgraph/channels/base/Checkpoint)[Attribute
+### [U](https://reference.langchain.com/python/langgraph/managed/base/U)
 
-### logger](/python/langgraph.checkpoint/memory/logger)[Attribute
+Attribute
 
-### MemorySaver](/python/langgraph.checkpoint/memory/MemorySaver)
+### [ManagedValueSpec](https://reference.langchain.com/python/langgraph/managed/base/ManagedValueSpec)
 
-Copy page
+Attribute
 
-### On This Page
+### [ManagedValueMapping](https://reference.langchain.com/python/langgraph/managed/base/ManagedValueMapping)
 
-Classes4Modules2Constants5
+Attribute
+
+### [logger](https://reference.langchain.com/python/langgraph.checkpoint/memory/logger)
+
+Attribute
+
+### [MemorySaver](https://reference.langchain.com/python/langgraph.checkpoint/memory/MemorySaver)

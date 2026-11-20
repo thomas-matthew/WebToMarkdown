@@ -210,7 +210,7 @@ working context during the run.
 
 Load skills
 
-```javascript
+```typescript
 import {
   Capabilities,
   SandboxAgent,
@@ -279,9 +279,18 @@ Start with Unix-local for local development on macOS or Linux. It gives you the
 smallest local loop because the runner can create a temporary workspace from the
 agent's default manifest and clean it up after the run.
 
+For the TypeScript SDK, install a trusted Python 3 interpreter on the host before
+creating a session with `UnixLocalSandboxClient`. The SDK uses Python for protected local
+file access and checks `/usr/bin/python3`, `/usr/local/bin/python3`, and
+`/opt/homebrew/bin/python3`. If Python is installed elsewhere, set
+`OPENAI_AGENTS_PYTHON` in the host environment to its absolute executable path
+before starting Node.js. This is a host prerequisite, not a package to install
+inside the sandbox. Session creation fails if no suitable Python
+interpreter is available.
+
 Run a Unix-local sandbox agent
 
-```javascript
+```typescript
 import { run } from "@openai/agents";
 import { Manifest, SandboxAgent, file, shell } from "@openai/agents/sandbox";
 import { UnixLocalSandboxClient } from "@openai/agents/sandbox/local";
@@ -305,7 +314,7 @@ const manifest = new Manifest({
 
 const agent = new SandboxAgent({
   name: "Renewal Packet Analyst",
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   instructions:
     "Review the workspace before answering. Keep the response concise, " +
     "business-focused, and cite the file names that support each conclusion.",
@@ -357,7 +366,7 @@ manifest = Manifest(
 
 agent = SandboxAgent(
     name="Renewal Packet Analyst",
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     instructions=(
         "Review the workspace before answering. Keep the response concise, "
         "business-focused, and cite the file names that support each conclusion."
@@ -396,14 +405,14 @@ the same pattern with their own client classes and options.
 
 Switch to Docker
 
-```javascript
+```typescript
 import { run } from "@openai/agents";
 import { SandboxAgent } from "@openai/agents/sandbox";
 import { DockerSandboxClient } from "@openai/agents/sandbox/local";
 
 const agent = new SandboxAgent({
   name: "Workspace reviewer",
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   instructions: "Inspect the sandbox workspace before answering.",
 });
 
@@ -433,7 +442,10 @@ from agents.sandbox.sandboxes.docker import (
 docker_run_config = RunConfig(
     sandbox=SandboxRunConfig(
         client=DockerSandboxClient(docker_from_env()),
-        options=DockerSandboxClientOptions(image=DEFAULT_PYTHON_SANDBOX_IMAGE),
+        options=DockerSandboxClientOptions(
+            image=DEFAULT_PYTHON_SANDBOX_IMAGE,
+            network_mode="none",
+        ),
     ),
     workflow_name="Docker sandbox review",
 )
@@ -443,6 +455,8 @@ result = await Runner.run(
     "Summarize the renewal blockers and recommend the next two actions.",
     run_config=docker_run_config,
 )
+
+print(result.final_output)
 ```
 
 
@@ -490,7 +504,7 @@ run:
 
 Serialize and resume sandbox state
 
-```javascript
+```typescript
 import { run } from "@openai/agents";
 import { Manifest, SandboxAgent } from "@openai/agents/sandbox";
 import { UnixLocalSandboxClient } from "@openai/agents/sandbox/local";
@@ -501,7 +515,7 @@ const client = new UnixLocalSandboxClient({
 });
 const agent = new SandboxAgent({
   name: "Workspace builder",
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   instructions: "Inspect the sandbox workspace before answering.",
 });
 
@@ -535,10 +549,11 @@ try {
     content: "Continue from the existing workspace and add tests.",
   });
 
-  await run(agent, conversation, {
+  const secondResult = await run(agent, conversation, {
     maxTurns: 20,
     sandbox: { session: resumedSession },
   });
+  console.log(secondResult.finalOutput);
 } finally {
   await resumedSession.close?.();
 }
@@ -548,7 +563,8 @@ try {
 async with session:
     first_result = await Runner.run(
         agent,
-        "Build the first version of the app.",
+        "Create app.py with an add(a, b) function that returns their sum. "
+        "Run it once to check that add(2, 3) equals 5.",
         max_turns=20,
         run_config=RunConfig(
             sandbox=SandboxRunConfig(session=session),
@@ -564,7 +580,11 @@ frozen_session_state = client.deserialize_session_state(
 conversation.append(
     {
         "role": "user",
-        "content": "Continue from the existing workspace and add tests.",
+        "content": (
+            "Read the existing app.py without replacing it. Add test_app.py with "
+            "two unittest tests: one for positive inputs and one for negative "
+            "inputs. Run both tests."
+        ),
     }
 )
 
@@ -582,6 +602,8 @@ try:
         )
 finally:
     await client.delete(resumed_session)
+
+print(second_result.final_output)
 ```
 
 
@@ -611,7 +633,7 @@ guidance about work that happened in the workspace.
 
 Enable sandbox memory
 
-```javascript
+```typescript
 import {
   Manifest,
   SandboxAgent,
@@ -724,16 +746,17 @@ snapshots, or credentials that should live outside your application server.
 Use provider docs for provider-specific setup, credentials, isolation, storage,
 previews, and persistence behavior.
 
-| Provider   | SDK client                | Documentation and examples                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ---------- | ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Blaxel     | `BlaxelSandboxClient`     | [Sandbox overview](https://docs.blaxel.ai/Sandboxes/Overview)                                                                                                                                                                                                                                                                                                                                                   |
-| Cloudflare | `CloudflareSandboxClient` | [Sandbox documentation](https://developers.cloudflare.com/sandbox/)<br />[OpenAI Agents tutorial](https://docs.cloudflare.com/sandbox/tutorials/openai-agents/)<br />[Sandbox Bridge examples](https://github.com/cloudflare/sandbox-sdk/tree/main/bridge/examples)                                                                                                                       |
-| Daytona    | `DaytonaSandboxClient`    | [Sandbox documentation](https://www.daytona.io/docs/en/sandboxes/)<br />[OpenAI Agents SDK guide](https://www.daytona.io/docs/en/guides/openai-agents/openai-agents-sdk-with-sandboxes)                                                                                                                                                                                                              |
-| Docker     | `DockerSandboxClient`     | [Docker documentation](https://docs.docker.com/)<br />[TypeScript Docker SDK example](https://github.com/openai/openai-agents-js/blob/main/examples/docs/sandbox-agents/docker-client.ts)<br />[Python Docker SDK example](https://github.com/openai/openai-agents-python/blob/main/examples/sandbox/docker/docker_runner.py)                                                             |
-| E2B        | `E2BSandboxClient`        | [Sandbox documentation](https://e2b.dev/docs)<br />[OpenAI Agents SDK guide](https://e2b.dev/docs/agents/openai-agents-sdk)<br />[Launch blog](https://e2b.dev/blog/e2b-is-now-in-agents-sdk)                                                                                                                                                                                             |
-| Modal      | `ModalSandboxClient`      | [Sandbox guide](https://modal.com/docs/guide/sandboxes)<br />[Integration blog](https://modal.com/blog/building-with-modal-and-the-openai-agent-sdk)<br />[Example repo](https://github.com/modal-labs/openai-agents-python-example)<br />[Modal extension reference](https://github.com/modal-labs/openai-agents-python-example?tab=readme-ov-file#modal-extension-reference) |
-| Unix-local | `UnixLocalSandboxClient`  | [TypeScript local SDK example](https://github.com/openai/openai-agents-js/blob/main/examples/docs/sandbox-agents/basic.ts)<br />[Python local SDK example](https://github.com/openai/openai-agents-python/blob/main/examples/sandbox/unix_local_runner.py)                                                                                                                                           |
-| Vercel     | `VercelSandboxClient`     | [Sandbox documentation](https://vercel.com/docs/vercel-sandbox)<br />[OpenAI Agents SDK guide](https://vercel.com/kb/guide/building-an-agent-with-openai-agents-sdk-and-vercel-sandbox)<br />[FastAPI template](https://vercel.com/templates/template/openai-agents-sdk-with-fastapi)<br />[Sample app](https://github.com/vercel-labs/openai-agents-fastapi-starter)          |
+| Provider   | SDK client                | Documentation and examples                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| ---------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Blaxel     | `BlaxelSandboxClient`     | [Sandbox overview](https://docs.blaxel.ai/Sandboxes/Overview)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Cloudflare | `CloudflareSandboxClient` | [Sandbox documentation](https://developers.cloudflare.com/sandbox/)<br />[OpenAI Agents tutorial](https://docs.cloudflare.com/sandbox/tutorials/openai-agents/)<br />[Sandbox Bridge examples](https://github.com/cloudflare/sandbox-sdk/tree/main/bridge/examples)                                                                                                                                                                                                                                                               |
+| Databricks | `DatabricksSandboxClient` | For Python, install `databricks-openai[sandbox]`.<br />[Sandbox documentation](https://docs.databricks.com/aws/en/compute/serverless/sandbox)<br />[OpenAI Agents SDK example](https://github.com/databricks/databricks-ai-bridge/blob/main/integrations/openai/examples/sandbox_runner.py)<br />[Databricks SDK for Python guide](https://databricks-sdk-py.readthedocs.io/en/latest/sandbox.html) |
+| Daytona    | `DaytonaSandboxClient`    | [Sandbox documentation](https://www.daytona.io/docs/en/sandboxes/)<br />[OpenAI Agents SDK guide](https://www.daytona.io/docs/en/guides/openai-agents/openai-agents-sdk-with-sandboxes)                                                                                                                                                                                                                                                                                                                                                      |
+| Docker     | `DockerSandboxClient`     | [Docker documentation](https://docs.docker.com/)<br />[TypeScript Docker SDK example](https://github.com/openai/openai-agents-js/blob/main/examples/docs/sandbox-agents/docker-client.ts)<br />[Python Docker SDK example](https://github.com/openai/openai-agents-python/blob/main/examples/sandbox/docker/docker_runner.py)                                                                                                                                                                                                     |
+| E2B        | `E2BSandboxClient`        | [Sandbox documentation](https://e2b.dev/docs)<br />[OpenAI Agents SDK guide](https://e2b.dev/docs/agents/openai-agents-sdk)<br />[Launch blog](https://e2b.dev/blog/e2b-is-now-in-agents-sdk)                                                                                                                                                                                                                                                                                                                                     |
+| Modal      | `ModalSandboxClient`      | [Sandbox guide](https://modal.com/docs/guide/sandboxes)<br />[Integration blog](https://modal.com/blog/building-with-modal-and-the-openai-agent-sdk)<br />[Example repo](https://github.com/modal-labs/openai-agents-python-example)<br />[Modal extension reference](https://github.com/modal-labs/openai-agents-python-example?tab=readme-ov-file#modal-extension-reference)                                                                                                                                         |
+| Unix-local | `UnixLocalSandboxClient`  | [TypeScript local SDK example](https://github.com/openai/openai-agents-js/blob/main/examples/docs/sandbox-agents/basic.ts)<br />[Python local SDK example](https://github.com/openai/openai-agents-python/blob/main/examples/sandbox/unix_local_runner.py)                                                                                                                                                                                                                                                                                   |
+| Vercel     | `VercelSandboxClient`     | [Sandbox documentation](https://vercel.com/docs/vercel-sandbox)<br />[OpenAI Agents SDK guide](https://vercel.com/kb/guide/building-an-agent-with-openai-agents-sdk-and-vercel-sandbox)<br />[FastAPI template](https://vercel.com/templates/template/openai-agents-sdk-with-fastapi)<br />[Sample app](https://github.com/vercel-labs/openai-agents-fastapi-starter)                                                                                                                                                  |
 
 [sdk-example-agents-as-tools]: https://github.com/openai/openai-agents-python/blob/main/examples/sandbox/sandbox_agents_as_tools.py
 [sdk-example-basic]: https://github.com/openai/openai-agents-python/blob/main/examples/sandbox/basic.py

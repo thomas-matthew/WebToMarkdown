@@ -1,6 +1,4 @@
-Python[langgraph](/python/langgraph)[func](/python/langgraph/func)entrypoint
-
-Classv1.2.18 (latest)●Since v1.2
+Classv1.2.23 (latest)●Since v1.2
 
 # entrypoint
 
@@ -34,8 +32,6 @@ when a checkpointer is provided.
 If you want **`previous`** to be different from the return value, you can use the
 `entrypoint.final` object to return a value while saving a different value to the
 checkpoint.
-
-Copy
 
 ```
 entrypoint(
@@ -182,13 +178,8 @@ Copy
 
 ## Used in Docs
 
-* [Choosing between Graph and Functional APIs](https://docs.langchain.com/oss/python/langgraph/choosing-apis)
 * [Deploy other frameworks](https://docs.langchain.com/langsmith/deploy-other-frameworks)
-* [Fault tolerance](https://docs.langchain.com/oss/python/langgraph/fault-tolerance)
-* [Functional API overview](https://docs.langchain.com/oss/python/langgraph/functional-api)
 * [MISSING\_CHECKPOINTER](https://docs.langchain.com/oss/python/langgraph/errors/MISSING_CHECKPOINTER)
-
-+3 more
 
 ## Parameters
 
@@ -210,62 +201,56 @@ constructor
 
 | Name | Type |
 | --- | --- |
-| checkpointer | [BaseCheckpointSaver](/python/langgraph.checkpoint/base/BaseCheckpointSaver) | None |
-| store | [BaseStore](/python/langgraph.store/base/BaseStore) | None |
-| cache | [BaseCache](/python/langchain-core/caches/BaseCache) | None |
-| context\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[ContextT](/python/langgraph/typing/ContextT)] | None |
-| cache\_policy | [CachePolicy](/python/langgraph/types/CachePolicy) | None |
-| retry\_policy | [RetryPolicy](/python/langgraph/types/RetryPolicy) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[RetryPolicy](/python/langgraph/types/RetryPolicy)] | None |
-| timeout | [float](https://docs.python.org/3/library/functions.html#float) | [timedelta](https://docs.python.org/3/library/datetime.html#datetime.timedelta) | [TimeoutPolicy](/python/langgraph/types/TimeoutPolicy) | None |
-| kwargs | Unpack[[DeprecatedKwargs](/python/langgraph/_internal/_typing/DeprecatedKwargs)] |
+| checkpointer | [BaseCheckpointSaver](https://reference.langchain.com/python/langgraph.checkpoint/base/BaseCheckpointSaver) | None |
+| store | [BaseStore](https://reference.langchain.com/python/langgraph.store/base/BaseStore) | None |
+| cache | [BaseCache](https://reference.langchain.com/python/langchain-core/caches/BaseCache) | None |
+| context\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[ContextT](https://reference.langchain.com/python/langgraph/typing/ContextT)] | None |
+| cache\_policy | [CachePolicy](https://reference.langchain.com/python/langgraph/types/CachePolicy) | None |
+| retry\_policy | [RetryPolicy](https://reference.langchain.com/python/langgraph/types/RetryPolicy) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[RetryPolicy](https://reference.langchain.com/python/langgraph/types/RetryPolicy)] | None |
+| timeout | [float](https://docs.python.org/3/library/functions.html#float) | [timedelta](https://docs.python.org/3/library/datetime.html#datetime.timedelta) | [TimeoutPolicy](https://reference.langchain.com/python/langgraph/types/TimeoutPolicy) | None |
+| kwargs | Unpack[[DeprecatedKwargs](https://reference.langchain.com/python/langgraph/_internal/_typing/DeprecatedKwargs)] |
 
 ## Attributes
 
-[attribute
+attribute
 
-checkpointer: checkpointer](/python/langgraph/func/entrypoint/checkpointer)[attribute
+checkpointer: checkpointer
 
-store: store](/python/langgraph/func/entrypoint/store)[attribute
+attribute
 
-cache: cache](/python/langgraph/func/entrypoint/cache)[attribute
+store: store
 
-cache\_policy: cache\_policy](/python/langgraph/func/entrypoint/cache_policy)[attribute
+attribute
 
-retry\_policy: retry\_policy](/python/langgraph/func/entrypoint/retry_policy)[attribute
+cache: cache
 
-timeout](/python/langgraph/func/entrypoint/timeout)[attribute
+attribute
 
-context\_schema: context\_schema](/python/langgraph/func/entrypoint/context_schema)
+cache\_policy: cache\_policy
+
+attribute
+
+retry\_policy: retry\_policy
+
+attribute
+
+timeout
+
+attribute
+
+context\_schema: context\_schema
 
 ## Classes
 
-[class
+class
 
 final
 
 A primitive that can be returned from an entrypoint.
 
 This primitive allows to save a value to the checkpointer distinct from the
-return value from the entrypoint.](/python/langgraph/func/entrypoint/final)
+return value from the entrypoint.
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/func/__init__.py#L262)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/58a6e1cc5b7dfc3619fc6e7e7573b040d554649b/libs/langgraph/langgraph/func/__init__.py#L262)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Related Documentation◇Parameters
-
-Constructors
-
-C\_\_init\_\_
-
-Attributes
-
-AcheckpointerAstoreAcacheAcache\_policyAretry\_policyAtimeoutAcontext\_schema
-
-Classes
-
-Cfinal

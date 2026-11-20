@@ -34,7 +34,7 @@ Use Python SDK 3.28.0, Node.js SDK 7.32.0, Java SDK 4.80.0, or Ruby SDK 0.103.0 
 
 Send the workspace configuration to `POST /v1/agents/environments`:
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -86,6 +86,23 @@ environment = client.beta.agents.environments.create(
 )
 environment_id = environment.id
 print(environment_id)
+```
+
+```go
+ctx := context.Background()
+client := openai.NewClient()
+environment, err := client.Beta.Agents.Environments.New(ctx, openai.BetaAgentEnvironmentNewParams{
+	Environment: openai.BetaAgentEnvironmentNewParamsEnvironment{
+		Packages:      openai.BetaAgentEnvironmentNewParamsEnvironmentPackages{Python: []string{"pandas==2.2.3"}},
+		Files:         []openai.HostedEnvironmentFileParamUnion{{OfParamInline: &openai.HostedEnvironmentFileParamInline{Path: "/workspace/amounts.csv", Data: "YW1vdW50CjEwCjIwCjMwCg=="}}},
+		SetupCommands: []openai.SetupCommandParam{{Command: `python -c "import pandas; print(pandas.__version__)"`, Cwd: openai.String("/workspace")}},
+	},
+})
+if err != nil {
+	panic(err)
+}
+environmentID := environment.ID
+fmt.Println(environmentID)
 ```
 
 ```java
@@ -170,7 +187,7 @@ Set `environment.type` to `openai_hosted` when creating a standalone environment
 
 Retrieve the environment using the ID saved in step 1:
 
-```javascript
+```typescript
 const current = await client.beta.agents.environments.retrieve(environmentId);
 console.log(current.status);
 ```
@@ -181,7 +198,7 @@ print(current.status)
 ```
 
 ```go
-current, err := client.Beta.Agents.Environments.Get(context.Background(), environmentID)
+current, err := client.Beta.Agents.Environments.Get(ctx, environmentID)
 if err != nil {
 	panic(err)
 }
@@ -218,7 +235,7 @@ If you attach the environment before setup finishes, follow the session's `agent
 
 Create a session with the saved environment ID, an agent, and its first input:
 
-```javascript
+```typescript
 const stream = await client.beta.agents.sessions.create({
   agent: { model: "gpt-6-astra" },
   environment: { type: "openai_hosted", environment_id: environmentId },
@@ -245,6 +262,32 @@ stream = client.beta.agents.sessions.create(
 with stream:
     for event in stream:
         print(event.model_dump_json())
+```
+
+```go
+stream := client.Beta.Agents.Sessions.NewStreaming(ctx, openai.BetaAgentSessionNewParams{
+	Agent:       openai.BetaAgentSessionNewParamsAgent{Model: openai.String("gpt-6-astra")},
+	Environment: openai.EnvironmentParamUnion{OfParamOpenAIHosted: &openai.EnvironmentParamOpenAIHosted{EnvironmentID: openai.String(environmentID)}},
+	Input:       openai.BetaAgentSessionNewParamsInputUnion{OfString: openai.String("Use pandas to read /workspace/amounts.csv, calculate the sum of the amount column, and report the total.")},
+})
+defer stream.Close()
+completed := false
+for stream.Next() {
+	event := stream.Current()
+	fmt.Println(event.RawJSON())
+	switch event.Type {
+	case "agent.session.turn.failed", "error":
+		panic("Agent turn failed")
+	case "agent.session.turn.completed":
+		completed = true
+	}
+}
+if err := stream.Err(); err != nil {
+	panic(err)
+}
+if !completed {
+	panic("Stream ended before the turn completed")
+}
 ```
 
 ```java
@@ -302,7 +345,7 @@ A newly created shared environment supports up to 128 attached sessions. Reusing
 
 If multiple tasks need the same packages and setup, [save an environment configuration as a template](https://developers.openai.com/api/reference/resources/beta/subresources/agents/subresources/environments/subresources/templates/methods/create), then supply its ID when creating each pre-warmed environment:
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -326,6 +369,18 @@ environment = client.beta.agents.environments.create(
     }
 )
 print(environment.id)
+```
+
+```go
+environment, err := client.Beta.Agents.Environments.New(context.Background(), openai.BetaAgentEnvironmentNewParams{
+	Environment: openai.BetaAgentEnvironmentNewParamsEnvironment{
+		EnvironmentTemplateID: openai.String("envtmpl_REPLACE_WITH_TEMPLATE_ID"),
+	},
+})
+if err != nil {
+	panic(err)
+}
+fmt.Println(environment.ID)
 ```
 
 ```java
@@ -370,7 +425,7 @@ curl https://api.openai.com/v1/agents/environments \\\n  -H "OpenAI-Beta: agents
 
 For browser tasks, prepare the managed browser and virtual display before the session starts. Include `desktop.enabled` when creating the environment:
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -394,6 +449,18 @@ environment = client.beta.agents.environments.create(
     }
 )
 print(environment.id)
+```
+
+```go
+environment, err := client.Beta.Agents.Environments.New(context.Background(), openai.BetaAgentEnvironmentNewParams{
+	Environment: openai.BetaAgentEnvironmentNewParamsEnvironment{
+		Desktop: openai.BetaAgentEnvironmentNewParamsEnvironmentDesktop{Enabled: openai.Bool(true)},
+	},
+})
+if err != nil {
+	panic(err)
+}
+fmt.Println(environment.ID)
 ```
 
 ```java
@@ -443,7 +510,7 @@ When creating a session, attach the saved environment ID and give the agent the 
 
 Use `GET /v1/agents/environments` to find active environments created by your identity in the current organization and project:
 
-```javascript
+```typescript
 const environments = await client.beta.agents.environments.list({
   limit: 20,
   order: "desc",
@@ -455,6 +522,16 @@ console.log(environments.data);
 environments = client.beta.agents.environments.list(limit=20, order="desc")
 for item in environments.data:
     print(item.model_dump_json())
+```
+
+```go
+environments, err := client.Beta.Agents.Environments.List(ctx, openai.BetaAgentEnvironmentListParams{Limit: openai.Int(20), Order: "desc"})
+if err != nil {
+	panic(err)
+}
+for _, item := range environments.Data {
+	fmt.Println(item.ID)
+}
 ```
 
 ```java
@@ -470,7 +547,7 @@ var environments =
                 .limit(20L)
                 .order(EnvironmentListParams.Order.DESC)
                 .build());
-System.out.println(environments);
+System.out.println(environments.items());
 ```
 
 ```ruby
@@ -495,7 +572,7 @@ Results are newest first by default. If `has_more` is true, set `after` to the p
 - **Multiple sessions can share one environment.** Pass the same `environment_id` when creating each session. They share the running workspace, including files, processes, installed packages, and environment configuration. Each session keeps its own conversation history. Changes to the workspace are visible to other attached sessions, so create separate environments when tasks need separate workspaces. A shared environment supports up to 128 attached sessions. This behavior applies to newly created standalone environments; older environments retain their original lifecycle.
 - **Unused environments expire.** An environment that remains unattached expires after 5 minutes. Prewarm close to when you expect a task to start.
 - **Keep the creating identity consistent.** Retrieval, listing, and attachment require the same organization, project, and authenticated identity that created the environment. Different API keys for that identity can access the same environments, including after key rotation.
-- **Shared environments expire after inactivity.** The first attachment starts a 20-minute idle lifetime. Activity in any attached session or through the environment file API extends it; pending work and active turns prevent idle expiry. Deleting a session removes that session from the environment without deleting the shared workspace. Even after the last session is deleted, the environment remains available for attachment until its idle deadline. The API has no standalone environment deletion endpoint.
+- **Shared compute stops after inactivity.** The first attachment starts a 20-minute idle lifetime. Activity in any attached session or through the environment file API extends it; pending work and active turns prevent idle shutdown. At idle shutdown, an environment can enter `suspended` with a checkpoint retained for 7 days instead of expiring. Suspension stops compute; it does not delete the shared workspace. Deleting a session removes that session from the environment without deleting the shared workspace or its checkpoint. The API has no standalone environment deletion endpoint.
 
 ## Retry creation safely
 

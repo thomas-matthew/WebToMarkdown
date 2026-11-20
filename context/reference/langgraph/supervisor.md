@@ -1,5 +1,3 @@
-Pythonlanggraph-supervisor
-
 # langgraph-supervisor
 
 ## Description
@@ -413,28 +411,9 @@ Copy
 
 ## Functions
 
-[Function
+Function
 
-### create\_supervisor
-
-Create a multi-agent supervisor.](/python/langgraph-supervisor/supervisor/create_supervisor)[Function
-
-### create\_handoff\_tool
-
-Create a tool that can handoff control to the requested agent.](/python/langgraph-supervisor/handoff/create_handoff_tool)[Function
-
-### create\_handoff\_back\_messages
-
-Create a pair of (AIMessage, ToolMessage) to add to the message history when returning control to the supervisor.](/python/langgraph-supervisor/handoff/create_handoff_back_messages)[Function
-
-### create\_forward\_message\_tool
-
-Create a tool the supervisor can use to forward a worker message by name.
-
-This helps avoid information loss any time the supervisor rewrites a worker query
-to the user and also can save some tokens.](/python/langgraph-supervisor/handoff/create_forward_message_tool)[Function
-
-### add\_inline\_agent\_name
+### [add\_inline\_agent\_name](https://reference.langchain.com/python/langgraph-supervisor/agent_name/add_inline_agent_name)
 
 Add name and content XML tags to the message content.
 
@@ -443,9 +422,11 @@ Examples:
 ```
 >>> add_inline_agent_name(AIMessage(content="Hello", name="assistant"))
 AIMessage(content="<name>assistant</name><content>Hell
-```](/python/langgraph-supervisor/agent_name/add_inline_agent_name)[Function
+```
 
-### remove\_inline\_agent\_name
+Function
+
+### [remove\_inline\_agent\_name](https://reference.langchain.com/python/langgraph-supervisor/agent_name/remove_inline_agent_name)
 
 Remove explicit name and content XML tags from the AI message content.
 
@@ -453,28 +434,57 @@ Examples:
 
 ```
 >>> remove_inline_agent_name(AIMessage(content="<name>assistant</name><content>Hello</content>", name="assistant"
-```](/python/langgraph-supervisor/agent_name/remove_inline_agent_name)[Function
+```
 
-### with\_agent\_name
+Function
+
+### [with\_agent\_name](https://reference.langchain.com/python/langgraph-supervisor/agent_name/with_agent_name)
 
 Attach formatted agent names to the messages passed to and from a language model.
 
-This is useful for making a message history with multiple agents more coherent.](/python/langgraph-supervisor/agent_name/with_agent_name)
+This is useful for making a message history with multiple agents more coherent.
+
+Function
+
+### [create\_supervisor](https://reference.langchain.com/python/langgraph-supervisor/supervisor/create_supervisor)
+
+Create a multi-agent supervisor.
+
+Function
+
+### [create\_handoff\_tool](https://reference.langchain.com/python/langgraph-supervisor/handoff/create_handoff_tool)
+
+Create a tool that can handoff control to the requested agent.
+
+Function
+
+### [create\_handoff\_back\_messages](https://reference.langchain.com/python/langgraph-supervisor/handoff/create_handoff_back_messages)
+
+Create a pair of (AIMessage, ToolMessage) to add to the message history when returning control to the supervisor.
+
+Function
+
+### [create\_forward\_message\_tool](https://reference.langchain.com/python/langgraph-supervisor/handoff/create_forward_message_tool)
+
+Create a tool the supervisor can use to forward a worker message by name.
+
+This helps avoid information loss any time the supervisor rewrites a worker query
+to the user and also can save some tokens.
 
 ## Modules
 
-[Module
+Module
 
-### langgraph\_supervisor](/python/langgraph-supervisor/langgraph_supervisor)[Module
+### [langgraph\_supervisor](https://reference.langchain.com/python/langgraph-supervisor/langgraph_supervisor)
 
-### supervisor](/python/langgraph-supervisor/supervisor)[Module
+Module
 
-### handoff](/python/langgraph-supervisor/handoff)[Module
+### [agent\_name](https://reference.langchain.com/python/langgraph-supervisor/agent_name)
 
-### agent\_name](/python/langgraph-supervisor/agent_name)
+Module
 
-Copy page
+### [supervisor](https://reference.langchain.com/python/langgraph-supervisor/supervisor)
 
-### On This Page
+Module
 
-DescriptionFunctions7Modules4
+### [handoff](https://reference.langchain.com/python/langgraph-supervisor/handoff)

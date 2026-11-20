@@ -1,12 +1,8 @@
-Python[langchain-core](/python/langchain-core)[caches](/python/langchain-core/caches)InMemoryCache
-
-Classv1.7.1 (latest)●Since v1.7
+Classv1.8.3 (latest)●Since v1.8
 
 # InMemoryCache
 
 Cache that stores things in memory.
-
-Copy
 
 ```
 InMemoryCache(
@@ -46,12 +42,6 @@ result = cache.lookup(
 
 Copy
 
-## Used in Docs
-
-* [Graph API overview](https://docs.langchain.com/oss/python/langgraph/graph-api)
-* [Use the functional API](https://docs.langchain.com/oss/python/langgraph/use-functional-api)
-* [Use the graph API](https://docs.langchain.com/oss/python/langgraph/use-graph-api)
-
 ## Parameters
 
 | Name | Type | Description |
@@ -70,46 +60,42 @@ constructor
 
 ## Methods
 
-[method
+method
 
 lookup
 
-Look up based on `prompt` and `llm_string`.](/python/langchain-core/caches/InMemoryCache/lookup)[method
+Look up based on `prompt` and `llm_string`.
+
+method
 
 update
 
-Update cache based on `prompt` and `llm_string`.](/python/langchain-core/caches/InMemoryCache/update)[method
+Update cache based on `prompt` and `llm_string`.
+
+method
 
 clear
 
-Clear cache.](/python/langchain-core/caches/InMemoryCache/clear)[method
+Clear cache.
+
+method
 
 alookup
 
-Async look up based on `prompt` and `llm_string`.](/python/langchain-core/caches/InMemoryCache/alookup)[method
+Async look up based on `prompt` and `llm_string`.
+
+method
 
 aupdate
 
-Async update cache based on `prompt` and `llm_string`.](/python/langchain-core/caches/InMemoryCache/aupdate)[method
+Async update cache based on `prompt` and `llm_string`.
+
+method
 
 aclear
 
-Async clear cache.](/python/langchain-core/caches/InMemoryCache/aclear)
+Async clear cache.
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6419339aa163a49f32d9b80ff20d6adc3b446d49/libs/core/langchain_core/caches.py#L155)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/d4dafe5839c4a6b07d71cc78697df0de9e627e21/libs/core/langchain_core/caches.py#L155)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Related Documentation◇Parameters
-
-Constructors
-
-C\_\_init\_\_
-
-Methods
-
-MlookupMupdateMclearMalookupMaupdateMaclear

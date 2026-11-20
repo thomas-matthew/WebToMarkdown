@@ -1,34 +1,28 @@
-Python[langgraph](/python/langgraph)Graphs
-
 # Graphs
 
 ## Classes
 
-[Class
+Class
 
-### StateGraph
+### [StateGraph](https://reference.langchain.com/python/langgraph/graph/state/StateGraph)
 
 A graph whose nodes communicate by reading and writing to a shared state.
 
 The signature of each node is `State -> Partial<State>`.
 
-Each state key can optionally be annotated with a reducer function](/python/langgraph/graph/state/StateGraph)[Class
+Each state key can optionally be annotated with a reducer function
 
-### CompiledStateGraph](/python/langgraph/graph/state/CompiledStateGraph)
+Class
+
+### [CompiledStateGraph](https://reference.langchain.com/python/langgraph/graph/state/CompiledStateGraph)
 
 ## Functions
 
-[Function
+Function
 
-### add\_messages
+### [add\_messages](https://reference.langchain.com/python/langgraph/graph/message/add_messages)
 
 Merges two lists of messages, updating existing messages by ID.
 
 By default, this ensures the state is "append-only", unless the
-new message has the same ID as an existing message.](/python/langgraph/graph/message/add_messages)
-
-Copy page
-
-### On This Page
-
-Classes2Functions1
+new message has the same ID as an existing message.

@@ -77,7 +77,9 @@ As mentioned already, developers can optionally prompt agents built with GPT-4.1
 
 Below, we share the agentic prompt that we used to achieve our highest score on SWE-bench Verified, which features detailed instructions about workflow and problem-solving strategy. This general pattern can be used for any agentic task.
 
-```javascript
+Send a coding-agent prompt
+
+```typescript
 const response = await client.responses.create({
   instructions:
     "\nYou will be tasked to fix an issue from an open-source repository.\n\nYour thinking should be thorough and so it's fine if it's very long. You can think step by step before and after each action you decide to take.\n\nYou MUST iterate and keep going until the problem is solved.\n\nYou already have everything you need to solve this problem in the /testbed folder, even without internet connection. I want you to fully solve this autonomously before coming back to me.\n\nOnly terminate your turn when you are sure that the problem is solved. Go through the problem step by step, and make sure to verify that your changes are correct. NEVER end your turn without having solved the problem, and when you say you are going to make a tool call, make sure you ACTUALLY make the tool call, instead of ending your turn.\n\nTHE PROBLEM CAN DEFINITELY BE SOLVED WITHOUT THE INTERNET.\n\nTake your time and think through every step - remember to check your solution rigorously and watch out for boundary cases, especially with the changes you made. Your solution must be perfect. If not, continue working on it. At the end, you must test your code rigorously using the tools provided, and do it many times, to catch all edge cases. If it is not robust, iterate more and make it perfect. Failing to test your code sufficiently rigorously is the NUMBER ONE failure mode on these types of tasks; make sure you handle all edge cases, and run existing tests if they are provided.\n\nYou MUST plan extensively before each function call, and reflect extensively on the outcomes of the previous function calls. DO NOT do this entire process by making function calls only, as this can impair your ability to solve the problem and think insightfully.\n\n# Workflow\n\n## High-Level Problem Solving Strategy\n\n1. Understand the problem deeply. Carefully read the issue and think critically about what is required.\n2. Investigate the codebase. Explore relevant files, search for key functions, and gather context.\n3. Develop a clear, step-by-step plan. Break down the fix into manageable, incremental steps.\n4. Implement the fix incrementally. Make small, testable code changes.\n5. Debug as needed. Use debugging techniques to isolate and resolve issues.\n6. Test frequently. Run tests after each change to verify correctness.\n7. Iterate until the root cause is fixed and all tests pass.\n8. Reflect and validate comprehensively. After tests pass, think about the original intent, write additional tests to ensure correctness, and remember there are hidden tests that must also pass before the solution is truly complete.\n\nRefer to the detailed sections below for more information on each step.\n\n## 1. Deeply Understand the Problem\nCarefully read the issue and think hard about a plan to solve it before coding.\n\n## 2. Codebase Investigation\n- Explore relevant files and directories.\n- Search for key functions, classes, or variables related to the issue.\n- Read and understand relevant code snippets.\n- Identify the root cause of the problem.\n- Validate and update your understanding continuously as you gather more context.\n\n## 3. Develop a Detailed Plan\n- Outline a specific, simple, and verifiable sequence of steps to fix the problem.\n- Break down the fix into small, incremental changes.\n\n## 4. Making Code Changes\n- Before editing, always read the relevant file contents or section to ensure complete context.\n- If a patch is not applied correctly, attempt to reapply it.\n- Make small, testable, incremental changes that logically follow from your investigation and plan.\n\n## 5. Debugging\n- Make code changes only if you have high confidence they can solve the problem\n- When debugging, try to determine the root cause rather than addressing symptoms\n- Debug for as long as needed to identify the root cause and identify a fix\n- Use print statements, logs, or temporary code to inspect program state, including descriptive statements or error messages to understand what's happening\n- To test hypotheses, you can also add test statements or functions\n- Revisit your assumptions if unexpected behavior occurs.\n\n## 6. Testing\n- Run tests frequently using `!python3 run_tests.py` (or equivalent).\n- After each change, verify correctness by running relevant tests.\n- If tests fail, analyze failures and revise your patch.\n- Write additional tests if needed to capture important behaviors or edge cases.\n- Ensure all tests pass before finalizing.\n\n## 7. Final Verification\n- Confirm the root cause is fixed.\n- Review your solution for logic correctness and robustness.\n- Iterate until you are extremely confident the fix is complete and all tests pass.\n\n## 8. Final Reflection and Additional Testing\n- Reflect carefully on the original intent of the user and the problem statement.\n- Think about potential edge cases or scenarios that may not be covered by existing tests.\n- Write additional tests that would need to pass to fully validate the correctness of your solution.\n- Run these new tests and ensure they all pass.\n- Be aware that there are additional hidden tests that must also pass for the solution to be successful.\n- Do not assume the task is complete just because the visible tests pass; continue refining until you are confident the fix is robust and comprehensive.\n",
@@ -260,9 +262,9 @@ python_bash_patch_tool = {
     "type": "function",
     "name": "python",
     "description": PYTHON_TOOL_DESCRIPTION,
+    "strict": True,
     "parameters": {
         "type": "object",
-        "strict": True,
         "properties": {
             "input": {
                 "type": "string",
@@ -270,6 +272,7 @@ python_bash_patch_tool = {
             }
         },
         "required": ["input"],
+        "additionalProperties": False,
     },
 }
 
@@ -649,7 +652,9 @@ This demonstrates best practices for a fictional customer service agent. Observe
 
 Try running the following notebook cell - you should see both a user message and tool call, and the user message should start with a greeting, then echo back their answer, then mention they're about to call a tool. Try changing the instructions to shape the model behavior, or trying other user messages, to test instruction following performance.
 
-```javascript
+Run a customer service prompt
+
+```typescript
 const response = await client.responses.create({
   instructions:
     'You are a helpful customer service agent working for NewTelco, helping a user efficiently fulfill their request while adhering closely to provided guidelines.\n\n# Instructions\n- Always greet the user with "Hi, you\'ve reached NewTelco, how can I help you?"\n- Always call a tool before answering factual questions about the company, its offerings or products, or a user\'s account. Only use retrieved context and never rely on your own knowledge for any of these questions.\n    - However, if you don\'t have enough information to properly call the tool, ask the user for the information you need.\n- Escalate to a human if the user requests.\n- Do not discuss prohibited topics (politics, religion, controversial current events, medical, legal, or financial advice, personal conversations, internal company operations, or criticism of any people or company).\n- Rely on sample phrases whenever appropriate, but never repeat a sample phrase in the same conversation. Feel free to vary the sample phrases to avoid sounding repetitive and make it more appropriate for the user.\n- Always follow the provided output format for new messages, including citations for any factual statements from retrieved policy documents.\n- If you\'re going to call a tool, always message the user with an appropriate message before and after calling the tool.\n- Maintain a professional and concise tone in all responses, and use emojis between sentences.\n- If you\'ve resolved the user\'s request, ask if there\'s anything else you can help with\n\n# Precise Response Steps (for each response)\n1. If necessary, call tools to fulfill the user\'s desired action. Always message the user before and after calling a tool to keep them in the loop.\n2. In your response to the user\n    a. Use active listening and echo back what you heard the user ask for.\n    b. Respond appropriately given the above guidelines.\n\n# Sample Phrases\n## Deflecting a Prohibited Topic\n- "I\'m sorry, but I\'m unable to discuss that topic. Is there something else I can help you with?"\n- "That\'s not something I\'m able to provide information on, but I\'m happy to help with any other questions you may have."\n\n## Before calling a tool\n- "To help you with that, I\'ll just need to verify your information."\n- "Let me check that for you—one moment, please."\n- "I\'ll retrieve the latest details for you now."\n\n## After calling a tool\n- "Okay, here\'s what I found: [response]"\n- "So here\'s what I found: [response]"\n\n# Output Format\n- Always include your final response to the user.\n- When providing factual information from retrieved context, always include citations immediately after the relevant statement(s). Use the following citation format:\n    - For a single source: [NAME](ID)\n    - For multiple sources: [NAME](ID), [NAME](ID)\n- Only provide information about this company, its policies, its products, or the customer\'s account, and only if it is based on information provided in context. Do not answer questions outside this scope.\n\n# Example\n## User\nCan you tell me about your family plan options?\n\n## Assistant Response 1\n### Message\n"Hi, you\'ve reached NewTelco, how can I help you? 😊🎉\n\nYou\'d like to know about our family plan options. 🤝 Let me check that for you—one moment, please. 🚀"\n\n### Tool Calls\nlookup_policy_document(topic="family plan options")\n\n// After tool call, the assistant would follow up with:\n\n## Assistant Response 2 (after tool call)\n### Message\n"Okay, here\'s what I found: 🎉 Our family plan allows up to 5 lines with shared data and a 10% discount for each additional line [Family Plan Policy](ID-010). 📱 Is there anything else I can help you with today? 😊"\n',
@@ -765,8 +770,8 @@ get_policy_doc = {
     "type": "function",
     "name": "lookup_policy_document",
     "description": "Tool to look up internal documents and policies by topic or keyword.",
+    "strict": True,
     "parameters": {
-        "strict": True,
         "type": "object",
         "properties": {
             "topic": {
@@ -783,8 +788,8 @@ get_user_acct = {
     "type": "function",
     "name": "get_user_account_info",
     "description": "Tool to get user account information",
+    "strict": True,
     "parameters": {
-        "strict": True,
         "type": "object",
         "properties": {
             "phone_number": {
@@ -1119,6 +1124,81 @@ Developers have provided us feedback that accurate and well-formed diff generati
 
 See the example below for a prompt that applies our recommended tool call correctly.
 
+Define the patch tool
+
+```typescript
+const applyPatchToolDescription = `This is a custom utility that makes it more convenient to add, remove, move, or edit code files. apply_patch effectively allows you to execute a diff/patch against a file, but the format of the diff specification is unique to this task, so pay careful attention to these instructions. To use the apply_patch command, you should pass a message of the following structure as "input":
+
+%%bash
+apply_patch <<"EOF"
+*** Begin Patch
+[YOUR_PATCH]
+*** End Patch
+EOF
+
+Where [YOUR_PATCH] is the actual content of your patch, specified in the following V4A diff format.
+
+*** [ACTION] File: [path/to/file] -> ACTION can be one of Add, Update, or Delete.
+For each snippet of code that needs to be changed, repeat the following:
+[context_before] -> See below for further instructions on context.
+- [old_code] -> Precede the old code with a minus sign.
++ [new_code] -> Precede the new, replacement code with a plus sign.
+[context_after] -> See below for further instructions on context.
+
+For instructions on [context_before] and [context_after]:
+- By default, show 3 lines of code immediately above and 3 lines immediately below each change. If a change is within 3 lines of a previous change, do NOT duplicate the first change’s [context_after] lines in the second change’s [context_before] lines.
+- If 3 lines of context is insufficient to uniquely identify the snippet of code within the file, use the @@ operator to indicate the class or function to which the snippet belongs. For instance, we might have:
+@@ class BaseClass
+[3 lines of pre-context]
+- [old_code]
++ [new_code]
+[3 lines of post-context]
+
+- If a code block is repeated so many times in a class or function such that even a single @@ statement and 3 lines of context cannot uniquely identify the snippet of code, you can use multiple @@ statements to jump to the right context. For instance:
+
+@@ class BaseClass
+@@ 	def method():
+[3 lines of pre-context]
+- [old_code]
++ [new_code]
+[3 lines of post-context]
+
+Note, then, that we do not use line numbers in this diff format, as the context is enough to uniquely identify code. An example of a message that you might pass as "input" to this function, in order to apply a patch, is shown below.
+
+%%bash
+apply_patch <<"EOF"
+*** Begin Patch
+*** Update File: pygorithm/searching/binary_search.py
+@@ class BaseClass
+@@     def search():
+-          pass
++          raise NotImplementedError()
+
+@@ class Subclass
+@@     def search():
+-          pass
++          raise NotImplementedError()
+
+*** End Patch
+EOF
+`;
+
+const tool = {
+  name: "apply_patch",
+  description: applyPatchToolDescription,
+  parameters: {
+    type: "object",
+    properties: {
+      input: {
+        type: "string",
+        description: "The apply_patch command to execute.",
+      },
+    },
+    required: ["input"],
+  },
+};
+```
+
 ```python
 APPLY_PATCH_TOOL_DESC = """This is a custom utility that makes it more convenient to add, remove, move, or edit code files. `apply_patch` effectively allows you to execute a diff/patch against a file, but the format of the diff specification is unique to this task, so pay careful attention to these instructions. To use the `apply_patch` command, you should pass a message of the following structure as "input":
 
@@ -1189,6 +1269,88 @@ APPLY_PATCH_TOOL = {
         },
         "required": ["input"],
     },
+}
+```
+
+```go
+package main
+
+import (
+	"encoding/json"
+	"os"
+)
+
+const applyPatchToolDescription = `This is a custom utility that makes it more convenient to add, remove, move, or edit code files. apply_patch effectively allows you to execute a diff/patch against a file, but the format of the diff specification is unique to this task, so pay careful attention to these instructions. To use the apply_patch command, you should pass a message of the following structure as "input":
+
+%%bash
+apply_patch <<"EOF"
+*** Begin Patch
+[YOUR_PATCH]
+*** End Patch
+EOF
+
+Where [YOUR_PATCH] is the actual content of your patch, specified in the following V4A diff format.
+
+*** [ACTION] File: [path/to/file] -> ACTION can be one of Add, Update, or Delete.
+For each snippet of code that needs to be changed, repeat the following:
+[context_before] -> See below for further instructions on context.
+- [old_code] -> Precede the old code with a minus sign.
++ [new_code] -> Precede the new, replacement code with a plus sign.
+[context_after] -> See below for further instructions on context.
+
+For instructions on [context_before] and [context_after]:
+- By default, show 3 lines of code immediately above and 3 lines immediately below each change. If a change is within 3 lines of a previous change, do NOT duplicate the first change’s [context_after] lines in the second change’s [context_before] lines.
+- If 3 lines of context is insufficient to uniquely identify the snippet of code within the file, use the @@ operator to indicate the class or function to which the snippet belongs. For instance, we might have:
+@@ class BaseClass
+[3 lines of pre-context]
+- [old_code]
++ [new_code]
+[3 lines of post-context]
+
+- If a code block is repeated so many times in a class or function such that even a single @@ statement and 3 lines of context cannot uniquely identify the snippet of code, you can use multiple @@ statements to jump to the right context. For instance:
+
+@@ class BaseClass
+@@ 	def method():
+[3 lines of pre-context]
+- [old_code]
++ [new_code]
+[3 lines of post-context]
+
+Note, then, that we do not use line numbers in this diff format, as the context is enough to uniquely identify code. An example of a message that you might pass as "input" to this function, in order to apply a patch, is shown below.
+
+%%bash
+apply_patch <<"EOF"
+*** Begin Patch
+*** Update File: pygorithm/searching/binary_search.py
+@@ class BaseClass
+@@     def search():
+-          pass
++          raise NotImplementedError()
+
+@@ class Subclass
+@@     def search():
+-          pass
++          raise NotImplementedError()
+
+*** End Patch
+EOF
+`
+
+func main() {
+	tool := map[string]any{
+		"name":        "apply_patch",
+		"description": applyPatchToolDescription,
+		"parameters": map[string]any{
+			"type": "object",
+			"properties": map[string]any{
+				"input": map[string]any{"type": "string", "description": "The apply_patch command to execute."},
+			},
+			"required": []string{"input"},
+		},
+	}
+	if err := json.NewEncoder(os.Stdout).Encode(tool); err != nil {
+		panic(err)
+	}
 }
 ```
 
@@ -1273,7 +1435,273 @@ puts(JSON.generate(tool))
 
 ### Reference Implementation: apply_patch.py
 
-Here’s a reference implementation of the apply_patch tool that we used as part of model training. You’ll need to make this an executable and available as \`apply_patch\` from the shell where the model will execute commands:
+The Python tab contains the `apply_patch.py` reference implementation used during model training. The TypeScript, Go, and Ruby tabs are independently authored ports, not the training implementation. Make the selected implementation available as `apply_patch` in the shell where the model executes commands.
+
+
+
+
+The Go port uses the standard library. Save it as `main.go` and build it with `go build -o apply_patch main.go`. Run the resulting executable from the repository you want to modify, supplying a patch on standard input: `./apply_patch < changes.patch`.
+
+
+
+
+
+
+
+Save the [complete TypeScript port](https://developers.openai.com/api/docs/samples/typescript/gpt-4-1/reference-implementation-apply-patch-py.ts) as `apply_patch.ts`, make it executable with `chmod +x apply_patch.ts`, and place a symlink named `apply_patch` pointing to that file in a directory on your `PATH`. Its interpreter directive runs Node with TypeScript support. Run it from the repository you want to modify, supplying a patch on standard input: `apply_patch < changes.patch`. It requires an `env` command that supports `-S`, as on Linux and macOS.
+
+
+
+
+Reference patch parser and ports
+
+```typescript
+// TypeScript port of this guide's Python pseudo-diff reference implementation.
+// Run in a trusted working directory with no concurrent filesystem changes.
+import {
+  lstatSync,
+  mkdirSync,
+  readFileSync,
+  unlinkSync,
+  writeFileSync,
+} from "node:fs";
+import path from "node:path";
+
+type Chunk = { index: number; deleted: string[]; inserted: string[] };
+type Change = { source: string; target: string; kind: string; content: string };
+
+function contextIndex(
+  lines: string[],
+  context: string[],
+  start: number
+): number {
+  if (!context.length) return start;
+  for (const normalize of [
+    (s: string) => s,
+    (s: string) => s.trimEnd(),
+    (s: string) => s.trim(),
+  ]) {
+    for (let i = Math.max(0, start); i + context.length <= lines.length; i++) {
+      if (
+        context.every((line, j) => normalize(lines[i + j]) === normalize(line))
+      )
+        return i;
+    }
+  }
+  return -1;
+}
+
+class PatchParser {
+  lines: string[];
+  position = 1;
+  constructor(lines: string[]) {
+    this.lines = lines;
+  }
+  current(): string {
+    return this.lines[this.position] ?? "";
+  }
+  boundary(): boolean {
+    return (
+      this.position >= this.lines.length ||
+      [
+        "*** End Patch",
+        "*** Update File:",
+        "*** Delete File:",
+        "*** Add File:",
+      ].some((prefix) => this.current().startsWith(prefix))
+    );
+  }
+  prefix(prefix: string): string | undefined {
+    if (!this.current().startsWith(prefix)) return undefined;
+    return this.lines[this.position++].slice(prefix.length);
+  }
+  update(text: string): string {
+    const lines = text.split("\n");
+    let index = 0;
+    const chunks: Chunk[] = [];
+    while (!this.boundary()) {
+      const anchor = this.prefix("@@ ");
+      let bare = false;
+      if (anchor === undefined && this.current() === "@@") {
+        this.position++;
+        bare = true;
+      }
+      if (anchor === undefined && !bare && index !== 0)
+        throw new Error("Invalid update section");
+      if (anchor?.trim() && !lines.slice(0, index).includes(anchor)) {
+        let found = lines.indexOf(anchor, index);
+        if (
+          found < 0 &&
+          !lines.slice(0, index).some((line) => line.trim() === anchor.trim())
+        ) {
+          found = lines.findIndex(
+            (line, i) => i >= index && line.trim() === anchor.trim()
+          );
+        }
+        if (found >= 0) index = found + 1;
+      }
+      const context: string[] = [];
+      let deleted: string[] = [],
+        inserted: string[] = [];
+      const section: Chunk[] = [];
+      const start = this.position;
+      const flush = () => {
+        if (deleted.length + inserted.length) {
+          section.push({
+            index: context.length - deleted.length,
+            deleted,
+            inserted,
+          });
+          deleted = [];
+          inserted = [];
+        }
+      };
+      while (
+        !this.boundary() &&
+        !this.current().startsWith("@@") &&
+        this.current() !== "*** End of File"
+      ) {
+        const line = this.lines[this.position++] || " ";
+        if (line[0] === " ") {
+          flush();
+          context.push(line.slice(1));
+        } else if (line[0] === "-") {
+          deleted.push(line.slice(1));
+          context.push(line.slice(1));
+        } else if (line[0] === "+") inserted.push(line.slice(1));
+        else throw new Error("Invalid context line");
+      }
+      flush();
+      if (start === this.position) throw new Error("Empty update section");
+      let location = -1;
+      if (this.current() === "*** End of File") {
+        this.position++;
+        location = contextIndex(lines, context, lines.length - context.length);
+      }
+      if (location < 0) location = contextIndex(lines, context, index);
+      if (location < index || location + context.length > lines.length)
+        throw new Error("Update context not found");
+      for (const chunk of section)
+        chunks.push({ ...chunk, index: chunk.index + location });
+      index = location + context.length;
+    }
+    const result: string[] = [];
+    let cursor = 0;
+    for (const chunk of chunks) {
+      if (
+        chunk.index < cursor ||
+        chunk.index + chunk.deleted.length > lines.length
+      )
+        throw new Error("Overlapping update");
+      result.push(...lines.slice(cursor, chunk.index), ...chunk.inserted);
+      cursor = chunk.index + chunk.deleted.length;
+    }
+    return [...result, ...lines.slice(cursor)].join("\n");
+  }
+}
+
+function patchPath(filename: string): string {
+  if (
+    !filename ||
+    path.isAbsolute(filename) ||
+    /^[A-Za-z]:/.test(filename) ||
+    filename.includes("\\") ||
+    filename.includes("\0") ||
+    filename.split(/[\\/]/).includes("..")
+  ) {
+    throw new Error("Patch path must stay inside the working directory");
+  }
+  let prefix = "";
+  for (const part of filename.split("/")) {
+    prefix = path.join(prefix, part);
+    const stat = lstatSync(prefix, { throwIfNoEntry: false });
+    if (stat?.isSymbolicLink())
+      throw new Error("Symlink paths are not supported");
+  }
+  return path.normalize(filename);
+}
+
+function processPatch(text: string): void {
+  const lines = text.replaceAll("\r\n", "\n").replace(/\n$/, "").split("\n");
+  if (
+    lines.length < 2 ||
+    lines[0] !== "*** Begin Patch" ||
+    lines.at(-1) !== "*** End Patch"
+  )
+    throw new Error("Invalid patch sentinels");
+  const parser = new PatchParser(lines);
+  const changes: Change[] = [];
+  const reserved = new Set<string>();
+  while (
+    parser.current() !== "*** End Patch" &&
+    parser.position < lines.length
+  ) {
+    const header = /^\*\*\* (Update|Delete|Add) File: (.+)$/.exec(
+      parser.current()
+    );
+    if (!header) throw new Error(`Unknown patch line: ${parser.current()}`);
+    parser.position++;
+    const [, kind, filename] = header;
+    const source = patchPath(filename);
+    if (reserved.has(source))
+      throw new Error(`Duplicate file action: ${source}`);
+    reserved.add(source);
+    const change: Change = { source, target: source, kind, content: "" };
+    if (kind === "Add") {
+      const added: string[] = [];
+      while (!parser.boundary()) {
+        const line = parser.prefix("+");
+        if (line === undefined)
+          throw new Error("Add-file lines must start with +");
+        added.push(line);
+      }
+      change.content = added.join("\n");
+    } else {
+      const original = readFileSync(source, "utf8");
+      if (kind === "Update") {
+        const target = parser.prefix("*** Move to: ");
+        if (target !== undefined) {
+          change.target = patchPath(target);
+          if (change.target !== source) {
+            if (reserved.has(change.target))
+              throw new Error("Conflicting destination");
+            reserved.add(change.target);
+          }
+        }
+        change.content = parser.update(original);
+      }
+    }
+    if (
+      (kind === "Add" || change.target !== source) &&
+      lstatSync(change.target, { throwIfNoEntry: false })
+    ) {
+      throw new Error(`Destination already exists: ${change.target}`);
+    }
+    changes.push(change);
+  }
+  if (parser.position !== lines.length - 1)
+    throw new Error("Content after end sentinel");
+  // Validate the complete patch before writing. Filesystem errors can still
+  // leave a partially applied patch; this utility is not a transaction system.
+  for (const change of changes) {
+    patchPath(change.source);
+    patchPath(change.target);
+    if (change.kind === "Delete") {
+      unlinkSync(change.source);
+      continue;
+    }
+    mkdirSync(path.dirname(change.target), { recursive: true });
+    writeFileSync(change.target, change.content, {
+      flag:
+        change.kind === "Add" || change.target !== change.source ? "wx" : "w",
+    });
+    if (change.target !== change.source) unlinkSync(change.source);
+  }
+}
+
+processPatch(readFileSync(0, "utf8"));
+console.log("Done!");
+```
 
 ```python
 #!/usr/bin/env python3
@@ -1803,12 +2231,615 @@ if __name__ == "__main__":
     main()
 ```
 
+```go
+package main
+
+import (
+	"fmt"
+	"io"
+	"os"
+	"path/filepath"
+	"slices"
+	"strings"
+	"unicode"
+)
+
+type chunk struct {
+	index             int
+	deleted, inserted []string
+}
+type change struct{ path, target, kind, content string }
+type parser struct {
+	lines []string
+	pos   int
+}
+
+func (p *parser) current() string {
+	if p.pos >= len(p.lines) {
+		return ""
+	}
+	return p.lines[p.pos]
+}
+func (p *parser) boundary() bool {
+	for _, prefix := range []string{"*** End Patch", "*** Update File:", "*** Delete File:", "*** Add File:"} {
+		if strings.HasPrefix(p.current(), prefix) {
+			return true
+		}
+	}
+	return p.pos >= len(p.lines)
+}
+func (p *parser) prefix(prefix string) (string, bool) {
+	if !strings.HasPrefix(p.current(), prefix) {
+		return "", false
+	}
+	result := strings.TrimPrefix(p.current(), prefix)
+	p.pos++
+	return result, true
+}
+func contextIndex(lines, context []string, start int) int {
+	if len(context) == 0 {
+		return start
+	}
+	for _, normalize := range []func(string) string{func(s string) string { return s }, func(s string) string { return strings.TrimRightFunc(s, unicode.IsSpace) }, strings.TrimSpace} {
+		for i := max(0, start); i+len(context) <= len(lines); i++ {
+			matches := true
+			for j, line := range context {
+				if normalize(lines[i+j]) != normalize(line) {
+					matches = false
+					break
+				}
+			}
+			if matches {
+				return i
+			}
+		}
+	}
+	return -1
+}
+func (p *parser) update(text string) (string, error) {
+	lines := strings.Split(text, "\n")
+	index := 0
+	var chunks []chunk
+	for !p.boundary() {
+		anchor, anchored := p.prefix("@@ ")
+		bare := false
+		if !anchored && p.current() == "@@" {
+			p.pos++
+			bare = true
+		}
+		if !anchored && !bare && index != 0 {
+			return "", fmt.Errorf("invalid update section")
+		}
+		if strings.TrimSpace(anchor) != "" {
+			if !slices.Contains(lines[:index], anchor) {
+				found := -1
+				for i := index; i < len(lines); i++ {
+					if lines[i] == anchor {
+						found = i
+						break
+					}
+				}
+				if found >= 0 {
+					index = found + 1
+				} else {
+					preceding := false
+					for _, line := range lines[:index] {
+						preceding = preceding || strings.TrimSpace(line) == strings.TrimSpace(anchor)
+					}
+					if !preceding {
+						for i := index; i < len(lines); i++ {
+							if strings.TrimSpace(lines[i]) == strings.TrimSpace(anchor) {
+								index = i + 1
+								break
+							}
+						}
+					}
+				}
+			}
+		}
+		var context, deleted, inserted []string
+		var section []chunk
+		start := p.pos
+		flush := func() {
+			if len(deleted)+len(inserted) > 0 {
+				section = append(section, chunk{len(context) - len(deleted), deleted, inserted})
+				deleted, inserted = nil, nil
+			}
+		}
+		for !p.boundary() && !strings.HasPrefix(p.current(), "@@") && p.current() != "*** End of File" {
+			line := p.current()
+			p.pos++
+			if line == "" {
+				line = " "
+			}
+			switch line[0] {
+			case ' ':
+				flush()
+				context = append(context, line[1:])
+			case '-':
+				deleted = append(deleted, line[1:])
+				context = append(context, line[1:])
+			case '+':
+				inserted = append(inserted, line[1:])
+			default:
+				return "", fmt.Errorf("invalid context line")
+			}
+		}
+		flush()
+		if start == p.pos {
+			return "", fmt.Errorf("empty update section")
+		}
+		location := -1
+		if p.current() == "*** End of File" {
+			p.pos++
+			location = contextIndex(lines, context, len(lines)-len(context))
+		}
+		if location < 0 {
+			location = contextIndex(lines, context, index)
+		}
+		if location < index || location+len(context) > len(lines) {
+			return "", fmt.Errorf("update context not found")
+		}
+		for _, c := range section {
+			c.index += location
+			chunks = append(chunks, c)
+		}
+		index = location + len(context)
+	}
+	var result []string
+	cursor := 0
+	for _, c := range chunks {
+		if c.index < cursor || c.index+len(c.deleted) > len(lines) {
+			return "", fmt.Errorf("overlapping update")
+		}
+		result = append(result, lines[cursor:c.index]...)
+		result = append(result, c.inserted...)
+		cursor = c.index + len(c.deleted)
+	}
+	result = append(result, lines[cursor:]...)
+	return strings.Join(result, "\n"), nil
+}
+
+// Reject traversal and symlink components. Root operations also confine writes
+// if another process changes the filesystem after validation.
+func patchPath(root *os.Root, path string) error {
+	if !filepath.IsLocal(path) || strings.ContainsRune(path, 0) {
+		return fmt.Errorf("patch path must stay inside the working directory")
+	}
+	prefix := ""
+	for _, part := range strings.Split(filepath.ToSlash(path), "/") {
+		if part == ".." {
+			return fmt.Errorf("parent paths are not supported")
+		}
+		prefix = filepath.Join(prefix, part)
+		info, err := root.Lstat(prefix)
+		if err != nil && !os.IsNotExist(err) {
+			return err
+		}
+		if err == nil && info.Mode()&os.ModeSymlink != 0 {
+			return fmt.Errorf("symlink paths are not supported")
+		}
+	}
+	return nil
+}
+func processPatch(root *os.Root, text string) error {
+	lines := strings.Split(strings.TrimSuffix(strings.ReplaceAll(text, "\r\n", "\n"), "\n"), "\n")
+	if len(lines) < 2 || lines[0] != "*** Begin Patch" || lines[len(lines)-1] != "*** End Patch" {
+		return fmt.Errorf("invalid patch sentinels")
+	}
+	p := parser{lines: lines, pos: 1}
+	var changes []change
+	reserved := map[string]bool{}
+	for p.current() != "*** End Patch" && p.pos < len(lines) {
+		var kind, path string
+		for _, action := range []string{"Update", "Delete", "Add"} {
+			if value, ok := p.prefix("*** " + action + " File: "); ok {
+				kind, path = action, value
+				break
+			}
+		}
+		if kind == "" {
+			return fmt.Errorf("unknown patch line: %s", p.current())
+		}
+		if err := patchPath(root, path); err != nil {
+			return err
+		}
+		path = filepath.Clean(path)
+		if reserved[path] {
+			return fmt.Errorf("duplicate file action: %s", path)
+		}
+		reserved[path] = true
+		c := change{path: path, target: path, kind: kind}
+		if kind == "Add" {
+			var added []string
+			for !p.boundary() {
+				line, ok := p.prefix("+")
+				if !ok {
+					return fmt.Errorf("add-file lines must start with +")
+				}
+				added = append(added, line)
+			}
+			c.content = strings.Join(added, "\n")
+		} else {
+			data, err := root.ReadFile(path)
+			if err != nil {
+				return err
+			}
+			if kind == "Update" {
+				if target, ok := p.prefix("*** Move to: "); ok {
+					if err := patchPath(root, target); err != nil {
+						return err
+					}
+					c.target = filepath.Clean(target)
+					if c.target != path {
+						if reserved[c.target] {
+							return fmt.Errorf("conflicting destination")
+						}
+						reserved[c.target] = true
+					}
+				}
+				c.content, err = p.update(string(data))
+				if err != nil {
+					return err
+				}
+			}
+		}
+		if kind == "Add" || c.target != path {
+			if _, err := root.Lstat(c.target); err == nil {
+				return fmt.Errorf("destination already exists: %s", c.target)
+			} else if !os.IsNotExist(err) {
+				return err
+			}
+		}
+		changes = append(changes, c)
+	}
+	if p.pos != len(lines)-1 {
+		return fmt.Errorf("content after end sentinel")
+	}
+	// Validate the entire patch before applying any change. Filesystem failures
+	// during writes can still leave a partially applied patch.
+	for _, c := range changes {
+		if c.kind == "Delete" {
+			if err := root.Remove(c.path); err != nil {
+				return err
+			}
+			continue
+		}
+		if err := root.MkdirAll(filepath.Dir(c.target), 0755); err != nil {
+			return err
+		}
+		if err := root.WriteFile(c.target, []byte(c.content), 0644); err != nil {
+			return err
+		}
+		if c.target != c.path {
+			if err := root.Remove(c.path); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+func run() error {
+	text, err := io.ReadAll(os.Stdin)
+	if err != nil {
+		return err
+	}
+	root, err := os.OpenRoot(".")
+	if err != nil {
+		return err
+	}
+	defer root.Close()
+	if err := processPatch(root, string(text)); err != nil {
+		return err
+	}
+	_, err = fmt.Println("Done!")
+	return err
+}
+func main() {
+	if err := run(); err != nil {
+		fmt.Fprintln(os.Stderr, err)
+		os.Exit(1)
+	}
+}
+```
+
+```ruby
+#!/usr/bin/env ruby
+require "fileutils"
+require "pathname"
+
+class DiffError < StandardError; end
+PatchChunk = Struct.new(:index, :deleted, :inserted)
+PatchAction = Struct.new(:type, :content, :chunks, :move)
+
+class PatchParser
+  BOUNDARIES = ["*** End Patch", "*** Update File:", "*** Delete File:", "*** Add File:"].freeze
+  attr_reader :actions, :fuzz
+
+  def initialize(text, files)
+    @lines = text.lines(chomp: true)
+    unless @lines.length >= 2 && @lines.first == "*** Begin Patch" && @lines.last == "*** End Patch"
+      raise DiffError, "Invalid patch sentinels"
+    end
+
+    @files = files
+    @position = 1
+    @actions = {}
+    @fuzz = 0
+  end
+
+  def current
+    @lines.fetch(@position) { raise DiffError, "Unexpected end of patch" }
+  end
+
+  def done?(prefixes)
+    @position >= @lines.length || prefixes.any? { |prefix| current.start_with?(prefix) }
+  end
+
+  def read_prefix(prefix)
+    return nil unless current.start_with?(prefix)
+
+    value = current.delete_prefix(prefix)
+    @position += 1
+    value
+  end
+
+  def take_line
+    value = current
+    @position += 1
+    value
+  end
+
+  def parse
+    until done?(["*** End Patch"])
+      if (path = read_prefix("*** Update File: "))
+        check_new_path(path)
+        move = read_prefix("*** Move to: ")
+        raise DiffError, "Missing update file: #{path}" unless @files.key?(path)
+
+        action = parse_update(@files.fetch(path))
+        action.move = move
+        @actions[path] = action
+      elsif (path = read_prefix("*** Delete File: "))
+        check_new_path(path)
+        raise DiffError, "Missing delete file: #{path}" unless @files.key?(path)
+
+        @actions[path] = PatchAction.new(type: :delete)
+      elsif (path = read_prefix("*** Add File: "))
+        check_new_path(path)
+        raise DiffError, "File already exists: #{path}" if @files.key?(path)
+
+        content = []
+        until done?(BOUNDARIES)
+          line = take_line
+          raise DiffError, "Add-file lines must start with +" unless line.start_with?("+")
+
+          content << line.delete_prefix("+")
+        end
+        @actions[path] = PatchAction.new(type: :add, content: content.join("\n"))
+      else
+        raise DiffError, "Unknown patch line: #{current}"
+      end
+    end
+    raise DiffError, "Missing end sentinel" unless current == "*** End Patch"
+    raise DiffError, "Content after end sentinel" unless @position == @lines.length - 1
+
+    self
+  end
+
+  def check_new_path(path)
+    raise DiffError, "Empty file path" if path.empty?
+    raise DiffError, "Duplicate file action: #{path}" if @actions.key?(path)
+  end
+
+  def parse_update(text)
+    lines = text.split("\n", -1)
+    index = 0
+    action = PatchAction.new(type: :update, chunks: [])
+    until done?(BOUNDARIES + ["*** End of File"])
+      anchor = read_prefix("@@ ")
+      bare = (!anchor && current == "@@") ? take_line : nil
+      raise DiffError, "Invalid update section" unless anchor || bare || index.zero?
+
+      if anchor && !anchor.strip.empty?
+        found = false
+        unless lines.take(index).include?(anchor)
+          match = (index...lines.length).find { |i| lines[i] == anchor }
+          if match
+            index = Integer(match) + 1
+            found = true
+          end
+        end
+        unless found || lines.take(index).map(&:strip).include?(anchor.strip)
+          match = (index...lines.length).find { |i| lines[i].strip == anchor.strip }
+          if match
+            index = Integer(match) + 1
+            @fuzz += 1
+          end
+        end
+      end
+      context, chunks, eof = next_section
+      location, fuzz = find_context(lines, context, index, eof)
+      raise DiffError, "Update context not found" if location.negative?
+
+      @fuzz += fuzz
+      chunks.each do |chunk|
+        chunk.index += location
+        action.chunks << chunk
+      end
+      index = Integer(location + context.length)
+    end
+    action
+  end
+
+  def next_section
+    old, deleted, inserted, chunks = [], [], [], []
+    mode = "keep"
+    start = @position
+    until done?(BOUNDARIES + ["@@", "*** End of File"])
+      line = current
+      break if line == "***"
+      raise DiffError, "Invalid patch section" if line.start_with?("***")
+
+      @position += 1
+      line = " " if line.empty?
+      next_mode = {
+        "+" => "add",
+        "-" => "delete",
+        " " => "keep"
+      }[line[0]]
+      raise DiffError, "Invalid context line" unless next_mode
+
+      if next_mode == "keep" && mode != "keep"
+        chunks << PatchChunk.new(index: old.length - deleted.length, deleted: deleted, inserted: inserted) unless deleted.empty? && inserted.empty?
+        deleted, inserted = [], []
+      end
+      mode = String(next_mode)
+      content = line[1..]
+      case mode
+      when "delete"
+        deleted << content
+        old << content
+      when "add"
+        inserted << content
+      when "keep"
+        old << content
+      end
+    end
+    chunks << PatchChunk.new(index: old.length - deleted.length, deleted: deleted, inserted: inserted) unless deleted.empty? && inserted.empty?
+    eof = @position < @lines.length && current == "*** End of File"
+    @position += 1 if eof
+    raise DiffError, "Empty update section" if @position == start
+
+    [old, chunks, eof]
+  end
+end
+
+def find_context_core(lines, context, start)
+  return [start, 0] if context.empty?
+
+  [[0, :itself], [1, :rstrip], [100, :strip]].each do |fuzz, normalize|
+    expected = context.map { |line| line.public_send(normalize) }
+    ([start, 0].max...lines.length).each do |index|
+      actual = lines.slice(index, context.length).map { |line| line.public_send(normalize) }
+      return [index, fuzz] if actual == expected
+    end
+  end
+  [-1, 0]
+end
+
+def find_context(lines, context, start, eof)
+  if eof
+    index, fuzz = find_context_core(lines, context, lines.length - context.length)
+    return [index, fuzz] unless index.negative?
+
+    index, fuzz = find_context_core(lines, context, start)
+    return [index, fuzz + 10_000]
+  end
+  find_context_core(lines, context, start)
+end
+
+def updated_file(text, action)
+  lines = text.split("\n", -1)
+  destination = []
+  cursor = 0
+  action.chunks.each do |chunk|
+    raise DiffError, "Invalid or overlapping chunk" if chunk.index > lines.length || chunk.index < cursor
+
+    destination.concat(lines.slice(cursor, chunk.index - cursor))
+    destination.concat(chunk.inserted)
+    cursor = Integer(chunk.index + chunk.deleted.length)
+  end
+  destination.concat(lines.drop(cursor)).join("\n")
+end
+
+# Patches use relative paths inside the current working directory. Reject
+# traversal and symlink components before reading or changing any files.
+def patch_path(path)
+  pathname = Pathname.new(path)
+  components = pathname.each_filename.to_a
+  if path.empty? || pathname.absolute? || path.include?("\x00") || components.include?("..")
+    raise DiffError, "Patch paths must stay inside the working directory"
+  end
+
+  prefix = Pathname.pwd
+  components.each do |component|
+    prefix = prefix.join(component)
+    raise DiffError, "Symlink paths are not supported" if prefix.symlink?
+  end
+  path
+end
+
+def open_file(path)
+  File.read(patch_path(path), encoding: "UTF-8")
+end
+
+def write_file(path, content)
+  target = patch_path(path)
+  FileUtils.mkdir_p(File.dirname(target))
+  File.write(target, content, encoding: "UTF-8")
+end
+
+def remove_file(path)
+  target = patch_path(path)
+  File.delete(target) if File.exist?(target)
+end
+
+def process_patch(text, open_fn, write_fn, remove_fn)
+  headers = text.lines(chomp: true).filter_map do |line|
+    match = line.match(/\A\*\*\* (Update File|Delete File|Add File|Move to): (.*)\z/)
+    [match[1], patch_path(match[2])] if match
+  end
+  original = headers.filter_map do |kind, path|
+    [path, open_fn.call(path)] if kind == "Update File" || kind == "Delete File"
+  end.to_h
+  parser = PatchParser.new(text, original).parse
+  changes = parser.actions.map do |path, action|
+    target = action.move || path
+    if (action.type == :add || (action.move && target != path)) && File.exist?(target)
+      raise DiffError, "Destination already exists: #{target}"
+    end
+
+    content = (action.type == :update) ? updated_file(original.fetch(path), action) : action.content
+    [path, target, action.type, content]
+  end
+  # Parse and validate every change before applying the first write.
+  changes.each do |path, target, kind, content|
+    if kind == :delete
+      remove_fn.call(path)
+    else
+      write_fn.call(target, content)
+      remove_fn.call(path) if target != path
+    end
+  end
+  "Done!"
+end
+
+if $PROGRAM_NAME == __FILE__
+  begin
+    puts process_patch($stdin.read, method(:open_file), method(:write_file), method(:remove_file))
+  rescue DiffError, SystemCallError => error
+    warn error.message
+    exit 1
+  end
+end
+```
+
 
 ### Other Effective Diff Formats
 
 If you want to try using a different diff format, we found in testing that the SEARCH/REPLACE diff format used in Aider’s polyglot benchmark, as well as a pseudo-XML format with no internal escaping, both had high success rates.
 
 These diff formats share two key aspects: (1) they do not use line numbers, and (2) they provide both the exact code to be replaced, and the exact code with which to replace it, with clear delimiters between the two.
+
+Compare alternative diff formats
+
+````typescript
+const SEARCH_REPLACE_DIFF_EXAMPLE =
+  "\n    path/to/file.py\n    ```\n    >>>>>>> SEARCH\n    def search():\n        pass\n    =======\n    def search():\n       raise NotImplementedError()\n    <<<<<<< REPLACE\n    ";
+const PSEUDO_XML_DIFF_EXAMPLE =
+  "\n    `<edit>`\n    `<file>`\n    path/to/file.py\n    `</file>`\n    `<old_code>`\n    def search():\n        pass\n    `</old_code>`\n    `<new_code>`\n    def search():\n       raise NotImplementedError()\n    `</new_code>`\n    `</edit>`\n    ";
+````
 
 ````python
 SEARCH_REPLACE_DIFF_EXAMPLE = """
@@ -1838,4 +2869,53 @@ def search():
 `</new_code>`
 `</edit>`
 """
+````
+
+````go
+package main
+
+import (
+	"encoding/json"
+	"os"
+)
+
+const searchReplaceDiff = "\n    path/to/file.py\n    ```\n    >>>>>>> SEARCH\n    def search():\n        pass\n    =======\n    def search():\n       raise NotImplementedError()\n    <<<<<<< REPLACE\n    "
+
+const pseudoXMLDiff = "\n    `<edit>`\n    `<file>`\n    path/to/file.py\n    `</file>`\n    `<old_code>`\n    def search():\n        pass\n    `</old_code>`\n    `<new_code>`\n    def search():\n       raise NotImplementedError()\n    `</new_code>`\n    `</edit>`\n    "
+
+func main() {
+	if err := json.NewEncoder(os.Stdout).Encode([]string{searchReplaceDiff, pseudoXMLDiff}); err != nil {
+		panic(err)
+	}
+}
+````
+
+````ruby
+SEARCH_REPLACE_DIFF_EXAMPLE = <<~DIFF
+  path/to/file.py
+```
+      >>>>>>> SEARCH
+      def search():
+          pass
+      =======
+      def search():
+         raise NotImplementedError()
+      <<<<<<< REPLACE
+DIFF
+
+PSEUDO_XML_DIFF_EXAMPLE = <<~DIFF
+  `<edit>`
+      `<file>`
+      path/to/file.py
+      `</file>`
+      `<old_code>`
+      def search():
+          pass
+      `</old_code>`
+      `<new_code>`
+      def search():
+         raise NotImplementedError()
+      `</new_code>`
+      `</edit>`
+DIFF
 ````

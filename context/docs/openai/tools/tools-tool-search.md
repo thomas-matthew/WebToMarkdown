@@ -79,12 +79,12 @@ Hosted tool search is the simplest path when you already know the full inventory
 
 Configure hosted tool search
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
 
-const crmNamespace = {
+const crmNamespace: OpenAI.Responses.NamespaceTool = {
   type: "namespace",
   name: "crm",
   description: "CRM tools for customer lookup and order management.",
@@ -122,7 +122,7 @@ const crmNamespace = {
 };
 
 const response = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "List open orders for customer CUST-12345.",
   // highlight-start:subtle
   tools: [crmNamespace, { type: "tool_search" }],
@@ -176,7 +176,7 @@ crm_namespace = {
 }
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input="List open orders for customer CUST-12345.",
     tools=[
         crm_namespace,
@@ -222,7 +222,7 @@ func main() {
 		},
 	)
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model:             "gpt-6-astra",
+		Model:             "gpt-6.2-astra",
 		Input:             responses.ResponseNewParamsInputUnion{OfString: openai.String("List open orders for customer CUST-12345.")},
 		Tools:             []responses.ToolUnionParam{namespace, {OfToolSearch: &responses.ToolSearchToolParam{}}},
 		ParallelToolCalls: openai.Bool(false),
@@ -246,7 +246,7 @@ import java.util.Map;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("List open orders for customer CUST-12345.")
         .parallelToolCalls(false)
         .addTool(
@@ -306,7 +306,7 @@ parameters = {
   additionalProperties: false
 }
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "List open orders for customer CUST-12345.",
   parallel_tool_calls: false,
   tools: [
@@ -412,14 +412,14 @@ Configure the `tool_search` tool with `execution: "client"` and a schema for the
 
 Configure client-executed tool search
 
-```javascript
+```typescript
 import OpenAI from "openai";
 import { toResponseInputItems } from "openai/lib/responses/ResponseInputItems";
 
 const client = new OpenAI();
 
 const firstResponse = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "Find the shipping ETA tool first, then use it for order_42.",
   tools: [
     {
@@ -450,7 +450,7 @@ if (!searchCall) {
   throw new Error("The response did not include a tool search call.");
 }
 
-const loadedTools = [
+const loadedTools: OpenAI.Responses.FunctionTool[] = [
   {
     type: "function",
     name: "get_shipping_eta",
@@ -468,7 +468,7 @@ const loadedTools = [
   },
 ];
 
-const searchOutput = {
+const searchOutput: OpenAI.Responses.ResponseInputItem = {
   type: "tool_search_output",
   execution: "client",
   call_id: searchCall.call_id,
@@ -477,7 +477,7 @@ const searchOutput = {
 };
 
 const secondResponse = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     ...toResponseInputItems(firstResponse.output),
     // highlight-start:subtle
@@ -495,7 +495,7 @@ from openai import OpenAI
 client = OpenAI()
 
 first_response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input="Find the shipping ETA tool first, then use it for order_42.",
     tools=[
         {
@@ -539,9 +539,9 @@ loaded_tools = [
 ]
 
 second_response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
+    previous_response_id=first_response.id,
     input=[
-        *first_response.output,
         {
             # highlight-start:subtle
             "type": "tool_search_output",
@@ -583,7 +583,7 @@ func main() {
 		},
 	}}
 	first, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model:             "gpt-6-astra",
+		Model:             "gpt-6.2-astra",
 		Input:             responses.ResponseNewParamsInputUnion{OfString: openai.String("Find the shipping ETA tool first, then use it for order_42.")},
 		Tools:             []responses.ToolUnionParam{searchTool},
 		ParallelToolCalls: openai.Bool(false),
@@ -616,7 +616,7 @@ func main() {
 	searchOutput.OfToolSearchOutput.Status = responses.ResponseToolSearchOutputItemParamStatusCompleted
 
 	second, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model:              "gpt-6-astra",
+		Model:              "gpt-6.2-astra",
 		PreviousResponseID: openai.String(first.ID),
 		Input:              responses.ResponseNewParamsInputUnion{OfInputItemList: responses.ResponseInputParam{searchOutput}},
 	})
@@ -641,7 +641,7 @@ import java.util.Map;
 
 ResponseCreateParams searchRequest =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("Find the shipping ETA tool, then use it for order_42.")
         .parallelToolCalls(false)
         .addTool(
@@ -698,7 +698,7 @@ var response =
         .responses()
         .create(
             ResponseCreateParams.builder()
-                .model("gpt-6-astra")
+                .model("gpt-6.2-astra")
                 .previousResponseId(search.id())
                 .inputOfResponse(List.of(ResponseInputItem.ofToolSearchOutput(searchOutput)))
                 .build());
@@ -716,7 +716,7 @@ require "openai"
 
 client = OpenAI::Client.new
 search = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "Find the shipping ETA tool, then use it for order_42.",
   parallel_tool_calls: false,
   tools: [
@@ -741,7 +741,7 @@ unless call.is_a?(OpenAI::Models::Responses::ResponseToolSearchCall)
 end
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   previous_response_id: search.id,
   input: [
     {
@@ -908,7 +908,7 @@ Set `OPENAI_API_KEY` before running this example:
 
 Load function tools only when needed
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const client = new OpenAI();
 

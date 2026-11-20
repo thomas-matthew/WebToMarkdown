@@ -53,7 +53,7 @@ The .NET SDK does not provide a Responses WebSocket client, so a C# SDK variant 
 
 Update a project plan while it runs
 
-```javascript
+```typescript
 // Set OPENAI_API_KEY before running this example.
 // Install the SDK and WebSocket transport: npm install openai ws
 
@@ -154,6 +154,7 @@ async def main():
     async with client.responses.connect() as connection:
         await connection.response.create(
             model="gpt-6-astra",
+            store=False,
             reasoning={"effort": "medium"},
             input="Draft a project plan for building a task-tracking app.",
         )

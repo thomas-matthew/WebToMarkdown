@@ -1,42 +1,36 @@
-Python[langgraph](/python/langgraph)Functional API
-
 # Functional API
 
 ## Classes
 
-[Class
+Class
 
-### entrypoint
+### [entrypoint](https://reference.langchain.com/python/langgraph/func/entrypoint)
 
 Define a LangGraph workflow using the `entrypoint` decorator.
 
 Function signature
 
 The decorated function must accept a **single parameter**, which serves as the input
-to the function. This input](/python/langgraph/func/entrypoint)
+to the function. This input
 
 ## Functions
 
-[Function
+Function
 
-### task
+### [task](https://reference.langchain.com/python/langgraph/func/task)
 
 Define a LangGraph task using the `task` decorator.
 
 Requires python 3.11 or higher for async functions
 
-The `task` decorator supports both sync and async functions. To use async](/python/langgraph/func/task)
+The `task` decorator supports both sync and async functions. To use async
 
 ## Constants
 
-[Attribute
+Attribute
 
-### R](/python/langgraph/func/R)[Attribute
+### [R](https://reference.langchain.com/python/langgraph/func/R)
 
-### S](/python/langgraph/func/S)
+Attribute
 
-Copy page
-
-### On This Page
-
-Classes1Functions1Constants2
+### [S](https://reference.langchain.com/python/langgraph/func/S)

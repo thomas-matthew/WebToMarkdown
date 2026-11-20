@@ -6,7 +6,7 @@
 
 Multi-agent lets a model spin up and coordinate subagents in parallel, synthesizing their work to provide a final response. This is especially effective for applications with complex tasks that benefit from parallel work delegation, such as codebase exploration, documentation, and implementation.
 
-Multi-agent is available as a beta feature with [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol) and all GPT-5.6 models. Check the model page before enabling Multi-agent in your application.
+Multi-agent is available in beta with [GPT-6.2 Astra](https://developers.openai.com/api/docs/models/gpt-6.2-astra), [GPT-6.2 Sol](https://developers.openai.com/api/docs/models/gpt-6.2-sol), [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol), and all GPT-5.6 models. Check the model page before enabling Multi-agent in your application.
 
 ## When to use Multi-agent
 
@@ -36,7 +36,7 @@ Note that adding subagents can increase token usage, and may not be as beneficia
 
 ## Quickstart
 
-The Python and JavaScript examples use the beta Responses SDK. For HTTP
+The Python and TypeScript examples use the beta Responses SDK. For HTTP
   requests, use `client.beta.responses` and pass `responses_multi_agent=v1` in
   the `betas` argument. For raw HTTP requests and WebSocket connections, pass
   `OpenAI-Beta: responses_multi_agent=v1` in the request or connection headers.
@@ -44,16 +44,27 @@ The Python and JavaScript examples use the beta Responses SDK. For HTTP
 
 Enable Multi-agent in your Responses API request with `multi_agent.enabled`. When `multi_agent.enabled` is `true`, the root agent becomes eligible to spawn a tree of subagents. The subagents share the request’s model and available tools, while agents coordinate through collaboration primitives such as spawning, messaging, and waiting (see [How Multi-agent works](#how-multi-agent-works)). The root agent is responsible for synthesizing subagent responses and providing the final response.
 
+
+
+  The Go examples use `github.com/openai/openai-go/v3` at `v3.99.0` and its
+  typed `client.Beta.Responses` API. HTTP requests set `Betas` to `[]string
+  {"responses_multi_agent=v1"}`. The WebSocket example uses
+  `client.Beta.Responses.Connect` and passes the beta header when opening the
+  connection. Its complete program reads the comparison prompt from standard
+  input.
+
+
+
 Review a pull request with subagents
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
 
-async function reviewPullRequest(diff) {
+async function reviewPullRequest(diff: string) {
   const response = await client.beta.responses.create({
-    model: "gpt-6.1-sol",
+    model: "gpt-6.2-sol",
     input:
       "Review the pull-request diff below with three agents: one for " +
       "correctness, one for security, and one for missing tests. " +
@@ -89,7 +100,7 @@ client = OpenAI()
 
 def review_pull_request(diff: str) -> str:
     response = client.beta.responses.create(
-        model="gpt-6.1-sol",
+        model="gpt-6.2-sol",
         input=(
             "Review the pull-request diff below with three agents: one for "
             "correctness, one for security, and one for missing tests. "
@@ -116,6 +127,58 @@ def review_pull_request(diff: str) -> str:
         for part in item.content
         if part.type == "output_text"
     )
+```
+
+```go
+func reviewPullRequest(ctx context.Context, client openai.Client, diff string) (string, error) {
+	response, err := client.Beta.Responses.New(ctx, openai.BetaResponseNewParams{
+		Model:      "gpt-6.2-sol",
+		Input:      openai.BetaResponseNewParamsInputUnion{OfString: openai.String("Review the pull-request diff below with three agents: one for correctness, one for security, and one for missing tests. Reconcile duplicate or conflicting findings, then return a prioritized review with file and line references.\n\n<diff>\n" + diff + "\n</diff>")},
+		MultiAgent: openai.BetaResponseNewParamsMultiAgent{Enabled: true, MaxConcurrentSubagents: openai.Int(3)},
+		Betas:      []string{"responses_multi_agent=v1"},
+	})
+	if err != nil {
+		return "", err
+	}
+	if response.Status != "completed" {
+		return "", fmt.Errorf("review did not complete: %s", response.Status)
+	}
+	var text strings.Builder
+	for _, item := range response.Output {
+		if item.Type != "message" || item.Agent.AgentName != "/root" || item.Phase != "final_answer" {
+			continue
+		}
+		for _, part := range item.AsMessage().Content {
+			if part.Type == "output_text" {
+				text.WriteString(part.Text)
+			}
+		}
+	}
+	return text.String(), nil
+}
+```
+
+```ruby
+def review_pull_request(client, diff)
+  response = client.beta.responses.create(
+    model: "gpt-6.2-sol",
+    input: "Review the pull-request diff below with three agents: one for " \
+           "correctness, one for security, and one for missing tests. " \
+           "Reconcile duplicate or conflicting findings, then return a " \
+           "prioritized review with file and line references.\n\n<diff>\n#{diff}\n</diff>",
+    multi_agent: {
+      enabled: true,
+      max_concurrent_subagents: 3
+    },
+    betas: ["responses_multi_agent=v1"]
+  )
+
+  response.output.filter_map do |item|
+    next unless item.type == :message && item.agent&.agent_name == "/root" && item.phase == :final_answer
+
+    item.content.filter_map { |part| part.text if part.type == :output_text }.join
+  end.join
+end
 ```
 
 
@@ -186,7 +249,7 @@ Example client-side code:
 
 Handle HTTP streaming tool calls
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -196,7 +259,7 @@ const proposals = {
   beta: { estimated_weeks: 8, risk: "low" },
 };
 
-const tools = [
+const tools: OpenAI.Beta.Responses.BetaTool[] = [
   {
     type: "function",
     name: "get_proposal",
@@ -217,35 +280,48 @@ const tools = [
   },
 ];
 
-const history = [
+const history: (
+  | OpenAI.Beta.Responses.BetaResponseInputItem
+  | OpenAI.Beta.Responses.BetaResponseOutputItem
+)[] = [
   {
     role: "user",
     content: "Compare proposal alpha and proposal beta.",
   },
 ];
 
-function agentName(item) {
+function agentName(item: OpenAI.Beta.Responses.BetaResponseOutputItem) {
   return item.agent?.agent_name ?? ROOT;
 }
 
-function processToolCall(name, argumentsJson) {
+function processToolCall(name: string, argumentsJson: string) {
   if (name !== "get_proposal") {
     throw new Error(`Unknown tool: ${name}`);
   }
-  const { proposal } = JSON.parse(argumentsJson);
+  const { proposal }: { proposal: unknown } = JSON.parse(argumentsJson);
 
+  if (proposal !== "alpha" && proposal !== "beta")
+    throw new Error(`Unknown proposal: ${proposal}`);
   return JSON.stringify(proposals[proposal]);
 }
 
 while (true) {
-  const outputItems = [];
-  const pendingCalls = [];
+  let outputItems: OpenAI.Beta.Responses.BetaResponseOutputItem[] = [];
+  let completed = false;
   const itemAgents = new Map();
 
   const stream = await client.beta.responses.create({
-    model: "gpt-6.1-sol",
-    // Beta output items can be replayed as input on the next request.
-    input: history,
+    model: "gpt-6.2-sol",
+    // HTTP tool results arrive in the next request. Waiting for an agent that
+    // needs those results would prevent this response from ending.
+    instructions:
+      "Use separate subagents to look up each proposal. After spawning them, " +
+      "finish your own turn without calling wait_agent so the HTTP caller can " +
+      "supply their get_proposal results. When those results are present in " +
+      "the conversation, compare the subagents' findings and give the final answer.",
+    // Replay Beta output unchanged, including agent metadata. The SDK input
+    // union is narrower than the agent_message content returned by the API.
+    input: history as OpenAI.Beta.Responses.BetaResponseInput,
     tools,
     store: false,
     multi_agent: {
@@ -265,14 +341,12 @@ while (true) {
       destination.write(
         agent === ROOT ? event.delta : `[${agent}] ${event.delta}`
       );
-    } else if (event.type === "response.output_item.done") {
-      outputItems.push(event.item);
-      if (event.item.type === "function_call") {
-        pendingCalls.push(event.item);
-      }
     } else if (event.type === "response.completed") {
+      // The completed response includes hosted-agent replay items that may not
+      // appear as individual output_item.done events.
+      outputItems = event.response.output;
+      completed = true;
       console.error("\nUsage:", event.response.usage);
-      break;
     } else if (
       event.type === "error" ||
       event.type === "response.failed" ||
@@ -282,6 +356,10 @@ while (true) {
     }
   }
 
+  if (!completed) throw new Error("Stream ended before the response completed");
+  const pendingCalls = outputItems.filter(
+    (item) => item.type === "function_call"
+  );
   history.push(...outputItems);
   for (const call of pendingCalls) {
     history.push({
@@ -332,7 +410,10 @@ tools = [
 history = [
     {
         "role": "user",
-        "content": "Compare proposal alpha and proposal beta.",
+        "content": (
+            "Use two subagents, one for proposal alpha and one for proposal beta. "
+            "Have each call get_proposal, then compare their findings."
+        ),
     }
 ]
 
@@ -361,8 +442,13 @@ while True:
     pending_calls = []
     item_agents: dict[int, str] = {}
 
-    stream = client.beta.responses.create(
-        model="gpt-6.1-sol",
+    completed = False
+    with client.beta.responses.create(
+        model="gpt-6.2-sol",
+        instructions=(
+            "After launching both subagents, call get_proposal for alpha yourself "
+            "before waiting for their findings. Use that direct result to check the final comparison."
+        ),
         input=history,
         tools=tools,
         store=False,
@@ -372,30 +458,33 @@ while True:
         },
         stream=True,
         betas=["responses_multi_agent=v1"],
-    )
-    for event in stream:
-        if event.type == "response.output_item.added":
-            item_agents[event.output_index] = agent_name(event.item)
-        elif event.type == "response.output_text.delta":
-            agent = item_agents.get(event.output_index, ROOT)
-            if agent == ROOT:
-                render_to_user(event.delta)
-            else:
-                log_subagent_text(agent, event.delta)
-        elif event.type == "response.output_item.done":
-            output_items.append(event.item)
-            if event.item.type == "function_call":
-                # Handle function calls from both the root agent and subagents.
-                pending_calls.append(event.item)
-        elif event.type == "response.completed":
-            print(f"\nUsage: {event.response.usage}", file=sys.stderr)
-            break
-        elif event.type in {
-            "error",
-            "response.failed",
-            "response.incomplete",
-        }:
-            raise RuntimeError(event)
+    ) as stream:
+        for event in stream:
+            if event.type == "response.output_item.added":
+                item_agents[event.output_index] = agent_name(event.item)
+            elif event.type == "response.output_text.delta":
+                agent = item_agents.get(event.output_index, ROOT)
+                if agent == ROOT:
+                    render_to_user(event.delta)
+                else:
+                    log_subagent_text(agent, event.delta)
+            elif event.type == "response.output_item.done":
+                output_items.append(event.item)
+                if event.item.type == "function_call":
+                    # Handle function calls from both the root agent and subagents.
+                    pending_calls.append(event.item)
+            elif event.type == "response.completed":
+                print(f"\nUsage: {event.response.usage}", file=sys.stderr)
+                completed = True
+            elif event.type in {
+                "error",
+                "response.failed",
+                "response.incomplete",
+            }:
+                raise RuntimeError(event)
+
+    if not completed:
+        raise RuntimeError("Stream ended without a completed response")
 
     history.extend(output_items)
 
@@ -410,6 +499,238 @@ while True:
 
     if not pending_calls:
         break
+```
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"log"
+	"os"
+	"time"
+
+	"github.com/openai/openai-go/v3"
+)
+
+func run(ctx context.Context) error {
+	client := openai.NewClient()
+	proposals := map[string]any{"alpha": map[string]any{"estimated_weeks": 6, "risk": "medium"}, "beta": map[string]any{"estimated_weeks": 8, "risk": "low"}}
+	tools := []openai.BetaToolUnionParam{{OfFunction: &openai.BetaFunctionToolParam{
+		Name: "get_proposal", Description: openai.String("Return details for a proposal that the agents should compare."), Strict: openai.Bool(true),
+		Parameters: map[string]any{"type": "object", "properties": map[string]any{"proposal": map[string]any{"type": "string", "enum": []string{"alpha", "beta"}}}, "required": []string{"proposal"}, "additionalProperties": false},
+	}}}
+	history := []openai.BetaResponseInputItemUnionParam{{OfMessage: &openai.BetaEasyInputMessageParam{Role: "user", Content: openai.BetaEasyInputMessageContentUnionParam{OfString: openai.String("Use two subagents, one for proposal alpha and one for proposal beta. Have each call get_proposal, then compare their findings.")}}}}
+	for {
+		stream := client.Beta.Responses.NewStreaming(ctx, openai.BetaResponseNewParams{
+			Model: "gpt-6.2-sol", Input: openai.BetaResponseNewParamsInputUnion{OfInputItemList: history}, Tools: tools, Store: openai.Bool(false),
+			Instructions: openai.String("After launching both subagents, call get_proposal for alpha yourself before waiting for their findings. Use that direct result to check the final comparison."),
+			MultiAgent:   openai.BetaResponseNewParamsMultiAgent{Enabled: true, MaxConcurrentSubagents: openai.Int(3)}, Betas: []string{"responses_multi_agent=v1"},
+		})
+		completed := false
+		agents := map[int64]string{}
+		var outputs []openai.BetaResponseOutputItemUnion
+		var calls []openai.BetaResponseFunctionToolCall
+		for stream.Next() {
+			event := stream.Current()
+			switch event.Type {
+			case "response.output_item.added":
+				agent := event.Item.Agent.AgentName
+				if agent == "" {
+					agent = "/root"
+				}
+				agents[event.OutputIndex] = agent
+			case "response.output_text.delta":
+				agent := agents[event.OutputIndex]
+				if agent == "" {
+					agent = "/root"
+				}
+				if agent == "/root" {
+					fmt.Print(event.Delta)
+				} else {
+					fmt.Fprintf(os.Stderr, "[%s] %s", agent, event.Delta)
+				}
+			case "response.output_item.done":
+				outputs = append(outputs, event.Item)
+				if event.Item.Type == "function_call" {
+					calls = append(calls, event.Item.AsFunctionCall())
+				}
+			case "response.completed":
+				completed = true
+				usage, err := json.Marshal(event.Response.Usage)
+				if err != nil {
+					stream.Close()
+					return err
+				}
+				fmt.Fprintf(os.Stderr, "\nUsage: %s\n", usage)
+			case "error", "response.failed", "response.incomplete":
+				stream.Close()
+				return fmt.Errorf("multi-agent response failed: %s", event.RawJSON())
+			}
+		}
+		err := stream.Err()
+		stream.Close()
+		if err != nil {
+			return err
+		}
+		if !completed {
+			return fmt.Errorf("stream ended without a completed response")
+		}
+		// Keep every agent's output, including attribution and encrypted reasoning.
+		for _, item := range outputs {
+			var input openai.BetaResponseInputItemUnionParam
+			if item.Type == "message" {
+				// Select the output-message variant to retain agent attribution.
+				message := item.AsMessage().ToParam()
+				input.OfOutputMessage = &message
+			} else if err := json.Unmarshal([]byte(item.RawJSON()), &input); err != nil {
+				return err
+			}
+			history = append(history, input)
+		}
+		for _, call := range calls {
+			if call.Name != "get_proposal" {
+				return fmt.Errorf("unknown tool: %s", call.Name)
+			}
+			var args struct {
+				Proposal string `json:"proposal"`
+			}
+			if err := json.Unmarshal([]byte(call.Arguments), &args); err != nil {
+				return err
+			}
+			proposal, ok := proposals[args.Proposal]
+			if !ok {
+				return fmt.Errorf("unknown proposal: %s", args.Proposal)
+			}
+			output, err := json.Marshal(proposal)
+			if err != nil {
+				return err
+			}
+			history = append(history, openai.BetaResponseInputItemUnionParam{OfFunctionCallOutput: &openai.BetaResponseInputItemFunctionCallOutputParam{CallID: openai.String(call.CallID), Output: openai.BetaResponseInputItemFunctionCallOutputOutputUnionParam{OfString: openai.String(string(output))}}})
+		}
+		if len(calls) == 0 {
+			return nil
+		}
+	}
+}
+func main() {
+	ctx, cancel := context.WithTimeout(context.Background(), 4*time.Minute)
+	defer cancel()
+	if err := run(ctx); err != nil {
+		log.Fatal(err)
+	}
+}
+```
+
+```ruby
+require "openai"
+require "json"
+
+client = OpenAI::Client.new
+proposals = {
+  "alpha" => {
+    estimated_weeks: 6,
+    risk: "medium"
+  },
+  "beta" => {
+    estimated_weeks: 8,
+    risk: "low"
+  }
+}
+tools = [
+  {
+    type: :function,
+
+    name: "get_proposal",
+    description: "Return details for a proposal that the agents should compare.",
+    parameters: {
+      type: "object",
+
+      properties: {
+        proposal: {
+          type: "string",
+          enum: ["alpha", "beta"]
+        }
+      },
+      required: ["proposal"],
+
+      additionalProperties: false
+    },
+    strict: true
+  }
+]
+history = [
+  {
+    role: :user,
+
+    content: "Use two subagents, one for proposal alpha and one for proposal beta. " \
+    "Have each call get_proposal, then compare their findings."
+  }
+]
+
+loop do
+  output_items = []
+  pending_calls = []
+  item_agents = {}
+  state = { completed: false }
+  stream = client.beta.responses.stream_raw(
+    model: "gpt-6.2-sol", input: history, tools: tools, store: false,
+    instructions: "After launching both subagents, call get_proposal for alpha yourself " \
+      "before waiting for their findings. Use that direct result to check the final comparison.",
+    multi_agent: {
+      enabled: true,
+      max_concurrent_subagents: 3
+    },
+    betas: ["responses_multi_agent=v1"]
+  )
+  begin
+    stream.each do |event|
+      case event
+      when OpenAI::Models::Beta::BetaResponseOutputItemAddedEvent
+        item_agents[event.output_index] = event.item.agent&.agent_name || "/root"
+      when OpenAI::Models::Beta::BetaResponseTextDeltaEvent
+        agent = item_agents.fetch(event.output_index, "/root")
+        if agent == "/root"
+          $stdout.print(event.delta)
+          $stdout.flush
+        else
+          $stderr.print("[#{agent}] #{event.delta}")
+          $stderr.flush
+        end
+      when OpenAI::Models::Beta::BetaResponseOutputItemDoneEvent
+        output_items << event.item
+        pending_calls << event.item if event.item.is_a?(OpenAI::Models::Beta::BetaResponseFunctionToolCall)
+      when OpenAI::Models::Beta::BetaResponseCompletedEvent
+        state[:completed] = true
+        warn("\nUsage: #{event.response.usage.to_json}")
+      when OpenAI::Models::Beta::BetaResponseErrorEvent,
+           OpenAI::Models::Beta::BetaResponseFailedEvent,
+           OpenAI::Models::Beta::BetaResponseIncompleteEvent
+        raise "Multi-agent response failed: #{event.type}"
+      end
+    end
+  ensure
+    stream.close
+  end
+  raise "Stream ended without a completed response" unless state[:completed]
+
+  # Preserve every output item, including subagent calls, for the next turn.
+  history.concat(output_items)
+  pending_calls.each do |call|
+    raise "Unknown tool: #{call.name}" unless call.name == "get_proposal"
+
+    proposal = JSON.parse(call.arguments).fetch("proposal")
+    history << {
+      type: :function_call_output,
+
+      call_id: call.call_id,
+      output: JSON.generate(proposals.fetch(proposal))
+    }
+  end
+  break if pending_calls.empty?
+end
 ```
 
 
@@ -473,7 +794,7 @@ Save the response ID from the `response.created` event and include it in every `
 
 Inject tool outputs over WebSocket
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 import { ResponsesWS } from "openai/resources/beta/responses/ws";
@@ -483,7 +804,7 @@ const proposals = {
   alpha: { estimated_weeks: 6, risk: "medium" },
   beta: { estimated_weeks: 8, risk: "low" },
 };
-const tools = [
+const tools: OpenAI.Beta.Responses.BetaTool[] = [
   {
     type: "function",
     name: "get_proposal",
@@ -504,25 +825,27 @@ const tools = [
   },
 ];
 
-function processToolCall(name, argumentsJson) {
+function processToolCall(name: string, argumentsJson: string) {
   if (name !== "get_proposal") {
     throw new Error(`Unknown tool: ${name}`);
   }
-  const { proposal } = JSON.parse(argumentsJson);
+  const { proposal }: { proposal: unknown } = JSON.parse(argumentsJson);
 
+  if (proposal !== "alpha" && proposal !== "beta")
+    throw new Error(`Unknown proposal: ${proposal}`);
   return JSON.stringify(proposals[proposal]);
 }
 
-async function runMultiAgent(ws) {
+async function runMultiAgent(ws: ResponsesWS) {
   let previousResponseId;
-  let pendingInput = [
+  let pendingInput: OpenAI.Beta.Responses.BetaResponseInput = [
     { role: "user", content: process.argv.slice(2).join(" ") },
   ];
 
   while (pendingInput.length > 0) {
     ws.send({
       type: "response.create",
-      model: "gpt-6.1-sol",
+      model: "gpt-6.2-sol",
       store: true,
       multi_agent: {
         enabled: true,
@@ -596,6 +919,7 @@ async function runMultiAgent(ws) {
     previousResponseId = completedResponse.id;
     pendingInput = nextInput;
   }
+  throw new Error("The response ended without a result.");
 }
 
 const ws = new ResponsesWS(client, {
@@ -668,7 +992,7 @@ def run_multi_agent(connection):
     while pending_input:
         request = {
             "type": "response.create",
-            "model": "gpt-6.1-sol",
+            "model": "gpt-6.2-sol",
             "store": True,
             "multi_agent": {"enabled": True},
             "tools": tools,
@@ -768,6 +1092,312 @@ with client.beta.responses.connect(
             if part.type == "output_text"
         )
     )
+```
+
+```go
+package main
+
+import (
+	"bufio"
+	"context"
+	"encoding/json"
+	"fmt"
+	"log"
+	"os"
+	"strings"
+	"time"
+
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/option"
+)
+
+func toolOutput(call openai.BetaResponseFunctionToolCall) (openai.BetaResponseInputItemUnionParam, error) {
+	var zero openai.BetaResponseInputItemUnionParam
+	if call.Name != "get_proposal" {
+		return zero, fmt.Errorf("unknown tool: %s", call.Name)
+	}
+	var args struct {
+		Proposal string `json:"proposal"`
+	}
+	if err := json.Unmarshal([]byte(call.Arguments), &args); err != nil {
+		return zero, err
+	}
+	proposals := map[string]any{"alpha": map[string]any{"estimated_weeks": 6, "risk": "medium"}, "beta": map[string]any{"estimated_weeks": 8, "risk": "low"}}
+	value, ok := proposals[args.Proposal]
+	if !ok {
+		return zero, fmt.Errorf("unknown proposal: %s", args.Proposal)
+	}
+	output, err := json.Marshal(value)
+	if err != nil {
+		return zero, err
+	}
+	return openai.BetaResponseInputItemUnionParam{OfFunctionCallOutput: &openai.BetaResponseInputItemFunctionCallOutputParam{CallID: openai.String(call.CallID), Output: openai.BetaResponseInputItemFunctionCallOutputOutputUnionParam{OfString: openai.String(string(output))}}}, nil
+}
+
+func runMultiAgent(ctx context.Context, connection *openai.BetaResponseConnection, prompt string) (*openai.BetaResponse, error) {
+	tools := []openai.BetaToolUnionParam{{OfFunction: &openai.BetaFunctionToolParam{Name: "get_proposal", Description: openai.String("Return details for a proposal that the agents should compare."), Strict: openai.Bool(true), Parameters: map[string]any{"type": "object", "properties": map[string]any{"proposal": map[string]any{"type": "string", "enum": []string{"alpha", "beta"}}}, "required": []string{"proposal"}, "additionalProperties": false}}}}
+	input := openai.BetaResponseInputParam{{OfMessage: &openai.BetaEasyInputMessageParam{Role: "user", Content: openai.BetaEasyInputMessageContentUnionParam{OfString: openai.String(prompt)}}}}
+	previous := ""
+	for len(input) > 0 {
+		request := openai.BetaResponsesClientEventResponseCreateParam{Model: "gpt-6.2-sol", Store: openai.Bool(true), MultiAgent: openai.BetaResponsesClientEventResponseCreateMultiAgentParam{Enabled: true}, Tools: tools, Input: openai.BetaResponsesClientEventResponseCreateInputUnionParam{OfResponse: &input}}
+		if previous != "" {
+			request.PreviousResponseID = openai.String(previous)
+		}
+		if err := connection.Send(ctx, openai.BetaResponsesClientEventUnionParam{OfResponseCreate: &request}); err != nil {
+			return nil, err
+		}
+		responseID := ""
+		pending := 0
+		var completed *openai.BetaResponse
+		var retry []openai.BetaResponseInputItemUnionParam
+		for completed == nil || pending != 0 {
+			event, err := connection.Recv(ctx)
+			if err != nil {
+				return nil, fmt.Errorf("connection ended before completion and injection acknowledgements: %w", err)
+			}
+			switch event.Type {
+			case "response.created":
+				responseID = event.AsResponseCreated().Response.ID
+			case "response.output_item.done":
+				item := event.AsResponseOutputItemDone().Item
+				if item.Type != "function_call" {
+					continue
+				}
+				if responseID == "" {
+					return nil, fmt.Errorf("function call arrived before response creation")
+				}
+				output, err := toolOutput(item.AsFunctionCall())
+				if err != nil {
+					return nil, err
+				}
+				pending++
+				if err := connection.Send(ctx, openai.BetaResponsesClientEventUnionParam{OfResponseInject: &openai.BetaResponseInjectEventParam{ResponseID: responseID, Input: []openai.BetaResponseInputItemUnionParam{output}}}); err != nil {
+					return nil, err
+				}
+			case "response.inject.created":
+				ack := event.AsBetaResponseInjectCreatedEvent()
+				if responseID == "" || ack.ResponseID != responseID || pending == 0 {
+					return nil, fmt.Errorf("unexpected injection acknowledgement")
+				}
+				pending--
+			case "response.inject.failed":
+				ack := event.AsBetaResponseInjectFailedEvent()
+				if responseID == "" || ack.ResponseID != responseID || pending == 0 {
+					return nil, fmt.Errorf("unexpected injection acknowledgement")
+				}
+				pending--
+				if ack.Error.Code != "response_already_completed" {
+					return nil, fmt.Errorf("injection failed: %s", ack.Error.Code)
+				}
+				for _, item := range ack.Input {
+					var value openai.BetaResponseInputItemUnionParam
+					if err := json.Unmarshal([]byte(item.RawJSON()), &value); err != nil {
+						return nil, err
+					}
+					retry = append(retry, value)
+				}
+			case "response.completed":
+				response := event.AsResponseCompleted().Response
+				if responseID == "" || response.ID != responseID {
+					return nil, fmt.Errorf("unexpected response completion")
+				}
+				completed = &response
+			case "error", "response.failed", "response.incomplete":
+				return nil, fmt.Errorf("multi-agent response failed: %s", event.RawJSON())
+			}
+		}
+		if len(retry) == 0 {
+			return completed, nil
+		}
+		previous = completed.ID
+		input = retry
+	}
+	return nil, fmt.Errorf("no response was created")
+}
+
+func run(ctx context.Context) error {
+	scanner := bufio.NewScanner(os.Stdin)
+	if !scanner.Scan() {
+		if err := scanner.Err(); err != nil {
+			return err
+		}
+		return fmt.Errorf("expected a prompt on stdin")
+	}
+	client := openai.NewClient()
+	connection, err := client.Beta.Responses.Connect(ctx, openai.BetaResponseConnectionOptions{}, option.WithQuery("beta", "true"), option.WithHeader("OpenAI-Beta", "responses_multi_agent=v1"))
+	if err != nil {
+		return err
+	}
+	defer connection.Close()
+	response, err := runMultiAgent(ctx, connection, scanner.Text())
+	if err != nil {
+		return err
+	}
+	var text strings.Builder
+	for _, item := range response.Output {
+		if item.Type != "message" || item.Agent.AgentName != "/root" || item.Phase != "final_answer" {
+			continue
+		}
+		for _, part := range item.AsMessage().Content {
+			if part.Type == "output_text" {
+				text.WriteString(part.Text)
+			}
+		}
+	}
+	fmt.Println(text.String())
+	return nil
+}
+func main() {
+	ctx, cancel := context.WithTimeout(context.Background(), 4*time.Minute)
+	defer cancel()
+	if err := run(ctx); err != nil {
+		log.Fatal(err)
+	}
+}
+```
+
+```ruby
+require "async"
+require "async/http/endpoint"
+require "async/websocket/client"
+require "json"
+
+PROPOSALS = {
+  "alpha" => {
+    estimated_weeks: 6,
+    risk: "medium"
+  },
+  "beta" => {
+    estimated_weeks: 8,
+    risk: "low"
+  }
+}.freeze
+
+def process_tool_call(name, arguments)
+  raise "Unknown tool: #{name}" unless name == "get_proposal"
+
+  JSON.generate(PROPOSALS.fetch(JSON.parse(arguments).fetch("proposal")))
+end
+
+def run_multi_agent(connection, tools)
+  state = {
+    previous: nil,
+    input: [
+      {
+        role: "user",
+        content: $stdin.readline.chomp
+      }
+    ]
+  }
+  until state[:input].empty?
+    request = {
+      type: "response.create",
+
+      model: "gpt-6.2-sol",
+
+      store: true,
+      multi_agent: { enabled: true },
+
+      tools: tools,
+
+      input: state[:input]
+    }
+    request[:previous_response_id] = state[:previous] if state[:previous]
+    connection.write(JSON.generate(request))
+    connection.flush
+    round = {
+      response_id: nil,
+      completed: nil,
+      pending: 0,
+      retry: []
+    }
+    while (message = connection.read)
+      event = JSON.parse(message.to_str)
+      case event.fetch("type")
+      when "response.created"
+        round[:response_id] = event.fetch("response").fetch("id")
+      when "response.output_item.done"
+        item = event.fetch("item")
+        if item["type"] == "function_call"
+          raise "Function call arrived before response creation" unless round[:response_id]
+
+          output = {
+            type: "function_call_output",
+
+            call_id: item.fetch("call_id"),
+            output: process_tool_call(item.fetch("name"), item.fetch("arguments"))
+          }
+          round[:pending] += 1
+          connection.write(JSON.generate(type: "response.inject", response_id: round[:response_id], input: [output]))
+          connection.flush
+        end
+      when "response.inject.created", "response.inject.failed"
+        unless event.fetch("response_id") == round[:response_id] && round[:pending].positive?
+          raise "Unexpected injection acknowledgement"
+        end
+
+        round[:pending] -= 1
+        if event["type"] == "response.inject.failed"
+          raise "Injection failed: #{event.fetch("error")}" unless event.fetch("error").fetch("code") == "response_already_completed"
+
+          round[:retry].concat(event.fetch("input"))
+        end
+      when "response.completed"
+        round[:completed] = event.fetch("response")
+      when "error", "response.failed", "response.incomplete"
+        raise "Multi-agent response failed: #{event}"
+      end
+      break if round[:completed] && round[:pending].zero?
+    end
+    raise "Connection closed before response completion" unless round[:completed]
+    raise "Connection closed with unacknowledged results" unless round[:pending].zero?
+    return round[:completed] if round[:retry].empty?
+
+    state[:previous] = round[:completed].fetch("id")
+    state[:input] = round[:retry]
+  end
+  raise "No response was created"
+end
+
+tools = [
+  {
+    type: "function",
+
+    name: "get_proposal",
+    description: "Return details for a proposal that the agents should compare.",
+    parameters: {
+      type: "object",
+
+      properties: {
+        proposal: {
+          type: "string",
+          enum: ["alpha", "beta"]
+        }
+      },
+      required: ["proposal"],
+
+      additionalProperties: false
+    },
+    strict: true
+  }
+]
+base = ENV.fetch("OPENAI_BASE_URL", "https://api.openai.com/v1").sub(%r{/+\z}, "")
+endpoint = Async::HTTP::Endpoint.parse("#{base.sub(/\Ahttp/, "ws")}/responses?beta=true", timeout: 30, alpn_protocols: ["http/1.1"])
+headers = {
+  "Authorization" => "Bearer #{ENV.fetch("OPENAI_API_KEY")}",
+  "OpenAI-Beta" => "responses_multi_agent=v1"
+}
+Sync do |task|
+  task.with_timeout(240) do
+    Async::WebSocket::Client.connect(endpoint, headers: headers) do |connection|
+      response = run_multi_agent(connection, tools)
+      text = response.fetch("output").select do |item|
+        item["type"] == "message" && item.dig("agent", "agent_name") == "/root" && item["phase"] == "final_answer"
+      end.flat_map { |item| item.fetch("content") }.select { |part| part["type"] == "output_text" }.map { |part| part.fetch("text") }.join
+      puts text
+    end
+  end
+end
 ```
 
 

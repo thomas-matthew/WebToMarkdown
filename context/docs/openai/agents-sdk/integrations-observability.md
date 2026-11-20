@@ -20,7 +20,7 @@ Use hosted MCP tools when the remote server should run through the model surface
 
 Attach a hosted MCP server
 
-```javascript
+```typescript
 import { Agent, hostedMcpTool } from "@openai/agents";
 
 const agent = new Agent({
@@ -59,7 +59,7 @@ Use local transports when your application should connect to the MCP server dire
 
 Connect a local MCP server
 
-```javascript
+```typescript
 import { Agent, MCPServerStdio, run } from "@openai/agents";
 
 const server = new MCPServerStdio({
@@ -140,7 +140,7 @@ If you need less tracing, use the SDK-level or per-run tracing controls rather t
 
 Wrap multiple runs in one trace
 
-```javascript
+```typescript
 import { Agent, run, withTrace } from "@openai/agents";
 
 const agent = new Agent({
@@ -194,18 +194,16 @@ Once the external surfaces are wired in, continue with the guide that covers cap
 
 
 
-  [Using tools
+  [Using tools](https://developers.openai.com/api/docs/guides/tools#usage-in-the-agents-sdk)
+
+See how hosted tools, function tools, and agents-as-tools fit beside MCP.
 
 
+  [Guardrails and human review](https://developers.openai.com/api/docs/guides/agents/guardrails-approvals)
 
-        See how hosted tools, function tools, and agents-as-tools fit beside MCP.](https://developers.openai.com/api/docs/guides/tools#usage-in-the-agents-sdk)
-  [Guardrails and human review
-
-
-
-        Add approval or validation boundaries around sensitive capabilities.](https://developers.openai.com/api/docs/guides/agents/guardrails-approvals)
-  [Agent workflow evaluation
+Add approval or validation boundaries around sensitive capabilities.
 
 
+  [Agent workflow evaluation](https://developers.openai.com/api/docs/guides/agent-evals)
 
-        Move from one-off traces into repeatable grading once behavior stabilizes.](https://developers.openai.com/api/docs/guides/agent-evals)
+Move from one-off traces into repeatable grading once behavior stabilizes.

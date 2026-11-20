@@ -91,7 +91,7 @@ curl -L 'https://api.openai.com/v1/responses' \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "tools": [
       {
         "type": "shell",
@@ -108,13 +108,13 @@ curl -L 'https://api.openai.com/v1/responses' \
   }'
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
 
 const response = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   tools: [
     {
       type: "shell",
@@ -136,7 +136,7 @@ console.log(response.output_text);
 
 ```python
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     tools=[
         {
             "type": "shell",
@@ -181,7 +181,7 @@ func main() {
 		}},
 	}}
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Tools: []responses.ToolUnionParam{tool},
 		Input: responses.ResponseNewParamsInputUnion{OfString: openai.String("Use the skills to add 144 and 377, then compute triangle area with base 9 height 13.")},
 	})
@@ -204,7 +204,7 @@ String skillId = "<skill_id>";
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input(
             "Use the skills to add 144 and 377, then compute a triangle area with base 9 and height 13.")
         .putAdditionalBodyProperty(
@@ -239,7 +239,7 @@ require "openai"
 
 client = OpenAI::Client.new
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "Use the skills to add 144 and 377, then compute a triangle area with base 9 and height 13.",
   tools: [
     {
@@ -279,16 +279,16 @@ Skills also work with local shell mode, but local shell and hosted shell do not 
 
 Use the [Shell guide](https://developers.openai.com/api/docs/guides/tools-shell) for local shell execution details.
 
-The JavaScript example requires Node.js and a running Docker daemon. Save the
+The TypeScript example requires Node.js 22.6 or later and a running Docker daemon. Save the
 [Docker adapter](https://developers.openai.com/api/docs/samples/local-skill-sandbox.mjs) as `support/local-skill-sandbox.mjs` and
-the example as `tools/skills/local-shell.mjs` so its relative import resolves.
+the example as `tools/skills/local-shell.mts` so its relative import resolves.
 Set `OPENAI_API_KEY`, then install the SDK, pull the adapter's pinned image, and
 run the example from the directory containing `support` and `tools`:
 
 ```bash
 npm install openai
 docker pull "$(node --input-type=module -e 'import { sandboxImage } from "./support/local-skill-sandbox.mjs"; console.log(sandboxImage)')"
-node tools/skills/local-shell.mjs
+node --experimental-strip-types tools/skills/local-shell.mts
 ```
 
 The adapter's helpers have these responsibilities:
@@ -309,7 +309,7 @@ curl -L 'https://api.openai.com/v1/responses' \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "tools": [
       {
         "type": "shell",
@@ -329,7 +329,7 @@ curl -L 'https://api.openai.com/v1/responses' \
   }'
 ```
 
-```javascript
+```typescript
 import { randomUUID } from "node:crypto";
 import OpenAI from "openai";
 import {
@@ -342,11 +342,11 @@ import {
 // sandbox with the skill and CSV files; generated commands run only inside it.
 const name = "node-skill-" + randomUUID();
 
-await withLocalSkillSandbox(name, async (signal) => {
+await withLocalSkillSandbox(name, async (signal: AbortSignal) => {
   const client = new OpenAI();
   /** @type {OpenAI.Responses.ResponseCreateParamsNonStreaming} */
-  const params = {
-    model: "gpt-6-astra",
+  const params: OpenAI.Responses.ResponseCreateParamsNonStreaming = {
+    model: "gpt-6.2-astra",
     tools: [
       {
         type: "shell",
@@ -390,7 +390,7 @@ await withLocalSkillSandbox(name, async (signal) => {
 
 ```python
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     tools=[
         {
             "type": "shell",
@@ -409,7 +409,8 @@ response = client.responses.create(
     input="Use the csv-insights skill and run locally to summarize today's CSV reports in this repo.",
 )
 
-print(response.output_text)
+# Execute returned shell calls locally and submit their shell_call_output to continue.
+print(response.output)
 ```
 
 ```go
@@ -427,7 +428,7 @@ tool := responses.ToolUnionParam{OfShell: &responses.FunctionShellToolParam{
 	},
 }}
 params := responses.ResponseNewParams{
-	Model: "gpt-6-astra",
+	Model: "gpt-6.2-astra",
 	Tools: []responses.ToolUnionParam{tool},
 	Input: responses.ResponseNewParamsInputUnion{OfString: openai.String(
 		"Use the csv-insights skill and run locally to summarize /workspace/reports.csv. Read the skill instructions, write /workspace/report.md, and include the total in your final answer.")},
@@ -482,7 +483,7 @@ String skillPath = "<path-to-skill-folder>";
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("Use the csv-insights skill to summarize today's CSV reports.")
         .putAdditionalBodyProperty(
             "tools",
@@ -525,7 +526,7 @@ def run_local_skill(name)
     sandbox.prepare
     client = OpenAI::Client.new(max_retries: 0)
     params = {
-      model: "gpt-6-astra",
+      model: "gpt-6.2-astra",
       input: "Use the csv-insights skill and run locally to summarize /workspace/reports.csv. Read the skill instructions, write /workspace/report.md, and include the total in your final answer.",
       tools: [
         {

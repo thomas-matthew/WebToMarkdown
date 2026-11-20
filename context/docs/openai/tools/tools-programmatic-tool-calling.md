@@ -223,18 +223,24 @@ The following example uses `store: false`, preserves every response item, and re
 
 Run a programmatic tool-calling loop
 
-```javascript
+```typescript
 import OpenAI from "openai";
 import { toResponseInputItems } from "openai/lib/responses/ResponseInputItems";
 
 const client = new OpenAI();
 
 const implementations = {
-  get_inventory: async ({ sku }) => ({ sku, available_units: 42 }),
-  get_demand: async ({ sku }) => ({ sku, requested_units: 31 }),
+  get_inventory: async ({ sku }: { sku: string }) => ({
+    sku,
+    available_units: 42,
+  }),
+  get_demand: async ({ sku }: { sku: string }) => ({
+    sku,
+    requested_units: 31,
+  }),
 };
 
-const tools = [
+const tools: OpenAI.Responses.Tool[] = [
   {
     type: "function",
     name: "get_inventory",
@@ -284,7 +290,7 @@ const tools = [
   { type: "programmatic_tool_calling" },
 ];
 
-const input = [
+const input: OpenAI.Responses.ResponseInput = [
   {
     role: "user",
     content: "Compare inventory with demand for sku_123.",
@@ -293,7 +299,7 @@ const input = [
 
 while (true) {
   const response = await client.responses.create({
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     store: false,
     input,
     tools,
@@ -320,12 +326,12 @@ while (true) {
 
   const outputs = await Promise.all(
     calls.map(async (call) => {
-      const run = implementations[call.name];
+      const run = implementations[call.name as keyof typeof implementations];
       if (!run) throw new Error(`Unknown tool: ${call.name}`);
 
       const result = await run(JSON.parse(call.arguments));
       return {
-        type: "function_call_output",
+        type: "function_call_output" as const,
         call_id: call.call_id,
         output: JSON.stringify(result),
         // Preserve caller so the runtime can resume the correct program.
@@ -344,7 +350,7 @@ import json
 from openai import OpenAI
 
 client = OpenAI()
-model = "gpt-6-astra"
+model = "gpt-6.2-astra"
 
 
 def get_inventory(sku):
@@ -498,7 +504,7 @@ func main() {
 
 	for {
 		response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-			Model: "gpt-6-astra",
+			Model: "gpt-6.2-astra",
 			Store: openai.Bool(false),
 			Input: responses.ResponseNewParamsInputUnion{OfInputItemList: input},
 			Tools: tools,
@@ -669,7 +675,7 @@ while (true) {
           .responses()
           .create(
               ResponseCreateParams.builder()
-                  .model("gpt-6-astra")
+                  .model("gpt-6.2-astra")
                   .store(false)
                   .inputOfResponse(input)
                   .tools(tools)
@@ -835,7 +841,7 @@ input = [
 
 loop do
   response = client.responses.create(
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     store: false,
     input: input,
     tools: tools

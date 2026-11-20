@@ -1,88 +1,13 @@
-1. [Overview](/en/guides "Overview")
-2. [Snowflake Horizon Catalog](/en/user-guide/snowflake-horizon "Snowflake Horizon Catalog")
-4. [Applications and tools for connecting to Snowflake](/en/guides-overview-connecting "Applications and tools for connecting to Snowflake")
-6. [Virtual warehouses](/en/user-guide/warehouses "Virtual warehouses")
-7. [Databases, Tables, & Views](/en/guides-overview-db "Databases, Tables, & Views")
-8. [Data types](/en/data-types "Data types")
-10. Data Integration
-
-    - [Snowflake Openflow](/en/user-guide/data-integration/openflow/about "Snowflake Openflow")
-    - Apache Iceberg™
-
-      - [Apache Iceberg™ Tables](/en/user-guide/tables-iceberg "Apache Iceberg™ Tables")
-      - [Snowflake Open Catalog](/en/user-guide/opencatalog/overview "Snowflake Open Catalog")
-    - Zero-Copy Connectors
-
-      - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
-      - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
-      - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
-      - [About Workday Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-datacloud "About Workday Data Cloud and Snowflake")
-11. Data engineering
-
-    - [Data loading](/en/guides-overview-loading-data "Data loading")
-    - [Dynamic tables](/en/user-guide/dynamic-tables/overview "Dynamic tables")
-    - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
-    - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
-    - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
-    - [Pipeline Builder](/en/user-guide/pipeline-builder/pipeline-builder-overview "Pipeline Builder")
-    - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
-    - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
-12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/snowflake-aim "Migrations")
-15. [Queries](/en/guides-overview-queries "Queries")
-16. [Collaboration](/en/guides-overview-sharing "Collaboration")
-18. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
-
-    * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
-    * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
-    * [Snowflake Artifacts](/en/user-guide/snowflake-artifacts "Snowflake Artifacts")
-    * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
-    * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
-    * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
-    * [Cortex Agent SDK](/en/user-guide/snowflake-cortex/cortex-agent-sdk/cortex-agent-sdk "Cortex Agent SDK")
-    * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
-    * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
-    * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
-    * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
-
-      + [Query a Cortex Search Service](/en/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service "Query a Cortex Search Service")
-      + [Use with Cortex Agents](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-agents "Use with Cortex Agents")
-      + [Replicate a Cortex Search Service](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-replication "Replicate a Cortex Search Service")
-      + [Customize Cortex Search Scoring](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-customize-scoring "Customize Cortex Search Scoring")
-      + [Understanding cost](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-costs "Understanding cost")
-      + [Batch Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/batch-cortex-search "Batch Cortex Search")
-      + [Retrieve Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-retrieve "Retrieve Cortex Search")
-      + [Monitor Cortex Search requests](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-monitor "Monitor Cortex Search requests")
-      + [Resource budgets](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-resource-budgets "Resource budgets")
-      + [Tutorials](/en/user-guide/snowflake-cortex/cortex-search/overview-tutorials "Tutorials")
-    * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
-    * [Cortex Inference](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex Inference")
-    * [Cortex AI Guardrails](/en/user-guide/snowflake-cortex/cortex-ai-guardrails "Cortex AI Guardrails")
-    * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
-    * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
-    * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
-    * [ML Development and ML Ops](/en/developer-guide/snowpark-ml/overview "ML Development and ML Ops")
-    * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
-20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
-22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
-24. [Security](/en/guides-overview-secure "Security")
-26. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-27. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-29. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-30. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
-
-[Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)[Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview)Query a Cortex Search Service
-
-# Query a Cortex Search Service[¶](#query-a-cortex-search-service)
+# Query a Cortex Search Service
 
 When you create a Cortex Search Service, the system provisions an API endpoint to serve queries at low latency.
 You can use three APIs for querying a Cortex Search Service:
 
-* The [Python API](#label-cortex-search-query-syntax-python)
-* The [REST API](#label-cortex-search-query-syntax-rest)
-* The [SQL SEARCH\_PREVIEW Function](#label-cortex-search-query-syntax-sql-preview)
+* The [Python API](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-python)
+* The [REST API](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-rest)
+* The [SQL SEARCH\_PREVIEW Function](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-sql-preview)
 
-## Parameters[¶](#parameters)
+## Parameters
 
 All APIs support the same set of query parameters:
 
@@ -90,38 +15,28 @@ All APIs support the same set of query parameters:
 | --- | --- | --- |
 | Required | `query` | The search query, to be searched for in the text column in the service. |
 | Optional | `columns` | A comma-separated list of columns to return for each relevant result in the response. These columns must be included in the source query for the service.  If this parameter is not provided, only the search column is returned in the response. |
-|  | `filter` | A filter object for filtering results based on data in the `ATTRIBUTES` columns. See [Filter syntax](#filter-syntax) for syntax. |
-|  | `scoring_config` | Configuration object for customizing search ranking behavior. See [Customizing Cortex Search scoring](/user-guide/snowflake-cortex/cortex-search/cortex-search-customize-scoring#label-cortex-search-customize-scoring) for syntax. |
-|  | `scoring_profile` | The named scoring profile to be used with the query, previously defined with [ALTER CORTEX SEARCH SERVICE … ADD SCORING PROFILE](/sql-reference/sql/alter-cortex-search). If `scoring_profile` is provided, any `scoring_config` provided is ignored. |
+|  | `filter` | A filter object for filtering results based on data in the `ATTRIBUTES` columns. See [Filter syntax](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#filter-syntax) for syntax. |
+|  | `scoring_config` | Configuration object for customizing search ranking behavior. See [Customizing Cortex Search scoring](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-customize-scoring#label-cortex-search-customize-scoring) for syntax. |
+|  | `scoring_profile` | The named scoring profile to be used with the query, previously defined with [ALTER CORTEX SEARCH SERVICE … ADD SCORING PROFILE](https://docs.snowflake.com/sql-reference/sql/alter-cortex-search). If `scoring_profile` is provided, any `scoring_config` provided is ignored. |
 |  | `limit` | Maximum number of results to return in the response, up to 1000. The default limit is 10. |
 
-Expand
+### Multi-index search parameters
 
-Show lessSee more
-
-### Multi-index search parameters[¶](#multi-index-search-parameters)
-
-In addition, the SQL and Python APIs support [multi-index queries](/user-guide/snowflake-cortex/cortex-search/cortex-search-overview#label-cortex-multi-index-search). Using multi-index parameters allows for refining results from Cortex Search and reducing query cost by limiting the number of columns searched.
+In addition, the SQL and Python APIs support [multi-index queries](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-overview#label-cortex-multi-index-search). Using multi-index parameters allows for refining results from Cortex Search and reducing query cost by limiting the number of columns searched.
 
 | Parameter | Description |
 | --- | --- |
 | `multi_index_query` | The map used to determine which indexes to query. Each key in the map is the name of an indexed column, and each value is an array containing maps that define the query:   * If the index is a text index or a managed vector index, the query array can contain:    + Text queries: `{"text": "search_text"}`   + Vector queries, as an embedding vector: `{"vector": [vector_values]}` * If the index is a user-provided vector embedding column, the query array can contain:    + If a `query_model` was specified at creation time for automatic embeddings, text queries: `{"text": "search_text"}`.   + Vector queries, as an embedding vector: `{"vector": [vector_values]}` |
 
-Expand
-
-Show lessSee more
-
 Note
 
-Multi-index Cortex Search services can still be searched through the REST API or without the `multi_index_query` parameter. This causes an unrestricted search over *all* indexed columns, which affects query cost. For details on estimating cost for multi-index query compute, see [Understanding cost for Cortex Search Services - Multi-index search](/user-guide/snowflake-cortex/cortex-search/cortex-search-costs#label-cortex-search-multi-index-estimate-cost).
+Multi-index Cortex Search services can still be searched through the REST API or without the `multi_index_query` parameter. This causes an unrestricted search over *all* indexed columns, which affects query cost. For details on estimating cost for multi-index query compute, see [Understanding cost for Cortex Search Services - Multi-index search](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-costs#label-cortex-search-multi-index-estimate-cost).
 
-## Syntax[¶](#syntax)
+## Syntax
 
 Simple queries to a Cortex Search Service use the following syntax:
 
 PythonREST APISQL
-
-Copy codeExpand code block
 
 ```
 import os
@@ -150,12 +65,6 @@ resp = my_service.search(
 print(resp.to_json())
 ```
 
-Show lessSee more
-
-Scroll to top
-
-Copy code
-
 ```
 curl --location https://<ACCOUNT_URL>/api/v2/databases/<DB_NAME>/schemas/<SCHEMA_NAME>/cortex-search-services/<SERVICE_NAME>:query \
 --header 'Content-Type: application/json' \
@@ -168,8 +77,6 @@ curl --location https://<ACCOUNT_URL>/api/v2/databases/<DB_NAME>/schemas/<SCHEMA
   "limit": <limit>
 }'
 ```
-
-Copy code
 
 ```
 SELECT PARSE_JSON(
@@ -188,13 +95,11 @@ SELECT PARSE_JSON(
 )['results'] as results;
 ```
 
-### Multi-index query syntax[¶](#multi-index-query-syntax)
+### Multi-index query syntax
 
 Querying specific indices only or using a service with vector embeddings for a multi-index Cortex Search service uses the following syntax:
 
 PythonSQL
-
-Copy codeExpand code block
 
 ```
 from snowflake.core import Root
@@ -240,12 +145,6 @@ resp = my_service.search(
 )
 ```
 
-Show lessSee more
-
-Scroll to top
-
-Copy code
-
 ```
 SELECT SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
       '<service_name>',
@@ -281,34 +180,30 @@ SELECT SNOWFLAKE.CORTEX.SEARCH_PREVIEW(
   );
 ```
 
-## Setup and authentication[¶](#setup-and-authentication)
+## Setup and authentication
 
-### Python API[¶](#python-api)
+### Python API
 
 Cortex Search Services may be queried using version 0.8.0 or later of the Snowflake Python APIs. See
-[Snowflake Python APIs: Managing Snowflake objects with Python](/developer-guide/snowflake-python-api/snowflake-python-overview) for more information on the Snowflake
+[Snowflake Python APIs: Managing Snowflake objects with Python](https://docs.snowflake.com/developer-guide/snowflake-python-api/snowflake-python-overview) for more information on the Snowflake
 Python APIs.
 
-#### Install the Snowflake Python API library[¶](#install-the-snowflake-python-api-library)
+#### Install the Snowflake Python API library
 
 First, install the latest version of the Snowflake Python APIs package from PyPI.
-See [Install the Snowflake Python APIs library](/developer-guide/snowflake-python-api/snowflake-python-installing)
+See [Install the Snowflake Python APIs library](https://docs.snowflake.com/developer-guide/snowflake-python-api/snowflake-python-installing)
 for instructions on installing this package from PyPI.
-
-Copy code
 
 ```
 pip install snowflake -U
 ```
 
-#### Connect to Snowflake[¶](#connect-to-snowflake)
+#### Connect to Snowflake
 
 Connect to Snowflake using either a Snowpark `Session` or a Python Connector `Connection` and create a
-`Root` object. See [Connect to Snowflake with the Snowflake Python APIs](/developer-guide/snowflake-python-api/snowflake-python-connecting-snowflake) for more instructions on connecting
+`Root` object. See [Connect to Snowflake with the Snowflake Python APIs](https://docs.snowflake.com/developer-guide/snowflake-python-api/snowflake-python-connecting-snowflake) for more instructions on connecting
 to Snowflake. The following example uses the Snowpark `Session` object and a Python dictionary for
 configuration.
-
-Copy codeExpand code block
 
 ```
 import os
@@ -329,20 +224,14 @@ session = Session.builder.configs(CONNECTION_PARAMETERS).create()
 root = Root(session)
 ```
 
-Show lessSee more
-
-Scroll to top
-
 Note
 
 Version 0.8.0 or later of the Snowflake Python APIs library is required to query a Cortex Search Service.
 
-### REST API[¶](#rest-api)
+### REST API
 
-Cortex Search exposes a REST API endpoint in the suite of [Snowflake REST APIs](/developer-guide/snowflake-rest-api/snowflake-rest-api). The REST endpoint
+Cortex Search exposes a REST API endpoint in the suite of [Snowflake REST APIs](https://docs.snowflake.com/developer-guide/snowflake-rest-api/snowflake-rest-api). The REST endpoint
 generated for a Cortex Search Service is of the following structure:
-
-Copy codeExpand code block
 
 ```
 https://<account_url>/api/v2/databases/<db_name>/schemas/<schema_name>/cortex-search-services/<service_name>:query
@@ -350,7 +239,7 @@ https://<account_url>/api/v2/databases/<db_name>/schemas/<schema_name>/cortex-se
 
 Where:
 
-* `<account_url>`: Your Snowflake Account URL. See [Finding the organization and account name for an account](/user-guide/admin-account-identifier#label-account-name-find) for instructions on finding your account URL.
+* `<account_url>`: Your Snowflake Account URL. See [Finding the organization and account name for an account](https://docs.snowflake.com/user-guide/admin-account-identifier#label-account-name-find) for instructions on finding your account URL.
 * `<db_name>`: Database in which the service resides.
 * `<schema_name>`: Schema in which the service resides.
 * `<service_name>`: Name of the service.
@@ -358,15 +247,15 @@ Where:
 
 For additional details, see the REST API reference for [Cortex Search Service](https://docs.snowflake.com/developer-guide/snowflake-rest-api/reference/cortex-search-service).
 
-#### Authentication[¶](#authentication)
+#### Authentication
 
 Snowflake REST APIs support authentication via programmatic access tokens (PATs), key pair authentication
 using JSON Web Tokens (JWTs), and OAuth. For details, see
-[Authenticating Snowflake REST APIs with Snowflake](/developer-guide/snowflake-rest-api/authentication).
+[Authenticating Snowflake REST APIs with Snowflake](https://docs.snowflake.com/developer-guide/snowflake-rest-api/authentication).
 
-### SQL SEARCH\_PREVIEW function[¶](#sql-search_preview-function)
+### SQL SEARCH\_PREVIEW function
 
-The [SNOWFLAKE.CORTEX.SEARCH\_PREVIEW](/sql-reference/functions/search_preview-snowflake-cortex) function allows you to preview the
+The [SNOWFLAKE.CORTEX.SEARCH\_PREVIEW](https://docs.snowflake.com/sql-reference/functions/search_preview-snowflake-cortex) function allows you to preview the
 results of individual queries to a Cortex Search Service from within a SQL environment such as a worksheet or Snowflake notebook cell.
 This function makes it easy to interactively validate that a service has populated correctly and is serving reasonable results.
 
@@ -378,18 +267,18 @@ Important
 * The function operates only on string literals. It does not accept batch text data.
 * The function has higher latency than the REST and Python APIs..
 
-## Filter syntax[¶](#filter-syntax)
+## Filter syntax
 
 Cortex Search supports filtering on the ATTRIBUTES columns specified in the
-[CREATE CORTEX SEARCH SERVICE](/sql-reference/sql/create-cortex-search) command.
+[CREATE CORTEX SEARCH SERVICE](https://docs.snowflake.com/sql-reference/sql/create-cortex-search) command.
 
 Cortex Search supports five matching operators:
 
-* [TEXT](/sql-reference/data-types-text) or [NUMERIC](/sql-reference/data-types-numeric) equality: `@eq`
-* [ARRAY](/sql-reference/data-types-semistructured) contains: `@contains`
-* [NUMERIC](/sql-reference/data-types-numeric) or [DATE/TIMESTAMP](/sql-reference/data-types-datetime) greater than or equal to: `@gte`
-* [NUMERIC](/sql-reference/data-types-numeric) or [DATE/TIMESTAMP](/sql-reference/data-types-datetime) less than or equal to: `@lte`
-* [Primary key](/user-guide/snowflake-cortex/cortex-search/cortex-search-overview#label-cortex-search-primary-keys) equality: `@primarykey`
+* [TEXT](https://docs.snowflake.com/sql-reference/data-types-text) or [NUMERIC](https://docs.snowflake.com/sql-reference/data-types-numeric) equality: `@eq`
+* [ARRAY](https://docs.snowflake.com/sql-reference/data-types-semistructured) contains: `@contains`
+* [NUMERIC](https://docs.snowflake.com/sql-reference/data-types-numeric) or [DATE/TIMESTAMP](https://docs.snowflake.com/sql-reference/data-types-datetime) greater than or equal to: `@gte`
+* [NUMERIC](https://docs.snowflake.com/sql-reference/data-types-numeric) or [DATE/TIMESTAMP](https://docs.snowflake.com/sql-reference/data-types-datetime) less than or equal to: `@lte`
+* [Primary key](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-overview#label-cortex-search-primary-keys) equality: `@primarykey`
 
 These matching operators can be composed with various logical operators:
 
@@ -397,46 +286,38 @@ These matching operators can be composed with various logical operators:
 * `@or`
 * `@not`
 
-### Usage notes[¶](#usage-notes)
+### Usage notes
 
 * Matching against `NaN` (‘not a number’) values in the source query is handled as described in
-  [Special values](/sql-reference/data-types-numeric#label-data-type-float-special-values).
+  [Special values](https://docs.snowflake.com/sql-reference/data-types-numeric#label-data-type-float-special-values).
 * Fixed-point numeric values with more than 19 digits (not including leading zeroes) do not work with `@eq`,
   `@gte`, or `@lte` and will not be returned by these operators (although they could still be returned by the
   overall query with the use of `@not`).
 * `TIMESTAMP` filters accept values of the form: `YYYY-MM-DDTHH:MM:SS.sss+HH:MM`. If the timezone offset is not specified, the date is interpreted in UTC.
 * `DATE` filters accept values of the form `YYYY-MM-DD`. If time or timezones are specified, they will be truncated.
-* `@primarykey` is only supported for services configured with a [primary key](/sql-reference/constraints-overview). The value of the filter must be
+* `@primarykey` is only supported for services configured with a [primary key](https://docs.snowflake.com/sql-reference/constraints-overview). The value of the filter must be
   a JSON object mapping every primary key column to its corresponding value (or `NULL`).
 
 These operators can be combined into a single filter object.
 
-### Examples[¶](#examples)
+### Examples
 
 * Filtering on rows where string-like column `string_col` is equal to value `value`.
-
-  Copy code
 
   ```
   { "@eq": { "string_col": "value" } }
   ```
 * Filtering to a row with the specified primary key values `us-west-1` in the `region` column and `abc123` in the `agent_id` column:
 
-  Copy code
-
   ```
   { "@primarykey": { "region": "us-west-1", "agent_id": "abc123" } }
   ```
 * Filtering on rows where ARRAY column `array_col` contains value `value`.
 
-  Copy code
-
   ```
   { "@contains": { "array_col": "arr_value" } }
   ```
 * Filtering on rows where NUMERIC column `numeric_col` is between 10.5 and 12.5 (inclusive):
-
-  Copy code
 
   ```
   {
@@ -449,8 +330,6 @@ These operators can be combined into a single filter object.
 * Filtering on rows where TIMESTAMP column `timestamp_col` is between `2024-11-19` and `2024-12-19`
   (inclusive).
 
-  Copy code
-
   ```
   {
     "@and": [
@@ -460,8 +339,6 @@ These operators can be combined into a single filter object.
   }
   ```
 * Composing filters with logical operators:
-
-  Copy codeExpand code block
 
   ```
   // Rows where the "array_col" column contains "arr_value" and the "string_col" column equals "value"
@@ -487,19 +364,15 @@ These operators can be combined into a single filter object.
   }
   ```
 
-  Show lessSee more
+## Multi-index queries
 
-  Scroll to top
-
-## Multi-index queries[¶](#multi-index-queries)
-
-[![Snowflake logo in black (no text)](/static/images/logo-snowflake-black.png)](/static/images/logo-snowflake-black.png) [Preview Feature](/release-notes/preview-features) — Open
+[![Snowflake logo in black (no text)](https://docs.snowflake.com/static/images/logo-snowflake-black.png)](https://docs.snowflake.com/static/images/logo-snowflake-black.png) [Preview Feature](https://docs.snowflake.com/release-notes/preview-features) — Open
 
 Available to all accounts.
 
-When created as a multi-index Cortex Search service with the [CREATE CORTEX SEARCH SERVICE … TEXT INDEXES … VECTOR INDEXES](/sql-reference/sql/create-cortex-search) syntax, the optional `multi_index_query` parameter is used. When omitting this parameter, all indices are used in the search.
+When created as a multi-index Cortex Search service with the [CREATE CORTEX SEARCH SERVICE … TEXT INDEXES … VECTOR INDEXES](https://docs.snowflake.com/sql-reference/sql/create-cortex-search) syntax, the optional `multi_index_query` parameter is used. When omitting this parameter, all indices are used in the search.
 
-### Usage notes[¶](#usage-notes)
+### Usage notes
 
 * Each index to query is represented as a key-value pair in the `multi_index_query` map.
 * At least one vector index must be supplied in each query. Querying only text indexes is an error.
@@ -522,16 +395,16 @@ When created as a multi-index Cortex Search service with the [CREATE CORTEX SEAR
     respectively, in a given query.
   + Within each field, weights are applied relative to each other, as in `scoring_config.weights`.
 * Multi-index queries can be combined with numeric boosts, time decays, and queries that disable reranking.
-  For information on using those features, see [Numeric boosts and time decays](/user-guide/snowflake-cortex/cortex-search/cortex-search-customize-scoring#label-cortex-search-boosts-decays)
-  and [Reranking](/user-guide/snowflake-cortex/cortex-search/cortex-search-customize-scoring#label-cortex-search-reranking).
+  For information on using those features, see [Numeric boosts and time decays](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-customize-scoring#label-cortex-search-boosts-decays)
+  and [Reranking](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-customize-scoring#label-cortex-search-reranking).
 * When querying a multi-index service, the `query` parameter can be used to specify a query to be applied to all fields, unless
   the service contains a vector index with user-provided vector embeddings.
 * To optimize search performance and latency, columns containing vector embeddings are not returned in results when issuing a query to a user-provided vector index.
 * Snowflake recommends refining your queries to use the `multi_index_query` on multi-index Cortex Search services to reduce the amount of resources consumed, which affects cost.
 
-  For information on estimating pricing for multi-index queries, see [Estimating costs for multi-index Cortex Search](/user-guide/snowflake-cortex/cortex-search/cortex-search-costs#label-cortex-search-multi-index-estimate-cost).
+  For information on estimating pricing for multi-index queries, see [Estimating costs for multi-index Cortex Search](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-costs#label-cortex-search-multi-index-estimate-cost).
 
-## Access control requirements[¶](#access-control-requirements)
+## Access control requirements
 
 The role that is querying the Cortex Search Service must have the following privileges to retrieve results:
 
@@ -541,13 +414,9 @@ The role that is querying the Cortex Search Service must have the following priv
 | USAGE | The database in which the Cortex Search Service resides |
 | USAGE | The schema in which the Cortex Search Service resides |
 
-Expand
+### Querying with owner’s rights
 
-Show lessSee more
-
-### Querying with owner’s rights[¶](#querying-with-owners-rights)
-
-Cortex Search Services perform searches with [owner’s rights](/developer-guide/stored-procedure/stored-procedures-rights) and follow the same security model as other
+Cortex Search Services perform searches with [owner’s rights](https://docs.snowflake.com/developer-guide/stored-procedure/stored-procedures-rights) and follow the same security model as other
 Snowflake objects that run with owner’s rights.
 
 In particular, this means that any role with sufficient privileges to query a Cortex Search Service
@@ -561,31 +430,29 @@ has read permission, even if the querying user’s role cannot read those rows i
 Use caution, for example, when granting a role with USAGE privileges on a Cortex Search Service to another
 Snowflake user.
 
-## Known limitations[¶](#known-limitations)
+## Known limitations
 
 Querying a Cortex Search Service is subject to the following limitations:
 
 * **Response size**: The total size of the response payload returned from a search query
   to a Cortex Search Service must not exceed the following limits:
-  + [REST API](https://docs.snowflake.com/developer-guide/snowflake-rest-api/reference/cortex-search-service) and [Python API](/developer-guide/snowflake-python-api/snowflake-python-overview): 10 Megabytes (MB)
-  + [SQL SEARCH\_PREVIEW Function](/sql-reference/functions/search_preview-snowflake-cortex): 300 Kilobytes (KB)
+  + [REST API](https://docs.snowflake.com/developer-guide/snowflake-rest-api/reference/cortex-search-service) and [Python API](https://docs.snowflake.com/developer-guide/snowflake-python-api/snowflake-python-overview): 10 Megabytes (MB)
+  + [SQL SEARCH\_PREVIEW Function](https://docs.snowflake.com/sql-reference/functions/search_preview-snowflake-cortex): 300 Kilobytes (KB)
 
 Multi-index Cortex Search is subject to additional limitations, which may change during preview:
 
 * The Cortex Search Playground in the Snowsight UI does not support queries to multi-index services. Queries to multi-index services in the Playground display the message “Unable to query search service. Invalid request parameters or filter syntax.”
-* The multi-index serving query syntax with the `multi_index_query` parameter is supported only in versions 1.6.0 or later of the [Python API](#label-cortex-search-query-syntax-python).
+* The multi-index serving query syntax with the `multi_index_query` parameter is supported only in versions 1.6.0 or later of the [Python API](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-python).
 
-## Examples[¶](#examples)
+## Examples
 
 This section provides comprehensive examples for querying Cortex Search Services across all three API
 methods.
 
-### Setup for examples[¶](#setup-for-examples)
+### Setup for examples
 
 The following examples use a table named `business_documents` with timestamp and numeric columns for
 demonstrating various features:
-
-Copy codeExpand code block
 
 ```
 CREATE OR REPLACE TABLE business_documents (
@@ -623,17 +490,11 @@ CREATE OR REPLACE CORTEX SEARCH SERVICE business_documents_css
 AS SELECT * FROM business_documents;
 ```
 
-Show lessSee more
+### Filter examples
 
-Scroll to top
-
-### Filter examples[¶](#filter-examples)
-
-#### Simple query with an equality filter[¶](#simple-query-with-an-equality-filter)
+#### Simple query with an equality filter
 
 PythonREST APISQL
-
-Copy code
 
 ```
 resp = business_documents_css.search(
@@ -643,8 +504,6 @@ resp = business_documents_css.search(
     limit=5
 )
 ```
-
-Copy code
 
 ```
 curl --location https://<ACCOUNT_URL>/api/v2/databases/<DB_NAME>/schemas/<SCHEMA_NAME>/cortex-search-services/<SERVICE_NAME>:query \
@@ -658,8 +517,6 @@ curl --location https://<ACCOUNT_URL>/api/v2/databases/<DB_NAME>/schemas/<SCHEMA
   "limit": 5
 }'
 ```
-
-Copy code
 
 ```
 SELECT PARSE_JSON(
@@ -675,11 +532,9 @@ SELECT PARSE_JSON(
 )['results'] as results;
 ```
 
-#### Range filter[¶](#range-filter)
+#### Range filter
 
 PythonREST APISQL
-
-Copy code
 
 ```
 resp = business_documents_css.search(
@@ -692,8 +547,6 @@ resp = business_documents_css.search(
     limit=10
 )
 ```
-
-Copy code
 
 ```
 curl --location https://<ACCOUNT_URL>/api/v2/databases/<DB_NAME>/schemas/<SCHEMA_NAME>/cortex-search-services/<SERVICE_NAME>:query \
@@ -710,8 +563,6 @@ curl --location https://<ACCOUNT_URL>/api/v2/databases/<DB_NAME>/schemas/<SCHEMA
   "limit": 10
 }'
 ```
-
-Copy code
 
 ```
 SELECT PARSE_JSON(
@@ -730,16 +581,14 @@ SELECT PARSE_JSON(
 )['results'] as results;
 ```
 
-### Scoring examples[¶](#scoring-examples)
+### Scoring examples
 
-#### Numeric boosts[¶](#numeric-boosts)
+#### Numeric boosts
 
 Apply numeric boosts to both the likes and comments columns, with twice the boost weight on
 comments values relative to likes values.
 
 PythonREST APISQL
-
-Copy code
 
 ```
 resp = business_documents_css.search(
@@ -755,8 +604,6 @@ resp = business_documents_css.search(
     }
 )
 ```
-
-Copy code
 
 ```
 curl --location https://<ACCOUNT_URL>/api/v2/databases/<DB_NAME>/schemas/<SCHEMA_NAME>/cortex-search-services/<SERVICE_NAME>:query \
@@ -776,8 +623,6 @@ curl --location https://<ACCOUNT_URL>/api/v2/databases/<DB_NAME>/schemas/<SCHEMA
   }
 }'
 ```
-
-Copy code
 
 ```
 SELECT PARSE_JSON(
@@ -804,7 +649,7 @@ In the results, note:
 > * With the boosts, the “Product roadmap 2024:…” document is the top result because of its large number of likes and comments, even though it has slightly lower relevance to the query “technology”
 > * Without any boosts, the top result for the query is “IT manual for employees:…”
 
-#### Time decays[¶](#time-decays)
+#### Time decays
 
 Apply time decays based on the LAST\_MODIFIED\_TIMESTAMP column, where:
 
@@ -812,8 +657,6 @@ Apply time decays based on the LAST\_MODIFIED\_TIMESTAMP column, where:
 > * Documents with a LAST\_MODIFIED\_TIMESTAMP value greater than 240 hours from the now timestamp receive little boosting
 
 PythonREST APISQL
-
-Copy codeExpand code block
 
 ```
 resp = business_documents_css.search(
@@ -828,8 +671,6 @@ resp = business_documents_css.search(
     }
 )
 ```
-
-Copy code
 
 ```
 curl --location https://<ACCOUNT_URL>/api/v2/databases/<DB_NAME>/schemas/<SCHEMA_NAME>/cortex-search-services/<SERVICE_NAME>:query \
@@ -848,8 +689,6 @@ curl --location https://<ACCOUNT_URL>/api/v2/databases/<DB_NAME>/schemas/<SCHEMA
   }
 }'
 ```
-
-Copy code
 
 ```
 SELECT PARSE_JSON(
@@ -875,13 +714,11 @@ In the results, note:
 > * With the decays, the “Product roadmap 2024:…” document is the top result because of its recency to the now timestamp, even though it has slightly lower relevance to the query “technology”
 > * Without any decays, the top result for the query is “IT manual for employees:…”
 
-#### Disabling reranking[¶](#disabling-reranking)
+#### Disabling reranking
 
 To disable reranking:
 
 PythonREST APISQL
-
-Copy code
 
 ```
 resp = business_documents_css.search(
@@ -893,8 +730,6 @@ resp = business_documents_css.search(
     }
 )
 ```
-
-Copy code
 
 ```
 curl --location https://<ACCOUNT_URL>/api/v2/databases/<DB_NAME>/schemas/<SCHEMA_NAME>/cortex-search-services/<SERVICE_NAME>:query \
@@ -909,8 +744,6 @@ curl --location https://<ACCOUNT_URL>/api/v2/databases/<DB_NAME>/schemas/<SCHEMA
   }
 }'
 ```
-
-Copy code
 
 ```
 SELECT PARSE_JSON(
@@ -932,15 +765,13 @@ Tip
 To query a service **with** the reranker, omit the `"reranker": "none"` parameter from the
 `scoring_config` object, as reranking is the default behavior.
 
-## Multi-index query examples[¶](#multi-index-query-examples)
+## Multi-index query examples
 
 This section provides examples for querying multi-index Cortex Search Services with a restriction on which indices to search, for the Python and SQL APIs.
 
-### Query a service with managed vector embeddings[¶](#query-a-service-with-managed-vector-embeddings)
+### Query a service with managed vector embeddings
 
 Examples in this section use the following `business_directory` and `example_search_service` definitions:
-
-Copy codeExpand code block
 
 ```
 -- Search data
@@ -962,17 +793,11 @@ CREATE OR REPLACE CORTEX SEARCH SERVICE example_search_service
     AS ( SELECT * FROM business_directory );
 ```
 
-Show lessSee more
-
-Scroll to top
-
-#### Query specific indexes[¶](#query-specific-indexes)
+#### Query specific indexes
 
 To query `example_search_service` over the `name` text field and `description` vector field:
 
 PythonSQL
-
-Copy code
 
 ```
 resp = business_directory.search(
@@ -981,8 +806,6 @@ resp = business_directory.search(
     limit=2
 )
 ```
-
-Copy code
 
 ```
 SELECT
@@ -998,8 +821,6 @@ FROM TABLE(FLATTEN(PARSE_JSON(
   ))['results']));
 ```
 
-Expand code block
-
 ```
 +---------------------+-----------------------------+--------------------------------------------------------------------------+
 |        NAME         |           ADDRESS           |                            DESCRIPTION                                   |
@@ -1009,13 +830,11 @@ Expand code block
 +---------------------+-----------------------------+--------------------------------------------------------------------------+
 ```
 
-#### Query a managed vector column only[¶](#query-a-managed-vector-column-only)
+#### Query a managed vector column only
 
 To query `example_search_service` for “refurbished components for PCs” over the vector index `description`, using managed embeddings:
 
 PythonSQL
-
-Copy code
 
 ```
 resp = business_directory.search(
@@ -1028,8 +847,6 @@ resp = business_directory.search(
     limit=5
 )
 ```
-
-Copy code
 
 ```
 SELECT
@@ -1050,8 +867,6 @@ FROM TABLE(FLATTEN(PARSE_JSON(
 )['results']));
 ```
 
-Expand code block
-
 ```
 +---------------------+-----------------------------+--------------------------------------------------------------------------+
 |        NAME         |           ADDRESS           |                            DESCRIPTION                                   |
@@ -1064,13 +879,11 @@ Expand code block
 +---------------------+-----------------------------+--------------------------------------------------------------------------+
 ```
 
-#### Query with index weights[¶](#query-with-index-weights)
+#### Query with index weights
 
 To query the `example_search_service` for “sparkle” over the text index `name` and “clothing washing” over the vector index `description`, weighting vector scoring as four times more relevant than text or reranking:
 
 PythonSQL
-
-Copy codeExpand code block
 
 ```
 resp = business_directory.search(
@@ -1093,12 +906,6 @@ resp = business_directory.search(
     limit=2
 )
 ```
-
-Show lessSee more
-
-Scroll to top
-
-Copy code
 
 ```
 SELECT
@@ -1129,8 +936,6 @@ FROM TABLE(FLATTEN(PARSE_JSON(
 )['results']));
 ```
 
-Expand code block
-
 ```
 +---------------------+-----------------------------+--------------------------------------------------------------------------+
 |        NAME         |           ADDRESS           |                            DESCRIPTION                                   |
@@ -1142,13 +947,11 @@ Expand code block
 
 Note that because the weight of the `description` vector index colum is higher than the weight of any `text` column, the business most associated with “clothes washing” appears above the business containing “sparkle” in its name.
 
-#### Query with individually weighted indexes[¶](#query-with-individually-weighted-indexes)
+#### Query with individually weighted indexes
 
 To query `example_search_service` with “circuit” over all fields, applying a relative weight to boost matches in the `name` column over the `description` column:
 
 PythonSQL
-
-Copy codeExpand code block
 
 ```
 resp = business_directory.search(
@@ -1169,12 +972,6 @@ resp = business_directory.search(
     limit=3
 )
 ```
-
-Show lessSee more
-
-Scroll to top
-
-Copy code
 
 ```
 SELECT
@@ -1200,8 +997,6 @@ FROM TABLE(FLATTEN(PARSE_JSON(
 )['results']));
 ```
 
-Expand code block
-
 ```
 +---------------------+-----------------------------+--------------------------------------------------------------------------+
 |        NAME         |           ADDRESS           |                            DESCRIPTION                                   |
@@ -1214,11 +1009,9 @@ Expand code block
 
 Note that boosting the name over address ranks the business named “Circuit Town” above the business located at an address on “Circuit Blvd”.
 
-### Query a service with custom vector embeddings[¶](#query-a-service-with-custom-vector-embeddings)
+### Query a service with custom vector embeddings
 
 Examples in this section use the following `business_documents` and `example_search_service` definitions:
-
-Copy codeExpand code block
 
 ```
 -- Search data with only custom embeddings
@@ -1242,21 +1035,15 @@ CREATE OR REPLACE CORTEX SEARCH SERVICE example_search_service
   AS SELECT * FROM business_documents;
 ```
 
-Show lessSee more
-
-Scroll to top
-
 Note
 
-These examples use mock embeddings for simplicity. In a production use-case, vectors should be generated through a [Snowflake vector embedding model](/user-guide/snowflake-cortex/vector-embeddings#label-cortex-create-llm-embed-text) or an externally-hosted embedding model.
+These examples use mock embeddings for simplicity. In a production use-case, vectors should be generated through a [Snowflake vector embedding model](https://docs.snowflake.com/user-guide/snowflake-cortex/vector-embeddings#label-cortex-create-llm-embed-text) or an externally-hosted embedding model.
 
-#### Query an index with custom embeddings[¶](#query-an-index-with-custom-embeddings)
+#### Query an index with custom embeddings
 
 To query `example_search_service` with “IT” and a corresponding embedding over the `document_contents` and `document_embedding` column:
 
 PythonSQL
-
-Copy code
 
 ```
 resp = business_directory.search(
@@ -1268,8 +1055,6 @@ resp = business_directory.search(
     limit=2
 )
 ```
-
-Copy code
 
 ```
 SELECT
@@ -1289,8 +1074,6 @@ FROM TABLE(FLATTEN(PARSE_JSON(
 )['results']));
 ```
 
-Expand code block
-
 ```
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 |                                                                   DOCUMENT_CONTENTS                                                                                      |
@@ -1299,43 +1082,3 @@ Expand code block
 | Quarterly financial report for Q1 2024: Revenue increased by 15%, with expenses stable. Highlights include strategic investments in marketing and technology.            |
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ```
-
-Was this page helpful?
-
-YesNo
-
-[Visit Snowflake](https://www.snowflake.com)
-
-[Join the conversation](https://community.snowflake.com/s/)
-
-[Develop with Snowflake](https://developers.snowflake.com)
-
-[Share your feedback](/feedback)
-
-[Read the latest on our blog](https://www.snowflake.com/blog/)
-
-[Get your own certification](https://learn.snowflake.com)
-
-[Privacy Notice](https://www.snowflake.com/privacy-policy/)[Site Terms](https://www.snowflake.com/legal/snowflake-site-terms/)Cookies Settings© 2026 Snowflake, Inc. All Rights Reserved.
-
-On this page
-
-1. [Parameters](#parameters)
-2. [Syntax](#syntax)
-3. [Setup and authentication](#setup-and-authentication)
-4. [Filter syntax](#filter-syntax)
-5. [Multi-index queries](#multi-index-queries)
-6. [Access control requirements](#access-control-requirements)
-7. [Known limitations](#known-limitations)
-8. [Examples](#examples)
-9. [Multi-index query examples](#multi-index-query-examples)
-
-Related content
-
-1. [Cortex Search](/user-guide/snowflake-cortex/cortex-search/cortex-search-overview)
-2. [Customizing Cortex Search scoring](/user-guide/snowflake-cortex/cortex-search/cortex-search-customize-scoring)
-3. [ALTER CORTEX SEARCH SERVICE](/sql-reference/sql/alter-cortex-search)
-4. [CREATE CORTEX SEARCH SERVICE](/sql-reference/sql/create-cortex-search)
-5. [DESCRIBE CORTEX SEARCH SERVICE](/sql-reference/sql/desc-cortex-search)
-6. [DROP CORTEX SEARCH SERVICE](/sql-reference/sql/drop-cortex-search)
-7. [SHOW CORTEX SEARCH SERVICES](/sql-reference/sql/show-cortex-search)

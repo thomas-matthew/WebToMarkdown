@@ -1,5 +1,3 @@
-Python[langgraph](/python/langgraph)Checkpointing
-
 # Checkpointing
 
 Checkpoints allow LangGraph agents to persist their state within and across multiple interactions. A checkpoint is a snapshot of the graph state at a given point in time, identified by a unique, monotonically increasing ID.
@@ -96,117 +94,141 @@ For async usage, implement the corresponding async variants (`aget_tuple`, `alis
 
 ## Classes
 
-[Class
+Class
 
-### CheckpointMetadata
+### [CheckpointMetadata](https://reference.langchain.com/python/langgraph.checkpoint/base/CheckpointMetadata)
 
-Metadata associated with a checkpoint.](/python/langgraph.checkpoint/base/CheckpointMetadata)[Class
+Metadata associated with a checkpoint.
 
-### BaseCheckpointSaver
+Class
+
+### [BaseCheckpointSaver](https://reference.langchain.com/python/langgraph.checkpoint/base/BaseCheckpointSaver)
 
 Base class for creating a graph checkpointer.
 
 Checkpointers allow LangGraph agents to persist their state
 within and across multiple interactions.
 
-When a checkpointer is configured, you should pass](/python/langgraph.checkpoint/base/BaseCheckpointSaver)[Class
+When a checkpointer is configured, you should pass
 
-### SerializerProtocol
+Class
+
+### [SerializerProtocol](https://reference.langchain.com/python/langgraph.checkpoint/serde/base/SerializerProtocol)
 
 Protocol for serialization and deserialization of objects.
 
 * `dumps_typed`: Serialize an object to a tuple `(type, bytes)`.
 * `loads_typed`: Deserialize an object from a tuple `(type, bytes)`.
 
-Valid](/python/langgraph.checkpoint/serde/base/SerializerProtocol)[Class
+Valid
 
-### CipherProtocol
+Class
+
+### [CipherProtocol](https://reference.langchain.com/python/langgraph.checkpoint/serde/base/CipherProtocol)
 
 Protocol for encryption and decryption of data.
 
 * `encrypt`: Encrypt plaintext.
-* `decrypt`: Decrypt ciphertext.](/python/langgraph.checkpoint/serde/base/CipherProtocol)[Class
+* `decrypt`: Decrypt ciphertext.
 
-### JsonPlusSerializer
+Class
+
+### [JsonPlusSerializer](https://reference.langchain.com/python/langgraph.checkpoint/serde/jsonplus/JsonPlusSerializer)
 
 Serializer that uses ormsgpack, with optional fallbacks.
 
 Warning
 
 Security note: This serializer is intended for use within the `BaseCheckpointSaver`
-class and called within the Pregel lo](/python/langgraph.checkpoint/serde/jsonplus/JsonPlusSerializer)[Class
+class and called within the Pregel lo
 
-### EncryptedSerializer
+Class
 
-Serializer that encrypts and decrypts data using an encryption protocol.](/python/langgraph.checkpoint/serde/encrypted/EncryptedSerializer)[Class
+### [EncryptedSerializer](https://reference.langchain.com/python/langgraph.checkpoint/serde/encrypted/EncryptedSerializer)
 
-### InMemorySaver
+Serializer that encrypts and decrypts data using an encryption protocol.
+
+Class
+
+### [InMemorySaver](https://reference.langchain.com/python/langgraph.checkpoint/memory/InMemorySaver)
 
 An in-memory checkpoint saver.
 
-This checkpoint saver stores checkpoints in memory using a `defaultdict`.](/python/langgraph.checkpoint/memory/InMemorySaver)[Class
+This checkpoint saver stores checkpoints in memory using a `defaultdict`.
 
-### PersistentDict
+Class
+
+### [PersistentDict](https://reference.langchain.com/python/langgraph.checkpoint/memory/PersistentDict)
 
 Persistent dictionary with an API compatible with shelve and anydbm.
 
 The dict is kept in memory, so the dictionary operations run as fast as
 a regular dictionary.
 
-Write to disk is delayed until clos](/python/langgraph.checkpoint/memory/PersistentDict)[Class
+Write to disk is delayed until clos
 
-### SqliteSaver
+Class
 
-A checkpoint saver that stores checkpoints in a SQLite database.](/python/langgraph.checkpoint.sqlite/SqliteSaver)[Class
+### [SqliteSaver](https://reference.langchain.com/python/langgraph.checkpoint.sqlite/SqliteSaver)
 
-### AsyncSqliteSaver
+A checkpoint saver that stores checkpoints in a SQLite database.
+
+Class
+
+### [AsyncSqliteSaver](https://reference.langchain.com/python/langgraph.checkpoint.sqlite/aio/AsyncSqliteSaver)
 
 An asynchronous checkpoint saver that stores checkpoints in a SQLite database.
 
 This class provides an asynchronous interface for saving and retrieving checkpoints
-using a SQLite database. It's design](/python/langgraph.checkpoint.sqlite/aio/AsyncSqliteSaver)[Class
+using a SQLite database. It's design
 
-### PostgresSaver
+Class
 
-Checkpointer that stores checkpoints in a Postgres database.](/python/langgraph.checkpoint.postgres/PostgresSaver)[Class
+### [PostgresSaver](https://reference.langchain.com/python/langgraph.checkpoint.postgres/PostgresSaver)
 
-### AsyncPostgresSaver
+Checkpointer that stores checkpoints in a Postgres database.
 
-Asynchronous checkpointer that stores checkpoints in a Postgres database.](/python/langgraph.checkpoint.postgres/aio/AsyncPostgresSaver)
+Class
+
+### [AsyncPostgresSaver](https://reference.langchain.com/python/langgraph.checkpoint.postgres/aio/AsyncPostgresSaver)
+
+Asynchronous checkpointer that stores checkpoints in a Postgres database.
 
 ## Functions
 
-[Function
+Function
 
-### create\_checkpoint
+### [create\_checkpoint](https://reference.langchain.com/python/langgraph/pregel/_checkpoint/create_checkpoint)
 
 Build a new Checkpoint from the previous one and live channel state.
 
 For each name in `channels_to_snapshot`, a `_DeltaSnapshot(value)` blob
-is written into `channel_values[k]`. Other delta channels](/python/langgraph/pregel/_checkpoint/create_checkpoint)
+is written into `channel_values[k]`. Other delta channels
 
 ## Modules
 
-[Module
+Module
 
-### utils](/python/langgraph.checkpoint.sqlite/utils)[Module
+### [utils](https://reference.langchain.com/python/langgraph.checkpoint.sqlite/utils)
 
-### aio](/python/langgraph.checkpoint.sqlite/aio)
+Module
+
+### [aio](https://reference.langchain.com/python/langgraph.checkpoint.sqlite/aio)
 
 ## Constants
 
-[Attribute
+Attribute
 
-### Checkpoint](/python/langgraph/channels/base/Checkpoint)[Attribute
+### [Checkpoint](https://reference.langchain.com/python/langgraph/channels/base/Checkpoint)
 
-### logger](/python/langgraph.checkpoint/memory/logger)[Attribute
+Attribute
 
-### MemorySaver](/python/langgraph.checkpoint/memory/MemorySaver)[Attribute
+### [logger](https://reference.langchain.com/python/langgraph.checkpoint/memory/logger)
 
-### T](/python/langgraph.checkpoint.sqlite/aio/T)
+Attribute
 
-Copy page
+### [MemorySaver](https://reference.langchain.com/python/langgraph.checkpoint/memory/MemorySaver)
 
-### On This Page
+Attribute
 
-OverviewClasses12Functions1Modules2Constants4
+### [T](https://reference.langchain.com/python/langgraph.checkpoint.sqlite/aio/T)

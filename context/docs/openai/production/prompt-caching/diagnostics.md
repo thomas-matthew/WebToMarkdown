@@ -20,11 +20,45 @@ Setting `comparison_response_id` only requests diagnostics. It does not load the
 
 ### Example usage
 
-The following example sends two requests with the same model, instructions, and input, but changes a function tool's name from `get_time` to `get_date`. The second request compares cache reuse against the first.
+Both requests put the same support policy in the first `developer` message in `input`. The second request changes the function name from `get_time` to `get_date` and compares cache reuse against the first.
 
 Use your own policy document in `support-policy.txt`. The reusable prefix must meet the model's [minimum cacheable length](https://developers.openai.com/api/docs/guides/prompt-caching#summary-of-model-differences), which is 1,024 tokens for GPT-5.6 and later.
 
 Compare prompt cache reuse between responses
+
+```typescript
+import { readFile } from "node:fs/promises";
+import OpenAI from "openai";
+
+const client = new OpenAI();
+const policy = await readFile("support-policy.txt", "utf8"); // At least 1,024 tokens.
+const input = [
+  { role: "developer" as const, content: policy },
+  { role: "user" as const, content: "Reply with exactly OK." },
+];
+const first = await client.responses.create({
+  model: "gpt-6-astra",
+  input,
+  tools: [
+    { type: "function", name: "get_time", parameters: null, strict: null },
+  ],
+});
+const second = await client.responses.create({
+  model: "gpt-6-astra",
+  input,
+  tools: [
+    { type: "function", name: "get_date", parameters: null, strict: null },
+  ],
+  prompt_cache_options: { comparison_response_id: first.id },
+});
+
+const diagnostics = second.prompt_cache_diagnostics;
+if (diagnostics?.type === "cache_miss") {
+  console.log(diagnostics.reason);
+  console.log(diagnostics.comparison_reusable_tokens ?? "None");
+  console.log(diagnostics.cache_missed_tokens);
+}
+```
 
 ```python
 from pathlib import Path
@@ -34,17 +68,20 @@ from openai import OpenAI
 client = OpenAI()
 policy = Path("support-policy.txt").read_text()  # At least 1,024 tokens.
 
+messages = [
+    {"role": "developer", "content": policy},
+    {"role": "user", "content": "Reply with exactly OK."},
+]
+
 first = client.responses.create(
     model="gpt-6-astra",
-    instructions=policy,
-    input="Reply with exactly OK.",
+    input=messages,
     tools=[{"type": "function", "name": "get_time"}],
 )
 
 second = client.responses.create(
     model="gpt-6-astra",
-    instructions=policy,
-    input="Reply with exactly OK.",
+    input=messages,
     tools=[{"type": "function", "name": "get_date"}],
     prompt_cache_options={"comparison_response_id": first.id},
 )
@@ -54,6 +91,106 @@ if diagnostics is not None and diagnostics.type == "cache_miss":
     print(diagnostics.reason)
     print(diagnostics.comparison_reusable_tokens)
     print(diagnostics.cache_missed_tokens)
+```
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/responses"
+	"os"
+)
+
+func main() {
+	policy, err := os.ReadFile("support-policy.txt") // At least 1,024 tokens.
+	if err != nil {
+		panic(err)
+	}
+	client := openai.NewClient()
+	ctx := context.Background()
+	params := responses.ResponseNewParams{
+		Model: "gpt-6-astra", Instructions: openai.String(string(policy)),
+		Input: responses.ResponseNewParamsInputUnion{OfString: openai.String("Reply with exactly OK.")},
+		Tools: []responses.ToolUnionParam{{OfFunction: &responses.FunctionToolParam{Name: "get_time"}}},
+	}
+	first, err := client.Responses.New(ctx, params)
+	if err != nil {
+		panic(err)
+	}
+	if first.Status != "completed" {
+		panic("Baseline response did not complete")
+	}
+	params.Tools = []responses.ToolUnionParam{{OfFunction: &responses.FunctionToolParam{Name: "get_date"}}}
+	params.PromptCacheOptions = responses.ResponseNewParamsPromptCacheOptions{ComparisonResponseID: openai.String(first.ID)}
+	second, err := client.Responses.New(ctx, params)
+	if err != nil {
+		panic(err)
+	}
+	if second.Status != "completed" {
+		panic("Comparison response did not complete")
+	}
+	diagnostic := second.PromptCacheDiagnostics
+	if diagnostic.Type == "cache_miss" {
+		fmt.Println(diagnostic.Reason)
+		if !diagnostic.JSON.ComparisonReusableTokens.Valid() {
+			fmt.Println("None")
+		} else {
+			fmt.Println(diagnostic.ComparisonReusableTokens)
+		}
+		fmt.Println(diagnostic.CacheMissedTokens)
+	}
+}
+```
+
+```ruby
+require "openai"
+
+client = OpenAI::Client.new
+policy = File.read("support-policy.txt") # At least 1,024 tokens.
+
+messages = [
+  {
+    role: :developer,
+    content: policy
+  },
+  {
+    role: :user,
+    content: "Reply with exactly OK."
+  }
+]
+
+first = client.responses.create(
+  model: "gpt-6-astra",
+  input: messages,
+  tools: [
+    {
+      type: :function,
+      name: "get_time"
+    }
+  ]
+)
+
+second = client.responses.create(
+  model: "gpt-6-astra",
+  input: messages,
+  tools: [
+    {
+      type: :function,
+      name: "get_date"
+    }
+  ],
+  prompt_cache_options: { comparison_response_id: first.id }
+)
+
+diagnostics = second.prompt_cache_diagnostics
+if diagnostics.is_a?(OpenAI::Models::Responses::Response::PromptCacheDiagnostics::CacheMiss)
+  puts(diagnostics.reason)
+  puts(diagnostics.comparison_reusable_tokens)
+  puts(diagnostics.cache_missed_tokens)
+end
 ```
 
 
@@ -103,6 +240,8 @@ Read `prompt_cache_diagnostics.type` to determine the comparison outcome.
 
 A `cache_hit` means no cache miss was detected for the comparison. New input can still require processing. For example, a request with 2,500 input tokens can report `cache_hit` when it reuses the comparison response’s 2,000-token prefix and processes 500 new tokens.
 
+Models starting with GPT-6.2 can report `cache_hit` when they reuse the eligible prefix and still bill top-level `instructions` at the uncached input rate. Check `usage.input_tokens_details.cached_tokens` for the number of tokens that received the cached-input rate.
+
 For a `cache_miss`:
 
 - `comparison_reusable_tokens`, when present, is the raw token count of the comparison response’s reusable prefix.
@@ -125,11 +264,11 @@ Some changes, such as switching models or compacting a conversation, are intenti
 | `prompt_cache_key_changed` | The supplied key changed between requests. This can be reported as a cache miss in response `usage` without a physical cache miss.                  | Omit `prompt_cache_key` unless your application needs separate cache accounting for customers or users. If you use keys, keep a stable key within each group. See [Separate cache accounting with keys](https://developers.openai.com/api/docs/guides/prompt-caching#separate-prompts-with-cache-keys).                                                                                                                                                 |
 | `service_tier_changed`     | The service tier used to process the request changed.                                                                                               | Keep the service tier consistent for requests expected to share a prefix. Check the returned `service_tier`, which can differ from the requested value. See [`service_tier`](https://developers.openai.com/api/reference/resources/responses/methods/create#%28resource%29%20responses%20%3E%20%28method%29%20create%20%3E%20%28params%29%200.non_streaming%20%3E%20%28param%29%20service_tier%20%3E%20%28schema%29) for supported values and behavior. |
 | `tools_changed`            | Tools were added, removed, or reordered, or their descriptions, schemas, or configuration changed.                                                  | Keep tool definitions and ordering stable. Use `tool_choice: "none"` to disable tools or `allowed_tools` to restrict which tools can run without changing the supplied tool list. See [Manage tools with append-only updates](https://developers.openai.com/api/docs/guides/prompt-caching#manage-tools-with-append-only-updates).                                                                                                                      |
-| `text_format_changed`      | The output format or its schema changed.                                                                                                            | Keep `text.format` and the schema consistent when the required output structure is unchanged. See [Structured Outputs](https://developers.openai.com/api/docs/guides/structured-outputs).                                                                                                                                                                                                                                                               |
+| `text_format_changed`      | The output format or its schema changed.                                                                                                            | On supported GPT-6 and later models, keep the top-level `text.format` stable and [append a format update](https://developers.openai.com/api/docs/guides/structured-outputs?api-mode=responses#change-the-response-format-mid-conversation) when you need a different schema.                                                                                                                                                                            |
 | `reasoning_effort_changed` | The reasoning effort changed.                                                                                                                       | On supported GPT-6 and later models, append a `configuration_update` input item to [change reasoning effort during a conversation](https://developers.openai.com/api/docs/guides/reasoning?api-mode=responses#change-reasoning-mid-conversation) while preserving the earlier cached prefix.<br />On older models, keep `reasoning.effort` consistent across requests intended to share a prefix.                                                       |
 | `verbosity_changed`        | The response verbosity changed.                                                                                                                     | Keep `text.verbosity` consistent across requests intended to share a prefix. See [cache-affecting settings](https://developers.openai.com/api/docs/guides/prompt-caching#which-settings-affect-the-cached-prefix).                                                                                                                                                                                                                                      |
 | `context_compacted`        | Compaction replaced earlier conversation content.                                                                                                   | Preserve stable instructions and let later turns build on the compacted context. Compare total input cost: fewer input tokens can still save money despite lower cache reuse. See [Compaction](https://developers.openai.com/api/docs/guides/compaction).                                                                                                                                                                                               |
-| `input_changed`            | Earlier input changed, for example because instructions contain a timestamp or request ID, or previous messages were edited, reordered, or removed. | Move changing content after the reusable prefix and its cache breakpoint. Preserve earlier messages and tool results, and append new turns. See [Preserve conversation history](https://developers.openai.com/api/docs/guides/prompt-caching#preserve-conversation-history).                                                                                                                                                                            |
+| `input_changed`            | Earlier input changed, for example because you added a timestamp or request ID to a `developer` message or edited, reordered, or removed old turns. | Move changing content after the reusable prefix and its cache breakpoint. Preserve earlier messages and tool results, and append new turns. See [Preserve conversation history](https://developers.openai.com/api/docs/guides/prompt-caching#preserve-conversation-history).                                                                                                                                                                            |
 
 
 

@@ -83,6 +83,40 @@ Pass your API client, session ID, completed turn ID, artifact path, and local de
 
 Find and download an artifact
 
+```typescript
+import { writeFile } from "node:fs/promises";
+import OpenAI from "openai";
+
+const client = new OpenAI();
+
+async function downloadArtifact(
+  sessionID: string,
+  turnID: string,
+  path: string,
+  destination: string
+): Promise<void> {
+  for await (const artifact of client.beta.agents.sessions.artifacts.list(
+    sessionID
+  )) {
+    if (artifact.turn_id !== turnID || artifact.path !== path) continue;
+    const content = await client.beta.agents.sessions.artifacts.content(
+      artifact.id,
+      { session_id: sessionID }
+    );
+    await writeFile(destination, Buffer.from(await content.arrayBuffer()));
+    return;
+  }
+  throw new Error(`No artifact for ${path} in turn ${turnID}`);
+}
+
+await downloadArtifact(
+  "sess_123",
+  "turn_123",
+  "/workspace/outputs/report.pdf",
+  "report.pdf"
+);
+```
+
 ```python
 # Pass the saved session ID, completed turn ID, artifact path, and local destination.
 def download_artifact(client, session_id, turn_id, path, destination):
@@ -95,6 +129,78 @@ def download_artifact(client, session_id, turn_id, path, destination):
             response.stream_to_file(destination)
         return
     raise FileNotFoundError(f"No artifact for {path!r} in turn {turn_id}")
+```
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"github.com/openai/openai-go/v3"
+	"io"
+	"log"
+	"os"
+	"time"
+)
+
+func downloadArtifact(ctx context.Context, client *openai.Client, sessionID, turnID, path, destination string) error {
+	artifacts := client.Beta.Agents.Sessions.Artifacts.ListAutoPaging(ctx, sessionID, openai.BetaAgentSessionArtifactListParams{})
+	for artifacts.Next() {
+		artifact := artifacts.Current()
+		if artifact.TurnID != turnID || artifact.Path != path {
+			continue
+		}
+		content, err := client.Beta.Agents.Sessions.Artifacts.Content(ctx, sessionID, artifact.ID)
+		if err != nil {
+			return err
+		}
+		defer content.Body.Close()
+		output, err := os.Create(destination)
+		if err != nil {
+			return err
+		}
+		_, copyErr := io.Copy(output, content.Body)
+		closeErr := output.Close()
+		if copyErr != nil {
+			return copyErr
+		}
+		return closeErr
+	}
+	if err := artifacts.Err(); err != nil {
+		return err
+	}
+	return fmt.Errorf("no artifact for %q in turn %s", path, turnID)
+}
+func main() {
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Minute)
+	defer cancel()
+	client := openai.NewClient()
+	if err := downloadArtifact(ctx, &client, "sess_123", "turn_123", "/workspace/outputs/report.pdf", "report.pdf"); err != nil {
+		log.Fatal(err)
+	}
+}
+```
+
+```ruby
+require "openai"
+
+def download_artifact(client, session_id, turn_id, path, destination)
+  client.beta.agents.sessions.artifacts.list(session_id).auto_paging_each do |artifact|
+    next unless artifact.turn_id == turn_id && artifact.path == path
+
+    content = client.beta.agents.sessions.artifacts.content(artifact.id, session_id: session_id)
+    begin
+      File.open(destination, "wb") { |file| IO.copy_stream(content, file) }
+    ensure
+      content.close
+    end
+    return destination
+  end
+  raise Errno::ENOENT, "No artifact for #{path.inspect} in turn #{turn_id}"
+end
+
+download_artifact(OpenAI::Client.new, "sess_123", "turn_123", "/workspace/outputs/report.pdf", "report.pdf")
 ```
 
 

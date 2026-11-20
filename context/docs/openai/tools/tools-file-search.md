@@ -27,12 +27,12 @@ Follow these steps to create a vector store and upload a file to it. You can use
 
 Upload a file
 
-```javascript
+```typescript
 import fs from "fs";
 import OpenAI from "openai";
 const openai = new OpenAI();
 
-async function createFile(filePath) {
+async function createFile(filePath: string) {
   let result;
   if (filePath.startsWith("http://") || filePath.startsWith("https://")) {
     // Download the file content from the URL
@@ -163,7 +163,7 @@ puts(uploaded.id)
 
 Create a vector store
 
-```javascript
+```typescript
 const vectorStore = await openai.vectorStores.create({
   name: "knowledge_base",
 });
@@ -223,7 +223,7 @@ puts(store.id)
 
 Add a file to a vector store
 
-```javascript
+```typescript
 // Use vectorStore and fileId from the earlier create and upload steps.
 await openai.vectorStores.files.create(vectorStore.id, {
   file_id: fileId,
@@ -231,10 +231,12 @@ await openai.vectorStores.files.create(vectorStore.id, {
 ```
 
 ```python
-result = client.vector_stores.files.create(
+result = client.vector_stores.files.create_and_poll(
     vector_store_id=vector_store.id,
     file_id=file_id,
 )
+if result.status != "completed":
+    raise RuntimeError(f"File indexing ended with status: {result.status}")
 print(result)
 ```
 
@@ -293,14 +295,24 @@ Run this code until the file is ready to be used (i.e., when the status is `comp
 
 Check status
 
-```javascript
+```typescript
 // Use vectorStore from the earlier create step.
 const result = await openai.vectorStores.files.list(vectorStore.id);
 console.log(result.data);
 ```
 
 ```python
-result = client.vector_stores.files.list(vector_store_id=vector_store.id)
+import time
+
+# Listing visibility can lag behind completed indexing.
+deadline = time.monotonic() + 60
+while True:
+    result = client.vector_stores.files.list(vector_store_id=vector_store.id)
+    if any(file.id == file_id and file.status == "completed" for file in result.data):
+        break
+    if time.monotonic() >= deadline:
+        raise TimeoutError("The indexed file is not visible in the listing yet.")
+    time.sleep(1)
 print(result)
 ```
 
@@ -350,12 +362,12 @@ Once your knowledge base is set up, you can include the `file_search` tool in th
 
 File search tool
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const openai = new OpenAI();
 
 const response = await openai.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "What is deep research by OpenAI?",
   tools: [
     {
@@ -373,7 +385,7 @@ from openai import OpenAI
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input="What is deep research by OpenAI?",
     tools=[{"type": "file_search", "vector_store_ids": ["<vector_store_id>"]}],
 )
@@ -394,7 +406,7 @@ import (
 func main() {
 	client := openai.NewClient()
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{OfString: openai.String("What is deep research by OpenAI?")},
 		Tools: []responses.ToolUnionParam{responses.ToolParamOfFileSearch([]string{"<vector_store_id>"})},
 	})
@@ -415,7 +427,7 @@ String vectorStoreId = "<vector_store_id>";
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("What is deep research by OpenAI?")
         .addFileSearchTool(List.of(vectorStoreId))
         .build();
@@ -435,7 +447,7 @@ string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
 string vectorStoreId = "<vector_store_id>";
 ResponsesClient client = new(key);
 
-CreateResponseOptions options = new() { Model = "gpt-6-astra" };
+CreateResponseOptions options = new() { Model = "gpt-6.2-astra" };
 options.Tools.Add(
     ResponseTool.CreateFileSearchTool([vectorStoreId])
 );
@@ -454,7 +466,7 @@ require "openai"
 openai = OpenAI::Client.new
 
 response = openai.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "What is deep research by OpenAI?",
   tools: [
     {
@@ -535,9 +547,9 @@ Using the file search tool with the Responses API, you can customize the number 
 
 Limit the number of results
 
-```javascript
+```typescript
 const response = await openai.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "What is deep research by OpenAI?",
   tools: [
     {
@@ -554,7 +566,7 @@ console.log(response);
 
 ```python
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input="What is deep research by OpenAI?",
     tools=[
         {
@@ -585,7 +597,7 @@ func main() {
 	tool := responses.ToolParamOfFileSearch([]string{"<vector_store_id>"})
 	tool.OfFileSearch.MaxNumResults = openai.Int(2)
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{OfString: openai.String("What is deep research by OpenAI?")},
 		Tools: []responses.ToolUnionParam{tool},
 	})
@@ -606,7 +618,7 @@ String vectorStoreId = "<vector_store_id>";
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("What is deep research by OpenAI?")
         .addTool(
             FileSearchTool.builder().addVectorStoreId(vectorStoreId).maxNumResults(2).build())
@@ -628,7 +640,7 @@ string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
 string vectorStoreId = "<vector_store_id>";
 ResponsesClient client = new(key);
 
-CreateResponseOptions options = new() { Model = "gpt-6-astra" };
+CreateResponseOptions options = new() { Model = "gpt-6.2-astra" };
 options.Tools.Add(
     ResponseTool.CreateFileSearchTool([vectorStoreId], maxResultCount: 2)
 );
@@ -646,7 +658,7 @@ require "openai"
 client = OpenAI::Client.new
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "What is deep research by OpenAI?",
   tools: [
     {
@@ -669,9 +681,9 @@ To include search results in the response, you can use the `include` parameter w
 
 Include search results
 
-```javascript
+```typescript
 const response = await openai.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "What is deep research by OpenAI?",
   tools: [
     {
@@ -688,7 +700,7 @@ console.log(response);
 
 ```python
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input="What is deep research by OpenAI?",
     tools=[
         {
@@ -717,7 +729,7 @@ import (
 func main() {
 	client := openai.NewClient()
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model:   "gpt-6-astra",
+		Model:   "gpt-6.2-astra",
 		Input:   responses.ResponseNewParamsInputUnion{OfString: openai.String("What is deep research by OpenAI?")},
 		Tools:   []responses.ToolUnionParam{responses.ToolParamOfFileSearch([]string{"<vector_store_id>"})},
 		Include: []responses.ResponseIncludable{responses.ResponseIncludableFileSearchCallResults},
@@ -740,7 +752,7 @@ String vectorStoreId = "<vector_store_id>";
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("What is deep research by OpenAI?")
         .addInclude(ResponseIncludable.of("file_search_call.results"))
         .addFileSearchTool(List.of(vectorStoreId))
@@ -762,7 +774,7 @@ string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
 string vectorStoreId = "<vector_store_id>";
 ResponsesClient client = new(key);
 
-CreateResponseOptions options = new() { Model = "gpt-6-astra" };
+CreateResponseOptions options = new() { Model = "gpt-6.2-astra" };
 options.Tools.Add(ResponseTool.CreateFileSearchTool([vectorStoreId]));
 options.IncludedProperties.Add(IncludedResponseProperty.FileSearchCallResults);
 options.InputItems.Add(
@@ -785,7 +797,7 @@ require "openai"
 client = OpenAI::Client.new
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "What is deep research by OpenAI?",
   include: ["file_search_call.results"],
   tools: [
@@ -809,9 +821,9 @@ You can filter the search results based on the metadata of the files. For more d
 
 Metadata filtering
 
-```javascript
+```typescript
 const response = await openai.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "What is deep research by OpenAI?",
   tools: [
     {
@@ -832,7 +844,7 @@ console.log(response);
 
 ```python
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input="What is deep research by OpenAI?",
     tools=[
         {
@@ -877,7 +889,7 @@ func main() {
 		},
 	}
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{OfString: openai.String("What is deep research by OpenAI?")},
 		Tools: []responses.ToolUnionParam{tool},
 	})
@@ -900,7 +912,7 @@ String vectorStoreId = "<vector_store_id>";
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("What is deep research by OpenAI?")
         .addTool(
             FileSearchTool.builder()
@@ -940,7 +952,7 @@ BinaryData filters = BinaryData.FromString(
     { "type": "in", "key": "category", "value": ["blog", "announcement"] }
     """
 );
-CreateResponseOptions options = new() { Model = "gpt-6-astra" };
+CreateResponseOptions options = new() { Model = "gpt-6.2-astra" };
 options.Tools.Add(
     ResponseTool.CreateFileSearchTool([vectorStoreId], filters: filters)
 );
@@ -958,7 +970,7 @@ require "openai"
 client = OpenAI::Client.new
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "What is deep research by OpenAI?",
   tools: [
     {

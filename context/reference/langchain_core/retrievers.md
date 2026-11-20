@@ -1,12 +1,10 @@
-Python[langchain-core](/python/langchain-core)Retrievers
-
 # Retrievers
 
 ## Classes
 
-[Class
+Class
 
-### BaseRetriever
+### [BaseRetriever](https://reference.langchain.com/python/langchain-core/retrievers/BaseRetriever)
 
 Abstract base class for a document retrieval system.
 
@@ -15,10 +13,4 @@ the most 'relevant' documents from some source.
 
 Usage:
 
-A retr](/python/langchain-core/retrievers/BaseRetriever)
-
-Copy page
-
-### On This Page
-
-Classes1
+A retr

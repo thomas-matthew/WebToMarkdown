@@ -20,7 +20,7 @@ For complete API documentation, see the [TypeScript SDK reference](https://code.
 >
 > One billing rule the SDK does model is [data residency pricing](https://platform.claude.com/docs/en/about-claude/pricing#data-residency-pricing). When a response's `usage` reports `inference_geo: "us"`, the SDK multiplies the list price of that response's tokens by 1.1. Per-request fees such as web search aren't multiplied. Requires TypeScript Agent SDK v0.3.239 or later, or Python Agent SDK v0.2.144 or later.
 >
-> Use these fields for development insight and approximate budgeting. For authoritative billing, use the [Usage and Cost API](https://platform.claude.com/docs/en/build-with-claude/usage-cost-api) or the Usage page in the [Claude Console](https://platform.claude.com/usage). Do not bill end users or trigger financial decisions from these fields.
+> Use these fields for development insight and approximate budgeting. For authoritative billing, see [Manage costs for your organization](https://code.claude.com/docs/en/costs.md#manage-costs-for-your-organization). Don't bill end users or trigger financial decisions from these fields.
 
 ## Understand token usage
 
@@ -91,7 +91,7 @@ The three result-level fields differ in what they count when the agent spawns [s
 | `total_cost_usd` | Included. Counts subagent requests alongside the top-level loop |
 | `modelUsage` / `model_usage` | Included. Counts subagent requests alongside the top-level loop, broken down by model |
 
-In [single message input mode](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode.md#single-message-input), when background subagents are still running at the end of the final turn, Claude Code waits for them, up to the cap described in [background tasks at exit](https://code.claude.com/docs/en/headless.md#background-tasks-at-exit), before emitting the result. The result's `total_cost_usd`, `duration_api_ms`, and `modelUsage`, or `model_usage` in Python, include the work done during that wait.
+In [single message input mode](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode.md#choose-single-shot-or-streaming-input), Claude Code waits for background subagents still running at the end of the final turn before emitting the result. The wait lasts up to the cap described in [background tasks at exit](https://code.claude.com/docs/en/headless.md#background-tasks-at-exit). The result's `total_cost_usd`, `duration_api_ms`, and `modelUsage`, or `model_usage` in Python, include the work done during that wait.
 
 The following examples iterate over the message stream from a `query()` call and print the total cost when the `result` message arrives:
 
@@ -302,8 +302,6 @@ For accurate cost tracking, account for the placeholder output count on assistan
 Claude Code builds each assistant message from the usage the API reported when the response began, so the message's `output_tokens` is only the count the API had reported at `message_start`, before the response was generated. One API response can produce several assistant messages, and every one of them carries that same placeholder.
 
 The API reports the real output count at the end of the response, and Claude Code adds it to the result message. Read output tokens from the result's `usage`, or from `modelUsage` for a per-model breakdown.
-
-To watch a response's output count grow while it streams, set `includePartialMessages`, or `include_partial_messages` in Python, and read `usage` from each `message_delta` stream event, typed as [`SDKPartialAssistantMessage`](https://code.claude.com/docs/en/agent-sdk/typescript#sdkpartialassistantmessage) in TypeScript and [`StreamEvent`](https://code.claude.com/docs/en/agent-sdk/python#streamevent) in Python.
 
 ### Track costs on failed conversations
 

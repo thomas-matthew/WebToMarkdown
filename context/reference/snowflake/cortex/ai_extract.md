@@ -1,132 +1,45 @@
-1. [Overview](/en/reference "Overview")
-2. [SQL data types reference](/en/sql-reference-data-types "SQL data types reference")
-3. [SQL command reference](/en/sql-reference-commands "SQL command reference")
-4. [Function and stored procedure reference](/en/sql-reference-functions "Function and stored procedure reference")
-
-   * [Summary of functions](/en/sql-reference/intro-summary-operators-functions "Summary of functions")
-   * [All functions (alphabetical)](/en/sql-reference/functions-all "All functions (alphabetical)")
-   * [Aggregate](/en/sql-reference/functions-aggregation "Aggregate")
-   * AI Functions
-
-     * [AI\_AGG](/en/sql-reference/functions/ai_agg "AI_AGG")
-     * [AI\_CLASSIFY](/en/sql-reference/functions/ai_classify "AI_CLASSIFY")
-     * [AI\_COMPLETE](/en/sql-reference/functions/ai_complete "AI_COMPLETE")
-     * [AI\_COUNT\_TOKENS](/en/sql-reference/functions/ai_count_tokens "AI_COUNT_TOKENS")
-     * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
-     * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
-
-       + [AI\_EXTRACT (Document AI legacy models)](/en/sql-reference/functions/ai_extract-document-ai "AI_EXTRACT (Document AI legacy models)")
-     * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
-     * [AI\_FUNCTION\_EVALUATION](/en/sql-reference/functions/ai_function_evaluation "AI_FUNCTION_EVALUATION")
-     * [AI\_FUNCTION\_OPTIMIZATION](/en/sql-reference/functions/ai_function_optimization "AI_FUNCTION_OPTIMIZATION")
-     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
-     * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
-     * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
-     * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
-     * [AI\_SIMILARITY](/en/sql-reference/functions/ai_similarity "AI_SIMILARITY")
-     * [AI\_SUMMARIZE](/en/sql-reference/functions/ai_summarize "AI_SUMMARIZE")
-     * [AI\_SUMMARIZE\_AGG](/en/sql-reference/functions/ai_summarize_agg "AI_SUMMARIZE_AGG")
-     * [AI\_TRANSCRIBE](/en/sql-reference/functions/ai_transcribe "AI_TRANSCRIBE")
-     * [AI\_TRANSLATE](/en/sql-reference/functions/ai_translate "AI_TRANSLATE")
-     * [FINETUNE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/finetune-snowflake-cortex "FINETUNE (SNOWFLAKE.CORTEX)")
-     * [SENTIMENT (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/sentiment-snowflake-cortex "SENTIMENT (SNOWFLAKE.CORTEX)")
-     * Helper functions
-
-       * [AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/agent_run-snowflake-cortex "AGENT_RUN (SNOWFLAKE.CORTEX)")
-       * [DATA\_AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/data_agent_run-snowflake-cortex "DATA_AGENT_RUN (SNOWFLAKE.CORTEX)")
-       * [THREAD\_MESSAGES (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/thread_messages-snowflake-cortex "THREAD_MESSAGES (SNOWFLAKE.CORTEX)")
-       * [EXECUTE\_AI\_EVALUATION](/en/sql-reference/functions/execute_ai_evaluation "EXECUTE_AI_EVALUATION")
-       * [GET\_AI\_EVALUATION\_DATA (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_evaluation_data-snowflake-local "GET_AI_EVALUATION_DATA (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_OBSERVABILITY\_LOGS (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_observability_logs-snowflake-local "GET_AI_OBSERVABILITY_LOGS (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_OBSERVABILITY\_EVENTS (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_observability_events-snowflake-local "GET_AI_OBSERVABILITY_EVENTS (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_RECORD\_TRACE (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_record_trace-snowflake-local "GET_AI_RECORD_TRACE (SNOWFLAKE.LOCAL)")
-       * [SEARCH\_PREVIEW (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/search_preview-snowflake-cortex "SEARCH_PREVIEW (SNOWFLAKE.CORTEX)")
-       * [SPLIT\_TEXT\_MARKDOWN\_HEADER (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/split_text_markdown_header-snowflake-cortex "SPLIT_TEXT_MARKDOWN_HEADER (SNOWFLAKE.CORTEX)")
-       * [SPLIT\_TEXT\_RECURSIVE\_CHARACTER (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/split_text_recursive_character-snowflake-cortex "SPLIT_TEXT_RECURSIVE_CHARACTER (SNOWFLAKE.CORTEX)")
-   * [Bitwise expression](/en/sql-reference/expressions-byte-bit "Bitwise expression")
-   * [Conditional expression](/en/sql-reference/expressions-conditional "Conditional expression")
-   * [Context](/en/sql-reference/functions-context "Context")
-   * [Conversion](/en/sql-reference/functions-conversion "Conversion")
-   * [Data generation](/en/sql-reference/functions-data-generation "Data generation")
-   * [Data metric](/en/sql-reference/functions-data-metric "Data metric")
-   * [Date & time](/en/sql-reference/functions-date-time "Date & time")
-   * [Differential privacy](/en/sql-reference/functions-differential-privacy "Differential privacy")
-   * [Encryption](/en/sql-reference/functions-encryption "Encryption")
-   * [File](/en/sql-reference/functions-file "File")
-   * [Geospatial](/en/sql-reference/functions-geospatial "Geospatial")
-   * [Hash](/en/sql-reference/functions-hash-scalar "Hash")
-   * [IPADDRESS](/en/sql-reference/functions-ipaddress "IPADDRESS")
-   * [Metadata](/en/sql-reference/functions-metadata "Metadata")
-   * [ML Model Monitors](/en/sql-reference/functions-model-monitors "ML Model Monitors")
-   * [Notification](/en/sql-reference/functions-notification "Notification")
-   * [Numeric](/en/sql-reference/functions-numeric "Numeric")
-   * [Organization users and organization user groups](/en/sql-reference/functions-organization-users "Organization users and organization user groups")
-   * [Period](/en/sql-reference/functions-period "Period")
-   * [Regular expressions](/en/sql-reference/functions-regexp "Regular expressions")
-   * [Semi-structured and structured data](/en/sql-reference/functions-semistructured "Semi-structured and structured data")
-   * [Snowpark Container Services](/en/sql-reference/functions-spcs "Snowpark Container Services")
-   * [String & binary](/en/sql-reference/functions-string "String & binary")
-   * [System](/en/sql-reference/functions-system "System")
-   * [Table](/en/sql-reference/functions-table "Table")
-   * [Vector](/en/sql-reference/functions-vector "Vector")
-   * [Window](/en/sql-reference/functions-window "Window")
-   * [Stored procedures](/en/sql-reference-stored-procedures "Stored procedures")
-5. [Class reference](/en/sql-reference-classes "Class reference")
-6. [Scripting reference](/en/sql-reference-snowflake-scripting "Scripting reference")
-7. [General reference](/en/sql-reference "General reference")
-8. [API reference](/en/api-reference "API reference")
-
-[Reference](/en/reference)[Function and stored procedure reference](/en/sql-reference-functions)AI FunctionsAI\_EXTRACT
-
 Categories:
-:   [String & binary functions](/sql-reference/functions-string) (AI Functions)
+:   [String & binary functions](https://docs.snowflake.com/sql-reference/functions-string) (AI Functions)
 
-# AI\_EXTRACT[¶](#ai_extract)
+# AI\_EXTRACT
 
 Extracts information from an input string or file.
 
-## Syntax[¶](#syntax)
+## Syntax
 
 **Extract information from an input string:**
-
-Copy code
 
 ```
 AI_EXTRACT( <text>, <responseFormat> )
 ```
 
-Copy code
-
 ```
 AI_EXTRACT( text => <text>,
-            responseFormat => <responseFormat>,
-            [ scores => TRUE | FALSE ] )
+            responseFormat => <responseFormat>
+            [, scores => TRUE | FALSE ]
+            [, citation => TRUE | FALSE ] )
 ```
 
 **Extract information from a file:**
-
-Copy code
 
 ```
 AI_EXTRACT( <file>, <responseFormat> )
 ```
 
-Copy code
-
 ```
 AI_EXTRACT( file => <file>,
-            responseFormat => <responseFormat>,
-            [ config => <config_object> ],
-            [ scores => TRUE | FALSE ] )
+            responseFormat => <responseFormat>
+            [, scores => TRUE | FALSE ]
+            [, citation => TRUE | FALSE ] )
 ```
 
-## Arguments[¶](#arguments)
+## Arguments
 
 `text`
 :   An input string for extraction.
 
 `file`
-:   A [FILE](/sql-reference/data-types-unstructured#label-data-types-file) for extraction.
+:   A [FILE](https://docs.snowflake.com/sql-reference/data-types-unstructured#label-data-types-file) for extraction.
 
     Supported file formats:
 
@@ -144,6 +57,8 @@ AI_EXTRACT( file => <file>,
 
     The files must be less than 100 MB in size.
 
+    To extract information from selected pages of a paginated document, pass [`FL_FILTER_PAGES`](https://docs.snowflake.com/sql-reference/functions/fl_filter_pages) as the `file` argument. `AI_EXTRACT` processes only the selected pages. For page-range syntax and restrictions, see [FL\_FILTER\_PAGES](https://docs.snowflake.com/sql-reference/functions/fl_filter_pages).
+
 `responseFormat`
 :   Information to be extracted. The format depends on the type of extraction.
 
@@ -153,21 +68,15 @@ AI_EXTRACT( file => <file>,
 
     * Simple object schema that maps the label and information to be extracted:
 
-      Expand code block
-
       ```
       {'name': 'What is the last name of the employee?', 'address': 'What is the address of the employee?'}
       ```
     * An array of strings that contain the information to be extracted:
 
-      Expand code block
-
       ```
       ['What is the last name of the employee?', 'What is the address of the employee?']
       ```
     * An array of arrays that contain two strings (label and the information to be extracted):
-
-      Expand code block
 
       ```
       [['name', 'What is the last name of the employee?'], ['address', 'What is the address of the employee?']]
@@ -211,8 +120,6 @@ AI_EXTRACT( file => <file>,
     Extract tabular data using a JSON schema with `'type': 'object'` and `column_ordering`. Each column is defined as a
     nested property with `'type': 'array'` and a `description` that matches the column name in the file:
 
-    Expand code block
-
     ```
     {
       'schema': {
@@ -238,10 +145,6 @@ AI_EXTRACT( file => <file>,
     }
     ```
 
-    Show lessSee more
-
-    Scroll to top
-
     Note
 
     * You can’t combine the JSON schema format with other response formats. If `responseFormat` contains the `schema` key,
@@ -259,27 +162,43 @@ AI_EXTRACT( file => <file>,
 :   Optional. Supported only in the named-argument syntax shown above. A BOOLEAN that controls whether the function returns
     scores for extracted values. The default is `FALSE`. When `TRUE`, the JSON result includes a `scoring`
     object in addition to `response`. For the output format, SQL examples, and limitations, see
-    [Extraction scores](#label-ai-extract-scores).
+    [Extraction scores](https://docs.snowflake.com/en/sql-reference/functions/ai_extract#label-ai-extract-scores).
 
-`config => config_object`
-:   An [OBJECT](/sql-reference/data-types-semistructured#label-data-type-object) value that specifies the configuration settings. You can use an
-    [OBJECT constant](/sql-reference/data-types-semistructured#label-object-constant) to specify this object.
+`citation => { boolean }`
+:   [Preview Feature](https://docs.snowflake.com/release-notes/preview-features) — Open
 
-    You can specify the following key-value pairs in this object:
+    Available to all accounts.
 
-    | Key | Description |
-    | --- | --- |
-    | `scale_factor` | A numeric value from 1.0 through 4.0. Scales pages of an input file before they are processed by the underlying model, which can enhance OCR quality and improve extraction results.  Use `scale_factor` if you receive unexpected or unclear responses in the following scenarios:   * Documents with page sizes larger than A4 * Documents containing small text, detailed visual elements, or dense layouts * Extracted text contains typos or character-level OCR errors   If omitted, AI\_EXTRACT uses the default value (`'scale_factor': 1.0`). |
+    Optional. Specify this argument by using named-argument syntax. A BOOLEAN that controls whether AI\_EXTRACT requests
+    source citations for extracted values. The default is `FALSE`. If you omit the argument, AI\_EXTRACT preserves the
+    default behavior and doesn’t return a `citations` object.
 
-    Expand
+    Set `citation => TRUE` to include a `citations` object in the returned JSON.
 
-    Show lessSee more
+    The value must be the constant `TRUE` or `FALSE`. Passing `NULL` returns a SQL compilation error: `AI_EXTRACT citation must be the constant TRUE or FALSE.`
 
-## Returns[¶](#returns)
+    For document input, citations contain page numbers and bounding boxes. For text input, citations contain offsets into
+    the input text.
+
+    Citations require [cross-region inference](https://docs.snowflake.com/user-guide/snowflake-cortex/cross-region-inference) to be enabled for your account.
+
+    You can request citations together with extraction scores by setting both `citation => TRUE` and `scores => TRUE`.
+
+    For the output format and examples, see [Citations](https://docs.snowflake.com/en/sql-reference/functions/ai_extract#label-ai-extract-citations).
+
+## Returns
 
 A JSON object containing the extracted information. The structure of the response depends on the type of extraction.
 
-### Entity extraction[¶](#entity-extraction)
+When `citation => TRUE`, the returned JSON includes a `citations` object containing source locations associated with
+extracted fields. Extracted values remain in the `response` object. When `scores => TRUE` is also specified, the result
+includes the separate `scoring` object.
+
+When [cross-region inference](https://docs.snowflake.com/user-guide/snowflake-cortex/cross-region-inference) is enabled and AI\_EXTRACT can’t process a file, the `error` field contains the error for that document. The statement continues for
+any other documents. This includes a document that exceeds the 1,000-page limit, a corrupted file, and a file that isn’t in a
+supported format. Without cross-region inference, a file that AI\_EXTRACT can’t process fails the SQL statement. For the page limit in that case, see [Usage notes](https://docs.snowflake.com/en/sql-reference/functions/ai_extract#label-ai-extract-usage-notes).
+
+### Entity extraction
 
 Returns a JSON object with key-value pairs for each extracted entity:
 
@@ -292,7 +211,7 @@ Returns a JSON object with key-value pairs for each extracted entity:
 }
 ```
 
-### List extraction[¶](#list-extraction)
+### List extraction
 
 Returns a JSON object with arrays of extracted values:
 
@@ -309,7 +228,7 @@ Returns a JSON object with arrays of extracted values:
 }
 ```
 
-### Table extraction[¶](#table-extraction)
+### Table extraction
 
 Returns a JSON object with column arrays representing the extracted table:
 
@@ -325,11 +244,9 @@ Returns a JSON object with column arrays representing the extracted table:
 }
 ```
 
-### Combined extraction[¶](#combined-extraction)
+### Combined extraction
 
 When extracting entities, lists, and tables in a single call, the response contains all extraction types:
-
-Expand code block
 
 ```
 {
@@ -349,11 +266,7 @@ Expand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
-## Extraction scores[¶](#extraction-scores)
+## Extraction scores
 
 When you use AI\_EXTRACT, you can request scores that indicate the model’s certainty about each extracted value. You can
 use these scores to set thresholds for business logic, such as flagging low-scoring extractions for human review.
@@ -362,19 +275,17 @@ A higher score indicates a higher likelihood that the extracted value is correct
 given entity across different documents to identify which values are more or less reliable, and use them to build
 deterministic processing logic such as thresholds, fallback mechanisms, and human-in-the-loop workflows.
 
-### How scores work[¶](#how-scores-work)
+### How scores work
 
 When you set the `scores` parameter to `TRUE`, AI\_EXTRACT returns a `scoring` object alongside the standard
 `response` object. The `scoring` object contains a score for each extracted field.
 
 The `scores` parameter is optional, and it is set to `FALSE` by default. Use the optional `scores` argument in the
-named-argument syntax shown in [Arguments](#label-ai-extract-arguments).
+named-argument syntax shown in [Arguments](https://docs.snowflake.com/en/sql-reference/functions/ai_extract#label-ai-extract-arguments).
 
-### Scoring output format[¶](#scoring-output-format)
+### Scoring output format
 
 When `scores => TRUE`, the returned JSON includes a `scoring` object:
-
-Expand code block
 
 ```
 {
@@ -396,15 +307,9 @@ Expand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
 Each field in `scoring.scores` corresponds to a field in `response` and contains a `score` value between 0 and 1.
 
 For list extraction, the `scoring` object returns an aggregate score for the entire list:
-
-Expand code block
 
 ```
 {
@@ -422,13 +327,7 @@ Expand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
 For table extraction, the `scoring` object returns an aggregate score for the entire table:
-
-Expand code block
 
 ```
 {
@@ -449,21 +348,15 @@ Expand code block
 }
 ```
 
-Show lessSee more
+### Scoring usage notes
 
-Scroll to top
-
-### Scoring usage notes[¶](#scoring-usage-notes)
-
-* Requesting scores does not incur additional cost. For general information on AI\_EXTRACT costs, see [Cost considerations](#label-ai-extract-cost).
+* Requesting scores does not incur additional cost. For general information on AI\_EXTRACT costs, see [Cost considerations](https://docs.snowflake.com/en/sql-reference/functions/ai_extract#label-ai-extract-cost).
 * Per-element scores for individual list items and table cells are not available.
 * Scores are supported for fine-tuned models.
 
-### Examples with extraction scores[¶](#examples-with-extraction-scores)
+### Examples with extraction scores
 
 The following example extracts information from a file and returns scores for each extracted field:
-
-Copy codeExpand code block
 
 ```
 SELECT AI_EXTRACT(
@@ -474,8 +367,6 @@ SELECT AI_EXTRACT(
 ```
 
 Result:
-
-Expand code block
 
 ```
 {
@@ -497,13 +388,7 @@ Expand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
 The following example extracts a list of buyer names and returns an aggregate score:
-
-Copy codeExpand code block
 
 ```
 SELECT AI_EXTRACT(
@@ -523,13 +408,7 @@ SELECT AI_EXTRACT(
 );
 ```
 
-Show lessSee more
-
-Scroll to top
-
 Result:
-
-Expand code block
 
 ```
 {
@@ -550,13 +429,7 @@ Expand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
 The following example extracts a table and returns an aggregate score:
-
-Copy codeExpand code block
 
 ```
 SELECT AI_EXTRACT(
@@ -587,13 +460,7 @@ SELECT AI_EXTRACT(
 );
 ```
 
-Show lessSee more
-
-Scroll to top
-
 Result:
-
-Expand code block
 
 ```
 {
@@ -614,19 +481,346 @@ Expand code block
 }
 ```
 
-Show lessSee more
+## Citations
 
-Scroll to top
+[Preview Feature](https://docs.snowflake.com/release-notes/preview-features) — Open
 
-## Access control requirements[¶](#access-control-requirements)
+Available to all accounts.
 
-Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
-For information about granting this privilege, see [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges).
+When you set `citation => TRUE`, AI\_EXTRACT returns a `citations` object alongside the extracted values in `response`.
+Use citations to identify the source locations that support extracted fields.
 
-## Usage notes[¶](#usage-notes)
+The citation format depends on the input:
+
+* Document input returns citations in `citations.bounding_boxes`.
+* Text input returns citations in `citations.text_spans`.
+
+### Document citation output
+
+Document citations are returned in `citations.bounding_boxes`. Each field name maps to an array of bounding-box objects.
+
+Each bounding-box object contains the following properties:
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `page` | INTEGER | Page containing the cited region. Pages are numbered from 1 in the original document, even when `FL_FILTER_PAGES` selects a subset of pages. |
+| `upper_left` | ARRAY of numbers | Coordinates of the upper-left corner of the cited region. The first value is a percentage of the page width. The second value is a percentage of the page height. |
+| `lower_right` | ARRAY of numbers | Coordinates of the lower-right corner of the cited region. The first value is a percentage of the page width. The second value is a percentage of the page height. |
+
+Bounding-box coordinates are measured from the top-left corner of the page, which is `(0, 0)`. Each pair is
+`[width_percent, height_percent]`. Values are percentages of the page width and page height in the range 0 to 100. The
+x value increases to the right, and the y value increases downward.
+
+Example output for one invoice field:
+
+```
+{
+  "citations": {
+    "bounding_boxes": {
+      "invoice_number": [
+        {
+          "page": 1,
+          "upper_left": [65.0, 8.0],
+          "lower_right": [85.0, 12.0]
+        }
+      ]
+    }
+  },
+  "error": null,
+  "response": {
+    "invoice_number": "INV-1001"
+  }
+}
+```
+
+### List and table citation output
+
+The citation key matches the list or table field name in `response`. How many citations are returned depends on the
+extraction type:
+
+* **Lists:** AI\_EXTRACT returns one citation per list item. The array index matches the extracted item. The bounding box
+  at index `0` is the cited region for the first item, index `1` is the second item, and so on.
+* **Tables:** AI\_EXTRACT returns one citation for the table as a whole. It doesn’t return a citation per table row,
+  column, or cell.
+
+The following example extracts an items table and a list of acceptance steps. The list `acceptance_steps` returns one
+citation per item. The table `items_ordered` returns one citation for the table.
+
+```
+SELECT AI_EXTRACT(
+  file => TO_FILE('@documents', 'sample_table_and_list.pdf'),
+  responseFormat => {
+    'schema': {
+      'type': 'object',
+      'properties': {
+        'items_ordered': {
+          'description': 'Items ordered table. Extract item rows only, excluding the Total row.',
+          'type': 'object',
+          'column_ordering': [
+            'sku',
+            'item_description',
+            'quantity',
+            'unit_price_eur',
+            'amount_eur'
+          ],
+          'properties': {
+            'sku': {
+              'description': 'SKU',
+              'type': 'array'
+            },
+            'item_description': {
+              'description': 'Item description',
+              'type': 'array'
+            },
+            'quantity': {
+              'description': 'Qty',
+              'type': 'array'
+            },
+            'unit_price_eur': {
+              'description': 'Unit price (EUR)',
+              'type': 'array'
+            },
+            'amount_eur': {
+              'description': 'Amount (EUR)',
+              'type': 'array'
+            }
+          }
+        },
+        'acceptance_steps': {
+          'description': 'What are the acceptance steps? Extract each numbered step as a separate list item in document order.',
+          'type': 'array'
+        }
+      }
+    }
+  },
+  citation => TRUE
+);
+```
+
+Example output:
+
+```
+{
+  "citations": {
+    "bounding_boxes": {
+      "acceptance_steps": [
+        {
+          "lower_right": [59.47801971435547, 77.93975067138672],
+          "page": 1,
+          "upper_left": [10.714285850524902, 76.28765869140625]
+        },
+        {
+          "lower_right": [59.06593322753906, 80.27210998535156],
+          "page": 1,
+          "upper_left": [10.714285850524902, 78.71720123291016]
+        },
+        {
+          "lower_right": [49.58790969848633, 82.70165252685547],
+          "page": 1,
+          "upper_left": [10.714285850524902, 81.14674377441406]
+        }
+      ],
+      "items_ordered": [
+        {
+          "lower_right": [89.97252655029297, 52.18659210205078],
+          "page": 1,
+          "upper_left": [9.615385055541992, 35.2769660949707]
+        }
+      ]
+    }
+  },
+  "error": null,
+  "response": {
+    "acceptance_steps": [
+      "Count the delivered units and compare them with the items table.",
+      "Check the equipment for visible damage and missing accessories.",
+      "Record any discrepancies before confirming receipt."
+    ],
+    "items_ordered": {
+      "amount_eur": ["498.00", "238.00", "260.00", "116.00", "75.00"],
+      "item_description": [
+        "27-inch office monitor",
+        "USB-C docking station",
+        "Wireless keyboard",
+        "Wireless mouse",
+        "USB-C cable, 2 m"
+      ],
+      "quantity": ["2", "2", "4", "4", "6"],
+      "sku": ["MON-27", "DOCK-USBC", "KEY-WL", "MOUSE-WL", "CABLE-2M"],
+      "unit_price_eur": ["249.00", "119.00", "65.00", "29.00", "12.50"]
+    }
+  }
+}
+```
+
+### Text citation output
+
+Text citations are returned in `citations.text_spans`. Each field name maps to an array of text-span objects.
+
+Each text-span object contains the following properties:
+
+| Property | Type | Description |
+| --- | --- | --- |
+| `span-start` | INTEGER | Start offset of the cited passage, counted as Unicode characters from the start of the input text. Offsets are zero-based. |
+| `span-end` | INTEGER | End offset of the cited passage, counted as Unicode characters from the start of the input text. The end offset is exclusive. |
+
+Example output for one product field:
+
+```
+{
+  "citations": {
+    "text_spans": {
+      "product_code": [
+        {
+          "span-start": 20,
+          "span-end": 27
+        }
+      ]
+    }
+  },
+  "error": null,
+  "response": {
+    "product_code": "SKU-100"
+  }
+}
+```
+
+### Citation usage notes
+
+* The input argument is named `citation` (singular). The returned object is named `citations` (plural).
+* Citations for each field are represented as arrays. Process all returned entries rather than assuming that a field
+  contains one citation.
+* For lists, the citation array contains one citation per list item. For tables, the citation array contains one citation
+  for the table as a whole, not one citation per row, column, or cell.
+* When accessing `span-start` and `span-end` with SQL path notation, enclose the keys in double quotes because they
+  contain hyphens.
+* The `citation` argument is optional. The default is `FALSE`. If you omit the argument, AI\_EXTRACT doesn’t return a
+  `citations` object.
+* Citations require cross-region inference. For information about enabling it, see
+  [Cross-region inference](https://docs.snowflake.com/user-guide/snowflake-cortex/cross-region-inference).
+* Requesting citations doesn’t incur additional cost beyond the standard AI\_EXTRACT call.
+
+Citations are optimized to work with the following file formats:
+
+* PDF
+* PNG
+* EML
+* JPEG, JPG
+* TEXT, TXT
+* TIF, TIFF
+* BMP, GIF, WEBP
+* MD
+
+### Example: Retrieve document citations
+
+The following example extracts an invoice number and returns its citation locations as rows. `FLATTEN` produces one row
+for each entry in the field’s citation array.
+
+```
+WITH extraction AS (
+  SELECT AI_EXTRACT(
+    file => TO_FILE('@documents', 'invoice.pdf'),
+    responseFormat => {
+      'invoice_number': 'Invoice number'
+    },
+    citation => TRUE
+  ) AS extracted
+)
+SELECT
+  e.extracted:response.invoice_number::VARCHAR
+    AS invoice_number,
+  c.value:page::INTEGER AS page,
+  c.value:upper_left AS upper_left,
+  c.value:lower_right AS lower_right
+FROM extraction AS e,
+  LATERAL FLATTEN(
+    INPUT => e.extracted:citations.bounding_boxes.invoice_number
+  ) AS c;
+```
+
+For the example document citation above:
+
+| INVOICE\_NUMBER | PAGE | UPPER\_LEFT | LOWER\_RIGHT |
+| --- | --- | --- | --- |
+| INV-1001 | 1 | [65.0, 8.0] | [85.0, 12.0] |
+
+This query retrieves the citation metadata. Rendering a highlight in a document viewer is handled by the application.
+
+### Example: Retrieve cited text
+
+The following example extracts a product code and retrieves its cited passage from the original input.
+
+```
+WITH input_text AS (
+  SELECT
+    'The product code is SKU-100. Each package contains 24 units. The warranty period is 12 months.'
+      AS content
+),
+extraction AS (
+  SELECT
+    content,
+    AI_EXTRACT(
+      text => content,
+      responseFormat => {
+        'product_code': 'Product code'
+      },
+      citation => TRUE
+    ) AS extracted
+  FROM input_text
+)
+SELECT
+  e.extracted:response.product_code::VARCHAR AS product_code,
+  c.value:"span-start"::INTEGER AS span_start,
+  c.value:"span-end"::INTEGER AS span_end,
+  SUBSTR(
+    e.content,
+    c.value:"span-start"::INTEGER + 1,
+    c.value:"span-end"::INTEGER
+      - c.value:"span-start"::INTEGER
+  ) AS cited_text
+FROM extraction AS e,
+  LATERAL FLATTEN(
+    INPUT => e.extracted:citations.text_spans.product_code
+  ) AS c;
+```
+
+For the example span `[20, 27)`:
+
+| PRODUCT\_CODE | SPAN\_START | SPAN\_END | CITED\_TEXT |
+| --- | --- | --- | --- |
+| SKU-100 | 20 | 27 | SKU-100 |
+
+The expression adds 1 to the zero-based start offset because Snowflake’s `SUBSTR` function uses one-based positions. The
+substring length is the end offset minus the start offset.
+
+Both SQL examples list returned citation entries. To retain an extraction row when the citation array can’t be expanded,
+use `OUTER => TRUE` in `FLATTEN`.
+
+## Access control requirements
+
+Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
+For information about granting this privilege, see [Cortex LLM privileges](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges).
+
+## Usage notes
 
 * AI\_EXTRACT is optimized for both digital-born and scanned documents.
 * You can’t use both `text` and `file` parameters simultaneously in the same function call.
+* Page selection with `FL_FILTER_PAGES` applies to the `file` argument, not the `text` argument. Files without pages, such as plain-text files, cannot be filtered by page.
+* Use `FL_FILTER_PAGES` directly inside the `AI_EXTRACT` call. The selection applies only to that call; it is not stored on the `FILE` value and does not create a new document.
+* Multiple ranges select pages from the original document. Overlapping ranges do not cause the same page to be processed more than once, and selected pages are processed in document order.
+* When you use `citation => TRUE` with `FL_FILTER_PAGES`, citation `page` values refer to pages in the original document. They don’t restart at 1 for the selected pages. Citations only reference selected pages.
+* A valid selection that resolves to no pages returns an empty result. For invalid selections and other page-selection errors, see [Error conditions](https://docs.snowflake.com/sql-reference/functions/fl_filter_pages#label-fl-filter-pages-error-conditions).
+* With [cross-region inference](https://docs.snowflake.com/user-guide/snowflake-cortex/cross-region-inference) enabled:
+
+  + File extraction supports documents of up to 1,000 pages. A document that exceeds the limit returns an error for that document.
+  + A request that extracts many fields from a document returns one combined result.
+  + If AI\_EXTRACT can’t process a file, the `error` field contains the error for that document and the statement continues. This includes a document that exceeds the page limit, a corrupted file, and a file that isn’t in a supported format.
+  + `scale_factor` is no longer needed. AI\_EXTRACT now delivers improved extraction quality without manual scaling adjustments. Existing calls continue to work unchanged; any `scale_factor` value is ignored.
+* Without cross-region inference:
+
+  + File extraction supports documents of up to 125 pages.
+  + A file that AI\_EXTRACT can’t process fails the SQL statement. This includes a corrupted file and a file that isn’t in a supported format.
+  + The `scale_factor` parameter still applies. It scales pages of an input file before extraction, which can improve results for pages larger than A4, small text, or dense layouts. Set it to a numeric value from 1.0 through 4.0. The default is 1.0.
 * You can either ask questions in natural language or describe information to be extracted (such as city, street, ZIP code); for example:
 
   ```
@@ -664,47 +858,33 @@ For information about granting this privilege, see [Cortex LLM privileges](/user
 * Urdu
 * Vietnamese
 
-* The documents must be no more than 125 pages long.
 * In a single AI\_EXTRACT call, you can ask a maximum of 100 questions for entity extraction, and a maximum of 10 questions for table extraction.
 
   A table extraction question is equal to 10 entity extraction questions. For example, you can ask 4 table extraction questions and
   60 entity extraction questions in a single AI\_EXTRACT call.
 * The maximum output length for entity extraction is 512 tokens per question. For table extraction, the model returns answers that are a maximum of 4096 tokens.
 * You can request optional extraction scores by using named arguments and passing `scores => TRUE`.
-  For details, see [Extraction scores](#label-ai-extract-scores).
+  For details, see [Extraction scores](https://docs.snowflake.com/en/sql-reference/functions/ai_extract#label-ai-extract-scores).
+* You can request optional citations by using named arguments and passing `citation => TRUE`.
+  For details, see [Citations](https://docs.snowflake.com/en/sql-reference/functions/ai_extract#label-ai-extract-citations).
 
 AI\_EXTRACT supports documents on stages that use client-side or server-side encryption, including in accounts that use
-PrivateLink or other [network policies](/user-guide/network-policies) that restrict public network access to stages.
+PrivateLink or other [network policies](https://docs.snowflake.com/user-guide/network-policies) that restrict public network access to stages.
 Files on external stages that use client-side encryption configured in Snowflake (for example, by using a COPY INTO
 statement) are supported.
 
-## Cost considerations[¶](#cost-considerations)
+## Cost considerations
 
 * The Cortex AI\_EXTRACT function incurs compute cost based on the number of pages per document, input prompt tokens, and
   output tokens processed.
 
   + For paged file formats (PDF, DOCX, TIF, TIFF), each page is counted as 970 tokens.
   + For image file formats (JPEG, JPG, PNG), each individual image file is billed as a page and counted as 970 tokens.
-* Using the `scale_factor` parameter changes how many tokens are consumed and how many pages can be processed per call:
-
-  + The number of input tokens consumed increases proportionally with `scale_factor`.
-  + The maximum number of pages per document that can be processed by AI\_EXTRACT decreases by `scale_factor`.
-
-  **Relationship of scale\_factor to number of tokens and pages**
-
-  > | `scale_factor` value | Token count per page | Max. number of pages per document |
-  > | --- | --- | --- |
-  > | 2 | 970 \* 2 = 1940 tokens | 125/2 = 62.5 (rounded down to 62) |
-  > | 2.5 | 970 \* 2.5 = 2425 tokens | 125/2.5 = 50 |
-  > | 4 | 970 \* 4 = 3880 tokens | 125/4 = 31.25 (rounded down to 31) |
-  >
-  > Expand
-  >
-  > Show lessSee more
 * Snowflake recommends executing queries that call the Cortex AI\_EXTRACT function in a smaller warehouse (no larger than
   MEDIUM). Larger warehouses don’t increase performance.
+* Requesting citations (`citation => TRUE`) doesn’t incur additional cost beyond the standard AI\_EXTRACT call.
 
-## Regional availability[¶](#regional-availability)
+## Regional availability
 
 AI\_EXTRACT is available to accounts in the following regions:
 
@@ -714,14 +894,10 @@ AI\_EXTRACT is available to accounts in the following regions:
 | Microsoft Azure | * East US 2 (Virginia) * West US 2 (Washington) * South Central US (Texas) * North Europe (Ireland) * West Europe (Netherlands) * Southeast Asia (Singapore) * Australia East (New South Wales) * Central India (Pune) * Japan East (Tokyo) |
 | Google Cloud Platform | * Middle East Central2 (Dammam) |
 
-Expand
-
-Show lessSee more
-
 AI\_EXTRACT has cross-region support. For information on enabling Cortex AI cross-region support,
-see [Cross-region inference](/user-guide/snowflake-cortex/cross-region-inference).
+see [Cross-region inference](https://docs.snowflake.com/user-guide/snowflake-cortex/cross-region-inference).
 
-## Error conditions[¶](#error-conditions)
+## Error conditions
 
 AI\_EXTRACT can produce the following error messages:
 
@@ -731,29 +907,24 @@ AI\_EXTRACT can produce the following error messages:
 | `Not found.` | The file was not found. |
 | `Provided file cannot be found.` | The file was not found. |
 | `Provided file cannot be accessed.` | The current user does not have sufficient privileges to access the file. |
-| `The provided file format {file_extension} isn't supported.` | The document is not in a supported format. |
-| `The provided file isn't in the expected format or is corrupted.` | The document is corrupted or isn’t in a supported format. |
+| `The provided file format {file_extension} isn't supported.` | The document isn’t in a supported format. With cross-region inference enabled, AI\_EXTRACT returns this error for that document. Otherwise, the statement fails. |
+| `The provided file isn't in the expected format or is corrupted.` | The document is corrupted or isn’t in a supported format. With cross-region inference enabled, AI\_EXTRACT returns this error for that document. Otherwise, the statement fails. |
 | `Empty request.` | No parameters were provided. |
 | `Missing or empty response format.` | No response format was provided. |
 | `Invalid response format.` | The response format is not valid JSON. |
 | `Duplicate feature name found: {feature_name}.` | The response format contains one or more duplicate feature names. |
 | `Too many questions: {number} complex and {number} simple = {number} total, complex question weight {number}`. | The number of questions exceeds the allowed limit. |
-| `Maximum number of 125 pages exceeded. The document has {actual_pages} pages.` | The document exceeds the 125-page limit. |
+| `Maximum number of 1000 pages exceeded. The document has {actual_pages} pages.` | Cross-region inference is enabled, and the document exceeds the 1,000-page limit. AI\_EXTRACT returns this error for that document. |
+| `Maximum number of 125 pages exceeded. The document has {actual_pages} pages.` | Cross-region inference isn’t enabled, and the document exceeds the 125-page limit. |
 | `Page size in pixels exceeds 10000x10000. The page size is {actual_px} pixels.` | Image input or a converted document page is larger than the supported dimensions. |
 | `Page size in inches exceeds 50x50 (3600x3600 pt). The page size is {actual_in} inches ({actual_pt} pt).` | Page is larger than the supported dimensions. |
 | `Maximum file size of 104857600 bytes exceeded. The file size is {actual_size} bytes.` | The document is larger than 100 MB. |
 
-Expand
+## Examples
 
-Show lessSee more
-
-## Examples[¶](#examples)
-
-### Entity extraction[¶](#entity-extraction)
+### Entity extraction
 
 * The following example extracts entities from the input text using a simple object schema:
-
-  Copy codeExpand code block
 
   ```
   SELECT AI_EXTRACT(
@@ -763,8 +934,6 @@ Show lessSee more
   ```
 * The following example extracts and parses entities from the input text:
 
-  Copy codeExpand code block
-
   ```
   SELECT AI_EXTRACT(
     text => 'John Smith lives in San Francisco and works for Snowflake',
@@ -772,8 +941,6 @@ Show lessSee more
   );
   ```
 * The following example extracts entities from the `document.pdf` file:
-
-  Copy codeExpand code block
 
   ```
   SELECT AI_EXTRACT(
@@ -785,9 +952,7 @@ Show lessSee more
 
   Note
 
-  Ensure that the directory table is enabled. For more information, see [Manage directory tables](/user-guide/data-load-dirtables-manage).
-
-  Copy code
+  Ensure that the directory table is enabled. For more information, see [Manage directory tables](https://docs.snowflake.com/user-guide/data-load-dirtables-manage).
 
   ```
   SELECT AI_EXTRACT(
@@ -799,8 +964,6 @@ Show lessSee more
   ) FROM DIRECTORY (@db.schema.files);
   ```
 * The following example extracts the `title` entity from the `report.pdf` file using a JSON schema:
-
-  Copy codeExpand code block
 
   ```
   SELECT AI_EXTRACT(
@@ -819,15 +982,9 @@ Show lessSee more
   );
   ```
 
-  Show lessSee more
-
-  Scroll to top
-
-### List extraction[¶](#list-extraction)
+### List extraction
 
 The following example extracts the `employees` list from the `report.pdf` file:
-
-Copy codeExpand code block
 
 ```
 SELECT AI_EXTRACT(
@@ -846,15 +1003,9 @@ SELECT AI_EXTRACT(
 );
 ```
 
-Show lessSee more
-
-Scroll to top
-
-### Table extraction[¶](#table-extraction)
+### Table extraction
 
 The following example extracts the `income_table` table from the `report.pdf` file:
-
-Copy codeExpand code block
 
 ```
 SELECT AI_EXTRACT(
@@ -884,16 +1035,29 @@ SELECT AI_EXTRACT(
 );
 ```
 
-Show lessSee more
+### Extract information from the first and last pages
 
-Scroll to top
+The following example selects the first and last pages of a contract:
 
-### Combined extraction[¶](#combined-extraction)
+```
+SELECT AI_EXTRACT(
+  file => FL_FILTER_PAGES(
+    TO_FILE('@document_stage', 'contract.pdf'),
+    [{'end': 1}, {'start': -1}]
+  ),
+  responseFormat => {
+    'agreement_title': 'What is the title of this agreement?',
+    'signed_by': 'Who signed this agreement?'
+  }
+) AS extracted_data;
+```
+
+On a 10-page document, this selects pages with indexes 0 and 9. It does not process the intervening pages.
+
+### Combined extraction
 
 The following example extracts a table (`income_table`), entity (`title`), and list (`employees`) from the `report.pdf`
 file in a single call:
-
-Copy codeExpand code block
 
 ```
 SELECT AI_EXTRACT(
@@ -931,44 +1095,10 @@ SELECT AI_EXTRACT(
 );
 ```
 
-Show lessSee more
+### Extraction using a fine-tuned `arctic-extract` model
 
-Scroll to top
-
-### Extraction with a custom scale factor[¶](#extraction-with-a-custom-scale-factor)
-
-The following example extracts the `employees` array from the `report.pdf` file using a scale factor of 2.0:
-
-Copy codeExpand code block
-
-```
-SELECT AI_EXTRACT(
-  file => TO_FILE('@db.schema.files', 'report.pdf'),
-  responseFormat => {
-    'schema': {
-      'type': 'object',
-      'properties': {
-        'employees': {
-          'description': 'What are the surnames of employees?',
-          'type': 'array'
-        }
-      }
-    }
-  },
-  config => {'scale_factor': 2.0}
-);
-```
-
-Show lessSee more
-
-Scroll to top
-
-### Extraction using a fine-tuned `arctic-extract` model[¶](#extraction-using-a-fine-tuned-arctic-extract-model)
-
-To use the fine-tuned `arctic-extract` model for inference with the [AI\_EXTRACT](/sql-reference/functions/ai_extract) function,
+To use the fine-tuned `arctic-extract` model for inference with the [AI\_EXTRACT](https://docs.snowflake.com/sql-reference/functions/ai_extract) function,
 specify the model using the `model` parameter as shown in the following example:
-
-Copy code
 
 ```
 SELECT AI_EXTRACT(
@@ -979,8 +1109,6 @@ SELECT AI_EXTRACT(
 
 You can overwrite questions used for fine-tuning by using the `responseFormat` parameter as shown in the following example:
 
-Copy codeExpand code block
-
 ```
 SELECT AI_EXTRACT(
   model => 'db.schema.my_tuned_model',
@@ -989,71 +1117,13 @@ SELECT AI_EXTRACT(
 );
 ```
 
-The following example extracts data from the `invoice.pdf` file, using a fine-tuned `arctic-extract` model and a scale factor of 2.0:
-
-Copy code
-
-```
-SELECT AI_EXTRACT(
-  model => 'db.schema.my_tuned_model',
-  file => TO_FILE('@db.schema.files', 'invoice.pdf'),
-  config => {'scale_factor': 2.0}
-);
-```
-
-For more information, see [Fine-tuning arctic-extract models](/user-guide/snowflake-cortex/arctic-extract-finetuning).
-
-
-
+For more information, see [Fine-tuning arctic-extract models](https://docs.snowflake.com/user-guide/snowflake-cortex/arctic-extract-finetuning).
 
 Note
 
-AI\_EXTRACT is the updated version of [EXTRACT\_ANSWER](/sql-reference/functions/extract_answer-snowflake-cortex).
+AI\_EXTRACT is the updated version of [EXTRACT\_ANSWER](https://docs.snowflake.com/sql-reference/functions/extract_answer-snowflake-cortex).
 For the latest functionality, use AI\_EXTRACT.
 
-## Legal notices[¶](#legal-notices)
+## Legal notices
 
-Refer to [Snowflake AI and ML](/guides-overview-ai-features) for legal notices.
-
-Was this page helpful?
-
-YesNo
-
-[Visit Snowflake](https://www.snowflake.com)
-
-[Join the conversation](https://community.snowflake.com/s/)
-
-[Develop with Snowflake](https://developers.snowflake.com)
-
-[Share your feedback](/feedback)
-
-[Read the latest on our blog](https://www.snowflake.com/blog/)
-
-[Get your own certification](https://learn.snowflake.com)
-
-[Privacy Notice](https://www.snowflake.com/privacy-policy/)[Site Terms](https://www.snowflake.com/legal/snowflake-site-terms/)Cookies Settings© 2026 Snowflake, Inc. All Rights Reserved.
-
-### Alternative interfaces
-
-[Snowflake Python APIs](/developer-guide/snowflake-python-api/snowflake-python-overview)[Snowflake REST APIs](/developer-guide/snowflake-rest-api/snowflake-rest-api)[Snowflake CLI](/developer-guide/snowflake-cli/index)
-
-See all interfaces
-
-On this page
-
-1. [Syntax](#syntax)
-2. [Arguments](#arguments)
-3. [Returns](#returns)
-4. [Extraction scores](#extraction-scores)
-5. [Access control requirements](#access-control-requirements)
-6. [Usage notes](#usage-notes)
-7. [Cost considerations](#cost-considerations)
-8. [Regional availability](#regional-availability)
-9. [Error conditions](#error-conditions)
-10. [Examples](#examples)
-11. [Legal notices](#legal-notices)
-
-Related content
-
-1. [Extracting information from documents with AI\_EXTRACT](/user-guide/snowflake-cortex/document-extraction)
-2. [Snowflake Cortex AI Functions (including LLM functions)](/user-guide/snowflake-cortex/aisql)
+Refer to [Snowflake AI and ML](https://docs.snowflake.com/guides-overview-ai-features) for legal notices.

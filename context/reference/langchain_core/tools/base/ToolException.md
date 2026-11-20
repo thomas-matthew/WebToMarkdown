@@ -1,6 +1,4 @@
-Python[langchain-core](/python/langchain-core)[tools](/python/langchain-core/tools)[base](/python/langchain-core/tools/base)ToolException
-
-Classv1.7.1 (latest)●Since v1.7
+Classv1.8.3 (latest)●Since v1.8
 
 # ToolException
 
@@ -11,8 +9,6 @@ This exception allows tools to signal errors without stopping the agent.
 The error is handled according to the tool's `handle_tool_error` setting, and the
 result is returned as an observation to the agent.
 
-Copy
-
 ```
 ToolException()
 ```
@@ -21,6 +17,6 @@ ToolException()
 
 `Exception`
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6419339aa163a49f32d9b80ff20d6adc3b446d49/libs/core/langchain_core/tools/base.py#L371)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/d4dafe5839c4a6b07d71cc78697df0de9e627e21/libs/core/langchain_core/tools/base.py#L372)
 
 Version History

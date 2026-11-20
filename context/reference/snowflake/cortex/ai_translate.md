@@ -1,109 +1,29 @@
-1. [Overview](/en/reference "Overview")
-2. [SQL data types reference](/en/sql-reference-data-types "SQL data types reference")
-3. [SQL command reference](/en/sql-reference-commands "SQL command reference")
-4. [Function and stored procedure reference](/en/sql-reference-functions "Function and stored procedure reference")
-
-   * [Summary of functions](/en/sql-reference/intro-summary-operators-functions "Summary of functions")
-   * [All functions (alphabetical)](/en/sql-reference/functions-all "All functions (alphabetical)")
-   * [Aggregate](/en/sql-reference/functions-aggregation "Aggregate")
-   * AI Functions
-
-     * [AI\_AGG](/en/sql-reference/functions/ai_agg "AI_AGG")
-     * [AI\_CLASSIFY](/en/sql-reference/functions/ai_classify "AI_CLASSIFY")
-     * [AI\_COMPLETE](/en/sql-reference/functions/ai_complete "AI_COMPLETE")
-     * [AI\_COUNT\_TOKENS](/en/sql-reference/functions/ai_count_tokens "AI_COUNT_TOKENS")
-     * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
-     * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
-     * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
-     * [AI\_FUNCTION\_EVALUATION](/en/sql-reference/functions/ai_function_evaluation "AI_FUNCTION_EVALUATION")
-     * [AI\_FUNCTION\_OPTIMIZATION](/en/sql-reference/functions/ai_function_optimization "AI_FUNCTION_OPTIMIZATION")
-     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
-     * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
-     * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
-     * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
-     * [AI\_SIMILARITY](/en/sql-reference/functions/ai_similarity "AI_SIMILARITY")
-     * [AI\_SUMMARIZE](/en/sql-reference/functions/ai_summarize "AI_SUMMARIZE")
-     * [AI\_SUMMARIZE\_AGG](/en/sql-reference/functions/ai_summarize_agg "AI_SUMMARIZE_AGG")
-     * [AI\_TRANSCRIBE](/en/sql-reference/functions/ai_transcribe "AI_TRANSCRIBE")
-     * [AI\_TRANSLATE](/en/sql-reference/functions/ai_translate "AI_TRANSLATE")
-     * [FINETUNE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/finetune-snowflake-cortex "FINETUNE (SNOWFLAKE.CORTEX)")
-     * [SENTIMENT (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/sentiment-snowflake-cortex "SENTIMENT (SNOWFLAKE.CORTEX)")
-     * Helper functions
-
-       * [AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/agent_run-snowflake-cortex "AGENT_RUN (SNOWFLAKE.CORTEX)")
-       * [DATA\_AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/data_agent_run-snowflake-cortex "DATA_AGENT_RUN (SNOWFLAKE.CORTEX)")
-       * [THREAD\_MESSAGES (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/thread_messages-snowflake-cortex "THREAD_MESSAGES (SNOWFLAKE.CORTEX)")
-       * [EXECUTE\_AI\_EVALUATION](/en/sql-reference/functions/execute_ai_evaluation "EXECUTE_AI_EVALUATION")
-       * [GET\_AI\_EVALUATION\_DATA (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_evaluation_data-snowflake-local "GET_AI_EVALUATION_DATA (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_OBSERVABILITY\_LOGS (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_observability_logs-snowflake-local "GET_AI_OBSERVABILITY_LOGS (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_OBSERVABILITY\_EVENTS (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_observability_events-snowflake-local "GET_AI_OBSERVABILITY_EVENTS (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_RECORD\_TRACE (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_record_trace-snowflake-local "GET_AI_RECORD_TRACE (SNOWFLAKE.LOCAL)")
-       * [SEARCH\_PREVIEW (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/search_preview-snowflake-cortex "SEARCH_PREVIEW (SNOWFLAKE.CORTEX)")
-       * [SPLIT\_TEXT\_MARKDOWN\_HEADER (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/split_text_markdown_header-snowflake-cortex "SPLIT_TEXT_MARKDOWN_HEADER (SNOWFLAKE.CORTEX)")
-       * [SPLIT\_TEXT\_RECURSIVE\_CHARACTER (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/split_text_recursive_character-snowflake-cortex "SPLIT_TEXT_RECURSIVE_CHARACTER (SNOWFLAKE.CORTEX)")
-   * [Bitwise expression](/en/sql-reference/expressions-byte-bit "Bitwise expression")
-   * [Conditional expression](/en/sql-reference/expressions-conditional "Conditional expression")
-   * [Context](/en/sql-reference/functions-context "Context")
-   * [Conversion](/en/sql-reference/functions-conversion "Conversion")
-   * [Data generation](/en/sql-reference/functions-data-generation "Data generation")
-   * [Data metric](/en/sql-reference/functions-data-metric "Data metric")
-   * [Date & time](/en/sql-reference/functions-date-time "Date & time")
-   * [Differential privacy](/en/sql-reference/functions-differential-privacy "Differential privacy")
-   * [Encryption](/en/sql-reference/functions-encryption "Encryption")
-   * [File](/en/sql-reference/functions-file "File")
-   * [Geospatial](/en/sql-reference/functions-geospatial "Geospatial")
-   * [Hash](/en/sql-reference/functions-hash-scalar "Hash")
-   * [IPADDRESS](/en/sql-reference/functions-ipaddress "IPADDRESS")
-   * [Metadata](/en/sql-reference/functions-metadata "Metadata")
-   * [ML Model Monitors](/en/sql-reference/functions-model-monitors "ML Model Monitors")
-   * [Notification](/en/sql-reference/functions-notification "Notification")
-   * [Numeric](/en/sql-reference/functions-numeric "Numeric")
-   * [Organization users and organization user groups](/en/sql-reference/functions-organization-users "Organization users and organization user groups")
-   * [Period](/en/sql-reference/functions-period "Period")
-   * [Regular expressions](/en/sql-reference/functions-regexp "Regular expressions")
-   * [Semi-structured and structured data](/en/sql-reference/functions-semistructured "Semi-structured and structured data")
-   * [Snowpark Container Services](/en/sql-reference/functions-spcs "Snowpark Container Services")
-   * [String & binary](/en/sql-reference/functions-string "String & binary")
-   * [System](/en/sql-reference/functions-system "System")
-   * [Table](/en/sql-reference/functions-table "Table")
-   * [Vector](/en/sql-reference/functions-vector "Vector")
-   * [Window](/en/sql-reference/functions-window "Window")
-   * [Stored procedures](/en/sql-reference-stored-procedures "Stored procedures")
-5. [Class reference](/en/sql-reference-classes "Class reference")
-6. [Scripting reference](/en/sql-reference-snowflake-scripting "Scripting reference")
-7. [General reference](/en/sql-reference "General reference")
-8. [API reference](/en/api-reference "API reference")
-
-[Reference](/en/reference)[Function and stored procedure reference](/en/sql-reference-functions)AI FunctionsAI\_TRANSLATE
-
 Categories:
-:   [String & binary functions](/sql-reference/functions-string) (AI Functions)
+:   [String & binary functions](https://docs.snowflake.com/sql-reference/functions-string) (AI Functions)
 
-# AI\_TRANSLATE[¶](#ai_translate)
+# AI\_TRANSLATE
 
 Translates the given input text from one supported language to another.
 
-## Syntax[¶](#syntax)
-
-Copy codeExpand code block
+## Syntax
 
 ```
 AI_TRANSLATE(
     <text>, <source_language>, <target_language> [, <return_error_details> ] )
 ```
 
-## Arguments[¶](#arguments)
+## Arguments
 
 `text`
 :   A string containing the text to be translated.
 
 `source_language`
-:   A string specifying the language code for the language the text is currently in. See [Usage notes](#usage-notes) for a list of
+:   A string specifying the language code for the language the text is currently in. See [Usage notes](https://docs.snowflake.com/en/sql-reference/functions/ai_translate#usage-notes) for a list of
     supported language codes. If the source language code is an empty string, `''`, the source language is
     automatically detected.
 
 `target_language`
-:   A string specifying the language code into which the text should be translated. See [Usage notes](#usage-notes) for a list of
+:   A string specifying the language code into which the text should be translated. See [Usage notes](https://docs.snowflake.com/en/sql-reference/functions/ai_translate#usage-notes) for a list of
     supported language codes.
 
 **Optional:**
@@ -111,13 +31,13 @@ AI_TRANSLATE(
 `return_error_details`
 :   A BOOLEAN flag that indicates whether to return error details in case of error. When set to TRUE, the function returns
     an OBJECT that contains the value and the error message, one of which is NULL depending on whether the function
-    succeeded or failed. See [Error behavior](#error-behavior) for details.
+    succeeded or failed. See [Error behavior](https://docs.snowflake.com/en/sql-reference/functions/ai_translate#error-behavior) for details.
 
-## Returns[¶](#returns)
+## Returns
 
 A string containing a translation of the original text into the target language.
 
-## Error behavior[¶](#error-behavior)
+## Error behavior
 
 By default, if AI\_TRANSLATE can’t process the input, the function returns NULL. If the query processes multiple rows,
 rows with errors return NULL and don’t prevent the query from completing.
@@ -129,14 +49,10 @@ argument. The following table shows the return value based on the `return_error_
 > | --- | --- | --- |
 > | FALSE Not passed | NULL |  |
 > | TRUE | OBJECT with `value` and `error` fields | `value`: A VARCHAR value that contains the translated text, or NULL if an error occurred. `error`: A VARCHAR value that contains the error message if an error occurred, or NULL if the function succeeded. |
->
-> Expand
->
-> Show lessSee more
 
-For more information about error handling for AI functions, see [Snowflake Cortex AI Function: Multirow error handling improvements](/release-notes/bcr-bundles/2026_02/bcr-2184).
+For more information about error handling for AI functions, see [Snowflake Cortex AI Function: Multirow error handling improvements](https://docs.snowflake.com/release-notes/bcr-bundles/2026_02/bcr-2184).
 
-## Usage notes[¶](#usage-notes)
+## Usage notes
 
 The following languages are supported by the AI\_TRANSLATE function. Use the corresponding language code for the source and
 target language.
@@ -175,29 +91,21 @@ text (input tokens) and generated translation (output tokens).
 | Swedish | `'sv'` |
 | Turkish | `'tr'` |
 
-Expand
+## Access control requirements
 
-Show lessSee more
+Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
+See [Cortex LLM privileges](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this privilege.
 
-## Access control requirements[¶](#access-control-requirements)
-
-Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
-See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this privilege.
-
-## Examples[¶](#examples)
+## Examples
 
 The following example translates each row of a table from English to German (in this example, `review_content` is
 a column from the `reviews` table):
-
-Copy code
 
 ```
 SELECT AI_TRANSLATE(review_content, 'en', 'de') FROM reviews LIMIT 10;
 ```
 
 The following example translates a fictitious product review from English to Spanish:
-
-Copy codeExpand code block
 
 ```
 SELECT AI_TRANSLATE(
@@ -207,15 +115,11 @@ SELECT AI_TRANSLATE(
 
 The result of this query is:
 
-Expand code block
-
 ```
 Sube a las pistas con la última innovación de Snowflake: "Skii Headphones", diseñados para mantener tus oídos calientes y tu alma encendida. Diseñados específicamente para el clima de nieve, estos audífonos resistentes combinan un sonido cristalino con copas de oído aisladas térmicamente para mantener el frío fuera y los ritmos dentro. Ya sea que estés esculpiendo en polvo o deslizándote por pistas preparadas, los Skii Headphones alimentarán tus aventuras en la montaña con un sonido vibrante y una pasión incesante. Mantente caliente, mantente encendido y arrasa la montaña con los Skii Headphones de Snowflake.
 ```
 
 The following example translates a call transcript from German to English:
-
-Copy codeExpand code block
 
 ```
 SELECT AI_TRANSLATE(
@@ -236,13 +140,7 @@ SELECT AI_TRANSLATE(
 ,'de','en');
 ```
 
-Show lessSee more
-
-Scroll to top
-
 The result is:
-
-Expand code block
 
 ```
 Customer: Hello
@@ -261,14 +159,8 @@ Customer: Thank you very much for your help. Goodbye!
 Agent: You're welcome. Goodbye and have a nice day!
 ```
 
-Show lessSee more
-
-Scroll to top
-
 Finally, the following example illustrates translating text from two different languages (in this case English and Spanish, or “Spanglish”) to English.
 Note that the specification of the source language is the empty string, which tells AI\_TRANSLATE to automatically detect the language.
-
-Copy code
 
 ```
 SELECT AI_TRANSLATE('Voy a likear tus fotos en Insta.', '', 'en')
@@ -280,53 +172,11 @@ This query results in:
 I'm going to like your photos on Insta.
 ```
 
-
-
-
 Note
 
-AI\_TRANSLATE is the updated version of [TRANSLATE](/sql-reference/functions/translate-snowflake-cortex).
+AI\_TRANSLATE is the updated version of [TRANSLATE](https://docs.snowflake.com/sql-reference/functions/translate-snowflake-cortex).
 For the latest functionality, use AI\_TRANSLATE.
 
-## Legal notices[¶](#legal-notices)
+## Legal notices
 
-Refer to [Snowflake AI and ML](/guides-overview-ai-features).
-
-Was this page helpful?
-
-YesNo
-
-[Visit Snowflake](https://www.snowflake.com)
-
-[Join the conversation](https://community.snowflake.com/s/)
-
-[Develop with Snowflake](https://developers.snowflake.com)
-
-[Share your feedback](/feedback)
-
-[Read the latest on our blog](https://www.snowflake.com/blog/)
-
-[Get your own certification](https://learn.snowflake.com)
-
-[Privacy Notice](https://www.snowflake.com/privacy-policy/)[Site Terms](https://www.snowflake.com/legal/snowflake-site-terms/)Cookies Settings© 2026 Snowflake, Inc. All Rights Reserved.
-
-### Alternative interfaces
-
-[Snowflake Python APIs](/developer-guide/snowflake-python-api/snowflake-python-overview)[Snowflake REST APIs](/developer-guide/snowflake-rest-api/snowflake-rest-api)[Snowflake CLI](/developer-guide/snowflake-cli/index)
-
-See all interfaces
-
-On this page
-
-1. [Syntax](#syntax)
-2. [Arguments](#arguments)
-3. [Returns](#returns)
-4. [Error behavior](#error-behavior)
-5. [Usage notes](#usage-notes)
-6. [Access control requirements](#access-control-requirements)
-7. [Examples](#examples)
-8. [Legal notices](#legal-notices)
-
-Related content
-
-1. [Snowflake Cortex AI Functions (including LLM functions)](/user-guide/snowflake-cortex/aisql)
+Refer to [Snowflake AI and ML](https://docs.snowflake.com/guides-overview-ai-features).

@@ -30,13 +30,10 @@ Generate a secret for the cleanup endpoint and save it as `EXECUTOR_CLIENT_SECRE
 openssl rand -hex 32
 ```
 
+
 Deploy the Worker in your Cloudflare account:
 
-
-
-Deploy to Cloudflare
-
-
+[Deploy to Cloudflare](https://deploy.workers.cloudflare.com/?url=https://github.com/cloudflare/sandbox-sdk/tree/main/openai/agents-api)
 
 Enter these values when prompted:
 
@@ -64,7 +61,7 @@ Replace `OPENAI_WEBHOOK_SECRET` with the signing secret returned by OpenAI, then
 
 Check Worker health
 
-```javascript
+```typescript
 // Replace the illustrative IDs and URLs below with your own resource values.
 
 const response = await fetch(
@@ -172,7 +169,7 @@ When the application no longer needs the sandbox, call the reference Worker's au
 
 Clean up the Worker sandbox
 
-```javascript
+```typescript
 // Replace the illustrative IDs and URLs below with your own resource values.
 
 const response = await fetch("https://worker.example.com/executors/sess_123", {

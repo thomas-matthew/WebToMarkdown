@@ -1,53 +1,63 @@
-Python[langgraph](/python/langgraph)Agents
-
 # Agents
 
 ## Classes
 
-[Class
+Class
 
-### ToolNode
+### [ToolNode](https://reference.langchain.com/python/langgraph.prebuilt/tool_node/ToolNode)
 
 A node for executing tools in LangGraph workflows.
 
 Handles tool execution patterns including function calls, state injection,
 persistent storage, and control flow. Manages parallel execution,
-error h](/python/langgraph.prebuilt/tool_node/ToolNode)[Class
+error h
 
-### InjectedState
+Class
+
+### [InjectedState](https://reference.langchain.com/python/langgraph.prebuilt/tool_node/InjectedState)
 
 Annotation for injecting graph state into tool arguments.
 
 This annotation enables tools to access graph state without exposing state
-management details to the language model. Tools annotated with `In](/python/langgraph.prebuilt/tool_node/InjectedState)[Class
+management details to the language model. Tools annotated with `In
 
-### InjectedStore
+Class
+
+### [InjectedStore](https://reference.langchain.com/python/langgraph.prebuilt/tool_node/InjectedStore)
 
 Annotation for injecting persistent store into tool arguments.
 
 This annotation enables tools to access LangGraph's persistent storage system
-without exposing storage details to the language model. To](/python/langgraph.prebuilt/tool_node/InjectedStore)[Class
+without exposing storage details to the language model. To
 
-### ToolRuntime
+Class
+
+### [ToolRuntime](https://reference.langchain.com/python/langgraph.prebuilt/tool_node/ToolRuntime)
 
 Runtime context automatically injected into tools.
 
 Note
 
 This is distinct from `Runtime` (from `langgraph.runtime`), which is injected
-into graph nodes and middleware. `ToolRuntime` inclu](/python/langgraph.prebuilt/tool_node/ToolRuntime)[Class
+into graph nodes and middleware. `ToolRuntime` inclu
 
-### HumanResponse
+Class
 
-The response provided by a human to an interrupt, which is returned when graph execution resumes.](/python/langgraph.prebuilt/interrupt/HumanResponse)[Class
+### [HumanResponse](https://reference.langchain.com/python/langgraph.prebuilt/interrupt/HumanResponse)
 
-### AgentState
+The response provided by a human to an interrupt, which is returned when graph execution resumes.
+
+Class
+
+### [AgentState](https://reference.langchain.com/python/langgraph.prebuilt/chat_agent_executor/AgentState)
 
 deprecated
 
-The state of the agent.](/python/langgraph.prebuilt/chat_agent_executor/AgentState)[Class
+The state of the agent.
 
-### ValidationNode
+Class
+
+### [ValidationNode](https://reference.langchain.com/python/langgraph.prebuilt/tool_validator/ValidationNode)
 
 deprecated
 
@@ -57,44 +67,52 @@ It can be used either in `StateGraph` with a `'messages'` key.
 
 Note
 
-This node does not actually **run** the tools, it onl](/python/langgraph.prebuilt/tool_validator/ValidationNode)[Class
+This node does not actually **run** the tools, it onl
 
-### HumanInterruptConfig
+Class
+
+### [HumanInterruptConfig](https://reference.langchain.com/python/langgraph.prebuilt/interrupt/HumanInterruptConfig)
 
 deprecated
 
 Configuration that defines what actions are allowed for a human interrupt.
 
-This controls the available interaction options when the graph is paused for human input.](/python/langgraph.prebuilt/interrupt/HumanInterruptConfig)[Class
+This controls the available interaction options when the graph is paused for human input.
 
-### ActionRequest
+Class
+
+### [ActionRequest](https://reference.langchain.com/python/langgraph.prebuilt/interrupt/ActionRequest)
 
 deprecated
 
 Represents a request for human action within the graph execution.
 
-Contains the action type and any associated arguments needed for the action.](/python/langgraph.prebuilt/interrupt/ActionRequest)[Class
+Contains the action type and any associated arguments needed for the action.
 
-### HumanInterrupt
+Class
+
+### [HumanInterrupt](https://reference.langchain.com/python/langgraph.prebuilt/interrupt/HumanInterrupt)
 
 deprecated
 
 Represents an interrupt triggered by the graph that requires human intervention.
 
-This is passed to the `interrupt` function when execution is paused for human input.](/python/langgraph.prebuilt/interrupt/HumanInterrupt)
+This is passed to the `interrupt` function when execution is paused for human input.
 
 ## Functions
 
-[Function
+Function
 
-### tools\_condition
+### [tools\_condition](https://reference.langchain.com/python/langgraph.prebuilt/tool_node/tools_condition)
 
 Conditional routing function for tool-calling workflows.
 
 This utility function implements the standard conditional logic for ReAct-style
-agents: if the last `AIMessage` contains tool calls, route to](/python/langgraph.prebuilt/tool_node/tools_condition)[Function
+agents: if the last `AIMessage` contains tool calls, route to
 
-### create\_react\_agent
+Function
+
+### [create\_react\_agent](https://reference.langchain.com/python/langgraph.prebuilt/chat_agent_executor/create_react_agent)
 
 deprecated
 
@@ -103,10 +121,4 @@ Creates an agent graph that calls tools in a loop until a stopping condition is 
 Warning
 
 This function is deprecated in favor of
-`create_agent` from](/python/langgraph.prebuilt/chat_agent_executor/create_react_agent)
-
-Copy page
-
-### On This Page
-
-Classes10Functions2
+`create_agent` from

@@ -77,7 +77,7 @@ How you check message types depends on the SDK:
 * **Python:** check message types with `isinstance()` against classes imported from `claude_agent_sdk` (for example, `isinstance(message, ResultMessage)`).
 * **TypeScript:** check the `type` string field (for example, `message.type === "result"`). `AssistantMessage` and `UserMessage` wrap the raw API message in a `.message` field, so content blocks are at `message.message.content`, not `message.content`.
 
-> **Example: Check message types and handle results**
+> [accordion] Example: Check message types and handle results
 >
 > ```python Python theme={null}
 > import asyncio
@@ -167,13 +167,13 @@ Beyond built-in tools, you can:
 
 ### Tool permissions
 
-Claude determines which tools to call based on the task, but you control whether those calls are allowed to execute. You can auto-approve specific tools, block others entirely, or require approval for everything. Three options work together to determine what runs:
+Claude determines which tools to call based on the task, but you control whether those calls are allowed to execute. Use these options to auto-approve tools, block tools, and set the permission mode:
 
-* **`allowed_tools` / `allowedTools`** auto-approves listed tools. A read-only agent with `["Read", "Glob", "Grep"]` in its allowed tools list runs those tools without prompting, apart from reads from [network paths](https://code.claude.com/docs/en/permissions.md#network-paths). Tools not listed are still available, and calls to them that need approval fall through to the permission mode and `canUseTool`.
+* **`allowed_tools` / `allowedTools`** auto-approves listed tools. An agent with `["Read", "Glob", "Grep"]` in its allowed tools list runs those tools without prompting, with exceptions such as reads from [network paths](https://code.claude.com/docs/en/permissions.md#network-paths). Tools not listed are still available, and calls to them that need approval fall through to the permission mode and `canUseTool`.
 * **`disallowed_tools` / `disallowedTools`** blocks listed tools, regardless of other settings. See [Permissions](https://code.claude.com/docs/en/agent-sdk/permissions.md) for the order that rules are checked before a tool runs.
 * **`permission_mode` / `permissionMode`** controls how much human oversight you want. The SDK evaluates the active mode together with your allow and deny rules in a fixed order, described in [How permissions are evaluated](https://code.claude.com/docs/en/agent-sdk/permissions.md#how-permissions-are-evaluated). See [Permission mode](#permission-mode) for available modes.
 
-You can also scope individual tools with rules like `"Bash(npm *)"` to allow only specific commands. See [Permissions](https://code.claude.com/docs/en/agent-sdk/permissions.md) for the full rule syntax.
+You can also scope individual tools with rules like `"Bash(npm *)"` to auto-approve specific commands. See [Permissions](https://code.claude.com/docs/en/agent-sdk/permissions.md) for the full rule syntax.
 
 When a tool is denied, Claude receives a rejection message as the tool result and typically attempts a different approach or reports that it couldn't proceed.
 
@@ -220,9 +220,9 @@ If you don't set `effort`, Claude Code resolves the effort level itself, in the 
 
 > [!NOTE]
 >
-> `effort` trades latency and token cost for reasoning depth within each response. [Extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) is a separate feature that produces `thinking` blocks in the output, and the `display` field on `ThinkingConfig` for [Python](https://code.claude.com/docs/en/agent-sdk/python.md#thinkingconfig) or [TypeScript](https://code.claude.com/docs/en/agent-sdk/typescript.md#thinkingconfig) controls whether you receive their text. They are independent: you can set `effort: "low"` with extended thinking enabled, or `effort: "max"` without it.
+> `effort` trades latency and token cost for reasoning depth within each response. [Extended thinking](https://platform.claude.com/docs/en/build-with-claude/extended-thinking) produces `thinking` blocks in the output, and the `display` field on `ThinkingConfig` for [Python](https://code.claude.com/docs/en/agent-sdk/python.md#thinkingconfig) or [TypeScript](https://code.claude.com/docs/en/agent-sdk/typescript.md#thinkingconfig) controls whether you receive their text.
 
-Use lower effort for agents doing simple, well-scoped tasks (like listing files or running a single grep) to reduce cost and latency. Set `effort` in the top-level `query()` options for the whole session, or per subagent with the `effort` field on [`AgentDefinition`](https://code.claude.com/docs/en/agent-sdk/subagents#agentdefinition-configuration) to override the session level.
+Use lower effort for agents doing simple, well-scoped tasks, such as listing files or running a single grep, to reduce cost and latency. Set `effort` in the top-level `query()` options for the [session](https://code.claude.com/docs/en/sub-agents.md#choose-an-effort-level), or per subagent with the `effort` field on [`AgentDefinition`](https://code.claude.com/docs/en/agent-sdk/subagents#agentdefinition-configuration) to override the session level.
 
 ### Permission mode
 
@@ -231,13 +231,13 @@ The permission mode option (`permission_mode` in Python, `permissionMode` in Typ
 | Mode | Behavior | Use case |
 | :- | :- | :- |
 | `"default"` | Tool calls that need approval and aren't covered by allow rules trigger your `canUseTool` callback; no callback means deny | Interactive applications with a custom approval callback |
-| `"acceptEdits"` | Auto-approves file edits and common filesystem commands (`mkdir`, `touch`, `mv`, `cp`, etc.); other Bash commands follow default rules | You trust Claude's edits and want faster iteration, such as during prototyping or when working in an isolated directory |
-| `"plan"` | Claude explores and plans without editing your source files; file edits are never auto-approved and prompt through your `canUseTool` callback | You want Claude to propose changes without executing them, such as during code review or when you need to approve changes before they're made |
+| `"acceptEdits"` | Auto-approves file edits and common filesystem commands (`mkdir`, `touch`, `mv`, `cp`, etc.) inside your [working directories](https://code.claude.com/docs/en/permissions.md#working-directories); other Bash commands follow default rules | You trust Claude's edits and want faster iteration, such as during prototyping or when working in an isolated directory |
+| `"plan"` | Claude explores and plans. Edits made with Claude's file tools go to your `canUseTool` callback even when an allow rule matches them | You want Claude to produce a plan first, such as during code review or before a large change |
 | `"dontAsk"` | Never prompts. Tools pre-approved by [permission rules](https://code.claude.com/docs/en/settings-reference.md#permission-settings) run, and so do calls that need no approval in `default` mode, such as file reads inside your working directories. Every call that would otherwise prompt is denied, though a [mod](https://code.claude.com/docs/en/plugins/mods/overview.md) you installed can still approve [some of those calls](https://code.claude.com/docs/en/permissions.md#precedence-among-rules-hooks-and-mods). A few calls, such as [reads from network paths](https://code.claude.com/docs/en/permissions.md#network-paths), are denied even if you've allowed them. For the list, see [Don't ask mode](https://code.claude.com/docs/en/agent-sdk/permissions.md#don’t-ask-mode-dontask) | Headless agents with nobody to approve calls |
 | `"auto"` | Uses a model classifier to review actions such as shell commands and network requests, allowing or blocking each one it reviews. See [Auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode) for availability and the decision order | Autonomous agents that still want safety guardrails on tool use |
 | `"bypassPermissions"` | Runs tool calls without asking for approval, including calls to tools you didn't list in `allowedTools`. A few calls still go to your `canUseTool` callback, listed under [Bypass permissions mode](https://code.claude.com/docs/en/agent-sdk/permissions.md#bypass-permissions-mode-bypasspermissions). In the TypeScript SDK, also requires `allowDangerouslySkipPermissions: true` in `options`. Can't be used when running as root on Unix. Use only in isolated environments where the agent's actions can't affect systems you care about | CI, containers, or other isolated environments |
 
-For interactive applications, use `"default"` with a tool approval callback to surface approval prompts. For autonomous agents on a dev machine, `"acceptEdits"` auto-approves file edits and common filesystem commands (`mkdir`, `touch`, `mv`, `cp`, etc.) while still gating other `Bash` commands behind allow rules. Reserve `"bypassPermissions"` for CI, containers, or other isolated environments. See [Permissions](https://code.claude.com/docs/en/agent-sdk/permissions.md) for full details.
+For interactive applications, use `"default"` with a tool approval callback to surface approval prompts. For agents that edit files on a dev machine, use `"acceptEdits"`. Reserve `"bypassPermissions"` for CI, containers, or other isolated environments. See [Permissions](https://code.claude.com/docs/en/agent-sdk/permissions.md) for full details.
 
 ### Model
 
@@ -254,7 +254,7 @@ Here's how each component affects context in the SDK:
 | Source | When it loads | Impact |
 | :- | :- | :- |
 | **System prompt** | Every request | Small fixed cost, always present |
-| **CLAUDE.md files** | Session start, via [`settingSources`](https://code.claude.com/docs/en/agent-sdk/claude-code-features) | Full content in every request (but prompt-cached, so only the first request pays full cost) |
+| **CLAUDE.md files** | Session start, via [`settingSources`](https://code.claude.com/docs/en/agent-sdk/claude-code-features) | Full content in every request (but prompt-cached) |
 | **Tool definitions** | Every request for core built-in tools such as Bash, Read, and Edit; on demand for MCP tools and other built-in tools, which [tool search](https://code.claude.com/docs/en/agent-sdk/mcp.md#mcp-tool-search) defers by default | Every schema loads upfront in the cases under [Configure tool search](https://code.claude.com/docs/en/agent-sdk/tool-search.md#configure-tool-search) |
 | **Conversation history** | Accumulates over turns | Grows with each turn: prompts, responses, tool inputs, tool outputs |
 | **Skill descriptions** | Session start, via setting sources | Short summaries; full content loads only when invoked |
@@ -273,7 +273,7 @@ You can customize compaction behavior in several ways:
 * **`PreCompact` hook:** Run custom logic before compaction occurs, for example to archive the full transcript. The hook receives a `trigger` field (`manual` or `auto`). See [hooks](https://code.claude.com/docs/en/agent-sdk/hooks.md).
 * **Manual compaction:** Send `/compact` as a prompt string to trigger compaction on demand. Commands sent this way are ordinary SDK inputs. See [dispatch commands by name](https://code.claude.com/docs/en/agent-sdk/skills.md#dispatch-commands-by-name).
 
-> **Example: Summarization instructions in CLAUDE.md**
+> [accordion] Example: Summarization instructions in CLAUDE.md
 >
 > Add a section to your project's CLAUDE.md telling the compactor what to preserve. The header name isn't special; use any clear label.
 >
@@ -337,6 +337,7 @@ The `usage` field covers only the main agent loop. Use `modelUsage`, or `model_u
 >
 > * A single-shot `query()` call yields the final result message, then raises an error that includes the failure text, such as `Reached maximum number of turns`. The raise is intentional. Wrap the loop in a try block if your code needs to continue past it. The underlying Claude Code process also exits with a nonzero code.
 > * A streaming input session stays alive, and you can keep sending messages, except after a session crash, which emits a final `error_during_execution` result and exits the process.
+> * In TypeScript, the loop over `query()` in a streaming input session throws when the last response ends in an error result. Wrap the loop in a try block if your code needs to continue past it.
 
 The result also includes a `stop_reason` field (`string | null` in TypeScript, `str | None` in Python) indicating why the model stopped generating on its final turn. Common values are `end_turn` (model finished normally), `max_tokens` (hit the output token limit), and `refusal` (the model declined the request). On error results that the loop produced, `stop_reason` carries the value from the last assistant response before the loop ended; the result Claude Code synthesizes after a session crash carries `null`.
 

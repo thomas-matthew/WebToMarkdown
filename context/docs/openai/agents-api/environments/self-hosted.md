@@ -35,6 +35,8 @@ The executor registers with the API using an environment ID and a restricted API
 
 Prepare the files and dependencies your agent needs. Isolate environments by user or workload. Agents that share an environment can access the same files, credentials, and other resources.
 
+To enable automatic review with `review: "auto_review"`, run the standard executor in a container that supports sandboxing and permits Codex to create a sandbox. Automatic review applies a permission profile with a workspace-write baseline and restricted network access. Check the [automatic review prerequisites](https://developers.openai.com/api/docs/guides/agents-api/sessions/approvals#prepare-the-execution-environment) before enabling it.
+
 Create the working directory and install the Codex CLI inside the environment. This example uses `/workspace`:
 
 ```bash
@@ -71,7 +73,7 @@ Run this example in your application, outside the environment. If you already ha
 
 Create a session with your own environment
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const client = new OpenAI();
 
@@ -227,6 +229,7 @@ Choose a sandbox provider to run code and work with files. See [Sandbox lifecycl
 | E2B                               | [E2B setup](https://developers.openai.com/api/docs/guides/agents-api/environments/providers/e2b)                   |
 | Modal                             | [Modal setup](https://developers.openai.com/api/docs/guides/agents-api/environments/providers/modal)               |
 | Oracle Cloud Infrastructure (OCI) | [OCI setup](https://developers.openai.com/api/docs/guides/agents-api/environments/providers/oci)                   |
+| Render                            | [Render setup](https://render.com/docs/sandboxes-openai-agents-api)                   |
 | Vercel                            | [Vercel setup](https://developers.openai.com/api/docs/guides/agents-api/environments/providers/vercel)             |
 
 For webhook-managed provisioning, implement a handler using [Sandbox lifecycle](https://developers.openai.com/api/docs/guides/agents-api/environments/lifecycle#start-compute-from-webhooks) and your provider's SDK or API. Keep provisioning ownership and cleanup policies explicit.

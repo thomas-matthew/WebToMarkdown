@@ -4,19 +4,18 @@
 
 Web search allows models to access up-to-date information from the internet and provide answers with sourced citations. To enable this, use the web search tool in the Responses API or, in some cases, Chat Completions.
 
-There are three main types of web search available with OpenAI models:
+Choose a search workflow based on the question you need to answer.
 
-1. Non‑reasoning web search: The non-reasoning model sends the user’s query to the web search tool, which returns the response based on top results. There’s no internal planning and the model simply passes along the search tool’s responses. This method is fast and ideal for quick lookups.
-2. Agentic search with reasoning models is an approach where the model actively manages the search process. It can perform web searches as part of its chain of thought, analyze results, and decide whether to keep searching. This flexibility makes agentic search well suited to complex workflows, but it also means searches take longer than quick lookups. For example, you can adjust reasoning levels on models like `gpt-5.5` to change both the depth and latency of the search.
-3. Deep research is a specialized, agent-driven method for in-depth, extended investigations by reasoning models. The model conducts web searches as part of its chain of thought, often tapping into hundreds of sources. Deep research can run for several minutes and is best used with background mode. Use `gpt-5.5` with reasoning set to `high` or `xhigh`.
+- For a quick lookup, ask a model to search for a specific fact and cite its source.
+- For a question that needs several sources, use a reasoning model such as `gpt-6.2-astra`. It can refine its searches as it reads results. Use [background mode](https://developers.openai.com/api/docs/guides/background) for a request that might take several minutes.
 
 ## Choose an integration
 
-| Use case                                      | Recommended path                              | Notes                                                                                                       |
-| --------------------------------------------- | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| New web search integration                    | Responses API with `web_search` and `gpt-5.5` | Supports hosted web search controls such as filters, sources, live-access control, and longer research runs |
-| Existing Chat Completions search integration  | Chat Completions with `gpt-5-search-api`      | Use this only when you need to preserve a Chat Completions integration                                      |
-| Multi-step research or long-running reporting | `gpt-5.5` with `high` or `xhigh` reasoning    | Use background mode for reports that can take several minutes                                               |
+| Use case                                      | Recommended path                                                                                         | Notes                                                                                                       |
+| --------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| New web search integration                    | Responses API with `web_search` and `gpt-6.2-astra` | Supports hosted web search controls such as filters, sources, live-access control, and longer research runs |
+| Existing Chat Completions search integration  | Chat Completions with `gpt-5-search-api`                                                                 | Use this only when you need to preserve a Chat Completions integration                                      |
+| Multi-step research or long-running reporting | `gpt-6.2-astra` with `high` or `xhigh` reasoning    | Use background mode for reports that can take several minutes                                               |
 
 Using the [Responses API](https://developers.openai.com/api/reference/resources/responses), you can enable web search by configuring it in the `tools` array in an API request to generate content. Like any other tool, the model can choose to search the web or not based on the content of the input prompt.
 
@@ -24,12 +23,12 @@ For new Responses API integrations, use `{ "type": "web_search" }`. The earlier 
 
 Web search tool example
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const client = new OpenAI();
 
 const response = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   tools: [{ type: "web_search" }],
   input: "What was a positive news story from today?",
 });
@@ -43,7 +42,7 @@ from openai import OpenAI
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     tools=[{"type": "web_search"}],
     input="What was a positive news story from today?",
 )
@@ -65,7 +64,7 @@ import (
 func main() {
 	client := openai.NewClient()
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Tools: []responses.ToolUnionParam{
 			responses.ToolParamOfWebSearch(responses.WebSearchToolTypeWebSearch),
 		},
@@ -86,7 +85,7 @@ import com.openai.models.responses.WebSearchTool;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("What was a positive news story from today?")
         .addTool(WebSearchTool.builder().type(WebSearchTool.Type.WEB_SEARCH).build())
         .build();
@@ -105,7 +104,7 @@ using OpenAI.Responses;
 string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
 ResponsesClient client = new(key);
 
-CreateResponseOptions options = new() { Model = "gpt-6-astra" };
+CreateResponseOptions options = new() { Model = "gpt-6.2-astra" };
 options.Tools.Add(ResponseTool.CreateWebSearchTool());
 options.InputItems.Add(
     ResponseItem.CreateUserMessageItem("What was a positive news story from today?")
@@ -122,7 +121,7 @@ require "openai"
 openai = OpenAI::Client.new
 
 response = openai.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   tools: [{ type: "web_search" }],
   input: "What was a positive news story from today?"
 )
@@ -135,7 +134,7 @@ curl "https://api.openai.com/v1/responses" \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer $OPENAI_API_KEY" \
     -d '{
-        "model": "gpt-6-astra",
+        "model": "gpt-6.2-astra",
         "tools": [{"type": "web_search"}],
         "input": "what was a positive news story from today?"
 }'
@@ -143,7 +142,7 @@ curl "https://api.openai.com/v1/responses" \
 
 ```bash
 openai responses create \
-  --model gpt-6-astra \
+  --model gpt-6.2-astra \
   --raw-output \
   --transform 'output.#(type=="message").content.0.text' <<'YAML'
 tools:
@@ -167,9 +166,8 @@ Model responses that use the web search tool will include two parts:
 
 By default, the model's response will include inline citations for URLs found in the web search results. In addition to this, the `url_citation` annotation object will contain the URL, title and location of the cited source.
 
-When displaying web results or information contained in web results to end
-  users, inline citations must be made clearly visible and clickable in your
-  user interface.
+When your interface displays web results or information from them, you must
+  show inline citations as prominent, clickable links.
 
 ```json
 [
@@ -217,21 +215,24 @@ When displaying web results or information contained in web results to end
 | `web_search_preview` in Responses                       | Migrate to `web_search`                                                                                 | `web_search` supports newer controls such as `filters`, `external_web_access`, and `return_token_budget` |
 | `gpt-4o-search-preview` or `gpt-4o-mini-search-preview` | Migrate to Responses `web_search`, or use `gpt-5-search-api` if you must stay on Chat Completions       | The preview search models are deprecated and shut down on 2026-07-23                                     |
 | Chat Completions search integrations                    | Use `gpt-5-search-api`, or migrate to Responses `web_search` for more tool controls and optional search | Chat Completions search models always search before responding; Responses search is a tool               |
+| `o4-mini` in Responses                                  | Migrate to a supported reasoning model with `web_search`                                                | [The model shut down on October 23, 2026](https://developers.openai.com/api/docs/deprecations#2026-04-22-legacy-gpt-model-snapshots)  |
+
+For integrations still using `gpt-5`, web search requires reasoning effort above `minimal`.
 
 ## Search context size
 
-`search_context_size` controls how much context from web search results is made available to the model before it generates a response. Use `low` for simple lookups, `medium` for a balanced default, and `high` when the answer may require more detail from search results. This setting does not set an exact token count or guarantee a specific number of sources or citations.
+`search_context_size` controls how much context from web search results is made available to the model before it generates a response. Use `low` for a lookup that needs only a few details, `medium` for a balanced default, and `high` when the answer may require more detail from search results. This setting does not set an exact token count or guarantee a specific number of sources or citations.
 
 
 
 Set search context size
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const openai = new OpenAI();
 
 const response = await openai.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   tools: [
     {
       type: "web_search",
@@ -249,7 +250,7 @@ from openai import OpenAI
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     tools=[
         {
             "type": "web_search",
@@ -278,7 +279,7 @@ func main() {
 	tool := responses.ToolParamOfWebSearch(responses.WebSearchToolTypeWebSearch)
 	tool.OfWebSearch.SearchContextSize = responses.WebSearchToolSearchContextSizeLow
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Tools: []responses.ToolUnionParam{tool},
 		Input: responses.ResponseNewParamsInputUnion{OfString: openai.String("What movie won best picture in 2025?")},
 	})
@@ -297,7 +298,7 @@ import com.openai.models.responses.WebSearchTool;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("What movie won best picture in 2025?")
         .addTool(
             WebSearchTool.builder()
@@ -320,7 +321,7 @@ using OpenAI.Responses;
 string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
 ResponsesClient client = new(key);
 
-CreateResponseOptions options = new() { Model = "gpt-6-astra" };
+CreateResponseOptions options = new() { Model = "gpt-6.2-astra" };
 options.Tools.Add(
     ResponseTool.CreateWebSearchTool(
         searchContextSize: WebSearchToolContextSize.Low
@@ -341,7 +342,7 @@ require "openai"
 client = OpenAI::Client.new
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "What movie won best picture in 2025?",
   tools: [
     {
@@ -359,7 +360,7 @@ curl "https://api.openai.com/v1/responses" \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer $OPENAI_API_KEY" \
     -d '{
-        "model": "gpt-6-astra",
+        "model": "gpt-6.2-astra",
         "tools": [{
             "type": "web_search",
             "search_context_size": "low"
@@ -372,6 +373,8 @@ curl "https://api.openai.com/v1/responses" \
 
 
 ## Run longer web research
+
+If your research also uses private records, [run public web search and private MCP lookups in separate requests](https://developers.openai.com/api/docs/guides/tools-connectors-mcp#prompt-injection).
 
 `return_token_budget` controls how much web search result content the tool can return during a Responses API search run with GPT-5+ reasoning models. Keep the default for most requests. Set it to `unlimited` only for high-effort research or evaluation runs that need to inspect many pages and might otherwise stop at the standard returned-token cap.
 
@@ -388,9 +391,9 @@ This parameter applies only to the hosted Responses API `web_search` tool with G
 
 Run longer web searches
 
-```javascript
+```typescript
 import OpenAI from "openai";
-import { Agent, fetch } from "undici";
+import { Agent } from "undici";
 
 // Allow long research runs without automatic request retries.
 const timeout = 15 * 60 * 1000;
@@ -401,13 +404,12 @@ const dispatcher = new Agent({
 const client = new OpenAI({
   timeout,
   maxRetries: 0,
-  fetch,
   fetchOptions: { dispatcher },
 });
 
 try {
   const stream = client.responses.stream({
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     reasoning: { effort: "xhigh" },
     tools: [
       {
@@ -443,7 +445,7 @@ from openai import OpenAI
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     reasoning={"effort": "xhigh"},
     tools=[
         {
@@ -492,7 +494,7 @@ func main() {
 		"Be analytical, avoid generalities, and ensure that each section supports data-backed reasoning that could inform healthcare policy or financial modeling.",
 	}, "\n")
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model:     "gpt-6-astra",
+		Model:     "gpt-6.2-astra",
 		Reasoning: shared.ReasoningParam{Effort: shared.ReasoningEffortXhigh},
 		Tools:     []responses.ToolUnionParam{tool},
 		Input:     responses.ResponseNewParamsInputUnion{OfString: openai.String(input)},
@@ -515,7 +517,7 @@ import com.openai.models.responses.WebSearchTool;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input(
             "Research the economic impact of semaglutide on global healthcare systems. Include current figures and citations.")
         .reasoning(Reasoning.builder().effort(ReasoningEffort.XHIGH).build())
@@ -538,7 +540,7 @@ require "openai"
 
 client = OpenAI::Client.new
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "Research the economic impact of semaglutide on global healthcare systems. Include current figures and citations.",
   reasoning: { effort: :xhigh },
   tools: [
@@ -557,7 +559,7 @@ curl "https://api.openai.com/v1/responses" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "reasoning": { "effort": "xhigh" },
     "tools": [
       {
@@ -585,28 +587,31 @@ The number of sources is often greater than the number of citations. Real-time t
 
 List sources
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const client = new OpenAI();
 
-const response = await client.responses.create({
-  model: "gpt-6-astra",
-  reasoning: { effort: "low" },
-  tools: [
-    {
-      type: "web_search",
-      filters: {
-        allowed_domains: [
-          "pubmed.ncbi.nlm.nih.gov",
-          "clinicaltrials.gov",
-          "www.who.int",
-          "www.cdc.gov",
-          "www.fda.gov",
-        ],
-        blocked_domains: ["reddit.com", "quora.com", "wikipedia.org"],
-      },
+const tools: OpenAI.Responses.Tool[] = [
+  {
+    type: "web_search",
+    filters: {
+      allowed_domains: [
+        "pubmed.ncbi.nlm.nih.gov",
+        "clinicaltrials.gov",
+        "www.who.int",
+        "www.cdc.gov",
+        "www.fda.gov",
+      ],
+      // @ts-expect-error The published SDK omits this documented API filter.
+      blocked_domains: ["reddit.com", "quora.com", "wikipedia.org"],
     },
-  ],
+  },
+];
+
+const response = await client.responses.create({
+  model: "gpt-6.2-astra",
+  reasoning: { effort: "low" },
+  tools,
   tool_choice: "auto",
   include: ["web_search_call.action.sources"],
   input:
@@ -622,7 +627,7 @@ from openai import OpenAI
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     reasoning={"effort": "low"},
     tools=[
         {
@@ -671,7 +676,7 @@ func main() {
 	}
 	tool.OfWebSearch.Filters.SetExtraFields(map[string]any{"blocked_domains": []string{"reddit.com", "quora.com", "wikipedia.org"}})
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model:     "gpt-6-astra",
+		Model:     "gpt-6.2-astra",
 		Reasoning: shared.ReasoningParam{Effort: shared.ReasoningEffortLow},
 		Tools:     []responses.ToolUnionParam{tool},
 		Include:   []responses.ResponseIncludable{responses.ResponseIncludableWebSearchCallActionSources},
@@ -697,7 +702,7 @@ import java.util.List;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("Search for how semaglutide is used in the treatment of diabetes.")
         .reasoning(Reasoning.builder().effort(ReasoningEffort.LOW).build())
         .addInclude(ResponseIncludable.of("web_search_call.action.sources"))
@@ -740,7 +745,7 @@ require "openai"
 client = OpenAI::Client.new
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   reasoning: { effort: :low },
   input: "Search for how semaglutide is used in the treatment of diabetes.",
   include: ["web_search_call.action.sources"],
@@ -779,7 +784,7 @@ curl "https://api.openai.com/v1/responses" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "reasoning": { "effort": "low" },
     "tools": [
       {
@@ -826,23 +831,26 @@ To inspect raw image results, include `web_search_call.results` in the request a
 
 Search for images
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const client = new OpenAI();
 
-const response = await client.responses.create({
-  model: "gpt-6-astra",
-  reasoning: { effort: "low" },
-  tools: [
-    {
-      type: "web_search",
-      search_content_types: ["image", "text"],
-      image_settings: {
-        max_results: 3,
-        caption: true,
-      },
+const tools: OpenAI.Responses.Tool[] = [
+  {
+    type: "web_search",
+    // @ts-expect-error The published SDK omits the documented image-search options.
+    search_content_types: ["image", "text"],
+    image_settings: {
+      max_results: 3,
+      caption: true,
     },
-  ],
+  },
+];
+
+const response = await client.responses.create({
+  model: "gpt-6.2-astra",
+  reasoning: { effort: "low" },
+  tools,
   include: ["web_search_call.results"],
   input:
     "Search for recent images and supporting text sources about the Golden Gate Bridge at sunset.",
@@ -857,7 +865,7 @@ from openai import OpenAI
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     reasoning={"effort": "low"},
     tools=[
         {
@@ -896,7 +904,7 @@ func main() {
 		"image_settings":       map[string]any{"max_results": 3, "caption": true},
 	})
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model:     "gpt-6-astra",
+		Model:     "gpt-6.2-astra",
 		Reasoning: shared.ReasoningParam{Effort: shared.ReasoningEffortLow},
 		Tools:     []responses.ToolUnionParam{tool},
 		Include:   []responses.ResponseIncludable{responses.ResponseIncludableWebSearchCallResults},
@@ -923,7 +931,7 @@ import java.util.Map;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input(
             "Search for recent images and supporting text sources about the Golden Gate Bridge at sunset.")
         .reasoning(Reasoning.builder().effort(ReasoningEffort.LOW).build())
@@ -951,7 +959,7 @@ require "openai"
 client = OpenAI::Client.new
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   reasoning: { effort: :low },
   input: "Search for recent images and supporting text sources about the Golden Gate Bridge at sunset.",
   include: ["web_search_call.results"],
@@ -975,7 +983,7 @@ curl "https://api.openai.com/v1/responses" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "reasoning": { "effort": "low" },
     "tools": [
       {
@@ -1030,19 +1038,16 @@ To refine search results based on geography, you can specify an approximate user
 - The `country` field is a two-letter [ISO country code](https://en.wikipedia.org/wiki/ISO_3166-1), like `US`.
 - The `timezone` field is an [IANA timezone](https://timeapi.io/documentation/iana-timezones) like `America/Chicago`.
 
-Note that user location is not supported for deep research models using web
-  search.
-
 
 
 Customizing user location
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const openai = new OpenAI();
 
 const response = await openai.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   tools: [
     {
       type: "web_search",
@@ -1065,7 +1070,7 @@ from openai import OpenAI
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     tools=[
         {
             "type": "web_search",
@@ -1104,7 +1109,7 @@ func main() {
 		Region:  openai.String("London"),
 	}
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Tools: []responses.ToolUnionParam{tool},
 		Input: responses.ResponseNewParamsInputUnion{OfString: openai.String("What are the best restaurants near me?")},
 	})
@@ -1123,7 +1128,7 @@ import com.openai.models.responses.WebSearchTool;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("What are the best restaurants near me?")
         .addTool(
             WebSearchTool.builder()
@@ -1152,7 +1157,7 @@ using OpenAI.Responses;
 string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
 ResponsesClient client = new(key);
 
-CreateResponseOptions options = new() { Model = "gpt-6-astra" };
+CreateResponseOptions options = new() { Model = "gpt-6.2-astra" };
 options.Tools.Add(
     ResponseTool.CreateWebSearchTool(
         userLocation: WebSearchToolLocation.CreateApproximateLocation(
@@ -1177,7 +1182,7 @@ require "openai"
 client = OpenAI::Client.new
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "What are the best restaurants near me?",
   tools: [
     {
@@ -1200,7 +1205,7 @@ curl "https://api.openai.com/v1/responses" \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer $OPENAI_API_KEY" \
     -d '{
-        "model": "gpt-6-astra",
+        "model": "gpt-6.2-astra",
         "tools": [{
             "type": "web_search",
             "user_location": {
@@ -1236,7 +1241,7 @@ curl "https://api.openai.com/v1/responses" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "tools": [
       { "type": "web_search", "external_web_access": false }
     ],
@@ -1245,12 +1250,12 @@ curl "https://api.openai.com/v1/responses" \
   }'
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const client = new OpenAI();
 
 const response = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   tools: [{ type: "web_search", external_web_access: false }],
   tool_choice: "auto",
   input: "Find when the Eiffel Tower opened to the public and cite the source.",
@@ -1265,7 +1270,7 @@ from openai import OpenAI
 client = OpenAI()
 
 resp = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     tools=[{"type": "web_search", "external_web_access": False}],
     tool_choice="auto",
     input="Find when the Eiffel Tower opened to the public and cite the source.",
@@ -1289,7 +1294,7 @@ func main() {
 	tool := responses.ToolParamOfWebSearch(responses.WebSearchToolTypeWebSearch)
 	tool.OfWebSearch.SetExtraFields(map[string]any{"external_web_access": false})
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Tools: []responses.ToolUnionParam{tool},
 		Input: responses.ResponseNewParamsInputUnion{OfString: openai.String("Find when the Eiffel Tower opened to the public and cite the source.")},
 	})
@@ -1309,7 +1314,7 @@ import com.openai.models.responses.WebSearchTool;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("Find when the Eiffel Tower opened to the public and cite the source.")
         .addTool(
             WebSearchTool.builder()
@@ -1331,7 +1336,7 @@ require "openai"
 client = OpenAI::Client.new
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "Find when the Eiffel Tower opened to the public and cite the source.",
   tools: [
     {
@@ -1353,27 +1358,16 @@ puts(response.output_text)
 
 The Chat Completions API supports only specialized search models for web search. These models do not support Responses API `web_search` features such as domain filters, complete source lists, live-access control, and returned-token budget control.
 
-| Model                        | Context window | Limitation                                                                                                                                   |
-| ---------------------------- | -------------: | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `gpt-5-search-api`           |           200k | Uses the Chat Completions search model path                                                                                                  |
-| `gpt-4o-search-preview`      |           128k | Uses the Chat Completions search model path; [deprecated, shutdown 2026-07-23](https://developers.openai.com/api/docs/deprecations#2026-04-22-legacy-gpt-model-snapshots) |
-| `gpt-4o-mini-search-preview` |           128k | Uses the Chat Completions search model path; [deprecated, shutdown 2026-07-23](https://developers.openai.com/api/docs/deprecations#2026-04-22-legacy-gpt-model-snapshots) |
+| Model              | Context window | Limitation                                  |
+| ------------------ | -------------: | ------------------------------------------- |
+| `gpt-5-search-api` |           200k | Uses the Chat Completions search model path |
 
 #### Responses API
 
 Use the hosted `web_search` tool. The Responses API still accepts `web_search_preview` for legacy integrations, but use `web_search` for new integrations.
 
-For a larger model context window, use `gpt-5.5`. The web search context window remains 128k.
+The web search context window is limited to 128k, even when the underlying model has a larger context window. For the context limit of `gpt-6.2-astra` or another supported model, check its [model page](https://developers.openai.com/api/docs/models).
 
-| Model          | Model context window | Limitation                                                                                                                         |
-| -------------- | -------------------: | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `gpt-4.1`      |                   1M | Search context is limited to 128k                                                                                                  |
-| `gpt-4.1-mini` |                   1M | Search context is limited to 128k                                                                                                  |
-| `o4-mini`      |                 200k | Search context is limited to 128k; [deprecated, shutdown 2026-10-23](https://developers.openai.com/api/docs/deprecations#2026-04-22-legacy-gpt-model-snapshots) |
-
-For Responses API web search, the search context window is limited to 128k, even when the model context window is larger.
-
-- Web search does not support [`gpt-5`](https://developers.openai.com/api/docs/models/gpt-5) with `minimal` reasoning.
 - [`gpt-5.4`](https://developers.openai.com/api/docs/models/gpt-5.4) with reasoning effort set to `none` may produce lower-quality results.
 - Responses API web search uses the underlying model's tiered rate limits.
 - `web_search_preview` does not support `filters` or `return_token_budget`, and ignores `external_web_access`.

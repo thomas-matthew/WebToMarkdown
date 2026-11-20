@@ -16,7 +16,7 @@ Use the Responses API for non-PDF file inputs. To use text from a file in Chat C
 
 In the Responses API, `input_file` processing depends on the file type:
 
-- **PDF files**: On models with vision capabilities, such as `gpt-4o` and later models, the API extracts both text and page images and sends both to the model.
+- For **PDF files**, the API extracts both text and page images and sends both to models that accept image inputs.
 - **Non-PDF document and text files** (for example, `.docx`, `.pptx`, `.txt`, and code files): the API extracts text only.
 - **Spreadsheet files** (for example, `.xlsx`, `.csv`, `.tsv`): the API runs a spreadsheet-specific augmentation flow (described below).
 
@@ -54,11 +54,11 @@ or diagrams.
 The `detail` setting only affects PDF page image processing. Text extracted from
 the PDF is still included. Chat Completions file inputs don't support `detail`.
 
-A minimal Responses API request body with explicit high detail looks like this:
+This Responses API request sets `detail` to `high`.
 
 ```json
 {
-  "model": "gpt-4.1",
+  "model": "gpt-6.2-astra",
   "input": [
     {
       "role": "user",
@@ -78,6 +78,7 @@ A minimal Responses API request body with explicit high detail looks like this:
   ]
 }
 ```
+
 
 ## Accepted file types
 
@@ -102,12 +103,12 @@ You can provide file inputs by linking external URLs.
 
 Use an external file URL
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const client = new OpenAI();
 
 const response = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: "user",
@@ -134,7 +135,7 @@ from openai import OpenAI
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input=[
         {
             "role": "user",
@@ -170,7 +171,7 @@ func main() {
 	client := openai.NewClient()
 
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{
 			OfInputItemList: responses.ResponseInputParam{
 				responses.ResponseInputItemParamOfMessage(
@@ -209,7 +210,7 @@ import java.util.List;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .inputOfResponse(
             List.of(
                 ResponseInputItem.ofMessage(
@@ -244,7 +245,7 @@ Uri fileUrl = new(
 );
 
 ResponseResult response = await client.CreateResponseAsync(
-    "gpt-6-astra",
+    "gpt-6.2-astra",
     [
         ResponseItem.CreateUserMessageItem(
             [
@@ -266,7 +267,7 @@ require "openai"
 openai = OpenAI::Client.new
 
 response = openai.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: "user",
@@ -292,7 +293,7 @@ curl "https://api.openai.com/v1/responses" \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer $OPENAI_API_KEY" \
     -d '{
-        "model": "gpt-6-astra",
+        "model": "gpt-6.2-astra",
         "input": [
             {
                 "role": "user",
@@ -324,7 +325,7 @@ The following example uploads a file with the [Files API](https://developers.ope
 
 Upload a file
 
-```javascript
+```typescript
 import fs from "fs";
 import OpenAI from "openai";
 const client = new OpenAI();
@@ -335,7 +336,7 @@ const file = await client.files.create({
 });
 
 const response = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: "user",
@@ -364,7 +365,7 @@ client = OpenAI()
 file = client.files.create(file=open("draconomicon.pdf", "rb"), purpose="user_data")
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input=[
         {
             "role": "user",
@@ -415,7 +416,7 @@ func main() {
 	}
 
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{
 			OfInputItemList: responses.ResponseInputParam{
 				responses.ResponseInputItemParamOfMessage(
@@ -467,7 +468,7 @@ var response =
         .responses()
         .create(
             ResponseCreateParams.builder()
-                .model("gpt-6-astra")
+                .model("gpt-6.2-astra")
                 .inputOfResponse(
                     List.of(
                         ResponseInputItem.ofMessage(
@@ -501,7 +502,7 @@ OpenAIFile file = await files.UploadFileAsync(
 );
 
 ResponseResult response = await client.CreateResponseAsync(
-    "gpt-6-astra",
+    "gpt-6.2-astra",
     [
         ResponseItem.CreateUserMessageItem(
             [
@@ -529,7 +530,7 @@ file = openai.files.create(
 )
 
 response = openai.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: "user",
@@ -560,7 +561,7 @@ curl "https://api.openai.com/v1/responses" \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer $OPENAI_API_KEY" \
     -d '{
-        "model": "gpt-6-astra",
+        "model": "gpt-6.2-astra",
         "input": [
             {
                 "role": "user",
@@ -592,7 +593,7 @@ You can also send file inputs as Base64-encoded file data.
 
 Send a Base64-encoded file
 
-```javascript
+```typescript
 import fs from "fs";
 import OpenAI from "openai";
 const client = new OpenAI();
@@ -601,7 +602,7 @@ const data = fs.readFileSync("fixtures/draconomicon.pdf");
 const base64String = data.toString("base64");
 
 const response = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: "user",
@@ -635,7 +636,7 @@ with open("draconomicon.pdf", "rb") as f:
 base64_string = base64.b64encode(data).decode("utf-8")
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input=[
         {
             "role": "user",
@@ -680,7 +681,7 @@ func main() {
 	fileData := "data:application/pdf;base64," + base64.StdEncoding.EncodeToString(data)
 
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{
 			OfInputItemList: responses.ResponseInputParam{
 				responses.ResponseInputItemParamOfMessage(
@@ -725,7 +726,7 @@ String pdfData =
         .encodeToString(Files.readAllBytes(Path.of(System.getenv("OPENAI_EXAMPLE_FILE_PATH"))));
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .inputOfResponse(
             List.of(
                 ResponseInputItem.ofMessage(
@@ -756,7 +757,7 @@ ResponsesClient client = new(key);
 
 BinaryData fileBytes = BinaryData.FromBytes(await File.ReadAllBytesAsync("draconomicon.pdf"));
 ResponseResult response = await client.CreateResponseAsync(
-    "gpt-6-astra",
+    "gpt-6.2-astra",
     [
         ResponseItem.CreateUserMessageItem(
             [
@@ -783,7 +784,7 @@ require "openai"
 client = OpenAI::Client.new
 pdf_data = Base64.strict_encode64(File.binread("draconomicon.pdf"))
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: :user,
@@ -810,7 +811,7 @@ curl "https://api.openai.com/v1/responses" \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer $OPENAI_API_KEY" \
     -d '{
-        "model": "gpt-6-astra",
+        "model": "gpt-6.2-astra",
         "input": [
             {
                 "role": "user",
@@ -841,7 +842,7 @@ Keep these constraints in mind when you use file inputs:
 
 - **Token usage:** PDF parsing includes both extracted text and page images in context, which can increase token usage. In the Responses API, set `detail` to `auto` (the default), `low`, or `high` to control the amount of visual detail for PDF page images. Before deploying at scale, review pricing and token implications. [More on pricing](https://developers.openai.com/api/docs/pricing).
 - **File size limits:** A single request can include more than one file, but each file must be under 50 MB. The combined limit across all files in the request is 50 MB.
-- **Supported models:** PDF parsing that includes text and page images requires models with vision capabilities, such as `gpt-4o` and later models.
+- PDF parsing with text and page images requires a [model that accepts image inputs](https://developers.openai.com/api/docs/models).
 - **File upload purpose:** You can upload files with any supported [purpose](https://developers.openai.com/api/reference/resources/files/methods/create#files-create-purpose), but use `user_data` for files you plan to pass as model inputs.
 
 ## Full list of accepted file types
@@ -864,40 +865,36 @@ Next, you might want to explore one of these resources:
 
 
 
-  [Experiment with file inputs in the Playground
+  [Experiment with file inputs in the Playground](https://platform.openai.com/chat/edit)
 
-
-
-        Use the Playground to develop and iterate on prompts with file inputs.](https://platform.openai.com/chat/edit)
-
-
-
-
-
-  [Full API reference
-
-
-
-        Check out the API reference for more options.](https://developers.openai.com/api/reference/resources/responses)
+Use the Playground to develop and iterate on prompts with file inputs.
 
 
 
 
 
-  [Use File Search for large corpora
+
+
+  [Full API reference](https://developers.openai.com/api/reference/resources/responses)
+
+Check out the API reference for more options.
 
 
 
-        Use retrieval over chunked files when you need scalable search instead of
-      sending whole files in a single context window.](https://developers.openai.com/api/docs/guides/tools-file-search)
+
+
+
+
+  [Use File Search for large corpora](https://developers.openai.com/api/docs/guides/tools-file-search)
+
+Use retrieval over chunked files when you need scalable search instead of sending whole files in a single context window.
 
 
 
 
 
-  [Use Hosted Shell for deep spreadsheet analysis
 
 
+  [Use Hosted Shell for deep spreadsheet analysis](https://developers.openai.com/api/docs/guides/tools-shell#hosted-shell-quickstart)
 
-        Use Hosted Shell for advanced spreadsheet workflows such as joins,
-      aggregations, and charting.](https://developers.openai.com/api/docs/guides/tools-shell#hosted-shell-quickstart)
+Use Hosted Shell for advanced spreadsheet workflows such as joins, aggregations, and charting.

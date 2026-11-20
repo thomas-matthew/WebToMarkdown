@@ -1,6 +1,4 @@
-Python[langchain-core](/python/langchain-core)[caches](/python/langchain-core/caches)BaseCache
-
-Classv1.7.1 (latest)●Since v1.7
+Classv1.8.3 (latest)●Since v1.8
 
 # BaseCache
 
@@ -18,8 +16,6 @@ The default implementation of the async methods is to run the synchronous
 method in an executor. It's recommended to override the async methods
 and provide async implementations to avoid unnecessary overhead.
 
-Copy
-
 ```
 BaseCache()
 ```
@@ -30,52 +26,54 @@ BaseCache()
 
 ## Methods
 
-[method
+method
 
 lookup
 
 Look up based on `prompt` and `llm_string`.
 
 A cache implementation is expected to generate a key from the 2-tuple
-of `prompt` and `llm_string` (e.g., by concatenating them with a delimiter).](/python/langchain-core/caches/BaseCache/lookup)[method
+of `prompt` and `llm_string` (e.g., by concatenating them with a delimiter).
+
+method
 
 update
 
 Update cache based on `prompt` and `llm_string`.
 
 The `prompt` and `llm_string` are used to generate a key for the cache. The key
-should match that of the lookup method.](/python/langchain-core/caches/BaseCache/update)[method
+should match that of the lookup method.
+
+method
 
 clear
 
-Clear cache that can take additional keyword arguments.](/python/langchain-core/caches/BaseCache/clear)[method
+Clear cache that can take additional keyword arguments.
+
+method
 
 alookup
 
 Async look up based on `prompt` and `llm_string`.
 
 A cache implementation is expected to generate a key from the 2-tuple
-of `prompt` and `llm_string` (e.g., by concatenating them with a delimiter).](/python/langchain-core/caches/BaseCache/alookup)[method
+of `prompt` and `llm_string` (e.g., by concatenating them with a delimiter).
+
+method
 
 aupdate
 
 Async update cache based on `prompt` and `llm_string`.
 
 The prompt and llm\_string are used to generate a key for the cache.
-The key should match that of the look up method.](/python/langchain-core/caches/BaseCache/aupdate)[method
+The key should match that of the look up method.
+
+method
 
 aclear
 
-Async clear cache that can take additional keyword arguments.](/python/langchain-core/caches/BaseCache/aclear)
+Async clear cache that can take additional keyword arguments.
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6419339aa163a49f32d9b80ff20d6adc3b446d49/libs/core/langchain_core/caches.py#L32)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/d4dafe5839c4a6b07d71cc78697df0de9e627e21/libs/core/langchain_core/caches.py#L32)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Methods
-
-MlookupMupdateMclearMalookupMaupdateMaclear

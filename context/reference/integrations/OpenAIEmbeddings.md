@@ -1,12 +1,8 @@
-Python[langchain-openai](/python/langchain-openai)[embeddings](/python/langchain-openai/embeddings)[base](/python/langchain-openai/embeddings/base)OpenAIEmbeddings
-
-Classv1.7.3 (latest)●Since v1.3
+Classv1.8.3 (latest)●Since v1.3
 
 # OpenAIEmbeddings
 
 OpenAI embedding model integration.
-
-Copy
 
 ```
 OpenAIEmbeddings()
@@ -136,35 +132,47 @@ Copy
 
 * [Custom workflow](https://docs.langchain.com/oss/python/langchain/multi-agent/custom-workflow)
 * [Astra DB integration](https://docs.langchain.com/oss/python/integrations/vectorstores/astradb)
+* [Azure AI Search integration](https://docs.langchain.com/oss/python/integrations/vectorstores/azuresearch)
 * [Chroma integration](https://docs.langchain.com/oss/python/integrations/vectorstores/chroma)
 * [CockroachDB integrations](https://docs.langchain.com/oss/python/integrations/providers/cockroachdb)
-* [CrateDB integrations](https://docs.langchain.com/oss/python/integrations/providers/cratedb)
 
-+15 more(1 more not shown)
++15 more(2 more not shown)
 
 ## Attributes
 
-[attribute
+attribute
 
-client: Any](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/client)[attribute
+client: Any
 
-async\_client: Any](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/async_client)[attribute
+attribute
 
-model: str](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/model)[attribute
+async\_client: Any
+
+attribute
+
+model: str
+
+attribute
 
 dimensions: int | None
 
 The number of dimensions the resulting output embeddings should have.
 
-Only supported in `'text-embedding-3'` and later models.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/dimensions)[attribute
+Only supported in `'text-embedding-3'` and later models.
 
-deployment: str | None](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/deployment)[attribute
+attribute
+
+deployment: str | None
+
+attribute
 
 openai\_api\_version: str | None
 
 Version of the OpenAI API to use.
 
-Automatically inferred from env var `OPENAI_API_VERSION` if not provided.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/openai_api_version)[attribute
+Automatically inferred from env var `OPENAI_API_VERSION` if not provided.
+
+attribute
 
 openai\_api\_base: str | None
 
@@ -175,47 +183,71 @@ Resolution order (first match wins):
 
 1. Explicit `base_url` (or `openai_api_base`) kwarg.
 2. Env var `OPENAI_API_BASE` (read by LangChain at init).
-3. Env var `OPENAI_BASE_URL` (read by the underlying `openai` SDK client).](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/openai_api_base)[attribute
+3. Env var `OPENAI_BASE_URL` (read by the underlying `openai` SDK client).
 
-openai\_api\_type: str | None](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/openai_api_type)[attribute
+attribute
 
-openai\_proxy: str | None](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/openai_proxy)[attribute
+openai\_api\_type: str | None
+
+attribute
+
+openai\_proxy: str | None
+
+attribute
 
 embedding\_ctx\_length: int
 
-The maximum number of tokens to embed at once.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/embedding_ctx_length)[attribute
+The maximum number of tokens to embed at once.
 
-openai\_api\_key: SecretStr | None | Callable[[], str] | Callable[[], Awaitable[str]]
+attribute
+
+openai\_api\_key: SecretStr | Callable[[], str] | Callable[[], Awaitable[str]] | None
 
 API key to use for API calls.
 
-Automatically inferred from env var `OPENAI_API_KEY` if not provided.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/openai_api_key)[attribute
+Automatically inferred from env var `OPENAI_API_KEY` if not provided.
+
+attribute
 
 openai\_organization: str | None
 
 OpenAI organization ID to use for API calls.
 
-Automatically inferred from env var `OPENAI_ORG_ID` if not provided.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/openai_organization)[attribute
+Automatically inferred from env var `OPENAI_ORG_ID` if not provided.
 
-allowed\_special: Literal['all'] | set[str] | None](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/allowed_special)[attribute
+attribute
 
-disallowed\_special: Literal['all'] | set[str] | Sequence[str] | None](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/disallowed_special)[attribute
+allowed\_special: Literal['all'] | set[str] | None
+
+attribute
+
+disallowed\_special: Literal['all'] | set[str] | Sequence[str] | None
+
+attribute
 
 chunk\_size: int
 
-Maximum number of texts to embed in each batch](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/chunk_size)[attribute
+Maximum number of texts to embed in each batch
+
+attribute
 
 max\_retries: int
 
-Maximum number of retries to make when generating.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/max_retries)[attribute
+Maximum number of retries to make when generating.
+
+attribute
 
 request\_timeout: float | tuple[float, float] | Any | None
 
 Timeout for requests to OpenAI completion API.
 
-Can be float, `httpx.Timeout` or `None`.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/request_timeout)[attribute
+Can be float, `httpx.Timeout` or `None`.
 
-headers: Any](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/headers)[attribute
+attribute
+
+headers: Any
+
+attribute
 
 tiktoken\_enabled: bool
 
@@ -223,7 +255,9 @@ Set this to False to use HuggingFace `transformers` tokenization.
 
 For non-OpenAI providers (OpenRouter, Ollama, vLLM, etc.), consider setting
 `check_embedding_ctx_length=False` instead, as it bypasses tokenization
-entirely.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/tiktoken_enabled)[attribute
+entirely.
+
+attribute
 
 tiktoken\_model\_name: str | None
 
@@ -238,45 +272,65 @@ name. However, there are some cases where you may want to use this
 include when using Azure embeddings or when using one of the many model
 providers that expose an OpenAI-like API but with different models. In those
 cases, in order to avoid erroring when tiktoken is called, you can specify a
-model name to use here.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/tiktoken_model_name)[attribute
+model name to use here.
+
+attribute
 
 show\_progress\_bar: bool
 
-Whether to show a progress bar when embedding.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/show_progress_bar)[attribute
+Whether to show a progress bar when embedding.
+
+attribute
 
 model\_kwargs: dict[str, Any]
 
-Holds any model parameters valid for `create` call not explicitly specified.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/model_kwargs)[attribute
+Holds any model parameters valid for `create` call not explicitly specified.
+
+attribute
 
 skip\_empty: bool
 
-Whether to skip empty strings when embedding or raise an error.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/skip_empty)[attribute
+Whether to skip empty strings when embedding or raise an error.
 
-default\_headers: Mapping[str, str] | None](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/default_headers)[attribute
+attribute
 
-default\_query: Mapping[str, object] | None](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/default_query)[attribute
+default\_headers: Mapping[str, str] | None
+
+attribute
+
+default\_query: Mapping[str, object] | None
+
+attribute
 
 retry\_min\_seconds: int
 
-Min number of seconds to wait between retries](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/retry_min_seconds)[attribute
+Min number of seconds to wait between retries
+
+attribute
 
 retry\_max\_seconds: int
 
-Max number of seconds to wait between retries](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/retry_max_seconds)[attribute
+Max number of seconds to wait between retries
+
+attribute
 
 http\_client: Any | None
 
 Optional `httpx.Client`.
 
 Only used for sync invocations. Must specify `http_async_client` as well if
-you'd like a custom client for async invocations.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/http_client)[attribute
+you'd like a custom client for async invocations.
+
+attribute
 
 http\_async\_client: Any | None
 
 Optional `httpx.AsyncClient`.
 
 Only used for async invocations. Must specify `http_client` as well if you'd
-like a custom client for sync invocations.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/http_async_client)[attribute
+like a custom client for sync invocations.
+
+attribute
 
 check\_embedding\_ctx\_length: bool
 
@@ -285,52 +339,50 @@ longer than `embedding_ctx_length`.
 
 Set to `False` to send raw text strings directly to the API instead of
 tokenizing. Useful for many non-OpenAI providers (e.g. OpenRouter, Ollama,
-vLLM).](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/check_embedding_ctx_length)[attribute
+vLLM).
 
-model\_config](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/model_config)
+attribute
+
+model\_config
 
 ## Methods
 
-[method
+method
 
 build\_extra
 
-Build extra kwargs from additional params that were passed in.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/build_extra)[method
+Build extra kwargs from additional params that were passed in.
+
+method
 
 validate\_environment
 
-Validate that api key and python package exists in environment.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/validate_environment)[method
+Validate that api key and python package exists in environment.
+
+method
 
 embed\_documents
 
-Call OpenAI's embedding endpoint to embed search docs.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/embed_documents)[method
+Call OpenAI's embedding endpoint to embed search docs.
+
+method
 
 aembed\_documents
 
-Asynchronously call OpenAI's embedding endpoint to embed search docs.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/aembed_documents)[method
+Asynchronously call OpenAI's embedding endpoint to embed search docs.
+
+method
 
 embed\_query
 
-Call out to OpenAI's embedding endpoint for embedding query text.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/embed_query)[method
+Call out to OpenAI's embedding endpoint for embedding query text.
+
+method
 
 aembed\_query
 
-Call out to OpenAI's embedding endpoint async for embedding query text.](/python/langchain-openai/embeddings/base/OpenAIEmbeddings/aembed_query)
+Call out to OpenAI's embedding endpoint async for embedding query text.
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/575db57ab3658e38ba1d8c40c2bf62110c8a0c27/libs/partners/openai/langchain_openai/embeddings/base.py#L86)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/71c30f2212abbf140b4b97d9c41184682db3696b/libs/partners/openai/langchain_openai/embeddings/base.py#L85)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Related Documentation
-
-Attributes
-
-AclientAasync\_clientAmodelAdimensionsAdeploymentAopenai\_api\_versionAopenai\_api\_baseAopenai\_api\_typeAopenai\_proxyAembedding\_ctx\_lengthAopenai\_api\_keyAopenai\_organizationAallowed\_specialAdisallowed\_specialAchunk\_sizeAmax\_retriesArequest\_timeoutAheadersAtiktoken\_enabledAtiktoken\_model\_nameAshow\_progress\_barAmodel\_kwargsAskip\_emptyAdefault\_headersAdefault\_queryAretry\_min\_secondsAretry\_max\_secondsAhttp\_clientAhttp\_async\_clientAcheck\_embedding\_ctx\_lengthAmodel\_config
-
-Methods
-
-Mbuild\_extraMvalidate\_environmentMembed\_documentsMaembed\_documentsMembed\_queryMaembed\_query

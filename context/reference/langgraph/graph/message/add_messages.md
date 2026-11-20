@@ -1,6 +1,4 @@
-Python[langgraph](/python/langgraph)[graph](/python/langgraph/graph)[message](/python/langgraph/graph/message)add\_messages
-
-Functionv1.2.18 (latest)●Since v1.2
+Functionv1.2.23 (latest)●Since v1.2
 
 # add\_messages
 
@@ -8,8 +6,6 @@ Merges two lists of messages, updating existing messages by ID.
 
 By default, this ensures the state is "append-only", unless the
 new message has the same ID as an existing message.
-
-Copy
 
 ```
 add_messages(
@@ -125,12 +121,9 @@ Copy
 ## Used in Docs
 
 * [Evaluate a complex agent](https://docs.langchain.com/langsmith/evaluate-complex-agent)
-* [Graph API overview](https://docs.langchain.com/oss/python/langgraph/graph-api)
 * [How to evaluate a graph](https://docs.langchain.com/langsmith/evaluate-graph)
-* [Quickstart](https://docs.langchain.com/oss/python/langgraph/quickstart)
-* [Use the functional API](https://docs.langchain.com/oss/python/langgraph/use-functional-api)
-
-+4 more
+* [Langfuse integrations](https://docs.langchain.com/oss/python/integrations/providers/langfuse)
+* [LangChain v1 migration guide](https://docs.langchain.com/oss/python/migrate/langchain-v1)
 
 ## Parameters
 
@@ -140,12 +133,6 @@ Copy
 | `right`\* | `Messages` | The list of `Messages` (or single `Message`) to merge into the base list. |
 | `format` | `Literal['langchain-openai'] | None` | Default:`None`  The format to return messages in. If `None` then `Messages` will be returned as is. If `langchain-openai` then `Messages` will be returned as `BaseMessage` objects with their contents formatted to match OpenAI message format, meaning contents can be string, `'text'` blocks, or `'image_url'` blocks and tool responses are returned as their own `ToolMessage` objects.  Requirement  Must have `langchain-core>=0.3.11` installed to use this feature. |
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/graph/message.py#L63)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/58a6e1cc5b7dfc3619fc6e7e7573b040d554649b/libs/langgraph/langgraph/graph/message.py#L64)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Related Documentation◇Parameters

@@ -69,20 +69,20 @@ python quickstart.py
   
 
     
-JavaScript
+TypeScript
 
 
-Install the JavaScript SDK:
+Use Node.js 22.6 or later and install the TypeScript SDK:
 
 ```bash
 npm install openai
 ```
 
-Save the example as `quickstart.mjs`:
+Save the example as `quickstart.mts`:
 
 Create and run tree.py
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -113,7 +113,7 @@ try {
 Run it from your terminal:
 
 ```bash
-node quickstart.mjs
+node --experimental-strip-types quickstart.mts
 ```
 
   
@@ -206,9 +206,9 @@ Save the example as `src/main/java/AgentsApiSessionsStreamConversationExample.ja
 Create and run tree.py
 
 ```java
-import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.core.ObjectMappers;
 import com.openai.core.http.StreamResponse;
 import com.openai.models.beta.agents.AgentSessionEvent;
 import com.openai.models.beta.agents.EnvironmentParam;
@@ -216,7 +216,7 @@ import com.openai.models.beta.agents.sessions.SessionCreateParams;
 import com.openai.services.beta.agents.AgentTurnResults;
 
 OpenAIClient client = OpenAIOkHttpClient.fromEnv();
-var json = new JsonMapper();
+var json = ObjectMappers.jsonMapper();
 try (StreamResponse<AgentSessionEvent> events =
     client
         .beta()
@@ -379,15 +379,15 @@ if __name__ == "__main__":
   
 
     
-JavaScript
+TypeScript
 
     Delete the session
 
-```javascript
+```typescript
 // Replace the illustrative IDs and URLs below with your own resource values.
 import OpenAI from "openai";
 
-async function deleteSession(client, sessionId) {
+async function deleteSession(client: OpenAI, sessionId: string) {
   return client.beta.agents.sessions.delete(sessionId);
 }
 

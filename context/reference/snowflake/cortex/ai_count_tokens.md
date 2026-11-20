@@ -1,96 +1,16 @@
-1. [Overview](/en/reference "Overview")
-2. [SQL data types reference](/en/sql-reference-data-types "SQL data types reference")
-3. [SQL command reference](/en/sql-reference-commands "SQL command reference")
-4. [Function and stored procedure reference](/en/sql-reference-functions "Function and stored procedure reference")
-
-   * [Summary of functions](/en/sql-reference/intro-summary-operators-functions "Summary of functions")
-   * [All functions (alphabetical)](/en/sql-reference/functions-all "All functions (alphabetical)")
-   * [Aggregate](/en/sql-reference/functions-aggregation "Aggregate")
-   * AI Functions
-
-     * [AI\_AGG](/en/sql-reference/functions/ai_agg "AI_AGG")
-     * [AI\_CLASSIFY](/en/sql-reference/functions/ai_classify "AI_CLASSIFY")
-     * [AI\_COMPLETE](/en/sql-reference/functions/ai_complete "AI_COMPLETE")
-     * [AI\_COUNT\_TOKENS](/en/sql-reference/functions/ai_count_tokens "AI_COUNT_TOKENS")
-     * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
-     * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
-     * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
-     * [AI\_FUNCTION\_EVALUATION](/en/sql-reference/functions/ai_function_evaluation "AI_FUNCTION_EVALUATION")
-     * [AI\_FUNCTION\_OPTIMIZATION](/en/sql-reference/functions/ai_function_optimization "AI_FUNCTION_OPTIMIZATION")
-     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
-     * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
-     * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
-     * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
-     * [AI\_SIMILARITY](/en/sql-reference/functions/ai_similarity "AI_SIMILARITY")
-     * [AI\_SUMMARIZE](/en/sql-reference/functions/ai_summarize "AI_SUMMARIZE")
-     * [AI\_SUMMARIZE\_AGG](/en/sql-reference/functions/ai_summarize_agg "AI_SUMMARIZE_AGG")
-     * [AI\_TRANSCRIBE](/en/sql-reference/functions/ai_transcribe "AI_TRANSCRIBE")
-     * [AI\_TRANSLATE](/en/sql-reference/functions/ai_translate "AI_TRANSLATE")
-     * [FINETUNE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/finetune-snowflake-cortex "FINETUNE (SNOWFLAKE.CORTEX)")
-     * [SENTIMENT (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/sentiment-snowflake-cortex "SENTIMENT (SNOWFLAKE.CORTEX)")
-     * Helper functions
-
-       * [AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/agent_run-snowflake-cortex "AGENT_RUN (SNOWFLAKE.CORTEX)")
-       * [DATA\_AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/data_agent_run-snowflake-cortex "DATA_AGENT_RUN (SNOWFLAKE.CORTEX)")
-       * [THREAD\_MESSAGES (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/thread_messages-snowflake-cortex "THREAD_MESSAGES (SNOWFLAKE.CORTEX)")
-       * [EXECUTE\_AI\_EVALUATION](/en/sql-reference/functions/execute_ai_evaluation "EXECUTE_AI_EVALUATION")
-       * [GET\_AI\_EVALUATION\_DATA (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_evaluation_data-snowflake-local "GET_AI_EVALUATION_DATA (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_OBSERVABILITY\_LOGS (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_observability_logs-snowflake-local "GET_AI_OBSERVABILITY_LOGS (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_OBSERVABILITY\_EVENTS (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_observability_events-snowflake-local "GET_AI_OBSERVABILITY_EVENTS (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_RECORD\_TRACE (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_record_trace-snowflake-local "GET_AI_RECORD_TRACE (SNOWFLAKE.LOCAL)")
-       * [SEARCH\_PREVIEW (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/search_preview-snowflake-cortex "SEARCH_PREVIEW (SNOWFLAKE.CORTEX)")
-       * [SPLIT\_TEXT\_MARKDOWN\_HEADER (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/split_text_markdown_header-snowflake-cortex "SPLIT_TEXT_MARKDOWN_HEADER (SNOWFLAKE.CORTEX)")
-       * [SPLIT\_TEXT\_RECURSIVE\_CHARACTER (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/split_text_recursive_character-snowflake-cortex "SPLIT_TEXT_RECURSIVE_CHARACTER (SNOWFLAKE.CORTEX)")
-   * [Bitwise expression](/en/sql-reference/expressions-byte-bit "Bitwise expression")
-   * [Conditional expression](/en/sql-reference/expressions-conditional "Conditional expression")
-   * [Context](/en/sql-reference/functions-context "Context")
-   * [Conversion](/en/sql-reference/functions-conversion "Conversion")
-   * [Data generation](/en/sql-reference/functions-data-generation "Data generation")
-   * [Data metric](/en/sql-reference/functions-data-metric "Data metric")
-   * [Date & time](/en/sql-reference/functions-date-time "Date & time")
-   * [Differential privacy](/en/sql-reference/functions-differential-privacy "Differential privacy")
-   * [Encryption](/en/sql-reference/functions-encryption "Encryption")
-   * [File](/en/sql-reference/functions-file "File")
-   * [Geospatial](/en/sql-reference/functions-geospatial "Geospatial")
-   * [Hash](/en/sql-reference/functions-hash-scalar "Hash")
-   * [IPADDRESS](/en/sql-reference/functions-ipaddress "IPADDRESS")
-   * [Metadata](/en/sql-reference/functions-metadata "Metadata")
-   * [ML Model Monitors](/en/sql-reference/functions-model-monitors "ML Model Monitors")
-   * [Notification](/en/sql-reference/functions-notification "Notification")
-   * [Numeric](/en/sql-reference/functions-numeric "Numeric")
-   * [Organization users and organization user groups](/en/sql-reference/functions-organization-users "Organization users and organization user groups")
-   * [Period](/en/sql-reference/functions-period "Period")
-   * [Regular expressions](/en/sql-reference/functions-regexp "Regular expressions")
-   * [Semi-structured and structured data](/en/sql-reference/functions-semistructured "Semi-structured and structured data")
-   * [Snowpark Container Services](/en/sql-reference/functions-spcs "Snowpark Container Services")
-   * [String & binary](/en/sql-reference/functions-string "String & binary")
-   * [System](/en/sql-reference/functions-system "System")
-   * [Table](/en/sql-reference/functions-table "Table")
-   * [Vector](/en/sql-reference/functions-vector "Vector")
-   * [Window](/en/sql-reference/functions-window "Window")
-   * [Stored procedures](/en/sql-reference-stored-procedures "Stored procedures")
-5. [Class reference](/en/sql-reference-classes "Class reference")
-6. [Scripting reference](/en/sql-reference-snowflake-scripting "Scripting reference")
-7. [General reference](/en/sql-reference "General reference")
-8. [API reference](/en/api-reference "API reference")
-
-[Reference](/en/reference)[Function and stored procedure reference](/en/sql-reference-functions)AI FunctionsAI\_COUNT\_TOKENS
-
 Categories:
-:   [String & binary functions](/sql-reference/functions-string) (AI Functions)
+:   [String & binary functions](https://docs.snowflake.com/sql-reference/functions-string) (AI Functions)
 
-# AI\_COUNT\_TOKENS[¶](#ai_count_tokens)
+# AI\_COUNT\_TOKENS
 
 Returns an estimate of the number of **input** tokens in a prompt for the specified large language model or
 task-specific function. For functions that can take additional inputs that affect the input token count, such as model
 name or categories/labels, those inputs can also be specified.
 
-## Syntax[¶](#syntax)
+## Syntax
 
 The syntax can vary based on the function used. In general, you pass the function name, model name if applicable,
 input text, and any additional options that affect token count.
-
-Copy codeExpand code block
 
 ```
 AI_COUNT_TOKENS( <function_name>, <input_text> [, <return_error_details> ] )
@@ -101,17 +21,15 @@ AI_COUNT_TOKENS( <function_name>, <model_name>, <input_text>, <options> [, <retu
 
 AI\_COUNT\_TOKENS uses specific syntax variations for some functions. For example:
 
-Copy codeExpand code block
-
 ```
 AI_COUNT_TOKENS( 'ai_similarity', <input_text_1>, <input_text_2>, <options> [, <return_error_details> ] )
 AI_COUNT_TOKENS( 'ai_classify', <input_text>, <categories> [, <return_error_details> ] )
 AI_COUNT_TOKENS( 'ai_translate', <input_text>, <source_language>, <target_language> [, <return_error_details> ] )
 ```
 
-See [Examples](#examples) for function specific usage patterns.
+See [Examples](https://docs.snowflake.com/en/sql-reference/functions/ai_count_tokens#examples) for function specific usage patterns.
 
-## Arguments[¶](#arguments)
+## Arguments
 
 **Required:**
 
@@ -119,7 +37,7 @@ See [Examples](#examples) for function specific usage patterns.
 :   String containing the name of the function you want to base the token count on, such as `'ai_complete'` or `'ai_sentiment'`.
     The function’s name must begin with “ai\_” and use only lowercase letters.
 
-    For supported functions, see [Supported functions and models](#label-ai-count-tokens-supported).
+    For supported functions, see [Supported functions and models](https://docs.snowflake.com/en/sql-reference/functions/ai_count_tokens#label-ai-count-tokens-supported).
 
 `input_text` or `input_text_1`, `input_text_2`
 :   Input text to count the tokens in.
@@ -130,7 +48,7 @@ See [Examples](#examples) for function specific usage patterns.
 :   String containing the name of the model you want to base the token content on. Required if the function specified by
     `function_name` requires you to choose the model to use, such as AI\_COMPLETE or AI\_EMBED.
 
-    For supported model names, see [Supported functions and models](#label-ai-count-tokens-supported). Snowflake intends to add support for additional
+    For supported model names, see [Supported functions and models](https://docs.snowflake.com/en/sql-reference/functions/ai_count_tokens#label-ai-count-tokens-supported). Snowflake intends to add support for additional
     models over time.
 
 `categories`
@@ -143,14 +61,14 @@ See [Examples](#examples) for function specific usage patterns.
 `return_error_details`
 :   A BOOLEAN flag that indicates whether to return error details in case of error. When set to TRUE, the function returns
     an OBJECT that contains the value and the error message, one of which is NULL depending on whether the function
-    succeeded or failed. See [Error behavior](#error-behavior) for details.
+    succeeded or failed. See [Error behavior](https://docs.snowflake.com/en/sql-reference/functions/ai_count_tokens#error-behavior) for details.
 
-## Returns[¶](#returns)
+## Returns
 
-An [INTEGER](/sql-reference/data-types-numeric#label-data-type-integer) value that is the estimated number of *input* tokens for the input text and
+An [INTEGER](https://docs.snowflake.com/sql-reference/data-types-numeric#label-data-type-integer) value that is the estimated number of *input* tokens for the input text and
 other parameter values you provide. This value does not include output (generated) tokens.
 
-## Error behavior[¶](#error-behavior)
+## Error behavior
 
 By default, if AI\_COUNT\_TOKENS can’t process the input, the function returns NULL. If the query processes multiple rows,
 rows with errors return NULL and don’t prevent the query from completing.
@@ -162,23 +80,19 @@ argument. The following table shows the return value based on the `return_error_
 > | --- | --- | --- |
 > | FALSE Not passed | NULL |  |
 > | TRUE | OBJECT with `value` and `error` fields | `value`: An INTEGER value that is the token count, or NULL if an error occurred. `error`: A VARCHAR value that contains the error message if an error occurred, or NULL if the function succeeded. |
->
-> Expand
->
-> Show lessSee more
 
-For more information about error handling for AI functions, see [Snowflake Cortex AI Function: Multirow error handling improvements](/release-notes/bcr-bundles/2026_02/bcr-2184).
+For more information about error handling for AI functions, see [Snowflake Cortex AI Function: Multirow error handling improvements](https://docs.snowflake.com/release-notes/bcr-bundles/2026_02/bcr-2184).
 
-## Supported functions and models[¶](#supported-functions-and-models)
+## Supported functions and models
 
 AI\_COUNT\_TOKENS supports these functions:
 
-* [AI\_COMPLETE](/sql-reference/functions/ai_complete), for a model in the table below
-* [AI\_EMBED](/sql-reference/functions/ai_embed), for a model in the table below
-* [AI\_SIMILARITY](/sql-reference/functions/ai_similarity), for the default model or a model in the table below
-* [AI\_CLASSIFY](/sql-reference/functions/ai_classify), [AI\_SENTIMENT](/sql-reference/functions/ai_sentiment),
-  [AI\_SUMMARIZE](/sql-reference/functions/ai_summarize), [AI\_REDACT](/sql-reference/functions/ai_redact), and
-  [AI\_TRANSLATE](/sql-reference/functions/ai_translate), which use the default model
+* [AI\_COMPLETE](https://docs.snowflake.com/sql-reference/functions/ai_complete), for a model in the table below
+* [AI\_EMBED](https://docs.snowflake.com/sql-reference/functions/ai_embed), for a model in the table below
+* [AI\_SIMILARITY](https://docs.snowflake.com/sql-reference/functions/ai_similarity), for the default model or a model in the table below
+* [AI\_CLASSIFY](https://docs.snowflake.com/sql-reference/functions/ai_classify), [AI\_SENTIMENT](https://docs.snowflake.com/sql-reference/functions/ai_sentiment),
+  [AI\_SUMMARIZE](https://docs.snowflake.com/sql-reference/functions/ai_summarize), [AI\_REDACT](https://docs.snowflake.com/sql-reference/functions/ai_redact), and
+  [AI\_TRANSLATE](https://docs.snowflake.com/sql-reference/functions/ai_translate), which use the default model
 
 | Function | Model |
 | --- | --- |
@@ -189,12 +103,16 @@ AI\_COUNT\_TOKENS supports these functions:
 | AI\_COMPLETE | `claude-opus-4-7` |
 | AI\_COMPLETE | `claude-opus-4-8` |
 | AI\_COMPLETE | `claude-opus-5` |
+| AI\_COMPLETE | `claude-opus-5-5` |
 | AI\_COMPLETE | `claude-sonnet-4-5` |
 | AI\_COMPLETE | `claude-sonnet-4-6` |
 | AI\_COMPLETE | `claude-sonnet-5` |
+| AI\_COMPLETE | `claude-sonnet-5-5` |
 | AI\_COMPLETE | `gemini-3.1-flash-lite` |
 | AI\_COMPLETE | `gemini-3.1-pro` |
 | AI\_COMPLETE | `gemini-3.5-flash` |
+| AI\_COMPLETE | `gemini-3.7-flash` |
+| AI\_COMPLETE | `gemini-3.8-flash` |
 | AI\_COMPLETE | `gemma-4-26b-a4b` |
 | AI\_COMPLETE | `gemma-4-31b` |
 | AI\_COMPLETE | `gemma-4-e2b` |
@@ -206,13 +124,20 @@ AI\_COUNT\_TOKENS supports these functions:
 | AI\_COMPLETE | `llama4-maverick` |
 | AI\_COMPLETE | `mistral-7b` |
 | AI\_COMPLETE | `mistral-large2` |
+| AI\_COMPLETE | `mistral-large3` |
 | AI\_COMPLETE | `mixtral-8x7b` |
 | AI\_COMPLETE | `openai-gpt-4.1` |
 | AI\_COMPLETE | `openai-gpt-5` |
 | AI\_COMPLETE | `openai-gpt-5-mini` |
 | AI\_COMPLETE | `openai-gpt-5-nano` |
+| AI\_COMPLETE | `openai-gpt-5.2` |
+| AI\_COMPLETE | `openai-gpt-5.4` |
 | AI\_COMPLETE | `openai-gpt-5.4-mini` |
 | AI\_COMPLETE | `openai-gpt-5.4-nano` |
+| AI\_COMPLETE | `openai-gpt-5.6-luna` |
+| AI\_COMPLETE | `openai-gpt-5.6-terra` |
+| AI\_COMPLETE | `openai-gpt-6-luna` |
+| AI\_COMPLETE | `openai-gpt-6.1-sol` |
 | AI\_COMPLETE | `qwen3-32b` |
 | AI\_COMPLETE | `qwen3-next-80b-a3b` |
 | AI\_COMPLETE | `qwen3-vl-235b-a22b` |
@@ -233,11 +158,7 @@ AI\_COUNT\_TOKENS supports these functions:
 | AI\_SIMILARITY | `snowflake-arctic-embed-m-v1.5` |
 | AI\_SIMILARITY | `voyage-multilingual-2` |
 
-Expand
-
-Show lessSee more
-
-## Usage notes[¶](#usage-notes)
+## Usage notes
 
 * Although function names are usually written in all uppercase, use only lowercase letters in function and model
   names.
@@ -246,22 +167,22 @@ Show lessSee more
 * AI\_COUNT\_TOKENS accepts only text, not image, audio, or video inputs.
 * AI\_COUNT\_TOKENS estimates input tokens only. It does not estimate output (generated) tokens, which also
   contribute to billing. To see actual billed input and output tokens for a query, use the
-  [CORTEX\_FUNCTIONS\_QUERY\_USAGE\_HISTORY](/sql-reference/account-usage/cortex_functions_query_usage_history) view.
-* The accuracy of the token count depends on the function and model. See [Token count accuracy](#token-count-accuracy) for details.
-* When you use [AI\_COMPLETE](/sql-reference/functions/ai_complete) with the `response_format` argument (structured
+  [CORTEX\_FUNCTIONS\_QUERY\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_functions_query_usage_history) view.
+* The accuracy of the token count depends on the function and model. See [Token count accuracy](https://docs.snowflake.com/en/sql-reference/functions/ai_count_tokens#token-count-accuracy) for details.
+* When you use [AI\_COMPLETE](https://docs.snowflake.com/sql-reference/functions/ai_complete) with the `response_format` argument (structured
   output) on Anthropic Claude models, additional request content is generated to support structured output. This
   content is included in the billed input tokens but is not reflected in the AI\_COUNT\_TOKENS estimate. As a result, the
   billed input token count for these requests can be materially higher than the estimated token count.
-* When you use [AI\_TRANSLATE](/sql-reference/functions/ai_translate), AI\_COUNT\_TOKENS estimates the tokens in the source
+* When you use [AI\_TRANSLATE](https://docs.snowflake.com/sql-reference/functions/ai_translate), AI\_COUNT\_TOKENS estimates the tokens in the source
   text only. The billed token count also includes the generated translation, so the billed total is higher than the
   estimate.
-* When you use [AI\_SUMMARIZE](/sql-reference/functions/ai_summarize) or
-  [AI\_REDACT](/sql-reference/functions/ai_redact), AI\_COUNT\_TOKENS estimates the tokens in the source text only. The
+* When you use [AI\_SUMMARIZE](https://docs.snowflake.com/sql-reference/functions/ai_summarize) or
+  [AI\_REDACT](https://docs.snowflake.com/sql-reference/functions/ai_redact), AI\_COUNT\_TOKENS estimates the tokens in the source text only. The
   billed token count also includes the generated text, so the billed total is higher than the estimate.
 * AI\_COUNT\_TOKENS only incurs compute costs and does not bill based on token count.
 * You can call AI\_COUNT\_TOKENS in all regions, even when a supported model isn’t available in that region.
 
-### Token count accuracy[¶](#token-count-accuracy)
+### Token count accuracy
 
 The following table shows the measured accuracy for synthetic plain-text prompts with target lengths of about 100,
 1,000, and 10,000 tokens.
@@ -324,17 +245,11 @@ and the verified input-token count. Exact means the estimate matched the verifie
 | AI\_CLASSIFY | Default model | Exact |
 | AI\_SENTIMENT | Default model | Exact |
 
-Expand
+## Examples
 
-Show lessSee more
-
-## Examples[¶](#examples)
-
-### AI\_COMPLETE example[¶](#ai_complete-example)
+### AI\_COMPLETE example
 
 The following SQL statement counts the number of tokens in a prompt for AI\_COMPLETE and the `llama3.3-70b` model:
-
-Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_complete', 'llama3.3-70b', 'Summarize the insights from this
@@ -353,12 +268,10 @@ Response:
 158
 ```
 
-### AI\_COMPLETE with structured output example[¶](#ai_complete-with-structured-output-example)
+### AI\_COMPLETE with structured output example
 
 The following SQL statement estimates the input tokens for an AI\_COMPLETE call that uses the `response_format`
 argument (structured output) on an Anthropic Claude model:
-
-Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS(
@@ -385,10 +298,6 @@ SELECT AI_COUNT_TOKENS(
 );
 ```
 
-Show lessSee more
-
-Scroll to top
-
 Response:
 
 ```
@@ -399,13 +308,11 @@ Note
 
 Structured output on Claude models generates additional request content that is billed as input tokens but is not
 reflected in this estimate, so the billed input token count can be materially higher than the estimated token count.
-See [Usage notes](#usage-notes) for details.
+See [Usage notes](https://docs.snowflake.com/en/sql-reference/functions/ai_count_tokens#usage-notes) for details.
 
-### AI\_EMBED example[¶](#ai_embed-example)
+### AI\_EMBED example
 
 The following SQL statement counts the number of tokens in text being embedded using the AI\_EMBED function and the `nv-embed-qa-4` model:
-
-Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_embed', 'nv-embed-qa-4', '"I finally splurged on these after months
@@ -423,11 +330,9 @@ Response:
 142
 ```
 
-### AI\_CLASSIFY examples[¶](#ai_classify-examples)
+### AI\_CLASSIFY examples
 
 This example calculates the total number of input tokens required for text classification with given input and labels:
-
-Copy code
 
 ```
 SELECT AI_COUNT_TOKENS('ai_classify',
@@ -448,8 +353,6 @@ Response:
 ```
 
 The following example adds per-label descriptions and an overall task description to the previous example:
-
-Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_classify',
@@ -474,8 +377,6 @@ Response:
 
 The following example builds upon the previous two examples by adding label examples:
 
-Copy codeExpand code block
-
 ```
 SELECT AI_COUNT_TOKENS('ai_classify',
   'One day I will see the world and learn to cook my favorite dishes',
@@ -498,21 +399,15 @@ SELECT AI_COUNT_TOKENS('ai_classify',
 );
 ```
 
-Show lessSee more
-
-Scroll to top
-
 Response:
 
 ```
 298
 ```
 
-### AI\_SENTIMENT examples[¶](#ai_sentiment-examples)
+### AI\_SENTIMENT examples
 
 The following SQL statement counts the number of tokens in text being analyzed for sentiment using the AI\_SENTIMENT function:
-
-Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_sentiment',
@@ -526,8 +421,6 @@ Response:
 ```
 
 The following example adds labels to the previous example:
-
-Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_sentiment',
@@ -546,11 +439,9 @@ Response:
 148
 ```
 
-### AI\_SIMILARITY examples[¶](#ai_similarity-examples)
+### AI\_SIMILARITY examples
 
 The following SQL statement counts the number of tokens in an AI\_SIMILARITY call that uses the default model.
-
-Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_similarity',
@@ -570,8 +461,6 @@ Response:
 
 The following SQL statement counts the number of tokens in an AI\_SIMILARITY that uses the `e5-base-v2` model:
 
-Copy codeExpand code block
-
 ```
 SELECT AI_COUNT_TOKENS('ai_similarity',
   'The plot is fast and the characters feel real. This book kept me awake all night
@@ -588,12 +477,10 @@ Response:
 92
 ```
 
-### AI\_TRANSLATE example[¶](#ai_translate-example)
+### AI\_TRANSLATE example
 
 The following SQL statement counts the number of tokens used by AI\_TRANSLATE when translating text from English to
 German.
-
-Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_translate',
@@ -608,11 +495,9 @@ Response:
 51
 ```
 
-### AI\_REDACT examples[¶](#ai_redact-examples)
+### AI\_REDACT examples
 
 The following SQL statement counts the number of input tokens for a basic AI\_REDACT request:
-
-Copy codeExpand code block
 
 ```
 SELECT AI_COUNT_TOKENS('ai_redact',
@@ -627,8 +512,6 @@ Response:
 
 The following example includes a `categories` argument to estimate tokens when redacting only names and email addresses:
 
-Copy code
-
 ```
 SELECT AI_COUNT_TOKENS('ai_redact',
   'My name is John and I live at twenty third street, San Francisco.',
@@ -641,62 +524,11 @@ Response:
 441
 ```
 
-
-
-
 Note
 
-AI\_COUNT\_TOKENS is the updated version of [COUNT\_TOKENS](/sql-reference/functions/count_tokens-snowflake-cortex).
+AI\_COUNT\_TOKENS is the updated version of [COUNT\_TOKENS](https://docs.snowflake.com/sql-reference/functions/count_tokens-snowflake-cortex).
 For the latest functionality, use AI\_COUNT\_TOKENS.
 
-## Legal notices[¶](#legal-notices)
+## Legal notices
 
-Refer to [Snowflake AI and ML](/guides-overview-ai-features).
-
-Was this page helpful?
-
-YesNo
-
-[Visit Snowflake](https://www.snowflake.com)
-
-[Join the conversation](https://community.snowflake.com/s/)
-
-[Develop with Snowflake](https://developers.snowflake.com)
-
-[Share your feedback](/feedback)
-
-[Read the latest on our blog](https://www.snowflake.com/blog/)
-
-[Get your own certification](https://learn.snowflake.com)
-
-[Privacy Notice](https://www.snowflake.com/privacy-policy/)[Site Terms](https://www.snowflake.com/legal/snowflake-site-terms/)Cookies Settings© 2026 Snowflake, Inc. All Rights Reserved.
-
-### Alternative interfaces
-
-[Snowflake Python APIs](/developer-guide/snowflake-python-api/snowflake-python-overview)[Snowflake REST APIs](/developer-guide/snowflake-rest-api/snowflake-rest-api)[Snowflake CLI](/developer-guide/snowflake-cli/index)
-
-See all interfaces
-
-On this page
-
-1. [Syntax](#syntax)
-2. [Arguments](#arguments)
-3. [Returns](#returns)
-4. [Error behavior](#error-behavior)
-5. [Supported functions and models](#supported-functions-and-models)
-6. [Usage notes](#usage-notes)
-7. [Token count accuracy](#token-count-accuracy)
-8. [Examples](#examples)
-9. [AI\_COMPLETE example](#ai_complete-example)
-10. [AI\_COMPLETE with structured output example](#ai_complete-with-structured-output-example)
-11. [AI\_EMBED example](#ai_embed-example)
-12. [AI\_CLASSIFY examples](#ai_classify-examples)
-13. [AI\_SENTIMENT examples](#ai_sentiment-examples)
-14. [AI\_SIMILARITY examples](#ai_similarity-examples)
-15. [AI\_TRANSLATE example](#ai_translate-example)
-16. [AI\_REDACT examples](#ai_redact-examples)
-17. [Legal notices](#legal-notices)
-
-Related content
-
-1. [Snowflake Cortex AI Functions (including LLM functions)](/user-guide/snowflake-cortex/aisql)
+Refer to [Snowflake AI and ML](https://docs.snowflake.com/guides-overview-ai-features).

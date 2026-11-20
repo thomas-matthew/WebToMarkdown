@@ -1,6 +1,4 @@
-Python[langgraph](/python/langgraph)[runtime](/python/langgraph/runtime)Runtime
-
-Classv1.2.18 (latest)●Since v1.2
+Classv1.2.23 (latest)●Since v1.2
 
 # Runtime
 
@@ -71,8 +69,6 @@ Copy
 2. Create a store to persist memories and other information.
 3. Use the runtime context to access the `user_id`.
 
-Copy
-
 ```
 Runtime(
   self,
@@ -98,9 +94,9 @@ Runtime(
 * [Custom middleware](https://docs.langchain.com/oss/python/langchain/middleware/custom)
 * [Fault tolerance](https://docs.langchain.com/oss/python/langgraph/fault-tolerance)
 * [Going to production](https://docs.langchain.com/oss/python/deepagents/going-to-production)
-* [Graph API overview](https://docs.langchain.com/oss/python/langgraph/graph-api)
+* [Guardrails](https://docs.langchain.com/oss/python/langchain/guardrails)
 
-+11 more
++9 more
 
 ## Constructors
 
@@ -110,32 +106,38 @@ constructor
 
 | Name | Type |
 | --- | --- |
-| context | [ContextT](/python/langgraph/typing/ContextT) |
-| store | [BaseStore](/python/langgraph.store/base/BaseStore) | None |
-| stream\_writer | [StreamWriter](/python/langgraph/types/StreamWriter) |
+| context | [ContextT](https://reference.langchain.com/python/langgraph/typing/ContextT) |
+| store | [BaseStore](https://reference.langchain.com/python/langchain-core/stores/BaseStore) | None |
+| stream\_writer | [StreamWriter](https://reference.langchain.com/python/langgraph/types/StreamWriter) |
 | heartbeat | [Callable](https://docs.python.org/3/library/typing.html#typing.Callable)[[], None] |
 | previous | [Any](https://docs.python.org/3/library/typing.html#typing.Any) |
-| execution\_info | [ExecutionInfo](/python/langgraph/runtime/ExecutionInfo) | None |
-| server\_info | [ServerInfo](/python/langgraph/runtime/ServerInfo) | None |
-| control | [RunControl](/python/langgraph/runtime/RunControl) | None |
+| execution\_info | [ExecutionInfo](https://reference.langchain.com/python/langgraph/runtime/ExecutionInfo) | None |
+| server\_info | [ServerInfo](https://reference.langchain.com/python/langgraph/runtime/ServerInfo) | None |
+| control | [RunControl](https://reference.langchain.com/python/langgraph/runtime/RunControl) | None |
 
 ## Attributes
 
-[attribute
+attribute
 
 context: ContextT
 
 Static context for the graph run, like `user_id`, `db_conn`, etc.
 
-Can also be thought of as 'run dependencies'.](/python/langgraph/runtime/Runtime/context)[attribute
+Can also be thought of as 'run dependencies'.
+
+attribute
 
 store: BaseStore | None
 
-Store for the graph run, enabling persistence and memory.](/python/langgraph/runtime/Runtime/store)[attribute
+Store for the graph run, enabling persistence and memory.
+
+attribute
 
 stream\_writer: StreamWriter
 
-Function that writes to the custom stream.](/python/langgraph/runtime/Runtime/stream_writer)[attribute
+Function that writes to the custom stream.
+
+attribute
 
 heartbeat: Callable[[], None]
 
@@ -145,71 +147,69 @@ Call this from inside long-running work that does not naturally emit
 writes, stream chunks, child tasks, or LangChain callback events, to
 prevent the node from being treated as idle. It is also the only
 progress signal honored under `TimeoutPolicy(refresh_on="heartbeat")`.
-Outside an idle-timed attempt this is a no-op.](/python/langgraph/runtime/Runtime/heartbeat)[attribute
+Outside an idle-timed attempt this is a no-op.
+
+attribute
 
 previous: Any
 
 The previous return value for the given thread.
 
-Only available with the functional API when a checkpointer is provided.](/python/langgraph/runtime/Runtime/previous)[attribute
+Only available with the functional API when a checkpointer is provided.
+
+attribute
 
 execution\_info: ExecutionInfo | None
 
 Read-only execution information/metadata for the current node run.
 
-None before task preparation populates it.](/python/langgraph/runtime/Runtime/execution_info)[attribute
+None before task preparation populates it.
+
+attribute
 
 server\_info: ServerInfo | None
 
-Metadata injected by LangGraph Server. None when running open-source LangGraph without LangSmith deployments.](/python/langgraph/runtime/Runtime/server_info)[attribute
+Metadata injected by LangGraph Server. None when running open-source LangGraph without LangSmith deployments.
+
+attribute
 
 control: RunControl | None
 
 Run-scoped control plane for cooperative draining.
 
 Populated automatically during graph runs. None outside an active
-graph runtime.](/python/langgraph/runtime/Runtime/control)[attribute
+graph runtime.
 
-drain\_requested: bool](/python/langgraph/runtime/Runtime/drain_requested)[attribute
+attribute
 
-drain\_reason: str | None](/python/langgraph/runtime/Runtime/drain_reason)
+drain\_requested: bool
+
+attribute
+
+drain\_reason: str | None
 
 ## Methods
 
-[method
+method
 
 merge
 
 Merge two runtimes together.
 
-If a value is not provided in the other runtime, the value from the current runtime is used.](/python/langgraph/runtime/Runtime/merge)[method
+If a value is not provided in the other runtime, the value from the current runtime is used.
+
+method
 
 override
 
-Replace the runtime with a new runtime with the given overrides.](/python/langgraph/runtime/Runtime/override)[method
+Replace the runtime with a new runtime with the given overrides.
+
+method
 
 patch\_execution\_info
 
-Return a new runtime with selected execution\_info fields replaced.](/python/langgraph/runtime/Runtime/patch_execution_info)
+Return a new runtime with selected execution\_info fields replaced.
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/runtime.py#L124)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/58a6e1cc5b7dfc3619fc6e7e7573b040d554649b/libs/langgraph/langgraph/runtime.py#L124)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Related Documentation
-
-Constructors
-
-C\_\_init\_\_
-
-Attributes
-
-AcontextAstoreAstream\_writerAheartbeatApreviousAexecution\_infoAserver\_infoAcontrolAdrain\_requestedAdrain\_reason
-
-Methods
-
-MmergeMoverrideMpatch\_execution\_info

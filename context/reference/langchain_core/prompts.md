@@ -1,21 +1,21 @@
-Python[langchain-core](/python/langchain-core)Prompts
-
 # Prompts
 
 ## Classes
 
-[Class
+Class
 
-### PromptTemplate
+### [PromptTemplate](https://reference.langchain.com/python/langchain-core/prompts/prompt/PromptTemplate)
 
 Prompt template for a language model.
 
 A prompt template consists of a string template. It accepts a set of parameters
 from the user that can be used to generate a prompt for a language model.
 
-The te](/python/langchain-core/prompts/prompt/PromptTemplate)[Class
+The te
 
-### ChatPromptTemplate
+Class
+
+### [ChatPromptTemplate](https://reference.langchain.com/python/langchain-core/prompts/chat/ChatPromptTemplate)
 
 Prompt template for chat models.
 
@@ -27,9 +27,11 @@ from langchain_core.prompts import ChatPromptTemplate
 template = ChatPr
 
 <!--/ADMON-->
-```](/python/langchain-core/prompts/chat/ChatPromptTemplate)[Class
+```
 
-### MessagesPlaceholder
+Class
+
+### [MessagesPlaceholder](https://reference.langchain.com/python/langchain-core/prompts/chat/MessagesPlaceholder)
 
 Prompt template that assumes variable is already list of messages.
 
@@ -39,75 +41,95 @@ A placeholder which can be used to pass in a list of messages.
 from langchain_core.pr
 
 <!--/ADMON-->
-```](/python/langchain-core/prompts/chat/MessagesPlaceholder)[Class
+```
 
-### HumanMessagePromptTemplate
+Class
+
+### [HumanMessagePromptTemplate](https://reference.langchain.com/python/langchain-core/prompts/chat/HumanMessagePromptTemplate)
 
 Human message prompt template.
 
-This is a message sent from the user.](/python/langchain-core/prompts/chat/HumanMessagePromptTemplate)[Class
+This is a message sent from the user.
 
-### AIMessagePromptTemplate
+Class
+
+### [AIMessagePromptTemplate](https://reference.langchain.com/python/langchain-core/prompts/chat/AIMessagePromptTemplate)
 
 AI message prompt template.
 
-This is a message sent from the AI.](/python/langchain-core/prompts/chat/AIMessagePromptTemplate)[Class
+This is a message sent from the AI.
 
-### SystemMessagePromptTemplate
+Class
+
+### [SystemMessagePromptTemplate](https://reference.langchain.com/python/langchain-core/prompts/chat/SystemMessagePromptTemplate)
 
 System message prompt template.
 
-This is a message that is not sent to the user.](/python/langchain-core/prompts/chat/SystemMessagePromptTemplate)[Class
+This is a message that is not sent to the user.
 
-### ChatMessagePromptTemplate
+Class
 
-Chat message prompt template.](/python/langchain-core/prompts/chat/ChatMessagePromptTemplate)[Class
+### [ChatMessagePromptTemplate](https://reference.langchain.com/python/langchain-core/prompts/chat/ChatMessagePromptTemplate)
 
-### FewShotPromptTemplate
+Chat message prompt template.
 
-Prompt template that contains few shot examples.](/python/langchain-core/prompts/few_shot/FewShotPromptTemplate)[Class
+Class
 
-### FewShotChatMessagePromptTemplate
+### [FewShotPromptTemplate](https://reference.langchain.com/python/langchain-core/prompts/few_shot/FewShotPromptTemplate)
+
+Prompt template that contains few shot examples.
+
+Class
+
+### [FewShotChatMessagePromptTemplate](https://reference.langchain.com/python/langchain-core/prompts/few_shot/FewShotChatMessagePromptTemplate)
 
 Chat prompt template that supports few-shot examples.
 
 The high level structure of produced by this prompt template is a list of messages
-consisting of prefix message(s), example message(s), and suffi](/python/langchain-core/prompts/few_shot/FewShotChatMessagePromptTemplate)[Class
+consisting of prefix message(s), example message(s), and suffi
 
-### FewShotPromptWithTemplates
+Class
 
-Prompt template that contains few shot examples.](/python/langchain-core/prompts/few_shot_with_templates/FewShotPromptWithTemplates)[Class
+### [FewShotPromptWithTemplates](https://reference.langchain.com/python/langchain-core/prompts/few_shot_with_templates/FewShotPromptWithTemplates)
 
-### StructuredPrompt
+Prompt template that contains few shot examples.
 
-Structured prompt template for a language model.](/python/langchain-core/prompts/structured/StructuredPrompt)[Class
+Class
 
-### DictPromptTemplate
+### [StructuredPrompt](https://reference.langchain.com/python/langchain-core/prompts/structured/StructuredPrompt)
+
+Structured prompt template for a language model.
+
+Class
+
+### [DictPromptTemplate](https://reference.langchain.com/python/langchain-core/prompts/dict/DictPromptTemplate)
 
 Template represented by a dictionary.
 
 Recognizes variables in f-string or mustache formatted string dict values.
 
-Does NOT recognize variables in dict keys. Applies recursively.](/python/langchain-core/prompts/dict/DictPromptTemplate)[Class
+Does NOT recognize variables in dict keys. Applies recursively.
 
-### BaseChatPromptTemplate
+Class
 
-Base class for chat prompt templates.](/python/langchain-core/prompts/chat/BaseChatPromptTemplate)[Class
+### [BaseChatPromptTemplate](https://reference.langchain.com/python/langchain-core/prompts/chat/BaseChatPromptTemplate)
 
-### BaseStringMessagePromptTemplate
+Base class for chat prompt templates.
 
-Base class for message prompt templates that use a string prompt template.](/python/langchain-core/prompts/chat/BaseStringMessagePromptTemplate)[Class
+Class
 
-### BaseMessagePromptTemplate
+### [BaseStringMessagePromptTemplate](https://reference.langchain.com/python/langchain-core/prompts/chat/BaseStringMessagePromptTemplate)
 
-Base class for message prompt templates.](/python/langchain-core/prompts/message/BaseMessagePromptTemplate)[Class
+Base class for message prompt templates that use a string prompt template.
 
-### StringPromptTemplate
+Class
 
-String prompt that exposes the format method, returning a prompt.](/python/langchain-core/prompts/string/StringPromptTemplate)
+### [BaseMessagePromptTemplate](https://reference.langchain.com/python/langchain-core/prompts/message/BaseMessagePromptTemplate)
 
-Copy page
+Base class for message prompt templates.
 
-### On This Page
+Class
 
-Classes16
+### [StringPromptTemplate](https://reference.langchain.com/python/langchain-core/prompts/string/StringPromptTemplate)
+
+String prompt that exposes the format method, returning a prompt.

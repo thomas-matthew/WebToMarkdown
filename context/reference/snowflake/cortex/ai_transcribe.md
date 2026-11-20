@@ -1,88 +1,10 @@
-1. [Overview](/en/reference "Overview")
-2. [SQL data types reference](/en/sql-reference-data-types "SQL data types reference")
-3. [SQL command reference](/en/sql-reference-commands "SQL command reference")
-4. [Function and stored procedure reference](/en/sql-reference-functions "Function and stored procedure reference")
-
-   * [Summary of functions](/en/sql-reference/intro-summary-operators-functions "Summary of functions")
-   * [All functions (alphabetical)](/en/sql-reference/functions-all "All functions (alphabetical)")
-   * [Aggregate](/en/sql-reference/functions-aggregation "Aggregate")
-   * AI Functions
-
-     * [AI\_AGG](/en/sql-reference/functions/ai_agg "AI_AGG")
-     * [AI\_CLASSIFY](/en/sql-reference/functions/ai_classify "AI_CLASSIFY")
-     * [AI\_COMPLETE](/en/sql-reference/functions/ai_complete "AI_COMPLETE")
-     * [AI\_COUNT\_TOKENS](/en/sql-reference/functions/ai_count_tokens "AI_COUNT_TOKENS")
-     * [AI\_EMBED](/en/sql-reference/functions/ai_embed "AI_EMBED")
-     * [AI\_EXTRACT](/en/sql-reference/functions/ai_extract "AI_EXTRACT")
-     * [AI\_FILTER](/en/sql-reference/functions/ai_filter "AI_FILTER")
-     * [AI\_FUNCTION\_EVALUATION](/en/sql-reference/functions/ai_function_evaluation "AI_FUNCTION_EVALUATION")
-     * [AI\_FUNCTION\_OPTIMIZATION](/en/sql-reference/functions/ai_function_optimization "AI_FUNCTION_OPTIMIZATION")
-     * [AI\_MULTI\_EMBED](/en/sql-reference/functions/ai_multi_embed "AI_MULTI_EMBED")
-     * [AI\_PARSE\_DOCUMENT](/en/sql-reference/functions/ai_parse_document "AI_PARSE_DOCUMENT")
-     * [AI\_REDACT](/en/sql-reference/functions/ai_redact "AI_REDACT")
-     * [AI\_SENTIMENT](/en/sql-reference/functions/ai_sentiment "AI_SENTIMENT")
-     * [AI\_SIMILARITY](/en/sql-reference/functions/ai_similarity "AI_SIMILARITY")
-     * [AI\_SUMMARIZE](/en/sql-reference/functions/ai_summarize "AI_SUMMARIZE")
-     * [AI\_SUMMARIZE\_AGG](/en/sql-reference/functions/ai_summarize_agg "AI_SUMMARIZE_AGG")
-     * [AI\_TRANSCRIBE](/en/sql-reference/functions/ai_transcribe "AI_TRANSCRIBE")
-     * [AI\_TRANSLATE](/en/sql-reference/functions/ai_translate "AI_TRANSLATE")
-     * [FINETUNE (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/finetune-snowflake-cortex "FINETUNE (SNOWFLAKE.CORTEX)")
-     * [SENTIMENT (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/sentiment-snowflake-cortex "SENTIMENT (SNOWFLAKE.CORTEX)")
-     * Helper functions
-
-       * [AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/agent_run-snowflake-cortex "AGENT_RUN (SNOWFLAKE.CORTEX)")
-       * [DATA\_AGENT\_RUN (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/data_agent_run-snowflake-cortex "DATA_AGENT_RUN (SNOWFLAKE.CORTEX)")
-       * [THREAD\_MESSAGES (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/thread_messages-snowflake-cortex "THREAD_MESSAGES (SNOWFLAKE.CORTEX)")
-       * [EXECUTE\_AI\_EVALUATION](/en/sql-reference/functions/execute_ai_evaluation "EXECUTE_AI_EVALUATION")
-       * [GET\_AI\_EVALUATION\_DATA (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_evaluation_data-snowflake-local "GET_AI_EVALUATION_DATA (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_OBSERVABILITY\_LOGS (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_observability_logs-snowflake-local "GET_AI_OBSERVABILITY_LOGS (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_OBSERVABILITY\_EVENTS (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_observability_events-snowflake-local "GET_AI_OBSERVABILITY_EVENTS (SNOWFLAKE.LOCAL)")
-       * [GET\_AI\_RECORD\_TRACE (SNOWFLAKE.LOCAL)](/en/sql-reference/functions/get_ai_record_trace-snowflake-local "GET_AI_RECORD_TRACE (SNOWFLAKE.LOCAL)")
-       * [SEARCH\_PREVIEW (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/search_preview-snowflake-cortex "SEARCH_PREVIEW (SNOWFLAKE.CORTEX)")
-       * [SPLIT\_TEXT\_MARKDOWN\_HEADER (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/split_text_markdown_header-snowflake-cortex "SPLIT_TEXT_MARKDOWN_HEADER (SNOWFLAKE.CORTEX)")
-       * [SPLIT\_TEXT\_RECURSIVE\_CHARACTER (SNOWFLAKE.CORTEX)](/en/sql-reference/functions/split_text_recursive_character-snowflake-cortex "SPLIT_TEXT_RECURSIVE_CHARACTER (SNOWFLAKE.CORTEX)")
-   * [Bitwise expression](/en/sql-reference/expressions-byte-bit "Bitwise expression")
-   * [Conditional expression](/en/sql-reference/expressions-conditional "Conditional expression")
-   * [Context](/en/sql-reference/functions-context "Context")
-   * [Conversion](/en/sql-reference/functions-conversion "Conversion")
-   * [Data generation](/en/sql-reference/functions-data-generation "Data generation")
-   * [Data metric](/en/sql-reference/functions-data-metric "Data metric")
-   * [Date & time](/en/sql-reference/functions-date-time "Date & time")
-   * [Differential privacy](/en/sql-reference/functions-differential-privacy "Differential privacy")
-   * [Encryption](/en/sql-reference/functions-encryption "Encryption")
-   * [File](/en/sql-reference/functions-file "File")
-   * [Geospatial](/en/sql-reference/functions-geospatial "Geospatial")
-   * [Hash](/en/sql-reference/functions-hash-scalar "Hash")
-   * [IPADDRESS](/en/sql-reference/functions-ipaddress "IPADDRESS")
-   * [Metadata](/en/sql-reference/functions-metadata "Metadata")
-   * [ML Model Monitors](/en/sql-reference/functions-model-monitors "ML Model Monitors")
-   * [Notification](/en/sql-reference/functions-notification "Notification")
-   * [Numeric](/en/sql-reference/functions-numeric "Numeric")
-   * [Organization users and organization user groups](/en/sql-reference/functions-organization-users "Organization users and organization user groups")
-   * [Period](/en/sql-reference/functions-period "Period")
-   * [Regular expressions](/en/sql-reference/functions-regexp "Regular expressions")
-   * [Semi-structured and structured data](/en/sql-reference/functions-semistructured "Semi-structured and structured data")
-   * [Snowpark Container Services](/en/sql-reference/functions-spcs "Snowpark Container Services")
-   * [String & binary](/en/sql-reference/functions-string "String & binary")
-   * [System](/en/sql-reference/functions-system "System")
-   * [Table](/en/sql-reference/functions-table "Table")
-   * [Vector](/en/sql-reference/functions-vector "Vector")
-   * [Window](/en/sql-reference/functions-window "Window")
-   * [Stored procedures](/en/sql-reference-stored-procedures "Stored procedures")
-5. [Class reference](/en/sql-reference-classes "Class reference")
-6. [Scripting reference](/en/sql-reference-snowflake-scripting "Scripting reference")
-7. [General reference](/en/sql-reference "General reference")
-8. [API reference](/en/api-reference "API reference")
-
-[Reference](/en/reference)[Function and stored procedure reference](/en/sql-reference-functions)AI FunctionsAI\_TRANSCRIBE
-
 Categories:
-:   [File functions](/sql-reference/functions-file) (AI Functions)
+:   [File functions](https://docs.snowflake.com/sql-reference/functions-file) (AI Functions)
 
-# AI\_TRANSCRIBE[¶](#ai_transcribe)
+# AI\_TRANSCRIBE
 
 AI\_TRANSCRIBE is a fully managed SQL function that transcribes audio and video files stored in a stage, extracting
-text, timestamps, and speaker information. See [Create stage for media files](/user-guide/snowflake-cortex/ai-multimodal#label-cortex-llm-media-files) for information on creating a
+text, timestamps, and speaker information. See [Create stage for media files](https://docs.snowflake.com/user-guide/snowflake-cortex/ai-multimodal#label-cortex-llm-media-files) for information on creating a
 stage suitable for storing files for processing by AI\_TRANSCRIBE.
 
 Under the hood, AI\_TRANSCRIBE orchestrates optimized AI models for transcription and speaker diarization, processing
@@ -101,29 +23,23 @@ Speaker-level timestamps are useful for understanding who said what in meetings,
 | Word | Transcription with timestamps for each word |
 | Speaker | Indicates who is speaking, and a timestamp, at each change of speaker |
 
-Expand
-
-Show lessSee more
-
-## Syntax[¶](#syntax)
-
-Copy codeExpand code block
+## Syntax
 
 ```
 AI_TRANSCRIBE( <audio_file> [ , <options> ] [, <return_error_details> ] )
 ```
 
-## Arguments[¶](#arguments)
+## Arguments
 
 **Required:**
 
 `audio_file`
-:   A FILE type object representing an audio file. Use [TO\_FILE function](/sql-reference/functions/to_file) to create a reference to your staged file.
+:   A FILE type object representing an audio file. Use [TO\_FILE function](https://docs.snowflake.com/sql-reference/functions/to_file) to create a reference to your staged file.
 
 **Optional:**
 
 `options`
-:   An [OBJECT value](/sql-reference/data-types-semistructured#label-data-type-object) containing zero or more of the following fields.
+:   An [OBJECT value](https://docs.snowflake.com/sql-reference/data-types-semistructured#label-data-type-object) containing zero or more of the following fields.
 
     * `timestamp_granularity`: A string specifying the desired timestamp granularity. Possible values are:
 
@@ -135,9 +51,9 @@ AI_TRANSCRIBE( <audio_file> [ , <options> ] [, <return_error_details> ] )
 `return_error_details`
 :   A BOOLEAN flag that indicates whether to return error details in case of error. When set to TRUE, the function returns
     an OBJECT that contains the value and the error message, one of which is NULL depending on whether the function
-    succeeded or failed. See [Error behavior](#error-behavior) for details.
+    succeeded or failed. See [Error behavior](https://docs.snowflake.com/en/sql-reference/functions/ai_transcribe#error-behavior) for details.
 
-## Returns[¶](#returns)
+## Returns
 
 A string containing a JSON representation of the transcription result. The JSON object contains the following fields:
 
@@ -151,7 +67,7 @@ A string containing a JSON representation of the transcription result. The JSON 
   + `"speaker_label"`: The label of the speaker for the segment, provided when the `timestamp_granularity` field is set to `speaker`.
     Labels are of the form “SPEAKER\_00”, “SPEAKER\_01”, etc. and are assigned in the order speakers are detected in the audio file.
 
-## Error behavior[¶](#error-behavior)
+## Error behavior
 
 By default, if AI\_TRANSCRIBE can’t process the input, the function returns NULL. If the query processes multiple rows,
 rows with errors return NULL and don’t prevent the query from completing.
@@ -163,29 +79,21 @@ argument. The following table shows the return value based on the `return_error_
 > | --- | --- | --- |
 > | FALSE Not passed | NULL |  |
 > | TRUE | OBJECT with `value` and `error` fields | `value`: A VARCHAR value containing the transcription result, or NULL if an error occurred. `error`: A VARCHAR value that contains the error message if an error occurred, or NULL if the function succeeded. |
->
-> Expand
->
-> Show lessSee more
 
-For more information about error handling for AI functions, see [Snowflake Cortex AI Function: Multirow error handling improvements](/release-notes/bcr-bundles/2026_02/bcr-2184).
+For more information about error handling for AI functions, see [Snowflake Cortex AI Function: Multirow error handling improvements](https://docs.snowflake.com/release-notes/bcr-bundles/2026_02/bcr-2184).
 
-## Access control requirements[¶](#access-control-requirements)
+## Access control requirements
 
-Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
-See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this role.
+Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
+See [Cortex LLM privileges](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this role.
 
-## Usage notes[¶](#usage-notes)
+## Usage notes
 
 * AI\_TRANSCRIBE supports the following audio and video file formats:
 
   | Audio | AAC, FLAC, M4A, MP3, MP4, OGG, WAV, WEBM |
   | --- | --- |
   | Video | MKV, MOV, MP4, OGV, WEBM |
-
-  Expand
-
-  Show lessSee more
 
   Video files must contain at least one audio track. For all files, the audio track must be encoded with one of the
   following supported codecs: AAC, ALAC, FLAC, MP3, Opus, Vorbis, or PCM.
@@ -197,7 +105,7 @@ See [Cortex LLM privileges](/user-guide/snowflake-cortex/aisql-privileges-and-ac
 * The maximum audio file duration is 60 minutes when timestamp granularity is set to “word” or “speaker”.
   If timestamp granularity is not used, the maximum duration is 120 minutes.
 
-## Supported languages[¶](#supported-languages)
+## Supported languages
 
 AI\_TRANSCRIBE supports the following languages, which are automatically detected. Files can contain multiple
 supported languages.
@@ -240,7 +148,7 @@ excess silence before uploading.
 * Turkish
 * Ukrainian
 
-## Cost considerations[¶](#cost-considerations)
+## Cost considerations
 
 Billing for all AI Functions is based on token consumption. For transcription, each second of audio processed is 50
 tokens, regardless of language or segmentation method. A full hour of audio is therefore 180,000 tokens. Assuming
@@ -256,15 +164,13 @@ are billed at 10 seconds. To efficiently process large numbers of short audio fi
 single file and using timestamps to identify the start and end of each original file in the resulting
 transcription.
 
-## Examples[¶](#examples)
+## Examples
 
-### Text transcription[¶](#text-transcription)
+### Text transcription
 
-The following example transcribes [an audio file](/static/samples/cortex/audio/consultation.wav) stored in the
+The following example transcribes [an audio file](https://docs.snowflake.com/static/samples/cortex/audio/consultation.wav) stored in the
 `financial_consultation` stage, returning a text transcript of the entire file. The
-[TO\_FILE function](/sql-reference/functions/to_file) converts the staged file to a file reference.
-
-Copy code
+[TO\_FILE function](https://docs.snowflake.com/sql-reference/functions/to_file) converts the staged file to a file reference.
 
 ```
 SELECT AI_TRANSCRIBE(TO_FILE(
@@ -272,8 +178,6 @@ SELECT AI_TRANSCRIBE(TO_FILE(
 ```
 
 Response:
-
-Expand code block
 
 ```
 {"audio_duration":321.78,"text":"Good afternoon, Robert. Thanks for calling in
@@ -350,17 +254,11 @@ thank you deeply for your patience and understanding. I'll talk to you next
 month."}
 ```
 
-Show lessSee more
-
-Scroll to top
-
-### Word-level segmentation with timestamps[¶](#word-level-segmentation-with-timestamps)
+### Word-level segmentation with timestamps
 
 Set the timestamp granularity to “word” to extract precise timestamps for every word spoken, enabling searchable,
-navigable transcripts. Note that [this audio file](/static/samples/cortex/audio/consultation_3_sp.wav) is in
+navigable transcripts. Note that [this audio file](https://docs.snowflake.com/static/samples/cortex/audio/consultation_3_sp.wav) is in
 Spanish.
-
-Copy codeExpand code block
 
 ```
 SELECT AI_TRANSCRIBE(TO_FILE('@financial_consultation', 'consultation_3_sp.wav'),
@@ -372,8 +270,6 @@ Response:
 Note
 
 The output is truncated for brevity. The full output contains a segment for each word spoken in the audio file.
-
-Expand code block
 
 ```
 {
@@ -489,17 +385,11 @@ Expand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
-### Speaker recognition[¶](#speaker-recognition)
+### Speaker recognition
 
 Set timestamp granularity to “speaker” to detect, separate, and identify unique speakers in conversations or
-meetings. This example uses [an audio file](/static/samples/cortex/audio/consultation_5_mix_es_en.wav) with two
+meetings. This example uses [an audio file](https://docs.snowflake.com/static/samples/cortex/audio/consultation_5_mix_es_en.wav) with two
 speakers, one speaking English and the other Spanish.
-
-Copy codeExpand code block
 
 ```
 SELECT AI_TRANSCRIBE(TO_FILE('@financial_consultation', 'consultation_5_mix_es_en.wav'),
@@ -512,8 +402,6 @@ Note
 
 The output is truncated for brevity. The full output contains a segment for each conversational “turn” in the
 audio file.
-
-Expand code block
 
 ```
 {
@@ -632,23 +520,17 @@ Expand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
-### Call transcript analysis[¶](#call-transcript-analysis)
+### Call transcript analysis
 
 You can pass the output of AI\_TRANSCRIBE to other AI Functions for further processing. For example, you can use
 AI\_SUMMARIZE to summarize the transcription, or AI\_CLASSIFY to classify the content of the transcription. This
 example uses AI\_SENTIMENT and AI\_COMPLETE to analyze the text transcribed from
-[customer call audio](/static/samples/cortex/audio/consultation_1.wav) and provide sentiment on four dimensions
+[customer call audio](https://docs.snowflake.com/static/samples/cortex/audio/consultation_1.wav) and provide sentiment on four dimensions
 and an assessment of the agent.
 
 Note
 
 AI\_SENTIMENT analyzes only text and does not consider speech characteristics like tone of voice.
-
-Copy codeExpand code block
 
 ```
 WITH transcriptions AS
@@ -657,14 +539,12 @@ WITH transcriptions AS
 SELECT
     AI_SENTIMENT(transcribed_call, ['Professionalism', 'Resolution',
         'Wait Time', 'Market Conditions']) AS call_sentiment,
-    AI_COMPLETE('claude-4-opus', CONCAT('Summarize how the agent can improve in 50 words',
+    AI_COMPLETE('claude-sonnet-5', CONCAT('Summarize how the agent can improve in 50 words',
         transcribed_call)) AS agent_assessment
 FROM transcriptions
 ```
 
 AI\_SENTIMENT response:
-
-Expand code block
 
 ```
 {
@@ -693,13 +573,7 @@ Expand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
 AI\_COMPLETE response:
-
-Expand code block
 
 ```
 "The agent needs significant improvement in empathy, active listening, and client-centered communication. Instead of
@@ -708,7 +582,7 @@ professionally, present multiple options, and guide clients through informed dec
 risk tolerance and personal circumstances."
 ```
 
-## Troubleshooting[¶](#troubleshooting)
+## Troubleshooting
 
 If the function fails, it raises an error. Common error messages include:
 
@@ -722,11 +596,7 @@ If the function fails, it raises an error. Common error messages include:
 | Audio duration too long: 6052.10 seconds. Maximum allowed: 3600 seconds. or Audio duration too long: 7335.28 seconds. Maximum allowed: 7200 seconds. | The provided audio file is too long. If you are using timestamp granularity, the maximum duration is 60 minutes (3600 seconds). |
 | Unsupported detected language | The audio file contains a language that is not supported by AI\_TRANSCRIBE. |
 
-Expand
-
-Show lessSee more
-
-## Regional availability[¶](#regional-availability)
+## Regional availability
 
 AI\_TRANSCRIBE is available in the following regions:
 
@@ -735,49 +605,6 @@ AI\_TRANSCRIBE is available in the following regions:
 * AWS EU Central 1 (Frankfurt)
 * Azure East US 2 (Virginia)
 
-## Legal notices[¶](#legal-notices)
+## Legal notices
 
-Refer to [Snowflake AI and ML](/guides-overview-ai-features).
-
-Was this page helpful?
-
-YesNo
-
-[Visit Snowflake](https://www.snowflake.com)
-
-[Join the conversation](https://community.snowflake.com/s/)
-
-[Develop with Snowflake](https://developers.snowflake.com)
-
-[Share your feedback](/feedback)
-
-[Read the latest on our blog](https://www.snowflake.com/blog/)
-
-[Get your own certification](https://learn.snowflake.com)
-
-[Privacy Notice](https://www.snowflake.com/privacy-policy/)[Site Terms](https://www.snowflake.com/legal/snowflake-site-terms/)Cookies Settings© 2026 Snowflake, Inc. All Rights Reserved.
-
-### Alternative interfaces
-
-[Snowflake Python APIs](/developer-guide/snowflake-python-api/snowflake-python-overview)[Snowflake REST APIs](/developer-guide/snowflake-rest-api/snowflake-rest-api)[Snowflake CLI](/developer-guide/snowflake-cli/index)
-
-See all interfaces
-
-On this page
-
-1. [Syntax](#syntax)
-2. [Arguments](#arguments)
-3. [Returns](#returns)
-4. [Error behavior](#error-behavior)
-5. [Access control requirements](#access-control-requirements)
-6. [Usage notes](#usage-notes)
-7. [Supported languages](#supported-languages)
-8. [Cost considerations](#cost-considerations)
-9. [Examples](#examples)
-10. [Troubleshooting](#troubleshooting)
-11. [Regional availability](#regional-availability)
-12. [Legal notices](#legal-notices)
-
-Related content
-
-1. [Cortex AI Functions: Multimodal](/user-guide/snowflake-cortex/ai-multimodal)
+Refer to [Snowflake AI and ML](https://docs.snowflake.com/guides-overview-ai-features).

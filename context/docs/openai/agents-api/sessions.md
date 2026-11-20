@@ -26,7 +26,7 @@ With your [API key and SDK configured](https://developers.openai.com/api/docs/gu
 
 Create a session and stream its first turn
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -112,9 +112,9 @@ fmt.Println("Session:", sessionID)
 ```
 
 ```java
-import com.fasterxml.jackson.databind.json.JsonMapper;
 import com.openai.client.OpenAIClient;
 import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.core.ObjectMappers;
 import com.openai.core.http.StreamResponse;
 import com.openai.models.beta.agents.AgentSessionEvent;
 import com.openai.models.beta.agents.EnvironmentParam;
@@ -122,7 +122,7 @@ import com.openai.models.beta.agents.sessions.SessionCreateParams;
 import com.openai.services.beta.agents.AgentTurnResults;
 
 OpenAIClient client = OpenAIOkHttpClient.fromEnv();
-var json = new JsonMapper();
+var json = ObjectMappers.jsonMapper();
 try (StreamResponse<AgentSessionEvent> events =
     client
         .beta()
@@ -187,6 +187,8 @@ curl --no-buffer --fail-with-body https://api.openai.com/v1/agents/sessions \\\n
 
 Store the `session_id` with your application's conversation state. Use it to send follow-up messages and retrieve saved work for that conversation.
 
+To enable automatic action review, set `review` to `"auto_review"` when creating an eligible session in a project with automatic review enabled. You can change the setting when the main task is idle and input submission has settled. See [Automatic review](https://developers.openai.com/api/docs/guides/agents-api/sessions/approvals) for the review modes, environment prerequisites, and approval behavior.
+
 See [Configuring Agents](https://developers.openai.com/api/docs/guides/agents-api/configuration) for reusable agent settings and [Architecture](https://developers.openai.com/api/docs/guides/agents-api/architecture) for environment choices. Sessions with `environment.type: "none"` require initial input. The [Create session reference](https://developers.openai.com/api/reference/resources/beta/subresources/agents/subresources/sessions/methods/create) lists the request fields.
 
 If the session uses Files API attachments, file checks can return HTTP 429 with
@@ -229,9 +231,14 @@ Create one idempotency key for each logical message submission. Save it with the
 
 Send a follow-up message
 
-```javascript
+```typescript
 // Reuse the same submission key when retrying this message.
-async function sendMessage(client, sessionId, text, submissionKey) {
+async function sendMessage(
+  client: OpenAI,
+  sessionId: string,
+  text: string,
+  submissionKey: string
+) {
   await client.beta.agents.sessions.events.create(sessionId, {
     "Idempotency-Key": submissionKey,
     events: [
@@ -407,9 +414,9 @@ Events show live progress. Items are the saved messages and tool calls, includin
 
 Retrieve session items
 
-```javascript
+```typescript
 // Pass your saved session ID to this helper.
-async function listItems(client, sessionId) {
+async function listItems(client: OpenAI, sessionId: string) {
   return client.beta.agents.sessions.items.list(sessionId, {
     order: "asc",
     limit: 100,
@@ -484,9 +491,9 @@ Cancel the current turn when you want the agent to stop. The session and its pre
 
 Cancel the active turn
 
-```javascript
+```typescript
 // Pass your saved session ID to this helper.
-async function cancelTurn(client, sessionId) {
+async function cancelTurn(client: OpenAI, sessionId: string) {
   await client.beta.agents.sessions.events.create(sessionId, {
     events: [{ type: "agent.session.input.cancel" }],
   });

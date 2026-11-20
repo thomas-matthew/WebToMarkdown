@@ -26,12 +26,12 @@ for guidance on both image APIs.
 
 Generate an image
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const openai = new OpenAI();
 
 const response = await openai.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input:
     "Generate an image of gray tabby cat hugging an otter with an orange scarf",
   tools: [{ type: "image_generation", model: "gpt-image-2.5-sunburst" }],
@@ -44,6 +44,7 @@ const imageData = response.output
 
 if (imageData.length > 0) {
   const imageBase64 = imageData[0];
+  if (!imageBase64) throw new Error("Image generation returned no image.");
   const fs = await import("fs");
   fs.writeFileSync("otter.png", Buffer.from(imageBase64, "base64"));
 }
@@ -56,7 +57,7 @@ import base64
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input="Generate an image of gray tabby cat hugging an otter with an orange scarf",
     tools=[{"type": "image_generation", "model": "gpt-image-2.5-sunburst"}],
 )
@@ -89,7 +90,7 @@ import (
 func main() {
 	client := openai.NewClient()
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{
 			OfString: openai.String("Generate an image of gray tabby cat hugging an otter with an orange scarf"),
 		},
@@ -130,7 +131,7 @@ import java.util.Base64;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("Generate an image of a gray tabby cat hugging an otter with an orange scarf.")
         .addTool(Tool.ImageGeneration.builder().build())
         .build();
@@ -152,7 +153,7 @@ using OpenAI.Responses;
 string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
 ResponsesClient client = new(key);
 
-CreateResponseOptions options = new() { Model = "gpt-6-astra" };
+CreateResponseOptions options = new() { Model = "gpt-6.2-astra" };
 options.InputItems.Add(
     ResponseItem.CreateUserMessageItem(
         "Generate an image of a gray tabby cat hugging an otter with an orange scarf."
@@ -174,7 +175,7 @@ require "openai"
 
 client = OpenAI::Client.new
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "Generate an image of a gray tabby cat hugging an otter with an orange scarf.",
   tools: [
     {
@@ -254,12 +255,12 @@ Using previous response ID
 
     Multi-turn image generation
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const openai = new OpenAI();
 
 const response = await openai.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input:
     "Generate an image of gray tabby cat hugging an otter with an orange scarf",
   tools: [{ type: "image_generation", model: "gpt-image-2.5-sunburst" }],
@@ -271,6 +272,7 @@ const imageData = response.output
 
 if (imageData.length > 0) {
   const imageBase64 = imageData[0];
+  if (!imageBase64) throw new Error("Image generation returned no image.");
   const fs = await import("fs");
   fs.writeFileSync("cat_and_otter.png", Buffer.from(imageBase64, "base64"));
 }
@@ -278,7 +280,7 @@ if (imageData.length > 0) {
 // Follow up
 
 const response_fwup = await openai.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   previous_response_id: response.id,
   input: "Now make it look realistic",
   tools: [{ type: "image_generation", model: "gpt-image-2.5-sunburst" }],
@@ -290,6 +292,7 @@ const imageData_fwup = response_fwup.output
 
 if (imageData_fwup.length > 0) {
   const imageBase64 = imageData_fwup[0];
+  if (!imageBase64) throw new Error("Image generation returned no image.");
   const fs = await import("fs");
   fs.writeFileSync(
     "cat_and_otter_realistic.png",
@@ -305,7 +308,7 @@ import base64
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input="Generate an image of gray tabby cat hugging an otter with an orange scarf",
     tools=[{"type": "image_generation", "model": "gpt-image-2.5-sunburst"}],
 )
@@ -326,7 +329,7 @@ if image_data:
 # Follow up
 
 response_fwup = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     previous_response_id=response.id,
     input="Now make it look realistic",
     tools=[{"type": "image_generation", "model": "gpt-image-2.5-sunburst"}],
@@ -359,7 +362,7 @@ import (
 func main() {
 	client := openai.NewClient()
 	first, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{
 			OfString: openai.String("Generate an image of gray tabby cat hugging an otter with an orange scarf"),
 		},
@@ -371,7 +374,7 @@ func main() {
 	saveFirstGeneratedImage(first, "cat_and_otter.png")
 
 	followUp, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model:              "gpt-6-astra",
+		Model:              "gpt-6.2-astra",
 		PreviousResponseID: openai.String(first.ID),
 		Input: responses.ResponseNewParamsInputUnion{
 			OfString: openai.String("Now make it look realistic"),
@@ -416,7 +419,7 @@ var first =
         .responses()
         .create(
             ResponseCreateParams.builder()
-                .model("gpt-6-astra")
+                .model("gpt-6.2-astra")
                 .input(
                     "Generate an image of a gray tabby cat hugging an otter with an orange scarf.")
                 .addTool(Tool.ImageGeneration.builder().build())
@@ -439,7 +442,7 @@ var second =
         .responses()
         .create(
             ResponseCreateParams.builder()
-                .model("gpt-6-astra")
+                .model("gpt-6.2-astra")
                 .input("Now make it look realistic.")
                 .previousResponseId(first.id())
                 .addTool(Tool.ImageGeneration.builder().build())
@@ -466,7 +469,7 @@ using OpenAI.Responses;
 string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
 ResponsesClient client = new(key);
 
-CreateResponseOptions options = new() { Model = "gpt-6-astra" };
+CreateResponseOptions options = new() { Model = "gpt-6.2-astra" };
 options.Tools.Add(ResponseTool.CreateImageGenerationTool(model: "gpt-image-2.5-sunburst"));
 options.InputItems.Add(
     ResponseItem.CreateUserMessageItem(
@@ -482,7 +485,7 @@ await File.WriteAllBytesAsync("cat_and_otter.png", initialImage.ImageResultBytes
 
 CreateResponseOptions followUp = new()
 {
-    Model = "gpt-6-astra",
+    Model = "gpt-6.2-astra",
     PreviousResponseId = first.Id,
 };
 followUp.Tools.Add(ResponseTool.CreateImageGenerationTool(model: "gpt-image-2.5-sunburst"));
@@ -504,7 +507,7 @@ require "openai"
 
 client = OpenAI::Client.new
 first = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "Generate an image of a gray tabby cat hugging an otter with an orange scarf.",
   tools: [
     {
@@ -525,7 +528,7 @@ encoded_image = first_image.result or raise "No image returned"
 File.binwrite("cat_and_otter.png", Base64.strict_decode64(encoded_image))
 
 follow_up = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "Now make it look realistic.",
   previous_response_id: first.id,
   tools: [
@@ -556,12 +559,12 @@ Using image ID
 
     Multi-turn image generation
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const openai = new OpenAI();
 
 const response = await openai.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input:
     "Generate an image of gray tabby cat hugging an otter with an orange scarf",
   tools: [{ type: "image_generation", model: "gpt-image-2.5-sunburst" }],
@@ -575,6 +578,7 @@ const imageData = imageGenerationCalls.map((output) => output.result);
 
 if (imageData.length > 0) {
   const imageBase64 = imageData[0];
+  if (!imageBase64) throw new Error("Image generation returned no image.");
   const fs = await import("fs");
   fs.writeFileSync("cat_and_otter.png", Buffer.from(imageBase64, "base64"));
 }
@@ -582,14 +586,14 @@ if (imageData.length > 0) {
 // Follow up
 
 const response_fwup = await openai.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: "user",
       content: [{ type: "input_text", text: "Now make it look realistic" }],
     },
     {
-      type: "image_generation_call",
+      type: "item_reference",
       id: imageGenerationCalls[0].id,
     },
   ],
@@ -602,6 +606,7 @@ const imageData_fwup = response_fwup.output
 
 if (imageData_fwup.length > 0) {
   const imageBase64 = imageData_fwup[0];
+  if (!imageBase64) throw new Error("Image generation returned no image.");
   const fs = await import("fs");
   fs.writeFileSync(
     "cat_and_otter_realistic.png",
@@ -615,7 +620,7 @@ import openai
 import base64
 
 response = openai.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input="Generate an image of gray tabby cat hugging an otter with an orange scarf",
     tools=[{"type": "image_generation", "model": "gpt-image-2.5-sunburst"}],
 )
@@ -636,7 +641,7 @@ if image_data:
 # Follow up
 
 response_fwup = openai.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input=[
         {
             "role": "user",
@@ -678,7 +683,7 @@ import (
 func main() {
 	client := openai.NewClient()
 	first, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{
 			OfString: openai.String("Generate an image of gray tabby cat hugging an otter with an orange scarf"),
 		},
@@ -696,7 +701,7 @@ func main() {
 	))
 
 	followUp, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{OfInputItemList: input},
 		Tools: []responses.ToolUnionParam{{OfImageGeneration: &responses.ToolImageGenerationParam{Model: "gpt-image-2.5-sunburst"}}},
 	})
@@ -756,7 +761,7 @@ var first =
         .responses()
         .create(
             ResponseCreateParams.builder()
-                .model("gpt-6-astra")
+                .model("gpt-6.2-astra")
                 .input(
                     "Generate an image of a gray tabby cat hugging an otter with an orange scarf.")
                 .addTool(Tool.ImageGeneration.builder().build())
@@ -779,7 +784,7 @@ var second =
         .responses()
         .create(
             ResponseCreateParams.builder()
-                .model("gpt-6-astra")
+                .model("gpt-6.2-astra")
                 .inputOfResponse(
                     List.of(
                         ResponseInputItem.ofMessage(
@@ -814,7 +819,7 @@ using OpenAI.Responses;
 string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
 ResponsesClient client = new(key);
 
-CreateResponseOptions options = new() { Model = "gpt-6-astra" };
+CreateResponseOptions options = new() { Model = "gpt-6.2-astra" };
 options.Tools.Add(ResponseTool.CreateImageGenerationTool(model: "gpt-image-2.5-sunburst"));
 options.InputItems.Add(
     ResponseItem.CreateUserMessageItem(
@@ -828,7 +833,7 @@ ImageGenerationCallResponseItem initialImage = first
     .First();
 await File.WriteAllBytesAsync("cat_and_otter.png", initialImage.ImageResultBytes.ToArray());
 
-CreateResponseOptions followUp = new() { Model = "gpt-6-astra" };
+CreateResponseOptions followUp = new() { Model = "gpt-6.2-astra" };
 followUp.Tools.Add(ResponseTool.CreateImageGenerationTool(model: "gpt-image-2.5-sunburst"));
 followUp.InputItems.Add(ResponseItem.CreateUserMessageItem("Now make it look realistic."));
 followUp.InputItems.Add(ResponseItem.CreateReferenceItem(initialImage.Id));
@@ -849,7 +854,7 @@ require "openai"
 
 client = OpenAI::Client.new
 first = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "Generate an image of a gray tabby cat hugging an otter with an orange scarf.",
   tools: [
     {
@@ -870,7 +875,7 @@ encoded_image = first_image.result or raise "No image returned"
 File.binwrite("cat_and_otter.png", Base64.strict_decode64(encoded_image))
 
 follow_up = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: :user,
@@ -915,18 +920,19 @@ You can set the number of partial images (1-3) with the `partial_images` paramet
 
 Stream an image
 
-```javascript
+```typescript
 import OpenAI from "openai";
 import fs from "fs";
 const openai = new OpenAI();
 
-function saveBase64Image(filename, imageBase64) {
+function saveBase64Image(filename: string, imageBase64: string | null) {
+  if (!imageBase64) throw new Error("Image generation returned no image.");
   const imageBuffer = Buffer.from(imageBase64, "base64");
   fs.writeFileSync(filename, imageBuffer);
 }
 
 const stream = await openai.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input:
     "Draw a gorgeous image of a river made of white owl feathers, snaking its way through a serene winter landscape",
   stream: true,
@@ -965,7 +971,7 @@ def save_base64_image(filename, image_base64):
 
 
 stream = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input="Draw a gorgeous image of a river made of white owl feathers, snaking its way through a serene winter landscape",
     stream=True,
     tools=[
@@ -1004,7 +1010,7 @@ import (
 func main() {
 	client := openai.NewClient()
 	stream := client.Responses.NewStreaming(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{
 			OfString: openai.String("Draw a gorgeous image of a river made of white owl feathers, snaking its way through a serene winter landscape"),
 		},
@@ -1054,7 +1060,7 @@ import java.util.Base64;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("Generate an image of a river made of white owl feathers.")
         .addTool(Tool.ImageGeneration.builder().partialImages(2).build())
         .build();
@@ -1094,7 +1100,7 @@ require "openai"
 
 client = OpenAI::Client.new
 stream = client.responses.stream(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "Generate an image of a river made of white owl feathers.",
   tools: [
     {
@@ -1142,9 +1148,12 @@ The following non-deprecated models have documented support for the image genera
 - [`gpt-5.6-sol`](https://developers.openai.com/api/docs/models/gpt-5.6-sol)
 - [`gpt-5.6-terra`](https://developers.openai.com/api/docs/models/gpt-5.6-terra)
 - [`gpt-6-astra`](https://developers.openai.com/api/docs/models/gpt-6-astra)
+- [`gpt-6-cyber`](https://developers.openai.com/api/docs/models/gpt-6-cyber)
 - [`gpt-6-luna`](https://developers.openai.com/api/docs/models/gpt-6-luna)
 - [`gpt-6-sol`](https://developers.openai.com/api/docs/models/gpt-6-sol)
 - [`gpt-6.1-sol`](https://developers.openai.com/api/docs/models/gpt-6.1-sol)
 - [`gpt-6.1-terra`](https://developers.openai.com/api/docs/models/gpt-6.1-terra)
+- [`gpt-6.2-astra`](https://developers.openai.com/api/docs/models/gpt-6.2-astra)
+- [`gpt-6.2-sol`](https://developers.openai.com/api/docs/models/gpt-6.2-sol)
 
 For model availability and shutdown dates, see [Deprecations](https://developers.openai.com/api/docs/deprecations).

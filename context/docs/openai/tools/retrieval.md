@@ -16,7 +16,7 @@ The Retrieval API is powered by [**vector stores**](#vector-stores), which serve
 
 Create vector store with files
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const client = new OpenAI();
 
@@ -143,7 +143,7 @@ puts(store.id)
 
 Search query
 
-```javascript
+```typescript
 const userQuery = "What is the return policy?";
 
 const results = await client.vectorStores.search(vector_store.id, {
@@ -235,7 +235,7 @@ You can query a vector store using the `search` function and specifying a `query
 
 Search query
 
-```javascript
+```typescript
 const results = await client.vectorStores.search(vector_store.id, {
   query: "How many woodchucks are allowed per passenger?",
 });
@@ -553,7 +553,7 @@ Create
 
     Create vector store
 
-```javascript
+```typescript
 await client.vectorStores.create({
   name: "Support FAQ",
   file_ids: ["file_123"],
@@ -626,7 +626,7 @@ Retrieve
 
     Retrieve vector store
 
-```javascript
+```typescript
 await client.vectorStores.retrieve("vs_123");
 ```
 
@@ -682,7 +682,7 @@ Update
 
     Update vector store
 
-```javascript
+```typescript
 await client.vectorStores.update("vs_123", {
   name: "Support FAQ Updated",
 });
@@ -751,7 +751,7 @@ Delete
 
     Delete vector store
 
-```javascript
+```typescript
 await client.vectorStores.delete("vs_123");
 ```
 
@@ -807,7 +807,7 @@ List
 
     List vector stores
 
-```javascript
+```typescript
 await client.vectorStores.list();
 ```
 
@@ -864,7 +864,7 @@ Create
 
     Create vector store file
 
-```javascript
+```typescript
 await client.vectorStores.files.createAndPoll("vs_123", {
   file_id: "file_123",
 });
@@ -938,7 +938,7 @@ Upload
 
     Upload vector store file
 
-```javascript
+```typescript
 await client.vectorStores.files.uploadAndPoll(
   "vs_123",
   fs.createReadStream("customer_policies.txt")
@@ -1044,7 +1044,7 @@ Retrieve
 
     Retrieve vector store file
 
-```javascript
+```typescript
 await client.vectorStores.files.retrieve("file_123", {
   vector_store_id: "vs_123",
 });
@@ -1114,7 +1114,7 @@ Update
 
     Update vector store file
 
-```javascript
+```typescript
 await client.vectorStores.files.update("file_123", {
   vector_store_id: "vs_123",
   attributes: { key: "value" },
@@ -1197,7 +1197,7 @@ Delete
 
     Delete vector store file
 
-```javascript
+```typescript
 await client.vectorStores.files.delete("file_123", {
   vector_store_id: "vs_123",
 });
@@ -1267,7 +1267,7 @@ List
 
     List vector store files
 
-```javascript
+```typescript
 await client.vectorStores.files.list("vs_123");
 ```
 
@@ -1324,7 +1324,7 @@ Create
 
     Batch create operation
 
-```javascript
+```typescript
 await client.vectorStores.fileBatches.createAndPoll("vs_123", {
   files: [
     {
@@ -1357,8 +1357,10 @@ client.vector_stores.file_batches.create_and_poll(
             "file_id": "file_456",
             "chunking_strategy": {
                 "type": "static",
-                "max_chunk_size_tokens": 1200,
-                "chunk_overlap_tokens": 200
+                "static": {
+                    "max_chunk_size_tokens": 1200,
+                    "chunk_overlap_tokens": 200
+                }
             }
         }
     ]
@@ -1499,7 +1501,7 @@ Retrieve
 
     Batch retrieve operation
 
-```javascript
+```typescript
 await client.vectorStores.fileBatches.retrieve("vsfb_123", {
   vector_store_id: "vs_123",
 });
@@ -1572,7 +1574,7 @@ Cancel
 
     Batch cancel operation
 
-```javascript
+```typescript
 await client.vectorStores.fileBatches.cancel("vsfb_123", {
   vector_store_id: "vs_123",
 });
@@ -1645,7 +1647,7 @@ List
 
     List files in a batch
 
-```javascript
+```typescript
 await client.vectorStores.fileBatches.listFiles("vsfb_123", {
   vector_store_id: "vs_123",
 });
@@ -1717,11 +1719,11 @@ For higher-throughput ingestion into a single vector store, we recommend batch c
 
 ### Attributes
 
-Each `vector_store.file` can have associated `attributes`, a dictionary of values that can be referenced when performing [semantic search](#semantic-search) with [attribute filtering](#attribute-filtering). The dictionary can have at most 16 keys, with a limit of 256 characters each.
+Each `vector_store.file` can have associated `attributes`, a dictionary of values that can be referenced when performing [semantic search](#semantic-search) with [attribute filtering](#attribute-filtering). The dictionary can have at most 16 keys. Keys can contain up to 64 characters, and string values can contain up to 512 characters.
 
 Create vector store file with attributes
 
-```javascript
+```typescript
 await client.vectorStores.files.create("<vector_store_id>", {
   file_id: "file_123",
   attributes: {
@@ -1813,7 +1815,7 @@ You can set an expiration policy on `vector_store` objects with `expires_after`.
 
 Set expiration policy for vector store
 
-```javascript
+```typescript
 await client.vectorStores.update("vs_123", {
   expires_after: {
     anchor: "last_active_at",
@@ -1949,7 +1951,7 @@ After performing a query you may want to synthesize a response based on the resu
 
 Perform search query to get results
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -2027,7 +2029,7 @@ puts(results.data)
 
 Synthesize a response based on results
 
-```javascript
+```typescript
 const formattedResults = formatResults(results.data);
 // Join the text content of all results
 const textSources = results.data
@@ -2035,7 +2037,7 @@ const textSources = results.data
   .join("\n");
 
 const completion = await client.chat.completions.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   messages: [
     {
       role: "developer",
@@ -2059,7 +2061,7 @@ formatted_results = format_results(results.data)
 "\n".join("\n".join(c.text for c in result.content) for result in results.data)
 
 completion = client.chat.completions.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     messages=[
         {
             "role": "developer",
@@ -2097,7 +2099,7 @@ func main() {
 	}
 
 	completion, err := client.Chat.Completions.New(context.Background(), openai.ChatCompletionNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Messages: []openai.ChatCompletionMessageParamUnion{
 			openai.DeveloperMessage("Produce a concise answer to the query based on the provided sources."),
 			openai.UserMessage(fmt.Sprintf("Sources: %s\n\nQuery: %q", formatResults(results.Data), userQuery)),
@@ -2159,7 +2161,7 @@ var completion =
         .completions()
         .create(
             ChatCompletionCreateParams.builder()
-                .model("gpt-6-astra")
+                .model("gpt-6.2-astra")
                 .addDeveloperMessage(
                     "Answer the query concisely using only the provided sources.")
                 .addUserMessage(
@@ -2183,7 +2185,7 @@ sources = (results.data || []).map do |result|
 end.join
 
 completion = client.chat.completions.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   messages: [
     {
       role: :developer,
@@ -2208,8 +2210,10 @@ so:
 
 Sample result formatting function
 
-```javascript
-function formatResults(results) {
+```typescript
+function formatResults(results: {
+  data: import("openai/resources/vector-stores").VectorStoreSearchResponse[];
+}) {
   let formattedResults = "";
   for (const result of results.data) {
     let formattedResult = `<result file_id='${result.file_id}' file_name='${result.filename}'>`;
@@ -2227,7 +2231,7 @@ def format_results(results):
     formatted_results = ""
     for result in results.data:
         formatted_result = (
-            f"<result file_id='{result.file_id}' file_name='{result.file_name}'>"
+            f"<result file_id='{result.file_id}' file_name='{result.filename}'>"
         )
         for part in result.content:
             formatted_result += f"<content>{part.text}</content>"
@@ -2244,15 +2248,6 @@ import (
 
 	"github.com/openai/openai-go/v3"
 )
-
-func main() {
-	results := []openai.VectorStoreSearchResponse{{
-		FileID:   "file-12345",
-		Filename: "woodchuck_policy.txt",
-		Content:  []openai.VectorStoreSearchResponseContent{{Text: "Each passenger may carry up to two woodchucks."}},
-	}}
-	fmt.Println(formatResults(results))
-}
 
 func formatResults(results []openai.VectorStoreSearchResponse) string {
 	var sources strings.Builder
@@ -2273,8 +2268,6 @@ func formatResults(results []openai.VectorStoreSearchResponse) string {
 import com.openai.models.vectorstores.VectorStoreSearchResponse;
 import java.util.List;
 
-System.out.println(formatResults(results.data()));
-
 static String formatResults(List<VectorStoreSearchResponse> results) {
   var formatted = new StringBuilder("<sources>");
   for (var result : results) {
@@ -2294,18 +2287,12 @@ static String formatResults(List<VectorStoreSearchResponse> results) {
 ```
 
 ```ruby
-results = [
-  {
-    file_id: "file-12345",
-    filename: "woodchuck_policy.txt",
-    content: [{ text: "Each passenger may carry up to two woodchucks." }]
-  }
-]
+def format_results(results)
+  sources = results.map do |result|
+    content = result.content.map { |part| "<content>#{part.text}</content>" }.join
+    "<result file_id=\"#{result.file_id}\" file_name=\"#{result.filename}\">#{content}</result>"
+  end
 
-sources = results.map do |result|
-  content = result.fetch(:content).map { |part| "<content>#{part.fetch(:text)}</content>" }.join
-  "<result file_id=\"#{result.fetch(:file_id)}\" file_name=\"#{result.fetch(:filename)}\">#{content}</result>"
+  "<sources>#{sources.join}</sources>"
 end
-
-puts("<sources>#{sources.join}</sources>")
 ```

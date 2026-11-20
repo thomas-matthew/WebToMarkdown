@@ -17,7 +17,7 @@ Pass these settings in `agent` when you create a session. This example supplies 
 
 Configure an agent for one session
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const client = new OpenAI();
 
@@ -165,7 +165,7 @@ Save an agent to reuse its configuration across sessions. Create it once, then p
 
 Reuse an agent
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -308,7 +308,7 @@ Replace the illustrative `agent_123` value with the saved agent's ID before runn
 
 Override an agent for one session
 
-```javascript
+```typescript
 // Replace the illustrative IDs and URLs below with your own resource values.
 import OpenAI from "openai";
 const client = new OpenAI();
@@ -454,11 +454,12 @@ See the [Create session reference](https://developers.openai.com/api/reference/r
 
 ## Update settings for an existing session
 
-Send `POST /v1/agents/sessions/{session_id}` with an `agent` object to change `model`, `reasoning.effort`, or `service_tier` for one session. These settings are available in the beta and GA API contracts. You can update `metadata` in the same request.
+Send `POST /v1/agents/sessions/{session_id}` with an `agent` object to change `tools`, `model`, `reasoning.effort`, or `service_tier` for one session. These settings are available in the beta and GA API contracts. You can update `metadata` in the same request.
 
-Changes apply to new turns started by messages sent after the update completes. Messages already in flight can use the previous settings. An active turn keeps its settings, including when you send a steering message. The session keeps its conversation history. The selected model must support the resulting settings, or the update fails.
+Model, reasoning effort, and service tier changes apply to new turns started by messages sent after the update completes. Messages already in flight can use the previous settings. An active turn keeps those settings, including when you send a steering message. The session keeps its conversation history. The selected model must support the resulting settings, or the update fails.
 
 - The `agent` and `reasoning` objects merge supplied fields into the current settings. Omitted fields stay unchanged, including reasoning summary. Changing only `model` preserves the session's reasoning effort and service tier.
+- `tools` replaces the full tool list. Functions and MCP servers change on the next model call. Built-in tools change by the next turn. Omit `tools` to preserve the current tools, or pass `null` or `[]` to clear them.
 - `reasoning.effort: null` resets effort to the selected model's default.
 - `service_tier: null` restores automatic tier selection.
 - A model must remain set, so you cannot supply `model: null`. The `agent` and `reasoning` objects also reject `null`.
@@ -477,7 +478,39 @@ For example, this request changes reasoning effort and lets the API select the s
 
 Updating a session does not change the saved agent or other sessions. Later saved-agent updates do not change the session.
 
-You cannot update `reasoning.summary`, `text`, `tools`, `instructions`, or `multi_agent` through this endpoint. Create a new session to change those settings.
+You cannot update `reasoning.summary`, `text`, `instructions`, or `multi_agent` through this endpoint. Create a new session to change those settings. See the [Update session reference](https://developers.openai.com/api/reference/resources/beta/subresources/agents/subresources/sessions/methods/update) for request fields.
+
+## Use Daybreak in a session
+
+The Agents API supports Daybreak Blue and Daybreak Red. Use an API key from a project with access to both your [chosen model and its cyber access program](https://developers.openai.com/api/docs/guides/daybreak#choose-the-model-and-access-program).
+
+When you [create a session](https://developers.openai.com/api/docs/guides/agents-api/quickstart?lang=cURL), include the fields for your program in the request body.
+
+**Daybreak Blue**
+
+```json
+{
+  "agent": { "model": "gpt-6-sol" },
+  "access_programs": { "cyber": "daybreak_blue" }
+}
+```
+
+**Daybreak Red**
+
+```json
+{
+  "agent": { "model": "gpt-5.6-cyber" },
+  "access_programs": { "cyber": "daybreak_red" }
+}
+```
+
+## Automatic action review
+
+Set the session-level `review` field to `"auto_review"` to automatically review supported approval requests. Set it alongside `agent` or `agent_id`, rather than inside the agent configuration. If you omit `review` when creating a session, the value defaults to `"none"`.
+
+Automatic review also changes execution permissions. Check the [environment prerequisites](https://developers.openai.com/api/docs/guides/agents-api/sessions/approvals#prepare-the-execution-environment) before enabling it.
+
+You can update `review` when the main task is idle and input submission has settled. Subsequent execution and recovery use the new setting. A request to change the mode before those conditions are met returns `409 Conflict` and applies no changes. Use a project with automatic review enabled and a session that supports it. See [Automatic review](https://developers.openai.com/api/docs/guides/agents-api/sessions/approvals) for configuration and approval handling.
 
 ## Environment settings
 

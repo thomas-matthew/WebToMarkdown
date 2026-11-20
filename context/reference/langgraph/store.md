@@ -1,16 +1,14 @@
-Python[langgraph](/python/langgraph)Storage
-
 # Storage
 
 ## Classes
 
-[Class
+Class
 
-### BaseChannel
+### [ManagedValue](https://reference.langchain.com/python/langgraph/managed/base/ManagedValue)
 
-Base class for all channels.](/python/langgraph/channels/base/BaseChannel)[Class
+Class
 
-### AsyncPostgresStore
+### [AsyncPostgresStore](https://reference.langchain.com/python/langgraph.store.postgres/aio/AsyncPostgresStore)
 
 Asynchronous Postgres-backed store with optional vector search using pgvector.
 
@@ -20,28 +18,38 @@ Basic setup and usage:
 from langgraph.store.postgres import AsyncPostgresSt
 
 <!--/ADMON-->
-```](/python/langgraph.store.postgres/aio/AsyncPostgresStore)
+```
+
+## Functions
+
+Function
+
+### [is\_managed\_value](https://reference.langchain.com/python/langgraph/managed/base/is_managed_value)
 
 ## Modules
 
-[Module
+Module
 
-### base](/python/langgraph.store.postgres/base)[Module
+### [base](https://reference.langchain.com/python/langgraph.store.postgres/base)
 
-### aio](/python/langgraph.store.postgres/aio)
+Module
+
+### [aio](https://reference.langchain.com/python/langgraph.store.postgres/aio)
 
 ## Constants
 
-[Attribute
+Attribute
 
-### Value](/python/langgraph/channels/base/Value)[Attribute
+### [V](https://reference.langchain.com/python/langgraph/managed/base/V)
 
-### Update](/python/langgraph/channels/base/Update)[Attribute
+Attribute
 
-### Checkpoint](/python/langgraph/channels/base/Checkpoint)
+### [U](https://reference.langchain.com/python/langgraph/managed/base/U)
 
-Copy page
+Attribute
 
-### On This Page
+### [ManagedValueSpec](https://reference.langchain.com/python/langgraph/managed/base/ManagedValueSpec)
 
-Classes2Modules2Constants3
+Attribute
+
+### [ManagedValueMapping](https://reference.langchain.com/python/langgraph/managed/base/ManagedValueMapping)

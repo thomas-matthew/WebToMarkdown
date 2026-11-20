@@ -1,6 +1,4 @@
-Python[langgraph](/python/langgraph)[graph](/python/langgraph/graph)[state](/python/langgraph/graph/state)StateGraph
-
-Classv1.2.18 (latest)●Since v1.2
+Classv1.2.23 (latest)●Since v1.2
 
 # StateGraph
 
@@ -18,8 +16,6 @@ Warning
 You must first call `.compile()` to create an executable graph that supports
 methods like `invoke()`, `stream()`, `astream()`, and `ainvoke()`. See the
 `CompiledStateGraph` documentation for more details.
-
-Copy
 
 ```
 StateGraph(
@@ -85,9 +81,9 @@ Copy
 * [Backward compatibility](https://docs.langchain.com/oss/python/langgraph/backward-compatibility)
 * [Build a multi-source knowledge base with routing](https://docs.langchain.com/oss/python/langchain/multi-agent/router-knowledge-base)
 * [Checkpointers](https://docs.langchain.com/oss/python/langgraph/checkpointers)
-* [Choosing between Graph and Functional APIs](https://docs.langchain.com/oss/python/langgraph/choosing-apis)
+* [Custom workflow](https://docs.langchain.com/oss/python/langchain/multi-agent/custom-workflow)
 
-+15 more(22 more not shown)
++15 more(18 more not shown)
 
 ## Parameters
 
@@ -106,43 +102,65 @@ constructor
 
 | Name | Type |
 | --- | --- |
-| state\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[StateT](/python/langgraph/typing/StateT)] |
-| context\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[ContextT](/python/langgraph/typing/ContextT)] | None |
-| input\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[InputT](/python/langgraph/typing/InputT)] | None |
-| output\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[OutputT](/python/langgraph/typing/OutputT)] | None |
-| kwargs | Unpack[[DeprecatedKwargs](/python/langgraph/_internal/_typing/DeprecatedKwargs)] |
+| state\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[StateT](https://reference.langchain.com/python/langgraph/typing/StateT)] |
+| context\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[ContextT](https://reference.langchain.com/python/langgraph/typing/ContextT)] | None |
+| input\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[InputT](https://reference.langchain.com/python/langgraph/typing/InputT)] | None |
+| output\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[OutputT](https://reference.langchain.com/python/langgraph/typing/OutputT)] | None |
+| kwargs | Unpack[[DeprecatedKwargs](https://reference.langchain.com/python/langgraph/_internal/_typing/DeprecatedKwargs)] |
 
 ## Attributes
 
-[attribute
+attribute
 
-edges: set[tuple[str, str]]](/python/langgraph/graph/state/StateGraph/edges)[attribute
+edges: set[tuple[str, str]]
 
-nodes: dict[str, StateNodeSpec[Any, ContextT]]](/python/langgraph/graph/state/StateGraph/nodes)[attribute
+attribute
 
-branches: defaultdict[str, dict[str, BranchSpec]]](/python/langgraph/graph/state/StateGraph/branches)[attribute
+nodes: dict[str, StateNodeSpec[Any, ContextT]]
 
-channels: dict[str, BaseChannel]](/python/langgraph/graph/state/StateGraph/channels)[attribute
+attribute
 
-managed: dict[str, ManagedValueSpec]](/python/langgraph/graph/state/StateGraph/managed)[attribute
+branches: defaultdict[str, dict[str, BranchSpec]]
 
-schemas: dict[type[Any], dict[str, BaseChannel | ManagedValueSpec]]](/python/langgraph/graph/state/StateGraph/schemas)[attribute
+attribute
 
-waiting\_edges: set[tuple[tuple[str, ...], str]]](/python/langgraph/graph/state/StateGraph/waiting_edges)[attribute
+channels: dict[str, BaseChannel]
 
-compiled: bool](/python/langgraph/graph/state/StateGraph/compiled)[attribute
+attribute
 
-state\_schema: type[StateT]](/python/langgraph/graph/state/StateGraph/state_schema)[attribute
+managed: dict[str, ManagedValueSpec]
 
-context\_schema: type[ContextT] | None](/python/langgraph/graph/state/StateGraph/context_schema)[attribute
+attribute
 
-input\_schema: type[InputT]](/python/langgraph/graph/state/StateGraph/input_schema)[attribute
+schemas: dict[type[Any], dict[str, BaseChannel | ManagedValueSpec]]
 
-output\_schema: type[OutputT]](/python/langgraph/graph/state/StateGraph/output_schema)
+attribute
+
+waiting\_edges: set[tuple[tuple[str, ...], str]]
+
+attribute
+
+compiled: bool
+
+attribute
+
+state\_schema: type[StateT]
+
+attribute
+
+context\_schema: type[ContextT] | None
+
+attribute
+
+input\_schema: type[InputT]
+
+attribute
+
+output\_schema: type[OutputT]
 
 ## Methods
 
-[method
+method
 
 set\_node\_defaults
 
@@ -155,11 +173,15 @@ are **not** inherited by subgraphs.
 `retry_policy` and `timeout` defaults apply to **all** nodes,
 including error-handler nodes. `cache_policy` and `error_handler`
 defaults only apply to regular nodes -- caching error-handler results
-is unsafe, and handlers must never catch themselves.](/python/langgraph/graph/state/StateGraph/set_node_defaults)[method
+is unsafe, and handlers must never catch themselves.
+
+method
 
 add\_node
 
-Add a new node to the `StateGraph`.](/python/langgraph/graph/state/StateGraph/add_node)[method
+Add a new node to the `StateGraph`.
+
+method
 
 add\_edge
 
@@ -167,59 +189,55 @@ Add a directed edge from the start node (or list of start nodes) to the end node
 
 When a single start node is provided, the graph will wait for that node to complete
 before executing the end node. When multiple start nodes are provided,
-the graph will wait for ALL of the start nodes to complete before executing the end node.](/python/langgraph/graph/state/StateGraph/add_edge)[method
+the graph will wait for ALL of the start nodes to complete before executing the end node.
+
+method
 
 add\_conditional\_edges
 
-Add a conditional edge from the starting node to any number of destination nodes.](/python/langgraph/graph/state/StateGraph/add_conditional_edges)[method
+Add a conditional edge from the starting node to any number of destination nodes.
+
+method
 
 add\_sequence
 
-Add a sequence of nodes that will be executed in the provided order.](/python/langgraph/graph/state/StateGraph/add_sequence)[method
+Add a sequence of nodes that will be executed in the provided order.
+
+method
 
 set\_entry\_point
 
 Specifies the first node to be called in the graph.
 
-Equivalent to calling `add_edge(START, key)`.](/python/langgraph/graph/state/StateGraph/set_entry_point)[method
+Equivalent to calling `add_edge(START, key)`.
+
+method
 
 set\_conditional\_entry\_point
 
-Sets a conditional entry point in the graph.](/python/langgraph/graph/state/StateGraph/set_conditional_entry_point)[method
+Sets a conditional entry point in the graph.
+
+method
 
 set\_finish\_point
 
 Marks a node as a finish point of the graph.
 
-If the graph reaches this node, it will cease execution.](/python/langgraph/graph/state/StateGraph/set_finish_point)[method
+If the graph reaches this node, it will cease execution.
 
-validate](/python/langgraph/graph/state/StateGraph/validate)[method
+method
+
+validate
+
+method
 
 compile
 
 Compiles the `StateGraph` into a `CompiledStateGraph` object.
 
 The compiled graph implements the `Runnable` interface and can be invoked,
-streamed, batched, and run asynchronously.](/python/langgraph/graph/state/StateGraph/compile)
+streamed, batched, and run asynchronously.
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/graph/state.py#L131)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/58a6e1cc5b7dfc3619fc6e7e7573b040d554649b/libs/langgraph/langgraph/graph/state.py#L131)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Related Documentation◇Parameters
-
-Constructors
-
-C\_\_init\_\_
-
-Attributes
-
-AedgesAnodesAbranchesAchannelsAmanagedAschemasAwaiting\_edgesAcompiledAstate\_schemaAcontext\_schemaAinput\_schemaAoutput\_schema
-
-Methods
-
-Mset\_node\_defaultsMadd\_nodeMadd\_edgeMadd\_conditional\_edgesMadd\_sequenceMset\_entry\_pointMset\_conditional\_entry\_pointMset\_finish\_pointMvalidateMcompile

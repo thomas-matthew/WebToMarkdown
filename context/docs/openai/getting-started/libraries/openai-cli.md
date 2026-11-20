@@ -20,6 +20,15 @@ go install 'github.com/openai/openai-cli/cmd/openai@latest'
 
 Older versions of the Python SDK also installed a legacy `openai` command. If you already had that package installed and the command you see does not match this guide, your shell may still be resolving the older binary. Fresh CLI installs are not affected.
 
+## Explore commands
+
+Run `openai explore` in your terminal to browse commands before you set up an API key.
+Type a task such as `count tokens offline` to find `openai tokenizer count`.
+Use the arrow keys to highlight a match. Press <kbd>Enter</kbd> to select it or <kbd>Escape</kbd> to cancel.
+
+Explore shows the selected command without running it. With shell integration, you can edit the selection at your prompt.
+Run `openai explore --help` for supported shells and keyboard shortcuts.
+
 ## Authentication
 
 The CLI reads your API key from `OPENAI_API_KEY`:
@@ -75,7 +84,7 @@ Command:
 
 ```bash
 openai responses create \
-  --model gpt-6-astra \
+  --model gpt-6.2-astra \
   --input "Say hello in one sentence."
 ```
 
@@ -123,7 +132,7 @@ For a local file, build the prompt inline with command substitution:
 
 ```bash
 openai responses create \
-  --model gpt-6-astra \
+  --model gpt-6.2-astra \
   --input "Summarize this note in one sentence.
 
 <note>
@@ -181,7 +190,7 @@ When the prompt itself needs shell assembly, build a YAML body and pipe it into 
   sed 's/^/  /' ./note.md
   printf '  </note>\n'
 } | openai responses create \
-  --model gpt-6-astra \
+  --model gpt-6.2-astra \
   --format yaml \
   --transform 'output.#(type=="message").content.0.text'
 ```
@@ -214,7 +223,7 @@ Command:
 
 ```bash
 openai responses create \
-  --model gpt-6-astra \
+  --model gpt-6.2-astra \
   --instructions "Extract the person and topic from the input." \
   --input "Ada Lovelace wrote notes about the Analytical Engine." \
   --text.format "$(cat ./schema.json)" \
@@ -299,7 +308,7 @@ Command:
 
 ```bash
 openai responses create \
-  --model gpt-6-astra \
+  --model gpt-6.2-astra \
   --format yaml \
   --transform 'output.#(type=="message").content.0.text' <<'YAML'
 tools:

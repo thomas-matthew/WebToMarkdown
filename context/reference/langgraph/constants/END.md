@@ -1,12 +1,8 @@
-Python[langgraph](/python/langgraph)[constants](/python/langgraph/constants)END
-
-Attributev1.2.18 (latest)●Since v1.2
+Attributev1.2.23 (latest)●Since v1.2
 
 # END
 
 The last (maybe virtual) node in graph-style Pregel.
-
-Copy
 
 ```
 END = sys.intern('__end__')
@@ -20,14 +16,8 @@ END = sys.intern('__end__')
 * [Custom workflow](https://docs.langchain.com/oss/python/langchain/multi-agent/custom-workflow)
 * [Evaluate a complex agent](https://docs.langchain.com/langsmith/evaluate-complex-agent)
 
-+15 more
++14 more
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/constants.py#L28)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/58a6e1cc5b7dfc3619fc6e7e7573b040d554649b/libs/langgraph/langgraph/constants.py#L28)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Related Documentation

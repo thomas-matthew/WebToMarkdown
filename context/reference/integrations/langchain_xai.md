@@ -1,5 +1,3 @@
-Pythonlangchain-xai
-
 # langchain-xai
 
 ## Description
@@ -14,33 +12,31 @@ This page contains **reference documentation** for xAI. See [the docs](https://d
 
 ## Classes
 
-[Class
+Class
 
-### ChatXAI
+### [ChatXAI](https://reference.langchain.com/python/langchain-xai/chat_models/ChatXAI)
 
 ChatXAI chat model.
 
 Refer to xAI's documentation
-for more nuanced details on the API's behavior and supported parameters.](/python/langchain-xai/chat_models/ChatXAI)
+for more nuanced details on the API's behavior and supported parameters.
 
 ## Modules
 
-[Module
+Module
 
-### langchain\_xai
+### [langchain\_xai](https://reference.langchain.com/python/langchain-xai/langchain_xai)
 
-LangChain integration with xAI.](/python/langchain-xai/langchain_xai)[Module
+LangChain integration with xAI.
 
-### chat\_models
+Module
 
-Wrapper around xAI's Chat Completions API.](/python/langchain-xai/chat_models)[Module
+### [chat\_models](https://reference.langchain.com/python/langchain-xai/chat_models)
 
-### data
+Wrapper around xAI's Chat Completions API.
 
-Model profile data. All edits should be made in profile\_augmentations.toml.](/python/langchain-xai/data)
+Module
 
-Copy page
+### [data](https://reference.langchain.com/python/langchain-xai/data)
 
-### On This Page
-
-DescriptionClasses1Modules3
+Model profile data. All edits should be made in profile\_augmentations.toml.

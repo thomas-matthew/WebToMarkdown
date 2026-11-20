@@ -1,28 +1,34 @@
-Python[langgraph](/python/langgraph)Channels
-
 # Channels
 
 ## Classes
 
-[Class
+Class
 
-### BaseChannel
+### [BaseChannel](https://reference.langchain.com/python/langgraph/channels/base/BaseChannel)
 
-Base class for all channels.](/python/langgraph/channels/base/BaseChannel)[Class
+Base class for all channels.
 
-### Topic
+Class
 
-A configurable PubSub Topic.](/python/langgraph/channels/topic/Topic)[Class
+### [Topic](https://reference.langchain.com/python/langgraph/channels/topic/Topic)
 
-### LastValue
+A configurable PubSub Topic.
 
-Stores the last value received, can receive at most one value per step.](/python/langgraph/channels/last_value/LastValue)[Class
+Class
 
-### EphemeralValue
+### [LastValue](https://reference.langchain.com/python/langgraph/channels/last_value/LastValue)
 
-Stores the value received in the step immediately preceding, clears after.](/python/langgraph/channels/ephemeral_value/EphemeralValue)[Class
+Stores the last value received, can receive at most one value per step.
 
-### BinaryOperatorAggregate
+Class
+
+### [EphemeralValue](https://reference.langchain.com/python/langgraph/channels/ephemeral_value/EphemeralValue)
+
+Stores the value received in the step immediately preceding, clears after.
+
+Class
+
+### [BinaryOperatorAggregate](https://reference.langchain.com/python/langgraph/channels/binop/BinaryOperatorAggregate)
 
 Stores the result of applying a binary operator to the current value and each new value.
 
@@ -30,15 +36,11 @@ Stores the result of applying a binary operator to the current value and each ne
 import operator
 
 total = Channels.BinaryOperatorAggregate(int, operator.add)
-```](/python/langgraph/channels/binop/BinaryOperatorAggregate)[Class
+```
 
-### AnyValue
+Class
+
+### [AnyValue](https://reference.langchain.com/python/langgraph/channels/any_value/AnyValue)
 
 Stores the last value received, assumes that if multiple values are
-received, they are all equal.](/python/langgraph/channels/any_value/AnyValue)
-
-Copy page
-
-### On This Page
-
-Classes6
+received, they are all equal.

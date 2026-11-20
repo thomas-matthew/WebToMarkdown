@@ -1,13 +1,9 @@
-Python[langgraph](/python/langgraph)[channels](/python/langgraph/channels)[any\_value](/python/langgraph/channels/any_value)AnyValue
-
-Classv1.2.18 (latest)●Since v1.2
+Classv1.2.23 (latest)●Since v1.2
 
 # AnyValue
 
 Stores the last value received, assumes that if multiple values are
 received, they are all equal.
-
-Copy
 
 ```
 AnyValue(
@@ -34,80 +30,70 @@ constructor
 
 ## Attributes
 
-[attribute
+attribute
 
-value: Value | Any](/python/langgraph/channels/any_value/AnyValue/value)[attribute
+value: Value | Any
+
+attribute
 
 ValueType: type[Value]
 
-The type of the value stored in the channel.](/python/langgraph/channels/any_value/AnyValue/ValueType)[attribute
+The type of the value stored in the channel.
+
+attribute
 
 UpdateType: type[Value]
 
-The type of the update received by the channel.](/python/langgraph/channels/any_value/AnyValue/UpdateType)
+The type of the update received by the channel.
 
 ## Methods
 
-[method
+method
 
 copy
 
-Return a copy of the channel.](/python/langgraph/channels/any_value/AnyValue/copy)[method
+Return a copy of the channel.
 
-from\_checkpoint](/python/langgraph/channels/any_value/AnyValue/from_checkpoint)[method
+method
 
-update](/python/langgraph/channels/any_value/AnyValue/update)[method
+from\_checkpoint
 
-get](/python/langgraph/channels/any_value/AnyValue/get)[method
+method
 
-is\_available](/python/langgraph/channels/any_value/AnyValue/is_available)[method
+update
 
-checkpoint](/python/langgraph/channels/any_value/AnyValue/checkpoint)
+method
 
-## Inherited from[BaseChannel](/python/langgraph/channels/base/BaseChannel)
+get
+
+method
+
+is\_available
+
+method
+
+checkpoint
+
+## Inherited from[BaseChannel](https://reference.langchain.com/python/langgraph/channels/base/BaseChannel)
 
 ### Attributes
 
-[Atyp: typ](/python/langgraph/channels/base/BaseChannel/typ)[Akey: key](/python/langgraph/channels/base/BaseChannel/key)
+[Atyp: typ](https://reference.langchain.com/python/langgraph/channels/base/BaseChannel/typ)[Akey: key](https://reference.langchain.com/python/langgraph/channels/base/BaseChannel/key)
 
 ### Methods
 
-[Mconsume
+Mconsume
 
 —
 
-Notify the channel that a subscribed task ran.](/python/langgraph/channels/base/BaseChannel/consume)[Mfinish
+Notify the channel that a subscribed task ran.
+
+Mfinish
 
 —
 
-Notify the channel that the Pregel run is finishing.](/python/langgraph/channels/base/BaseChannel/finish)
+Notify the channel that the Pregel run is finishing.
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/channels/any_value.py#L15)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/58a6e1cc5b7dfc3619fc6e7e7573b040d554649b/libs/langgraph/langgraph/channels/any_value.py#L15)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Constructors
-
-C\_\_init\_\_
-
-Attributes
-
-AvalueAValueTypeAUpdateType
-
-Methods
-
-McopyMfrom\_checkpointMupdateMgetMis\_availableMcheckpoint
-
-from BaseChannel
-
-AAttributes
-
-AtypAkey
-
-MMethods
-
-MconsumeMfinish

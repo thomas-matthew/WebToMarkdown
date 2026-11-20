@@ -1,10 +1,6 @@
-Python[langgraph](/python/langgraph)[pregel](/python/langgraph/pregel)[main](/python/langgraph/pregel/main)NodeBuilder
-
-Classv1.2.18 (latest)●Since v1.2
+Classv1.2.23 (latest)●Since v1.2
 
 # NodeBuilder
-
-Copy
 
 ```
 NodeBuilder(
@@ -14,69 +10,75 @@ NodeBuilder(
 
 ## Constructors
 
-[constructor
+constructor
 
-\_\_init\_\_](/python/langgraph/pregel/main/NodeBuilder/__init__)
+\_\_init\_\_
 
 ## Methods
 
-[method
+method
 
 subscribe\_only
 
-Subscribe to a single channel.](/python/langgraph/pregel/main/NodeBuilder/subscribe_only)[method
+Subscribe to a single channel.
+
+method
 
 subscribe\_to
 
 Add channels to subscribe to.
 
 Node will be invoked when any of these channels are updated, with a dict of the
-channel values as input.](/python/langgraph/pregel/main/NodeBuilder/subscribe_to)[method
+channel values as input.
+
+method
 
 read\_from
 
-Adds the specified channels to read from, without subscribing to them.](/python/langgraph/pregel/main/NodeBuilder/read_from)[method
+Adds the specified channels to read from, without subscribing to them.
+
+method
 
 do
 
-Adds the specified node.](/python/langgraph/pregel/main/NodeBuilder/do)[method
+Adds the specified node.
+
+method
 
 write\_to
 
-Add channel writes.](/python/langgraph/pregel/main/NodeBuilder/write_to)[method
+Add channel writes.
+
+method
 
 meta
 
-Add tags or metadata to the node.](/python/langgraph/pregel/main/NodeBuilder/meta)[method
+Add tags or metadata to the node.
+
+method
 
 add\_retry\_policies
 
-Adds retry policies to the node.](/python/langgraph/pregel/main/NodeBuilder/add_retry_policies)[method
+Adds retry policies to the node.
+
+method
 
 add\_cache\_policy
 
-Adds cache policies to the node.](/python/langgraph/pregel/main/NodeBuilder/add_cache_policy)[method
+Adds cache policies to the node.
+
+method
 
 set\_timeout
 
-Set the per-attempt timeout policy for this node.](/python/langgraph/pregel/main/NodeBuilder/set_timeout)[method
+Set the per-attempt timeout policy for this node.
+
+method
 
 build
 
-Builds the node.](/python/langgraph/pregel/main/NodeBuilder/build)
+Builds the node.
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/pregel/main.py#L216)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/58a6e1cc5b7dfc3619fc6e7e7573b040d554649b/libs/langgraph/langgraph/pregel/main.py#L212)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Constructors
-
-C\_\_init\_\_
-
-Methods
-
-Msubscribe\_onlyMsubscribe\_toMread\_fromMdoMwrite\_toMmetaMadd\_retry\_policiesMadd\_cache\_policyMset\_timeoutMbuild

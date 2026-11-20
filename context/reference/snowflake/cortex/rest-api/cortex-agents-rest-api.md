@@ -1,95 +1,4 @@
-1. [Overview](/en/guides "Overview")
-2. [Snowflake Horizon Catalog](/en/user-guide/snowflake-horizon "Snowflake Horizon Catalog")
-4. [Applications and tools for connecting to Snowflake](/en/guides-overview-connecting "Applications and tools for connecting to Snowflake")
-6. [Virtual warehouses](/en/user-guide/warehouses "Virtual warehouses")
-7. [Databases, Tables, & Views](/en/guides-overview-db "Databases, Tables, & Views")
-8. [Data types](/en/data-types "Data types")
-10. Data Integration
-
-    - [Snowflake Openflow](/en/user-guide/data-integration/openflow/about "Snowflake Openflow")
-    - Apache Iceberg™
-
-      - [Apache Iceberg™ Tables](/en/user-guide/tables-iceberg "Apache Iceberg™ Tables")
-      - [Snowflake Open Catalog](/en/user-guide/opencatalog/overview "Snowflake Open Catalog")
-    - Zero-Copy Connectors
-
-      - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
-      - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
-      - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
-      - [About Workday Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-datacloud "About Workday Data Cloud and Snowflake")
-11. Data engineering
-
-    - [Data loading](/en/guides-overview-loading-data "Data loading")
-    - [Dynamic tables](/en/user-guide/dynamic-tables/overview "Dynamic tables")
-    - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
-    - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
-    - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
-    - [Pipeline Builder](/en/user-guide/pipeline-builder/pipeline-builder-overview "Pipeline Builder")
-    - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
-    - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
-12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/snowflake-aim "Migrations")
-15. [Queries](/en/guides-overview-queries "Queries")
-16. [Collaboration](/en/guides-overview-sharing "Collaboration")
-18. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
-
-    * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
-    * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
-    * [Snowflake Artifacts](/en/user-guide/snowflake-artifacts "Snowflake Artifacts")
-    * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
-    * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
-    * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
-
-      + [Get started](/en/user-guide/snowflake-cortex/cortex-agents-get-started "Get started")
-      + [Create and manage agents](/en/user-guide/snowflake-cortex/cortex-agents-manage "Create and manage agents")
-      + [Access control and authentication](/en/user-guide/snowflake-cortex/cortex-agents-setup "Access control and authentication")
-      + REST API
-
-        + [Agent Object](/en/user-guide/snowflake-cortex/cortex-agents-rest-api "Agent Object")
-        + [Agent Run](/en/user-guide/snowflake-cortex/cortex-agents-run "Agent Run")
-        + [Threads](/en/user-guide/snowflake-cortex/cortex-agents-threads-rest-api "Threads")
-        + [Feedback](/en/user-guide/snowflake-cortex/cortex-agents-feedback-rest-api "Feedback")
-        + [Compact](/en/user-guide/snowflake-cortex/cortex-agents-compact "Compact")
-      + [Use threads with Agents](/en/user-guide/snowflake-cortex/cortex-agents-threads "Use threads with Agents")
-      + [Microsoft Teams integration](/en/user-guide/snowflake-cortex/cortex-agents-teams-integration "Microsoft Teams integration")
-      + [Monitoring](/en/user-guide/snowflake-cortex/cortex-agents-monitor "Monitoring")
-      + [Evaluations](/en/user-guide/snowflake-cortex/cortex-agents-evaluations "Evaluations")
-      + [Share Cortex agents](/en/user-guide/snowflake-cortex/cortex-agents-sharing "Share Cortex agents")
-      + [Temporary agents](/en/user-guide/snowflake-cortex/cortex-agents-temporary "Temporary agents")
-      + [Secure agents](/en/user-guide/snowflake-cortex/cortex-agents-secure "Secure agents")
-      + [Resource budgets](/en/user-guide/snowflake-cortex/cortex-agents-resource-budgets "Resource budgets")
-      + [Shared resource budgets](/en/user-guide/snowflake-cortex/cortex-agents-shared-budgets "Shared resource budgets")
-      + [Agent skills](/en/user-guide/snowflake-cortex/cortex-agents-skills "Agent skills")
-      + [Code execution tool](/en/user-guide/snowflake-cortex/cortex-agents-code-execution-tool "Code execution tool")
-      + [Agent toolsets](/en/user-guide/snowflake-cortex/cortex-agents-toolsets "Agent toolsets")
-      + [Coding Agent](/en/user-guide/snowflake-cortex/cortex-agents-coding-agent "Coding Agent")
-      + [MCP Connectors](/en/user-guide/snowflake-cortex/cortex-agents-mcp-connectors "MCP Connectors")
-      + [Agent versioning](/en/user-guide/snowflake-cortex/cortex-agents-versioning "Agent versioning")
-      + [Multi-tenancy](/en/user-guide/snowflake-cortex/cortex-agents-multi-tenancy "Multi-tenancy")
-    * [Cortex Agent SDK](/en/user-guide/snowflake-cortex/cortex-agent-sdk/cortex-agent-sdk "Cortex Agent SDK")
-    * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
-    * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
-    * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
-    * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
-    * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
-    * [Cortex Inference](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex Inference")
-    * [Cortex AI Guardrails](/en/user-guide/snowflake-cortex/cortex-ai-guardrails "Cortex AI Guardrails")
-    * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
-    * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
-    * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
-    * [ML Development and ML Ops](/en/developer-guide/snowpark-ml/overview "ML Development and ML Ops")
-    * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
-20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
-22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
-24. [Security](/en/guides-overview-secure "Security")
-26. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-27. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-29. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-30. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
-
-[Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)[Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents)REST APIAgent Object
-
-# Cortex Agents REST API[¶](#cortex-agents-rest-api)
+# Cortex Agents REST API
 
 Note
 
@@ -97,67 +6,57 @@ Requests to the Cortex Agent REST API time out after 15 minutes.
 
 You can use the Cortex Agent REST API to create, manage, and interact with Cortex Agent Objects in your Snowflake account.
 
-## Create Cortex Agent[¶](#create-cortex-agent)
+## Private connectivity (PrivateLink)
+
+If your account uses [private connectivity](https://docs.snowflake.com/user-guide/private-connectivity-inbound), clients outside Snowflake can send Cortex Agents REST API requests to your account’s private connectivity URL. To get the host names to add to your private DNS, call [SYSTEM$ALLOWLIST\_PRIVATELINK](https://docs.snowflake.com/sql-reference/functions/system_allowlist_privatelink).
+
+Note
+
+Code that runs inside Snowflake, such as stored procedures, can’t call the REST API through a private connectivity URL; such requests return HTTP 404. Use [DATA\_AGENT\_RUN](https://docs.snowflake.com/sql-reference/functions/data_agent_run-snowflake-cortex) instead.
+
+## Create Cortex Agent
 
 `POST /api/v2/databases/{database}/schemas/{schema}/agents`
 
 Creates a new Cortex Agent Object with the specified attributes and specification.
 
-### Request[¶](#request)
+### Request
 
-#### Path parameters[¶](#path-parameters)
+#### Path parameters
 
 | Parameter | Description |
 | --- | --- |
 | `database` | (Required) Identifier for the database to which the resource belongs. |
 | `schema` | (Required) Schema identifier. |
 
-Expand
-
-Show lessSee more
-
-#### Query parameters[¶](#query-parameters)
+#### Query parameters
 
 | Parameter | Description |
 | --- | --- |
 | `createMode` | (Optional) Resource creation mode. Valid values:  * `errorIfExists` * `orReplace` * `ifNotExists` |
 
-Expand
-
-Show lessSee more
-
-#### Request headers[¶](#request-headers)
+#### Request headers
 
 | Header | Description |
 | --- | --- |
-| `Authorization` | (Required) Authorization token. For more information, see [Authentication](/user-guide/snowflake-cortex/cortex-agents-setup#label-chat-api-authenticate-example). |
+| `Authorization` | (Required) Authorization token. For more information, see [Authentication](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-setup#label-chat-api-authenticate-example). |
 | `Content-Type` | (Required) application/json |
 
-Expand
-
-Show lessSee more
-
-#### Request body[¶](#request-body)
+#### Request body
 
 | Field | Type | Description |
 | --- | --- | --- |
 | `name` | string | Name of the agent. |
 | `comment` | string | Optional comment about the agent. |
-| `profile` | [AgentProfile](#label-snowflake-agent-object-agentprofile) | Agent profile information (display name, avatar, color, etc.). |
-| `models` | [ModelConfig](#label-snowflake-agent-object-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
-| `instructions` | [AgentInstructions](#label-snowflake-agent-object-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
-| `orchestration` | [OrchestrationConfig](#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
-| `tools` | array of [Tool](#label-snowflake-agent-object-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
-| `tool_resources` | map of [ToolResource](#label-snowflake-agent-object-toolresource) | Configuration for each tool referenced in the tools array. Each key must equal the name of the corresponding tool. |
+| `profile` | [AgentProfile](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-agentprofile) | Agent profile information (display name, avatar, color, etc.). |
+| `models` | [ModelConfig](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
+| `instructions` | [AgentInstructions](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
+| `orchestration` | [OrchestrationConfig](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
+| `tools` | array of [Tool](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
+| `tool_resources` | map of [ToolResource](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-toolresource) | Configuration for each tool referenced in the tools array. Each key must equal the name of the corresponding tool. |
 | `thinking_effort` | string | Controls the reasoning effort used by the orchestration model. Higher effort can improve complex-task quality at the cost of latency and tokens. When omitted, the service selects the appropriate default. |
 
-Expand
-
-Show lessSee more
-
 **Example**
-
-Copy codeExpand code block
 
 ```
 {
@@ -218,31 +117,25 @@ Copy codeExpand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
-### Response[¶](#response)
+### Response
 
 A successful response returns a JSON object with details about the status of Cortex Agent creation.
 
-#### Response body[¶](#response-body)
-
-Copy code
+#### Response body
 
 ```
 {"status": "Agent xxxx successfully created."}
 ```
 
-## Describe Cortex Agent[¶](#describe-cortex-agent)
+## Describe Cortex Agent
 
 `GET /api/v2/databases/{database}/schemas/{schema}/agents/{name}`
 
 Describes a Cortex Agent.
 
-### Request[¶](#request)
+### Request
 
-#### Path parameters[¶](#path-parameters)
+#### Path parameters
 
 | Parameter | Description |
 | --- | --- |
@@ -250,41 +143,27 @@ Describes a Cortex Agent.
 | `schema` | (Required) Identifier for the schema to which the resource belongs. You can use the /api/v2/databases/{database}/schemas GET request to get a list of available schemas for the specified database. |
 | `name` | (Required) Identifier for the agent. |
 
-Expand
-
-Show lessSee more
-
-#### Request headers[¶](#request-headers)
+#### Request headers
 
 | Header | Description |
 | --- | --- |
-| `Authorization` | (Required) Authorization token. For more information, see [Authentication](/user-guide/snowflake-cortex/cortex-agents-setup#label-chat-api-authenticate-example). |
+| `Authorization` | (Required) Authorization token. For more information, see [Authentication](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-setup#label-chat-api-authenticate-example). |
 | `Content-Type` | (Required) application/json |
 
-Expand
-
-Show lessSee more
-
-### Response[¶](#response)
+### Response
 
 A successful response returns a JSON object describing the Cortex Agent.
 
-#### Response headers[¶](#response-headers)
+#### Response headers
 
 | Header | Description |
 | --- | --- |
 | `X-Snowflake-Request-ID` | Unique ID of the API request. |
 | `Link` | Links to the page of results (e.g. the first page, the last page, etc.). The header can include multiple url entries with different rel attribute values that specify the page to return (first, next, prev, and last). |
 
-Expand
-
-Show lessSee more
-
-#### Response body[¶](#response-body)
+#### Response body
 
 The response body contains the details of the Cortex Agent.
-
-Copy codeExpand code block
 
 ```
 {
@@ -297,15 +176,17 @@ Copy codeExpand code block
 }
 ```
 
-## Update Cortex Agent[¶](#update-cortex-agent)
+The `agent_spec` field is a string that contains the agent specification as serialized JSON. The specification uses the same structure as the `FROM SPECIFICATION` clause of [CREATE AGENT](https://docs.snowflake.com/sql-reference/sql/create-agent).
+
+## Update Cortex Agent
 
 `PUT /api/v2/databases/{database}/schemas/{schema}/agents/{name}`
 
 Updates an existing Cortex Agent with the specified attributes and specification.
 
-### Request[¶](#request)
+### Request
 
-#### Path parameters[¶](#path-parameters)
+#### Path parameters
 
 | Parameter | Description |
 | --- | --- |
@@ -313,41 +194,27 @@ Updates an existing Cortex Agent with the specified attributes and specification
 | `schema` | (Required) Schema identifier. You can use the */api/v2/databases/{database}/schemas* GET request to get a list of available schemas for the specified database. |
 | `name` | (Required) Name of the agent. |
 
-Expand
-
-Show lessSee more
-
-#### Request headers[¶](#request-headers)
+#### Request headers
 
 | Header | Description |
 | --- | --- |
-| `Authorization` | (Required) Authorization token. For more information, see [Authentication](/user-guide/snowflake-cortex/cortex-agents-setup#label-chat-api-authenticate-example). |
+| `Authorization` | (Required) Authorization token. For more information, see [Authentication](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-setup#label-chat-api-authenticate-example). |
 | `Content-Type` | (Required) application/json |
 
-Expand
-
-Show lessSee more
-
-#### Request body[¶](#request-body)
+#### Request body
 
 | Field | Type | Description |
 | --- | --- | --- |
 | `comment` | string | Optional comment about the agent. |
-| `profile` | [AgentProfile](#label-snowflake-agent-object-agentprofile) | Agent profile information (display name, avatar, color, etc.). |
-| `models` | [ModelConfig](#label-snowflake-agent-object-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
-| `instructions` | [AgentInstructions](#label-snowflake-agent-object-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
-| `orchestration` | [OrchestrationConfig](#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
-| `tools` | array of [Tool](#label-snowflake-agent-object-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
-| `tool_resources` | map of [ToolResource](#label-snowflake-agent-object-toolresource) | Configuration for each tool referenced in the tools array. Each key must equal the name of the corresponding tool. |
+| `profile` | [AgentProfile](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-agentprofile) | Agent profile information (display name, avatar, color, etc.). |
+| `models` | [ModelConfig](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
+| `instructions` | [AgentInstructions](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
+| `orchestration` | [OrchestrationConfig](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
+| `tools` | array of [Tool](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
+| `tool_resources` | map of [ToolResource](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-toolresource) | Configuration for each tool referenced in the tools array. Each key must equal the name of the corresponding tool. |
 | `thinking_effort` | string | Controls the reasoning effort used by the orchestration model. Higher effort can improve complex-task quality at the cost of latency and tokens. When omitted, the service selects the appropriate default. |
 
-Expand
-
-Show lessSee more
-
 **Example**
-
-Copy codeExpand code block
 
 ```
 {
@@ -407,42 +274,32 @@ Copy codeExpand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
-### Response[¶](#response)
+### Response
 
 A successful response returns a JSON object with details about the status of Cortex Agent update.
 
-#### Response body[¶](#response-body)
-
-Copy code
+#### Response body
 
 ```
 {"status": "Agent xxxx successfully updated."}
 ```
 
-## List Cortex Agents[¶](#list-cortex-agents)
+## List Cortex Agents
 
 `GET /api/v2/databases/{database}/schemas/{schema}/agents`
 
 Lists the Cortex Agents under the specified database and schema.
 
-### Request[¶](#request)
+### Request
 
-#### Path parameters[¶](#path-parameters)
+#### Path parameters
 
 | Parameter | Description |
 | --- | --- |
 | `database` | (Required) Identifier for the database to which the resource belongs. You can use the /api/v2/databases GET request to get a list of available databases. |
 | `schema` | (Required) Identifier for the schema to which the resource belongs. You can use the /api/v2/databases/{database}/schemas GET request to get a list of available schemas for the specified database. |
 
-Expand
-
-Show lessSee more
-
-#### Query parameters[¶](#query-parameters)
+#### Query parameters
 
 | Parameter | Description |
 | --- | --- |
@@ -450,39 +307,25 @@ Show lessSee more
 | `fromName` | (Optional) Enable fetching rows only following the first row whose object name matches the specified string. Case-sensitive and does not have to be the full name. |
 | `showLimit` | (Optional) Limit the maximum number of rows returned by the command. Minimum: 1. Maximum: 10000. |
 
-Expand
-
-Show lessSee more
-
-#### Request headers[¶](#request-headers)
+#### Request headers
 
 | Header | Description |
 | --- | --- |
-| `Authorization` | (Required) Authorization token. For more information, see [Authentication](/user-guide/snowflake-cortex/cortex-agents-setup#label-chat-api-authenticate-example). |
+| `Authorization` | (Required) Authorization token. For more information, see [Authentication](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-setup#label-chat-api-authenticate-example). |
 | `Content-Type` | (Required) application/json |
 
-Expand
-
-Show lessSee more
-
-### Response[¶](#response)
+### Response
 
 A successful response returns a JSON array of Cortex Agent resources.
 
-#### Response headers[¶](#response-headers)
+#### Response headers
 
 | Header | Description |
 | --- | --- |
 | `X-Snowflake-Request-ID` | Unique ID of the API request. |
 | `Link` | Links to the page of results (e.g. the first page, the last page, etc.). The header can include multiple url entries with different rel attribute values that specify the page to return (first, next, prev, and last). |
 
-Expand
-
-Show lessSee more
-
-#### Response body[¶](#response-body)
-
-Copy codeExpand code block
+#### Response body
 
 ```
 [
@@ -507,19 +350,15 @@ Copy codeExpand code block
 ]
 ```
 
-Show lessSee more
-
-Scroll to top
-
-## Delete Cortex Agent[¶](#delete-cortex-agent)
+## Delete Cortex Agent
 
 `DELETE /api/v2/databases/{database}/schemas/{schema}/agents/{name}`
 
 Deletes a Cortex Agent with the specified name. If the `ifExists` parameter is set to `true`, the operation succeeds even if the agent does not exist. Otherwise, the operation fails if the agent cannot be deleted.
 
-### Request[¶](#request)
+### Request
 
-#### Path parameters[¶](#path-parameters)
+#### Path parameters
 
 | Parameter | Description |
 | --- | --- |
@@ -527,38 +366,24 @@ Deletes a Cortex Agent with the specified name. If the `ifExists` parameter is s
 | `schema` | (Required) Identifier for the schema to which the resource belongs. You can use the /api/v2/databases/{database}/schemas GET request to get a list of available schemas for the specified database. |
 | `name` | (Required) Identifier for the agent. |
 
-Expand
-
-Show lessSee more
-
-#### Query parameters[¶](#query-parameters)
+#### Query parameters
 
 | Parameter | Description |
 | --- | --- |
 | `ifExists` | (Optional) Specifies how to handle the request if the agent does not exist.   * `true`: The endpoint does not throw an error if the agent does not exist. It returns a 200 success response, but does not take any action. * `false`: The endpoint throws an error if the agent does not exist. |
 
-Expand
-
-Show lessSee more
-
-#### Request headers[¶](#request-headers)
+#### Request headers
 
 | Header | Description |
 | --- | --- |
-| `Authorization` | (Required) Authorization token. For more information, see [Authentication](/user-guide/snowflake-cortex/cortex-agents-setup#label-chat-api-authenticate-example). |
+| `Authorization` | (Required) Authorization token. For more information, see [Authentication](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-setup#label-chat-api-authenticate-example). |
 | `Content-Type` | (Required) application/json |
 
-Expand
-
-Show lessSee more
-
-### Response[¶](#response)
+### Response
 
 A successful response returns a confirmation message.
 
-#### Response body[¶](#response-body)
-
-Copy code
+#### Response body
 
 ```
 {
@@ -566,11 +391,11 @@ Copy code
 }
 ```
 
-## Schemas[¶](#schemas)
+## Schemas
 
-The `OrchestrationConfig` schema documents `budget`. The same object also accepts `tool_not_accessible` (`accept`, `reject`, or `legacy`) to control whether a missing tool privilege aborts the run. Set that field on the agent specification’s top-level `orchestration` object, which uses this schema. Don’t confuse it with `models.orchestration` (the orchestration model name) or `instructions.orchestration` (natural-language instructions). For behavior, defaults, and which tools Snowflake checks, see [Where to set the field](/user-guide/snowflake-cortex/cortex-agents-inaccessible-tool-handling#label-cortex-agents-inaccessible-tool-where-to-set).
+The `OrchestrationConfig` schema documents `budget`. The same object also accepts `tool_not_accessible` (`accept`, `reject`, or `legacy`) to control whether a missing tool privilege aborts the run. Set that field on the agent specification’s top-level `orchestration` object, which uses this schema. Don’t confuse it with `models.orchestration` (the orchestration model name) or `instructions.orchestration` (natural-language instructions). For behavior, defaults, and which tools Snowflake checks, see [Where to set the field](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-inaccessible-tool-handling#label-cortex-agents-inaccessible-tool-where-to-set).
 
-# `AgentInstructions`[¶](#agentinstructions)
+# `AgentInstructions`
 
 | Field | Type | Description |
 | --- | --- | --- |
@@ -578,13 +403,7 @@ The `OrchestrationConfig` schema documents `budget`. The same object also accept
 | `orchestration` | string | These custom instructions are used when the agent is planning which tools to use. |
 | `system` | string | System instructions for the agent. |
 
-Expand
-
-Show lessSee more
-
 **Example**
-
-Copy codeExpand code block
 
 ```
 {
@@ -594,7 +413,7 @@ Copy codeExpand code block
 }
 ```
 
-## `AgentProfile`[¶](#agentprofile)
+## `AgentProfile`
 
 The profile information for a Data Cortex agent.
 
@@ -602,13 +421,7 @@ The profile information for a Data Cortex agent.
 | --- | --- | --- |
 | `display_name` | string | Display name for the agent. |
 
-Expand
-
-Show lessSee more
-
 **Example**
-
-Copy code
 
 ```
 {
@@ -616,20 +429,14 @@ Copy code
 }
 ```
 
-## `BudgetConfig`[¶](#budgetconfig)
+## `BudgetConfig`
 
 | Field | Type | Description |
 | --- | --- | --- |
 | `seconds` | integer | Time budget in seconds. |
 | `tokens` | integer | Token budget. |
 
-Expand
-
-Show lessSee more
-
 **Example**
-
-Copy code
 
 ```
 {
@@ -638,19 +445,13 @@ Copy code
 }
 ```
 
-## `CapabilitiesConfig`[¶](#capabilitiesconfig)
+## `CapabilitiesConfig`
 
 | Field | Type | Description |
 | --- | --- | --- |
 | `analytical_search` | boolean | If true, enables analytical search. |
 
-Expand
-
-Show lessSee more
-
 **Example**
-
-Copy code
 
 ```
 {
@@ -658,7 +459,7 @@ Copy code
 }
 ```
 
-## `ExecutionEnvironment`[¶](#executionenvironment)
+## `ExecutionEnvironment`
 
 Configuration for server-executed tools.
 
@@ -668,13 +469,7 @@ Configuration for server-executed tools.
 | `warehouse` | string | The name of the warehouse. Case-sensitive; if it is an unquoted identifier, provide the name in all-caps. If not specified, the user’s default warehouse is used. |
 | `query_timeout` | integer | The query timeout in seconds |
 
-Expand
-
-Show lessSee more
-
 **Example**
-
-Copy code
 
 ```
 {
@@ -684,19 +479,13 @@ Copy code
 }
 ```
 
-## `ModelConfig`[¶](#modelconfig)
+## `ModelConfig`
 
 | Field | Type | Description |
 | --- | --- | --- |
 | `orchestration` | string | Model to use for orchestration. If not provided, a model is automatically selected. |
 
-Expand
-
-Show lessSee more
-
 **Example**
-
-Copy code
 
 ```
 {
@@ -704,20 +493,14 @@ Copy code
 }
 ```
 
-## `OrchestrationConfig`[¶](#orchestrationconfig)
+## `OrchestrationConfig`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `budget` | [BudgetConfig](#label-snowflake-agent-object-budgetconfig) | Budget constraints for the agent. If more than one constraint is specified, whichever is first hit will end the request. |
-| `capabilities` | [CapabilitiesConfig](#label-snowflake-agent-object-capabilitiesconfig) | Capabilities to enable for the agent. |
-
-Expand
-
-Show lessSee more
+| `budget` | [BudgetConfig](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-budgetconfig) | Budget constraints for the agent. If more than one constraint is specified, whichever is first hit will end the request. |
+| `capabilities` | [CapabilitiesConfig](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-capabilitiesconfig) | Capabilities to enable for the agent. |
 
 **Example**
-
-Copy code
 
 ```
 {
@@ -731,21 +514,15 @@ Copy code
 }
 ```
 
-## `Tool`[¶](#tool)
+## `Tool`
 
 Defines a tool that can be used by the agent. Tools provide specific capabilities like data analysis, search, or generic functions.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `tool_spec` | [ToolSpec](#label-snowflake-agent-object-toolspec) | Specification of the tool’s type, configuration, and input requirements. |
-
-Expand
-
-Show lessSee more
+| `tool_spec` | [ToolSpec](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-toolspec) | Specification of the tool’s type, configuration, and input requirements. |
 
 **Example**
-
-Copy codeExpand code block
 
 ```
 {
@@ -769,27 +546,17 @@ Copy codeExpand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
-## `ToolInputSchema`[¶](#toolinputschema)
+## `ToolInputSchema`
 
 | Field | Type | Description |
 | --- | --- | --- |
 | `type` | string | The type of the input schema object. |
 | `description` | string | A description of what the input is. |
-| `properties` | map of [ToolInputSchema](#label-snowflake-agent-object-toolinputschema) | If type is `object`, definitions of each input parameter. |
-| `items` | [ToolInputSchema](#label-snowflake-agent-object-toolinputschema) | If type is `array`, the schema for the elements of the array. |
+| `properties` | map of [ToolInputSchema](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-toolinputschema) | If type is `object`, definitions of each input parameter. |
+| `items` | [ToolInputSchema](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-toolinputschema) | If type is `array`, the schema for the elements of the array. |
 | `required` | array of string | If type is `object`, list of required input parameter names. |
 
-Expand
-
-Show lessSee more
-
 **Example**
-
-Copy codeExpand code block
 
 ```
 {
@@ -808,11 +575,7 @@ Copy codeExpand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
-## `ToolResource`[¶](#toolresource)
+## `ToolResource`
 
 > cortex\_analyst\_text\_to\_sqlcortex\_searchgenericweb\_search
 >
@@ -822,15 +585,9 @@ Scroll to top
 > | --- | --- | --- |
 > | `semantic_model_file` | string | The path to a file stored in a Snowflake Stage holding the semantic model yaml. |
 > | `semantic_view` | string | The name of the Snowflake native semantic model object. |
-> | `execution_environment` | [ExecutionEnvironment](#label-snowflake-agent-object-executionenvironment) | Configuration for how to execute the generated SQL query. |
->
-> Expand
->
-> Show lessSee more
+> | `execution_environment` | [ExecutionEnvironment](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-executionenvironment) | Configuration for how to execute the generated SQL query. |
 >
 > **Example**
->
-> Copy code
 >
 > ```
 > {
@@ -853,13 +610,7 @@ Scroll to top
 > | `id_column` | string | The ID column of the document. |
 > | `filter` | object | Filter query for search results. |
 >
-> Expand
->
-> Show lessSee more
->
 > **Example**
->
-> Copy code
 >
 > ```
 > {
@@ -877,16 +628,10 @@ Scroll to top
 > | Field | Type | Description |
 > | --- | --- | --- |
 > | `type` | string | If the tool is server-side executed, whether it is a Stored Procedure or a UDF. |
-> | `execution_environment` | [ExecutionEnvironment](#label-snowflake-agent-object-executionenvironment) |  |
+> | `execution_environment` | [ExecutionEnvironment](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-executionenvironment) |  |
 > | `identifier` | string | Fully qualified name of the Stored Procedure or UDF. |
 >
-> Expand
->
-> Show lessSee more
->
 > **Example**
->
-> Copy code
 >
 > ```
 > {
@@ -906,13 +651,7 @@ Scroll to top
 > | --- | --- | --- |
 > | `max_results` | integer | Max web search results returned. |
 >
-> Expand
->
-> Show lessSee more
->
 > **Example**
->
-> Copy code
 >
 > ```
 > {
@@ -920,7 +659,7 @@ Scroll to top
 > }
 > ```
 
-## `ToolSpec`[¶](#toolspec)
+## `ToolSpec`
 
 Specification of the tool’s type, configuration, and input requirements.
 
@@ -929,15 +668,9 @@ Specification of the tool’s type, configuration, and input requirements.
 | `type` | string | The type of tool capability. Can be specialized types like ‘cortex\_analyst\_text\_to\_sql’ or ‘generic’ for general-purpose tools. |
 | `name` | string | Unique identifier for referencing this tool instance. Used to match with configuration in tool\_resources. |
 | `description` | string | Description of the tool to be considered for tool use. |
-| `input_schema` | [ToolInputSchema](#label-snowflake-agent-object-toolinputschema) | JSON Schema definition of the expected input parameters for this tool. This will be fed to the agent so it knows the structure it should follow for when generating the input for ToolUses. Required for generic tools to specify their input parameters. |
-
-Expand
-
-Show lessSee more
+| `input_schema` | [ToolInputSchema](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-toolinputschema) | JSON Schema definition of the expected input parameters for this tool. This will be fed to the agent so it knows the structure it should follow for when generating the input for ToolUses. Required for generic tools to specify their input parameters. |
 
 **Example**
-
-Copy codeExpand code block
 
 ```
 {
@@ -958,60 +691,3 @@ Copy codeExpand code block
   }
 }
 ```
-
-Show lessSee more
-
-Scroll to top
-
-Was this page helpful?
-
-YesNo
-
-[Visit Snowflake](https://www.snowflake.com)
-
-[Join the conversation](https://community.snowflake.com/s/)
-
-[Develop with Snowflake](https://developers.snowflake.com)
-
-[Share your feedback](/feedback)
-
-[Read the latest on our blog](https://www.snowflake.com/blog/)
-
-[Get your own certification](https://learn.snowflake.com)
-
-[Privacy Notice](https://www.snowflake.com/privacy-policy/)[Site Terms](https://www.snowflake.com/legal/snowflake-site-terms/)Cookies Settings© 2026 Snowflake, Inc. All Rights Reserved.
-
-On this page
-
-1. [Create Cortex Agent](#create-cortex-agent)
-2. [Request](#request)
-3. [Response](#response)
-4. [Describe Cortex Agent](#describe-cortex-agent)
-5. [Request](#request)
-6. [Response](#response)
-7. [Update Cortex Agent](#update-cortex-agent)
-8. [Request](#request)
-9. [Response](#response)
-10. [List Cortex Agents](#list-cortex-agents)
-11. [Request](#request)
-12. [Response](#response)
-13. [Delete Cortex Agent](#delete-cortex-agent)
-14. [Request](#request)
-15. [Response](#response)
-16. [Schemas](#schemas)
-17. [AgentInstructions](#agentinstructions)
-18. [AgentProfile](#agentprofile)
-19. [BudgetConfig](#budgetconfig)
-20. [CapabilitiesConfig](#capabilitiesconfig)
-21. [ExecutionEnvironment](#executionenvironment)
-22. [ModelConfig](#modelconfig)
-23. [OrchestrationConfig](#orchestrationconfig)
-24. [Tool](#tool)
-25. [ToolInputSchema](#toolinputschema)
-26. [ToolResource](#toolresource)
-27. [ToolSpec](#toolspec)
-
-Related content
-
-1. [Cortex Agents](/user-guide/snowflake-cortex/cortex-agents)
-2. [Inaccessible tool handling](/user-guide/snowflake-cortex/cortex-agents-inaccessible-tool-handling)

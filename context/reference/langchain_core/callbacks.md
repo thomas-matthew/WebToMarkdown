@@ -1,48 +1,50 @@
-Python[langchain-core](/python/langchain-core)Callbacks
-
 # Callbacks
 
 ## Classes
 
-[Class
+Class
 
-### BaseCallbackHandler
+### [BaseCallbackHandler](https://reference.langchain.com/python/langchain-core/callbacks/base/BaseCallbackHandler)
 
-Base callback handler.](/python/langchain-core/callbacks/base/BaseCallbackHandler)[Class
+Base callback handler.
 
-### AsyncCallbackHandler
+Class
 
-Base async callback handler.](/python/langchain-core/callbacks/base/AsyncCallbackHandler)[Class
+### [AsyncCallbackHandler](https://reference.langchain.com/python/langchain-core/callbacks/base/AsyncCallbackHandler)
 
-### BaseCallbackManager
+Base async callback handler.
 
-Base callback manager.](/python/langchain-core/callbacks/base/BaseCallbackManager)[Class
+Class
 
-### CallbackManager
+### [BaseCallbackManager](https://reference.langchain.com/python/langchain-core/callbacks/base/BaseCallbackManager)
 
-Callback manager for LangChain.](/python/langchain-core/callbacks/manager/CallbackManager)[Class
+Base callback manager.
 
-### AsyncCallbackManager
+Class
 
-Async callback manager that handles callbacks from LangChain.](/python/langchain-core/callbacks/manager/AsyncCallbackManager)[Class
+### [CallbackManager](https://reference.langchain.com/python/langchain-core/callbacks/manager/CallbackManager)
 
-### UsageMetadataCallbackHandler
+Callback manager for LangChain.
 
-Callback Handler that tracks `AIMessage.usage_metadata`.](/python/langchain-core/callbacks/usage/UsageMetadataCallbackHandler)
+Class
+
+### [AsyncCallbackManager](https://reference.langchain.com/python/langchain-core/callbacks/manager/AsyncCallbackManager)
+
+Async callback manager that handles callbacks from LangChain.
+
+Class
+
+### [UsageMetadataCallbackHandler](https://reference.langchain.com/python/langchain-core/callbacks/usage/UsageMetadataCallbackHandler)
+
+Callback Handler that tracks `AIMessage.usage_metadata`.
 
 ## Functions
 
-[Function
+Function
 
-### get\_usage\_metadata\_callback
+### [get\_usage\_metadata\_callback](https://reference.langchain.com/python/langchain-core/callbacks/usage/get_usage_metadata_callback)
 
 Get usage metadata callback.
 
 Get context manager for tracking usage metadata across chat model calls using
-`AIMessage.usage_metadata`.](/python/langchain-core/callbacks/usage/get_usage_metadata_callback)
-
-Copy page
-
-### On This Page
-
-Classes6Functions1
+`AIMessage.usage_metadata`.

@@ -1,90 +1,100 @@
-Python[langgraph](/python/langgraph)Types
-
 # Types
 
 ## Classes
 
-[Class
+Class
 
-### RetryPolicy
+### [RetryPolicy](https://reference.langchain.com/python/langgraph/types/RetryPolicy)
 
-Configuration for retrying nodes.](/python/langgraph/types/RetryPolicy)[Class
+Configuration for retrying nodes.
 
-### CachePolicy
+Class
 
-Configuration for caching nodes.](/python/langgraph/types/CachePolicy)[Class
+### [CachePolicy](https://reference.langchain.com/python/langgraph/types/CachePolicy)
 
-### Interrupt
+Configuration for caching nodes.
+
+Class
+
+### [Interrupt](https://reference.langchain.com/python/langgraph/types/Interrupt)
 
 Information about an interrupt that occurred in a node.
 
 Changed in version v0.4.0
 
-* `interrupt_id` was introduced as a property](/python/langgraph/types/Interrupt)[Class
+* `interrupt_id` was introduced as a property
 
-### PregelTask
+Class
 
-A Pregel task.](/python/langgraph/types/PregelTask)[Class
+### [PregelTask](https://reference.langchain.com/python/langgraph/types/PregelTask)
 
-### StateSnapshot
+A Pregel task.
 
-Snapshot of the state of the graph at the beginning of a step.](/python/langgraph/types/StateSnapshot)[Class
+Class
 
-### Send
+### [StateSnapshot](https://reference.langchain.com/python/langgraph/types/StateSnapshot)
+
+Snapshot of the state of the graph at the beginning of a step.
+
+Class
+
+### [Send](https://reference.langchain.com/python/langgraph/types/Send)
 
 A message or packet to send to a specific node in the graph.
 
 The `Send` class is used within a `StateGraph`'s conditional edges to
 dynamically invoke a node with a custom state at the next step.
 
-Imp](/python/langgraph/types/Send)[Class
+Imp
 
-### Command
+Class
 
-One or more commands to update the graph's state and send messages to nodes.](/python/langgraph/types/Command)[Class
+### [Command](https://reference.langchain.com/python/langgraph/types/Command)
 
-### Overwrite
+One or more commands to update the graph's state and send messages to nodes.
+
+Class
+
+### [Overwrite](https://reference.langchain.com/python/langgraph/types/Overwrite)
 
 Bypass a reducer and write the wrapped value directly to a `BinaryOperatorAggregate` channel.
 
 Receiving multiple `Overwrite` values for the same channel in a single super-step
-will raise an `InvalidU](/python/langgraph/types/Overwrite)
+will raise an `InvalidU
 
 ## Types
 
-[Type
+Type
 
-### Checkpointer
+### [Checkpointer](https://reference.langchain.com/python/langgraph/types/Checkpointer)
 
 Type of the checkpointer to use for a subgraph.
 
 * `True` enables persistent checkpointing for this subgraph.
 * `False` disables checkpointing, even if the parent graph has a checkpointer.
-* `None` in](/python/langgraph/types/Checkpointer)
+* `None` in
 
 ## Constants
 
-[Attribute
+Attribute
 
-### All
+### [All](https://reference.langchain.com/python/langgraph/types/All)
 
-Special value to indicate that graph should interrupt on all nodes.](/python/langgraph/types/All)[Attribute
+Special value to indicate that graph should interrupt on all nodes.
 
-### StreamMode
+Attribute
+
+### [StreamMode](https://reference.langchain.com/python/langgraph/types/StreamMode)
 
 How the stream method should emit outputs.
 
 * `"values"`: Emit all values in the state after each step, including interrupts.
-  When used with functional API, values are emitted once at the end of t](/python/langgraph/types/StreamMode)[Attribute
+  When used with functional API, values are emitted once at the end of t
 
-### StreamWriter
+Attribute
+
+### [StreamWriter](https://reference.langchain.com/python/langgraph/types/StreamWriter)
 
 `Callable` that accepts a single argument and writes it to the output stream.
 Always injected into nodes if requested as a keyword argument, but it's a no-op
-when not using `stream_mode="custom"`.](/python/langgraph/types/StreamWriter)
-
-Copy page
-
-### On This Page
-
-Classes8Types1Constants3
+when not using `stream_mode="custom"`.

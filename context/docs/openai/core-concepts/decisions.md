@@ -137,7 +137,7 @@ curl https://api.openai.com/v1/decisions \
 JSON
 ```
 
-```javascript
+```typescript
 import { readFile } from "node:fs/promises";
 import OpenAI from "openai";
 
@@ -251,8 +251,10 @@ func main() {
 		},
 		Questions: []openai.DecisionNewParamsQuestionUnion{{
 			OfPredicate: &openai.DecisionNewParamsQuestionPredicate{
-				Name:         openai.String("visible_damage"),
-				Instructions: "Does the product have visible damage, such as a crack, tear, or dent? Ignore shadows and damage to the packaging.",
+				Name: openai.String("visible_damage"),
+				Instructions: openai.DecisionNewParamsQuestionPredicateInstructionsUnion{
+					OfString: openai.String("Does the product have visible damage, such as a crack, tear, or dent? Ignore shadows and damage to the packaging."),
+				},
 			},
 		}},
 	})
@@ -273,6 +275,7 @@ func main() {
 ```java
 import com.openai.models.decisions.DecisionCreateParams;
 import com.openai.models.decisions.DecisionInputImage;
+import com.openai.models.decisions.DecisionInputItem;
 import com.openai.models.decisions.DecisionInputMessage;
 import com.openai.models.decisions.DecisionInputPart;
 import com.openai.models.decisions.DecisionInputText;
@@ -284,7 +287,7 @@ import java.util.List;
 String imageBase64 =
     Base64.getEncoder().encodeToString(Files.readAllBytes(Path.of("product.png")));
 var message =
-    DecisionInputMessage.builder()
+    DecisionInputMessage.User.builder()
         .contentOfParts(
             List.of(
                 DecisionInputPart.ofInputText(
@@ -302,7 +305,10 @@ var decision =
         .create(
             DecisionCreateParams.builder()
                 .model("gpt-6-luna")
-                .inputOfDecisionInputMessages(List.of(message))
+                .inputOfDecisionInputItems(
+                    List.of(
+                        DecisionInputItem.ofDecisionInputMessage(
+                            DecisionInputMessage.ofUser(message))))
                 .addQuestion(
                     DecisionCreateParams.Question.Predicate.builder()
                         .name("visible_damage")
@@ -436,6 +442,12 @@ When adding images to question instructions:
 
 A `choice` question selects one value from the options you provide. Use distinct values and descriptions that explain when each option applies.
 
+The model sees each choice's `value` and its `description`, when provided. Both fields are part of the prompt, so changing a `value` can change the result even when its description stays the same.
+
+When choosing a string `value`, prefer meaningful labels such as `"billing"` and `"technical"` over opaque identifiers such as a UUID.
+
+Keep choice descriptions concise and direct, as in the examples below.
+
 
 
 This request routes a customer complaint:
@@ -463,7 +475,7 @@ curl https://api.openai.com/v1/decisions \
   }'
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -541,8 +553,10 @@ func main() {
 		Input: openai.DecisionNewParamsInputUnion{OfString: openai.String("I was charged twice for my order.")},
 		Questions: []openai.DecisionNewParamsQuestionUnion{{
 			OfChoice: &openai.DecisionNewParamsQuestionChoice{
-				Name:         openai.String("department"),
-				Instructions: "Which department should handle this complaint?",
+				Name: openai.String("department"),
+				Instructions: openai.DecisionNewParamsQuestionChoiceInstructionsUnion{
+					OfString: openai.String("Which department should handle this complaint?"),
+				},
 				Choices: []openai.DecisionNewParamsQuestionChoiceChoice{
 					{
 						Value:       openai.DecisionNewParamsQuestionChoiceChoiceValueUnion{OfString: openai.String("billing")},
@@ -727,7 +741,7 @@ curl https://api.openai.com/v1/decisions \
   }'
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -819,8 +833,10 @@ func main() {
 		Input: openai.DecisionNewParamsInputUnion{OfString: openai.String("Export fails in Safari but works in Chrome.")},
 		Questions: []openai.DecisionNewParamsQuestionUnion{{
 			OfScore: &openai.DecisionNewParamsQuestionScore{
-				Name:         openai.String("severity"),
-				Instructions: "How severe is this issue?",
+				Name: openai.String("severity"),
+				Instructions: openai.DecisionNewParamsQuestionScoreInstructionsUnion{
+					OfString: openai.String("How severe is this issue?"),
+				},
 				Levels: []openai.DecisionNewParamsQuestionScoreLevel{
 					{Label: "Cosmetic", Description: openai.String("Appearance only; no lost functionality.")},
 					{Label: "Workaround available", Description: openai.String("A task fails, but another way works.")},

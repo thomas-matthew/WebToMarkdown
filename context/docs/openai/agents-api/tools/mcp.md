@@ -90,16 +90,68 @@ Here, a localhost URL refers to the session's environment. If you omit `connecti
 
 Use stdio to let the executor start a server process. Install the server and its dependencies in the environment first.
 
-For this customer lookup example, install the MCP SDK:
+
+
+
+For the Python version of this customer lookup example, install the MCP SDK:
 
 ```bash
 python3 -m venv /workspace/mcp-demo
 /workspace/mcp-demo/bin/python -m pip install 'mcp==1.26.0'
 ```
 
-Save the server as `/workspace/lookup_mcp.py`:
+
+
+
+
+
+
+Save the Python server as `/workspace/lookup_mcp.py`.
+
+
+
+
+
+
+
+For Ruby, install the `mcp` gem and save the Ruby server as `/workspace/lookup_mcp.rb`.
+
+
+
+
+
+
+
+In `/workspace`, install `@modelcontextprotocol/sdk` and `zod`, then save the TypeScript server as `/workspace/lookup_mcp.ts`. In the configuration below, set `transport.command` to the absolute path of your Node executable and `transport.args` to `["--experimental-strip-types", "/workspace/lookup_mcp.ts"]`. This server uses stdio without a transport argument.
+
+
+
 
 Run a customer lookup MCP server
+
+```typescript
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { z } from "zod";
+
+const server = new McpServer({ name: "customer-lookup", version: "1.0.0" });
+server.registerTool(
+  "get_customer",
+  {
+    description: "Look up a customer in the example data.",
+    inputSchema: { customer_id: z.string() },
+  },
+  async ({ customer_id }) => {
+    const customers = new Map([
+      ["123", { name: "Example Customer", plan: "pro" }],
+    ]);
+    const result = { customer: customers.get(customer_id) ?? null };
+    return { content: [{ type: "text", text: JSON.stringify(result) }] };
+  }
+);
+
+await server.connect(new StdioServerTransport());
+```
 
 ```python
 import sys
@@ -121,8 +173,137 @@ if __name__ == "__main__":
     server.run(transport=transport)
 ```
 
+```go
+package main
 
-Add the server to `agent.tools`. The `stdio` argument selects the script's transport:
+import (
+	"context"
+	"errors"
+	"fmt"
+	"log"
+	"net"
+	"net/http"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
+
+	"github.com/modelcontextprotocol/go-sdk/mcp"
+)
+
+type lookupInput struct {
+	CustomerID string `json:"customer_id" jsonschema:"Customer ID to look up"`
+}
+type customer struct {
+	Name string `json:"name"`
+	Plan string `json:"plan"`
+}
+type lookupOutput struct {
+	Customer *customer `json:"customer"`
+}
+
+func main() {
+	ctx, cancel := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer cancel()
+	server := mcp.NewServer(&mcp.Implementation{Name: "customer-lookup", Version: "1.0.0"}, nil)
+	mcp.AddTool(server, &mcp.Tool{Name: "get_customer", Description: "Look up a customer in the example data."},
+		func(_ context.Context, _ *mcp.CallToolRequest, input lookupInput) (*mcp.CallToolResult, lookupOutput, error) {
+			customers := map[string]*customer{"123": {Name: "Example Customer", Plan: "pro"}}
+			return nil, lookupOutput{Customer: customers[input.CustomerID]}, nil
+		})
+	// Default to stdio. Run `go run . http` to expose /mcp over HTTP.
+	if len(os.Args) < 2 || os.Args[1] != "http" {
+		if err := server.Run(ctx, &mcp.StdioTransport{}); err != nil && ctx.Err() == nil {
+			log.Fatal(err)
+		}
+		return
+	}
+	port := "8765"
+	handler := mcp.NewStreamableHTTPHandler(func(*http.Request) *mcp.Server { return server }, &mcp.StreamableHTTPOptions{Stateless: true, JSONResponse: true})
+	mux := http.NewServeMux()
+	mux.Handle("/mcp", handler)
+	listener, err := net.Listen("tcp", "127.0.0.1:"+port)
+	if err != nil {
+		log.Fatal(err)
+	}
+	httpServer := &http.Server{Handler: mux, ReadHeaderTimeout: 5 * time.Second}
+	fmt.Println("Listening on http://" + listener.Addr().String())
+	shutdownDone := make(chan struct{})
+	go func() {
+		defer close(shutdownDone)
+		<-ctx.Done()
+		shutdownCtx, stop := context.WithTimeout(context.Background(), 5*time.Second)
+		defer stop()
+		if err := httpServer.Shutdown(shutdownCtx); err != nil {
+			log.Print(err)
+		}
+	}()
+	if err := httpServer.Serve(listener); err != nil && !errors.Is(err, http.ErrServerClosed) {
+		log.Fatal(err)
+	}
+	<-shutdownDone
+}
+```
+
+```ruby
+require "mcp"
+require "json"
+
+class GetCustomer < MCP::Tool
+  tool_name "get_customer"
+  description "Look up a customer in the example data."
+  input_schema(type: "object", properties: { customer_id: { type: "string" } }, required: ["customer_id"])
+
+  def self.call(customer_id:, server_context:)
+    customers = {
+      "123" => {
+        name: "Example Customer",
+        plan: "pro"
+      }
+    }
+    result = { customer: customers[customer_id] }
+    MCP::Tool::Response.new(
+      [
+        {
+          type: "text",
+          text: JSON.generate(result)
+        }
+      ], structured_content: result
+    )
+  end
+end
+
+server = MCP::Server.new(name: "customer-lookup", version: "1.0.0", tools: [GetCustomer])
+# Use `ruby main.rb http` for the HTTP endpoint at /mcp; default to stdio.
+if ARGV.first == "http"
+  require "rackup"
+  require "rackup/handler/webrick"
+  transport = MCP::Server::Transports::StreamableHTTPTransport.new(server, stateless: true, enable_json_response: true)
+  app = Rack::URLMap.new("/mcp" => transport)
+  Rackup::Handler::WEBrick.run(app, Host: "127.0.0.1", Port: Integer(ENV.fetch("PORT", "8765")))
+else
+  MCP::Server::Transports::StdioTransport.new(server).open
+end
+```
+
+
+Add the server to `agent.tools`.
+
+
+
+
+The following configuration starts the Python server.
+
+
+
+
+
+
+
+For Ruby, set `transport.command` to the absolute path of your Ruby executable and `transport.args` to `["/workspace/lookup_mcp.rb", "stdio"]`. Install the gem for that Ruby runtime. The `stdio` argument selects the script's transport:
+
+
+
 
 ```json
 {

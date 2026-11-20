@@ -1,92 +1,18 @@
-1. [Overview](/en/guides "Overview")
-2. [Snowflake Horizon Catalog](/en/user-guide/snowflake-horizon "Snowflake Horizon Catalog")
-4. [Applications and tools for connecting to Snowflake](/en/guides-overview-connecting "Applications and tools for connecting to Snowflake")
-6. [Virtual warehouses](/en/user-guide/warehouses "Virtual warehouses")
-7. [Databases, Tables, & Views](/en/guides-overview-db "Databases, Tables, & Views")
-8. [Data types](/en/data-types "Data types")
-10. Data Integration
-
-    - [Snowflake Openflow](/en/user-guide/data-integration/openflow/about "Snowflake Openflow")
-    - Apache Iceberg™
-
-      - [Apache Iceberg™ Tables](/en/user-guide/tables-iceberg "Apache Iceberg™ Tables")
-      - [Snowflake Open Catalog](/en/user-guide/opencatalog/overview "Snowflake Open Catalog")
-    - Zero-Copy Connectors
-
-      - [About SAP® and Snowflake](/en/user-guide/data-integration/zero-copy/about-sap-snowflake "About SAP® and Snowflake")
-      - [About Salesforce Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-salesforce-datacloud "About Salesforce Data Cloud and Snowflake")
-      - [About Workday Live Data Query for Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-ldq "About Workday Live Data Query for Snowflake")
-      - [About Workday Data Cloud and Snowflake](/en/user-guide/data-integration/zero-copy/about-workday-datacloud "About Workday Data Cloud and Snowflake")
-11. Data engineering
-
-    - [Data loading](/en/guides-overview-loading-data "Data loading")
-    - [Dynamic tables](/en/user-guide/dynamic-tables/overview "Dynamic tables")
-    - [Streams and tasks](/en/user-guide/data-pipelines-intro "Streams and tasks")
-    - [Row timestamps](/en/user-guide/data-engineering/row-timestamps "Row timestamps")
-    - [DCM Projects](/en/user-guide/dcm-projects/dcm-projects-overview "DCM Projects")
-    - [Pipeline Builder](/en/user-guide/pipeline-builder/pipeline-builder-overview "Pipeline Builder")
-    - [dbt Projects on Snowflake](/en/user-guide/data-engineering/dbt-projects-on-snowflake "dbt Projects on Snowflake")
-    - [Data Unloading](/en/guides-overview-unloading-data "Data Unloading")
-12. [Storage lifecycle policies](/en/user-guide/storage-management/storage-lifecycle-policies "Storage lifecycle policies")
-13. [Migrations](/en/migrations/snowflake-aim "Migrations")
-15. [Queries](/en/guides-overview-queries "Queries")
-16. [Collaboration](/en/guides-overview-sharing "Collaboration")
-18. [Snowflake AI & ML](/en/guides-overview-ai-features "Snowflake AI & ML")
-
-    * [Governance and availability](/en/user-guide/snowflake-cortex/governance-and-availability "Governance and availability")
-    * [Snowflake CoWork](/en/user-guide/snowflake-cortex/snowflake-cowork "Snowflake CoWork")
-    * [Snowflake Artifacts](/en/user-guide/snowflake-artifacts "Snowflake Artifacts")
-    * [Snowflake CoCo](/en/user-guide/cortex-code/cortex-code "Snowflake CoCo")
-    * [Cortex AI Functions](/en/user-guide/snowflake-cortex/aisql "Cortex AI Functions")
-    * [Cortex Agents](/en/user-guide/snowflake-cortex/cortex-agents "Cortex Agents")
-    * [Cortex Agent SDK](/en/user-guide/snowflake-cortex/cortex-agent-sdk/cortex-agent-sdk "Cortex Agent SDK")
-    * [Snowflake-managed MCP server](/en/user-guide/snowflake-cortex/cortex-agents-mcp "Snowflake-managed MCP server")
-    * [Cortex AI Gateway](/en/user-guide/snowflake-cortex/cortex-ai-gateway "Cortex AI Gateway")
-    * [Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst "Cortex Analyst")
-
-      + [Semantic views](/en/user-guide/views-semantic/overview "Semantic views")
-      + [Integrate with Cortex Search](/en/user-guide/snowflake-cortex/cortex-analyst/cortex-analyst-search-integration "Integrate with Cortex Search")
-      + [Onboarding questions](/en/user-guide/snowflake-cortex/cortex-analyst/suggested-questions-feature "Onboarding questions")
-      + [Administrator monitoring](/en/user-guide/snowflake-cortex/cortex-analyst/admin-observability "Administrator monitoring")
-      + [Evaluations](/en/user-guide/snowflake-cortex/cortex-analyst-evaluations "Evaluations")
-      + [Routing mode](/en/user-guide/snowflake-cortex/cortex-analyst/cortex-analyst-routing-mode "Routing mode")
-      + [Optimization with verified queries](/en/user-guide/snowflake-cortex/cortex-analyst/analyst-optimization "Optimization with verified queries")
-      + [REST API](/en/user-guide/snowflake-cortex/cortex-analyst/rest-api "REST API")
-      + [Tutorial: Answer questions about time series revenue data](/en/user-guide/snowflake-cortex/cortex-analyst/tutorials/tutorial-1 "Tutorial: Answer questions about time series revenue data")
-    * [Cortex Search](/en/user-guide/snowflake-cortex/cortex-search/cortex-search-overview "Cortex Search")
-    * [Cortex Knowledge Extensions](/en/user-guide/snowflake-cortex/cortex-knowledge-extensions/cke-overview "Cortex Knowledge Extensions")
-    * [Cortex Inference](/en/user-guide/snowflake-cortex/cortex-rest-api "Cortex Inference")
-    * [Cortex AI Guardrails](/en/user-guide/snowflake-cortex/cortex-ai-guardrails "Cortex AI Guardrails")
-    * [AI Observability](/en/user-guide/snowflake-cortex/ai-observability "AI Observability")
-    * [ML Functions](/en/guides-overview-ml-functions "ML Functions")
-    * [Provisioned Throughput](/en/user-guide/snowflake-cortex/provisioned-throughput "Provisioned Throughput")
-    * [ML Development and ML Ops](/en/developer-guide/snowpark-ml/overview "ML Development and ML Ops")
-    * [Pricing](/en/user-guide/snowflake-cortex/pricing "Pricing")
-20. [Snowflake Postgres](/en/user-guide/snowflake-postgres/about "Snowflake Postgres")
-22. [Alerts & Notifications](/en/guides-overview-alerts "Alerts & Notifications")
-24. [Security](/en/guides-overview-secure "Security")
-26. [Organizations & Accounts](/en/guides-overview-manage "Organizations & Accounts")
-27. [Business continuity & data recovery](/en/user-guide/replication-intro "Business continuity & data recovery")
-29. [Performance optimization](/en/guides-overview-performance "Performance optimization")
-30. [Cost & Billing](/en/guides-overview-cost "Cost & Billing")
-
-[Guides](/en/guides)[Snowflake AI & ML](/en/guides-overview-ai-features)[Cortex Analyst](/en/user-guide/snowflake-cortex/cortex-analyst)REST API
-
-# Cortex Analyst REST API[¶](#cortex-analyst-rest-api)
+# Cortex Analyst REST API
 
 Transition to Cortex Agents
 
-Snowflake recommends transitioning to [Cortex Agents](/user-guide/snowflake-cortex/cortex-agents), which supports every Cortex Analyst capability with higher answer quality.
+Snowflake recommends transitioning to [Cortex Agents](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents), which supports every Cortex Analyst capability with higher answer quality.
 
 Use this API to answer questions about your data with natural language queries.
 
-## Send message[¶](#send-message)
+## Send message
 
 `POST /api/v2/cortex/analyst/message`
 
-Generates a SQL query for the given question using a semantic model or [semantic view](/user-guide/views-semantic/overview)
+Generates a SQL query for the given question using a semantic model or [semantic view](https://docs.snowflake.com/user-guide/views-semantic/overview)
 provided in the request. One or more models can be specified; when multiple models are specified, Cortex Analyst chooses the most appropriate one.
-You can have multi-turn conversations where you can ask follow-up questions that build upon previous queries. For more information, see [Multi-turn conversation in Cortex Analyst](/user-guide/snowflake-cortex/cortex-analyst#label-analyst-multi-turn-conversation).
+You can have multi-turn conversations where you can ask follow-up questions that build upon previous queries. For more information, see [Multi-turn conversation in Cortex Analyst](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-analyst#label-analyst-multi-turn-conversation).
 
 The request includes a user question; the response includes the user question and the analyst response. Each message in a response
 can have multiple content blocks of different types. Three values that are currently supported for the `type` field of the content
@@ -94,19 +20,15 @@ object are: `text`, `suggestions`, and `sql`.
 
 Responses can be sent all at once after processing is complete, or incrementally as they are generated.
 
-### Request headers[¶](#request-headers)
+### Request headers
 
 | Header | Description |
 | --- | --- |
-| `Authorization` | (Required) Authorization token. For more information, see [Authenticating to the server](/developer-guide/sql-api/authenticating). |
+| `Authorization` | (Required) Authorization token. For more information, see [Authenticating to the server](https://docs.snowflake.com/developer-guide/sql-api/authenticating). |
 | `Content-Type` | (Required) application/json |
-| `X-Snowflake-Authorization-Token-Type` | (Optional) Authorization token type. Defaults to OAuth. For more information, see [Authenticating to the server](/developer-guide/sql-api/authenticating). |
+| `X-Snowflake-Authorization-Token-Type` | (Optional) Authorization token type. Defaults to OAuth. For more information, see [Authenticating to the server](https://docs.snowflake.com/developer-guide/sql-api/authenticating). |
 
-Expand
-
-Show lessSee more
-
-### Request body[¶](#request-body)
+### Request body
 
 In the request body:
 
@@ -117,7 +39,7 @@ In the request body:
   + Set `text` to the user’s question.
 * Include one of the following:
 
-  + The [YAML specification](/user-guide/views-semantic/semantic-view-yaml-spec) for a semantic view.
+  + The [YAML specification](https://docs.snowflake.com/user-guide/views-semantic/semantic-view-yaml-spec) for a semantic view.
   + The path to the YAML file that contains the semantic view specification. This file must be on a stage.
   + The name of the semantic view.
 
@@ -126,18 +48,14 @@ The following table describes the fields that you can set in the body of the req
 | Field | Description |
 | --- | --- |
 | `messages[].role` | (Required) The role of the entity that is creating the message. Currently only supports `user`.  Type: string:enum  Example: `user` |
-| `messages[].content[]` | (Required) The content object that is part of a message.  Type: object  Example:  Copy code  ``` {   "type": "text",   "text":  "Which company had the most revenue?" } ``` |
+| `messages[].content[]` | (Required) The content object that is part of a message.  Type: object  Example:  ``` {   "type": "text",   "text":  "Which company had the most revenue?" } ``` |
 | `messages[].content[].type` | (Required) The content type. Currently only `text` is supported.  Type: string:enum  Example: `text` |
 | `messages[].content[].text` | (Required) The user’s question.  Type: string  Example: `Which company had the most revenue?` |
 | `semantic_model_file` | Path to the semantic model YAML file. Must be a fully qualified stage URL including the database and schema.  To specify multiple semantic models, use the `semantic_models` field.  If you want to provide the YAML specification directly in the request instead, set the `semantic_model` field to the YAML specification for the semantic model.  Type: string  Example: `@my_db.my_schema.my_stage/my_semantic_model.yaml` |
 | `semantic_model` | A string containing the entire semantic model YAML.  To specify multiple semantic models, use the `semantic_models` field instead.  If you want to point to a YAML specification in a file instead, upload the file to a stage, and set the `semantic_model_file` field to the path to the file.  Type: string |
-| `semantic_models` | An array containing JSON objects, each of which contains a `semantic_model_file` or `semantic_view` field.  These fields have the same semantics as the top-level `semantic_model_file` and `semantic_view` fields:   * `semantic_model_file` specifies a YAML file, stored in a stage, that contains a semantic model definition.   (You cannot specify the YAML for the semantic model directly in the request with this form.) * `semantic_view` specifies the fully qualified name of a [semantic view](/user-guide/views-semantic/overview).   For example:   Copy code  ``` {   /* ... */   "semantic_models": [     {"semantic_view": "my_db.my_sch.my_sem_view_1" },     {"semantic_view": "my_db.my_sch.my_sem_view_2" }   ]   /* ... */ } ```  For each query, Cortex Analyst chooses the most appropriate model or view from the list.  This capability simplifies user interactions with Cortex Analyst. You don’t need to choose a data source to query, and you don’t need to keep track of which semantic model or semantic view to use for each. Just specify all of your models or views with each query and let Cortex Analyst figure out which one to use.  Type: array  Tip  Cortex Analyst does not require that you specify more than one model or view. If you specify a single model or view, the request is functionally equivalent to one containing a top-level `semantic_model_file` or `semantic_view` field.  The advantage of using `semantic_models` for single-model requests is that you can use the same client code, regardless of the number of models or views. |
-| `semantic_view` | Fully qualified name of the [semantic view](/user-guide/views-semantic/overview). For example:  Copy code  ``` {   /* ... */   "semantic_view": "MY_DB.MY_SCHEMA.SEMANTIC_VIEW"   /* ... */ } ```  If the name is case-sensitive or contains characters that are not allowed in an [unquoted identifier](/sql-reference/identifiers-syntax), you must enclose the name in backslash-escaped double quotes. For example, if the database name, schema name, and view name include hyphens (`my-database.my-schema.my-semantic-view`):  Copy code  ``` {   /* ... */   "semantic_view": "\"my-database\".\"my-schema\".\"\"my-semantic-view\"\""   /* ... */ } ```  To specify multiple semantic views, use the `semantic_models` field.  Type: string |
-| `stream` | (Optional) If set to `true`, the response is streamed to the client using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) as it is generated (see [Streaming response](#label-cortex-analyst-rest-api-streaming)). Otherwise the complete response is returned after Cortex Analyst has fully processed the user’s question.  Type: boolean |
-
-Expand
-
-Show lessSee more
+| `semantic_models` | An array containing JSON objects, each of which contains a `semantic_model_file` or `semantic_view` field.  These fields have the same semantics as the top-level `semantic_model_file` and `semantic_view` fields:   * `semantic_model_file` specifies a YAML file, stored in a stage, that contains a semantic model definition.   (You cannot specify the YAML for the semantic model directly in the request with this form.) * `semantic_view` specifies the fully qualified name of a [semantic view](https://docs.snowflake.com/user-guide/views-semantic/overview).   For example:   ``` {   /* ... */   "semantic_models": [     {"semantic_view": "my_db.my_sch.my_sem_view_1" },     {"semantic_view": "my_db.my_sch.my_sem_view_2" }   ]   /* ... */ } ```  For each query, Cortex Analyst chooses the most appropriate model or view from the list.  This capability simplifies user interactions with Cortex Analyst. You don’t need to choose a data source to query, and you don’t need to keep track of which semantic model or semantic view to use for each. Just specify all of your models or views with each query and let Cortex Analyst figure out which one to use.  Type: array  Tip  Cortex Analyst does not require that you specify more than one model or view. If you specify a single model or view, the request is functionally equivalent to one containing a top-level `semantic_model_file` or `semantic_view` field.  The advantage of using `semantic_models` for single-model requests is that you can use the same client code, regardless of the number of models or views. |
+| `semantic_view` | Fully qualified name of the [semantic view](https://docs.snowflake.com/user-guide/views-semantic/overview). For example:  ``` {   /* ... */   "semantic_view": "MY_DB.MY_SCHEMA.SEMANTIC_VIEW"   /* ... */ } ```  If the name is case-sensitive or contains characters that are not allowed in an [unquoted identifier](https://docs.snowflake.com/sql-reference/identifiers-syntax), you must enclose the name in backslash-escaped double quotes. For example, if the database name, schema name, and view name include hyphens (`my-database.my-schema.my-semantic-view`):  ``` {   /* ... */   "semantic_view": "\"my-database\".\"my-schema\".\"\"my-semantic-view\"\""   /* ... */ } ```  To specify multiple semantic views, use the `semantic_models` field.  Type: string |
+| `stream` | (Optional) If set to `true`, the response is streamed to the client using [server-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) as it is generated (see [Streaming response](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst/rest-api#label-cortex-analyst-rest-api-streaming)). Otherwise the complete response is returned after Cortex Analyst has fully processed the user’s question.  Type: boolean |
 
 Important
 
@@ -148,9 +66,7 @@ You must specify one of the following fields in the body of the request:
 * `semantic_models`
 * `semantic_view`
 
-#### Example of specifying a semantic model in a file on a stage[¶](#example-of-specifying-a-semantic-model-in-a-file-on-a-stage)
-
-Copy codeExpand code block
+#### Example of specifying a semantic model in a file on a stage
 
 ```
 {
@@ -169,13 +85,7 @@ Copy codeExpand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
-#### Example of specifying a semantic view[¶](#example-of-specifying-a-semantic-view)
-
-Copy codeExpand code block
+#### Example of specifying a semantic view
 
 ```
 {
@@ -194,11 +104,7 @@ Copy codeExpand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
-### Non-streaming response[¶](#non-streaming-response)
+### Non-streaming response
 
 This operation can return the response codes listed below.
 The response always has the following structure. Currently, three content types are supported for the
@@ -215,15 +121,9 @@ To ensure forward compatibility, make sure your implementation takes the content
 | --- | --- |
 | 200 | The statement was executed successfully.  The body of the response contains a message object that contains the following fields:   * `message`: Messages of the conversation between the user and analyst. * `message` (object): Represents a message within a chat. * `message.role` (string:enum): The entity that produced the message. One of `user` or `analyst`. * `message.content[]` (object): The content object that is part of a message. * `message.content[].type` (string:enum): The content type of the message. One of `text`, `suggestion`, or `sql`. * `message.content[].text` (string): The text of the content. Only returned for content type `text`. * `message.content[].statement` (string): A SQL statement. Only returned for content type `sql`. * `message.content[].confidence` (object): Contains confidence-related information. Only returned for the `sql` content type. * `message.content[].confidence.verified_query_used` (object): Represents the verified query from Verified Query Repository used in SQL response generation. If no verified query used, the field value is `null`. * `message.content[].confidence.verified_query_used.name` (string): The name of the verified query used, extracted from the Verified Query Repository. * `message.content[].confidence.verified_query_used.question` (string): The question that is answered by the verified query, extracted from the Verified Query Repository. * `message.content[].confidence.verified_query_used.sql` (string): The SQL statement of the verified query used, extracted from the Verified Query Repository. * `message.content[].confidence.verified_query_used.verified_at` (integer): The numeric representation of the timestamp when the query is verified, extracted from the Verified Query Repository. * `message.content[].confidence.verified_query_used.verified_by` (string): The person who verified the query, extracted from the Verified Query Repository. * `message.content[].suggestions` (string): If SQL cannot be generated, a list of questions the semantic model can   generate SQL for. Only returned for content type `suggestion`. * `warnings`: List of warnings from the analyst about the user’s request. * `warnings[].message` (string): Contains a detailed description of one individual warning. * `response_metadata` (object): Metadata containing response generation details. * `response_metadata.model_names`: List of models used to generate response. * `response_metadata.cortex_search_retrieval` (object): Entities resolved with cortex search. * `response_metadata.question_category` (string): How the question in the request is categorized. |
 
-Expand
-
-Show lessSee more
-
-By default, the response is returned all at once after Cortex Analyst has fully processed the user’s question. See [Streaming response](#label-cortex-analyst-rest-api-streaming)
+By default, the response is returned all at once after Cortex Analyst has fully processed the user’s question. See [Streaming response](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst/rest-api#label-cortex-analyst-rest-api-streaming)
 for the format of streaming mode responses.
 
-> Copy codeExpand code block
->
 > ```
 > {
 >     "request_id": "75d343ee-699c-483f-83a1-e314609fb563",
@@ -279,12 +179,8 @@ for the format of streaming mode responses.
 >     }
 > }
 > ```
->
-> Show lessSee more
->
-> Scroll to top
 
-### Streaming response[¶](#streaming-response)
+### Streaming response
 
 Streaming mode lets your client receive responses as they are generated by Cortex Analyst, rather than waiting for the entire response to be generated.
 This improves the perceived responsiveness of your application, especially for long-running queries, because users begin seeing output much sooner.
@@ -312,11 +208,9 @@ Important
 
 Events from different responses (even extremely similar ones) can vary. There is no guarantee that events will be sent in the same order or with the same content.
 
-#### Simple example[¶](#simple-example)
+#### Simple example
 
 The following is a sample non-streaming response for a simple query:
-
-Copy codeExpand code block
 
 ```
 {
@@ -336,13 +230,7 @@ Copy codeExpand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
 And this is one possible series of streaming events for that response (a different series of events is also possible):
-
-Expand code block
 
 ```
 event: status
@@ -379,19 +267,13 @@ event: status
 data: { status: "done" }
 ```
 
-Show lessSee more
-
-Scroll to top
-
 Use the `index` field in the `message.content.delta` responses to determine which field in the full response the event is part of.
 For example, here the first two `delta` events use index 0, which means they are part of the first field (element 0) in the `content` array
 of the non-streaming response. Similarly, the `delta` event that contains the SQL response uses index 1.
 
-#### Example with suggestions[¶](#example-with-suggestions)
+#### Example with suggestions
 
 This example contains suggested questions for an ambiguous question. The following is the non-streaming response:
-
-Copy codeExpand code block
 
 ```
 {
@@ -414,13 +296,7 @@ Copy codeExpand code block
 }
 ```
 
-Show lessSee more
-
-Scroll to top
-
 And here is a possible series of streaming events that constitute that response:
-
-Expand code block
 
 ```
 event: status
@@ -487,10 +363,6 @@ event: status
 data: { status: "done" }
 ```
 
-Show lessSee more
-
-Scroll to top
-
 In this example, the `content` field of the non-streaming response is an array. One of the elements of `content` is the `suggestions` array.
 So the meaning of `index` fields for `text` and `suggestions` delta events refer to the location of elements in these two different arrays.
 You will need to keep track of these indexes separately when assembling the full response.
@@ -500,7 +372,7 @@ Note
 Currently, the generated SQL statement is always sent in a single event. This may not be the case in the future. Your client must be prepared to
 receive the SQL statement in multiple events.
 
-#### Other examples[¶](#other-examples)
+#### Other examples
 
 You can find a Streamlit streaming client for Cortex Analyst in the Cortex Analyst
 [GitHub repo](https://github.com/Snowflake-Labs/sfguide-getting-started-with-cortex-analyst/blob/main/cortex_analyst_streaming_demo.py).
@@ -508,20 +380,16 @@ This demo must be run locally; SiS does not currently support streaming.
 
 See the Cortex Analyst playground in the AI/ML Studio (in Snowsight) for an interactive demonstration of streaming response.
 
-### Streaming event schemas[¶](#streaming-event-schemas)
+### Streaming event schemas
 
 The following are the OpenAPI/Swagger schemas of the events sent by Cortex Analyst in a streaming response.
 
 status
 
-
 message.content.delta
 
-
 error
-:   Copy code
-
-    ```
+:   ```
     StreamingError:
     type: object
     properties:
@@ -537,9 +405,7 @@ error
     ```
 
 warnings
-:   Copy codeExpand code block
-
-    ```
+:   ```
     Warnings:
     type: object
     description: Warnings found while processing the request
@@ -558,84 +424,40 @@ warnings
         description: A human-readable message describing the warning
     ```
 
-    Show lessSee more
-
-    Scroll to top
-
 response\_metadata
-:   Copy code
-
-    ```
+:   ```
     ResponseMetadata:
     type: object
     description: Details about request processing
     ```
 
-## Send feedback[¶](#send-feedback)
+## Send feedback
 
 `POST /api/v2/cortex/analyst/feedback`
 
 Provides qualitative end-user feedback. Within Snowsight, the feedback is shown in **Snowsight → AI & ML → Cortex Analyst → Select Semantic View → Monitoring tab**.
 
-### Request headers[¶](#request-headers)
+### Request headers
 
 | Header | Description |
 | --- | --- |
-| `Authorization` | (Required) Authorization token. For more information, see [Authenticating to the server](/developer-guide/sql-api/authenticating). |
+| `Authorization` | (Required) Authorization token. For more information, see [Authenticating to the server](https://docs.snowflake.com/developer-guide/sql-api/authenticating). |
 | `Content-Type` | (Required) application/json |
 
-Expand
-
-Show lessSee more
-
-### Request body[¶](#request-body)
+### Request body
 
 | Field | Description |
 | --- | --- |
-| `request_id` | (Required) The id of the request that you’ve made to send a message. Returned in the `request_id` field of `/api/v2/cortex/analyst/message`. For more information, see [Non-streaming response](#label-cortex-analyst-rest-api-response).  Type: string  Example: `75d343ee-699c-483f-83a1-e314609fb563` |
+| `request_id` | (Required) The id of the request that you’ve made to send a message. Returned in the `request_id` field of `/api/v2/cortex/analyst/message`. For more information, see [Non-streaming response](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst/rest-api#label-cortex-analyst-rest-api-response).  Type: string  Example: `75d343ee-699c-483f-83a1-e314609fb563` |
 | `positive` | (Required) Whether the feedback is positive or negative. `true` for positive or “thumbs up”, `false` for negative or “thumbs down”.  Type: boolean  Example:  `true` |
 | `feedback_message` | (Optional) The feedback message from the user.  Example: `This is the best answer I've ever seen!` |
 
-Expand
-
-Show lessSee more
-
-### Response[¶](#response)
+### Response
 
 Empty response body with status code 200.
 
-## Access control requirements[¶](#access-control-requirements)
+## Access control requirements
 
-For information on the required privileges, see [Access control requirements](/user-guide/snowflake-cortex/cortex-analyst#label-analyst-access-control).
+For information on the required privileges, see [Access control requirements](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-analyst#label-analyst-access-control).
 
-For details about authenticating to the API, see [Authenticating Snowflake REST APIs with Snowflake](/developer-guide/snowflake-rest-api/authentication).
-
-Was this page helpful?
-
-YesNo
-
-[Visit Snowflake](https://www.snowflake.com)
-
-[Join the conversation](https://community.snowflake.com/s/)
-
-[Develop with Snowflake](https://developers.snowflake.com)
-
-[Share your feedback](/feedback)
-
-[Read the latest on our blog](https://www.snowflake.com/blog/)
-
-[Get your own certification](https://learn.snowflake.com)
-
-[Privacy Notice](https://www.snowflake.com/privacy-policy/)[Site Terms](https://www.snowflake.com/legal/snowflake-site-terms/)Cookies Settings© 2026 Snowflake, Inc. All Rights Reserved.
-
-On this page
-
-1. [Send message](#send-message)
-2. [Send feedback](#send-feedback)
-3. [Access control requirements](#access-control-requirements)
-
-Related content
-
-1. [Cortex Analyst](/user-guide/snowflake-cortex/cortex-analyst)
-2. [Using SQL commands to create and manage semantic views](/user-guide/views-semantic/sql)
-3. [Cortex Analyst Verified Query Repository](/user-guide/views-semantic/verified-query-repository)
+For details about authenticating to the API, see [Authenticating Snowflake REST APIs with Snowflake](https://docs.snowflake.com/developer-guide/snowflake-rest-api/authentication).

@@ -22,7 +22,7 @@ Use input guardrails when you want a fast validation step to run before the expe
 
 Block a request with an input guardrail
 
-```javascript
+```typescript
 import { Agent, InputGuardrailTripwireTriggered, run } from "@openai/agents";
 import { z } from "zod";
 
@@ -58,6 +58,8 @@ try {
 } catch (error) {
   if (error instanceof InputGuardrailTripwireTriggered) {
     console.log("Guardrail blocked the request.");
+  } else {
+    throw error;
   }
 }
 ```
@@ -90,7 +92,8 @@ guardrail_agent = Agent(
 )
 
 
-@input_guardrail
+# Validate input before starting the support agent.
+@input_guardrail(run_in_parallel=False)
 async def math_guardrail(
     ctx: RunContextWrapper[None],
     agent: Agent,
@@ -130,7 +133,7 @@ Approvals are the human-in-the-loop path for tool calls. The model can still dec
 
 Pause for approval before a sensitive action
 
-```javascript
+```typescript
 import { Agent, run, tool } from "@openai/agents";
 import { z } from "zod";
 
@@ -146,7 +149,7 @@ const cancelOrder = tool({
 
 const agent = new Agent({
   name: "Support agent",
-  instructions: "Handle support requests and ask for approval when needed.",
+  instructions: "Use cancel_order to handle cancellation requests.",
   tools: [cancelOrder],
 });
 
@@ -155,6 +158,7 @@ let result = await run(agent, "Cancel order 123.");
 if (result.interruptions?.length) {
   const state = result.state;
   for (const interruption of result.interruptions) {
+    console.log(`Approval required: ${interruption.name}`);
     state.approve(interruption);
   }
   result = await run(agent, state);
@@ -176,7 +180,7 @@ async def cancel_order(order_id: int) -> str:
 
 agent = Agent(
     name="Support agent",
-    instructions="Handle support requests and ask for approval when needed.",
+    instructions="Use cancel_order to handle cancellation requests.",
     tools=[cancel_order],
 )
 
@@ -187,6 +191,7 @@ async def main() -> None:
     if result.interruptions:
         state = result.to_state()
         for interruption in result.interruptions:
+            print("Approval required:", interruption.name)
             state.approve(interruption)
         result = await Runner.run(agent, state)
 
@@ -242,7 +247,7 @@ the written engagement scope at the boundary where side effects occur:
 Responses API and Agents SDK applications don't automatically inherit
 [Codex Auto-review](https://developers.openai.com/codex/sandboxing/auto-review). Add review and enforcement
 to your own harness. The
-[open-source Codex reviewer policy](https://github.com/openai/codex/blob/main/codex-rs/core/src/guardian/policy.md)
+[open-source Codex reviewer policy](https://github.com/openai/codex/blob/rust-v0.167.0/codex-rs/prompts/templates/guardian/policy.md)
 illustrates one approach. Review [Models and Trusted Access](https://developers.openai.com/codex/cyber-safety)
 for approved model access and [Recommended configuration](https://developers.openai.com/codex/cyber-safety/recommended-configuration)
 for safe engagement setup.
@@ -257,19 +262,16 @@ Once the control boundaries are clear, continue with the guide that covers the r
 
 
 
-  [Running agents
+  [Running agents](https://developers.openai.com/api/docs/guides/agents/running-agents)
+
+See how interruptions and resumptions fit into the runtime loop.
 
 
+  [Results and state](https://developers.openai.com/api/docs/guides/agents/results)
 
-        See how interruptions and resumptions fit into the runtime loop.](https://developers.openai.com/api/docs/guides/agents/running-agents)
-  [Results and state
-
-
-
-        Learn which result surfaces paused runs return to your application.](https://developers.openai.com/api/docs/guides/agents/results)
-  [Using tools
+Learn which result surfaces paused runs return to your application.
 
 
+  [Using tools](https://developers.openai.com/api/docs/guides/tools#usage-in-the-agents-sdk)
 
-        Decide which tool surfaces need validation or approval before side effects
-      happen.](https://developers.openai.com/api/docs/guides/tools#usage-in-the-agents-sdk)
+Decide which tool surfaces need validation or approval before side effects happen.

@@ -3,6 +3,19 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.4.1 — 2026-11-18
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-xai%3D%3D1.4.1)
+
+- feat(xai): send `langsmith_gateway` headers from the client (#41904)
+
+## 1.4.0 — 2026-11-15
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-xai%3D%3D1.4.0)
+
+- feat(xai): route `ChatXAI` through LangSmith gateway (#41838)
+- feat(partners): Remove EOL'd Python 3.10 from partner packages (#41268)
+
 ## 1.3.0 — 2026-07-21
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-xai%3D%3D1.3.0)

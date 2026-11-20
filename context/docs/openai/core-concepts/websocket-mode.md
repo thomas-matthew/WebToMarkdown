@@ -16,13 +16,13 @@ Because the connection stays open and each turn sends only incremental input, We
 
 Install the WebSocket dependencies with `pip install "openai[realtime]>=3.8.0"` for Python, `npm install openai@^7.10.0 ws` for JavaScript, or `gem install openai async-websocket` for Ruby.
 
-For Go, run `go get github.com/openai/openai-go/v3@v3.85.1`.
-For Java, add the Maven dependency `com.openai:openai-java:4.90.0` and use Java 17 or later for these examples.
+For Go, run `go get github.com/openai/openai-go/v3@v3.104.0`.
+For Java, add the Maven dependency `com.openai:openai-java:4.105.0` and use Java 17 or later for these examples.
 These Go and Java SDK versions provide native Responses WebSocket support.
 
 In WebSocket mode, start each turn by sending a `response.create` event from the client. The payload mirrors the normal [Responses create body](https://developers.openai.com/api/reference/resources/responses/methods/create), except that transport-specific fields like `stream` and `background` are not used.
 
-```javascript
+```typescript
 import OpenAI from "openai";
 import { ResponsesWS } from "openai/resources/responses/ws";
 
@@ -33,7 +33,7 @@ try {
   ws.send({
     type: "response.create",
     stream_id: "main",
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     store: false,
     input: [
       {
@@ -76,7 +76,7 @@ client = OpenAI()
 with client.responses.connect() as connection:
     connection.response.create(
         stream_id="main",
-        model="gpt-6-astra",
+        model="gpt-6.2-astra",
         store=False,
         input=[
             {
@@ -107,7 +107,7 @@ if err != nil {
 }
 defer conn.Close()
 if err := conn.Create(ctx, responses.ResponsesClientEventResponseCreateParam{
-	Model: "gpt-6-astra",
+	Model: "gpt-6.2-astra",
 	Store: openai.Bool(false),
 	Input: responses.ResponsesClientEventResponseCreateInputUnionParam{
 		OfString: openai.String("Find fizz_buzz()"),
@@ -138,7 +138,7 @@ try (var conn = client.responses().connect()) {
   conn.send(
       ResponsesClientEvent.ofResponseCreate(
           ResponsesClientEvent.ResponseCreate.builder()
-              .model("gpt-6-astra")
+              .model("gpt-6.2-astra")
               .store(false)
               .input("Find fizz_buzz()")
               .streamId("main")
@@ -178,7 +178,7 @@ Sync do |task|
   task.with_timeout(120) do
     client.responses.connect(request_options: { timeout: 10 }) do |connection|
       connection.response.create(
-        stream_id: "main", model: "gpt-6-astra", store: false,
+        stream_id: "main", model: "gpt-6.2-astra", store: false,
         input: [
           {
             role: "user",
@@ -204,14 +204,14 @@ To continue a run, send another `response.create` with:
 - `previous_response_id` set to the prior response ID.
 - `input` containing only new items (for example, tool outputs and the next user message).
 
-```javascript
+```typescript
 import OpenAI from "openai";
 import { ResponsesWS } from "openai/resources/responses/ws";
 
 const client = new OpenAI();
-const model = "gpt-6-astra";
+const model = "gpt-6.2-astra";
 
-const tools = [
+const tools: OpenAI.Responses.Tool[] = [
   {
     type: "function",
     name: "get_test_results",
@@ -221,7 +221,7 @@ const tools = [
   },
 ];
 
-async function waitForResponse(ws) {
+async function waitForResponse(ws: ResponsesWS) {
   for await (const event of ws) {
     if (event.type === "error") throw event.error;
     if (event.type !== "message") continue;
@@ -294,7 +294,7 @@ from openai.resources.responses.responses import ResponsesConnection
 from openai.types.responses import FunctionToolParam, Response
 
 client = OpenAI()
-model = "gpt-6-astra"
+model = "gpt-6.2-astra"
 tools: list[FunctionToolParam] = [
     {
         "type": "function",
@@ -387,7 +387,7 @@ if err != nil {
 }
 defer conn.Close()
 if err := conn.Create(ctx, responses.ResponsesClientEventResponseCreateParam{
-	Model: "gpt-6-astra",
+	Model: "gpt-6.2-astra",
 	Store: openai.Bool(false),
 	Input: responses.ResponsesClientEventResponseCreateInputUnionParam{
 		OfString: openai.String("Find the failing test and suggest a fix."),
@@ -423,7 +423,7 @@ if callID == "" {
 // The result is a local demo fixture; carry the real response and call IDs.
 result := `{"test":"test_fizz_buzz","failure":"Expected FizzBuzz for 15, got Fizz."}`
 if err := conn.Create(ctx, responses.ResponsesClientEventResponseCreateParam{
-	Model:              "gpt-6-astra",
+	Model:              "gpt-6.2-astra",
 	StreamID:           openai.String("main"),
 	Store:              openai.Bool(false),
 	PreviousResponseID: openai.String(first.ID),
@@ -481,7 +481,7 @@ try (var conn = client.responses().connect()) {
   conn.send(
       ResponsesClientEvent.ofResponseCreate(
           ResponsesClientEvent.ResponseCreate.builder()
-              .model("gpt-6-astra")
+              .model("gpt-6.2-astra")
               .store(false)
               .input("Find the failing test and suggest a fix.")
               .streamId("main")
@@ -505,7 +505,7 @@ try (var conn = client.responses().connect()) {
   conn.send(
       ResponsesClientEvent.ofResponseCreate(
           ResponsesClientEvent.ResponseCreate.builder()
-              .model("gpt-6-astra")
+              .model("gpt-6.2-astra")
               .streamId("main")
               .store(false)
               .previousResponseId(first.id())
@@ -574,7 +574,7 @@ Sync do |task|
   task.with_timeout(120) do
     client.responses.connect(request_options: { timeout: 10 }) do |connection|
       connection.response.create(
-        stream_id: "main", model: "gpt-6-astra", store: false,
+        stream_id: "main", model: "gpt-6.2-astra", store: false,
         input: "Find the failing test and suggest a fix.", tools: tools,
         tool_choice: {
           type: "function",
@@ -593,7 +593,7 @@ Sync do |task|
         failure: 'Expected "FizzBuzz" for 15, got "Fizz".'
       }
       connection.response.create(
-        stream_id: "main", model: "gpt-6-astra", store: false,
+        stream_id: "main", model: "gpt-6.2-astra", store: false,
         previous_response_id: response.id,
         input: [
           {
@@ -642,12 +642,12 @@ The standalone [`/responses/compact` endpoint](https://developers.openai.com/api
 
 Start a new chain by omitting `previous_response_id` or setting it to `null`. Pass the compacted output as-is; do not prune the returned window.
 
-```javascript
+```typescript
 import { toResponseInputItems } from "openai/lib/responses/ResponseInputItems";
 
 // Compact your current window with an HTTP request.
 const compacted = await client.responses.compact({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: longInputItems,
 });
 const nextInput = toResponseInputItems(compacted.output);
@@ -663,7 +663,7 @@ try {
   ws.send({
     type: "response.create",
     stream_id: "main",
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     store: false,
     input: nextInput,
     tools: [],
@@ -700,7 +700,7 @@ from openai.types.responses import ResponseInputParam
 
 # Compact your current window (HTTP call).
 compacted = client.responses.compact(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input=long_input_items_array,
 )
 next_input = cast(
@@ -719,7 +719,7 @@ next_input.append(
 with client.responses.connect() as connection:
     connection.response.create(
         stream_id="main",
-        model="gpt-6-astra",
+        model="gpt-6.2-astra",
         store=False,
         input=next_input,
         tools=[],
@@ -732,6 +732,55 @@ with client.responses.connect() as connection:
             raise RuntimeError(event.to_json())
     else:
         raise RuntimeError("Connection closed before the response finished.")
+```
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/responses"
+	"log"
+	"time"
+)
+
+func main() {
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Minute)
+	defer cancel()
+	client := openai.NewClient()
+	compacted, err := client.Responses.Compact(ctx, responses.ResponseCompactParams{Model: "gpt-6.2-astra", Input: responses.ResponseCompactParamsInputUnion{OfResponseInputItemArray: responses.ResponseInputParam{responses.ResponseInputItemParamOfMessage("Find the failing test.", responses.EasyInputMessageRoleUser)}}})
+	if err != nil {
+		log.Fatal(err)
+	}
+	input := responses.ResponseInputParam{}
+	for _, item := range compacted.Output {
+		var converted responses.ResponseInputItemUnion
+		if err := json.Unmarshal([]byte(item.RawJSON()), &converted); err != nil {
+			log.Fatal(err)
+		}
+		input = append(input, converted.ToParam())
+	}
+	input = append(input, responses.ResponseInputItemParamOfMessage("Continue from here.", responses.EasyInputMessageRoleUser))
+	conn, err := client.Responses.Connect(ctx, responses.ResponseConnectionOptions{})
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer conn.Close()
+	if err := conn.Create(ctx, responses.ResponsesClientEventResponseCreateParam{StreamID: openai.String("main"), Model: "gpt-6.2-astra", Store: openai.Bool(false), Input: responses.ResponsesClientEventResponseCreateInputUnionParam{OfResponse: &input}, Tools: []responses.ToolUnionParam{}}); err != nil {
+		log.Fatal(err)
+	}
+	response, err := conn.FinalResponse(ctx)
+	if err != nil {
+		log.Fatal(err)
+	}
+	if response.Status != responses.ResponseStatusCompleted {
+		log.Fatalf("Response ended with status %s", response.Status)
+	}
+	fmt.Println(response.OutputText())
+}
 ```
 
 ```ruby
@@ -751,7 +800,7 @@ end
 
 client = OpenAI::Client.new
 compacted = client.responses.compact(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: :user,
@@ -769,7 +818,7 @@ Sync do |task|
   task.with_timeout(120) do
     client.responses.connect(request_options: { timeout: 10 }) do |connection|
       connection.response.create(
-        stream_id: "main", model: "gpt-6-astra", store: false,
+        stream_id: "main", model: "gpt-6.2-astra", store: false,
         input: next_input, tools: []
       )
       puts(wait_for_response(connection).output_text)
@@ -844,8 +893,9 @@ send_create(
 
 Run parallel conversations, then fork one
 
-```javascript
+```typescript
 import OpenAI from "openai";
+import type { ResponsesStreamMessage } from "openai/resources/responses/internal-base.mjs";
 import { ResponsesWS } from "openai/resources/responses/ws";
 
 const client = new OpenAI();
@@ -853,15 +903,15 @@ const client = new OpenAI();
 const latestResponseIdByLane = new Map();
 
 function sendCreate(
-  ws,
-  streamId,
-  text,
+  ws: ResponsesWS,
+  streamId: string,
+  text: string,
   previousResponseId = latestResponseIdByLane.get(streamId)
 ) {
   ws.send({
     type: "response.create",
     stream_id: streamId,
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     store: false,
     input: [
       {
@@ -874,7 +924,9 @@ function sendCreate(
   });
 }
 
-async function readMessage(events) {
+async function readMessage(
+  events: AsyncIterableIterator<ResponsesStreamMessage>
+) {
   while (true) {
     const { value: event, done } = await events.next();
     if (done)
@@ -894,7 +946,10 @@ async function readMessage(events) {
   }
 }
 
-async function drainUntilComplete(events, expectedStreamIds) {
+async function drainUntilComplete(
+  events: AsyncIterableIterator<ResponsesStreamMessage>,
+  expectedStreamIds: Iterable<unknown> | null | undefined
+) {
   const remaining = new Set(expectedStreamIds);
   while (remaining.size > 0) {
     const message = await readMessage(events);
@@ -907,7 +962,10 @@ async function drainUntilComplete(events, expectedStreamIds) {
   }
 }
 
-async function waitForInProgress(events, streamId) {
+async function waitForInProgress(
+  events: AsyncIterableIterator<ResponsesStreamMessage>,
+  streamId: string
+) {
   while (true) {
     const message = await readMessage(events);
     if (
@@ -976,7 +1034,7 @@ def send_create(
         previous_response_id = latest_response_id_by_lane.get(stream_id)
     connection.response.create(
         stream_id=stream_id,
-        model="gpt-6-astra",
+        model="gpt-6.2-astra",
         store=False,
         input=[
             {
@@ -1054,6 +1112,106 @@ with client.responses.connect() as connection:
     drain_until_complete(connection, {"critic", "planner"})
 ```
 
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"fmt"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/responses"
+	"log"
+	"os"
+	"time"
+)
+
+func sendCreate(ctx context.Context, conn *responses.ResponseConnection, lane, text, parent string) error {
+	input := responses.ResponseInputParam{responses.ResponseInputItemParamOfMessage(text, responses.EasyInputMessageRoleUser)}
+	command := responses.ResponsesClientEventResponseCreateParam{StreamID: openai.String(lane), Model: "gpt-6.2-astra", Store: openai.Bool(false), Input: responses.ResponsesClientEventResponseCreateInputUnionParam{OfResponse: &input}}
+	if parent != "" {
+		command.PreviousResponseID = openai.String(parent)
+	}
+	return conn.Create(ctx, command)
+}
+func readEvent(ctx context.Context, conn *responses.ResponseConnection) (responses.ResponsesServerEventUnion, error) {
+	event, err := conn.Recv(ctx)
+	if err != nil {
+		return event, err
+	}
+	switch event.Type {
+	case "error", "response.failed", "response.incomplete":
+		return event, fmt.Errorf("response failed: %s", event.RawJSON())
+	}
+	return event, nil
+}
+func drainResponses(ctx context.Context, conn *responses.ResponseConnection, latest map[string]string, lanes ...string) error {
+	remaining := map[string]bool{}
+	for _, lane := range lanes {
+		remaining[lane] = true
+	}
+	for len(remaining) > 0 {
+		event, err := readEvent(ctx, conn)
+		if err != nil {
+			return err
+		}
+		if event.Type != "response.completed" {
+			continue
+		}
+		completed := event.AsResponseCompleted()
+		if !remaining[completed.StreamID] {
+			continue
+		}
+		latest[completed.StreamID] = completed.Response.ID
+		delete(remaining, completed.StreamID)
+	}
+	return nil
+}
+func main() {
+	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Minute)
+	defer cancel()
+	client := openai.NewClient()
+	conn, err := client.Responses.Connect(ctx, responses.ResponseConnectionOptions{})
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer conn.Close()
+	latest := map[string]string{}
+	if err := sendCreate(ctx, conn, "planner", "Draft a deployment plan for a stateless API service.", ""); err != nil {
+		log.Fatal(err)
+	}
+	if err := sendCreate(ctx, conn, "research", "List common deployment risks for a stateless API service.", ""); err != nil {
+		log.Fatal(err)
+	}
+	if err := drainResponses(ctx, conn, latest, "planner", "research"); err != nil {
+		log.Fatal(err)
+	}
+	parent := latest["planner"]
+	if err := sendCreate(ctx, conn, "critic", "Find gaps in this deployment plan.", parent); err != nil {
+		log.Fatal(err)
+	}
+	// Let the fork load its parent before advancing the original lane's cache.
+	for {
+		event, err := readEvent(ctx, conn)
+		if err != nil {
+			log.Fatal(err)
+		}
+		if event.Type == "response.in_progress" && event.AsResponseInProgress().StreamID == "critic" {
+			break
+		}
+	}
+	if err := sendCreate(ctx, conn, "planner", "Add rollback and monitoring steps.", parent); err != nil {
+		log.Fatal(err)
+	}
+	if err := drainResponses(ctx, conn, latest, "critic", "planner"); err != nil {
+		log.Fatal(err)
+	}
+	if err := json.NewEncoder(os.Stdout).Encode(latest); err != nil {
+		log.Fatal(err)
+	}
+}
+```
+
 ```ruby
 require "async"
 require "openai"
@@ -1062,7 +1220,7 @@ require "json"
 def send_create(connection, stream_id, text, previous_response_id = nil)
   payload = {
     stream_id: stream_id,
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     store: false,
     input: [
       {

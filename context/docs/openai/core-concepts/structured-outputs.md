@@ -4,15 +4,15 @@
 
 JSON is one of the most widely used formats in the world for applications to exchange data.
 
-Structured Outputs is a feature that ensures the model will always generate responses that adhere to your supplied [JSON Schema](https://json-schema.org/overview/what-is-jsonschema), so you don't need to worry about the model omitting a required key, or hallucinating an invalid enum value.
+Structured Outputs constrains completed, non-refusal model output to your supplied [JSON Schema](https://json-schema.org/overview/what-is-jsonschema). Your application still needs to handle refusals, incomplete responses, and API errors, and validate any business rules that the schema does not express.
 
 Some benefits of Structured Outputs include:
 
-1. **Reliable type-safety:** No need to validate or retry incorrectly formatted responses
+1. **Schema adherence:** Required fields and enum values follow the supported JSON Schema you supply
 1. **Explicit refusals:** Safety-based model refusals are now programmatically detectable
 1. **Simpler prompting:** No need for strongly worded prompts to achieve consistent formatting
 
-In addition to supporting JSON Schema in the REST API, the OpenAI libraries for [Python](https://github.com/openai/openai-python/blob/main/helpers.md#structured-outputs-parsing-helpers) and [JavaScript](https://github.com/openai/openai-node/blob/master/helpers.md#structured-outputs-parsing-helpers) also let you define object schemas using [`pydantic.BaseModel`](https://docs.pydantic.dev/latest/) and [`z.object`](https://zod.dev/) respectively. Below, you can see how to extract information from unstructured text that conforms to a schema defined in code.
+In addition to supporting JSON Schema in the REST API, the OpenAI libraries for [Python](https://github.com/openai/openai-python/blob/main/helpers.md#structured-outputs-parsing-helpers) and [JavaScript](https://github.com/openai/openai-node/blob/main/docs/structured-outputs.md) also let you define object schemas using [`pydantic.BaseModel`](https://docs.pydantic.dev/latest/) and [`z.object`](https://zod.dev/) respectively. Below, you can see how to extract information from unstructured text that conforms to a schema defined in code.
 
 The Ruby SDK supports schemas defined with Sorbet `T::Struct` and returns typed parsed results.
 
@@ -20,7 +20,7 @@ The Ruby SDK supports schemas defined with Sorbet `T::Struct` and returns typed 
 
 Getting a structured response
 
-```javascript
+```typescript
 import OpenAI from "openai";
 import { zodTextFormat } from "openai/helpers/zod";
 import { z } from "zod";
@@ -34,7 +34,7 @@ const CalendarEvent = z.object({
 });
 
 const response = await openai.responses.parse({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     { role: "system", content: "Extract the event information." },
     {
@@ -64,7 +64,7 @@ class CalendarEvent(BaseModel):
 
 
 response = client.responses.parse(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input=[
         {"role": "system", "content": "Extract the event information."},
         {
@@ -103,7 +103,7 @@ func main() {
 	}
 
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{OfInputItemList: responses.ResponseInputParam{
 			responses.ResponseInputItemParamOfMessage(
 				responses.ResponseInputMessageContentListParam{responses.ResponseInputContentParamOfInputText("Extract the event information.")},
@@ -154,7 +154,7 @@ Map<String, Object> schema =
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .inputOfResponse(
             List.of(
                 ResponseInputItem.ofEasyInputMessage(
@@ -213,7 +213,7 @@ BinaryData schema = BinaryData.FromString(
 );
 CreateResponseOptions options = new()
 {
-    Model = "gpt-6-astra",
+    Model = "gpt-6.2-astra",
     TextOptions = new ResponseTextOptions
     {
         TextFormat = ResponseTextFormat.CreateJsonSchemaFormat(
@@ -252,7 +252,7 @@ client = OpenAI::Client.new
 schema = OpenAI::StructuredOutput.from_sorbet(CalendarEvent)
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: :system,
@@ -280,7 +280,7 @@ puts(event.name, event.date, event.participants.join(", "))
 
 ### Supported models
 
-Structured Outputs is available in our [latest large language models](https://developers.openai.com/api/docs/models), starting with GPT-4o. For new projects, start with [`gpt-6-astra`](https://developers.openai.com/api/docs/models/gpt-6-astra). Older models like `gpt-4-turbo` and earlier may use [JSON mode](#json-mode) instead.
+Structured Outputs is available in our [latest large language models](https://developers.openai.com/api/docs/models), starting with GPT-4o. For new projects, start with [`gpt-6.2-astra`](https://developers.openai.com/api/docs/models/gpt-6.2-astra). Older models like `gpt-4-turbo` and earlier may use [JSON mode](#json-mode) instead.
 
 
 
@@ -364,7 +364,7 @@ You can ask the model to output an answer in a structured, step-by-step way, to 
 
   Structured Outputs for chain-of-thought math tutoring
 
-```javascript
+```typescript
 import OpenAI from "openai";
 import { zodTextFormat } from "openai/helpers/zod";
 import { z } from "zod";
@@ -382,7 +382,7 @@ const MathReasoning = z.object({
 });
 
 const response = await openai.responses.parse({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: "system",
@@ -417,7 +417,7 @@ class MathReasoning(BaseModel):
 
 
 response = client.responses.parse(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input=[
         {
             "role": "system",
@@ -464,7 +464,7 @@ func main() {
 	}
 
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{OfInputItemList: responses.ResponseInputParam{
 			responses.ResponseInputItemParamOfMessage(
 				responses.ResponseInputMessageContentListParam{responses.ResponseInputContentParamOfInputText("You are a helpful math tutor. Guide the user through the solution step by step.")},
@@ -529,7 +529,7 @@ Map<String, Object> schema =
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .inputOfResponse(
             List.of(
                 ResponseInputItem.ofEasyInputMessage(
@@ -597,7 +597,7 @@ BinaryData schema = BinaryData.FromString(
 );
 CreateResponseOptions options = new()
 {
-    Model = "gpt-6-astra",
+    Model = "gpt-6.2-astra",
     TextOptions = new ResponseTextOptions
     {
         TextFormat = ResponseTextFormat.CreateJsonSchemaFormat(
@@ -642,7 +642,7 @@ math_schema = {
 }
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: :system,
@@ -671,7 +671,7 @@ curl https://api.openai.com/v1/responses \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "input": [
       {
         "role": "system",
@@ -762,7 +762,7 @@ You can define structured fields to extract from unstructured input data, such a
 
   Extracting data from research papers using Structured Outputs
 
-```javascript
+```typescript
 import OpenAI from "openai";
 import { zodTextFormat } from "openai/helpers/zod";
 import { z } from "zod";
@@ -777,7 +777,7 @@ const ResearchPaperExtraction = z.object({
 });
 
 const response = await openai.responses.parse({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: "system",
@@ -809,7 +809,7 @@ class ResearchPaperExtraction(BaseModel):
 
 
 response = client.responses.parse(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input=[
         {
             "role": "system",
@@ -865,7 +865,7 @@ func main() {
 	}
 
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{OfInputItemList: responses.ResponseInputParam{
 			responses.ResponseInputItemParamOfMessage(
 				responses.ResponseInputMessageContentListParam{responses.ResponseInputContentParamOfInputText("You are an expert at structured data extraction. You will be given unstructured text from a research paper and should convert it into the given structure.")},
@@ -917,7 +917,7 @@ Map<String, Object> schema =
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .inputOfResponse(
             List.of(
                 ResponseInputItem.ofEasyInputMessage(
@@ -985,7 +985,7 @@ BinaryData schema = BinaryData.FromString(
 );
 CreateResponseOptions options = new()
 {
-    Model = "gpt-6-astra",
+    Model = "gpt-6.2-astra",
     TextOptions = new ResponseTextOptions
     {
         TextFormat = ResponseTextFormat.CreateJsonSchemaFormat(
@@ -1044,7 +1044,7 @@ paper_schema = {
 }
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: :system,
@@ -1073,7 +1073,7 @@ curl https://api.openai.com/v1/responses \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "input": [
       {
         "role": "system",
@@ -1150,14 +1150,21 @@ You can generate valid HTML by representing it as recursive data structures with
 
   Generating HTML using Structured Outputs
 
-```javascript
+```typescript
 import OpenAI from "openai";
 import { zodTextFormat } from "openai/helpers/zod";
 import { z } from "zod";
 
 const openai = new OpenAI();
 
-const UI = z.lazy(() =>
+type UIElement = {
+  type: "div" | "button" | "header" | "section" | "field" | "form";
+  label: string;
+  children: UIElement[];
+  attributes: { name: string; value: string }[];
+};
+
+const UI: z.ZodType<UIElement> = z.lazy(() =>
   z.object({
     type: z.enum(["div", "button", "header", "section", "field", "form"]),
     label: z.string(),
@@ -1172,7 +1179,8 @@ const UI = z.lazy(() =>
 );
 
 const response = await openai.responses.parse({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
+  max_output_tokens: 4096,
   input: [
     {
       role: "system",
@@ -1180,7 +1188,10 @@ const response = await openai.responses.parse({
     },
     {
       role: "user",
-      content: "Make a User Profile Form",
+      content:
+        "Make a small user profile form with exactly three direct children: " +
+        "a Name field, an Email field, and a Save button. Give each child no children. " +
+        "Use short labels and at most two short attributes per component.",
     },
   ],
   text: {
@@ -1189,6 +1200,8 @@ const response = await openai.responses.parse({
 });
 
 const ui = response.output_parsed;
+if (response.status !== "completed" || !ui)
+  throw new Error("UI generation did not complete.");
 ```
 
 ```python
@@ -1229,7 +1242,7 @@ class Response(BaseModel):
 
 
 response = client.responses.parse(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input=[
         {
             "role": "system",
@@ -1269,7 +1282,7 @@ func main() {
 	}
 
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{OfInputItemList: responses.ResponseInputParam{
 			responses.ResponseInputItemParamOfMessage(
 				responses.ResponseInputMessageContentListParam{responses.ResponseInputContentParamOfInputText("You are a UI generator AI. Convert the user input into a UI.")},
@@ -1301,12 +1314,44 @@ import com.openai.models.responses.ResponseCreateParams;
 import com.openai.models.responses.ResponseFormatTextJsonSchemaConfig;
 import com.openai.models.responses.ResponseInputItem;
 import com.openai.models.responses.ResponseTextConfig;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+Map<String, Object> attributeProperties = new LinkedHashMap<>();
+attributeProperties.put("name", Map.of("type", "string"));
+attributeProperties.put("value", Map.of("type", "string"));
+
+// Structured Outputs preserves the order of the schema's properties.
+Map<String, Object> properties = new LinkedHashMap<>();
+properties.put(
+    "type",
+    Map.of(
+        "type",
+        "string",
+        "enum",
+        List.of("div", "button", "header", "section", "field", "form")));
+properties.put("label", Map.of("type", "string"));
+properties.put("children", Map.of("type", "array", "items", Map.of("$ref", "#")));
+properties.put(
+    "attributes",
+    Map.of(
+        "type",
+        "array",
+        "items",
+        Map.of(
+            "type",
+            "object",
+            "properties",
+            attributeProperties,
+            "required",
+            List.of("name", "value"),
+            "additionalProperties",
+            false)));
+
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .inputOfResponse(
             List.of(
                 ResponseInputItem.ofEasyInputMessage(
@@ -1329,41 +1374,7 @@ ResponseCreateParams params =
                         .schema(
                             ResponseFormatTextJsonSchemaConfig.Schema.builder()
                                 .putAdditionalProperty("type", JsonValue.from("object"))
-                                .putAdditionalProperty(
-                                    "properties",
-                                    JsonValue.from(
-                                        Map.of(
-                                            "type",
-                                                Map.of(
-                                                    "type",
-                                                    "string",
-                                                    "enum",
-                                                    List.of(
-                                                        "div", "button", "header", "section",
-                                                        "field", "form")),
-                                            "label", Map.of("type", "string"),
-                                            "children",
-                                                Map.of(
-                                                    "type",
-                                                    "array",
-                                                    "items",
-                                                    Map.of("$ref", "#")),
-                                            "attributes",
-                                                Map.of(
-                                                    "type",
-                                                    "array",
-                                                    "items",
-                                                    Map.of(
-                                                        "type",
-                                                        "object",
-                                                        "properties",
-                                                        Map.of(
-                                                            "name", Map.of("type", "string"),
-                                                            "value", Map.of("type", "string")),
-                                                        "required",
-                                                        List.of("name", "value"),
-                                                        "additionalProperties",
-                                                        false)))))
+                                .putAdditionalProperty("properties", JsonValue.from(properties))
                                 .putAdditionalProperty(
                                     "required",
                                     JsonValue.from(
@@ -1405,7 +1416,6 @@ BinaryData schema = BinaryData.FromString(
           "properties": {
             "type": { "type": "string", "enum": ["div", "button", "header", "section", "field", "form"] },
             "label": { "type": "string" },
-            "children": { "type": "array", "items": { "$ref": "#/$defs/component" } },
             "attributes": {
               "type": "array",
               "items": {
@@ -1414,7 +1424,8 @@ BinaryData schema = BinaryData.FromString(
                 "required": ["name", "value"],
                 "additionalProperties": false
               }
-            }
+            },
+            "children": { "type": "array", "items": { "$ref": "#/$defs/component" } }
           },
           "required": ["type", "label", "children", "attributes"],
           "additionalProperties": false
@@ -1425,7 +1436,8 @@ BinaryData schema = BinaryData.FromString(
 );
 CreateResponseOptions options = new()
 {
-    Model = "gpt-6-astra",
+    Model = "gpt-6.2-astra",
+    MaxOutputTokenCount = 4096,
     TextOptions = new ResponseTextOptions
     {
         TextFormat = ResponseTextFormat.CreateJsonSchemaFormat(
@@ -1436,10 +1448,22 @@ CreateResponseOptions options = new()
     },
 };
 options.InputItems.Add(ResponseItem.CreateSystemMessageItem("You are a UI generator. Convert the user request into a component tree."));
-options.InputItems.Add(ResponseItem.CreateUserMessageItem("Make a User Profile Form"));
+options.InputItems.Add(ResponseItem.CreateUserMessageItem(
+    "Make a small user profile form with exactly three direct children: " +
+    "a Name field, an Email field, and a Save button. Give each child no children. " +
+    "Use short labels and at most two short attributes per component."
+));
 
 ResponseResult response = await client.CreateResponseAsync(options);
-using JsonDocument parsed = JsonDocument.Parse(response.GetOutputText());
+string text = response.GetOutputText();
+bool refused = response.OutputItems.OfType<MessageResponseItem>()
+    .SelectMany(message => message.Content)
+    .Any(part => part.Kind == ResponseContentPartKind.Refusal);
+if (response.Status != ResponseStatus.Completed || refused || string.IsNullOrWhiteSpace(text))
+{
+    throw new InvalidOperationException("UI generation did not complete.");
+}
+using JsonDocument parsed = JsonDocument.Parse(text);
 Console.WriteLine(parsed.RootElement);
 ```
 
@@ -1477,7 +1501,7 @@ ui_schema = {
 }
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: :system,
@@ -1507,7 +1531,7 @@ curl https://api.openai.com/v1/responses \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "input": [
       {
         "role": "system",
@@ -1667,7 +1691,7 @@ You can classify inputs on multiple categories, which is a common way of doing m
 
   Moderation using Structured Outputs
 
-```javascript
+```typescript
 import OpenAI from "openai";
 import { zodTextFormat } from "openai/helpers/zod";
 import { z } from "zod";
@@ -1681,7 +1705,7 @@ const ContentCompliance = z.object({
 });
 
 const response = await openai.responses.parse({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: "system",
@@ -1723,7 +1747,7 @@ class ContentCompliance(BaseModel):
 
 
 response = client.responses.parse(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input=[
         {
             "role": "system",
@@ -1752,7 +1776,7 @@ func main() {
 	client := openai.NewClient()
 	schema := contentComplianceSchema()
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{OfInputItemList: responses.ResponseInputParam{
 			responses.ResponseInputItemParamOfMessage("Determine if the user input violates specific guidelines and explain if they do.", responses.EasyInputMessageRoleSystem),
 			responses.ResponseInputItemParamOfMessage("How do I prepare for a job interview?", responses.EasyInputMessageRoleUser),
@@ -1824,7 +1848,7 @@ Map<String, Object> schema =
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .inputOfResponse(
             List.of(
                 ResponseInputItem.ofEasyInputMessage(
@@ -1886,7 +1910,7 @@ BinaryData schema = BinaryData.FromString(
 );
 CreateResponseOptions options = new()
 {
-    Model = "gpt-6-astra",
+    Model = "gpt-6.2-astra",
     TextOptions = new ResponseTextOptions
     {
         TextFormat = ResponseTextFormat.CreateJsonSchemaFormat(
@@ -1930,7 +1954,7 @@ compliance_schema = {
 }
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: :system,
@@ -1960,7 +1984,7 @@ curl https://api.openai.com/v1/responses \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "input": [
       {
         "role": "system",
@@ -2070,9 +2094,9 @@ For example:
 
 
 
-```javascript
+```typescript
 const response = await openai.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: "system",
@@ -2115,7 +2139,7 @@ console.log(response.output_text);
 
 ```python
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input=[
         {
             "role": "system",
@@ -2169,7 +2193,7 @@ import (
 func main() {
 	client := openai.NewClient()
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{OfInputItemList: responses.ResponseInputParam{
 			responses.ResponseInputItemParamOfMessage(
 				responses.ResponseInputMessageContentListParam{responses.ResponseInputContentParamOfInputText("You are a helpful math tutor. Guide the user through the solution step by step.")},
@@ -2245,7 +2269,7 @@ Map<String, Object> schema =
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .inputOfResponse(
             List.of(
                 ResponseInputItem.ofEasyInputMessage(
@@ -2313,7 +2337,7 @@ BinaryData schema = BinaryData.FromString(
 );
 CreateResponseOptions options = new()
 {
-    Model = "gpt-6-astra",
+    Model = "gpt-6.2-astra",
     TextOptions = new ResponseTextOptions
     {
         TextFormat = ResponseTextFormat.CreateJsonSchemaFormat(
@@ -2357,7 +2381,7 @@ math_schema = {
 }
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: :system,
@@ -2386,7 +2410,7 @@ curl https://api.openai.com/v1/responses \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "input": [
       {
         "role": "system",
@@ -2450,10 +2474,10 @@ This can happen in the case of a refusal, if the model refuses to answer for saf
 
 
 
-```javascript
+```typescript
 try {
   const response = await openai.responses.create({
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     input: [
       {
         role: "system",
@@ -2503,7 +2527,7 @@ try {
 
   if (
     response.status === "incomplete" &&
-    response.incomplete_details.reason === "max_output_tokens"
+    response.incomplete_details?.reason === "max_output_tokens"
   ) {
     // Handle the case where the model did not return a complete response
     throw new Error("Incomplete response");
@@ -2533,7 +2557,7 @@ try {
 ```python
 try:
     response = client.responses.create(
-        model="gpt-6-astra",
+        model="gpt-6.2-astra",
         input=[
             {
                 "role": "system",
@@ -2568,7 +2592,7 @@ try:
                 },
             },
         },
-        max_output_tokens=50,
+        max_output_tokens=1024,
     )
 
     if (
@@ -2609,7 +2633,7 @@ import (
 func main() {
 	client := openai.NewClient()
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{OfInputItemList: responses.ResponseInputParam{
 			responses.ResponseInputItemParamOfMessage(
 				responses.ResponseInputMessageContentListParam{responses.ResponseInputContentParamOfInputText("You are a helpful math tutor. Guide the user through the solution step by step.")},
@@ -2678,7 +2702,7 @@ import java.util.Map;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .inputOfResponse(
             List.of(
                 ResponseInputItem.ofEasyInputMessage(
@@ -2792,7 +2816,7 @@ BinaryData schema = BinaryData.FromString(
 );
 CreateResponseOptions options = new()
 {
-    Model = "gpt-6-astra",
+    Model = "gpt-6.2-astra",
     MaxOutputTokenCount = 300,
     TextOptions = new ResponseTextOptions
     {
@@ -2857,7 +2881,7 @@ math_schema = {
 }
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: :system,
@@ -2902,6 +2926,300 @@ end
 
 
 
+Change the response format mid-conversation
+
+
+
+To switch to a new schema between responses, append a `configuration_update` item to `input` before the next user message. Keep the original top-level `text.format` on each request so the earlier prompt prefix stays eligible for [prompt caching](https://developers.openai.com/api/docs/guides/prompt-caching).
+
+Response format updates are available on supported GPT-6 and later models in
+  standard, single-agent mode.
+
+Suppose the previous turn described a shipment with 17 red crates and 26 blue crates in plain text. Continue the conversation with `previous_response_id` and pass the following array as `input`.
+
+Switch from plain text to a structured crate count
+
+```typescript
+import OpenAI from "openai";
+import { zodTextFormat } from "openai/helpers/zod";
+import { z } from "zod";
+
+const client = new OpenAI();
+const model = "gpt-6-astra";
+const CrateCount = z.object({ total_crates: z.number().int() });
+
+const first = await client.responses.create({
+  model,
+  input:
+    "Summarize this shipment in one sentence: 17 red crates and 26 blue crates.",
+  store: true,
+});
+
+const format = zodTextFormat(CrateCount, "crate_count");
+const second = await client.responses.parse({
+  model,
+  previous_response_id: first.id,
+  input: [
+    { type: "configuration_update", text: { format } },
+    { role: "user", content: "How many crates are in the shipment?" },
+  ],
+});
+
+if (second.status === "completed" && second.output_parsed) {
+  console.log(second.output_parsed.total_crates);
+}
+```
+
+```python
+from openai import OpenAI
+from pydantic import BaseModel, ConfigDict
+
+
+class CrateCount(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    total_crates: int
+
+
+client = OpenAI()
+model = "gpt-6-astra"
+
+first = client.responses.create(
+    model=model,
+    input="Summarize this shipment in one sentence: 17 red crates and 26 blue crates.",
+    store=True,
+)
+
+second = client.responses.parse(
+    model=model,
+    previous_response_id=first.id,
+    input=[
+        {
+            "type": "configuration_update",
+            "text": {
+                "format": {
+                    "type": "json_schema",
+                    "name": "crate_count",
+                    "schema": CrateCount.model_json_schema(),
+                    "strict": True,
+                }
+            },
+        },
+        {"role": "user", "content": "How many crates are in the shipment?"},
+    ],
+    parse_as=CrateCount,
+)
+
+if second.status == "completed" and second.output_parsed is not None:
+    print(second.output_parsed.total_crates)
+```
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/responses"
+)
+
+func main() {
+	client := openai.NewClient()
+	ctx := context.Background()
+	const model = "gpt-6-astra"
+	first, err := client.Responses.New(ctx, responses.ResponseNewParams{
+		Model: model,
+		Input: responses.ResponseNewParamsInputUnion{
+			OfString: openai.String("Summarize this shipment in one sentence: 17 red crates and 26 blue crates."),
+		},
+		Store: openai.Bool(true),
+	})
+	if err != nil {
+		panic(err)
+	}
+
+	format := responses.ResponseFormatTextJSONSchemaConfigParam{
+		Name: "crate_count",
+		Schema: map[string]any{
+			"type":                 "object",
+			"properties":           map[string]any{"total_crates": map[string]any{"type": "integer"}},
+			"required":             []string{"total_crates"},
+			"additionalProperties": false,
+		},
+		Strict: openai.Bool(true),
+	}
+	second, err := client.Responses.New(ctx, responses.ResponseNewParams{
+		Model:              model,
+		PreviousResponseID: openai.String(first.ID),
+		Input: responses.ResponseNewParamsInputUnion{OfInputItemList: responses.ResponseInputParam{
+			{OfConfigurationUpdate: &responses.ResponseConfigurationUpdateItemParam{
+				Text: responses.ResponseConfigurationUpdateItemParamText{
+					Format: responses.ResponseConfigurationUpdateItemParamTextFormatUnion{OfJSONSchema: &format},
+				},
+			}},
+			responses.ResponseInputItemParamOfMessage("How many crates are in the shipment?", responses.EasyInputMessageRoleUser),
+		}},
+	})
+	if err != nil {
+		panic(err)
+	}
+	if second.Status != responses.ResponseStatusCompleted {
+		return
+	}
+	for _, item := range second.Output {
+		if item.Type != "message" || (item.Phase != "" && item.Phase != responses.ResponseOutputMessagePhaseFinalAnswer) {
+			continue
+		}
+		for _, part := range item.Content {
+			if part.Type == "output_text" {
+				fmt.Println(part.Text)
+			}
+		}
+	}
+}
+```
+
+```java
+import com.openai.core.JsonValue;
+import com.openai.models.responses.EasyInputMessage;
+import com.openai.models.responses.ResponseConfigurationUpdateItemParam;
+import com.openai.models.responses.ResponseCreateParams;
+import com.openai.models.responses.ResponseFormatTextJsonSchemaConfig;
+import com.openai.models.responses.ResponseInputItem;
+import com.openai.models.responses.ResponseOutputMessage;
+import com.openai.models.responses.ResponseStatus;
+import java.util.List;
+import java.util.Map;
+
+String model = "gpt-6-astra";
+
+var first =
+    client
+        .responses()
+        .create(
+            ResponseCreateParams.builder()
+                .model(model)
+                .input(
+                    "Summarize this shipment in one sentence: 17 red crates and 26 blue crates.")
+                .store(true)
+                .build());
+
+var schema =
+    Map.of(
+        "type",
+        "object",
+        "properties",
+        Map.of("total_crates", Map.of("type", "integer")),
+        "required",
+        List.of("total_crates"),
+        "additionalProperties",
+        false);
+var format =
+    ResponseFormatTextJsonSchemaConfig.builder()
+        .name("crate_count")
+        .schema(JsonValue.from(schema).convert(ResponseFormatTextJsonSchemaConfig.Schema.class))
+        .strict(true)
+        .build();
+var update =
+    ResponseConfigurationUpdateItemParam.builder()
+        .text(ResponseConfigurationUpdateItemParam.Text.builder().format(format).build())
+        .build();
+var question =
+    EasyInputMessage.builder()
+        .role(EasyInputMessage.Role.USER)
+        .content("How many crates are in the shipment?")
+        .build();
+
+var second =
+    client
+        .responses()
+        .create(
+            ResponseCreateParams.builder()
+                .model(model)
+                .previousResponseId(first.id())
+                .inputOfResponse(
+                    List.of(
+                        ResponseInputItem.ofConfigurationUpdate(update),
+                        ResponseInputItem.ofEasyInputMessage(question)))
+                .build());
+if (!ResponseStatus.COMPLETED.equals(second.status().orElse(null))) {
+  return;
+}
+second.output().stream()
+    .flatMap(item -> item.message().stream())
+    .filter(
+        message ->
+            message.phase().map(ResponseOutputMessage.Phase.FINAL_ANSWER::equals).orElse(true))
+    .flatMap(message -> message.content().stream())
+    .flatMap(content -> content.outputText().stream())
+    .forEach(text -> System.out.println(text.text()));
+```
+
+```ruby
+# gem install openai sorbet-runtime
+require "openai"
+require "openai/helpers/sorbet"
+
+class CrateCount < T::Struct
+  const :total_crates, Integer
+end
+
+client = OpenAI::Client.new
+model = "gpt-6-astra"
+
+first = client.responses.create(
+  model: model,
+  input: "Summarize this shipment in one sentence: 17 red crates and 26 blue crates.",
+  store: true
+)
+
+second = client.responses.create(
+  model: model,
+  previous_response_id: first.id,
+  input: [
+    {
+      type: :configuration_update,
+      text: {
+        format: {
+          type: :json_schema,
+          name: "crate_count",
+          schema: OpenAI::StructuredOutput.from_sorbet(CrateCount),
+          strict: true
+        }
+      }
+    },
+    {
+      role: :user,
+      content: "How many crates are in the shipment?"
+    }
+  ]
+)
+
+if second.status == OpenAI::Responses::ResponseStatus::COMPLETED
+  second.output.grep(OpenAI::Responses::ResponseOutputMessage).each do |message|
+    next unless message.phase.nil? || message.phase == :final_answer
+
+    message.content.grep(OpenAI::Responses::ResponseOutputText).each do |part|
+      count = part.parsed
+      case count
+      when CrateCount
+        puts count.total_crates
+      end
+    end
+  end
+end
+```
+
+
+The expected answer is `{"total_crates":43}`. The response object's `text.format` still reports the original request-level format. After checking for refusals and incomplete responses, parse the answer with the schema from the latest format update.
+
+Each format update replaces the whole format. It stays in effect across turns, including when you update only `reasoning.effort`. To switch back to plain text, append `{"type":"configuration_update","text":{"format":{"type":"text"}}}`. Updates accept `json_schema` and `text` only.
+
+If you replay history manually, keep each update in its original position. After explicit compaction, restate each setting you changed. See [configuration update compatibility](https://developers.openai.com/api/docs/guides/reasoning?api-mode=responses#change-reasoning-mid-conversation).
+
+
+
 
 
 Refusals with Structured Outputs
@@ -2915,7 +3233,7 @@ When the `refusal` property appears in your output object, you might present the
 
 
 
-```javascript
+```typescript
 const Step = z.object({
   explanation: z.string(),
   output: z.string(),
@@ -2927,7 +3245,7 @@ const MathReasoning = z.object({
 });
 
 const response = await openai.responses.parse({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: "system",
@@ -2974,7 +3292,7 @@ class MathReasoning(BaseModel):
 
 
 response = client.responses.parse(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input=[
         {
             "role": "system",
@@ -3015,7 +3333,7 @@ import (
 func main() {
 	client := openai.NewClient()
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{OfInputItemList: responses.ResponseInputParam{
 			responses.ResponseInputItemParamOfMessage(
 				responses.ResponseInputMessageContentListParam{responses.ResponseInputContentParamOfInputText("You are a helpful math tutor. Guide the user through the solution step by step.")},
@@ -3103,7 +3421,7 @@ Map<String, Object> schema =
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .inputOfResponse(
             List.of(
                 ResponseInputItem.ofEasyInputMessage(
@@ -3176,7 +3494,7 @@ BinaryData schema = BinaryData.FromString(
 );
 CreateResponseOptions options = new()
 {
-    Model = "gpt-6-astra",
+    Model = "gpt-6.2-astra",
     TextOptions = new ResponseTextOptions
     {
         TextFormat = ResponseTextFormat.CreateJsonSchemaFormat(
@@ -3227,7 +3545,7 @@ math_schema = {
 }
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: :system,
@@ -3345,7 +3663,7 @@ We recommend relying on the SDKs to handle streaming with Structured Outputs.
 
 
 
-```javascript
+```typescript
 import { OpenAI } from "openai";
 import { zodTextFormat } from "openai/helpers/zod";
 import { z } from "zod";
@@ -3359,7 +3677,7 @@ const EntitiesSchema = z.object({
 const openai = new OpenAI();
 const stream = openai.responses
   .stream({
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     input: [
       { role: "user", content: "What's the weather like in Paris today?" },
     ],
@@ -3399,7 +3717,7 @@ class EntitiesModel(BaseModel):
 client = OpenAI()
 
 with client.responses.stream(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input=[
         {"role": "system", "content": "Extract entities from the input text"},
         {
@@ -3414,13 +3732,98 @@ with client.responses.stream(
             print(event.delta, end="")
         elif event.type == "response.output_text.delta":
             print(event.delta, end="")
-        elif event.type == "response.error":
-            print(event.error, end="")
+        elif event.type == "error":
+            raise RuntimeError(event.message)
+        elif event.type in ("response.failed", "response.incomplete"):
+            response = event.response
+            message = f"Response {response.status}"
+            if response.error and response.error.message:
+                message += f": {response.error.message}"
+            elif response.incomplete_details and response.incomplete_details.reason:
+                message += f": {response.incomplete_details.reason}"
+            raise RuntimeError(message)
         elif event.type == "response.completed":
             print("Completed")  # print(event.response.output)
 
     final_response = stream.get_final_response()
     print(final_response)
+```
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/responses"
+)
+
+func main() {
+	client := openai.NewClient()
+	schema := map[string]any{
+		"type": "object",
+		"properties": map[string]any{
+			"attributes": map[string]any{"type": "array", "items": map[string]any{"type": "string"}},
+			"colors":     map[string]any{"type": "array", "items": map[string]any{"type": "string"}},
+			"animals":    map[string]any{"type": "array", "items": map[string]any{"type": "string"}},
+		},
+		"required":             []string{"attributes", "colors", "animals"},
+		"additionalProperties": false,
+	}
+	stream := client.Responses.NewStreaming(context.Background(), responses.ResponseNewParams{
+		Model: "gpt-6.2-astra",
+		Input: responses.ResponseNewParamsInputUnion{OfInputItemList: responses.ResponseInputParam{
+			responses.ResponseInputItemParamOfMessage("Extract entities from the input text.", responses.EasyInputMessageRoleSystem),
+			responses.ResponseInputItemParamOfMessage("The quick brown fox jumps over the lazy dog with piercing blue eyes.", responses.EasyInputMessageRoleUser),
+		}},
+		Text: responses.ResponseTextConfigParam{Format: responses.ResponseFormatTextConfigUnionParam{
+			OfJSONSchema: &responses.ResponseFormatTextJSONSchemaConfigParam{Name: "entities", Schema: schema, Strict: openai.Bool(true)},
+		}},
+	})
+	defer stream.Close()
+	completed := false
+	refused := false
+	for stream.Next() {
+		event := stream.Current()
+		switch event.Type {
+		case "response.output_text.delta":
+			fmt.Print(event.AsResponseOutputTextDelta().Delta)
+		case "response.refusal.delta":
+			fmt.Print(event.AsResponseRefusalDelta().Delta)
+		case "response.failed", "response.incomplete", "error":
+			panic(fmt.Sprintf("Response stream failed: %s", event.RawJSON()))
+		case "response.completed":
+			response := event.AsResponseCompleted().Response
+			if response.Status != "completed" {
+				panic("Response did not complete")
+			}
+			completed = true
+			for _, item := range response.Output {
+				if item.Type != "message" {
+					continue
+				}
+				for _, part := range item.AsMessage().Content {
+					if part.Type == "refusal" {
+						refused = true
+					}
+				}
+			}
+		}
+	}
+	if err := stream.Err(); err != nil {
+		panic(err)
+	}
+	if !completed {
+		panic("Stream ended before response.completed")
+	}
+	if refused {
+		fmt.Println("\nRefused")
+	} else {
+		fmt.Println("\nCompleted")
+	}
+}
 ```
 
 ```java
@@ -3439,7 +3842,7 @@ import java.util.Map;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .inputOfResponse(
             List.of(
                 ResponseInputItem.ofEasyInputMessage(
@@ -3537,7 +3940,7 @@ entities_schema = {
 }
 
 stream = client.responses.stream(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: :system,
@@ -3564,11 +3967,23 @@ stream.each do |event|
        OpenAI::Models::Responses::ResponseTextDeltaEvent
     print(event.delta)
   when OpenAI::Models::Responses::ResponseErrorEvent
-    warn(event.message)
-  when OpenAI::Models::Responses::ResponseCompletedEvent
-    puts("\nCompleted")
+    raise event.message
+  when OpenAI::Models::Responses::ResponseFailedEvent,
+       OpenAI::Models::Responses::ResponseIncompleteEvent
+    response = event.response
+    detail = response.error&.message || response.incomplete_details&.reason
+    message = "Response #{response.status}"
+    message += ": #{detail}" unless detail.to_s.empty?
+    raise message
   end
 end
+
+# Text deltas and response.output_text.done do not guarantee completion.
+response = stream.get_final_response
+refused = response.output.grep(OpenAI::Models::Responses::ResponseOutputMessage).any? do |message|
+  message.content.any? { |part| part.is_a?(OpenAI::Models::Responses::ResponseOutputRefusal) }
+end
+puts(refused ? "\nRefused" : "\nCompleted")
 ```
 
 
@@ -3712,15 +4127,17 @@ Note these constraints are [not yet supported for fine-tuned
 
 Note that the root level object of a schema must be an object, and not use `anyOf`. A pattern that appears in Zod (as one example) is using a discriminated union, which produces an `anyOf` at the top level. So code such as the following won't work:
 
-```javascript
+```typescript
 import { z } from "zod";
 import { zodResponseFormat } from "openai/helpers/zod";
 
 const BaseResponseSchema = z.object({
-  /* ... */
+  status: z.literal("success"),
+  data: z.string(),
 });
 const UnsuccessfulResponseSchema = z.object({
-  /* ... */
+  status: z.literal("error"),
+  error: z.string(),
 });
 
 const finalSchema = z.discriminatedUnion("status", [
@@ -3730,6 +4147,108 @@ const finalSchema = z.discriminatedUnion("status", [
 
 // Invalid JSON Schema for Structured Outputs
 const json = zodResponseFormat(finalSchema, "final_schema");
+```
+
+```go
+package main
+
+import (
+	"context"
+	"encoding/json"
+	"errors"
+	"github.com/openai/openai-go/v3"
+	"github.com/openai/openai-go/v3/responses"
+	"os"
+)
+
+func main() {
+	// A union can be nested inside an object, but cannot be the root schema.
+	variants := []any{}
+	for _, variant := range []struct{ status, field string }{{"success", "value"}, {"error", "error"}} {
+		variants = append(variants, map[string]any{
+			"type": "object", "properties": map[string]any{
+				"status":      map[string]any{"type": "string", "enum": []string{variant.status}},
+				variant.field: map[string]any{"type": "string"},
+			}, "required": []string{"status", variant.field}, "additionalProperties": false,
+		})
+	}
+	rootUnion := map[string]any{"anyOf": variants}
+	client := openai.NewClient()
+	_, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
+		Model: "gpt-6.2-astra", Input: responses.ResponseNewParamsInputUnion{OfString: openai.String("Return a successful result.")}, Store: openai.Bool(false),
+		Text: responses.ResponseTextConfigParam{Format: responses.ResponseFormatTextConfigUnionParam{OfJSONSchema: &responses.ResponseFormatTextJSONSchemaConfigParam{
+			Name: "result", Strict: openai.Bool(true), Schema: rootUnion,
+		}}},
+	})
+	if err == nil {
+		panic("Expected the API to reject the root union")
+	}
+	var apiError *openai.Error
+	if !errors.As(err, &apiError) || apiError.StatusCode != 400 || apiError.Code != "invalid_json_schema" {
+		panic(err)
+	}
+	if err := json.NewEncoder(os.Stdout).Encode(map[string]any{"status": apiError.StatusCode, "code": apiError.Code}); err != nil {
+		panic(err)
+	}
+}
+```
+
+```ruby
+require "openai"
+require "json"
+
+# A discriminated union is allowed inside an object, but not at the root.
+root_union = {
+  anyOf: [
+    {
+      type: "object",
+
+      properties: {
+        status: {
+          type: "string",
+          enum: ["success"]
+        },
+        value: { type: "string" }
+      },
+      required: ["status", "value"],
+
+      additionalProperties: false
+    },
+    {
+      type: "object",
+
+      properties: {
+        status: {
+          type: "string",
+          enum: ["error"]
+        },
+        error: { type: "string" }
+      },
+      required: ["status", "error"],
+
+      additionalProperties: false
+    }
+  ]
+}
+client = OpenAI::Client.new
+begin
+  client.responses.create(
+    model: "gpt-6.2-astra", input: "Return a successful result.", store: false,
+    text: {
+      format: {
+        type: :json_schema,
+        name: "result",
+        strict: true,
+        schema: root_union
+      }
+    }
+  )
+  raise "Expected the API to reject the root union"
+rescue OpenAI::Errors::BadRequestError => error
+  raise unless error.code == "invalid_json_schema"
+
+  puts JSON.generate(status: error.status, code: error.code)
+end
 ```
 
 
@@ -4098,12 +4617,12 @@ Important notes:
 
 
 
-```javascript
+```typescript
 const we_did_not_specify_stop_tokens = true;
 
 try {
   const response = await openai.responses.create({
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     input: [
       {
         role: "system",
@@ -4124,7 +4643,7 @@ try {
   // Check if the conversation was too long for the context window, resulting in incomplete JSON
   if (
     response.status === "incomplete" &&
-    response.incomplete_details.reason === "max_output_tokens"
+    response.incomplete_details?.reason === "max_output_tokens"
   ) {
     // your code should handle this error case
   }
@@ -4139,7 +4658,7 @@ try {
   // Check if the model's output included restricted content, so the generation of JSON was halted and may be partial
   if (
     response.status === "incomplete" &&
-    response.incomplete_details.reason === "content_filter"
+    response.incomplete_details?.reason === "content_filter"
   ) {
     // your code should handle this error case
   }
@@ -4166,7 +4685,7 @@ we_did_not_specify_stop_tokens = True
 
 try:
     response = client.responses.create(
-        model="gpt-6-astra",
+        model="gpt-6.2-astra",
         input=[
             {
                 "role": "system",
@@ -4231,7 +4750,7 @@ import (
 func main() {
 	client := openai.NewClient()
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Input: responses.ResponseNewParamsInputUnion{OfInputItemList: responses.ResponseInputParam{
 			responses.ResponseInputItemParamOfMessage(
 				responses.ResponseInputMessageContentListParam{responses.ResponseInputContentParamOfInputText("You are a helpful assistant designed to output JSON.")},
@@ -4289,7 +4808,7 @@ import java.util.List;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .inputOfResponse(
             List.of(
                 ResponseInputItem.ofEasyInputMessage(
@@ -4348,7 +4867,7 @@ ResponsesClient client = new(key);
 
 CreateResponseOptions options = new()
 {
-    Model = "gpt-6-astra",
+    Model = "gpt-6.2-astra",
     TextOptions = new ResponseTextOptions
     {
         TextFormat = ResponseTextFormat.CreateJsonObjectFormat(),
@@ -4394,7 +4913,7 @@ require "openai"
 
 client = OpenAI::Client.new
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: :system,

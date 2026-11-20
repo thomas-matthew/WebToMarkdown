@@ -1,6 +1,4 @@
-Python[langchain-core](/python/langchain-core)[retrievers](/python/langchain-core/retrievers)BaseRetriever
-
-Classv1.7.1 (latest)●Since v1.7
+Classv1.8.3 (latest)●Since v1.8
 
 # BaseRetriever
 
@@ -67,8 +65,6 @@ class TFIDFRetriever(BaseRetriever, BaseModel):
 
 Copy
 
-Copy
-
 ```
 BaseRetriever(
     self,
@@ -87,9 +83,11 @@ BaseRetriever(
 
 ## Attributes
 
-[attribute
+attribute
 
-model\_config](/python/langchain-core/retrievers/BaseRetriever/model_config)[attribute
+model\_config
+
+attribute
 
 tags: list[str] | None
 
@@ -99,7 +97,9 @@ These tags will be associated with each call to this retriever,
 and passed as arguments to the handlers defined in `callbacks`.
 
 You can use these to eg identify a specific instance of a retriever with its
-use case.](/python/langchain-core/retrievers/BaseRetriever/tags)[attribute
+use case.
+
+attribute
 
 metadata: dict[str, Any] | None
 
@@ -109,294 +109,338 @@ This metadata will be associated with each call to this retriever,
 and passed as arguments to the handlers defined in `callbacks`.
 
 You can use these to eg identify a specific instance of a retriever with its
-use case.](/python/langchain-core/retrievers/BaseRetriever/metadata)
+use case.
 
 ## Methods
 
-[method
+method
 
 invoke
 
 Invoke the retriever to get relevant documents.
 
-Main entry point for synchronous retriever invocations.](/python/langchain-core/retrievers/BaseRetriever/invoke)[method
+Main entry point for synchronous retriever invocations.
+
+method
 
 ainvoke
 
 Asynchronously invoke the retriever to get relevant documents.
 
-Main entry point for asynchronous retriever invocations.](/python/langchain-core/retrievers/BaseRetriever/ainvoke)
+Main entry point for asynchronous retriever invocations.
 
-## Inherited from[RunnableSerializable](/python/langchain-core/runnables/base/RunnableSerializable)
-
-### Attributes
-
-[Aname: str | None
-
-—
-
-The name of the `Runnable`.](/python/langchain-core/runnables/base/RunnableSerializable/name)
-
-### Methods
-
-[Mto\_json
-
-—
-
-Serialize the `Runnable` to JSON.](/python/langchain-core/runnables/base/RunnableSerializable/to_json)[Mconfigurable\_fields
-
-—
-
-Configure particular `Runnable` fields at runtime.](/python/langchain-core/runnables/base/RunnableSerializable/configurable_fields)[Mconfigurable\_alternatives
-
-—
-
-Configure alternatives for `Runnable` objects that can be set at runtime.](/python/langchain-core/runnables/base/RunnableSerializable/configurable_alternatives)
-
-## Inherited from[Serializable](/python/langchain-core/load/serializable/Serializable)
+## Inherited from[RunnableSerializable](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable)
 
 ### Attributes
 
-[Alc\_secrets: dict[str, str]
+Aname: str | None
 
 —
 
-A map of constructor argument names to secret ids.](/python/langchain-core/load/serializable/Serializable/lc_secrets)[Alc\_attributes: dict[str, Any]
-
-—
-
-List of attribute names that should be included in the serialized kwargs.](/python/langchain-core/load/serializable/Serializable/lc_attributes)
+The name of the `Runnable`.
 
 ### Methods
 
-[Mis\_lc\_serializable
+Mto\_json
 
 —
 
-Is this class serializable?](/python/langchain-core/load/serializable/Serializable/is_lc_serializable)[Mget\_lc\_namespace
+Serialize the `Runnable` to JSON.
+
+Mconfigurable\_fields
 
 —
 
-Get the namespace of the LangChain object.](/python/langchain-core/load/serializable/Serializable/get_lc_namespace)[Mlc\_id
+Configure particular `Runnable` fields at runtime.
+
+Mconfigurable\_alternatives
 
 —
 
-Return a unique identifier for this class for serialization purposes.](/python/langchain-core/load/serializable/Serializable/lc_id)[Mto\_json
+Configure alternatives for `Runnable` objects that can be set at runtime.
 
-—
-
-Serialize the object to JSON.](/python/langchain-core/load/serializable/Serializable/to_json)[Mto\_json\_not\_implemented
-
-—
-
-Serialize a "not implemented" object.](/python/langchain-core/load/serializable/Serializable/to_json_not_implemented)
-
-## Inherited from[Runnable](/python/langchain-core/runnables/base/Runnable)
+## Inherited from[Serializable](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable)
 
 ### Attributes
 
-[Aname: str | None
+Alc\_secrets: dict[str, str]
 
 —
 
-The name of the `Runnable`. Used for debugging and tracing.](/python/langchain-core/runnables/base/Runnable/name)[AInputType: type[Input]
+A map of constructor argument names to secret ids.
+
+Alc\_attributes: dict[str, Any]
 
 —
 
-Input type.](/python/langchain-core/runnables/base/Runnable/InputType)[AOutputType: type[Output]
-
-—
-
-Output Type.](/python/langchain-core/runnables/base/Runnable/OutputType)[Ainput\_schema: TypeBaseModel
-
-—
-
-The type of input this `Runnable` accepts specified as a Pydantic model.](/python/langchain-core/runnables/base/Runnable/input_schema)[Aoutput\_schema: TypeBaseModel
-
-—
-
-Output schema.](/python/langchain-core/runnables/base/Runnable/output_schema)[Aconfig\_specs: list[ConfigurableFieldSpec]
-
-—
-
-List configurable fields for this `Runnable`.](/python/langchain-core/runnables/base/Runnable/config_specs)
+List of attribute names that should be included in the serialized kwargs.
 
 ### Methods
 
-[Mget\_name
+Mis\_lc\_serializable
 
 —
 
-Get the name of the `Runnable`.](/python/langchain-core/runnables/base/Runnable/get_name)[Mget\_input\_schema
+Is this class serializable?
+
+Mget\_lc\_namespace
 
 —
 
-Get a Pydantic model that can be used to validate input to the `Runnable`.](/python/langchain-core/runnables/base/Runnable/get_input_schema)[Mget\_input\_jsonschema
+Get the namespace of the LangChain object.
+
+Mlc\_id
 
 —
 
-Get a JSON schema that represents the input to the `Runnable`.](/python/langchain-core/runnables/base/Runnable/get_input_jsonschema)[Mget\_output\_schema
+Return a unique identifier for this class for serialization purposes.
+
+Mto\_json
 
 —
 
-Get a Pydantic model that can be used to validate output to the `Runnable`.](/python/langchain-core/runnables/base/Runnable/get_output_schema)[Mget\_output\_jsonschema
+Serialize the object to JSON.
+
+Mto\_json\_not\_implemented
 
 —
 
-Get a JSON schema that represents the output of the `Runnable`.](/python/langchain-core/runnables/base/Runnable/get_output_jsonschema)[Mconfig\_schema
+Serialize a "not implemented" object.
+
+## Inherited from[Runnable](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable)
+
+### Attributes
+
+Aname: str | None
 
 —
 
-The type of config this `Runnable` accepts specified as a Pydantic model.](/python/langchain-core/runnables/base/Runnable/config_schema)[Mget\_config\_jsonschema
+The name of the `Runnable`. Used for debugging and tracing.
+
+AInputType: type[Input]
 
 —
 
-Get a JSON schema that represents the config of the `Runnable`.](/python/langchain-core/runnables/base/Runnable/get_config_jsonschema)[Mget\_graph
+Input type.
+
+AOutputType: type[Output]
 
 —
 
-Return a graph representation of this `Runnable`.](/python/langchain-core/runnables/base/Runnable/get_graph)[Mget\_prompts
+Output Type.
+
+Ainput\_schema: TypeBaseModel
 
 —
 
-Return a list of prompts used by this `Runnable`.](/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe
+The type of input this `Runnable` accepts specified as a Pydantic model.
+
+Aoutput\_schema: TypeBaseModel
 
 —
 
-Pipe `Runnable` objects.](/python/langchain-core/runnables/base/Runnable/pipe)[Mpick
+Output schema.
+
+Aconfig\_specs: list[ConfigurableFieldSpec]
 
 —
 
-Pick keys from the output `dict` of this `Runnable`.](/python/langchain-core/runnables/base/Runnable/pick)[Massign
+List configurable fields for this `Runnable`.
+
+### Methods
+
+Mget\_name
 
 —
 
-Assigns new fields to the `dict` output of this `Runnable`.](/python/langchain-core/runnables/base/Runnable/assign)[Mbatch
+Get the name of the `Runnable`.
+
+Mget\_input\_schema
 
 —
 
-Default implementation runs invoke in parallel using a thread pool executor.](/python/langchain-core/runnables/base/Runnable/batch)[Mbatch\_as\_completed
+Get a Pydantic model that can be used to validate input to the `Runnable`.
+
+Mget\_input\_jsonschema
 
 —
 
-Run `invoke` in parallel on a list of inputs.](/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch
+Get a JSON schema that represents the input to the `Runnable`.
+
+Mget\_output\_schema
 
 —
 
-Default implementation runs `ainvoke` in parallel using `asyncio.gather`.](/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch\_as\_completed
+Get a Pydantic model that can be used to validate output to the `Runnable`.
+
+Mget\_output\_jsonschema
 
 —
 
-Run `ainvoke` in parallel on a list of inputs.](/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mstream
+Get a JSON schema that represents the output of the `Runnable`.
+
+Mconfig\_schema
 
 —
 
-Default implementation of `stream`, which calls `invoke`.](/python/langchain-core/runnables/base/Runnable/stream)[Mastream
+The type of config this `Runnable` accepts specified as a Pydantic model.
+
+Mget\_config\_jsonschema
 
 —
 
-Default implementation of `astream`, which calls `ainvoke`.](/python/langchain-core/runnables/base/Runnable/astream)[Mastream\_log
+Get a JSON schema that represents the config of the `Runnable`.
+
+Mget\_graph
 
 —
 
-Stream all output from a `Runnable`, as reported to the callback system.](/python/langchain-core/runnables/base/Runnable/astream_log)[Mastream\_events
+Return a graph representation of this `Runnable`.
+
+Mget\_prompts
 
 —
 
-Generate a stream of events.](/python/langchain-core/runnables/base/Runnable/astream_events)[Mstream\_events
+Return a list of prompts used by this `Runnable`.
+
+Mpipe
 
 —
 
-Generate a stream of events synchronously.](/python/langchain-core/runnables/base/Runnable/stream_events)[Mtransform
+Pipe `Runnable` objects.
+
+Mpick
 
 —
 
-Transform inputs to outputs.](/python/langchain-core/runnables/base/Runnable/transform)[Matransform
+Pick keys from the output `dict` of this `Runnable`.
+
+Massign
 
 —
 
-Transform inputs to outputs.](/python/langchain-core/runnables/base/Runnable/atransform)[Mbind
+Assigns new fields to the `dict` output of this `Runnable`.
+
+Mbatch
 
 —
 
-Bind arguments to a `Runnable`, returning a new `Runnable`.](/python/langchain-core/runnables/base/Runnable/bind)[Mwith\_config
+Default implementation runs invoke in parallel using a thread pool executor.
+
+Mbatch\_as\_completed
 
 —
 
-Bind config to a `Runnable`, returning a new `Runnable`.](/python/langchain-core/runnables/base/Runnable/with_config)[Mwith\_listeners
+Run `invoke` in parallel on a list of inputs.
+
+Mabatch
 
 —
 
-Bind lifecycle listeners to a `Runnable`, returning a new `Runnable`.](/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith\_alisteners
+Default implementation runs `ainvoke` in parallel using `asyncio.gather`.
+
+Mabatch\_as\_completed
 
 —
 
-Bind async lifecycle listeners to a `Runnable`.](/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith\_types
+Run `ainvoke` in parallel on a list of inputs.
+
+Mstream
 
 —
 
-Bind input and output types to a `Runnable`, returning a new `Runnable`.](/python/langchain-core/runnables/base/Runnable/with_types)[Mwith\_retry
+Default implementation of `stream`, which calls `invoke`.
+
+Mastream
 
 —
 
-Create a new `Runnable` that retries the original `Runnable` on exceptions.](/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap
+Default implementation of `astream`, which calls `ainvoke`.
+
+Mastream\_log
 
 —
 
-Return a new `Runnable` that maps a list of inputs to a list of outputs.](/python/langchain-core/runnables/base/Runnable/map)[Mwith\_fallbacks
+Stream all output from a `Runnable`, as reported to the callback system.
+
+Mastream\_events
 
 —
 
-Add fallbacks to a `Runnable`, returning a new `Runnable`.](/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas\_tool
+Generate a stream of events.
+
+Mstream\_events
 
 —
 
-Create a `BaseTool` from a `Runnable`.](/python/langchain-core/runnables/base/Runnable/as_tool)
+Generate a stream of events synchronously.
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/6419339aa163a49f32d9b80ff20d6adc3b446d49/libs/core/langchain_core/retrievers.py#L55)
+Mtransform
+
+—
+
+Transform inputs to outputs.
+
+Matransform
+
+—
+
+Transform inputs to outputs.
+
+Mbind
+
+—
+
+Bind arguments to a `Runnable`, returning a new `Runnable`.
+
+Mwith\_config
+
+—
+
+Bind config to a `Runnable`, returning a new `Runnable`.
+
+Mwith\_listeners
+
+—
+
+Bind lifecycle listeners to a `Runnable`, returning a new `Runnable`.
+
+Mwith\_alisteners
+
+—
+
+Bind async lifecycle listeners to a `Runnable`.
+
+Mwith\_types
+
+—
+
+Bind input and output types to a `Runnable`, returning a new `Runnable`.
+
+Mwith\_retry
+
+—
+
+Create a new `Runnable` that retries the original `Runnable` on exceptions.
+
+Mmap
+
+—
+
+Return a new `Runnable` that maps a list of inputs to a list of outputs.
+
+Mwith\_fallbacks
+
+—
+
+Add fallbacks to a `Runnable`, returning a new `Runnable`.
+
+Mas\_tool
+
+—
+
+Create a `BaseTool` from a `Runnable`.
+
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/d4dafe5839c4a6b07d71cc78697df0de9e627e21/libs/core/langchain_core/retrievers.py#L55)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Related Documentation
-
-Attributes
-
-Amodel\_configAtagsAmetadata
-
-Methods
-
-MinvokeMainvoke
-
-from RunnableSerializable
-
-AAttributes
-
-Aname
-
-MMethods
-
-Mto\_jsonMconfigurable\_fieldsMconfigurable\_alternatives
-
-from Serializable
-
-AAttributes
-
-Alc\_secretsAlc\_attributes
-
-MMethods
-
-Mis\_lc\_serializableMget\_lc\_namespaceMlc\_idMto\_jsonMto\_json\_not\_implemented
-
-from Runnable
-
-AAttributes
-
-AnameAInputTypeAOutputTypeAinput\_schemaAoutput\_schemaAconfig\_specs
-
-MMethods
-
-Mget\_nameMget\_input\_schemaMget\_input\_jsonschemaMget\_output\_schemaMget\_output\_jsonschemaMconfig\_schemaMget\_config\_jsonschemaMget\_graphMget\_promptsMpipeMpickMassignMbatchMbatch\_as\_completedMabatchMabatch\_as\_completedMstreamMastreamMastream\_logMastream\_eventsMstream\_eventsMtransformMatransformMbindMwith\_configMwith\_listenersMwith\_alistenersMwith\_typesMwith\_retryMmapMwith\_fallbacksMas\_tool

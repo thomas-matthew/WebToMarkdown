@@ -2,18 +2,18 @@
 
 > For the complete documentation index, see [llms.txt](/llms.txt). Markdown versions of documentation pages are available by appending `.md` to the page URL.
 
-The `apply_patch` tool lets GPT-5.1 create, update, and delete files in your codebase using structured diffs. Instead of just suggesting edits, the model emits patch operations that your application applies and then reports back on, enabling iterative, multi-step code editing workflows.
+Use `apply_patch` with the Responses API to propose file creations, updates, and deletions as structured diffs. Your application applies each operation and returns its result. The examples use `gpt-6.2-astra`.
 
 ## When to use
 
-Some common scenarios where you would use apply_patch:
+You can use `apply_patch` for the following tasks.
 
-- **Multi-file refactors** – Rename symbols, extract helpers, or reorganize modules across many files at once.
-- **Bug fixes** – Have the model both diagnose issues and emit precise patches.
-- **Tests & docs generation** – Create new test files, fixtures, and documentation alongside code changes.
-- **Migrations & mechanical edits** – Apply repetitive, structured updates (API migrations, type annotations, formatting fixes, etc.).
+- **Multi-file refactors.** Rename symbols, extract helpers, or reorganize modules across many files at once.
+- **Bug fixes.** Have the model both diagnose issues and emit precise patches.
+- **Tests & docs generation.** Create new test files, fixtures, and documentation alongside code changes.
+- **Migrations & mechanical edits.** Apply repetitive, structured updates (API migrations, type annotations, formatting fixes, etc.).
 
-If you can describe your repo and desired change in text, apply_patch can usually generate the corresponding diffs.
+If you can describe your repo and desired change in text, `apply_patch` can usually generate the corresponding diffs.
 
 ## Use apply patch tool with Responses API
 
@@ -44,7 +44,7 @@ At a high level, using `apply_patch` with the Responses API looks like this:
 
 Ask the model to plan and emit patches
 
-```javascript
+```typescript
 import OpenAI from "openai";
 // Application-owned helper; see "Implementing the patch harness" in the guide.
 // This demo only applies exact updates to the two in-memory files below.
@@ -72,7 +72,7 @@ ${Object.entries(files)
 Help me rename the fib() function to fibonacci().`;
 
 let response = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: fileContext,
   tools: [{ type: "apply_patch" }],
 });
@@ -114,7 +114,7 @@ Help me rename the fib() function to fibonacci()
 """
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input=RESPONSE_INPUT,
     tools=[{"type": "apply_patch"}],
 )
@@ -129,7 +129,7 @@ patch_calls = [
 
 ```go
 response, err := client.Responses.New(ctx, responses.ResponseNewParams{
-	Model: "gpt-6-astra",
+	Model: "gpt-6.2-astra",
 	Input: responses.ResponseNewParamsInputUnion{OfString: openai.String(responseInput)},
 	Tools: []responses.ToolUnionParam{{OfApplyPatch: &responses.ApplyPatchToolParam{}}},
 })
@@ -146,7 +146,7 @@ import com.openai.models.responses.ResponseCreateParams;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input(
             "Rename fib() to fibonacci() in lib/fib.py and update run.py to use the new name.")
         .addTool(ApplyPatchTool.builder().build())
@@ -167,7 +167,7 @@ files = {
 }
 context = files.map { |path, content| "===== #{path}\n#{content}" }.join
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "The user has the following files:\n<BEGIN_FILES>\n#{context}<END_FILES>\nHelp me rename fib() to fibonacci() in both existing files.",
   tools: [{ type: :apply_patch }]
 )
@@ -204,10 +204,10 @@ Example apply_patch_call object
 
 Apply the patch and return results
 
-```javascript
+```typescript
 for (let turn = 0; patchCalls.length > 0; turn++) {
   if (turn === 8) throw new Error("Patch workflow exceeded eight tool turns.");
-  const results = patchCalls.map((call) => {
+  const results = patchCalls.map((call): OpenAI.Responses.ResponseInputItem => {
     const { success, output } = applyOperation(files, call.operation);
 
     return {
@@ -219,7 +219,7 @@ for (let turn = 0; patchCalls.length > 0; turn++) {
   });
 
   response = await client.responses.create({
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     previous_response_id: response.id,
     input: results,
     tools: [{ type: "apply_patch" }],
@@ -238,26 +238,37 @@ for (const [path, content] of Object.entries(files)) {
 ```python
 from apply_patch_harness import apply_operation  # your implementation
 
-results = []
-for call in patch_calls:
-    op = call["operation"]
-    success, maybe_log_output = apply_operation(op)
+for turn in range(9):
+    if response.status != "completed":
+        raise RuntimeError(f"Patch response ended with status {response.status}")
+    if not patch_calls:
+        break
+    if turn == 8:
+        raise RuntimeError("Patch workflow exceeded eight tool turns")
 
-    results.append(
-        {
-            "type": "apply_patch_call_output",
-            "call_id": call["call_id"],
-            "status": "completed" if success else "failed",
-            "output": maybe_log_output,
-        }
+    results = []
+    for call in patch_calls:
+        success, log_output = apply_operation(call["operation"])
+        results.append(
+            {
+                "type": "apply_patch_call_output",
+                "call_id": call["call_id"],
+                "status": "completed" if success else "failed",
+                "output": log_output,
+            }
+        )
+
+    response = client.responses.create(
+        model="gpt-6.2-astra",
+        previous_response_id=response.id,
+        input=results,
+        tools=[{"type": "apply_patch"}],
     )
+    patch_calls = [
+        item.model_dump() for item in response.output if item.type == "apply_patch_call"
+    ]
 
-followup = client.responses.create(
-    model="gpt-6-astra",
-    previous_response_id=response.id,
-    input=results,
-    tools=[{"type": "apply_patch"}],
-)
+print(response.output_text)
 ```
 
 ```go
@@ -290,7 +301,7 @@ for turn := 0; ; turn++ {
 		results = append(results, result)
 	}
 	response, err = client.Responses.New(ctx, responses.ResponseNewParams{
-		Model:              "gpt-6-astra",
+		Model:              "gpt-6.2-astra",
 		PreviousResponseID: openai.String(response.ID),
 		Input:              responses.ResponseNewParamsInputUnion{OfInputItemList: results},
 		Tools:              []responses.ToolUnionParam{{OfApplyPatch: &responses.ApplyPatchToolParam{}}},
@@ -311,7 +322,7 @@ import java.util.List;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .inputOfResponse(
             List.of(
                 ResponseInputItem.ofApplyPatchCallOutput(
@@ -353,7 +364,7 @@ client.responses().create(params).output().stream()
     }
   end
   response = client.responses.create(
-    model: "gpt-6-astra",
+    model: "gpt-6.2-astra",
     previous_response_id: response.id,
     input: results,
     tools: [{ type: :apply_patch }]
@@ -416,28 +427,76 @@ Alternatively, you can use the [Agents SDK](https://developers.openai.com/api/do
 
 Use the apply patch tool with the Agents SDK
 
-```javascript
-import { applyDiff, Agent, run, applyPatchTool } from "@openai/agents";
+```typescript
+import {
+  mkdirSync,
+  realpathSync,
+  lstatSync,
+  readFileSync,
+  writeFileSync,
+  unlinkSync,
+} from "node:fs";
+import { dirname, isAbsolute, join, relative, resolve, sep } from "node:path";
+import {
+  applyDiff,
+  Agent,
+  run,
+  applyPatchTool,
+  type Editor,
+  type ApplyPatchResult,
+} from "@openai/agents";
 
-class WorkspaceEditor {
-  async createFile(operation) {
-    // convert the diff to the file content
+class WorkspaceEditor implements Editor {
+  root: string;
+  constructor(root = "workspace") {
+    mkdirSync(root, { recursive: true });
+    this.root = realpathSync(root);
+  }
+
+  path(name: string) {
+    const target = resolve(this.root, name);
+    const relativePath = relative(this.root, target);
+    if (
+      !relativePath ||
+      isAbsolute(relativePath) ||
+      relativePath === ".." ||
+      relativePath.startsWith(`..${sep}`)
+    ) {
+      throw new Error("Patch paths must stay inside the workspace");
+    }
+    let current = this.root;
+    for (const part of relativePath.split(sep)) {
+      current = join(current, part);
+      if (lstatSync(current, { throwIfNoEntry: false })?.isSymbolicLink()) {
+        throw new Error("Patch paths must not traverse symbolic links");
+      }
+    }
+    return target;
+  }
+
+  async createFile(
+    operation: Parameters<Editor["createFile"]>[0]
+  ): Promise<ApplyPatchResult> {
+    const path = this.path(operation.path);
     const content = applyDiff("", operation.diff, "create");
-    // write the file content to the file system
+    mkdirSync(dirname(path), { recursive: true });
+    writeFileSync(path, content, { encoding: "utf8", flag: "wx" });
     return { status: "completed", output: `Created ${operation.path}` };
   }
 
-  async updateFile(operation) {
-    // read the file content from the file system
-    const current = "";
-    // convert the diff to the new file content
-    const newContent = applyDiff(current, operation.diff);
-    // write the updated file content to the file system
+  async updateFile(
+    operation: Parameters<Editor["updateFile"]>[0]
+  ): Promise<ApplyPatchResult> {
+    const path = this.path(operation.path);
+    const content = applyDiff(readFileSync(path, "utf8"), operation.diff);
+    writeFileSync(path, content, "utf8");
     return { status: "completed", output: `Updated ${operation.path}` };
   }
 
-  async deleteFile(operation) {
-    // delete the file from the file system
+  async deleteFile(
+    operation: Parameters<Editor["deleteFile"]>[0]
+  ): Promise<ApplyPatchResult> {
+    unlinkSync(this.path(operation.path));
     return { status: "completed", output: `Deleted ${operation.path}` };
   }
 }
@@ -446,9 +505,9 @@ const editor = new WorkspaceEditor();
 
 const agent = new Agent({
   name: "Patch Assistant",
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   instructions:
-    "You can edit files inside the /tmp directory using the apply_patch tool.",
+    "Use apply_patch to edit files in the workspace. Supply paths relative to that workspace.",
   tools: [
     applyPatchTool({
       editor,
@@ -471,26 +530,39 @@ console.log(`\nFinal response:\n${result.finalOutput}`);
 ```
 
 ```python
+from pathlib import Path
+
 from agents import Agent, ApplyPatchTool, Runner, apply_diff
 
 
 class WorkspaceEditor:
+    def __init__(self, root="workspace"):
+        self.root = Path(root).resolve()
+        self.root.mkdir(parents=True, exist_ok=True)
+
+    def _path(self, name):
+        path = self.root / name
+        resolved = path.resolve()
+        if resolved == self.root or not resolved.is_relative_to(self.root):
+            raise ValueError("Patch paths must stay inside the workspace")
+        return path
+
     async def create_file(self, operation):
-        # convert the diff to the file content
         content = apply_diff("", operation.diff, mode="create")
-        # write the file content to the file system
+        path = self._path(operation.path)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("x", encoding="utf-8") as file:
+            file.write(content)
         return {"status": "completed", "output": f"Created {operation.path}"}
 
     async def update_file(self, operation):
-        # read the file content from the file system
-        current = ""
-        # convert the diff to the new file content
-        new_content = apply_diff(current, operation.diff)
-        # write the updated file content to the file system
+        path = self._path(operation.path)
+        content = apply_diff(path.read_text(encoding="utf-8"), operation.diff)
+        path.write_text(content, encoding="utf-8")
         return {"status": "completed", "output": f"Updated {operation.path}"}
 
     async def delete_file(self, operation):
-        # delete the file from the file system
+        self._path(operation.path).unlink()
         return {"status": "completed", "output": f"Deleted {operation.path}"}
 
 
@@ -498,8 +570,8 @@ editor = WorkspaceEditor()
 
 agent = Agent(
     name="Patch Assistant",
-    model="gpt-6-astra",
-    instructions="You can edit files inside the /tmp directory using the apply_patch tool.",
+    model="gpt-6.2-astra",
+    instructions="Use apply_patch to edit files in the workspace. Supply paths relative to that workspace.",
     tools=[
         ApplyPatchTool(
             editor=editor,
@@ -530,17 +602,17 @@ if __name__ == "__main__":
 
 You can find full working examples on GitHub.
 
-[Apply patch tool example - TypeScript
+[Apply patch tool example - TypeScript](https://github.com/openai/openai-agents-js/blob/main/examples/tools/applyPatch.ts)
+
+Example of how to use the apply patch tool with the Agents SDK in TypeScript
 
 
 
-      Example of how to use the apply patch tool with the Agents SDK in TypeScript](https://github.com/openai/openai-agents-js/blob/main/examples/tools/applyPatch.ts)
+[Apply patch tool example - Python](https://github.com/openai/openai-agents-python/blob/main/examples/tools/apply_patch.py)
 
-[Apply patch tool example - Python
+Example of how to use the apply patch tool with the Agents SDK in Python
 
 
-
-      Example of how to use the apply patch tool with the Agents SDK in Python](https://github.com/openai/openai-agents-python/blob/main/examples/tools/apply_patch.py)
 
 ## Handling common errors
 
@@ -623,16 +695,23 @@ The model can then adjust future diffs (for example, by re-reading a file in you
 
   </td>
   <td style={{ maxWidth: "150px" }}>
-    [GPT-5.5](https://developers.openai.com/api/docs/models/gpt-5.5)
-    
-
-    [GPT-5.4](https://developers.openai.com/api/docs/models/gpt-5.4)
-    
-
-    [GPT-5.2](https://developers.openai.com/api/docs/models/gpt-5.2)
-    
-
-    [GPT-5.1](https://developers.openai.com/api/docs/models/gpt-5.1)
+    - [`gpt-5.2`](https://developers.openai.com/api/docs/models/gpt-5.2)
+- [`gpt-5.4`](https://developers.openai.com/api/docs/models/gpt-5.4)
+- [`gpt-5.4-mini`](https://developers.openai.com/api/docs/models/gpt-5.4-mini)
+- [`gpt-5.4-pro`](https://developers.openai.com/api/docs/models/gpt-5.4-pro)
+- [`gpt-5.5`](https://developers.openai.com/api/docs/models/gpt-5.5)
+- [`gpt-5.6-cyber`](https://developers.openai.com/api/docs/models/gpt-5.6-cyber)
+- [`gpt-5.6-luna`](https://developers.openai.com/api/docs/models/gpt-5.6-luna)
+- [`gpt-5.6-sol`](https://developers.openai.com/api/docs/models/gpt-5.6-sol)
+- [`gpt-5.6-terra`](https://developers.openai.com/api/docs/models/gpt-5.6-terra)
+- [`gpt-6-astra`](https://developers.openai.com/api/docs/models/gpt-6-astra)
+- [`gpt-6-cyber`](https://developers.openai.com/api/docs/models/gpt-6-cyber)
+- [`gpt-6-luna`](https://developers.openai.com/api/docs/models/gpt-6-luna)
+- [`gpt-6-sol`](https://developers.openai.com/api/docs/models/gpt-6-sol)
+- [`gpt-6.1-sol`](https://developers.openai.com/api/docs/models/gpt-6.1-sol)
+- [`gpt-6.1-terra`](https://developers.openai.com/api/docs/models/gpt-6.1-terra)
+- [`gpt-6.2-astra`](https://developers.openai.com/api/docs/models/gpt-6.2-astra)
+- [`gpt-6.2-sol`](https://developers.openai.com/api/docs/models/gpt-6.2-sol)
   </td>
 </tr>
 

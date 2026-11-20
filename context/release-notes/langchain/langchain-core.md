@@ -3,6 +3,63 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.8.4 — 2026-11-19
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.8.4)
+
+- feat(core): standardize finish reason on message-finish events (#41926)
+- feat(langchain): tag synthetic HITL tool messages with source metadata (#41928)
+
+## 1.8.3 — 2026-11-18
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.8.3)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.8.2 — 2026-11-17
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.8.2)
+
+- feat(core): add `headers` to `langsmith_gateway` and ignore proxies (#41900)
+
+## 1.8.1 — 2026-11-15
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.8.1)
+
+- feat(core): per-context LangSmith gateway override via `langsmith_gateway` (#41836)
+
+## 1.8.0 — 2026-11-11
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.8.0)
+
+- feat(core): Remove EOL Python 3.10 support (#41267)
+- feat(core): add decision models (#41765)
+
+## 1.7.7 — 2026-11-10
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.7.7)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.7.6 — 2026-11-05
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.7.6)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.7.5 — 2026-11-04
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.7.5)
+
+- feat(core): translate Gemini safety blocks to refusal content blocks (#41658)
+- feat(core): standardize model refusal content blocks (#41582)
+
+## 1.7.4 — 2026-11-02
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.7.4)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 1.7.3 — 2026-10-29
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-core%3D%3D1.7.3)

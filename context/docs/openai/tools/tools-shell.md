@@ -12,7 +12,7 @@ The shell tool lets models run commands through either:
 Shell is available through the [Responses API](https://developers.openai.com/api/docs/guides/migrate-to-responses). It's not available via the Chat Completions API.
 
 Running arbitrary shell commands can be dangerous. Always sandbox execution,
-  apply allowlists or denylists where possible, and log tool activity for
+  allow or block specific commands where possible, and log tool activity for
   auditing.
 
 ## Hosted shell quickstart
@@ -28,7 +28,7 @@ curl -L 'https://api.openai.com/v1/responses' \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "tools": [
       { "type": "shell", "environment": { "type": "container_auto" } }
     ],
@@ -45,13 +45,13 @@ curl -L 'https://api.openai.com/v1/responses' \
   }'
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
 
 const response = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   tools: [{ type: "shell", environment: { type: "container_auto" } }],
   input: [
     {
@@ -77,7 +77,7 @@ from openai import OpenAI
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     tools=[{"type": "shell", "environment": {"type": "container_auto"}}],
     input=[
         {
@@ -114,7 +114,7 @@ func main() {
 		Environment: responses.FunctionShellToolEnvironmentUnionParam{OfContainerAuto: &responses.ContainerAutoParam{}},
 	}}
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Tools: []responses.ToolUnionParam{tool},
 		Input: responses.ResponseNewParamsInputUnion{OfString: openai.String("Execute: ls -lah /mnt/data && python --version && node --version")},
 	})
@@ -134,7 +134,7 @@ import com.openai.models.responses.ResponseCreateParams;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("Run ls -lah /mnt/data, then show the Python and Node.js versions.")
         .addTool(
             FunctionShellTool.builder().environment(ContainerAuto.builder().build()).build())
@@ -152,7 +152,7 @@ require "openai"
 
 client = OpenAI::Client.new
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "Run ls -lah /mnt/data, then show the Python and Node.js versions.",
   tools: [
     {
@@ -203,7 +203,7 @@ curl -L 'https://api.openai.com/v1/containers' \
   }'
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -302,7 +302,7 @@ curl -L 'https://api.openai.com/v1/responses' \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "tools": [
       {
         "type": "shell",
@@ -316,13 +316,13 @@ curl -L 'https://api.openai.com/v1/responses' \
   }'
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
 
 const response = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   tools: [
     {
       type: "shell",
@@ -340,7 +340,7 @@ console.log(response.output_text);
 
 ```python
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     tools=[
         {
             "type": "shell",
@@ -373,7 +373,7 @@ func main() {
 		Environment: responses.FunctionShellToolEnvironmentUnionParam{OfContainerReference: &responses.ContainerReferenceParam{ContainerID: "cntr_08f3d96c87a585390069118b594f7481a088b16cda7d9415fe"}},
 	}}
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model: "gpt-6-astra",
+		Model: "gpt-6.2-astra",
 		Tools: []responses.ToolUnionParam{tool},
 		Input: responses.ResponseNewParamsInputUnion{OfString: openai.String("List files in the container and show disk usage.")},
 	})
@@ -394,7 +394,7 @@ String containerId = "cntr_08f3d96c87a585390069118b594f7481a088b16cda7d9415fe";
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("List files in the container and show disk usage.")
         .addTool(FunctionShellTool.builder().containerReferenceEnvironment(containerId).build())
         .build();
@@ -411,7 +411,7 @@ require "openai"
 
 client = OpenAI::Client.new
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "List files in the container and show disk usage.",
   tools: [
     {
@@ -449,7 +449,7 @@ curl -L 'https://api.openai.com/v1/containers' \
   }'
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -588,7 +588,7 @@ curl -L 'https://api.openai.com/v1/responses' \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "tool_choice": "required",
     "tools": [
       {
@@ -611,13 +611,13 @@ curl -L 'https://api.openai.com/v1/responses' \
   }'
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
 
 const response = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   tool_choice: "required",
   tools: [
     {
@@ -649,7 +649,7 @@ from openai import OpenAI
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     tool_choice="required",
     tools=[
         {
@@ -699,7 +699,7 @@ func main() {
 		}},
 	}}
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model:      "gpt-6-astra",
+		Model:      "gpt-6.2-astra",
 		ToolChoice: responses.ResponseNewParamsToolChoiceUnion{OfToolChoiceMode: openai.Opt(responses.ToolChoiceOptionsRequired)},
 		Tools:      []responses.ToolUnionParam{tool},
 		Input:      responses.ResponseNewParamsInputUnion{OfString: openai.String("In the container, pip install httpx beautifulsoup4, fetch release pages, and write /mnt/data/release_digest.md.")},
@@ -722,7 +722,7 @@ import com.openai.models.responses.ToolChoiceOptions;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("Fetch release pages and write /mnt/data/release_digest.md.")
         .toolChoice(ToolChoiceOptions.REQUIRED)
         .addTool(
@@ -751,7 +751,7 @@ require "openai"
 
 client = OpenAI::Client.new
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "Fetch release pages and write /mnt/data/release_digest.md.",
   tool_choice: :required,
   tools: [
@@ -774,7 +774,7 @@ puts(response.output_text)
 
 Allowlisting domains introduces security risks such as prompt
   injection-driven data exfiltration. Only allowlist domains you trust and that
-  attackers cannot use to receive exfiltrated data. Carefully review the [Risks
+  attackers cannot use to receive stolen data. Carefully review the [Risks
   and safety](#risks-and-safety) section below before using this tool.
 
 ## Network policy precedence
@@ -830,7 +830,7 @@ curl -L 'https://api.openai.com/v1/responses' \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "tools": [
       {
         "type": "shell",
@@ -859,7 +859,7 @@ curl -L 'https://api.openai.com/v1/responses' \
   }'
 ```
 
-```javascript
+```typescript
 import fs from "fs";
 import OpenAI from "openai";
 
@@ -887,7 +887,7 @@ const container = await client.containers.create({
 });
 
 const response = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   tools: [
     {
       type: "shell",
@@ -947,7 +947,7 @@ container = client.containers.create(
 )
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     tools=[
         {
             "type": "shell",
@@ -1012,7 +1012,7 @@ if err != nil {
 	log.Fatal(err)
 }
 response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-	Model: "gpt-6-astra",
+	Model: "gpt-6.2-astra",
 	Tools: []responses.ToolUnionParam{
 		{
 			OfShell: &responses.FunctionShellToolParam{
@@ -1088,7 +1088,7 @@ var container =
                 .addSkill(
                     InlineSkill.builder()
                         .name("csv-insights")
-                        .description("Summarize CSV files and produce a markdown report.")
+                        .description("Summarize CSV files.")
                         .source(InlineSkillSource.builder().data(inlineZip).build())
                         .build())
                 .build());
@@ -1097,7 +1097,7 @@ var response =
         .responses()
         .create(
             ResponseCreateParams.builder()
-                .model("gpt-6-astra")
+                .model("gpt-6.2-astra")
                 .addTool(
                     FunctionShellTool.builder()
                         .containerReferenceEnvironment(container.id())
@@ -1149,7 +1149,7 @@ container = client.containers.create(
   ]
 )
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   tools: [
     {
       type: :shell,
@@ -1193,7 +1193,7 @@ curl -L -X DELETE 'https://api.openai.com/v1/containers/container_id' \
   -H "Authorization: Bearer $OPENAI_API_KEY"
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
@@ -1210,9 +1210,9 @@ from openai import OpenAI
 client = OpenAI()
 container_id = "cntr_123"
 
-deleted = client.containers.delete(container_id)
+client.containers.delete(container_id)
 
-print(deleted)
+print("Container deleted")
 ```
 
 ```go
@@ -1279,7 +1279,7 @@ curl -L 'https://api.openai.com/v1/responses' \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "input": [
       {
         "role": "user",
@@ -1309,13 +1309,13 @@ curl -L 'https://api.openai.com/v1/responses' \
   }'
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
 
 const response = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: [
     {
       role: "user",
@@ -1354,7 +1354,7 @@ from openai import OpenAI
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     input=[
         {
             "role": "user",
@@ -1412,7 +1412,7 @@ func main() {
 		}},
 	}}
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model:      "gpt-6-astra",
+		Model:      "gpt-6.2-astra",
 		ToolChoice: responses.ResponseNewParamsToolChoiceUnion{OfToolChoiceMode: openai.Opt(responses.ToolChoiceOptionsRequired)},
 		Tools:      []responses.ToolUnionParam{tool},
 		Input:      responses.ResponseNewParamsInputUnion{OfString: openai.String("Use curl to call https://httpbin.org/headers with header Authorization: Bearer $API_KEY. Tell me what you see in the final text response.")},
@@ -1436,11 +1436,13 @@ import com.openai.models.responses.ToolChoiceOptions;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input(
-            "Use curl to call https://httpbin.org/status/204 with an "
-                + "Authorization: Bearer $API_KEY header. Print only the HTTP status code; "
-                + "never print request headers or secret values.")
+            "Run exactly this one shell command, without additional commands:\n"
+                + "curl -q -sS -o /dev/null -w '%{http_code}' "
+                + "-H 'Authorization: Bearer $API_KEY' https://httpbin.org/status/204\n"
+                + "Keep the header single-quoted so $API_KEY remains literal. "
+                + "Return only the HTTP status code. Never print request headers or secret values.")
         .toolChoice(ToolChoiceOptions.REQUIRED)
         .addTool(
             FunctionShellTool.builder()
@@ -1472,7 +1474,7 @@ require "openai"
 
 client = OpenAI::Client.new
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "Use curl to call https://httpbin.org/headers with an " \
     '"Authorization: Bearer $API_KEY" header.',
   tool_choice: :required,
@@ -1512,7 +1514,7 @@ curl -L 'https://api.openai.com/v1/responses' \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "previous_response_id": "resp_2a8e5c9174d63b0f18a4c572de9f64a1b3c76d508e12f9ab47",
     "tools": [
       {
@@ -1527,13 +1529,13 @@ curl -L 'https://api.openai.com/v1/responses' \
   }'
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
 
 const response = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   previous_response_id:
     "resp_2a8e5c9174d63b0f18a4c572de9f64a1b3c76d508e12f9ab47",
   tools: [
@@ -1557,7 +1559,7 @@ from openai import OpenAI
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     previous_response_id="resp_2a8e5c9174d63b0f18a4c572de9f64a1b3c76d508e12f9ab47",
     tools=[
         {
@@ -1591,7 +1593,7 @@ func main() {
 		Environment: responses.FunctionShellToolEnvironmentUnionParam{OfContainerReference: &responses.ContainerReferenceParam{ContainerID: "cntr_f19c2b51e4a06793d82d54a7be0fc9154d3361ab28ce7f6041"}},
 	}}
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model:              "gpt-6-astra",
+		Model:              "gpt-6.2-astra",
 		PreviousResponseID: openai.String("resp_2a8e5c9174d63b0f18a4c572de9f64a1b3c76d508e12f9ab47"),
 		Tools:              []responses.ToolUnionParam{tool},
 		Input:              responses.ResponseNewParamsInputUnion{OfString: openai.String("Read /mnt/data/top5.csv and report the top candidate.")},
@@ -1615,7 +1617,7 @@ String containerId = "cntr_f19c2b51e4a06793d82d54a7be0fc9154d3361ab28ce7f6041";
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("Read /mnt/data/top5.csv and report the top candidate.")
         .previousResponseId(responseId)
         .addTool(FunctionShellTool.builder().containerReferenceEnvironment(containerId).build())
@@ -1633,7 +1635,7 @@ require "openai"
 
 client = OpenAI::Client.new
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   input: "Read /mnt/data/top5.csv and report the top candidate.",
   previous_response_id: "resp_2a8e5c9174d63b0f18a4c572de9f64a1b3c76d508e12f9ab47",
   tools: [
@@ -1678,7 +1680,7 @@ Example shell_call item
 
 You can also run shell commands in your own local runtime by executing `shell_call` actions and sending `shell_call_output` back to the model.
 
-Use this mode when you need full control over execution environment, filesystem access, or existing internal tooling.
+Use this mode when you need control over the filesystem or access to internal tools. Set the tool type to `shell` and its environment type to `local`. If you are migrating from the retired `local_shell` tool, update your request and handle `shell_call` and `shell_call_output` in your execution loop.
 
 Local shell request
 
@@ -1687,20 +1689,20 @@ curl -L 'https://api.openai.com/v1/responses' \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "instructions": "The local bash shell environment is on Mac.",
     "input": "find me the largest pdf file in ~/Documents",
     "tools": [{ "type": "shell", "environment": { "type": "local" } }]
   }'
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 
 const client = new OpenAI();
 
 const response = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   instructions: "The local bash shell environment is on Mac.",
   input: "find me the largest pdf file in ~/Documents",
   tools: [{ type: "shell", environment: { type: "local" } }],
@@ -1715,7 +1717,7 @@ from openai import OpenAI
 client = OpenAI()
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     instructions="The local bash shell environment is on Mac.",
     input="find me the largest pdf file in ~/Documents",
     tools=[{"type": "shell", "environment": {"type": "local"}}],
@@ -1741,7 +1743,7 @@ func main() {
 		Environment: responses.FunctionShellToolEnvironmentUnionParam{OfLocal: &responses.LocalEnvironmentParam{}},
 	}}
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model:        "gpt-6-astra",
+		Model:        "gpt-6.2-astra",
 		Instructions: openai.String("The local bash shell environment is on Mac."),
 		Input:        responses.ResponseNewParamsInputUnion{OfString: openai.String("find me the largest pdf file in ~/Documents")},
 		Tools:        []responses.ToolUnionParam{tool},
@@ -1763,7 +1765,7 @@ import java.util.Map;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("Find the largest PDF in ~/Documents.")
         .instructions("The local shell environment is macOS.")
         .putAdditionalBodyProperty(
@@ -1783,7 +1785,7 @@ require "openai"
 
 client = OpenAI::Client.new
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   instructions: "The local shell environment is macOS.",
   input: "Find the largest PDF in ~/Documents.",
   tools: [
@@ -1800,44 +1802,104 @@ puts(response.output)
 
 When you receive `shell_call` output items:
 
-- Execute requested commands in your runtime.
+- Inspect each command before execution. Use an allowlist and require approval for destructive commands or commands that access sensitive data.
+- Run approved commands in a sandbox with explicit filesystem, network, memory, and time limits. Enforce your own timeout even when the model suggests one.
+- Log commands and their outcomes for auditing.
 - Capture `stdout`, `stderr`, and outcome.
 - Return results as `shell_call_output` in the next request.
 
 Local shell executor example
 
-```javascript
-import { exec as execCallback } from "node:child_process";
-import { promisify } from "node:util";
-
-const exec = promisify(execCallback);
+```typescript
+import { spawn } from "node:child_process";
+import type { Readable } from "node:stream";
 
 class ShellExecutor {
+  defaultTimeoutMs: number;
   constructor(defaultTimeoutMs = 60_000) {
     this.defaultTimeoutMs = defaultTimeoutMs;
   }
 
-  async run(cmd, timeoutMs) {
-    const timeout = timeoutMs ?? this.defaultTimeoutMs;
-
-    try {
-      const { stdout, stderr } = await exec(cmd, { timeout });
-      return { stdout, stderr, exitCode: 0, timedOut: false };
-    } catch (error) {
-      const timedOut = Boolean(error?.killed) && error?.signal === "SIGTERM";
-      const exitCode = timedOut ? null : (error?.code ?? null);
-      return {
-        stdout: error?.stdout ?? "",
-        stderr: error?.stderr ?? String(error),
-        exitCode,
-        timedOut,
+  async run(cmd: string, timeoutMs: number | undefined) {
+    return new Promise<{
+      stdout: string;
+      stderr: string;
+      exitCode: number | null;
+      timedOut: boolean;
+    }>((resolve, reject) => {
+      const child = spawn("sh", ["-c", cmd], {
+        detached: true,
+        stdio: ["ignore", "pipe", "pipe"],
+      });
+      let stdout = "";
+      let stderr = "";
+      let timedOut = false;
+      let outputLimited = false;
+      const stop = () => {
+        if (child.pid === undefined) return;
+        try {
+          process.kill(-child.pid, "SIGKILL");
+        } catch (error) {
+          if (
+            !(
+              error instanceof Error &&
+              "code" in error &&
+              error.code === "ESRCH"
+            )
+          )
+            reject(error);
+        }
       };
-    }
+      const timer = setTimeout(() => {
+        timedOut = true;
+        stop();
+      }, timeoutMs ?? this.defaultTimeoutMs);
+      const collect = (stream: Readable, append: (chunk: string) => void) => {
+        let bytes = 0;
+        stream.setEncoding("utf8");
+        stream.on("data", (chunk: string) => {
+          bytes += Buffer.byteLength(chunk);
+          if (bytes > 1024 * 1024) {
+            outputLimited = true;
+            clearTimeout(timer);
+            stop();
+          } else {
+            append(chunk);
+          }
+        });
+      };
+      collect(child.stdout, (chunk: string) => {
+        stdout += chunk;
+      });
+      collect(child.stderr, (chunk: string) => {
+        stderr += chunk;
+      });
+      child.on("error", (error) => {
+        clearTimeout(timer);
+        reject(error);
+      });
+      child.on("close", (code) => {
+        clearTimeout(timer);
+        resolve({
+          stdout,
+          stderr,
+          exitCode: outputLimited ? 1 : code,
+          timedOut,
+        });
+      });
+    });
   }
 }
 ```
 
 ```python
+from contextlib import suppress
+from dataclasses import dataclass
+import os
+import signal
+import subprocess
+
+
 @dataclass
 class CmdResult:
     stdout: str
@@ -1851,39 +1913,39 @@ class ShellExecutor:
         self.default_timeout = default_timeout
 
     def run(self, cmd: str, timeout: float | None = None) -> CmdResult:
-        t = timeout or self.default_timeout
+        t = self.default_timeout if timeout is None else timeout
         p = subprocess.Popen(
             cmd,
             shell=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
+            start_new_session=True,
         )
         try:
             out, err = p.communicate(timeout=t)
             return CmdResult(out, err, p.returncode, False)
         except subprocess.TimeoutExpired:
-            p.kill()
+            # Stop the shell and its children before draining their output pipes.
+            with suppress(ProcessLookupError):
+                os.killpg(p.pid, signal.SIGKILL)
             out, err = p.communicate()
             return CmdResult(out, err, p.returncode, True)
 ```
 
 ```go
-package main
-
 import (
 	"bytes"
-	"context"
-	"fmt"
 	"os/exec"
+	"syscall"
 	"time"
 )
 
 type shellResult struct {
-	Stdout   string
-	Stderr   string
-	ExitCode int
-	TimedOut bool
+	Stdout   string `json:"stdout"`
+	Stderr   string `json:"stderr"`
+	ExitCode int    `json:"exit_code"`
+	TimedOut bool   `json:"timed_out"`
 }
 
 type shellExecutor struct {
@@ -1894,15 +1956,26 @@ func (e shellExecutor) run(command string, timeout time.Duration) shellResult {
 	if timeout == 0 {
 		timeout = e.DefaultTimeout
 	}
-	ctx, cancel := context.WithTimeout(context.Background(), timeout)
-	defer cancel()
-	cmd := exec.CommandContext(ctx, "sh", "-c", command)
+	cmd := exec.Command("sh", "-c", command)
+	// Own a process group so cancellation also stops the shell's children.
+	cmd.SysProcAttr = &syscall.SysProcAttr{Setpgid: true}
 	var stdout, stderr bytes.Buffer
 	cmd.Stdout = &stdout
 	cmd.Stderr = &stderr
-	err := cmd.Run()
+	if err := cmd.Start(); err != nil {
+		return shellResult{Stderr: err.Error(), ExitCode: -1}
+	}
+	// Keep the deadline active until output pipes close, even if the shell
+	// exits before a background child does.
+	expired := make(chan struct{})
+	timer := time.AfterFunc(timeout, func() {
+		_ = syscall.Kill(-cmd.Process.Pid, syscall.SIGKILL)
+		close(expired)
+	})
+	err := cmd.Wait()
 	result := shellResult{Stdout: stdout.String(), Stderr: stderr.String()}
-	if ctx.Err() == context.DeadlineExceeded {
+	if !timer.Stop() {
+		<-expired
 		result.TimedOut = true
 		result.ExitCode = -1
 		return result
@@ -1918,11 +1991,6 @@ func (e shellExecutor) run(command string, timeout time.Duration) shellResult {
 		result.ExitCode = -1
 	}
 	return result
-}
-
-func main() {
-	executor := shellExecutor{DefaultTimeout: time.Minute}
-	fmt.Println(executor.run("printf shell-executor-ready", 0))
 }
 ```
 
@@ -1941,14 +2009,18 @@ class ShellExecutor
       stdin.close
       stdout_reader = Thread.new { stdout.read }
       stderr_reader = Thread.new { stderr.read }
-      finished = wait_thread.join(timeout)
+      deadline = Process.clock_gettime(Process::CLOCK_MONOTONIC) + timeout
+      finished = [wait_thread, stdout_reader, stderr_reader].all? do |thread|
+        remaining = [deadline - Process.clock_gettime(Process::CLOCK_MONOTONIC), 0].max
+        thread.join(remaining)
+      end
       terminate_process_group(wait_thread) unless finished
 
       Result.new(
         stdout: stdout_reader.value,
         stderr: stderr_reader.value,
         exit_code: wait_thread.value.exitstatus || -1,
-        timed_out: finished.nil?
+        timed_out: !finished
       )
     end
   end
@@ -1965,10 +2037,10 @@ class ShellExecutor
     wait_thread.join
   end
 end
-
-puts(ShellExecutor.new.run("printf shell-executor-ready"))
 ```
 
+
+These examples require Linux or macOS and stop the command's process group when its time limit expires.
 
 Example shell_call_output payload
 
@@ -1998,7 +2070,7 @@ Example shell_call_output payload
 ```
 
 
-For legacy migration details, see the older [Local shell guide](https://developers.openai.com/api/docs/guides/tools-local-shell).
+If a command fails or times out, return its outcome so the model can decide whether to retry. See the [legacy tool shutdown notice](https://developers.openai.com/api/docs/deprecations#2025-11-17-codex-mini-latest-model-snapshot).
 
 ## Use local shell with Agents SDK
 
@@ -2006,11 +2078,18 @@ If you are using the [Agents SDK](https://developers.openai.com/api/docs/guides/
 
 Use local shell with Agents SDK
 
-```javascript
-import { Agent, run, withTrace, shellTool } from "@openai/agents";
+```typescript
+import {
+  Agent,
+  run,
+  withTrace,
+  shellTool,
+  type ShellAction,
+  type ShellResult,
+} from "@openai/agents";
 
 class LocalShell {
-  async run(action) {
+  async run(action: ShellAction): Promise<ShellResult> {
     return {
       output: [
         {
@@ -2031,7 +2110,7 @@ const shell = new LocalShell();
 
 const agent = new Agent({
   name: "Shell Assistant",
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   instructions:
     "You can execute shell commands to inspect the repository. Keep responses concise and include command output when helpful.",
   tools: [
@@ -2087,7 +2166,7 @@ shell_tool = ShellTool(
 
 agent = Agent(
     name="Shell Assistant",
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     instructions="You can execute shell commands to inspect the repository. Keep responses concise and include command output when helpful.",
     tools=[shell_tool],
 )
@@ -2107,17 +2186,17 @@ if __name__ == "__main__":
 
 You can find working examples in the SDK repositories.
 
-[Shell tool example - TypeScript
+[Shell tool example - TypeScript](https://github.com/openai/openai-agents-js/blob/main/examples/tools/shell.ts)
+
+TypeScript example for the shell tool in the Agents SDK.
 
 
 
-      TypeScript example for the shell tool in the Agents SDK.](https://github.com/openai/openai-agents-js/blob/main/examples/tools/shell.ts)
+[Shell tool example - Python](https://github.com/openai/openai-agents-python/blob/main/examples/tools/shell.py)
 
-[Shell tool example - Python
+Python example for the shell tool in the Agents SDK.
 
 
-
-      Python example for the shell tool in the Agents SDK.](https://github.com/openai/openai-agents-python/blob/main/examples/tools/shell.py)
 
 ## Handling common errors
 

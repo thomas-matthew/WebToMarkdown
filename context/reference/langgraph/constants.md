@@ -1,29 +1,27 @@
-Python[langgraph](/python/langgraph)Constants
-
 # Constants
 
 ## Constants
 
-[Attribute
+Attribute
 
-### TAG\_HIDDEN
+### [TAG\_HIDDEN](https://reference.langchain.com/python/langgraph/constants/TAG_HIDDEN)
 
-Tag to hide a node/edge from certain tracing/streaming environments.](/python/langgraph/constants/TAG_HIDDEN)[Attribute
+Tag to hide a node/edge from certain tracing/streaming environments.
 
-### TAG\_NOSTREAM
+Attribute
 
-Tag to disable streaming for a chat model.](/python/langgraph/constants/TAG_NOSTREAM)[Attribute
+### [TAG\_NOSTREAM](https://reference.langchain.com/python/langgraph/constants/TAG_NOSTREAM)
 
-### START
+Tag to disable streaming for a chat model.
 
-The first (maybe virtual) node in graph-style Pregel.](/python/langgraph/constants/START)[Attribute
+Attribute
 
-### END
+### [START](https://reference.langchain.com/python/langgraph/constants/START)
 
-The last (maybe virtual) node in graph-style Pregel.](/python/langgraph/constants/END)
+The first (maybe virtual) node in graph-style Pregel.
 
-Copy page
+Attribute
 
-### On This Page
+### [END](https://reference.langchain.com/python/langgraph/constants/END)
 
-Constants4
+The last (maybe virtual) node in graph-style Pregel.

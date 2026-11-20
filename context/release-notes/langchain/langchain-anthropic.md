@@ -3,6 +3,39 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.7.12 — 2026-11-19
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.12)
+
+- feat(core): standardize finish reason on message-finish events (#41926)
+
+## 1.7.11 — 2026-11-18
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.11)
+
+- feat(anthropic): send `langsmith_gateway` headers from the client (#41902)
+- feat(anthropic): support Claude Fable and Mythos 5.2 (#41770)
+- feat(partners): Remove EOL'd Python 3.10 from partner packages (#41268)
+
+## 1.7.10 — 2026-11-04
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.10)
+
+- feat(core): translate Gemini safety blocks to refusal content blocks (#41658)
+- feat(core): standardize model refusal content blocks (#41582)
+
+## 1.7.9 — 2026-11-02
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.9)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.7.8 — 2026-11-02
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.8)
+
+_Maintenance / bug-fix release — no feature changes._
+
 ## 1.7.7 — 2026-10-27
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-anthropic%3D%3D1.7.7)

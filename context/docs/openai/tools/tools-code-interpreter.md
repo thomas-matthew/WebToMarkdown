@@ -7,7 +7,7 @@ The Code Interpreter tool allows models to write and run Python code in a sandbo
 - Processing files with diverse data and formatting
 - Generating files with data and images of graphs
 - Writing and running code iteratively to solve problems—for example, a model that writes code that fails to run can keep rewriting and running that code until it succeeds
-- Boosting visual intelligence in our latest reasoning models (like [o3](https://developers.openai.com/api/docs/models/o3) and [o4-mini](https://developers.openai.com/api/docs/models/o4-mini)). The model can use this tool to crop, zoom, rotate, and otherwise process and transform images.
+- Inspecting images with [`gpt-6.2-astra`](https://developers.openai.com/api/docs/models/gpt-6.2-astra). Code Interpreter can crop, zoom, rotate, or read individual pixels using Python.
 
 Here's an example of calling the [Responses API](https://developers.openai.com/api/reference/resources/responses) with a tool call to Code Interpreter:
 
@@ -18,7 +18,7 @@ curl https://api.openai.com/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "tools": [{
       "type": "code_interpreter",
       "container": { "type": "auto", "memory_limit": "4g" }
@@ -28,7 +28,7 @@ curl https://api.openai.com/v1/responses \
   }'
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const client = new OpenAI();
 
@@ -38,7 +38,7 @@ write and run code using the python tool to answer the question.
 `;
 
 const resp = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   tools: [
     {
       type: "code_interpreter",
@@ -63,7 +63,7 @@ write and run code using the python tool to answer the question.
 """
 
 resp = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     tools=[
         {
             "type": "code_interpreter",
@@ -92,7 +92,7 @@ func main() {
 	client := openai.NewClient()
 	tool := responses.ToolParamOfCodeInterpreter(responses.ToolCodeInterpreterContainerCodeInterpreterContainerAutoParam{MemoryLimit: "4g"})
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model:        "gpt-6-astra",
+		Model:        "gpt-6.2-astra",
 		Tools:        []responses.ToolUnionParam{tool},
 		Instructions: openai.String("You are a personal math tutor. When asked a math question, write and run code using the python tool to answer the question."),
 		Input:        responses.ResponseNewParamsInputUnion{OfString: openai.String("I need to solve the equation 3x + 11 = 14. Can you help me?")},
@@ -112,7 +112,7 @@ import com.openai.models.responses.Tool;
 
 ResponseCreateParams params =
     ResponseCreateParams.builder()
-        .model("gpt-6-astra")
+        .model("gpt-6.2-astra")
         .input("I need to solve the equation 3x + 11 = 14. Can you help me?")
         .instructions(
             "You are a personal math tutor. Write and run Python code to answer each math question.")
@@ -132,7 +132,7 @@ require "openai"
 client = OpenAI::Client.new
 
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   instructions: "You are a personal math tutor. Write and run Python code to answer each math question.",
   input: "I need to solve the equation 3x + 11 = 14. Can you help me?",
   tools: [
@@ -159,7 +159,7 @@ While we call this tool Code Interpreter, the model knows it as the "python
 
 The Code Interpreter tool requires a [container object](https://developers.openai.com/api/reference/resources/containers). A container is a fully sandboxed virtual machine that the model can run Python code in. This container can contain files that you upload, or that it generates.
 
-There are two ways to create containers:
+You can create containers automatically or explicitly.
 
 1. Auto mode: as seen in the example above, you can do this by passing the `"container": { "type": "auto", "memory_limit": "4g", "file_ids": ["file-1", "file-2"] }` property in the tool configuration while creating a new Response object. This automatically creates a new container, or reuses an active container that was used by a previous `code_interpreter_call` item in the model's context. Leaving out `memory_limit` keeps the default 1 GB tier for the container. Look for the `code_interpreter_call` item in the output of this API request to find the `container_id` that was generated or used.
 2. Explicit mode: here, you explicitly [create a container](https://developers.openai.com/api/reference/resources/containers/methods/create) using the `v1/containers` endpoint, including the `memory_limit` you need (for example `"memory_limit": "4g"`), and assign its `id` as the `container` value in the tool configuration in the Response object. For example:
@@ -180,7 +180,7 @@ curl https://api.openai.com/v1/responses \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
-    "model": "gpt-6-astra",
+    "model": "gpt-6.2-astra",
     "tools": [{
       "type": "code_interpreter",
       "container": "cntr_abc123"
@@ -190,7 +190,7 @@ curl https://api.openai.com/v1/responses \
   }'
 ```
 
-```javascript
+```typescript
 import OpenAI from "openai";
 const client = new OpenAI();
 
@@ -200,7 +200,7 @@ const container = await client.containers.create({
 });
 
 const resp = await client.responses.create({
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   tools: [
     {
       type: "code_interpreter",
@@ -223,7 +223,7 @@ client = OpenAI()
 container = client.containers.create(name="test-container", memory_limit="4g")
 
 response = client.responses.create(
-    model="gpt-6-astra",
+    model="gpt-6.2-astra",
     tools=[{"type": "code_interpreter", "container": container.id}],
     tool_choice="required",
     input="use the python tool to calculate what is 4 * 3.82. and then find its square root and then find the square root of that result",
@@ -259,7 +259,7 @@ func main() {
 	}()
 
 	response, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
-		Model:      "gpt-6-astra",
+		Model:      "gpt-6.2-astra",
 		Tools:      []responses.ToolUnionParam{responses.ToolParamOfCodeInterpreter(container.ID)},
 		ToolChoice: responses.ResponseNewParamsToolChoiceUnion{OfToolChoiceMode: openai.Opt(responses.ToolChoiceOptionsRequired)},
 		Input:      responses.ResponseNewParamsInputUnion{OfString: openai.String("use the python tool to calculate what is 4 * 3.82. and then find its square root and then find the square root of that result")},
@@ -292,7 +292,7 @@ var response =
         .responses()
         .create(
             ResponseCreateParams.builder()
-                .model("gpt-6-astra")
+                .model("gpt-6.2-astra")
                 .input("Calculate 4 * 3.82, then take the square root twice.")
                 .toolChoice(ToolChoiceOptions.REQUIRED)
                 .addCodeInterpreterTool(container.id())
@@ -311,7 +311,7 @@ require "openai"
 client = OpenAI::Client.new
 container = client.containers.create(name: "analysis", memory_limit: "4g")
 response = client.responses.create(
-  model: "gpt-6-astra",
+  model: "gpt-6.2-astra",
   tools: [
     {
       type: :code_interpreter,

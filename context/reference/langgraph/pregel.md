@@ -1,14 +1,14 @@
-Python[langgraph](/python/langgraph)Pregel
-
 # Pregel
 
 ## Classes
 
-[Class
+Class
 
-### NodeBuilder](/python/langgraph/pregel/main/NodeBuilder)[Class
+### [NodeBuilder](https://reference.langchain.com/python/langgraph/pregel/main/NodeBuilder)
 
-### Pregel
+Class
+
+### [Pregel](https://reference.langchain.com/python/langgraph/pregel/main/Pregel)
 
 Pregel manages the runtime behavior for LangGraph applications.
 
@@ -16,10 +16,4 @@ Overview
 
 Pregel combines **actors**
 and **channels** into a single application.
-\*\*Acto](/python/langgraph/pregel/main/Pregel)
-
-Copy page
-
-### On This Page
-
-Classes2
+\*\*Acto

@@ -937,7 +937,7 @@ Organizing your prompt makes it easier for the model to understand context and s
 
 Example
 
-```
+```text
 # Role & Objective        — who you are and what “success” means
 # Personality & Tone      — the voice and style to maintain
 # Context                 — retrieved context, relevant info
@@ -958,7 +958,7 @@ This section defines who the agent is and what “done” means. The examples sh
 
 #### Example (model takes on a specific accent)
 
-```
+```text
 # Role & Objective
 You are a Quebecois French-speaking customer service bot. Your task is to answer the user's question.
 ```
@@ -973,7 +973,7 @@ Earlier realtime preview:
 
   #### Example (model takes on a character)
 
-```
+```text
 # Role & Objective
 You are a high-energy game-show host guiding the caller to guess a secret number from 1 to 100 to win 1,000,000$.
 ```
@@ -998,7 +998,7 @@ Earlier realtime preview:
 
 #### Example
 
-```
+```text
 # Personality & Tone
 ## Personality
 - Friendly, calm and approachable expert customer service assistant.
@@ -1012,7 +1012,7 @@ Earlier realtime preview:
 
 #### Example (multi-emotion)
 
-```
+```text
 # Personality & Tone
 - Start your response very happy
 - Midway, change to sad
@@ -1035,7 +1035,7 @@ In the Realtime API, the `speed` parameter changes playback rate, not how the mo
 
 #### Example
 
-```
+```text
 # Personality & Tone
 ## Personality
 - Friendly, calm and approachable expert customer service assistant.
@@ -1071,7 +1071,7 @@ Language constraints ensure the model consistently responds in the intended lang
 
 #### Example (pinning to one language)
 
-```
+```text
 # Personality & Tone
 ## Personality
 - Friendly, calm and approachable expert customer service assistant.
@@ -1094,7 +1094,7 @@ These are the responses after applying the instruction using `gpt-realtime-1.5`.
 
 #### Example (model teaches a language)
 
-```
+```text
 # Role & Objective
 - You are a friendly, knowledgeable voice tutor for French learners.
 - Your goal is to help the user improve their French speaking and listening skills through engaging conversation and clear explanations.
@@ -1134,7 +1134,7 @@ The realtime model can follow sample phrases closely to stay on-brand, but it ma
 
 #### Example
 
-```
+```text
 # Personality & Tone
 ## Personality
 - Friendly, calm and approachable expert customer service assistant.
@@ -1175,7 +1175,7 @@ This section covers how to ensure the model pronounces important words, numbers,
 
 #### Example
 
-```
+```text
 # Reference Pronunciations
 When voicing these words, use the respective pronunciations:
 - Pronounce “SQL” as “sequel.”
@@ -1203,7 +1203,7 @@ Realtime S2S can blur or merge digits/letters when reading back key info (phone,
 
 #### Example (general instruction section)
 
-```
+```text
 # Instructions/Rules
 - When reading numbers or codes, speak each character separately, separated by hyphens (e.g., 4-1-5).
 - Repeat EXACTLY the provided number; do not omit any digits.
@@ -1261,7 +1261,7 @@ Like GPT-4.1 and GPT-5, if the instructions are conflicting, ambiguous, or uncle
 
 Use the following prompt with GPT-5 to identify problematic areas in your prompt that you can fix.
 
-```
+```text
 ## Role & Objective
 You are a **Prompt-Critique Expert**.
 Examine a user-supplied LLM prompt and surface any weaknesses following the instructions below.
@@ -1297,7 +1297,7 @@ Review the prompt that is meant for an LLM to follow and identify the following 
 
 This meta-prompt helps you improve your base system prompt by targeting a specific failure mode. Provide the current prompt and describe the issue you’re seeing, the model (GPT-5) will suggest refined variants that tighten constraints and reduce the problem.
 
-```
+```text
 Here's my current prompt to an LLM:
 [BEGIN OF CURRENT PROMPT]
 {CURRENT_PROMPT}
@@ -1320,7 +1320,7 @@ Sometimes the model thinks it hears something and tries to respond. You can add 
 
 #### Example (coughing and unclear audio)
 
-```
+```text
 # Instructions/Rules
 ...
 
@@ -1347,7 +1347,7 @@ Occasionally, the model may generate unintended background music, humming, rhyth
 
 #### Example
 
-```
+```text
 # Instructions/Rules
 ...
 - Do not include any sound effects or onomatopoeic expressions in your responses.
@@ -1366,7 +1366,7 @@ Use this section to tell the model how to use your functions and tools. Spell ou
 
 #### Example
 
-```
+```text
 # Tools
 ## lookup_account(email_or_phone)
 ...
@@ -1404,7 +1404,7 @@ Some use cases could benefit from the Realtime model providing an audio response
 
 #### Example
 
-```
+```text
 # Tools
 - Before any tool call, say one short line like “I’m checking that now.” Then call the tool immediately.
 ```
@@ -1421,9 +1421,56 @@ If you want to control more closely what type of phrases the model outputs at th
 
 #### Example
 
+Add sample phrases to a tool description
+
+```typescript
+const tools = [
+  {
+    type: "function",
+    name: "lookup_account",
+    description:
+      "Retrieve a customer account using either an email or phone number to enable verification and account-specific actions.\n\nPreamble sample phrases:\n- For security, I’ll pull up your account using the email on file.\n- Let me look up your account by {email} now.\n- I’m fetching the account linked to {phone} to verify access.\n- One moment—I’m opening your account details.",
+    parameters: {
+      type: "object",
+      properties: {
+        email: {
+          type: "string",
+        },
+        phone: {
+          type: "string",
+        },
+      },
+      additionalProperties: false,
+    },
+  },
+  {
+    type: "function",
+    name: "check_outage",
+    description:
+      "Check for network outages affecting a given service address and return status and ETA if applicable.\n\nPreamble sample phrases:\n- I’ll check for any outages at {service_address} right now.\n- Let me look up network status for your area.\n- I’m checking whether there’s an active outage impacting your address.\n- One sec—verifying service status and any posted ETA.",
+    parameters: {
+      type: "object",
+      properties: {
+        service_address: {
+          type: "string",
+        },
+      },
+      required: ["service_address"],
+      additionalProperties: false,
+    },
+  },
+] satisfies Array<{
+  type: "function";
+  name: string;
+  description: string;
+  parameters: Record<string, unknown>;
+}>;
+```
+
 ```python
 tools = [
     {
+        "type": "function",
         "name": "lookup_account",
         "description": """Retrieve a customer account using either an email or phone number to enable verification and account-specific actions.
 
@@ -1442,6 +1489,7 @@ Preamble sample phrases:
         },
     },
     {
+        "type": "function",
         "name": "check_outage",
         "description": """Check for network outages affecting a given service address and return status and ETA if applicable.
 
@@ -1462,6 +1510,57 @@ Preamble sample phrases:
 ]
 ```
 
+```go
+tools := realtime.RealtimeToolsConfigParam{{OfFunction: &realtime.RealtimeFunctionToolParam{Type: "function", Name: openai.String("lookup_account"), Description: openai.String("Retrieve a customer account using either an email or phone number to enable verification and account-specific actions.\n\nPreamble sample phrases:\n- For security, I’ll pull up your account using the email on file.\n- Let me look up your account by {email} now.\n- I’m fetching the account linked to {phone} to verify access.\n- One moment—I’m opening your account details."), Parameters: map[string]any{"type": "object", "properties": map[string]any{"email": map[string]any{"type": "string"}, "phone": map[string]any{"type": "string"}}, "additionalProperties": false}}}, {OfFunction: &realtime.RealtimeFunctionToolParam{Type: "function", Name: openai.String("check_outage"), Description: openai.String("Check for network outages affecting a given service address and return status and ETA if applicable.\n\nPreamble sample phrases:\n- I’ll check for any outages at {service_address} right now.\n- Let me look up network status for your area.\n- I’m checking whether there’s an active outage impacting your address.\n- One sec—verifying service status and any posted ETA."), Parameters: map[string]any{"type": "object", "properties": map[string]any{"service_address": map[string]any{"type": "string"}}, "required": []any{"service_address"}, "additionalProperties": false}}}}
+```
+
+```ruby
+tools = [
+  {
+    "type" => "function",
+    "name" => "lookup_account",
+    "description" => "Retrieve a customer account using either an email or phone number to e" \
+      "nable verification and account-specific actions.\n\nPreamble sample phra" \
+      "ses:\n- For security, I’ll pull up your account using the email on file" \
+      ".\n- Let me look up your account by {email} now.\n- I’m fetching the acc" \
+      "ount linked to {phone} to verify access.\n- One moment—I’m opening your" \
+      " account details.",
+    "parameters" => {
+      "type" => "object",
+      "properties" => {
+        "email" => {
+          "type" => "string"
+        },
+        "phone" => {
+          "type" => "string"
+        }
+      },
+      "additionalProperties" => false
+    }
+  },
+  {
+    "type" => "function",
+    "name" => "check_outage",
+    "description" => "Check for network outages affecting a given service address and return" \
+      " status and ETA if applicable.\n\nPreamble sample phrases:\n- I’ll check " \
+      "for any outages at {service_address} right now.\n- Let me look up netwo" \
+      "rk status for your area.\n- I’m checking whether there’s an active outa" \
+      "ge impacting your address.\n- One sec—verifying service status and any " \
+      "posted ETA.",
+    "parameters" => {
+      "type" => "object",
+      "properties" => {
+        "service_address" => {
+          "type" => "string"
+        }
+      },
+      "required" => ["service_address"],
+      "additionalProperties" => false
+    }
+  }
+]
+```
+
 
 ### Tool Calls Without Confirmation
 
@@ -1472,7 +1571,7 @@ Sometimes the model might ask for confirmation before a tool call. For some use 
 
 #### Example
 
-```
+```text
 # Tools
 - When calling a tool, do not ask for any user confirmation. Be proactive
 ```
@@ -1494,7 +1593,7 @@ As use cases grow more complex and the number of available tools increases, it b
 
 #### Example
 
-```
+```text
 # Tools
 - When you call any tools, you must output at the same time a response letting the user know that you are calling the tool.
 
@@ -1533,7 +1632,7 @@ You can fine-tune how the model behaves for specific tools instead of applying o
 
 #### Example
 
-```
+```text
 # TOOLS
 - For the tools marked PROACTIVE: do not ask for confirmation from the user and do not output a preamble.
 - For the tools marked as CONFIRMATION FIRST: always ask for confirmation to the user.
@@ -1627,7 +1726,7 @@ In many voice setups, the realtime model acts as the responder (speaks to the us
 
 #### Example
 
-```
+```text
 # Tools
 ## Supervisor Tool
 Name: getNextResponseFromSupervisor(relevantContextFromLastUserMessage: string)
@@ -1678,7 +1777,7 @@ Below are some of the important common tools that the model has been trained on:
 
 #### Example
 
-```
+```text
 # answer(question: string)
 Description: Call this when the customer asks a question that you don't have an answer to or asks to perform an action.
 
@@ -1703,7 +1802,7 @@ As well, by organizing your prompt into various conversation states, it becomes 
 
 #### Example
 
-```
+```text
 # Conversation Flow
 ## 1) Greeting
 Goal: Set tone and invite the reason for calling.
@@ -1767,7 +1866,7 @@ Sample phrases act as “anchor examples” for the model. They show the style, 
 
 #### Example
 
-```
+```text
 # Sample Phrases
 - Below are sample examples that you should use for inspiration. DO NOT ALWAYS USE THESE EXAMPLES, VARY YOUR RESPONSES.
 
@@ -1786,7 +1885,7 @@ It is a useful pattern to add sample phrases in the different conversation flow 
 
 #### Example
 
-```
+```text
 # Conversation Flow
 ## 1) Greeting
 Goal: Set tone and invite the reason for calling.
@@ -1948,6 +2047,87 @@ This approach reduces the model’s cognitive load, making it easier for it to h
 
 #### Example
 
+Update the conversation state
+
+```typescript
+type State = "verify" | "resolve";
+const transitions: Record<State, State[]> = {
+  verify: ["resolve"],
+  resolve: [],
+};
+const toolsByState = {
+  verify: [
+    {
+      type: "function",
+      name: "lookup_account",
+      description: "Fetch account by email or phone.",
+      parameters: {
+        type: "object",
+        properties: {
+          email_or_phone: {
+            type: "string",
+          },
+        },
+        required: ["email_or_phone"],
+      },
+    },
+  ],
+  resolve: [
+    {
+      type: "function",
+      name: "schedule_technician",
+      description: "Book a technician visit.",
+      parameters: {
+        type: "object",
+        properties: {
+          account_id: {
+            type: "string",
+          },
+          window: {
+            type: "string",
+            enum: ["10-12 ET", "14-16 ET"],
+          },
+        },
+        required: ["account_id", "window"],
+      },
+    },
+  ],
+} as const;
+const instructionsByState = {
+  verify:
+    "# Role & Objective\nVerify identity to access the account.\n\n# Conversation (Verify)\n- Ask for the email or phone on the account.\n- Read back digits one-by-one (e.g., '4-1-5… Is that correct?').\nExit when: Account ID is returned.\nWhen exit is satisfied: call set_conversation_state(next_state=\"resolve\").",
+  resolve:
+    "# Role & Objective\nApply a fix by booking a technician.\n\n# Conversation (Resolve)\n- Offer two windows: '10–12 ET' or '2–4 ET'.\n- Book the chosen window.\nExit when: Appointment is confirmed.\nWhen exit is satisfied: end the call politely.",
+};
+function buildSessionUpdate(state: State): RealtimeClientEvent {
+  const allowed = transitions[state];
+  if (!allowed) throw new Error("Unknown conversation state");
+  const readable = allowed.length
+    ? allowed.join(", ")
+    : "no further states (terminal)";
+  return {
+    type: "session.update",
+    session: {
+      type: "realtime",
+      instructions: instructionsByState[state],
+      tools: [
+        ...toolsByState[state],
+        {
+          type: "function",
+          name: "set_conversation_state",
+          description: `Switch the conversation phase. Current: '${state}'. You may switch only to: ${readable}. Call this AFTER exit criteria are satisfied.`,
+          parameters: {
+            type: "object",
+            properties: { next_state: { type: "string", enum: allowed } },
+            required: ["next_state"],
+          },
+        },
+      ],
+    },
+  };
+}
+```
+
 ```python
 from typing import Literal
 
@@ -2038,10 +2218,128 @@ def build_session_update(state: State) -> dict:
     return {
         "type": "session.update",
         "session": {
+            "type": "realtime",
             "instructions": INSTRUCTIONS_BY_STATE[state],
             "tools": TOOLS_BY_STATE[state] + [build_state_change_tool(state)],
         },
     }
+```
+
+```go
+var transitions = map[string][]string{"verify": {"resolve"}, "resolve": {}}
+var toolsByState = map[string]realtime.RealtimeToolsConfigParam{
+	"verify":  {{OfFunction: &realtime.RealtimeFunctionToolParam{Type: "function", Name: openai.String("lookup_account"), Description: openai.String("Fetch account by email or phone."), Parameters: map[string]any{"type": "object", "properties": map[string]any{"email_or_phone": map[string]any{"type": "string"}}, "required": []any{"email_or_phone"}}}}},
+	"resolve": {{OfFunction: &realtime.RealtimeFunctionToolParam{Type: "function", Name: openai.String("schedule_technician"), Description: openai.String("Book a technician visit."), Parameters: map[string]any{"type": "object", "properties": map[string]any{"account_id": map[string]any{"type": "string"}, "window": map[string]any{"type": "string", "enum": []any{"10-12 ET", "14-16 ET"}}}, "required": []any{"account_id", "window"}}}}},
+}
+var instructionsByState = map[string]string{"verify": "# Role & Objective\nVerify identity to access the account.\n\n# Conversation (Verify)\n- Ask for the email or phone on the account.\n- Read back digits one-by-one (e.g., '4-1-5… Is that correct?').\nExit when: Account ID is returned.\nWhen exit is satisfied: call set_conversation_state(next_state=\"resolve\").", "resolve": "# Role & Objective\nApply a fix by booking a technician.\n\n# Conversation (Resolve)\n- Offer two windows: '10–12 ET' or '2–4 ET'.\n- Book the chosen window.\nExit when: Appointment is confirmed.\nWhen exit is satisfied: end the call politely."}
+
+func buildSessionUpdate(state string) (realtime.RealtimeSessionCreateRequestParam, error) {
+	allowed, ok := transitions[state]
+	if !ok {
+		return realtime.RealtimeSessionCreateRequestParam{}, fmt.Errorf("unknown conversation state %q", state)
+	}
+	readable := "no further states (terminal)"
+	if len(allowed) > 0 {
+		readable = strings.Join(allowed, ", ")
+	}
+	tools := append(realtime.RealtimeToolsConfigParam{}, toolsByState[state]...)
+	tools = append(tools, realtime.RealtimeToolsConfigUnionParam{OfFunction: &realtime.RealtimeFunctionToolParam{
+		Type: "function", Name: openai.String("set_conversation_state"),
+		Description: openai.String(fmt.Sprintf("Switch the conversation phase. Current: '%s'. You may switch only to: %s. Call this AFTER exit criteria are satisfied.", state, readable)),
+		Parameters:  map[string]any{"type": "object", "properties": map[string]any{"next_state": map[string]any{"type": "string", "enum": allowed}}, "required": []string{"next_state"}},
+	}})
+	return realtime.RealtimeSessionCreateRequestParam{Instructions: openai.String(instructionsByState[state]), Tools: tools}, nil
+}
+```
+
+```ruby
+TRANSITIONS = {
+  "verify" => ["resolve"],
+  "resolve" => []
+}.freeze
+
+TOOLS_BY_STATE = {
+  "verify" => [
+    {
+      "type" => "function",
+      "name" => "lookup_account",
+      "description" => "Fetch account by email or phone.",
+      "parameters" => {
+        "type" => "object",
+        "properties" => {
+          "email_or_phone" => {
+            "type" => "string"
+          }
+        },
+        "required" => ["email_or_phone"]
+      }
+    }
+  ],
+  "resolve" => [
+    {
+      "type" => "function",
+      "name" => "schedule_technician",
+      "description" => "Book a technician visit.",
+      "parameters" => {
+        "type" => "object",
+        "properties" => {
+          "account_id" => {
+            "type" => "string"
+          },
+          "window" => {
+            "type" => "string",
+            "enum" => ["10-12 ET", "14-16 ET"]
+          }
+        },
+        "required" => ["account_id", "window"]
+      }
+    }
+  ]
+}.freeze
+
+INSTRUCTIONS_BY_STATE = {
+  "verify" => "# Role & Objective\nVerify identity to access the account.\n\n# Conversat" \
+    "ion (Verify)\n- Ask for the email or phone on the account.\n- Read back " \
+    "digits one-by-one (e.g., '4-1-5… Is that correct?').\nExit when: Accoun" \
+    "t ID is returned.\nWhen exit is satisfied: call set_conversation_state(" \
+    "next_state=\"resolve\").",
+  "resolve" => "# Role & Objective\nApply a fix by booking a technician.\n\n# Conversatio" \
+    "n (Resolve)\n- Offer two windows: '10–12 ET' or '2–4 ET'.\n- Book the ch" \
+    "osen window.\nExit when: Appointment is confirmed.\nWhen exit is satisfi" \
+    "ed: end the call politely."
+}.freeze
+
+def build_state_change_tool(current)
+  allowed = TRANSITIONS.fetch(current)
+  readable = allowed.empty? ? "no further states (terminal)" : allowed.join(", ")
+  {
+    "type" => "function",
+    "name" => "set_conversation_state",
+    "description" => "Switch the conversation phase. Current: '#{current}'. " \
+                     "You may switch only to: #{readable}. Call this AFTER exit criteria are satisfied.",
+    "parameters" => {
+      "type" => "object",
+      "properties" => {
+        "next_state" => {
+          "type" => "string",
+          "enum" => allowed
+        }
+      },
+      "required" => ["next_state"]
+    }
+  }
+end
+
+def build_session_update(state)
+  {
+    "type" => "session.update",
+    "session" => {
+      "type" => "realtime",
+      "instructions" => INSTRUCTIONS_BY_STATE.fetch(state),
+      "tools" => TOOLS_BY_STATE.fetch(state) + [build_state_change_tool(state)]
+    }
+  }
+end
 ```
 
 
@@ -2055,7 +2353,7 @@ Often with Realtime voice agents, having a reliable way to escalate to a human i
 
 #### Example
 
-```
+```text
 # Safety & Escalation
 When to escalate (no extra troubleshooting):
 - Safety risk (self-harm, threats, harassment)

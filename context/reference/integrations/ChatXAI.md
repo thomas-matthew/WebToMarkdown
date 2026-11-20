@@ -1,6 +1,4 @@
-Python[langchain-xai](/python/langchain-xai)[chat\_models](/python/langchain-xai/chat_models)ChatXAI
-
-Classv1.3.0 (latest)●Since v0.1
+Classv1.4.1 (latest)●Since v0.1
 
 # ChatXAI
 
@@ -8,8 +6,6 @@ ChatXAI chat model.
 
 Refer to [xAI's documentation](https://docs.x.ai/docs/api-reference#chat-completions)
 for more nuanced details on the API's behavior and supported parameters.
-
-Copy
 
 ```
 ChatXAI()
@@ -426,23 +422,29 @@ Copy
 
 ## Attributes
 
-[attribute
+attribute
 
 model\_name: str
 
-Model name to use.](/python/langchain-xai/chat_models/ChatXAI/model_name)[attribute
+Model name to use.
+
+attribute
 
 xai\_api\_key: SecretStr | None
 
 xAI API key.
 
-Automatically read from env variable `XAI_API_KEY` if not provided.](/python/langchain-xai/chat_models/ChatXAI/xai_api_key)[attribute
+Automatically read from env variable `XAI_API_KEY` if not provided.
+
+attribute
 
 xai\_api\_base: str
 
 Base URL path for API requests.
 
-Automatically read from env variable `XAI_API_BASE` if not provided.](/python/langchain-xai/chat_models/ChatXAI/xai_api_base)[attribute
+Automatically read from env variable `XAI_API_BASE` if not provided.
+
+attribute
 
 search\_parameters: dict[str, Any] | None
 
@@ -452,54 +454,54 @@ search\_parameters: dict[str, Any] | None
 ChatXAI(model="...").bind_tools([{"type": "web_search"}])
 ```
 
-Copy](/python/langchain-xai/chat_models/ChatXAI/search_parameters)[attribute
+Copy
 
-openai\_api\_key: SecretStr | None](/python/langchain-xai/chat_models/ChatXAI/openai_api_key)[attribute
+attribute
 
-openai\_api\_base: str | None](/python/langchain-xai/chat_models/ChatXAI/openai_api_base)[attribute
+openai\_api\_key: SecretStr | None
 
-model\_config](/python/langchain-xai/chat_models/ChatXAI/model_config)[attribute
+attribute
+
+openai\_api\_base: str | None
+
+attribute
+
+model\_config
+
+attribute
 
 lc\_secrets: dict[str, str]
 
 A map of constructor argument names to secret ids.
 
-For example, `{"xai_api_key": "XAI_API_KEY"}`](/python/langchain-xai/chat_models/ChatXAI/lc_secrets)
+For example, `{"xai_api_key": "XAI_API_KEY"}`
 
 ## Methods
 
-[method
+method
 
 get\_lc\_namespace
 
-Get the namespace of the LangChain object.](/python/langchain-xai/chat_models/ChatXAI/get_lc_namespace)[method
+Get the namespace of the LangChain object.
+
+method
 
 is\_lc\_serializable
 
-Return whether this model can be serialized by LangChain.](/python/langchain-xai/chat_models/ChatXAI/is_lc_serializable)[method
+Return whether this model can be serialized by LangChain.
+
+method
 
 validate\_environment
 
-Validate that api key and python package exists in environment.](/python/langchain-xai/chat_models/ChatXAI/validate_environment)[method
+Validate that api key and python package exists in environment.
+
+method
 
 with\_structured\_output
 
-Model wrapper that returns outputs formatted to match the given schema.](/python/langchain-xai/chat_models/ChatXAI/with_structured_output)
+Model wrapper that returns outputs formatted to match the given schema.
 
-[View source on GitHub](https://github.com/langchain-ai/langchain/blob/789c6abdc23dc32d7aa22c9648fc7e2d7a3d6c36/libs/partners/xai/langchain_xai/chat_models.py#L61)
+[View source on GitHub](https://github.com/langchain-ai/langchain/blob/b09c31a1138243c8bf443ab64415a1294cdf3703/libs/partners/xai/langchain_xai/chat_models.py#L65)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Related Documentation
-
-Attributes
-
-Amodel\_nameAxai\_api\_keyAxai\_api\_baseAsearch\_parametersAopenai\_api\_keyAopenai\_api\_baseAmodel\_configAlc\_secrets
-
-Methods
-
-Mget\_lc\_namespaceMis\_lc\_serializableMvalidate\_environmentMwith\_structured\_output

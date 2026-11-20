@@ -1,12 +1,8 @@
-Python[langgraph](/python/langgraph)[channels](/python/langgraph/channels)[topic](/python/langgraph/channels/topic)Topic
-
-Classv1.2.18 (latest)●Since v1.2
+Classv1.2.23 (latest)●Since v1.2
 
 # Topic
 
 A configurable PubSub Topic.
-
-Copy
 
 ```
 Topic(
@@ -39,89 +35,79 @@ constructor
 
 | Name | Type |
 | --- | --- |
-| typ | [type](https://docs.python.org/3/library/functions.html#type)[[Value](/python/langgraph/channels/base/Value)] |
+| typ | [type](https://docs.python.org/3/library/functions.html#type)[[Value](https://reference.langchain.com/python/langgraph/channels/base/Value)] |
 | accumulate | [bool](https://docs.python.org/3/library/functions.html#bool) |
 
 ## Attributes
 
-[attribute
+attribute
 
-accumulate: accumulate](/python/langgraph/channels/topic/Topic/accumulate)[attribute
+accumulate: accumulate
 
-values](/python/langgraph/channels/topic/Topic/values)[attribute
+attribute
+
+values
+
+attribute
 
 ValueType: Any
 
-The type of the value stored in the channel.](/python/langgraph/channels/topic/Topic/ValueType)[attribute
+The type of the value stored in the channel.
+
+attribute
 
 UpdateType: Any
 
-The type of the update received by the channel.](/python/langgraph/channels/topic/Topic/UpdateType)
+The type of the update received by the channel.
 
 ## Methods
 
-[method
+method
 
 copy
 
-Return a copy of the channel.](/python/langgraph/channels/topic/Topic/copy)[method
+Return a copy of the channel.
 
-checkpoint](/python/langgraph/channels/topic/Topic/checkpoint)[method
+method
 
-from\_checkpoint](/python/langgraph/channels/topic/Topic/from_checkpoint)[method
+checkpoint
 
-update](/python/langgraph/channels/topic/Topic/update)[method
+method
 
-get](/python/langgraph/channels/topic/Topic/get)[method
+from\_checkpoint
 
-is\_available](/python/langgraph/channels/topic/Topic/is_available)
+method
 
-## Inherited from[BaseChannel](/python/langgraph/channels/base/BaseChannel)
+update
+
+method
+
+get
+
+method
+
+is\_available
+
+## Inherited from[BaseChannel](https://reference.langchain.com/python/langgraph/channels/base/BaseChannel)
 
 ### Attributes
 
-[Atyp: typ](/python/langgraph/channels/base/BaseChannel/typ)[Akey: key](/python/langgraph/channels/base/BaseChannel/key)
+[Atyp: typ](https://reference.langchain.com/python/langgraph/channels/base/BaseChannel/typ)[Akey: key](https://reference.langchain.com/python/langgraph/channels/base/BaseChannel/key)
 
 ### Methods
 
-[Mconsume
+Mconsume
 
 —
 
-Notify the channel that a subscribed task ran.](/python/langgraph/channels/base/BaseChannel/consume)[Mfinish
+Notify the channel that a subscribed task ran.
+
+Mfinish
 
 —
 
-Notify the channel that the Pregel run is finishing.](/python/langgraph/channels/base/BaseChannel/finish)
+Notify the channel that the Pregel run is finishing.
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/channels/topic.py#L23)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/58a6e1cc5b7dfc3619fc6e7e7573b040d554649b/libs/langgraph/langgraph/channels/topic.py#L23)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Related Documentation◇Parameters
-
-Constructors
-
-C\_\_init\_\_
-
-Attributes
-
-AaccumulateAvaluesAValueTypeAUpdateType
-
-Methods
-
-McopyMcheckpointMfrom\_checkpointMupdateMgetMis\_available
-
-from BaseChannel
-
-AAttributes
-
-AtypAkey
-
-MMethods
-
-MconsumeMfinish

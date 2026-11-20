@@ -1,6 +1,4 @@
-Python[langgraph](/python/langgraph)[channels](/python/langgraph/channels)[binop](/python/langgraph/channels/binop)BinaryOperatorAggregate
-
-Classv1.2.18 (latest)●Since v1.2
+Classv1.2.23 (latest)●Since v1.2
 
 # BinaryOperatorAggregate
 
@@ -11,8 +9,6 @@ import operator
 
 total = Channels.BinaryOperatorAggregate(int, operator.add)
 ```
-
-Copy
 
 Copy
 
@@ -40,89 +36,79 @@ constructor
 
 | Name | Type |
 | --- | --- |
-| typ | [type](https://docs.python.org/3/library/functions.html#type)[[Value](/python/langgraph/channels/base/Value)] |
-| operator | [Callable](https://docs.python.org/3/library/typing.html#typing.Callable)[[[Value](/python/langgraph/channels/base/Value), [Value](/python/langgraph/channels/base/Value)], [Value](/python/langgraph/channels/base/Value)] |
+| typ | [type](https://docs.python.org/3/library/functions.html#type)[[Value](https://reference.langchain.com/python/langgraph/channels/base/Value)] |
+| operator | [Callable](https://docs.python.org/3/library/typing.html#typing.Callable)[[[Value](https://reference.langchain.com/python/langgraph/channels/base/Value), [Value](https://reference.langchain.com/python/langgraph/channels/base/Value)], [Value](https://reference.langchain.com/python/langgraph/channels/base/Value)] |
 
 ## Attributes
 
-[attribute
+attribute
 
-operator: operator](/python/langgraph/channels/binop/BinaryOperatorAggregate/operator)[attribute
+operator: operator
 
-value](/python/langgraph/channels/binop/BinaryOperatorAggregate/value)[attribute
+attribute
+
+value
+
+attribute
 
 ValueType: type[Value]
 
-The type of the value stored in the channel.](/python/langgraph/channels/binop/BinaryOperatorAggregate/ValueType)[attribute
+The type of the value stored in the channel.
+
+attribute
 
 UpdateType: type[Value]
 
-The type of the update received by the channel.](/python/langgraph/channels/binop/BinaryOperatorAggregate/UpdateType)
+The type of the update received by the channel.
 
 ## Methods
 
-[method
+method
 
 copy
 
-Return a copy of the channel.](/python/langgraph/channels/binop/BinaryOperatorAggregate/copy)[method
+Return a copy of the channel.
 
-from\_checkpoint](/python/langgraph/channels/binop/BinaryOperatorAggregate/from_checkpoint)[method
+method
 
-update](/python/langgraph/channels/binop/BinaryOperatorAggregate/update)[method
+from\_checkpoint
 
-get](/python/langgraph/channels/binop/BinaryOperatorAggregate/get)[method
+method
 
-is\_available](/python/langgraph/channels/binop/BinaryOperatorAggregate/is_available)[method
+update
 
-checkpoint](/python/langgraph/channels/binop/BinaryOperatorAggregate/checkpoint)
+method
 
-## Inherited from[BaseChannel](/python/langgraph/channels/base/BaseChannel)
+get
+
+method
+
+is\_available
+
+method
+
+checkpoint
+
+## Inherited from[BaseChannel](https://reference.langchain.com/python/langgraph/channels/base/BaseChannel)
 
 ### Attributes
 
-[Atyp: typ](/python/langgraph/channels/base/BaseChannel/typ)[Akey: key](/python/langgraph/channels/base/BaseChannel/key)
+[Atyp: typ](https://reference.langchain.com/python/langgraph/channels/base/BaseChannel/typ)[Akey: key](https://reference.langchain.com/python/langgraph/channels/base/BaseChannel/key)
 
 ### Methods
 
-[Mconsume
+Mconsume
 
 —
 
-Notify the channel that a subscribed task ran.](/python/langgraph/channels/base/BaseChannel/consume)[Mfinish
+Notify the channel that a subscribed task ran.
+
+Mfinish
 
 —
 
-Notify the channel that the Pregel run is finishing.](/python/langgraph/channels/base/BaseChannel/finish)
+Notify the channel that the Pregel run is finishing.
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/3521f08e21a7d89c28331191374bc85c11ecb6e2/libs/langgraph/langgraph/channels/binop.py#L66)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/58a6e1cc5b7dfc3619fc6e7e7573b040d554649b/libs/langgraph/langgraph/channels/binop.py#L66)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Related Documentation
-
-Constructors
-
-C\_\_init\_\_
-
-Attributes
-
-AoperatorAvalueAValueTypeAUpdateType
-
-Methods
-
-McopyMfrom\_checkpointMupdateMgetMis\_availableMcheckpoint
-
-from BaseChannel
-
-AAttributes
-
-AtypAkey
-
-MMethods
-
-MconsumeMfinish

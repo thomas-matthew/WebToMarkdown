@@ -1,6 +1,4 @@
-Python[langgraph.store.postgres](/python/langgraph.store.postgres)[aio](/python/langgraph.store.postgres/aio)AsyncPostgresStore
-
-Classv3.2.0 (latest)●Since v3.2
+Classv3.2.1 (latest)●Since v3.2
 
 # AsyncPostgresStore
 
@@ -74,8 +72,6 @@ async with AsyncPostgresStore.from_conn_string(
 
 Copy
 
-Copy
-
 ```
 AsyncPostgresStore(
   self,
@@ -120,43 +116,63 @@ constructor
 
 | Name | Type |
 | --- | --- |
-| conn | \_ainternal.[Conn](/python/langgraph.checkpoint.postgres/Conn) |
+| conn | \_ainternal.[Conn](https://reference.langchain.com/python/langgraph.checkpoint.postgres/Conn) |
 | pipe | AsyncPipeline | None |
 | deserializer | [Callable](https://docs.python.org/3/library/typing.html#typing.Callable)[[[bytes](https://docs.python.org/3/library/stdtypes.html#bytes) | orjson.Fragment], [dict](https://docs.python.org/3/library/stdtypes.html#dict)[[str](https://docs.python.org/3/library/stdtypes.html#str), [Any](https://docs.python.org/3/library/typing.html#typing.Any)]] | None |
-| index | [PostgresIndexConfig](/python/langgraph.store.postgres/base/PostgresIndexConfig) | None |
-| ttl | [TTLConfig](/python/langgraph.store/base/TTLConfig) | None |
+| index | [PostgresIndexConfig](https://reference.langchain.com/python/langgraph.store.postgres/base/PostgresIndexConfig) | None |
+| ttl | [TTLConfig](https://reference.langchain.com/python/langgraph.store/base/TTLConfig) | None |
 
 ## Attributes
 
-[attribute
+attribute
 
-supports\_ttl: bool](/python/langgraph.store.postgres/aio/AsyncPostgresStore/supports_ttl)[attribute
+supports\_ttl: bool
 
-conn: conn](/python/langgraph.store.postgres/aio/AsyncPostgresStore/conn)[attribute
+attribute
 
-pipe: pipe](/python/langgraph.store.postgres/aio/AsyncPostgresStore/pipe)[attribute
+conn: conn
 
-lock](/python/langgraph.store.postgres/aio/AsyncPostgresStore/lock)[attribute
+attribute
 
-loop](/python/langgraph.store.postgres/aio/AsyncPostgresStore/loop)[attribute
+pipe: pipe
 
-supports\_pipeline](/python/langgraph.store.postgres/aio/AsyncPostgresStore/supports_pipeline)[attribute
+attribute
 
-index\_config: index](/python/langgraph.store.postgres/aio/AsyncPostgresStore/index_config)[attribute
+lock
 
-embeddings: None](/python/langgraph.store.postgres/aio/AsyncPostgresStore/embeddings)[attribute
+attribute
 
-ttl\_config: ttl](/python/langgraph.store.postgres/aio/AsyncPostgresStore/ttl_config)
+loop
+
+attribute
+
+supports\_pipeline
+
+attribute
+
+index\_config: index
+
+attribute
+
+embeddings: None
+
+attribute
+
+ttl\_config: ttl
 
 ## Methods
 
-[method
+method
 
-abatch](/python/langgraph.store.postgres/aio/AsyncPostgresStore/abatch)[method
+abatch
+
+method
 
 from\_conn\_string
 
-Create a new AsyncPostgresStore instance from a connection string.](/python/langgraph.store.postgres/aio/AsyncPostgresStore/from_conn_string)[method
+Create a new AsyncPostgresStore instance from a connection string.
+
+method
 
 setup
 
@@ -164,48 +180,32 @@ Set up the store database asynchronously.
 
 This method creates the necessary tables in the Postgres database if they don't
 already exist and runs database migrations. It MUST be called directly by the user
-the first time the store is used.](/python/langgraph.store.postgres/aio/AsyncPostgresStore/setup)[method
+the first time the store is used.
+
+method
 
 sweep\_ttl
 
-Delete expired store items based on TTL.](/python/langgraph.store.postgres/aio/AsyncPostgresStore/sweep_ttl)[method
+Delete expired store items based on TTL.
+
+method
 
 start\_ttl\_sweeper
 
-Periodically delete expired store items based on TTL.](/python/langgraph.store.postgres/aio/AsyncPostgresStore/start_ttl_sweeper)[method
+Periodically delete expired store items based on TTL.
+
+method
 
 stop\_ttl\_sweeper
 
-Stop the TTL sweeper task if it's running.](/python/langgraph.store.postgres/aio/AsyncPostgresStore/stop_ttl_sweeper)
+Stop the TTL sweeper task if it's running.
 
-## Inherited from[BasePostgresStore](/python/langgraph.store.postgres/base/BasePostgresStore)
+## Inherited from[BasePostgresStore](https://reference.langchain.com/python/langgraph.store.postgres/base/BasePostgresStore)
 
 ### Attributes
 
-[AMIGRATIONS: MIGRATIONS](/python/langgraph.store.postgres/base/BasePostgresStore/MIGRATIONS)[AVECTOR\_MIGRATIONS: VECTOR\_MIGRATIONS](/python/langgraph.store.postgres/base/BasePostgresStore/VECTOR_MIGRATIONS)
+[AMIGRATIONS: MIGRATIONS](https://reference.langchain.com/python/langgraph.store.postgres/base/BasePostgresStore/MIGRATIONS)[AVECTOR\_MIGRATIONS: VECTOR\_MIGRATIONS](https://reference.langchain.com/python/langgraph.store.postgres/base/BasePostgresStore/VECTOR_MIGRATIONS)
 
-[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/d4149cc1f5384364d1a21092b4c2f582a6e7af8f/libs/checkpoint-postgres/langgraph/store/postgres/aio.py#L42)
+[View source on GitHub](https://github.com/langchain-ai/langgraph/blob/08a2016953789a4f579b4d36bd1967941ec62012/libs/checkpoint-postgres/langgraph/store/postgres/aio.py#L42)
 
 Version History
-
-Copy page
-
-### On This Page
-
-Constructors
-
-C\_\_init\_\_
-
-Attributes
-
-Asupports\_ttlAconnApipeAlockAloopAsupports\_pipelineAindex\_configAembeddingsAttl\_config
-
-Methods
-
-MabatchMfrom\_conn\_stringMsetupMsweep\_ttlMstart\_ttl\_sweeperMstop\_ttl\_sweeper
-
-from BasePostgresStore
-
-AAttributes
-
-AMIGRATIONSAVECTOR\_MIGRATIONS

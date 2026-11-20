@@ -3,6 +3,43 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langgraph/releases
 
+## 1.2.24 — 2026-11-20
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.24)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.2.23 — 2026-11-19
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.23)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.2.22 — 2026-11-14
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.22)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.2.21 — 2026-11-12
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.21)
+
+_Maintenance / bug-fix release — no feature changes._
+
+## 1.2.20 — 2026-11-05
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.20)
+
+- feat(langgraph): give each interrupt() in a task its own id (#9589)
+- feat(langgraph): add a strict resume mode that refuses stale interrupt answers (#9574)
+
+## 1.2.19 — 2026-10-30
+
+[Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.19)
+
+- feat(langgraph): list ToolNode tool names in graph node metadata (#9449)
+
 ## 1.2.18 — 2026-10-26
 
 [Release on GitHub](https://github.com/langchain-ai/langgraph/releases/tag/1.2.18)
