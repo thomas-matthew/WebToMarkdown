@@ -1,13 +1,13 @@
 Categories:
 :   [String & binary functions](https://docs.snowflake.com/sql-reference/functions-string) (AI Functions)
 
-# AI\_SIMILARITY
+# AI_SIMILARITY
 
 Computes a similarity score based on the vector cosine similarity value of the inputs’ embedding vectors. Currently supports both text and image similarity computation.
 
 ## Syntax
 
-Applying AI\_SIMILARITY to string or image inputs:
+Applying AI_SIMILARITY to string or image inputs:
 
 ```
 AI_SIMILARITY( <input1>, <input2> )
@@ -35,7 +35,7 @@ If you’re specifying input images:
 
 Note
 
-AI\_SIMILARITY does not support computing the similarity between text and image inputs.
+AI_SIMILARITY does not support computing the similarity between text and image inputs.
 
 **Optional:**
 
@@ -52,12 +52,12 @@ Returns a float value of range -1 to 1 that represents the similarity score comp
 
 ## Access control requirements
 
-Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
+Users must use a role that has been granted the [SNOWFLAKE.CORTEX_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
 See [Cortex LLM privileges](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this privilege.
 
 ## Examples
 
-### AI\_SIMILARITY: Text
+### AI_SIMILARITY: Text
 
 In this example, the function is computing a similarity score between the two statement inputs *‘I like this dish’* and *‘This dish is very good’*.
 
@@ -74,7 +74,7 @@ FROM restaurant_reviews
 ORDER BY AI_SIMILARITY(review, 'I love the food here!');
 ```
 
-### AI\_SIMILARITY: Images
+### AI_SIMILARITY: Images
 
 In this example, the function computes a similarity score between the two images, `cat.jpg` and `2cats.jpg`, stored in a Snowflake stage `@file_stage`.
 
@@ -104,7 +104,7 @@ WHERE AI_SIMILARITY(f, to_file(@file_stage, 'cat.jpg')) >= 0.5;
 
 ## Billing
 
-*AI\_SIMILARITY* is currently billed under the *AI\_EMBED* line item in SNOWFLAKE.ACCOUNT\_USAGE.CORTEX\_FUNCTIONS\_USAGE\_HISTORY view.
+*AI_SIMILARITY* is currently billed under the *AI_EMBED* line item in SNOWFLAKE.ACCOUNT_USAGE.CORTEX_FUNCTIONS_USAGE_HISTORY view.
 
 ## Legal notices
 

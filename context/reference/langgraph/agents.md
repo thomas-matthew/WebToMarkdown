@@ -103,7 +103,7 @@ This is passed to the `interrupt` function when execution is paused for human in
 
 Function
 
-### [tools\_condition](https://reference.langchain.com/python/langgraph.prebuilt/tool_node/tools_condition)
+### [tools_condition](https://reference.langchain.com/python/langgraph.prebuilt/tool_node/tools_condition)
 
 Conditional routing function for tool-calling workflows.
 
@@ -112,7 +112,7 @@ agents: if the last `AIMessage` contains tool calls, route to
 
 Function
 
-### [create\_react\_agent](https://reference.langchain.com/python/langgraph.prebuilt/chat_agent_executor/create_react_agent)
+### [create_react_agent](https://reference.langchain.com/python/langgraph.prebuilt/chat_agent_executor/create_react_agent)
 
 deprecated
 

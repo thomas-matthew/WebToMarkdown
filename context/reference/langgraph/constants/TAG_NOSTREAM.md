@@ -1,6 +1,6 @@
-Attributev1.2.23 (latest)●Since v1.2
+Attributev1.2.24 (latest)●Since v1.2
 
-# TAG\_NOSTREAM
+# TAG_NOSTREAM
 
 Tag to disable streaming for a chat model.
 

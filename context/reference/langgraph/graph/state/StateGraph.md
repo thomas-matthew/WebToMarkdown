@@ -1,4 +1,4 @@
-Classv1.2.23 (latest)●Since v1.2
+Classv1.2.24 (latest)●Since v1.2
 
 # StateGraph
 
@@ -89,7 +89,7 @@ Copy
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `state_schema`\* | `type[StateT]` | The schema class that defines the state. |
+| `state_schema`* | `type[StateT]` | The schema class that defines the state. |
 | `context_schema` | `type[ContextT] | None` | Default:`None`  The schema class that defines the runtime context.  Use this to expose immutable context data to your nodes, like `user_id`, `db_conn`, etc. |
 | `input_schema` | `type[InputT] | None` | Default:`None`  The schema class that defines the input to the graph. |
 | `output_schema` | `type[OutputT] | None` | Default:`None`  The schema class that defines the output from the graph. |
@@ -98,14 +98,14 @@ Copy
 
 constructor
 
-\_\_init\_\_
+__init__
 
 | Name | Type |
 | --- | --- |
-| state\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[StateT](https://reference.langchain.com/python/langgraph/typing/StateT)] |
-| context\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[ContextT](https://reference.langchain.com/python/langgraph/typing/ContextT)] | None |
-| input\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[InputT](https://reference.langchain.com/python/langgraph/typing/InputT)] | None |
-| output\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[OutputT](https://reference.langchain.com/python/langgraph/typing/OutputT)] | None |
+| state_schema | [type](https://docs.python.org/3/library/functions.html#type)[[StateT](https://reference.langchain.com/python/langgraph/typing/StateT)] |
+| context_schema | [type](https://docs.python.org/3/library/functions.html#type)[[ContextT](https://reference.langchain.com/python/langgraph/typing/ContextT)] | None |
+| input_schema | [type](https://docs.python.org/3/library/functions.html#type)[[InputT](https://reference.langchain.com/python/langgraph/typing/InputT)] | None |
+| output_schema | [type](https://docs.python.org/3/library/functions.html#type)[[OutputT](https://reference.langchain.com/python/langgraph/typing/OutputT)] | None |
 | kwargs | Unpack[[DeprecatedKwargs](https://reference.langchain.com/python/langgraph/_internal/_typing/DeprecatedKwargs)] |
 
 ## Attributes
@@ -136,7 +136,7 @@ schemas: dict[type[Any], dict[str, BaseChannel | ManagedValueSpec]]
 
 attribute
 
-waiting\_edges: set[tuple[tuple[str, ...], str]]
+waiting_edges: set[tuple[tuple[str, ...], str]]
 
 attribute
 
@@ -144,25 +144,25 @@ compiled: bool
 
 attribute
 
-state\_schema: type[StateT]
+state_schema: type[StateT]
 
 attribute
 
-context\_schema: type[ContextT] | None
+context_schema: type[ContextT] | None
 
 attribute
 
-input\_schema: type[InputT]
+input_schema: type[InputT]
 
 attribute
 
-output\_schema: type[OutputT]
+output_schema: type[OutputT]
 
 ## Methods
 
 method
 
-set\_node\_defaults
+set_node_defaults
 
 Set default node policies that apply to every node in this graph.
 
@@ -177,13 +177,13 @@ is unsafe, and handlers must never catch themselves.
 
 method
 
-add\_node
+add_node
 
 Add a new node to the `StateGraph`.
 
 method
 
-add\_edge
+add_edge
 
 Add a directed edge from the start node (or list of start nodes) to the end node.
 
@@ -193,19 +193,19 @@ the graph will wait for ALL of the start nodes to complete before executing the 
 
 method
 
-add\_conditional\_edges
+add_conditional_edges
 
 Add a conditional edge from the starting node to any number of destination nodes.
 
 method
 
-add\_sequence
+add_sequence
 
 Add a sequence of nodes that will be executed in the provided order.
 
 method
 
-set\_entry\_point
+set_entry_point
 
 Specifies the first node to be called in the graph.
 
@@ -213,13 +213,13 @@ Equivalent to calling `add_edge(START, key)`.
 
 method
 
-set\_conditional\_entry\_point
+set_conditional_entry_point
 
 Sets a conditional entry point in the graph.
 
 method
 
-set\_finish\_point
+set_finish_point
 
 Marks a node as a finish point of the graph.
 

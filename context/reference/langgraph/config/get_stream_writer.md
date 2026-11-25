@@ -1,6 +1,6 @@
-Functionv1.2.23 (latest)●Since v1.2
+Functionv1.2.24 (latest)●Since v1.2
 
-# get\_stream\_writer
+# get_stream_writer
 
 Access LangGraph [`StreamWriter`](https://reference.langchain.com/python/langgraph/types/StreamWriter) from inside a graph node or entrypoint task at runtime.
 

@@ -1,32 +1,32 @@
 Categories:
 :   [String & binary functions](https://docs.snowflake.com/sql-reference/functions-string) (AI Functions)
 
-# AI\_REDACT
+# AI_REDACT
 
 Personally identifiable information (PII) includes names, addresses, phone numbers, email addresses, tax identification
 numbers, and other data that can be used (alone or with other information) to identify an individual. Most
-organizations have regulatory and compliance requirements around handling PII data. AI\_REDACT is a fully-managed Cortex
+organizations have regulatory and compliance requirements around handling PII data. AI_REDACT is a fully-managed Cortex
 AI Function that uses a large language model (LLM) to help you detect, locate, and redact PII from unstructured text
 data.
 
-AI\_REDACT can help you prepare text for call center coaching, sentiment analysis, insurance and medical analysis, and
+AI_REDACT can help you prepare text for call center coaching, sentiment analysis, insurance and medical analysis, and
 machine learning (ML) model training, among other use cases.
 
 Tip
 
-Use [AI\_PARSE\_DOCUMENT](https://docs.snowflake.com/sql-reference/functions/ai_parse_document) or
-[AI\_TRANSCRIBE](https://docs.snowflake.com/sql-reference/functions/ai_transcribe) to convert document or speech data into text before applying
-AI\_REDACT.
+Use [AI_PARSE_DOCUMENT](https://docs.snowflake.com/sql-reference/functions/ai_parse_document) or
+[AI_TRANSCRIBE](https://docs.snowflake.com/sql-reference/functions/ai_transcribe) to convert document or speech data into text before applying
+AI_REDACT.
 
-AI\_REDACT has two modes of operation: `redact` (default) and `detect`.
+AI_REDACT has two modes of operation: `redact` (default) and `detect`.
 
-* Use AI\_REDACT in `redact` mode to replace PII in the input text with placeholder values.
-* Use AI\_REDACT in `detect` mode to identify PII locations, then programmatically choose which PII to redact.
+* Use AI_REDACT in `redact` mode to replace PII in the input text with placeholder values.
+* Use AI_REDACT in `detect` mode to identify PII locations, then programmatically choose which PII to redact.
 
 Important
 
-AI\_REDACT performs detection and redaction in a best-effort manner using AI models. Always review the output to ensure
-compliance with your organization’s data privacy policies. If AI\_REDACT fails to detect or redact any PII in your data,
+AI_REDACT performs detection and redaction in a best-effort manner using AI models. Always review the output to ensure
+compliance with your organization’s data privacy policies. If AI_REDACT fails to detect or redact any PII in your data,
 [contact Snowflake Support](https://docs.snowflake.com/user-guide/contacting-support).
 
 ## Syntax
@@ -55,7 +55,7 @@ AI_REDACT( <input> [, <categories> ] [, <return_error_details> ] [, <mode> ] )
     an OBJECT that contains the value and the error message, one of which is NULL depending on whether the function
     succeeded or failed.
 
-    Requires the session parameter AI\_SQL\_ERROR\_HANDLING\_USE\_FAIL\_ON\_ERROR to be set to FALSE.
+    Requires the session parameter AI_SQL_ERROR_HANDLING_USE_FAIL_ON_ERROR to be set to FALSE.
 
 `mode`
 :   A VARCHAR value that specifies the operating mode. Accepted values:
@@ -70,7 +70,7 @@ The `mode` argument is case insensitive.
 
 ## Returns
 
-The return value of AI\_REDACT depends on the `mode` argument.
+The return value of AI_REDACT depends on the `mode` argument.
 
 ### Redact mode (default)
 
@@ -90,10 +90,10 @@ Returns an OBJECT that contains a `spans` array. Each element in the array is an
 
 ## Error behavior
 
-By default, if AI\_REDACT cannot process the input, the function returns an error. If the query processes multiple rows,
+By default, if AI_REDACT cannot process the input, the function returns an error. If the query processes multiple rows,
 the entire query fails.
 
-When AI\_SQL\_ERROR\_HANDLING\_USE\_FAIL\_ON\_ERROR is set to FALSE, the return value on error depends on the `return_error_details`
+When AI_SQL_ERROR_HANDLING_USE_FAIL_ON_ERROR is set to FALSE, the return value on error depends on the `return_error_details`
 argument. The following table shows the return value based on the `return_error_details` argument:
 
 > | `return_error_details` | Return value | Description |
@@ -108,7 +108,7 @@ Important
 If your query fails on every row, the cause might be a known constraint rather than a row-level error.
 See [Limitations](https://docs.snowflake.com/en/sql-reference/functions/ai_redact#label-ai-redact-pii-limitations) for details on token limits, language support, and other restrictions.
 
-AI\_REDACT raises an error if it cannot process the input text. When a query redacts multiple rows, an error causes the
+AI_REDACT raises an error if it cannot process the input text. When a query redacts multiple rows, an error causes the
 entire query to fail. To allow processing to continue with other rows, set the session parameter
 `AI_SQL_ERROR_HANDLING_USE_FAIL_ON_ERROR` to FALSE. Errors then return NULL instead of stopping the query.
 
@@ -116,9 +116,9 @@ entire query to fail. To allow processing to continue with other rows, set the s
 ALTER SESSION SET AI_SQL_ERROR_HANDLING_USE_FAIL_ON_ERROR=FALSE;
 ```
 
-With this parameter set to FALSE, you can also pass TRUE as the `return_error_details` argument to AI\_REDACT, which
+With this parameter set to FALSE, you can also pass TRUE as the `return_error_details` argument to AI_REDACT, which
 causes the return value to be an OBJECT that contains separate fields for the redacted text and any error message. One
-of these fields is NULL depending on whether the AI\_REDACT call processed successfully.
+of these fields is NULL depending on whether the AI_REDACT call processed successfully.
 
 The following example shows how to use error handling when processing multiple rows:
 
@@ -155,44 +155,44 @@ The following example shows how to use error handling when processing multiple r
 
 ## Access control requirements
 
-Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
+Users must use a role that has been granted the [SNOWFLAKE.CORTEX_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
 See [Cortex LLM privileges](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this role.
 
 ## Detected PII categories
 
-AI\_REDACT supports the detection and redaction of the following categories of PII. The values in the Category column are the strings
+AI_REDACT supports the detection and redaction of the following categories of PII. The values in the Category column are the strings
 that are supported in the optional `categories` argument.
 
 > | Category | Notes |
 > | --- | --- |
 > | NAME | Recognizes full name, first name, middle name, and last name |
 > | EMAIL |  |
-> | PHONE\_NUMBER |  |
-> | DATE\_OF\_BIRTH |  |
+> | PHONE_NUMBER |  |
+> | DATE_OF_BIRTH |  |
 > | GENDER | Recognizes male, female, and nonbinary |
 > | AGE |  |
 > | ADDRESS | Identifies:   * complete postal address (US, UK, CA) * street address (US, UK, CA) * postal code (US, UK, CA) * city (US, UK, CA) * state (US) or province (CA) * county, borough, or township (US) |
-> | NATIONAL\_ID | Identifies Social Security numbers (US) |
+> | NATIONAL_ID | Identifies Social Security numbers (US) |
 > | PASSPORT | Identifies passport numbers (US, UK, CA) |
-> | TAX\_IDENTIFIER | Identifies Individual Taxpayer Numbers (ITNs) |
-> | PAYMENT\_CARD\_DATA | Identifies complete card information, card number, expiration date, and CVV |
-> | DRIVERS\_LICENSE | Identifies US, UK, and CA licenses |
-> | IP\_ADDRESS |  |
+> | TAX_IDENTIFIER | Identifies Individual Taxpayer Numbers (ITNs) |
+> | PAYMENT_CARD_DATA | Identifies complete card information, card number, expiration date, and CVV |
+> | DRIVERS_LICENSE | Identifies US, UK, and CA licenses |
+> | IP_ADDRESS |  |
 
 Note
 
-AI\_REDACT supports partial matches for some PII categories. For example, a first name alone is sufficient to trigger
+AI_REDACT supports partial matches for some PII categories. For example, a first name alone is sufficient to trigger
 redaction with the [NAME] placeholder.
 
 ## Retain specific PII with detect mode
 
-By default, AI\_REDACT replaces all detected PII with placeholder values. In some cases, you might want to retain certain
+By default, AI_REDACT replaces all detected PII with placeholder values. In some cases, you might want to retain certain
 PII while redacting the rest. For example, you might want to redact all names in call center transcripts or customer
 reviews except for known employee names.
 
 Use `detect` mode to build a selective redaction workflow:
 
-1. Call AI\_REDACT with the `mode` argument set to `detect` to identify and locate PII in the input text.
+1. Call AI_REDACT with the `mode` argument set to `detect` to identify and locate PII in the input text.
 2. Compare the detected spans against an allowlist of values you want to keep.
 3. Redact only the PII that is not in the allowlist.
 
@@ -204,17 +204,17 @@ See [Function availability by region](https://docs.snowflake.com/user-guide/snow
 
 ## Limitations
 
-* AI\_REDACT uses AI models and may not find all personally identifiable information. Always review the output
-  to ensure compliance with your organization’s data privacy policies. If AI\_REDACT fails to redact certain PII, contact
+* AI_REDACT uses AI models and may not find all personally identifiable information. Always review the output
+  to ensure compliance with your organization’s data privacy policies. If AI_REDACT fails to redact certain PII, contact
   [Snowflake Support](https://docs.snowflake.com/user-guide/contacting-support).
-* AI\_REDACT works best with well-formed English text. Performance may vary with other languages or text with many
+* AI_REDACT works best with well-formed English text. Performance may vary with other languages or text with many
   spelling, punctuation, or grammatical errors.
-* AI\_REDACT currently supports only US PII and some UK and Canadian PII, where noted in
+* AI_REDACT currently supports only US PII and some UK and Canadian PII, where noted in
   [Detected PII categories](https://docs.snowflake.com/en/sql-reference/functions/ai_redact#label-ai-redact-pii-categories).
-* AI\_REDACT is currently limited in the number of tokens it can input and output. Input and output together can be up to
+* AI_REDACT is currently limited in the number of tokens it can input and output. Input and output together can be up to
   4,096 tokens. Output is limited to 1,024 tokens. If the input text is longer, split it into smaller chunks and
   redact each chunk separately, perhaps using
-  [SPLIT\_TEXT\_RECURSIVE\_CHARACTER](https://docs.snowflake.com/sql-reference/functions/split_text_recursive_character-snowflake-cortex).
+  [SPLIT_TEXT_RECURSIVE_CHARACTER](https://docs.snowflake.com/sql-reference/functions/split_text_recursive_character-snowflake-cortex).
   See [Chunking example](https://docs.snowflake.com/en/sql-reference/functions/ai_redact#label-ai-redact-pii-example-chunking) for an example of redacting text that exceeds token limits.
 
   Note
@@ -224,22 +224,22 @@ See [Function availability by region](https://docs.snowflake.com/user-guide/snow
 
 ## Cost considerations
 
-AI\_REDACT incurs costs based on the number of input and output tokens processed, as with other Cortex AI Functions.
+AI_REDACT incurs costs based on the number of input and output tokens processed, as with other Cortex AI Functions.
 See the [Snowflake Pricing Guide](https://www.snowflake.com/pricing/pricing-guide/) for details.
 
 ### Estimate token usage for large datasets
 
-Before you run AI\_REDACT on a large dataset, estimate input tokens on representative rows so you can plan for cost and
-token limits. Sample text from your table and call [AI\_COUNT\_TOKENS](https://docs.snowflake.com/sql-reference/functions/ai_count_tokens) with
+Before you run AI_REDACT on a large dataset, estimate input tokens on representative rows so you can plan for cost and
+token limits. Sample text from your table and call [AI_COUNT_TOKENS](https://docs.snowflake.com/sql-reference/functions/ai_count_tokens) with
 `'ai_redact'` as the function name, using the same input text and optional `categories` argument you plan to pass to
-AI\_REDACT. Compare the result against [AI\_REDACT token limits](https://docs.snowflake.com/en/sql-reference/functions/ai_redact#label-ai-redact-pii-limitations). If a row exceeds the
+AI_REDACT. Compare the result against [AI_REDACT token limits](https://docs.snowflake.com/en/sql-reference/functions/ai_redact#label-ai-redact-pii-limitations). If a row exceeds the
 limit, split the text into chunks before redacting. See [Chunking example](https://docs.snowflake.com/en/sql-reference/functions/ai_redact#label-ai-redact-pii-example-chunking).
 
-AI\_COUNT\_TOKENS returns an estimate of input tokens only. Output token counts depend on the redacted text and aren’t
+AI_COUNT_TOKENS returns an estimate of input tokens only. Output token counts depend on the redacted text and aren’t
 included in the estimate.
 
 For examples, see
-[AI\_COUNT\_TOKENS examples for AI\_REDACT](https://docs.snowflake.com/sql-reference/functions/ai_count_tokens#label-ai-count-tokens-ai-redact-examples).
+[AI_COUNT_TOKENS examples for AI_REDACT](https://docs.snowflake.com/sql-reference/functions/ai_count_tokens#label-ai-count-tokens-ai-redact-examples).
 
 ## Redaction examples
 
@@ -284,7 +284,7 @@ My name is [NAME] and I live at twenty third street, San Francisco.
 
 The following example processes rows from one table and inserts the redacted output into another table. You could use a
 similar approach to store the redacted data in a column in an existing table. After redaction, the text is passed to
-the [AI\_SENTIMENT](https://docs.snowflake.com/sql-reference/functions/ai_sentiment) function to extract overall sentiment information.
+the [AI_SENTIMENT](https://docs.snowflake.com/sql-reference/functions/ai_sentiment) function to extract overall sentiment information.
 
 1. Create a table with unredacted text.
 
@@ -315,7 +315,7 @@ the [AI\_SENTIMENT](https://docs.snowflake.com/sql-reference/functions/ai_sentim
    ```
    SELECT * FROM redaction_table;
    ```
-6. Run the AI\_SENTIMENT function on redacted text.
+6. Run the AI_SENTIMENT function on redacted text.
 
    ```
    SELECT
@@ -328,7 +328,7 @@ the [AI\_SENTIMENT](https://docs.snowflake.com/sql-reference/functions/ai_sentim
 
 This example illustrates how to redact PII from long text by splitting the text into smaller chunks, redacting each
 chunk separately, and then recombining the redacted chunks into the final output. This approach works around
-AI\_REDACT’s token limits.
+AI_REDACT’s token limits.
 
 1. Create a table with patient data.
 
@@ -338,7 +338,7 @@ AI\_REDACT’s token limits.
      patient_notes TEXT
      );
    ```
-2. Split the text into chunks, apply AI\_REDACT to each chunk, and concatenate the redacted chunks.
+2. Split the text into chunks, apply AI_REDACT to each chunk, and concatenate the redacted chunks.
 
    ```
    CREATE OR REPLACE TABLE final_temp_table AS
@@ -446,7 +446,7 @@ Basic detection output:
 ### End-to-end with allowlist example
 
 The following example demonstrates a selective redaction workflow that uses `detect` mode and an allowlist. It loads a
-list of names to retain from a staged file, uses AI\_REDACT in `detect` mode to identify PII locations, and then passes
+list of names to retain from a staged file, uses AI_REDACT in `detect` mode to identify PII locations, and then passes
 the results to a Python UDF that redacts only the PII not in the allowlist.
 
 1. Retain an allowlist of values by loading the list from a stage into a temporary table.
@@ -521,7 +521,7 @@ the results to a Python UDF that redacts only the PII not in the allowlist.
      'Hello, my name is Washington and his is Mike.'
      );
    ```
-5. Run AI\_REDACT in `detect` mode.
+5. Run AI_REDACT in `detect` mode.
 
    ```
    CREATE OR REPLACE TABLE raw (message TEXT);

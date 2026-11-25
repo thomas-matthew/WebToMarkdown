@@ -2,16 +2,16 @@ Categories:
 :   [Aggregate functions](https://docs.snowflake.com/sql-reference/functions-aggregation) (General)
     [String & binary functions](https://docs.snowflake.com/sql-reference/functions-string) (AI Functions)
 
-# AI\_SUMMARIZE\_AGG
+# AI_SUMMARIZE_AGG
 
 Summarizes a column of text data.
 
 For example, `AI_SUMMARIZE_AGG(churn_reason)` will return a summary of the `churn_reason` column.
 
-Unlike [AI\_COMPLETE](https://docs.snowflake.com/sql-reference/functions/ai_complete) and [AI\_SUMMARIZE](https://docs.snowflake.com/sql-reference/functions/ai_summarize), this function supports datasets larger than the maximum language model context window.
+Unlike [AI_COMPLETE](https://docs.snowflake.com/sql-reference/functions/ai_complete) and [AI_SUMMARIZE](https://docs.snowflake.com/sql-reference/functions/ai_summarize), this function supports datasets larger than the maximum language model context window.
 
 See also:
-:   [AI\_AGG](https://docs.snowflake.com/sql-reference/functions/ai_agg)
+:   [AI_AGG](https://docs.snowflake.com/sql-reference/functions/ai_agg)
 
 ## Syntax
 
@@ -32,11 +32,11 @@ Returns a string summary of the expression.
 
 ## Usage notes
 
-This function provides a general purpose summary. For a more specific summary, use [AI\_AGG](https://docs.snowflake.com/sql-reference/functions/ai_agg).
+This function provides a general purpose summary. For a more specific summary, use [AI_AGG](https://docs.snowflake.com/sql-reference/functions/ai_agg).
 
 ## Examples
 
-AI\_SUMMARIZE\_AGG can be used as a simple scalar function on string constants.
+AI_SUMMARIZE_AGG can be used as a simple scalar function on string constants.
 
 ```
 SELECT AI_SUMMARIZE_AGG('The restaurant was excellent. I especially enjoyed the pizza and ice cream. My grandma didnt like it though.');
@@ -46,7 +46,7 @@ SELECT AI_SUMMARIZE_AGG('The restaurant was excellent. I especially enjoyed the 
 The restaurant received mixed reviews from our group. While I thoroughly enjoyed the pizza and ice cream, my grandma did not have a positive experience.
 ```
 
-AI\_SUMMARIZE\_AGG can be used on a column of data.
+AI_SUMMARIZE_AGG can be used on a column of data.
 
 ```
 WITH reviews AS (
@@ -63,7 +63,7 @@ SELECT AI_SUMMARIZE_AGG(review)
 The restaurant received mixed reviews. Some customers had a great experience, enjoying the pizza and finding the restaurant excellent. However, others had a more neutral experience, describing the food and service as mediocre, with one customer specifically mentioning that the service was subpar.
 ```
 
-AI\_SUMMARIZE\_AGG can be used on multiple columns of data using `CONCAT` or the `||` operator.
+AI_SUMMARIZE_AGG can be used on multiple columns of data using `CONCAT` or the `||` operator.
 
 ```
 WITH reviews AS (
@@ -80,7 +80,7 @@ SELECT AI_SUMMARIZE_AGG('Menu Item: ' || menu_item || '\nReview: ' || review)
 The restaurant received positive reviews for its pizza, with one reviewer describing it as "excellent" and another stating they "loved" it. In contrast, the burger received a mixed review, with the food being "great" but the service being "meh." The pancakes were rated as "mediocre" in terms of both food and service. Overall, the restaurant's performance varied depending on the menu item, with pizza being a highlight.
 ```
 
-AI\_SUMMARIZE\_AGG can also be used in combination with GROUP BY.
+AI_SUMMARIZE_AGG can also be used in combination with GROUP BY.
 
 ```
 WITH reviews AS (
@@ -107,7 +107,7 @@ SELECT product_id,
 +------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ```
 
-See also [AI\_AGG](https://docs.snowflake.com/sql-reference/functions/ai_agg).
+See also [AI_AGG](https://docs.snowflake.com/sql-reference/functions/ai_agg).
 
 ## Legal notices
 

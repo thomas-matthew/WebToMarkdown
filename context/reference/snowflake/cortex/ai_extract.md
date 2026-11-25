@@ -1,7 +1,7 @@
 Categories:
 :   [String & binary functions](https://docs.snowflake.com/sql-reference/functions-string) (AI Functions)
 
-# AI\_EXTRACT
+# AI_EXTRACT
 
 Extracts information from an input string or file.
 
@@ -57,7 +57,7 @@ AI_EXTRACT( file => <file>,
 
     The files must be less than 100 MB in size.
 
-    To extract information from selected pages of a paginated document, pass [`FL_FILTER_PAGES`](https://docs.snowflake.com/sql-reference/functions/fl_filter_pages) as the `file` argument. `AI_EXTRACT` processes only the selected pages. For page-range syntax and restrictions, see [FL\_FILTER\_PAGES](https://docs.snowflake.com/sql-reference/functions/fl_filter_pages).
+    To extract information from selected pages of a paginated document, pass [`FL_FILTER_PAGES`](https://docs.snowflake.com/sql-reference/functions/fl_filter_pages) as the `file` argument. `AI_EXTRACT` processes only the selected pages. For page-range syntax and restrictions, see [FL_FILTER_PAGES](https://docs.snowflake.com/sql-reference/functions/fl_filter_pages).
 
 `responseFormat`
 :   Information to be extracted. The format depends on the type of extraction.
@@ -169,8 +169,8 @@ AI_EXTRACT( file => <file>,
 
     Available to all accounts.
 
-    Optional. Specify this argument by using named-argument syntax. A BOOLEAN that controls whether AI\_EXTRACT requests
-    source citations for extracted values. The default is `FALSE`. If you omit the argument, AI\_EXTRACT preserves the
+    Optional. Specify this argument by using named-argument syntax. A BOOLEAN that controls whether AI_EXTRACT requests
+    source citations for extracted values. The default is `FALSE`. If you omit the argument, AI_EXTRACT preserves the
     default behavior and doesn’t return a `citations` object.
 
     Set `citation => TRUE` to include a `citations` object in the returned JSON.
@@ -194,9 +194,9 @@ When `citation => TRUE`, the returned JSON includes a `citations` object contain
 extracted fields. Extracted values remain in the `response` object. When `scores => TRUE` is also specified, the result
 includes the separate `scoring` object.
 
-When [cross-region inference](https://docs.snowflake.com/user-guide/snowflake-cortex/cross-region-inference) is enabled and AI\_EXTRACT can’t process a file, the `error` field contains the error for that document. The statement continues for
+When [cross-region inference](https://docs.snowflake.com/user-guide/snowflake-cortex/cross-region-inference) is enabled and AI_EXTRACT can’t process a file, the `error` field contains the error for that document. The statement continues for
 any other documents. This includes a document that exceeds the 1,000-page limit, a corrupted file, and a file that isn’t in a
-supported format. Without cross-region inference, a file that AI\_EXTRACT can’t process fails the SQL statement. For the page limit in that case, see [Usage notes](https://docs.snowflake.com/en/sql-reference/functions/ai_extract#label-ai-extract-usage-notes).
+supported format. Without cross-region inference, a file that AI_EXTRACT can’t process fails the SQL statement. For the page limit in that case, see [Usage notes](https://docs.snowflake.com/en/sql-reference/functions/ai_extract#label-ai-extract-usage-notes).
 
 ### Entity extraction
 
@@ -268,7 +268,7 @@ When extracting entities, lists, and tables in a single call, the response conta
 
 ## Extraction scores
 
-When you use AI\_EXTRACT, you can request scores that indicate the model’s certainty about each extracted value. You can
+When you use AI_EXTRACT, you can request scores that indicate the model’s certainty about each extracted value. You can
 use these scores to set thresholds for business logic, such as flagging low-scoring extractions for human review.
 
 A higher score indicates a higher likelihood that the extracted value is correct. You can compare scores for extracting a
@@ -277,7 +277,7 @@ deterministic processing logic such as thresholds, fallback mechanisms, and huma
 
 ### How scores work
 
-When you set the `scores` parameter to `TRUE`, AI\_EXTRACT returns a `scoring` object alongside the standard
+When you set the `scores` parameter to `TRUE`, AI_EXTRACT returns a `scoring` object alongside the standard
 `response` object. The `scoring` object contains a score for each extracted field.
 
 The `scores` parameter is optional, and it is set to `FALSE` by default. Use the optional `scores` argument in the
@@ -350,7 +350,7 @@ For table extraction, the `scoring` object returns an aggregate score for the en
 
 ### Scoring usage notes
 
-* Requesting scores does not incur additional cost. For general information on AI\_EXTRACT costs, see [Cost considerations](https://docs.snowflake.com/en/sql-reference/functions/ai_extract#label-ai-extract-cost).
+* Requesting scores does not incur additional cost. For general information on AI_EXTRACT costs, see [Cost considerations](https://docs.snowflake.com/en/sql-reference/functions/ai_extract#label-ai-extract-cost).
 * Per-element scores for individual list items and table cells are not available.
 * Scores are supported for fine-tuned models.
 
@@ -487,7 +487,7 @@ Result:
 
 Available to all accounts.
 
-When you set `citation => TRUE`, AI\_EXTRACT returns a `citations` object alongside the extracted values in `response`.
+When you set `citation => TRUE`, AI_EXTRACT returns a `citations` object alongside the extracted values in `response`.
 Use citations to identify the source locations that support extracted fields.
 
 The citation format depends on the input:
@@ -538,9 +538,9 @@ Example output for one invoice field:
 The citation key matches the list or table field name in `response`. How many citations are returned depends on the
 extraction type:
 
-* **Lists:** AI\_EXTRACT returns one citation per list item. The array index matches the extracted item. The bounding box
+* **Lists:** AI_EXTRACT returns one citation per list item. The array index matches the extracted item. The bounding box
   at index `0` is the cited region for the first item, index `1` is the second item, and so on.
-* **Tables:** AI\_EXTRACT returns one citation for the table as a whole. It doesn’t return a citation per table row,
+* **Tables:** AI_EXTRACT returns one citation for the table as a whole. It doesn’t return a citation per table row,
   column, or cell.
 
 The following example extracts an items table and a list of acceptance steps. The list `acceptance_steps` returns one
@@ -694,11 +694,11 @@ Example output for one product field:
   for the table as a whole, not one citation per row, column, or cell.
 * When accessing `span-start` and `span-end` with SQL path notation, enclose the keys in double quotes because they
   contain hyphens.
-* The `citation` argument is optional. The default is `FALSE`. If you omit the argument, AI\_EXTRACT doesn’t return a
+* The `citation` argument is optional. The default is `FALSE`. If you omit the argument, AI_EXTRACT doesn’t return a
   `citations` object.
 * Citations require cross-region inference. For information about enabling it, see
   [Cross-region inference](https://docs.snowflake.com/user-guide/snowflake-cortex/cross-region-inference).
-* Requesting citations doesn’t incur additional cost beyond the standard AI\_EXTRACT call.
+* Requesting citations doesn’t incur additional cost beyond the standard AI_EXTRACT call.
 
 Citations are optimized to work with the following file formats:
 
@@ -740,7 +740,7 @@ FROM extraction AS e,
 
 For the example document citation above:
 
-| INVOICE\_NUMBER | PAGE | UPPER\_LEFT | LOWER\_RIGHT |
+| INVOICE_NUMBER | PAGE | UPPER_LEFT | LOWER_RIGHT |
 | --- | --- | --- | --- |
 | INV-1001 | 1 | [65.0, 8.0] | [85.0, 12.0] |
 
@@ -786,7 +786,7 @@ FROM extraction AS e,
 
 For the example span `[20, 27)`:
 
-| PRODUCT\_CODE | SPAN\_START | SPAN\_END | CITED\_TEXT |
+| PRODUCT_CODE | SPAN_START | SPAN_END | CITED_TEXT |
 | --- | --- | --- | --- |
 | SKU-100 | 20 | 27 | SKU-100 |
 
@@ -798,12 +798,12 @@ use `OUTER => TRUE` in `FLATTEN`.
 
 ## Access control requirements
 
-Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
+Users must use a role that has been granted the [SNOWFLAKE.CORTEX_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
 For information about granting this privilege, see [Cortex LLM privileges](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges).
 
 ## Usage notes
 
-* AI\_EXTRACT is optimized for both digital-born and scanned documents.
+* AI_EXTRACT is optimized for both digital-born and scanned documents.
 * You can’t use both `text` and `file` parameters simultaneously in the same function call.
 * Page selection with `FL_FILTER_PAGES` applies to the `file` argument, not the `text` argument. Files without pages, such as plain-text files, cannot be filtered by page.
 * Use `FL_FILTER_PAGES` directly inside the `AI_EXTRACT` call. The selection applies only to that call; it is not stored on the `FILE` value and does not create a new document.
@@ -814,12 +814,12 @@ For information about granting this privilege, see [Cortex LLM privileges](https
 
   + File extraction supports documents of up to 1,000 pages. A document that exceeds the limit returns an error for that document.
   + A request that extracts many fields from a document returns one combined result.
-  + If AI\_EXTRACT can’t process a file, the `error` field contains the error for that document and the statement continues. This includes a document that exceeds the page limit, a corrupted file, and a file that isn’t in a supported format.
-  + `scale_factor` is no longer needed. AI\_EXTRACT now delivers improved extraction quality without manual scaling adjustments. Existing calls continue to work unchanged; any `scale_factor` value is ignored.
+  + If AI_EXTRACT can’t process a file, the `error` field contains the error for that document and the statement continues. This includes a document that exceeds the page limit, a corrupted file, and a file that isn’t in a supported format.
+  + `scale_factor` is no longer needed. AI_EXTRACT now delivers improved extraction quality without manual scaling adjustments. Existing calls continue to work unchanged; any `scale_factor` value is ignored.
 * Without cross-region inference:
 
   + File extraction supports documents of up to 125 pages.
-  + A file that AI\_EXTRACT can’t process fails the SQL statement. This includes a corrupted file and a file that isn’t in a supported format.
+  + A file that AI_EXTRACT can’t process fails the SQL statement. This includes a corrupted file and a file that isn’t in a supported format.
   + The `scale_factor` parameter still applies. It scales pages of an input file before extraction, which can improve results for pages larger than A4, small text, or dense layouts. Set it to a numeric value from 1.0 through 4.0. The default is 1.0.
 * You can either ask questions in natural language or describe information to be extracted (such as city, street, ZIP code); for example:
 
@@ -858,35 +858,35 @@ For information about granting this privilege, see [Cortex LLM privileges](https
 * Urdu
 * Vietnamese
 
-* In a single AI\_EXTRACT call, you can ask a maximum of 100 questions for entity extraction, and a maximum of 10 questions for table extraction.
+* In a single AI_EXTRACT call, you can ask a maximum of 100 questions for entity extraction, and a maximum of 10 questions for table extraction.
 
   A table extraction question is equal to 10 entity extraction questions. For example, you can ask 4 table extraction questions and
-  60 entity extraction questions in a single AI\_EXTRACT call.
+  60 entity extraction questions in a single AI_EXTRACT call.
 * The maximum output length for entity extraction is 512 tokens per question. For table extraction, the model returns answers that are a maximum of 4096 tokens.
 * You can request optional extraction scores by using named arguments and passing `scores => TRUE`.
   For details, see [Extraction scores](https://docs.snowflake.com/en/sql-reference/functions/ai_extract#label-ai-extract-scores).
 * You can request optional citations by using named arguments and passing `citation => TRUE`.
   For details, see [Citations](https://docs.snowflake.com/en/sql-reference/functions/ai_extract#label-ai-extract-citations).
 
-AI\_EXTRACT supports documents on stages that use client-side or server-side encryption, including in accounts that use
+AI_EXTRACT supports documents on stages that use client-side or server-side encryption, including in accounts that use
 PrivateLink or other [network policies](https://docs.snowflake.com/user-guide/network-policies) that restrict public network access to stages.
 Files on external stages that use client-side encryption configured in Snowflake (for example, by using a COPY INTO
 statement) are supported.
 
 ## Cost considerations
 
-* The Cortex AI\_EXTRACT function incurs compute cost based on the number of pages per document, input prompt tokens, and
+* The Cortex AI_EXTRACT function incurs compute cost based on the number of pages per document, input prompt tokens, and
   output tokens processed.
 
   + For paged file formats (PDF, DOCX, TIF, TIFF), each page is counted as 970 tokens.
   + For image file formats (JPEG, JPG, PNG), each individual image file is billed as a page and counted as 970 tokens.
-* Snowflake recommends executing queries that call the Cortex AI\_EXTRACT function in a smaller warehouse (no larger than
+* Snowflake recommends executing queries that call the Cortex AI_EXTRACT function in a smaller warehouse (no larger than
   MEDIUM). Larger warehouses don’t increase performance.
-* Requesting citations (`citation => TRUE`) doesn’t incur additional cost beyond the standard AI\_EXTRACT call.
+* Requesting citations (`citation => TRUE`) doesn’t incur additional cost beyond the standard AI_EXTRACT call.
 
 ## Regional availability
 
-AI\_EXTRACT is available to accounts in the following regions:
+AI_EXTRACT is available to accounts in the following regions:
 
 | Cloud platform | Region name |
 | --- | --- |
@@ -894,12 +894,12 @@ AI\_EXTRACT is available to accounts in the following regions:
 | Microsoft Azure | * East US 2 (Virginia) * West US 2 (Washington) * South Central US (Texas) * North Europe (Ireland) * West Europe (Netherlands) * Southeast Asia (Singapore) * Australia East (New South Wales) * Central India (Pune) * Japan East (Tokyo) |
 | Google Cloud Platform | * Middle East Central2 (Dammam) |
 
-AI\_EXTRACT has cross-region support. For information on enabling Cortex AI cross-region support,
+AI_EXTRACT has cross-region support. For information on enabling Cortex AI cross-region support,
 see [Cross-region inference](https://docs.snowflake.com/user-guide/snowflake-cortex/cross-region-inference).
 
 ## Error conditions
 
-AI\_EXTRACT can produce the following error messages:
+AI_EXTRACT can produce the following error messages:
 
 | Message | Explanation |
 | --- | --- |
@@ -907,14 +907,14 @@ AI\_EXTRACT can produce the following error messages:
 | `Not found.` | The file was not found. |
 | `Provided file cannot be found.` | The file was not found. |
 | `Provided file cannot be accessed.` | The current user does not have sufficient privileges to access the file. |
-| `The provided file format {file_extension} isn't supported.` | The document isn’t in a supported format. With cross-region inference enabled, AI\_EXTRACT returns this error for that document. Otherwise, the statement fails. |
-| `The provided file isn't in the expected format or is corrupted.` | The document is corrupted or isn’t in a supported format. With cross-region inference enabled, AI\_EXTRACT returns this error for that document. Otherwise, the statement fails. |
+| `The provided file format {file_extension} isn't supported.` | The document isn’t in a supported format. With cross-region inference enabled, AI_EXTRACT returns this error for that document. Otherwise, the statement fails. |
+| `The provided file isn't in the expected format or is corrupted.` | The document is corrupted or isn’t in a supported format. With cross-region inference enabled, AI_EXTRACT returns this error for that document. Otherwise, the statement fails. |
 | `Empty request.` | No parameters were provided. |
 | `Missing or empty response format.` | No response format was provided. |
 | `Invalid response format.` | The response format is not valid JSON. |
 | `Duplicate feature name found: {feature_name}.` | The response format contains one or more duplicate feature names. |
 | `Too many questions: {number} complex and {number} simple = {number} total, complex question weight {number}`. | The number of questions exceeds the allowed limit. |
-| `Maximum number of 1000 pages exceeded. The document has {actual_pages} pages.` | Cross-region inference is enabled, and the document exceeds the 1,000-page limit. AI\_EXTRACT returns this error for that document. |
+| `Maximum number of 1000 pages exceeded. The document has {actual_pages} pages.` | Cross-region inference is enabled, and the document exceeds the 1,000-page limit. AI_EXTRACT returns this error for that document. |
 | `Maximum number of 125 pages exceeded. The document has {actual_pages} pages.` | Cross-region inference isn’t enabled, and the document exceeds the 125-page limit. |
 | `Page size in pixels exceeds 10000x10000. The page size is {actual_px} pixels.` | Image input or a converted document page is larger than the supported dimensions. |
 | `Page size in inches exceeds 50x50 (3600x3600 pt). The page size is {actual_in} inches ({actual_pt} pt).` | Page is larger than the supported dimensions. |
@@ -1097,7 +1097,7 @@ SELECT AI_EXTRACT(
 
 ### Extraction using a fine-tuned `arctic-extract` model
 
-To use the fine-tuned `arctic-extract` model for inference with the [AI\_EXTRACT](https://docs.snowflake.com/sql-reference/functions/ai_extract) function,
+To use the fine-tuned `arctic-extract` model for inference with the [AI_EXTRACT](https://docs.snowflake.com/sql-reference/functions/ai_extract) function,
 specify the model using the `model` parameter as shown in the following example:
 
 ```
@@ -1121,8 +1121,8 @@ For more information, see [Fine-tuning arctic-extract models](https://docs.snowf
 
 Note
 
-AI\_EXTRACT is the updated version of [EXTRACT\_ANSWER](https://docs.snowflake.com/sql-reference/functions/extract_answer-snowflake-cortex).
-For the latest functionality, use AI\_EXTRACT.
+AI_EXTRACT is the updated version of [EXTRACT_ANSWER](https://docs.snowflake.com/sql-reference/functions/extract_answer-snowflake-cortex).
+For the latest functionality, use AI_EXTRACT.
 
 ## Legal notices
 

@@ -3,6 +3,15 @@
 Feature-focused release notes — new features and breaking changes only.
 Source: https://github.com/langchain-ai/langchain/releases
 
+## 1.2.0 — 2026-11-23
+
+[Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-tests%3D%3D1.2.0)
+
+- feat: Remove EOL'd Python 3.10 from text_splitters, model_profiles and standard-tests (#41343)
+- feat(core,langchain,standard-tests): read `tool-call-delta` in stream consumers (#41246)
+- feat(standard-tests): validate tool call chunks during streaming (#34707)
+- feat(standard-tests): forward LangSmith CI env vars to traces (#37645)
+
 ## 1.1.9 — 2026-05-21
 
 [Release on GitHub](https://github.com/langchain-ai/langchain/releases/tag/langchain-tests%3D%3D1.1.9)

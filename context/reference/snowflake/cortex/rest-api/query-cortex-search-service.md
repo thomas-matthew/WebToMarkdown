@@ -5,7 +5,7 @@ You can use three APIs for querying a Cortex Search Service:
 
 * The [Python API](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-python)
 * The [REST API](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-rest)
-* The [SQL SEARCH\_PREVIEW Function](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-sql-preview)
+* The [SQL SEARCH_PREVIEW Function](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-sql-preview)
 
 ## Parameters
 
@@ -253,9 +253,9 @@ Snowflake REST APIs support authentication via programmatic access tokens (PATs)
 using JSON Web Tokens (JWTs), and OAuth. For details, see
 [Authenticating Snowflake REST APIs with Snowflake](https://docs.snowflake.com/developer-guide/snowflake-rest-api/authentication).
 
-### SQL SEARCH\_PREVIEW function
+### SQL SEARCH_PREVIEW function
 
-The [SNOWFLAKE.CORTEX.SEARCH\_PREVIEW](https://docs.snowflake.com/sql-reference/functions/search_preview-snowflake-cortex) function allows you to preview the
+The [SNOWFLAKE.CORTEX.SEARCH_PREVIEW](https://docs.snowflake.com/sql-reference/functions/search_preview-snowflake-cortex) function allows you to preview the
 results of individual queries to a Cortex Search Service from within a SQL environment such as a worksheet or Snowflake notebook cell.
 This function makes it easy to interactively validate that a service has populated correctly and is serving reasonable results.
 
@@ -437,7 +437,7 @@ Querying a Cortex Search Service is subject to the following limitations:
 * **Response size**: The total size of the response payload returned from a search query
   to a Cortex Search Service must not exceed the following limits:
   + [REST API](https://docs.snowflake.com/developer-guide/snowflake-rest-api/reference/cortex-search-service) and [Python API](https://docs.snowflake.com/developer-guide/snowflake-python-api/snowflake-python-overview): 10 Megabytes (MB)
-  + [SQL SEARCH\_PREVIEW Function](https://docs.snowflake.com/sql-reference/functions/search_preview-snowflake-cortex): 300 Kilobytes (KB)
+  + [SQL SEARCH_PREVIEW Function](https://docs.snowflake.com/sql-reference/functions/search_preview-snowflake-cortex): 300 Kilobytes (KB)
 
 Multi-index Cortex Search is subject to additional limitations, which may change during preview:
 
@@ -651,10 +651,10 @@ In the results, note:
 
 #### Time decays
 
-Apply time decays based on the LAST\_MODIFIED\_TIMESTAMP column, where:
+Apply time decays based on the LAST_MODIFIED_TIMESTAMP column, where:
 
-> * Documents with more recent LAST\_MODIFIED\_TIMESTAMP values, relative to the now timestamp, are boosted
-> * Documents with a LAST\_MODIFIED\_TIMESTAMP value greater than 240 hours from the now timestamp receive little boosting
+> * Documents with more recent LAST_MODIFIED_TIMESTAMP values, relative to the now timestamp, are boosted
+> * Documents with a LAST_MODIFIED_TIMESTAMP value greater than 240 hours from the now timestamp receive little boosting
 
 PythonREST APISQL
 

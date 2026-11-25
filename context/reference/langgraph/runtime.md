@@ -15,6 +15,6 @@ This class is injected into graph nodes and middleware. It provides access to
 
 Function
 
-### [get\_runtime](https://reference.langchain.com/python/langgraph/runtime/get_runtime)
+### [get_runtime](https://reference.langchain.com/python/langgraph/runtime/get_runtime)
 
 Get the runtime for the current graph run.

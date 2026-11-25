@@ -61,7 +61,7 @@ Example:
 
 `GET /api/v2/cortex/threads/{id}`
 
-Describes a thread and returns a batch of messages in that thread, based on the page\_size and the last\_message\_id, in descending order of creation. This request is only successful if the thread ID belongs to the user. To return only messages of a particular type, use the `message_type` query parameter.
+Describes a thread and returns a batch of messages in that thread, based on the page_size and the last_message_id, in descending order of creation. This request is only successful if the thread ID belongs to the user. To return only messages of a particular type, use the `message_type` query parameter.
 
 ### Request
 

@@ -1,6 +1,6 @@
-Functionv1.2.23 (latest)●Since v1.2
+Functionv1.2.24 (latest)●Since v1.2
 
-# is\_managed\_value
+# is_managed_value
 
 ```
 is_managed_value(

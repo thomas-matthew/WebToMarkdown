@@ -42,7 +42,7 @@ Callback Handler that tracks `AIMessage.usage_metadata`.
 
 Function
 
-### [get\_usage\_metadata\_callback](https://reference.langchain.com/python/langchain-core/callbacks/usage/get_usage_metadata_callback)
+### [get_usage_metadata_callback](https://reference.langchain.com/python/langchain-core/callbacks/usage/get_usage_metadata_callback)
 
 Get usage metadata callback.
 

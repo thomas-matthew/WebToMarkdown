@@ -35,7 +35,7 @@ A checkpoint saver that stores checkpoints in a SQLite database.
 
 Function
 
-### [is\_managed\_value](https://reference.langchain.com/python/langgraph/managed/base/is_managed_value)
+### [is_managed_value](https://reference.langchain.com/python/langgraph/managed/base/is_managed_value)
 
 ## Modules
 

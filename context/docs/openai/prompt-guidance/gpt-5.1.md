@@ -379,6 +379,24 @@ if (response.status().filter(ResponseStatus.COMPLETED::equals).isEmpty())
 System.out.println(response.output());
 ```
 
+```csharp
+using System.ClientModel.Primitives;
+using OpenAI.Responses;
+#pragma warning disable OPENAI001
+
+string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
+ResponsesClient client = new(key);
+
+CreateResponseOptions options = new("gpt-5.1",
+    [ResponseItem.CreateUserMessageItem("Update the README title and fix the failing test.")]);
+options.Tools.Add(new ApplyPatchTool());
+ResponseResult response = await client.CreateResponseAsync(options);
+if (response.Status != ResponseStatus.Completed)
+    throw new InvalidOperationException($"Response ended with status {response.Status}");
+foreach (ResponseItem item in response.OutputItems)
+    Console.WriteLine(ModelReaderWriter.Write(item));
+```
+
 ```ruby
 response = client.responses.create(
   model: "gpt-5.1", input: response_input, tools: [{ type: :apply_patch }]
@@ -446,6 +464,33 @@ result := map[string]any{
 }
 ```
 
+```java
+import com.openai.core.ObjectMappers;
+import com.openai.models.responses.ResponseInputItem;
+
+var output =
+    ResponseInputItem.ApplyPatchCallOutput.builder()
+        .callId(callId)
+        .status(
+            success
+                ? ResponseInputItem.ApplyPatchCallOutput.Status.COMPLETED
+                : ResponseInputItem.ApplyPatchCallOutput.Status.FAILED)
+        .output(success ? "Patch applied successfully." : "Patch could not be applied.")
+        .build();
+System.out.println(ObjectMappers.jsonMapper().writeValueAsString(output));
+```
+
+```csharp
+using System.ClientModel.Primitives;
+using OpenAI.Responses;
+#pragma warning disable OPENAI001
+
+ApplyPatchCallOutputItem output = new(callId, success ? ApplyPatchCallOutputStatus.Completed : ApplyPatchCallOutputStatus.Failed)
+{
+    Output = logOutput
+};
+```
+
 ```ruby
 output = {
   type: :apply_patch_call_output,
@@ -472,6 +517,16 @@ tools = [{"type": "shell"}]
 
 ```go
 tools := []responses.ToolUnionParam{{OfShell: &responses.FunctionShellToolParam{}}}
+```
+
+```java
+import com.openai.core.ObjectMappers;
+import com.openai.models.responses.Tool;
+import java.util.List;
+
+var tools =
+    List.of(Tool.ofShell(com.openai.models.responses.FunctionShellTool.builder().build()));
+System.out.println(ObjectMappers.jsonMapper().writeValueAsString(tools));
 ```
 
 ```ruby

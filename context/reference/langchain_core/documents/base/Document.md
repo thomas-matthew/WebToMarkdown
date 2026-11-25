@@ -1,4 +1,4 @@
-Classv1.8.3 (latest)●Since v1.8
+Classv1.8.4 (latest)●Since v0.1
 
 # Document
 
@@ -36,7 +36,7 @@ Copy
 ## Used in Docs
 
 * [Build a semantic search engine with LangChain](https://docs.langchain.com/oss/python/langchain/knowledge-base)
-* [(MODULE\_NAME) integration](https://docs.langchain.com/oss/python/integrations/vectorstores/TEMPLATE)
+* [(MODULE_NAME) integration](https://docs.langchain.com/oss/python/integrations/vectorstores/TEMPLATE)
 * [AI21SemanticTextSplitter integration](https://docs.langchain.com/oss/python/integrations/document_transformers/ai21_semantic_text_splitter)
 * [Amazon S3 Vectors integration](https://docs.langchain.com/oss/python/integrations/vectorstores/s3_vectors)
 * [Astra DB integration](https://docs.langchain.com/oss/python/integrations/vectorstores/astradb)
@@ -47,18 +47,18 @@ Copy
 
 constructor
 
-\_\_init\_\_
+__init__
 
 | Name | Type |
 | --- | --- |
-| page\_content | [str](https://docs.python.org/3/library/stdtypes.html#str) |
+| page_content | [str](https://docs.python.org/3/library/stdtypes.html#str) |
 | kwargs | [Any](https://docs.python.org/3/library/typing.html#typing.Any) |
 
 ## Attributes
 
 attribute
 
-page\_content: str
+page_content: str
 
 String text.
 
@@ -70,13 +70,13 @@ type: Literal['Document']
 
 method
 
-is\_lc\_serializable
+is_lc_serializable
 
 Return `True` as this class is serializable.
 
 method
 
-get\_lc\_namespace
+get_lc_namespace
 
 Get the namespace of the LangChain object.
 
@@ -100,35 +100,35 @@ Arbitrary metadata associated with the content.
 
 ### Attributes
 
-Alc\_secrets: dict[str, str]
+Alc_secrets: dict[str, str]
 
 —
 
 A map of constructor argument names to secret ids.
 
-Alc\_attributes: dict[str, Any]
+Alc_attributes: dict[str, Any]
 
 —
 
 List of attribute names that should be included in the serialized kwargs.
 
-[Amodel\_config](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/model_config)
+[Amodel_config](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/model_config)
 
 ### Methods
 
-Mlc\_id
+Mlc_id
 
 —
 
 Return a unique identifier for this class for serialization purposes.
 
-Mto\_json
+Mto_json
 
 —
 
 Serialize the object to JSON.
 
-Mto\_json\_not\_implemented
+Mto_json_not_implemented
 
 —
 

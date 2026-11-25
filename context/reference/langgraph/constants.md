@@ -4,13 +4,13 @@
 
 Attribute
 
-### [TAG\_HIDDEN](https://reference.langchain.com/python/langgraph/constants/TAG_HIDDEN)
+### [TAG_HIDDEN](https://reference.langchain.com/python/langgraph/constants/TAG_HIDDEN)
 
 Tag to hide a node/edge from certain tracing/streaming environments.
 
 Attribute
 
-### [TAG\_NOSTREAM](https://reference.langchain.com/python/langgraph/constants/TAG_NOSTREAM)
+### [TAG_NOSTREAM](https://reference.langchain.com/python/langgraph/constants/TAG_NOSTREAM)
 
 Tag to disable streaming for a chat model.
 

@@ -243,7 +243,7 @@ ai_msg.response_metadata
 
 ### [client: Any](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/client)
 
-### [model\_id: str](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/model_id)
+### [model_id: str](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/model_id)
 
 Id of the model to call.
 
@@ -253,11 +253,11 @@ models, an ARN value is expected. See
 <https://docs.aws.amazon.com/bedrock/latest/userguide/model-ids.html#model-ids-arns>
 for a list of all supported built-in models.
 
-### [max\_tokens: Optional[int]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/max_tokens)
+### [max_tokens: Optional[int]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/max_tokens)
 
 Max tokens to generate.
 
-### [stop\_sequences: Optional[List[str]]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/stop_sequences)
+### [stop_sequences: Optional[List[str]]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/stop_sequences)
 
 Stop generation if any of these substrings occurs.
 
@@ -265,7 +265,7 @@ Stop generation if any of these substrings occurs.
 
 Sampling temperature. Must be 0 to 1.
 
-### [top\_p: Optional[float]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/top_p)
+### [top_p: Optional[float]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/top_p)
 
 The percentage of most-likely candidates that are considered for the next token.
 
@@ -275,14 +275,14 @@ For example, if you choose a value of 0.8 for topP, the model selects from
 the top 80% of the probability distribution of tokens that could be next in the
 sequence.
 
-### [region\_name: Optional[str]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/region_name)
+### [region_name: Optional[str]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/region_name)
 
 The aws region, e.g., `us-west-2`.
 
-Falls back to AWS\_REGION or AWS\_DEFAULT\_REGION env variable or region specified in
+Falls back to AWS_REGION or AWS_DEFAULT_REGION env variable or region specified in
 ~/.aws/config in case it is not provided here.
 
-### [credentials\_profile\_name: Optional[str]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/credentials_profile_name)
+### [credentials_profile_name: Optional[str]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/credentials_profile_name)
 
 The name of the profile in the ~/.aws/credentials or ~/.aws/config files.
 
@@ -291,48 +291,48 @@ If not specified, the default credential profile or, if on an EC2 instance,
 credentials from IMDS will be used.
 See: <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html>
 
-### [aws\_access\_key\_id: Optional[SecretStr]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/aws_access_key_id)
+### [aws_access_key_id: Optional[SecretStr]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/aws_access_key_id)
 
 AWS access key id.
 
-If provided, aws\_secret\_access\_key must also be provided.
+If provided, aws_secret_access_key must also be provided.
 If not specified, the default credential profile or, if on an EC2 instance,
 credentials from IMDS will be used.
 See: <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html>
 
-If not provided, will be read from 'AWS\_ACCESS\_KEY\_ID' environment variable.
+If not provided, will be read from 'AWS_ACCESS_KEY_ID' environment variable.
 
-### [aws\_secret\_access\_key: Optional[SecretStr]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/aws_secret_access_key)
+### [aws_secret_access_key: Optional[SecretStr]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/aws_secret_access_key)
 
-AWS secret\_access\_key.
+AWS secret_access_key.
 
-If provided, aws\_access\_key\_id must also be provided.
+If provided, aws_access_key_id must also be provided.
 If not specified, the default credential profile or, if on an EC2 instance,
 credentials from IMDS will be used.
 See: <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html>
 
-If not provided, will be read from 'AWS\_SECRET\_ACCESS\_KEY' environment variable.
+If not provided, will be read from 'AWS_SECRET_ACCESS_KEY' environment variable.
 
-### [aws\_session\_token: Optional[SecretStr]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/aws_session_token)
+### [aws_session_token: Optional[SecretStr]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/aws_session_token)
 
 AWS session token.
 
-If provided, aws\_access\_key\_id and aws\_secret\_access\_key must
+If provided, aws_access_key_id and aws_secret_access_key must
 also be provided. Not required unless using temporary credentials.
 See: <https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html>
 
-If not provided, will be read from 'AWS\_SESSION\_TOKEN' environment variable.
+If not provided, will be read from 'AWS_SESSION_TOKEN' environment variable.
 
 ### [provider: str](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/provider)
 
 The model provider, e.g., amazon, cohere, ai21, etc.
 
-When not supplied, provider is extracted from the first part of the model\_id, e.g.
+When not supplied, provider is extracted from the first part of the model_id, e.g.
 'amazon' in 'amazon.titan-text-express-v1'. This value should be provided for model
 ids that do not have the provider in them, like custom and provisioned models that
 have an ARN associated with them.
 
-### [endpoint\_url: Optional[str]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/endpoint_url)
+### [endpoint_url: Optional[str]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/endpoint_url)
 
 Needed if you don't want to default to us-east-1 endpoint
 
@@ -340,18 +340,18 @@ Needed if you don't want to default to us-east-1 endpoint
 
 An optional botocore.config.Config instance to pass to the client.
 
-### [guardrail\_config: Optional[Dict[str, Any]]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/guardrail_config)
+### [guardrail_config: Optional[Dict[str, Any]]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/guardrail_config)
 
 Configuration information for a guardrail that you want to use in the request.
 
-### [additional\_model\_request\_fields: Optional[Dict[str, Any]]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/additional_model_request_fields)
+### [additional_model_request_fields: Optional[Dict[str, Any]]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/additional_model_request_fields)
 
 Additional inference parameters that the model supports.
 
 Parameters beyond the base set of inference parameters that Converse supports in the
 inferenceConfig field.
 
-### [additional\_model\_response\_field\_paths: Optional[List[str]]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/additional_model_response_field_paths)
+### [additional_model_response_field_paths: Optional[List[str]]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/additional_model_response_field_paths)
 
 Additional model parameters field paths to return in the response.
 
@@ -359,61 +359,61 @@ Converse returns the requested fields as a JSON Pointer object in the
 additionalModelResponseFields field. The following is example JSON for
 additionalModelResponseFieldPaths.
 
-### [supports\_tool\_choice\_values: Optional[Sequence[Literal['auto', 'any', 'tool']]]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/supports_tool_choice_values)
+### [supports_tool_choice_values: Optional[Sequence[Literal['auto', 'any', 'tool']]]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/supports_tool_choice_values)
 
-Which types of tool\_choice values the model supports.
+Which types of tool_choice values the model supports.
 
 Inferred if not specified. Inferred as ('auto', 'any', 'tool') if a 'claude-3'
 model is used, ('auto', 'any') if a 'mistral-large' model is used,
 ('auto') if a 'nova' model is used, empty otherwise.
 
-### [performance\_config: Optional[Mapping[str, Any]]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/performance_config)
+### [performance_config: Optional[Mapping[str, Any]]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/performance_config)
 
-### [request\_metadata: Optional[Dict[str, str]]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/request_metadata)
+### [request_metadata: Optional[Dict[str, str]]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/request_metadata)
 
 Key-Value pairs that you can use to filter invocation logs.
 
-### [model\_config](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/model_config)
+### [model_config](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/model_config)
 
-### [lc\_secrets: Dict[str, str]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/lc_secrets)
+### [lc_secrets: Dict[str, str]](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/lc_secrets)
 
 ## Methods
 
-### [set\_disable\_streaming](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/set_disable_streaming)
+### [set_disable_streaming](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/set_disable_streaming)
 
-### [validate\_environment](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/validate_environment)
+### [validate_environment](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/validate_environment)
 
 Validate that AWS credentials to and python package exists in environment.
 
-### [bind\_tools](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/bind_tools)
+### [bind_tools](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/bind_tools)
 
-### [with\_structured\_output](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/with_structured_output)
+### [with_structured_output](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/with_structured_output)
 
-### [is\_lc\_serializable](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/is_lc_serializable)
+### [is_lc_serializable](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/is_lc_serializable)
 
-### [get\_lc\_namespace](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/get_lc_namespace)
+### [get_lc_namespace](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse/get_lc_namespace)
 
-## Inherited from[BaseChatModel](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel) (langchain\_core)
-
-### Attributes
-
-[rate\_limiter](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/rate_limiter) [disable\_streaming](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/disable_streaming) [output\_version](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/output_version) [profile](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/profile) [OutputType](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/OutputType)
-
-### Methods
-
-[invoke](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/invoke) [ainvoke](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/ainvoke) [stream](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/stream) [astream](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/astream) [stream\_events](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/stream_events) [astream\_events](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/astream_events) [generate](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/generate) [agenerate](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate) [generate\_prompt](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/generate_prompt) [agenerate\_prompt](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate_prompt) [dict](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/dict) [asdict](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/asdict) [bind](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/bind)
-
-## Inherited from[BaseLanguageModel](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel) (langchain\_core)
+## Inherited from[BaseChatModel](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel) (langchain_core)
 
 ### Attributes
 
-[cache](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/cache) [verbose](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/verbose) [callbacks](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/callbacks) [tags](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/tags) [metadata](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/metadata) [custom\_get\_token\_ids](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/custom_get_token_ids) [InputType](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/InputType)
+[rate_limiter](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/rate_limiter) [disable_streaming](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/disable_streaming) [output_version](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/output_version) [profile](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/profile) [OutputType](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/OutputType)
 
 ### Methods
 
-[model\_post\_init](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/model_post_init) [set\_verbose](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/set_verbose) [generate\_prompt](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/generate_prompt) [agenerate\_prompt](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/agenerate_prompt) [get\_token\_ids](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_token_ids) [get\_num\_tokens](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens) [get\_num\_tokens\_from\_messages](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens_from_messages)
+[invoke](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/invoke) [ainvoke](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/ainvoke) [stream](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/stream) [astream](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/astream) [stream_events](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/stream_events) [astream_events](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/astream_events) [generate](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/generate) [agenerate](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate) [generate_prompt](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/generate_prompt) [agenerate_prompt](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate_prompt) [dict](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/dict) [asdict](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/asdict) [bind](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/bind)
 
-## Inherited from[RunnableSerializable](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable) (langchain\_core)
+## Inherited from[BaseLanguageModel](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel) (langchain_core)
+
+### Attributes
+
+[cache](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/cache) [verbose](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/verbose) [callbacks](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/callbacks) [tags](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/tags) [metadata](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/metadata) [custom_get_token_ids](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/custom_get_token_ids) [InputType](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/InputType)
+
+### Methods
+
+[model_post_init](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/model_post_init) [set_verbose](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/set_verbose) [generate_prompt](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/generate_prompt) [agenerate_prompt](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/agenerate_prompt) [get_token_ids](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_token_ids) [get_num_tokens](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens) [get_num_tokens_from_messages](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens_from_messages)
+
+## Inherited from[RunnableSerializable](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable) (langchain_core)
 
 ### Attributes
 
@@ -421,27 +421,27 @@ Validate that AWS credentials to and python package exists in environment.
 
 ### Methods
 
-[to\_json](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/to_json) [configurable\_fields](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/configurable_fields) [configurable\_alternatives](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/configurable_alternatives)
+[to_json](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/to_json) [configurable_fields](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/configurable_fields) [configurable_alternatives](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/configurable_alternatives)
 
-## Inherited from[Serializable](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable) (langchain\_core)
-
-### Attributes
-
-[lc\_attributes](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/lc_attributes)
-
-### Methods
-
-[lc\_id](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/lc_id) [to\_json](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/to_json) [to\_json\_not\_implemented](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/to_json_not_implemented)
-
-## Inherited from[Runnable](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable) (langchain\_core)
+## Inherited from[Serializable](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable) (langchain_core)
 
 ### Attributes
 
-[name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/name) [InputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/InputType) [OutputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/OutputType) [input\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/input_schema) [output\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/output_schema) [config\_specs](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_specs)
+[lc_attributes](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/lc_attributes)
 
 ### Methods
 
-[get\_name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_name) [get\_input\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_schema) [get\_input\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_jsonschema) [get\_output\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_schema) [get\_output\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_jsonschema) [config\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_schema) [get\_config\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_config_jsonschema) [get\_graph](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_graph) [get\_prompts](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_prompts) [pipe](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pipe) [pick](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pick) [assign](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/assign) [invoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/invoke) [ainvoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/ainvoke) [batch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch) [batch\_as\_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch_as_completed) [abatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch) [abatch\_as\_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch_as_completed) [stream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream) [astream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream) [astream\_log](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_log) [astream\_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_events) [stream\_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream_events) [transform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/transform) [atransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/atransform) [bind](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/bind) [with\_config](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_config) [with\_listeners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_listeners) [with\_alisteners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_alisteners) [with\_types](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_types) [with\_retry](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_retry) [map](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/map) [with\_fallbacks](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_fallbacks) [as\_tool](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/as_tool)
+[lc_id](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/lc_id) [to_json](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/to_json) [to_json_not_implemented](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/to_json_not_implemented)
+
+## Inherited from[Runnable](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable) (langchain_core)
+
+### Attributes
+
+[name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/name) [InputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/InputType) [OutputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/OutputType) [input_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/input_schema) [output_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/output_schema) [config_specs](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_specs)
+
+### Methods
+
+[get_name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_name) [get_input_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_schema) [get_input_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_jsonschema) [get_output_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_schema) [get_output_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_jsonschema) [config_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_schema) [get_config_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_config_jsonschema) [get_graph](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_graph) [get_prompts](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_prompts) [pipe](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pipe) [pick](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pick) [assign](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/assign) [invoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/invoke) [ainvoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/ainvoke) [batch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch) [batch_as_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch_as_completed) [abatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch) [abatch_as_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch_as_completed) [stream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream) [astream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream) [astream_log](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_log) [astream_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_events) [stream_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream_events) [transform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/transform) [atransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/atransform) [bind](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/bind) [with_config](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_config) [with_listeners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_listeners) [with_alisteners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_alisteners) [with_types](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_types) [with_retry](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_retry) [map](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/map) [with_fallbacks](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_fallbacks) [as_tool](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/as_tool)
 
 [View source on GitHub](https://github.com/langchain-ai/langchain-aws/blob/434899a049429abd1b68d6e3efe82f58bc729a4f/libs/aws/langchain_aws/chat_models/bedrock_converse.py#L64)
 

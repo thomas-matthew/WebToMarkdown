@@ -40,7 +40,7 @@ Note
 
 Cortex AI Guardrails are available to Commercial (non-Gov, VPS, Sovereign) accounts that have [Cross-region inference](https://docs.snowflake.com/user-guide/snowflake-cortex/cross-region-inference) enabled.
 The account parameter `CORTEX_ENABLED_CROSS_REGION` must be set to `ANY_REGION`, `AWS_US`, `AWS_EU`, `AWS_JP`, `AWS_APJ`, or `AWS_GLOBAL`.
-For details on this parameter, see [CORTEX\_ENABLED\_CROSS\_REGION](https://docs.snowflake.com/sql-reference/parameters#label-cortex-enable-cross-region).
+For details on this parameter, see [CORTEX_ENABLED_CROSS_REGION](https://docs.snowflake.com/sql-reference/parameters#label-cortex-enable-cross-region).
 
 ### Enable guardrails
 
@@ -101,7 +101,7 @@ ALTER ACCOUNT UNSET AI_SETTINGS;
 
 ## Monitor guardrail activity
 
-The [CORTEX\_AI\_GUARDRAILS\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_ai_guardrails_usage_history) view in the ACCOUNT\_USAGE schema provides a historical record of all guardrail scan activity for your account, including credit and token consumption.
+The [CORTEX_AI_GUARDRAILS_USAGE_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_ai_guardrails_usage_history) view in the ACCOUNT_USAGE schema provides a historical record of all guardrail scan activity for your account, including credit and token consumption.
 
 Use this view to:
 

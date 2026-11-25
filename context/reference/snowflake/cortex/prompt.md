@@ -67,7 +67,7 @@ Output:
 }
 ```
 
-### Use with Cortex AI\_FILTER
+### Use with Cortex AI_FILTER
 
 ```
 WITH reviews AS (
@@ -87,4 +87,4 @@ SELECT AI_COMPLETE('claude-sonnet-4-6',
 FROM image_table;
 ```
 
-See [AI\_COMPLETE (Prompt object)](https://docs.snowflake.com/sql-reference/functions/ai_complete-prompt-object) for more examples.
+See [AI_COMPLETE (Prompt object)](https://docs.snowflake.com/sql-reference/functions/ai_complete-prompt-object) for more examples.

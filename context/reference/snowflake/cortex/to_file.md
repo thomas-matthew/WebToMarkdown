@@ -1,7 +1,7 @@
 Categories:
 :   [File functions](https://docs.snowflake.com/sql-reference/functions-file) (AI Functions)
 
-# TO\_FILE
+# TO_FILE
 
 Constructs a value of type [FILE](https://docs.snowflake.com/sql-reference/data-types-unstructured#label-data-types-file) from a file location or from metadata.
 
@@ -37,12 +37,12 @@ Only one of these methods can be used at a time.
 :   A valid stage or scoped file URL as a string.
 
 `metadata`
-:   An OBJECT containing the required FILE attributes. A FILE must have CONTENT\_TYPE, SIZE, ETAG, and LAST\_MODIFIED fields.
+:   An OBJECT containing the required FILE attributes. A FILE must have CONTENT_TYPE, SIZE, ETAG, and LAST_MODIFIED fields.
     It must also specify the file’s location in one of the following ways:
 
-    * Both STAGE and RELATIVE\_PATH
-    * STAGE\_FILE\_URL
-    * SCOPED\_FILE\_URL
+    * Both STAGE and RELATIVE_PATH
+    * STAGE_FILE_URL
+    * SCOPED_FILE_URL
 
 ## Returns
 
@@ -58,9 +58,9 @@ Raises an error when:
 
 ## Examples
 
-### Creating FILE objects using TO\_FILE
+### Creating FILE objects using TO_FILE
 
-A simple use of the TO\_FILE function with a stage name and relative path:
+A simple use of the TO_FILE function with a stage name and relative path:
 
 ```
 SELECT TO_FILE('@mystage', 'image.png');
@@ -83,7 +83,7 @@ Result:
 +-----------------------------------------------------+
 ```
 
-A simple use of the TO\_FILE function with a staged file URL:
+A simple use of the TO_FILE function with a staged file URL:
 
 ```
 SELECT TO_FILE(BUILD_STAGE_FILE_URL('@mystage', 'image.png'));
@@ -107,7 +107,7 @@ Result:
 +--------------------------------------------------------------------------------------------------------------------+
 ```
 
-Or use the FILE\_URL from a file in the directory of your stage:
+Or use the FILE_URL from a file in the directory of your stage:
 
 ```
 SELECT TO_FILE(FILE_URL) FROM DIRECTORY(@mystage) LIMIT 1;
@@ -129,7 +129,7 @@ SELECT TO_FILE(FILE_URL) FROM DIRECTORY(@mystage) LIMIT 1;
 +--------------------------------------------------------------------------------------------------------------------+
 ```
 
-This example uses TO\_FILE function directly with a scoped file URL:
+This example uses TO_FILE function directly with a scoped file URL:
 
 ```
 SELECT TO_FILE(`https://snowflake.account.snowflakecomputing.com/api/files/01ba4df2-0100-0001-0000-00040002e2b6/299017/Y6JShH6KjV`);
@@ -261,7 +261,7 @@ INSERT INTO files_array_table_copy SELECT files[0] FROM files_array_table;
 
 ### Examples of errors
 
-These examples illustrate common mistakes in using TO\_FILE that result in the function raising an error.
+These examples illustrate common mistakes in using TO_FILE that result in the function raising an error.
 
 The following example constructs a FILE from a metadata object but omits a required field:
 
@@ -317,4 +317,4 @@ with auto purge option.
 
 ## Known limitations
 
-* TO\_FILE cannot be used in INSERT INTO TABLE <t> VALUES clause. Use INSERT INTO TABLE <t> SELECT instead.
+* TO_FILE cannot be used in INSERT INTO TABLE <t> VALUES clause. Use INSERT INTO TABLE <t> SELECT instead.

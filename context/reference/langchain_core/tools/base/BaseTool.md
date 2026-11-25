@@ -1,4 +1,4 @@
-Classv1.8.3 (latest)●Since v1.8
+Classv1.8.4 (latest)●Since v0.2
 
 # BaseTool
 
@@ -23,7 +23,7 @@ BaseTool(
 
 constructor
 
-\_\_init\_\_
+__init__
 
 | Name | Type |
 | --- | --- |
@@ -47,7 +47,7 @@ You can provide few-shot examples as a part of the description.
 
 attribute
 
-args\_schema: Annotated[ArgsSchema | None, SkipValidation()]
+args_schema: Annotated[ArgsSchema | None, SkipValidation()]
 
 Pydantic model class to validate and parse the tool's input arguments.
 
@@ -59,7 +59,7 @@ Args schema should be either:
 
 attribute
 
-return\_direct: bool
+return_direct: bool
 
 Whether to return the tool's output directly.
 
@@ -103,7 +103,7 @@ You can use these to, e.g., identify a specific instance of a tool with its usec
 
 attribute
 
-handle\_tool\_error: bool | str | Callable[[ToolException], ToolExceptionHandlerOutput] | None
+handle_tool_error: bool | str | Callable[[ToolException], ToolExceptionHandlerOutput] | None
 
 Handle `ToolException` raised by tool execution.
 
@@ -118,13 +118,13 @@ content is wrapped in a `ToolMessage` with `status="error"`.
 
 attribute
 
-handle\_validation\_error: bool | str | Callable[[ValidationError | ValidationErrorV1], str] | None
+handle_validation_error: bool | str | Callable[[ValidationError | ValidationErrorV1], str] | None
 
 Handle the content of the `ValidationError` thrown.
 
 attribute
 
-response\_format: Literal['content', 'content\_and\_artifact']
+response_format: Literal['content', 'content_and_artifact']
 
 The tool response format.
 
@@ -143,11 +143,11 @@ standard tool fields.
 
 attribute
 
-model\_config
+model_config
 
 attribute
 
-is\_single\_input: bool
+is_single_input: bool
 
 Check if the tool accepts only a single input argument.
 
@@ -159,7 +159,7 @@ Get the tool's input arguments schema.
 
 attribute
 
-tool\_call\_schema: ArgsSchema
+tool_call_schema: ArgsSchema
 
 Get the schema for tool calls, excluding injected arguments.
 
@@ -167,7 +167,7 @@ Get the schema for tool calls, excluding injected arguments.
 
 method
 
-model\_copy
+model_copy
 
 Copy the tool, clearing the schema memo if `update` affects it.
 
@@ -178,7 +178,7 @@ update touches one of the fields the schema is built from.
 
 method
 
-get\_input\_schema
+get_input_schema
 
 The tool's input schema.
 
@@ -206,19 +206,19 @@ Run the tool asynchronously.
 
 ### Methods
 
-Mto\_json
+Mto_json
 
 —
 
 Serialize the `Runnable` to JSON.
 
-Mconfigurable\_fields
+Mconfigurable_fields
 
 —
 
 Configure particular `Runnable` fields at runtime.
 
-Mconfigurable\_alternatives
+Mconfigurable_alternatives
 
 —
 
@@ -228,13 +228,13 @@ Configure alternatives for `Runnable` objects that can be set at runtime.
 
 ### Attributes
 
-Alc\_secrets: dict[str, str]
+Alc_secrets: dict[str, str]
 
 —
 
 A map of constructor argument names to secret ids.
 
-Alc\_attributes: dict[str, Any]
+Alc_attributes: dict[str, Any]
 
 —
 
@@ -242,31 +242,31 @@ List of attribute names that should be included in the serialized kwargs.
 
 ### Methods
 
-Mis\_lc\_serializable
+Mis_lc_serializable
 
 —
 
 Is this class serializable?
 
-Mget\_lc\_namespace
+Mget_lc_namespace
 
 —
 
 Get the namespace of the LangChain object.
 
-Mlc\_id
+Mlc_id
 
 —
 
 Return a unique identifier for this class for serialization purposes.
 
-Mto\_json
+Mto_json
 
 —
 
 Serialize the object to JSON.
 
-Mto\_json\_not\_implemented
+Mto_json_not_implemented
 
 —
 
@@ -288,19 +288,19 @@ AOutputType: type[Output]
 
 Output Type.
 
-Ainput\_schema: TypeBaseModel
+Ainput_schema: TypeBaseModel
 
 —
 
 The type of input this `Runnable` accepts specified as a Pydantic model.
 
-Aoutput\_schema: TypeBaseModel
+Aoutput_schema: TypeBaseModel
 
 —
 
 Output schema.
 
-Aconfig\_specs: list[ConfigurableFieldSpec]
+Aconfig_specs: list[ConfigurableFieldSpec]
 
 —
 
@@ -308,49 +308,49 @@ List configurable fields for this `Runnable`.
 
 ### Methods
 
-Mget\_name
+Mget_name
 
 —
 
 Get the name of the `Runnable`.
 
-Mget\_input\_jsonschema
+Mget_input_jsonschema
 
 —
 
 Get a JSON schema that represents the input to the `Runnable`.
 
-Mget\_output\_schema
+Mget_output_schema
 
 —
 
 Get a Pydantic model that can be used to validate output to the `Runnable`.
 
-Mget\_output\_jsonschema
+Mget_output_jsonschema
 
 —
 
 Get a JSON schema that represents the output of the `Runnable`.
 
-Mconfig\_schema
+Mconfig_schema
 
 —
 
 The type of config this `Runnable` accepts specified as a Pydantic model.
 
-Mget\_config\_jsonschema
+Mget_config_jsonschema
 
 —
 
 Get a JSON schema that represents the config of the `Runnable`.
 
-Mget\_graph
+Mget_graph
 
 —
 
 Return a graph representation of this `Runnable`.
 
-Mget\_prompts
+Mget_prompts
 
 —
 
@@ -380,7 +380,7 @@ Mbatch
 
 Default implementation runs invoke in parallel using a thread pool executor.
 
-Mbatch\_as\_completed
+Mbatch_as_completed
 
 —
 
@@ -392,7 +392,7 @@ Mabatch
 
 Default implementation runs `ainvoke` in parallel using `asyncio.gather`.
 
-Mabatch\_as\_completed
+Mabatch_as_completed
 
 —
 
@@ -410,19 +410,19 @@ Mastream
 
 Default implementation of `astream`, which calls `ainvoke`.
 
-Mastream\_log
+Mastream_log
 
 —
 
 Stream all output from a `Runnable`, as reported to the callback system.
 
-Mastream\_events
+Mastream_events
 
 —
 
 Generate a stream of events.
 
-Mstream\_events
+Mstream_events
 
 —
 
@@ -446,31 +446,31 @@ Mbind
 
 Bind arguments to a `Runnable`, returning a new `Runnable`.
 
-Mwith\_config
+Mwith_config
 
 —
 
 Bind config to a `Runnable`, returning a new `Runnable`.
 
-Mwith\_listeners
+Mwith_listeners
 
 —
 
 Bind lifecycle listeners to a `Runnable`, returning a new `Runnable`.
 
-Mwith\_alisteners
+Mwith_alisteners
 
 —
 
 Bind async lifecycle listeners to a `Runnable`.
 
-Mwith\_types
+Mwith_types
 
 —
 
 Bind input and output types to a `Runnable`, returning a new `Runnable`.
 
-Mwith\_retry
+Mwith_retry
 
 —
 
@@ -482,13 +482,13 @@ Mmap
 
 Return a new `Runnable` that maps a list of inputs to a list of outputs.
 
-Mwith\_fallbacks
+Mwith_fallbacks
 
 —
 
 Add fallbacks to a `Runnable`, returning a new `Runnable`.
 
-Mas\_tool
+Mas_tool
 
 —
 

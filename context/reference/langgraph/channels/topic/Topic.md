@@ -1,4 +1,4 @@
-Classv1.2.23 (latest)●Since v1.2
+Classv1.2.24 (latest)●Since v1.2
 
 # Topic
 
@@ -24,14 +24,14 @@ Topic(
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `typ`\* | `type[Value]` | The type of the value stored in the channel. |
+| `typ`* | `type[Value]` | The type of the value stored in the channel. |
 | `accumulate` | `bool` | Default:`False`  Whether to accumulate values across steps. If `False`, the channel will be emptied after each step. |
 
 ## Constructors
 
 constructor
 
-\_\_init\_\_
+__init__
 
 | Name | Type |
 | --- | --- |
@@ -74,7 +74,7 @@ checkpoint
 
 method
 
-from\_checkpoint
+from_checkpoint
 
 method
 
@@ -86,7 +86,7 @@ get
 
 method
 
-is\_available
+is_available
 
 ## Inherited from[BaseChannel](https://reference.langchain.com/python/langgraph/channels/base/BaseChannel)
 

@@ -135,12 +135,12 @@ Note
 Follow these steps to create a Cortex Search Service in Snowsight:
 
 1. Sign in to [Snowsight](https://docs.snowflake.com/user-guide/ui-snowsight-gs#label-snowsight-getting-started-sign-in).
-2. Choose a role that is granted the SNOWFLAKE.CORTEX\_USER database role.
+2. Choose a role that is granted the SNOWFLAKE.CORTEX_USER database role.
 3. In the navigation menu, select **AI & ML** » **Cortex Search**.
 4. Select **Create**.
 5. Select a role and warehouse.
 
-   The role must be granted the SNOWFLAKE.CORTEX\_USER database role. The warehouse is used for
+   The role must be granted the SNOWFLAKE.CORTEX_USER database role. The warehouse is used for
    materializing the results of the source query when the service is created and refreshed.
 6. Select a database and schema in which the service is defined.
 7. Enter a name for your service, then select **Next**.
@@ -182,7 +182,7 @@ referencing the service in SQL, see [Double-quoted identifiers](https://docs.sno
 ### Grant usage permissions
 
 After the service and index are created, you can grant usage on the service, its database,
-and schema to other roles like customer\_support.
+and schema to other roles like customer_support.
 
 ```
 GRANT USAGE ON DATABASE cortex_search_db TO ROLE customer_support;
@@ -194,7 +194,7 @@ GRANT USAGE ON CORTEX SEARCH SERVICE transcript_search_service TO ROLE customer_
 ### Preview the service
 
 To confirm that the service is populated with data properly, you can preview the service via the
-[SEARCH\_PREVIEW function](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-sql-preview) from a SQL environment:
+[SEARCH_PREVIEW function](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/query-cortex-search-service#label-cortex-search-query-syntax-sql-preview) from a SQL environment:
 
 ```
 SELECT PARSE_JSON(
@@ -226,7 +226,7 @@ Sample successful query response:
 
 This response confirms that the service is populated with data and serving reasonable results for the given query.
 
-You can also use the [CORTEX\_SEARCH\_DATA\_SCAN](https://docs.snowflake.com/sql-reference/functions/cortex_search_data_scan) table function to inspect the contents of the service.
+You can also use the [CORTEX_SEARCH_DATA_SCAN](https://docs.snowflake.com/sql-reference/functions/cortex_search_data_scan) table function to inspect the contents of the service.
 
 ```
 SELECT
@@ -299,8 +299,8 @@ Cortex Search Services return all columns specified in the `columns` field in yo
 ## Required privileges
 
 * To create a Cortex Search Service, your role must have the required privileges to use the Cortex embedding functions, which
-  requires granting the [SNOWFLAKE.CORTEX\_USER](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user) database role
-  or the [SNOWFLAKE.CORTEX\_EMBED\_USER](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-embed-user) database
+  requires granting the [SNOWFLAKE.CORTEX_USER](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user) database role
+  or the [SNOWFLAKE.CORTEX_EMBED_USER](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-embed-user) database
   role to the service creator role. You must also have the following privileges:
 
   + The CREATE CORTEX SEARCH SERVICE or OWNERSHIP privilege on the schema where you create the service.
@@ -313,7 +313,7 @@ Cortex Search Services return all columns specified in the `columns` field in yo
 * To suspend or resume a Cortex Search Service using the ALTER command, the role of the querying user must have the OPERATE privilege on
   the service. See [ALTER CORTEX SEARCH SERVICE](https://docs.snowflake.com/sql-reference/sql/alter-cortex-search).
 * To view refresh history for a Cortex Search Service, the role must have the MONITOR, OPERATE, or OWNERSHIP privilege on
-  the service. See [CORTEX\_SEARCH\_REFRESH\_HISTORY](https://docs.snowflake.com/sql-reference/functions/cortex_search_refresh_history).
+  the service. See [CORTEX_SEARCH_REFRESH_HISTORY](https://docs.snowflake.com/sql-reference/functions/cortex_search_refresh_history).
 
 Important
 
@@ -363,7 +363,7 @@ model for your specific workload. Refer to the [Snowflake Service Consumption Ta
 A token is a sequence of characters and is the smallest unit of text that can be processed by a large language model.
 As an approximation, one token is equivalent to about 3/4 of an English word, or around 4 characters.
 To calculate the number of tokens in a string, use the
-[COUNT\_TOKENS Cortex Function](https://docs.snowflake.com/sql-reference/functions/count_tokens-snowflake-cortex). For example, calculating the
+[COUNT_TOKENS Cortex Function](https://docs.snowflake.com/sql-reference/functions/count_tokens-snowflake-cortex). For example, calculating the
 tokens for a string to be embedded with the `snowflake-arctic-embed-m-v1.5` model:
 
 ```
@@ -376,7 +376,7 @@ context window size, Cortex Search truncates the string to the size of the conte
 vector space for semantic search. However, Cortex Search uses the full body of text for keyword-based retrieval.
 
 Snowflake provides built-in functions to assist in splitting of text into smaller chunks. For more information, see
-[SPLIT\_TEXT\_RECURSIVE\_CHARACTER](https://docs.snowflake.com/sql-reference/functions/split_text_recursive_character-snowflake-cortex).
+[SPLIT_TEXT_RECURSIVE_CHARACTER](https://docs.snowflake.com/sql-reference/functions/split_text_recursive_character-snowflake-cortex).
 
 For best search results with Cortex Search, Snowflake recommends splitting the text in your search column into chunks of no more than 512 tokens (about 385 English words). While there are longer-context embedding models available today, such as `snowflake-arctic-embed-l-v2.0-8k`, [research](https://www.snowflake.com/en/engineering-blog/impact-retrieval-chunking-finance-rag/) shows that *a smaller chunk size typically results in higher retrieval and downstream LLM response quality*. With smaller chunks, retrieval can be more precise for a given query and, in a retrieval-augmented generation (RAG) scenario, the downstream LLM receives text chunks that are more relevant to the query.
 
@@ -484,7 +484,7 @@ Cortex Search chooses one of the following modes at search time, depending on wh
 
 | Mode | Index time | Query time |
 | --- | --- | --- |
-| Fully user-managed | Provide vectors in a VECTOR column | Provide a query vector via multi\_index\_query |
+| Fully user-managed | Provide vectors in a VECTOR column | Provide a query vector via multi_index_query |
 | User-managed with managed query embeddings | Provide vectors in a VECTOR column | Cortex Search embeds query text using the specified model |
 
 ## Suspension of indexing and serving
@@ -501,11 +501,11 @@ cost on idle services.
 
 Much like Dynamic Tables, Cortex Search Services automatically suspend their indexing state when they encounter five
 consecutive refresh failures related to the source query. If you encounter this failure for your service, you can view the specific SQL
-error using either [DESCRIBE CORTEX SEARCH SERVICE](https://docs.snowflake.com/sql-reference/sql/desc-cortex-search) or the [CORTEX\_SEARCH\_SERVICES view](https://docs.snowflake.com/sql-reference/info-schema/cortex_search). The output from
+error using either [DESCRIBE CORTEX SEARCH SERVICE](https://docs.snowflake.com/sql-reference/sql/desc-cortex-search) or the [CORTEX_SEARCH_SERVICES view](https://docs.snowflake.com/sql-reference/info-schema/cortex_search). The output from
 both includes the following columns:
 
-* The INDEXING\_STATE column, which is SUSPENDED for a suspended service.
-* The INDEXING\_ERROR column, which contains the specific SQL error encountered in the source query.
+* The INDEXING_STATE column, which is SUSPENDED for a suspended service.
+* The INDEXING_ERROR column, which contains the specific SQL error encountered in the source query.
 
 Once the root issue is resolved, you can resume the service with `ALTER CORTEX SEARCH SERVICE <name> RESUME INDEXING`.
 For detailed syntax, see [ALTER CORTEX SEARCH SERVICE](https://docs.snowflake.com/sql-reference/sql/alter-cortex-search).
@@ -546,7 +546,7 @@ A Cortex Search Service incurs cost in the following ways:
 | Category | Description |
 | --- | --- |
 | Virtual warehouse compute | A Cortex Search Service requires a [virtual warehouse](https://docs.snowflake.com/user-guide/cost-understanding-compute#label-virtual-warehouse-credit-usage) to refresh the service: to run queries against base objects when they are initialized and refreshed, including orchestrating text embedding jobs and building the search index. These operations use compute resources, which consume [credits](https://docs.snowflake.com/user-guide/cost-understanding-compute#label-what-are-credits). If no changes are identified during a refresh, virtual warehouse credits aren’t consumed since there’s no new data to refresh. |
-| EMBED\_TEXT tokens compute | A Cortex Search Service automatically embeds each text row in the search column specified in the `ON` parameter into vector space to enable semantic search, which incurs a credit cost per token embedded. This involves calling [EMBED\_TEXT\_768](https://docs.snowflake.com/sql-reference/functions/embed_text-snowflake-cortex) or [EMBED\_TEXT\_1024](https://docs.snowflake.com/sql-reference/functions/embed_text_1024-snowflake-cortex) to convert each document as a series of numbers that encodes its meaning. Embeddings are computed each time a row is inserted or updated. Embeddings are processed incrementally in the evaluation of the source query, so the embedding cost is only incurred for added or changed documents. See [Vector Embeddings](https://docs.snowflake.com/user-guide/snowflake-cortex/vector-embeddings) for more information on vector embedding costs. |
+| EMBED_TEXT tokens compute | A Cortex Search Service automatically embeds each text row in the search column specified in the `ON` parameter into vector space to enable semantic search, which incurs a credit cost per token embedded. This involves calling [EMBED_TEXT_768](https://docs.snowflake.com/sql-reference/functions/embed_text-snowflake-cortex) or [EMBED_TEXT_1024](https://docs.snowflake.com/sql-reference/functions/embed_text_1024-snowflake-cortex) to convert each document as a series of numbers that encodes its meaning. Embeddings are computed each time a row is inserted or updated. Embeddings are processed incrementally in the evaluation of the source query, so the embedding cost is only incurred for added or changed documents. See [Vector Embeddings](https://docs.snowflake.com/user-guide/snowflake-cortex/vector-embeddings) for more information on vector embedding costs. |
 | Multi-index Cortex Search | Multi-index Cortex Search Services have costs dependent on how you embed tokens and the number of columns you index. Larger embedding vectors or higher numbers of index columns incur higher costs. Embeddings are computed each time a row is inserted or updated. Embeddings are processed incrementally in the evaluation of the source query, so the embedding cost is only incurred for added or changed documents. |
 | Serving compute | A Cortex Search Service uses multi-tenant serving compute, separate from a user-provided Virtual Warehouse, to establish a low-latency, high-throughput service. The compute cost for this component is incurred per GB per month (GB/mo) of uncompressed indexed data, where indexed data is the user-provided data in the Cortex Search source query, plus vector embeddings computed on the user’s behalf. You incur these costs while the service is available to respond to queries, even if no queries are served during a given period. For the Cortex Search Serving credit rate per GB/mo of indexed data, see the [Snowflake Service Consumption Table](https://www.snowflake.com/legal-files/CreditConsumptionTable.pdf). |
 | Storage | Cortex Search Services materialize the source query into a table stored in your account. This table is transformed into data structures that are optimized for low-latency serving, also stored in your account. Storage for the table and intermediate data structures are based on a flat rate per terabyte (TB). |
@@ -557,7 +557,7 @@ For best practices on managing the costs of a Cortex Search Service, see [Unders
 To set monthly spending limits and configure automated actions when spend exceeds thresholds, see [Resource budgets for Cortex Search](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-resource-budgets).
 
 To view the **AI Services**-related consumption costs for each Cortex Search Service in your account, aggregated daily,
-see the [CORTEX\_SEARCH\_DAILY\_USAGE\_HISTORY view](https://docs.snowflake.com/sql-reference/account-usage/cortex_search_daily_usage_history).
+see the [CORTEX_SEARCH_DAILY_USAGE_HISTORY view](https://docs.snowflake.com/sql-reference/account-usage/cortex_search_daily_usage_history).
 
 ## Known limitations
 
@@ -580,9 +580,9 @@ Usage of Cortex Search is subject to the following limitations:
 * **Query constructs**: Cortex Search Service source queries must adhere to the same query restrictions
   that Dynamic Tables have. See the [Don’t use dynamic tables when your pipeline has any of the following…](https://docs.snowflake.com/user-guide/dynamic-tables/decision-guide#label-dynamic-tables-limitations) for more detail.
 * **Data retention**: Cortex Search Services have the same requirements as dynamic tables around data retentions.
-  Specifically, you can’t set the [DATA\_RETENTION\_TIME\_IN\_DAYS](https://docs.snowflake.com/sql-reference/parameters#label-data-retention-time-in-days) object parameter in your base tables to zero
+  Specifically, you can’t set the [DATA_RETENTION_TIME_IN_DAYS](https://docs.snowflake.com/sql-reference/parameters#label-data-retention-time-in-days) object parameter in your base tables to zero
   or set this parameter on the schema or database containing the search service. Additionally, search services
-  can become stale if they are not refreshed within [MAX\_DATA\_EXTENSION\_TIME\_IN\_DAYS](https://docs.snowflake.com/sql-reference/parameters#label-max-data-extension-time-in-days). Once stale, they must be
+  can become stale if they are not refreshed within [MAX_DATA_EXTENSION_TIME_IN_DAYS](https://docs.snowflake.com/sql-reference/parameters#label-max-data-extension-time-in-days). Once stale, they must be
   recreated to resume refreshes. See the [Don’t use dynamic tables when your pipeline has any of the following…](https://docs.snowflake.com/user-guide/dynamic-tables/decision-guide#label-dynamic-tables-limitations) for more detail.
 * **Cloning**: Cortex Search Services do not currently support [cloning](https://docs.snowflake.com/user-guide/object-clone).
   Snowflake intends to provide this capability in some future release, but cannot guarantee a specific timeline.

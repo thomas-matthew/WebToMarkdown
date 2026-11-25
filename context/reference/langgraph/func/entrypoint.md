@@ -1,4 +1,4 @@
-Classv1.2.23 (latest)●Since v1.2
+Classv1.2.24 (latest)●Since v1.2
 
 # entrypoint
 
@@ -179,7 +179,7 @@ Copy
 ## Used in Docs
 
 * [Deploy other frameworks](https://docs.langchain.com/langsmith/deploy-other-frameworks)
-* [MISSING\_CHECKPOINTER](https://docs.langchain.com/oss/python/langgraph/errors/MISSING_CHECKPOINTER)
+* [MISSING_CHECKPOINTER](https://docs.langchain.com/oss/python/langgraph/errors/MISSING_CHECKPOINTER)
 
 ## Parameters
 
@@ -197,16 +197,16 @@ Copy
 
 constructor
 
-\_\_init\_\_
+__init__
 
 | Name | Type |
 | --- | --- |
 | checkpointer | [BaseCheckpointSaver](https://reference.langchain.com/python/langgraph.checkpoint/base/BaseCheckpointSaver) | None |
 | store | [BaseStore](https://reference.langchain.com/python/langgraph.store/base/BaseStore) | None |
 | cache | [BaseCache](https://reference.langchain.com/python/langchain-core/caches/BaseCache) | None |
-| context\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[ContextT](https://reference.langchain.com/python/langgraph/typing/ContextT)] | None |
-| cache\_policy | [CachePolicy](https://reference.langchain.com/python/langgraph/types/CachePolicy) | None |
-| retry\_policy | [RetryPolicy](https://reference.langchain.com/python/langgraph/types/RetryPolicy) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[RetryPolicy](https://reference.langchain.com/python/langgraph/types/RetryPolicy)] | None |
+| context_schema | [type](https://docs.python.org/3/library/functions.html#type)[[ContextT](https://reference.langchain.com/python/langgraph/typing/ContextT)] | None |
+| cache_policy | [CachePolicy](https://reference.langchain.com/python/langgraph/types/CachePolicy) | None |
+| retry_policy | [RetryPolicy](https://reference.langchain.com/python/langgraph/types/RetryPolicy) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[RetryPolicy](https://reference.langchain.com/python/langgraph/types/RetryPolicy)] | None |
 | timeout | [float](https://docs.python.org/3/library/functions.html#float) | [timedelta](https://docs.python.org/3/library/datetime.html#datetime.timedelta) | [TimeoutPolicy](https://reference.langchain.com/python/langgraph/types/TimeoutPolicy) | None |
 | kwargs | Unpack[[DeprecatedKwargs](https://reference.langchain.com/python/langgraph/_internal/_typing/DeprecatedKwargs)] |
 
@@ -226,11 +226,11 @@ cache: cache
 
 attribute
 
-cache\_policy: cache\_policy
+cache_policy: cache_policy
 
 attribute
 
-retry\_policy: retry\_policy
+retry_policy: retry_policy
 
 attribute
 
@@ -238,7 +238,7 @@ timeout
 
 attribute
 
-context\_schema: context\_schema
+context_schema: context_schema
 
 ## Classes
 

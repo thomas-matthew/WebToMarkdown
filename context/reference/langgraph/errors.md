@@ -26,7 +26,7 @@ Class
 Raised when the graph has exhausted the maximum number of steps.
 
 This prevents infinite loops. To increase the maximum number of steps,
-run your graph with a config specifying a higher `recursion\_lim
+run your graph with a config specifying a higher `recursion_lim
 
 Class
 
@@ -36,7 +36,7 @@ Raised when attempting to update a channel with an invalid set of updates.
 
 Troubleshooting guides:
 
-* [`INVALID_CONCURRENT_GRAPH_UPDATE`](https://docs.langchain.com/oss/python/langgraph/INVALID\_CONCU
+* [`INVALID_CONCURRENT_GRAPH_UPDATE`](https://docs.langchain.com/oss/python/langgraph/INVALID_CONCU
 
 Class
 
@@ -115,11 +115,11 @@ Raised by a node to interrupt execution.
 
 Function
 
-### [create\_error\_message](https://reference.langchain.com/python/langgraph/errors/create_error_message)
+### [create_error_message](https://reference.langchain.com/python/langgraph/errors/create_error_message)
 
 Function
 
-### [is\_invalid\_resume](https://reference.langchain.com/python/langgraph/errors/is_invalid_resume)
+### [is_invalid_resume](https://reference.langchain.com/python/langgraph/errors/is_invalid_resume)
 
 Whether `error` was raised because a resume value didn't match `response_schema`.
 

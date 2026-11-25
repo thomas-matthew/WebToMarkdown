@@ -1,6 +1,6 @@
-Attributev1.2.23 (latest)●Since v1.2
+Attributev1.2.24 (latest)●Since v1.2
 
-# TAG\_HIDDEN
+# TAG_HIDDEN
 
 Tag to hide a node/edge from certain tracing/streaming environments.
 

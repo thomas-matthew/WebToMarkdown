@@ -1,4 +1,4 @@
-Classv1.2.23 (latest)●Since v1.2
+Classv1.2.24 (latest)●Since v1.2
 
 # BaseChannel
 
@@ -20,7 +20,7 @@ BaseChannel(
 
 constructor
 
-\_\_init\_\_
+__init__
 
 | Name | Type |
 | --- | --- |
@@ -72,7 +72,7 @@ or doesn't support checkpoints.
 
 method
 
-from\_checkpoint
+from_checkpoint
 
 Return a new identical channel, optionally initialized from a checkpoint.
 
@@ -88,7 +88,7 @@ Raises `EmptyChannelError` if the channel is empty (never updated yet).
 
 method
 
-is\_available
+is_available
 
 Return `True` if the channel is available (not empty), `False` otherwise.
 

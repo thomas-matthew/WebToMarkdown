@@ -111,7 +111,7 @@ Consumers:
 
 ## Citations
 
-To ensure that the CKE is providing citations, when you configure the [Cortex Search Services](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-overview), make sure that you include a *SOURCE\_URL* column that points to the source of the document in the indexed columns. This can be used by LLMs or Snowflake CoWork to provide clear attribution and hyperlinks back to the source material.
+To ensure that the CKE is providing citations, when you configure the [Cortex Search Services](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-overview), make sure that you include a *SOURCE_URL* column that points to the source of the document in the indexed columns. This can be used by LLMs or Snowflake CoWork to provide clear attribution and hyperlinks back to the source material.
 
 ## Publishing the CKE to the Snowflake Marketplace
 

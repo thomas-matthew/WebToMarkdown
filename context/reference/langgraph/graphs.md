@@ -20,7 +20,7 @@ Class
 
 Function
 
-### [add\_messages](https://reference.langchain.com/python/langgraph/graph/message/add_messages)
+### [add_messages](https://reference.langchain.com/python/langgraph/graph/message/add_messages)
 
 Merges two lists of messages, updating existing messages by ID.
 

@@ -1,4 +1,4 @@
-Classv1.8.3 (latest)●Since v1.8
+Classv1.8.4 (latest)●Since v0.2
 
 # BaseMedia
 
@@ -44,47 +44,47 @@ Arbitrary metadata associated with the content.
 
 ### Attributes
 
-Alc\_secrets: dict[str, str]
+Alc_secrets: dict[str, str]
 
 —
 
 A map of constructor argument names to secret ids.
 
-Alc\_attributes: dict[str, Any]
+Alc_attributes: dict[str, Any]
 
 —
 
 List of attribute names that should be included in the serialized kwargs.
 
-[Amodel\_config](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/model_config)
+[Amodel_config](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/model_config)
 
 ### Methods
 
-Mis\_lc\_serializable
+Mis_lc_serializable
 
 —
 
 Is this class serializable?
 
-Mget\_lc\_namespace
+Mget_lc_namespace
 
 —
 
 Get the namespace of the LangChain object.
 
-Mlc\_id
+Mlc_id
 
 —
 
 Return a unique identifier for this class for serialization purposes.
 
-Mto\_json
+Mto_json
 
 —
 
 Serialize the object to JSON.
 
-Mto\_json\_not\_implemented
+Mto_json_not_implemented
 
 —
 

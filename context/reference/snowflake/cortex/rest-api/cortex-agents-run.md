@@ -15,7 +15,7 @@ There are two methods to interact with an agent:
 
 Tip
 
-You can also run agents using SQL with the [DATA\_AGENT\_RUN](https://docs.snowflake.com/sql-reference/functions/data_agent_run-snowflake-cortex) function.
+You can also run agents using SQL with the [DATA_AGENT_RUN](https://docs.snowflake.com/sql-reference/functions/data_agent_run-snowflake-cortex) function.
 The SQL function returns a non-streaming JSON response and doesn’t require a REST client. For most use cases, Snowflake recommends the REST API.
 
 ## Agent run request with agent object
@@ -50,10 +50,10 @@ You can’t set, update, or overwrite the `models`, `instructions`, and `orchest
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `thread_id` | integer | The thread ID for the conversation. If thread\_id is used, then parent\_message\_id must be passed as well. |
-| `parent_message_id` | integer | The ID of the parent message in the thread. If this is the first message, parent\_message\_id should be 0. |
-| `messages` | array of [Message](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-message) | If thread\_id and parent\_message\_id are passed in the request, messages includes the current user message in the conversation. Else, messages includes the conversation history and the current message. Messages contains both user queries and assistant responses in chronological order. |
-| `background` | boolean | Whether to run the agent asynchronously. If `true`, the agent runs asynchronously in the background with a 6 hour timeout, even if the client disconnects. For a background run with `stream` set to `false`, the API returns immediately with `status: in_progress` and a `run_id`; retrieve the response after the run completes by streaming from the Stream Agent Run endpoint with the `run_id` (REST API) or by polling the THREAD\_MESSAGES SQL function with the thread ID. If `stream` is `true`, the response is streamed as Server-Sent Events. If `background` is `false`, the agent runs synchronously with a 15 minute timeout. Only available when using threads to manage conversation history. |
+| `thread_id` | integer | The thread ID for the conversation. If thread_id is used, then parent_message_id must be passed as well. |
+| `parent_message_id` | integer | The ID of the parent message in the thread. If this is the first message, parent_message_id should be 0. |
+| `messages` | array of [Message](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-message) | If thread_id and parent_message_id are passed in the request, messages includes the current user message in the conversation. Else, messages includes the conversation history and the current message. Messages contains both user queries and assistant responses in chronological order. |
+| `background` | boolean | Whether to run the agent asynchronously. If `true`, the agent runs asynchronously in the background with a 6 hour timeout, even if the client disconnects. For a background run with `stream` set to `false`, the API returns immediately with `status: in_progress` and a `run_id`; retrieve the response after the run completes by streaming from the Stream Agent Run endpoint with the `run_id` (REST API) or by polling the THREAD_MESSAGES SQL function with the thread ID. If `stream` is `true`, the response is streamed as Server-Sent Events. If `background` is `false`, the agent runs synchronously with a 15 minute timeout. Only available when using threads to manage conversation history. |
 | `stream` | boolean | Whether to return a streaming response (`text/event-stream`) or a non-streaming JSON response (`application/json`). If true, the response will be streamed as Server-Sent Events. If false, the response will be returned as JSON. |
 | `tool_choice` | [ToolChoice](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-toolchoice) | Configures how the agent should select and use tools during the interaction. Controls whether tool use is automatic, required, or whether specific tools should be used. |
 | `client_metadata` | object | Free-form JSON object your application attaches to the request, for example to record which end user or client made it. Snowflake does not interpret it. It is not sent to the model. The serialized object must be at most 4096 bytes (UTF-8); larger requests are rejected, not truncated. It is recorded on the `CORTEX_AGENT_REQUEST` event in the agent’s AI Observability event table, under the attribute `snow.ai.observability.client_metadata`, as a JSON string. It is not a column in `CORTEX_AGENT_USAGE_HISTORY`; to attribute usage, join the event to that view on the request ID. Do not put secrets or personal data in it. Prefer opaque identifiers over emails. |
@@ -147,17 +147,17 @@ To use the legacy schema and behavior, use the following schema:
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `thread_id` | integer | The thread ID for the conversation. If thread\_id is used, then parent\_message\_id must be passed as well. |
-| `parent_message_id` | integer | The ID of the parent message in the thread. If this is the first message, parent\_message\_id should be 0. |
-| `messages` | array of [Message](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-message) | If thread\_id and parent\_message\_id are passed in the request, messages includes the current user message in the conversation. Else, messages includes the conversation history and the current message. Messages contains both user queries and assistant responses in chronological order. |
-| `background` | boolean | Whether to run the agent asynchronously. If `true`, the agent runs asynchronously in the background with a 6 hour timeout, even if the client disconnects. For a background run with `stream` set to `false`, the API returns immediately with `status: in_progress` and a `run_id`; retrieve the response after the run completes by streaming from the Stream Agent Run endpoint with the `run_id` (REST API) or by polling the THREAD\_MESSAGES SQL function with the thread ID. If `stream` is `true`, the response is streamed as Server-Sent Events. If `background` is `false`, the agent runs synchronously with a 15 minute timeout. Only available when using threads to manage conversation history. |
+| `thread_id` | integer | The thread ID for the conversation. If thread_id is used, then parent_message_id must be passed as well. |
+| `parent_message_id` | integer | The ID of the parent message in the thread. If this is the first message, parent_message_id should be 0. |
+| `messages` | array of [Message](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-message) | If thread_id and parent_message_id are passed in the request, messages includes the current user message in the conversation. Else, messages includes the conversation history and the current message. Messages contains both user queries and assistant responses in chronological order. |
+| `background` | boolean | Whether to run the agent asynchronously. If `true`, the agent runs asynchronously in the background with a 6 hour timeout, even if the client disconnects. For a background run with `stream` set to `false`, the API returns immediately with `status: in_progress` and a `run_id`; retrieve the response after the run completes by streaming from the Stream Agent Run endpoint with the `run_id` (REST API) or by polling the THREAD_MESSAGES SQL function with the thread ID. If `stream` is `true`, the response is streamed as Server-Sent Events. If `background` is `false`, the agent runs synchronously with a 15 minute timeout. Only available when using threads to manage conversation history. |
 | `stream` | boolean | Whether to return a streaming response (`text/event-stream`) or a non-streaming JSON response (`application/json`). If true, the response will be streamed as Server-Sent Events. If false, the response will be returned as JSON. |
 | `tool_choice` | [ToolChoice](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-toolchoice) | Configures how the agent should select and use tools during the interaction. Controls whether tool use is automatic, required, or whether specific tools should be used. |
 | `client_metadata` | object | Free-form JSON object your application attaches to the request, for example to record which end user or client made it. Snowflake does not interpret it. It is not sent to the model. The serialized object must be at most 4096 bytes (UTF-8); larger requests are rejected, not truncated. It is recorded on the `CORTEX_AGENT_REQUEST` event in the agent’s AI Observability event table, under the attribute `snow.ai.observability.client_metadata`, as a JSON string. It is not a column in `CORTEX_AGENT_USAGE_HISTORY`; to attribute usage, join the event to that view on the request ID. Do not put secrets or personal data in it. Prefer opaque identifiers over emails. |
 | `models` | [ModelConfig](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
 | `instructions` | [AgentInstructions](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
 | `orchestration` | [OrchestrationConfig](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
-| `tools` | array of [Tool](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
+| `tools` | array of [Tool](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-tool) | List of tools available for the agent to use. Each tool includes a tool_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool_resources. |
 | `tool_resources` | map of [ToolResource](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-toolresource) | Configuration for each tool referenced in the tools array. Each key must equal the name of the corresponding tool. |
 | `thinking_effort` | string | Controls the reasoning effort used by the orchestration model. Higher effort can improve complex-task quality at the cost of latency and tokens. When omitted, the service selects the appropriate default. |
 
@@ -367,7 +367,7 @@ Event streamed when the final response is available. This is the last event emit
 | `content` | array of [MessageContentItem](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-messagecontentitem) | The content generated by the agent. |
 | `warnings` | array of [Warning](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-warning) | Non-fatal warnings that occurred during processing. Present for non-streaming clients or as a summary. |
 | `metadata` | [ResponseMetadata](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-responsemetadata) |  |
-| `status` | string | The completion status of the agent run. Set to “cancelled” when the run was terminated via CancelAgentRun, or “timed\_out” when the run exceeded its max run length. |
+| `status` | string | The completion status of the agent run. Set to “cancelled” when the run was terminated via CancelAgentRun, or “timed_out” when the run exceeded its max run length. |
 
 **Example**
 
@@ -539,7 +539,7 @@ An event streamed when the agent requests a tool use.
 | --- | --- | --- |
 | `content_index` | integer | The index in the response content array this event represents |
 | `tool_use_id` | string | Unique identifier for this tool use. Can be used to associated tool results. |
-| `type` | string | The type of the tool (e.g. cortex\_search, cortex\_analyst\_text\_to\_sql) |
+| `type` | string | The type of the tool (e.g. cortex_search, cortex_analyst_text_to_sql) |
 | `name` | string | The unique identifier for this tool instance |
 | `input` | object | The structured input for this tool. The schema of this object should will vary depending on the tool spec. |
 | `client_side_execute` | boolean | Whether the tool use is executed on the client side. |
@@ -574,7 +574,7 @@ Event streamed when a tool finishes executing, including the tool result.
 | --- | --- | --- |
 | `content_index` | integer | The index in the response content array this event represents |
 | `tool_use_id` | string | Unique identifier for this tool use. Can be used to associated tool results. |
-| `type` | string | The type of the tool (e.g. cortex\_search, cortex\_analyst\_text\_to\_sql) |
+| `type` | string | The type of the tool (e.g. cortex_search, cortex_analyst_text_to_sql) |
 | `name` | string | The unique identifier for this tool instance |
 | `content` | array of [ToolResultContent](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-toolresultcontent) | The content on the tool result |
 | `status` | string | The status of tool execution |
@@ -606,7 +606,7 @@ Status update for a specific tool use.
 | Field | Type | Description |
 | --- | --- | --- |
 | `tool_use_id` | string | Unique identifier for this tool use. |
-| `tool_type` | string | The type of the tool (e.g. cortex\_search, cortex\_analyst\_text\_to\_sql) |
+| `tool_type` | string | The type of the tool (e.g. cortex_search, cortex_analyst_text_to_sql) |
 | `status` | string | Enum for the current state. |
 | `message` | string | A more descriptive message expanding on the current status. |
 | `details` | object | Tool-specific status details. |
@@ -631,7 +631,7 @@ An delta event streamed for the Cortex Analyst tool execution
 | --- | --- | --- |
 | `content_index` | integer | The index in the response content array this event represents |
 | `tool_use_id` | string | Unique identifier for this tool use. Can be used to associated tool results. |
-| `tool_type` | string | The type of the tool (always cortex\_analyst\_text\_to\_sql for this event) |
+| `tool_type` | string | The type of the tool (always cortex_analyst_text_to_sql for this event) |
 | `tool_name` | string | The unique identifier for this tool instance |
 | `delta` | [CortexAnalystToolResultDelta](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-cortexanalysttoolresultdelta) | The content delta |
 
@@ -873,7 +873,7 @@ to 5 minutes after it completes. After that, connecting to a previously complete
 
 | Parameter | Description |
 | --- | --- |
-| `run_id` | (Required) The Agent Run ID. Used to identify async runs. In the format {thread\_id}-{user\_message\_id}. |
+| `run_id` | (Required) The Agent Run ID. Used to identify async runs. In the format {thread_id}-{user_message_id}. |
 
 ### Query parameters
 
@@ -903,7 +903,7 @@ If the run has already completed or been canceled, returns 409 Conflict.
 
 | Parameter | Description |
 | --- | --- |
-| `run_id` | (Required) The Agent Run ID. Used to identify async runs. In the format {thread\_id}-{user\_message\_id}. |
+| `run_id` | (Required) The Agent Run ID. Used to identify async runs. In the format {thread_id}-{user_message_id}. |
 
 ### Response
 
@@ -966,7 +966,7 @@ Run successfully canceled. Returns metadata about the canceled run.
 
 ## `Annotation`
 
-> cortex\_search\_citation
+> cortex_search_citation
 >
 > | Field | Type | Description |
 > | --- | --- | --- |
@@ -1204,7 +1204,7 @@ Represents a single message in the conversation. Can be from the user, assistant
 
 ## `MessageContentItem`
 
-> chartcompactionmappermission\_decisiontabletextthinkingtool\_resulttool\_use
+> chartcompactionmappermission_decisiontabletextthinkingtool_resulttool_use
 >
 > | Field | Type | Description |
 > | --- | --- | --- |
@@ -1256,7 +1256,7 @@ Represents a single message in the conversation. Can be from the user, assistant
 > }
 > ```
 >
-> A user’s decision to grant or deny permission for a tool execution that had permission options. Sent by the client in the next request after receiving a tool\_use event with non-empty permission options.
+> A user’s decision to grant or deny permission for a tool execution that had permission options. Sent by the client in the next request after receiving a tool_use event with non-empty permission options.
 >
 > | Field | Type | Description |
 > | --- | --- | --- |
@@ -1510,12 +1510,12 @@ Output token details.
 
 ## `PermissionDecision`
 
-Contains the user’s decision on whether to allow a specific tool execution. The decision field must match one of the options from the tool\_use event’s permission.options list (e.g. “Allow Once” to approve, “Deny” to deny). If denied, an optional reason can be provided which will be shown to the LLM.
+Contains the user’s decision on whether to allow a specific tool execution. The decision field must match one of the options from the tool_use event’s permission.options list (e.g. “Allow Once” to approve, “Deny” to deny). If denied, an optional reason can be provided which will be shown to the LLM.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `tool_use_id` | string | The ID of the tool\_use this decision applies to. |
-| `decision` | string | Must match one of the options from the tool\_use permission.options list. |
+| `tool_use_id` | string | The ID of the tool_use this decision applies to. |
+| `decision` | string | Must match one of the options from the tool_use permission.options list. |
 | `reason` | string | Optional reason for denying permission. Only meaningful when decision is “Deny”. This reason will be shown to the LLM as an error message so it can respond appropriately. |
 
 **Example**
@@ -1839,9 +1839,9 @@ Defines a tool that can be used by the agent. Tools provide specific capabilitie
 
 ## `ToolResource`
 
-> cortex\_analyst\_text\_to\_sqlcortex\_searchgenericweb\_search
+> cortex_analyst_text_to_sqlcortex_searchgenericweb_search
 >
-> Configuration for text-to-SQL analysis tool. Provides parameters for SQL query generation and execution. Exactly one of semantic\_model\_file or semantic\_view must be provided.
+> Configuration for text-to-SQL analysis tool. Provides parameters for SQL query generation and execution. Exactly one of semantic_model_file or semantic_view must be provided.
 >
 > | Field | Type | Description |
 > | --- | --- | --- |
@@ -1926,7 +1926,7 @@ Defines a tool that can be used by the agent. Tools provide specific capabilitie
 | Field | Type | Description |
 | --- | --- | --- |
 | `tool_use_id` | string | Unique identifier for this tool use. Can be used to associated tool results. |
-| `type` | string | The type of the tool (e.g. cortex\_search, cortex\_analyst\_text\_to\_sql) |
+| `type` | string | The type of the tool (e.g. cortex_search, cortex_analyst_text_to_sql) |
 | `name` | string | The unique identifier for this tool instance |
 | `content` | array of [ToolResultContent](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-toolresultcontent) | The content on the tool result |
 | `status` | string | The status of tool execution |
@@ -1990,8 +1990,8 @@ Specification of the tool’s type, configuration, and input requirements.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `type` | string | The type of tool capability. Can be specialized types like ‘cortex\_analyst\_text\_to\_sql’ or ‘generic’ for general-purpose tools. |
-| `name` | string | Unique identifier for referencing this tool instance. Used to match with configuration in tool\_resources. |
+| `type` | string | The type of tool capability. Can be specialized types like ‘cortex_analyst_text_to_sql’ or ‘generic’ for general-purpose tools. |
+| `name` | string | Unique identifier for referencing this tool instance. Used to match with configuration in tool_resources. |
 | `description` | string | Description of the tool to be considered for tool use. |
 | `input_schema` | [ToolInputSchema](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-run#label-snowflake-agent-run-toolinputschema) | JSON Schema definition of the expected input parameters for this tool. This will be fed to the agent so it knows the structure it should follow for when generating the input for ToolUses. Required for generic tools to specify their input parameters. |
 
@@ -2022,7 +2022,7 @@ Specification of the tool’s type, configuration, and input requirements.
 | Field | Type | Description |
 | --- | --- | --- |
 | `tool_use_id` | string | Unique identifier for this tool use. Can be used to associated tool results. |
-| `type` | string | The type of the tool (e.g. cortex\_search, cortex\_analyst\_text\_to\_sql) |
+| `type` | string | The type of the tool (e.g. cortex_search, cortex_analyst_text_to_sql) |
 | `name` | string | The unique identifier for this tool instance |
 | `input` | object | The structured input for this tool. The schema of this object should will vary depending on the tool spec. |
 | `client_side_execute` | boolean | Whether the tool use is executed on the client side. |
@@ -2054,7 +2054,7 @@ Permission metadata for a tool use. A non-empty options list means the client mu
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `options` | array of string | The complete set of valid options the user may choose from, including “Deny” to deny permission. Superseded by grant\_options, which carries the same choices plus the grant each one would remember. |
+| `options` | array of string | The complete set of valid options the user may choose from, including “Deny” to deny permission. Superseded by grant_options, which carries the same choices plus the grant each one would remember. |
 
 **Example**
 

@@ -1,7 +1,7 @@
 Categories:
 :   [String & binary functions](https://docs.snowflake.com/sql-reference/functions-string) (AI Functions)
 
-# AI\_TRANSLATE
+# AI_TRANSLATE
 
 Translates the given input text from one supported language to another.
 
@@ -39,7 +39,7 @@ A string containing a translation of the original text into the target language.
 
 ## Error behavior
 
-By default, if AI\_TRANSLATE can’t process the input, the function returns NULL. If the query processes multiple rows,
+By default, if AI_TRANSLATE can’t process the input, the function returns NULL. If the query processes multiple rows,
 rows with errors return NULL and don’t prevent the query from completing.
 
 The return value on error depends on the `return_error_details`
@@ -54,14 +54,14 @@ For more information about error handling for AI functions, see [Snowflake Corte
 
 ## Usage notes
 
-The following languages are supported by the AI\_TRANSLATE function. Use the corresponding language code for the source and
+The following languages are supported by the AI_TRANSLATE function. Use the corresponding language code for the source and
 target language.
 
-The AI\_TRANSLATE model also supports a mix of different languages in the text being translated (for example,
+The AI_TRANSLATE model also supports a mix of different languages in the text being translated (for example,
 “Spanglish”). In this case, specify an empty string (`''`) as the source language to auto-detect the languages
 used in the source text.
 
-AI\_TRANSLATE accepts up to 100,000 input tokens. Across supported languages, translations average an approximately
+AI_TRANSLATE accepts up to 100,000 input tokens. Across supported languages, translations average an approximately
 1:1 input-to-output token ratio, so a translation request can process up to 200,000 total tokens across the source
 text (input tokens) and generated translation (output tokens).
 
@@ -93,7 +93,7 @@ text (input tokens) and generated translation (output tokens).
 
 ## Access control requirements
 
-Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
+Users must use a role that has been granted the [SNOWFLAKE.CORTEX_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
 See [Cortex LLM privileges](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this privilege.
 
 ## Examples
@@ -160,7 +160,7 @@ Agent: You're welcome. Goodbye and have a nice day!
 ```
 
 Finally, the following example illustrates translating text from two different languages (in this case English and Spanish, or “Spanglish”) to English.
-Note that the specification of the source language is the empty string, which tells AI\_TRANSLATE to automatically detect the language.
+Note that the specification of the source language is the empty string, which tells AI_TRANSLATE to automatically detect the language.
 
 ```
 SELECT AI_TRANSLATE('Voy a likear tus fotos en Insta.', '', 'en')
@@ -174,8 +174,8 @@ I'm going to like your photos on Insta.
 
 Note
 
-AI\_TRANSLATE is the updated version of [TRANSLATE](https://docs.snowflake.com/sql-reference/functions/translate-snowflake-cortex).
-For the latest functionality, use AI\_TRANSLATE.
+AI_TRANSLATE is the updated version of [TRANSLATE](https://docs.snowflake.com/sql-reference/functions/translate-snowflake-cortex).
+For the latest functionality, use AI_TRANSLATE.
 
 ## Legal notices
 

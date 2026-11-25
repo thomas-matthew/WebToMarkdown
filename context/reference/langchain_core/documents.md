@@ -32,7 +32,7 @@ Provides common fields for content that needs to be stored, indexed, or searched
 
 Note
 
-For multimodal content in \*\*ch
+For multimodal content in **ch
 
 ## Modules
 

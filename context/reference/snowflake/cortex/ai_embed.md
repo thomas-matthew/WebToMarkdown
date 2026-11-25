@@ -1,13 +1,13 @@
 Categories:
 :   [String & binary functions](https://docs.snowflake.com/sql-reference/functions-string) (AI Functions)
 
-# AI\_EMBED
+# AI_EMBED
 
 Creates an embedding vector from text or an image. Embeddings are abstract numerical representations of the features of
 a piece of text or an image that can be used to determine the degree of similarity between pieces of text or images,
 which can be used for semantic search, clustering, classification, and other tasks.
 
-The following table shows the regions where you can use the AI\_EMBED function for text and images:
+The following table shows the regions where you can use the AI_EMBED function for text and images:
 
 | Data type | AWS US West 2 (Oregon) | AWS US East 1 (N. Virginia) | AWS Europe Central 1 (Frankfurt) | AWS Europe West 1 (Ireland) | AWS AP Southeast 2 (Sydney) | AWS AP Northeast 1 (Tokyo) | Azure East US 2 (Virginia) | Azure West Europe (Netherlands) | AWS (Cross-Region) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -46,7 +46,7 @@ AI_EMBED( <model> , <input> )
 
     Bring-your-own model: Open preview
 
-    Alternatively, specify the name of a Snowpark Container Services model inference service that hosts your own sentence-transformer model. These services support text input only; FILE and [PROMPT](https://docs.snowflake.com/sql-reference/functions/prompt) inputs aren’t supported. For prerequisites, availability, and access requirements, see [Bring-your-own model for AI\_EMBED](https://docs.snowflake.com/developer-guide/snowflake-ml/inference/spcs-ai-embed).
+    Alternatively, specify the name of a Snowpark Container Services model inference service that hosts your own sentence-transformer model. These services support text input only; FILE and [PROMPT](https://docs.snowflake.com/sql-reference/functions/prompt) inputs aren’t supported. For prerequisites, availability, and access requirements, see [Bring-your-own model for AI_EMBED](https://docs.snowflake.com/developer-guide/snowflake-ml/inference/spcs-ai-embed).
 
 `input`
 :   The string or image (as a [FILE object](https://docs.snowflake.com/sql-reference/functions/to_file)) to generate an embedding from. Images must be:
@@ -61,7 +61,7 @@ An embedding vector of type VECTOR derived from the input text or image.
 
 ## Access control requirements
 
-You must use a role that has been granted the SNOWFLAKE.CORTEX\_USER database role *or* the SNOWFLAKE.CORTEX\_EMBED\_USER
+You must use a role that has been granted the SNOWFLAKE.CORTEX_USER database role *or* the SNOWFLAKE.CORTEX_EMBED_USER
 database role to call this function. See [Cortex LLM privileges](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on granting one of
 these privileges.
 
@@ -95,8 +95,8 @@ SELECT AI_EMBED('voyage-multimodal-3',
 
 Note
 
-AI\_EMBED is the updated version of [EMBED\_TEXT\_1024](https://docs.snowflake.com/sql-reference/functions/embed_text_1024-snowflake-cortex) and [EMBED\_TEXT\_768](https://docs.snowflake.com/sql-reference/functions/embed_text-snowflake-cortex).
-For the latest functionality, use AI\_EMBED.
+AI_EMBED is the updated version of [EMBED_TEXT_1024](https://docs.snowflake.com/sql-reference/functions/embed_text_1024-snowflake-cortex) and [EMBED_TEXT_768](https://docs.snowflake.com/sql-reference/functions/embed_text-snowflake-cortex).
+For the latest functionality, use AI_EMBED.
 
 ## Legal notices
 

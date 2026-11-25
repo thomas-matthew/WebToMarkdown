@@ -33,7 +33,7 @@ temperature:
 Sampling temperature between `0` and `2`. Higher values mean more random completions,
 while lower values (like `0.2`) mean more focused and deterministic completions.
 (Default: `1`.)
-max\_tokens:
+max_tokens:
 Max number of tokens to generate. Refer to your [model's documentation](https://docs.x.ai/docs/models#model-pricing)
 for the maximum number of tokens it can generate.
 logprobs:
@@ -42,9 +42,9 @@ Whether to return logprobs.
 Key init args — client params:
 timeout:
 Timeout for requests.
-max\_retries:
+max_retries:
 Max number of retries.
-api\_key:
+api_key:
 xAI API key. If not passed in will be read from env var `XAI_API_KEY`.
 
 **Instantiate:**
@@ -424,13 +424,13 @@ Copy
 
 attribute
 
-model\_name: str
+model_name: str
 
 Model name to use.
 
 attribute
 
-xai\_api\_key: SecretStr | None
+xai_api_key: SecretStr | None
 
 xAI API key.
 
@@ -438,7 +438,7 @@ Automatically read from env variable `XAI_API_KEY` if not provided.
 
 attribute
 
-xai\_api\_base: str
+xai_api_base: str
 
 Base URL path for API requests.
 
@@ -446,7 +446,7 @@ Automatically read from env variable `XAI_API_BASE` if not provided.
 
 attribute
 
-search\_parameters: dict[str, Any] | None
+search_parameters: dict[str, Any] | None
 
 **Deprecated.** Use web search tools instead:
 
@@ -458,19 +458,19 @@ Copy
 
 attribute
 
-openai\_api\_key: SecretStr | None
+openai_api_key: SecretStr | None
 
 attribute
 
-openai\_api\_base: str | None
+openai_api_base: str | None
 
 attribute
 
-model\_config
+model_config
 
 attribute
 
-lc\_secrets: dict[str, str]
+lc_secrets: dict[str, str]
 
 A map of constructor argument names to secret ids.
 
@@ -480,25 +480,25 @@ For example, `{"xai_api_key": "XAI_API_KEY"}`
 
 method
 
-get\_lc\_namespace
+get_lc_namespace
 
 Get the namespace of the LangChain object.
 
 method
 
-is\_lc\_serializable
+is_lc_serializable
 
 Return whether this model can be serialized by LangChain.
 
 method
 
-validate\_environment
+validate_environment
 
 Validate that api key and python package exists in environment.
 
 method
 
-with\_structured\_output
+with_structured_output
 
 Model wrapper that returns outputs formatted to match the given schema.
 

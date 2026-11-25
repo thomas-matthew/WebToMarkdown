@@ -1,13 +1,13 @@
 Categories:
 :   [String & binary functions](https://docs.snowflake.com/sql-reference/functions-string) (AI Functions)
 
-# AI\_FILTER
+# AI_FILTER
 
 Classifies free-form prompt inputs into a boolean. Currently supports both text and image filtering.
 
 ## Region availability
 
-The following table shows the regions where you can use the AI\_FILTER function for both text and images:
+The following table shows the regions where you can use the AI_FILTER function for both text and images:
 
 | Data type | AWS US West 2 (Oregon) | AWS US East 1 (N. Virginia) | AWS Europe Central 1 (Frankfurt) | AWS Europe West 1 (Ireland) | AWS AP Southeast 2 (Sydney) | AWS AP Northeast 1 (Tokyo) | Azure East US 2 (Virginia) | Azure West Europe (Netherlands) | AWS (Cross-Region) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -16,19 +16,19 @@ The following table shows the regions where you can use the AI\_FILTER function 
 
 ## Syntax
 
-Applying AI\_FILTER to an input string:
+Applying AI_FILTER to an input string:
 
 ```
 AI_FILTER( <input> [, <return_error_details> ] )
 ```
 
-Applying AI\_FILTER to single image:
+Applying AI_FILTER to single image:
 
 ```
 AI_FILTER( <predicate> , <input> [, <return_error_details> ] )
 ```
 
-Applying AI\_FILTER to multiple columns with both text and images, leveraging the [PROMPT](https://docs.snowflake.com/sql-reference/functions/prompt):
+Applying AI_FILTER to multiple columns with both text and images, leveraging the [PROMPT](https://docs.snowflake.com/sql-reference/functions/prompt):
 
 ```
 AI_FILTER( PROMPT('<template_string>',  <col_1>, … ) [, <return_error_details> ] )
@@ -50,7 +50,7 @@ AI_FILTER( PROMPT('<template_string>',  <col_1>, … ) [, <return_error_details>
 
 `file`
 :   The column that the file is classified by based on the instructions specified in `predicate`.
-    You can use IMAGE FILE as an input to the AI\_FILTER function.
+    You can use IMAGE FILE as an input to the AI_FILTER function.
 
 **If you’re using the PROMPT() function to format the inputs:**
 
@@ -71,7 +71,7 @@ Returns a Boolean value that indicates whether the statement evaluates to TRUE o
 
 ## Error behavior
 
-By default, if AI\_FILTER can’t process the input, the function returns NULL. If the query processes multiple rows,
+By default, if AI_FILTER can’t process the input, the function returns NULL. If the query processes multiple rows,
 rows with errors return NULL and don’t prevent the query from completing.
 
 The return value on error depends on the `return_error_details`
@@ -86,12 +86,12 @@ For more information about error handling for AI functions, see [Snowflake Corte
 
 ## Access control requirements
 
-Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
+Users must use a role that has been granted the [SNOWFLAKE.CORTEX_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
 See [Cortex LLM privileges](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this privilege.
 
 ## Performance and cost optimization
 
-By default, AI\_FILTER includes a built-in performance optimization on qualifying queries. This optimization can provide 2 to 10 times faster performance and up to 60% lower token usage with a minimal impact on quality.
+By default, AI_FILTER includes a built-in performance optimization on qualifying queries. This optimization can provide 2 to 10 times faster performance and up to 60% lower token usage with a minimal impact on quality.
 
 This optimization is triggered automatically when the query engine detects a suitable pattern. Similar to other query optimizations, Snowflake doesn’t guarantee that this optimization will be applied for every query. The engine leverages adaptive routing and context-aware rewriting to execute more efficient AI operations where possible.
 
@@ -101,14 +101,14 @@ This optimization is triggered automatically when the query engine detects a sui
 
 For optimal performance, follow these guidelines:
 
-* Make sure the columns sent into AI\_FILTER don’t contain NULL values.
+* Make sure the columns sent into AI_FILTER don’t contain NULL values.
 * Use plain text in English for the input string or for PROMPT() arguments.
 * Provide details for the input text instruction. For example, instead of a statement like “sounds satisfied”, use “In the following support transcript, the customer sounds satisfied”.
 * Consider phrasing the input in the form of a question. For example, “In the following support transcript, does the customer sound satisfied?”
 
 ## Examples
 
-### AI\_FILTER: Text
+### AI_FILTER: Text
 
 Can be called as a simple scalar Boolean function on string constants.
 
@@ -151,7 +151,7 @@ WHERE AI_FILTER(PROMPT('The reviewer enjoyed the restaurant: {0}', review));
 +--------------------------+
 ```
 
-While evaluating the quality of AI\_FILTER, it can be helpful to compare candidate predicates across columns.
+While evaluating the quality of AI_FILTER, it can be helpful to compare candidate predicates across columns.
 
 ```
 WITH country AS (
@@ -182,11 +182,11 @@ FROM country CROSS JOIN region ;
 +-------------+-------+--------+
 ```
 
-### Using AI\_FILTER with a JOIN
+### Using AI_FILTER with a JOIN
 
-You can use AI\_FILTER with a JOIN to express linking two tables with a natural language prompt that AI can reason on.
+You can use AI_FILTER with a JOIN to express linking two tables with a natural language prompt that AI can reason on.
 
-The following example joins the RESUMES table with the JOBS table using a prompt with the AI\_FILTER function.
+The following example joins the RESUMES table with the JOBS table using a prompt with the AI_FILTER function.
 
 ```
 SELECT *
@@ -195,7 +195,7 @@ JOIN JOBS
 ON AI_FILTER(PROMPT('Evaluate if this resume {0} fits this job description {1}', RESUME.contents, JOBS.jd));
 ```
 
-### AI\_FILTER: Images
+### AI_FILTER: Images
 
 The following examples filter image files based on an instruction.
 

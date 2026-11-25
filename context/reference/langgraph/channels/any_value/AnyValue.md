@@ -1,4 +1,4 @@
-Classv1.2.23 (latest)●Since v1.2
+Classv1.2.24 (latest)●Since v1.2
 
 # AnyValue
 
@@ -21,7 +21,7 @@ AnyValue(
 
 constructor
 
-\_\_init\_\_
+__init__
 
 | Name | Type |
 | --- | --- |
@@ -56,7 +56,7 @@ Return a copy of the channel.
 
 method
 
-from\_checkpoint
+from_checkpoint
 
 method
 
@@ -68,7 +68,7 @@ get
 
 method
 
-is\_available
+is_available
 
 method
 

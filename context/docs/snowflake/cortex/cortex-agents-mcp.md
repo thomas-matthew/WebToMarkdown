@@ -76,11 +76,11 @@ Expose Cortex Analyst or Cortex Search directly when you want the external MCP c
 
 Snowflake currently supports the following tool types:
 
-* **CORTEX\_AGENT\_RUN:** Cortex Agent tool
-* **CODING\_AGENT:** Coding Agent tool, with no stored agent object. Snowflake adds `code_toolset_all` on every run
-* **CORTEX\_SEARCH\_SERVICE\_QUERY:** Cortex Search Service tool
-* **CORTEX\_ANALYST\_MESSAGE:** Cortex Analyst tool
-* **SYSTEM\_EXECUTE\_SQL:** SQL execution
+* **CORTEX_AGENT_RUN:** Cortex Agent tool
+* **CODING_AGENT:** Coding Agent tool, with no stored agent object. Snowflake adds `code_toolset_all` on every run
+* **CORTEX_SEARCH_SERVICE_QUERY:** Cortex Search Service tool
+* **CORTEX_ANALYST_MESSAGE:** Cortex Analyst tool
+* **SYSTEM_EXECUTE_SQL:** SQL execution
 * **GENERIC:** tool for UDFs and stored procedures
 
 #### Configure tool annotations
@@ -598,7 +598,7 @@ You can use the following privileges to manage access to the MCP server and the 
 
 To invoke the SQL execution tool (`SYSTEM_EXECUTE_SQL`), the role used to connect to the MCP server needs the following, in addition to USAGE on the MCP server:
 
-* The SNOWFLAKE.CORTEX\_USER or SNOWFLAKE.CORTEX\_AGENT\_USER database role. The SQL execution tool runs through the Cortex Agents API, so calls from a role that has neither database role fail with an authorization error.
+* The SNOWFLAKE.CORTEX_USER or SNOWFLAKE.CORTEX_AGENT_USER database role. The SQL execution tool runs through the Cortex Agents API, so calls from a role that has neither database role fail with an authorization error.
 * USAGE on the warehouse that runs the queries. The tool uses the `warehouse` set in the tool configuration, or, if no warehouse is set, the default warehouse of the user who connects.
 * Privileges on the objects that the SQL statements reference. Queries run with the caller’s role, so, for example, the role needs SELECT to read a table, and INSERT, UPDATE, or DELETE to modify it when `read_only` is `false` and the `CORTEX_MCP_SERVER_FORCE_SQL_EXEC_READ_ONLY` account parameter isn’t set to `TRUE`.
 
@@ -732,7 +732,7 @@ Special primary-role scopes:
   `EXTERNAL_OAUTH_ANY_ROLE_MODE = ENABLE` or `ENABLE_FOR_PRIVILEGE` on the security integration.
 * `session:role:<role_name>`: Use that named role as the primary role.
 
-To control which primary-role scopes MCP clients discover, set the `OAUTH_SCOPES_SUPPORTED` parameter at the account, database, or schema level. This parameter is independent of External OAuth: set it alone to customize scopes for Snowflake OAuth, or set it together with `OAUTH_AUTHORIZATION_SERVER` when you bind MCP servers to an external identity provider (IdP). For accepted scope values and SET-time validation rules, see [OAUTH\_SCOPES\_SUPPORTED](https://docs.snowflake.com/sql-reference/parameters#label-oauth-scopes-supported).
+To control which primary-role scopes MCP clients discover, set the `OAUTH_SCOPES_SUPPORTED` parameter at the account, database, or schema level. This parameter is independent of External OAuth: set it alone to customize scopes for Snowflake OAuth, or set it together with `OAUTH_AUTHORIZATION_SERVER` when you bind MCP servers to an external identity provider (IdP). For accepted scope values and SET-time validation rules, see [OAUTH_SCOPES_SUPPORTED](https://docs.snowflake.com/sql-reference/parameters#label-oauth-scopes-supported).
 
 ```
 ALTER SCHEMA analytics_db.mcp_schema
@@ -801,7 +801,7 @@ When neither parameter is set, MCP servers use Snowflake OAuth and advertise `se
      EXTERNAL_OAUTH_TOKEN_USER_MAPPING_CLAIM = 'sub'
      EXTERNAL_OAUTH_SNOWFLAKE_USER_MAPPING_ATTRIBUTE = 'login_name';
    ```
-2. Set `OAUTH_AUTHORIZATION_SERVER` at the account, database, or schema level to bind MCP servers in that scope to the integration. For parameter details, see [OAUTH\_AUTHORIZATION\_SERVER](https://docs.snowflake.com/sql-reference/parameters#label-oauth-authorization-server).
+2. Set `OAUTH_AUTHORIZATION_SERVER` at the account, database, or schema level to bind MCP servers in that scope to the integration. For parameter details, see [OAUTH_AUTHORIZATION_SERVER](https://docs.snowflake.com/sql-reference/parameters#label-oauth-authorization-server).
 
    ```
    -- Schema level (applies to all MCP servers in the schema)
@@ -813,7 +813,7 @@ When neither parameter is set, MCP servers use Snowflake OAuth and advertise `se
    -- Account level (applies to all MCP servers in the account)
    ALTER ACCOUNT SET OAUTH_AUTHORIZATION_SERVER = external_oauth_okta;
    ```
-3. Optionally, set `OAUTH_SCOPES_SUPPORTED` to advertise specific scopes in the Protected Resource Metadata response. This parameter is independent of `OAUTH_AUTHORIZATION_SERVER`: you can set it alone for Snowflake OAuth, or together with an External OAuth binding as shown here. For accepted scope values, see [OAUTH\_SCOPES\_SUPPORTED](https://docs.snowflake.com/sql-reference/parameters#label-oauth-scopes-supported). For how scopes interact with primary and secondary roles, see [Role behavior in OAuth sessions](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-role-behavior).
+3. Optionally, set `OAUTH_SCOPES_SUPPORTED` to advertise specific scopes in the Protected Resource Metadata response. This parameter is independent of `OAUTH_AUTHORIZATION_SERVER`: you can set it alone for Snowflake OAuth, or together with an External OAuth binding as shown here. For accepted scope values, see [OAUTH_SCOPES_SUPPORTED](https://docs.snowflake.com/sql-reference/parameters#label-oauth-scopes-supported). For how scopes interact with primary and secondary roles, see [Role behavior in OAuth sessions](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-mcp#label-cortex-mcp-role-behavior).
 
    ```
    ALTER SCHEMA analytics_db.mcp_schema SET OAUTH_SCOPES_SUPPORTED = 'session:role:ANALYST,session:role:DATA_ENGINEER';
@@ -862,7 +862,7 @@ The following conditions change what Snowflake advertises in the Protected Resou
 
 For information about External OAuth, see [External OAuth overview](https://docs.snowflake.com/user-guide/oauth-ext-overview#label-ext-oauth-mcp-integration).
 
-For information about the parameters, see [OAUTH\_AUTHORIZATION\_SERVER](https://docs.snowflake.com/sql-reference/parameters#label-oauth-authorization-server) and [OAUTH\_SCOPES\_SUPPORTED](https://docs.snowflake.com/sql-reference/parameters#label-oauth-scopes-supported).
+For information about the parameters, see [OAUTH_AUTHORIZATION_SERVER](https://docs.snowflake.com/sql-reference/parameters#label-oauth-authorization-server) and [OAUTH_SCOPES_SUPPORTED](https://docs.snowflake.com/sql-reference/parameters#label-oauth-scopes-supported).
 
 ### Prefer a least-privileged MCP OAuth configuration
 

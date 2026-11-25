@@ -6,7 +6,7 @@ secure and within your governance boundary. See below on how to get started.
 
 ## Monitor usage
 
-Cortex REST API calls do not write to `AI_OBSERVABILITY_EVENTS`. To monitor token consumption and credits, query [CORTEX\_REST\_API\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_rest_api_usage_history) in the Account Usage schema. The view includes request IDs, model names, user IDs, token counts, and credits per request.
+Cortex REST API calls do not write to `AI_OBSERVABILITY_EVENTS`. To monitor token consumption and credits, query [CORTEX_REST_API_USAGE_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_rest_api_usage_history) in the Account Usage schema. The view includes request IDs, model names, user IDs, token counts, and credits per request.
 
 For how REST API usage fits alongside other AI features, see [AI Observability in Snowflake Cortex](https://docs.snowflake.com/user-guide/snowflake-cortex/ai-observability) and [AI cost management and governance](https://docs.snowflake.com/user-guide/snowflake-cortex/governance-and-availability/ai-cost-management-and-governance).
 
@@ -260,12 +260,12 @@ Consider creating a dedicated user for Cortex REST API requests.
 
 ## Setting up authorization
 
-To send a REST API request, your default role must be granted *either* the SNOWFLAKE.CORTEX\_USER database role
-*or* the SNOWFLAKE.CORTEX\_REST\_API\_USER database role. SNOWFLAKE.CORTEX\_USER provides access to all
-Covered AI features including the Cortex REST API, whereas SNOWFLAKE.CORTEX\_REST\_API\_USER provides access
+To send a REST API request, your default role must be granted *either* the SNOWFLAKE.CORTEX_USER database role
+*or* the SNOWFLAKE.CORTEX_REST_API_USER database role. SNOWFLAKE.CORTEX_USER provides access to all
+Covered AI features including the Cortex REST API, whereas SNOWFLAKE.CORTEX_REST_API_USER provides access
 only to the Cortex REST API.
 
-In most cases, users already have access because SNOWFLAKE.CORTEX\_USER is granted to the PUBLIC
+In most cases, users already have access because SNOWFLAKE.CORTEX_USER is granted to the PUBLIC
 role automatically, and all roles inherit PUBLIC.
 
 If your Snowflake administrator has revoked this grant, they must re-grant it:
@@ -278,7 +278,7 @@ GRANT ROLE my_role TO USER my_user;
 Important
 
 REST API requests use the user’s default role, so that role must have the necessary privileges. You can change
-a user’s default role with [ALTER USER … SET DEFAULT\_ROLE](https://docs.snowflake.com/sql-reference/sql/alter-user).
+a user’s default role with [ALTER USER … SET DEFAULT_ROLE](https://docs.snowflake.com/sql-reference/sql/alter-user).
 
 ```
 ALTER USER my_user SET DEFAULT_ROLE=my_role
@@ -291,19 +291,19 @@ Cortex AI Functions reflect these changes sooner.
 ### Limiting access using the Cortex REST API user role
 
 To provide selective access to the Cortex REST API for specific users, use the
-SNOWFLAKE.CORTEX\_REST\_API\_USER database role. This role grants access to the Cortex REST API without granting
+SNOWFLAKE.CORTEX_REST_API_USER database role. This role grants access to the Cortex REST API without granting
 access to other Cortex features such as Cortex AI functions, Cortex Agent, Cortex Analyst, Cortex Fine-tuning,
 or Cortex Search.
 
-CORTEX\_REST\_API\_USER is not granted to the PUBLIC role by default. An account administrator must explicitly
-grant this role to roles that require access to the Cortex REST API. The SNOWFLAKE.CORTEX\_REST\_API\_USER
+CORTEX_REST_API_USER is not granted to the PUBLIC role by default. An account administrator must explicitly
+grant this role to roles that require access to the Cortex REST API. The SNOWFLAKE.CORTEX_REST_API_USER
 database role can’t be granted directly to a user. For more information, see
 [Using SNOWFLAKE database roles](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-using-snowflake-db-roles).
 
 Important
 
-If your user roles already have the CORTEX\_USER role, you must revoke access to the CORTEX\_USER role
-before the CORTEX\_REST\_API\_USER role can take effect as a fine-grained control.
+If your user roles already have the CORTEX_USER role, you must revoke access to the CORTEX_USER role
+before the CORTEX_REST_API_USER role can take effect as a fine-grained control.
 
 ```
 REVOKE DATABASE ROLE SNOWFLAKE.CORTEX_USER FROM ROLE PUBLIC;
@@ -311,10 +311,10 @@ REVOKE DATABASE ROLE SNOWFLAKE.CORTEX_USER FROM ROLE PUBLIC;
 
 To provide access to the Cortex REST API, use the ACCOUNTADMIN role to do the following:
 
-1. Grant the SNOWFLAKE.CORTEX\_REST\_API\_USER database role to a custom role.
+1. Grant the SNOWFLAKE.CORTEX_REST_API_USER database role to a custom role.
 2. Assign this custom role to users.
 
-The following example creates the custom role `cortex_rest_api_role`, grants it the CORTEX\_REST\_API\_USER
+The following example creates the custom role `cortex_rest_api_role`, grants it the CORTEX_REST_API_USER
 database role, and assigns the role to `example_user`:
 
 ```
@@ -2619,7 +2619,7 @@ the rate limits are higher for the following models:
 ### View your rate limits
 
 To see the rate limits that apply to your account, query the
-[CORTEX\_REST\_API\_RATE\_LIMIT\_POLICIES](https://docs.snowflake.com/sql-reference/account-usage/cortex_rest_api_rate_limit_policies)
+[CORTEX_REST_API_RATE_LIMIT_POLICIES](https://docs.snowflake.com/sql-reference/account-usage/cortex_rest_api_rate_limit_policies)
 Account Usage view. The view returns the RPM and TPM limits for each model.
 
 ```
@@ -2680,14 +2680,14 @@ all previous prompts and responses are processed to generate each new response, 
 Use the following views in the `SNOWFLAKE.ACCOUNT_USAGE` schema to monitor Cortex REST API
 consumption, token usage, and rate limit utilization:
 
-* [CORTEX\_REST\_API\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_rest_api_usage_history):
+* [CORTEX_REST_API_USAGE_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_rest_api_usage_history):
   Request-level usage including model, tokens, user, region, and timestamps.
-* [CORTEX\_REST\_API\_RATE\_LIMIT\_POLICIES](https://docs.snowflake.com/sql-reference/account-usage/cortex_rest_api_rate_limit_policies):
+* [CORTEX_REST_API_RATE_LIMIT_POLICIES](https://docs.snowflake.com/sql-reference/account-usage/cortex_rest_api_rate_limit_policies):
   Configured RPM and TPM limits per model. For a basic query, see [View your rate limits](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-rest-api#label-cortex-rest-api-view-rate-limits).
 
 ### Required privileges
 
-To query ACCOUNT\_USAGE views, your role needs imported privileges on the SNOWFLAKE database.
+To query ACCOUNT_USAGE views, your role needs imported privileges on the SNOWFLAKE database.
 If you encounter a permissions issue, run the following:
 
 ```
@@ -2833,6 +2833,6 @@ OVERWRITE = TRUE;
 
 Note
 
-* ACCOUNT\_USAGE views can have up to 45 minutes of latency.
+* ACCOUNT_USAGE views can have up to 45 minutes of latency.
 * The `TOKENS_GRANULAR` column is a VARIANT containing `"input"` and `"output"` token counts.
 * Rate limit policies reflect the current configuration, not historical values.

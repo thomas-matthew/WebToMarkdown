@@ -1,6 +1,6 @@
-Functionv1.2.23 (latest)●Since v1.2
+Functionv1.2.24 (latest)●Since v1.2
 
-# add\_messages
+# add_messages
 
 Merges two lists of messages, updating existing messages by ID.
 
@@ -129,8 +129,8 @@ Copy
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `left`\* | `Messages` | The base list of `Messages`. |
-| `right`\* | `Messages` | The list of `Messages` (or single `Message`) to merge into the base list. |
+| `left`* | `Messages` | The base list of `Messages`. |
+| `right`* | `Messages` | The list of `Messages` (or single `Message`) to merge into the base list. |
 | `format` | `Literal['langchain-openai'] | None` | Default:`None`  The format to return messages in. If `None` then `Messages` will be returned as is. If `langchain-openai` then `Messages` will be returned as `BaseMessage` objects with their contents formatted to match OpenAI message format, meaning contents can be string, `'text'` blocks, or `'image_url'` blocks and tool responses are returned as their own `ToolMessage` objects.  Requirement  Must have `langchain-core>=0.3.11` installed to use this feature. |
 
 [View source on GitHub](https://github.com/langchain-ai/langgraph/blob/58a6e1cc5b7dfc3619fc6e7e7573b040d554649b/libs/langgraph/langgraph/graph/message.py#L64)

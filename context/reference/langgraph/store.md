@@ -24,17 +24,17 @@ from langgraph.store.postgres import AsyncPostgresSt
 
 Function
 
-### [is\_managed\_value](https://reference.langchain.com/python/langgraph/managed/base/is_managed_value)
+### [is_managed_value](https://reference.langchain.com/python/langgraph/managed/base/is_managed_value)
 
 ## Modules
 
 Module
 
-### [base](https://reference.langchain.com/python/langgraph.store.postgres/base)
+### [aio](https://reference.langchain.com/python/langgraph.store.postgres/aio)
 
 Module
 
-### [aio](https://reference.langchain.com/python/langgraph.store.postgres/aio)
+### [base](https://reference.langchain.com/python/langgraph.store.postgres/base)
 
 ## Constants
 

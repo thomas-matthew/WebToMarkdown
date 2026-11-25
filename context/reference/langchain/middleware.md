@@ -235,25 +235,25 @@ method.
 
 Function
 
-### [before\_agent](https://reference.langchain.com/python/langchain/agents/middleware/types/before_agent)
+### [before_agent](https://reference.langchain.com/python/langchain/agents/middleware/types/before_agent)
 
 Decorator used to dynamically create a middleware with the `before_agent` hook.
 
 Function
 
-### [before\_model](https://reference.langchain.com/python/langchain/agents/middleware/types/before_model)
+### [before_model](https://reference.langchain.com/python/langchain/agents/middleware/types/before_model)
 
 Decorator used to dynamically create a middleware with the `before_model` hook.
 
 Function
 
-### [after\_model](https://reference.langchain.com/python/langchain/agents/middleware/types/after_model)
+### [after_model](https://reference.langchain.com/python/langchain/agents/middleware/types/after_model)
 
 Decorator used to dynamically create a middleware with the `after_model` hook.
 
 Function
 
-### [after\_agent](https://reference.langchain.com/python/langchain/agents/middleware/types/after_agent)
+### [after_agent](https://reference.langchain.com/python/langchain/agents/middleware/types/after_agent)
 
 Decorator used to dynamically create a middleware with the `after_agent` hook.
 
@@ -261,7 +261,7 @@ Async version is `aafter_agent`.
 
 Function
 
-### [wrap\_model\_call](https://reference.langchain.com/python/langchain/agents/middleware/types/wrap_model_call)
+### [wrap_model_call](https://reference.langchain.com/python/langchain/agents/middleware/types/wrap_model_call)
 
 Create middleware with `wrap_model_call` hook from a function.
 
@@ -270,7 +270,7 @@ calls, implement retry logic, handle errors, and rewr
 
 Function
 
-### [wrap\_tool\_call](https://reference.langchain.com/python/langchain/agents/middleware/types/wrap_tool_call)
+### [wrap_tool_call](https://reference.langchain.com/python/langchain/agents/middleware/types/wrap_tool_call)
 
 Create middleware with `wrap_tool_call` hook from a function.
 
@@ -281,7 +281,7 @@ tool calls, implement r
 
 Function
 
-### [dynamic\_prompt](https://reference.langchain.com/python/langchain/agents/middleware/types/dynamic_prompt)
+### [dynamic_prompt](https://reference.langchain.com/python/langchain/agents/middleware/types/dynamic_prompt)
 
 Decorator used to dynamically generate system prompts for the model.
 
@@ -290,7 +290,7 @@ specifically for dynamic prompt generation. The de
 
 Function
 
-### [hook\_config](https://reference.langchain.com/python/langchain/agents/middleware/types/hook_config)
+### [hook_config](https://reference.langchain.com/python/langchain/agents/middleware/types/hook_config)
 
 Decorator to configure hook behavior in middleware methods.
 

@@ -1,4 +1,4 @@
-Classv1.8.3 (latest)●Since v1.8
+Classv1.8.4 (latest)●Since v0.1
 
 # InMemoryCache
 
@@ -52,7 +52,7 @@ Copy
 
 constructor
 
-\_\_init\_\_
+__init__
 
 | Name | Type |
 | --- | --- |

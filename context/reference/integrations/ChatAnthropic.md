@@ -1,4 +1,4 @@
-Classv1.7.11 (latest)●Since v1.6
+Classv1.7.12 (latest)●Since v1.6
 
 # ChatAnthropic
 
@@ -80,20 +80,20 @@ each time to the model is invoked.
 * [Build a SQL assistant with on-demand skills](https://docs.langchain.com/oss/python/langchain/multi-agent/skills-sql-assistant)
 * [How to filter experiments in the UI](https://docs.langchain.com/langsmith/filter-experiments-ui)
 * [Human-in-the-loop](https://docs.langchain.com/oss/python/deepagents/human-in-the-loop)
-* [MESSAGE\_COERCION\_FAILURE](https://docs.langchain.com/oss/python/langchain/errors/MESSAGE_COERCION_FAILURE)
+* [MESSAGE_COERCION_FAILURE](https://docs.langchain.com/oss/python/langchain/errors/MESSAGE_COERCION_FAILURE)
 * [Models](https://docs.langchain.com/oss/python/langchain/models)
 
 +11 more
 
 ## Attributes
 
-### [model\_config](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/model_config)
+### [model_config](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/model_config)
 
 ### [model: str](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/model)
 
 Model name to use.
 
-### [max\_tokens: int | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/max_tokens)
+### [max_tokens: int | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/max_tokens)
 
 Denotes the number of tokens to predict per generation.
 
@@ -107,27 +107,27 @@ for more information.
 
 A non-negative float that tunes the degree of randomness in generation.
 
-### [top\_k: int | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/top_k)
+### [top_k: int | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/top_k)
 
 Number of most likely tokens to consider at each step.
 
-### [top\_p: float | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/top_p)
+### [top_p: float | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/top_p)
 
 Total probability mass of tokens to consider at each step.
 
-### [default\_request\_timeout: float | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/default_request_timeout)
+### [default_request_timeout: float | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/default_request_timeout)
 
 Timeout for requests to Claude API.
 
-### [max\_retries: int](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/max_retries)
+### [max_retries: int](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/max_retries)
 
 Number of retries allowed for requests sent to the Claude API.
 
-### [stop\_sequences: list[str] | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/stop_sequences)
+### [stop_sequences: list[str] | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/stop_sequences)
 
 Default stop sequences.
 
-### [anthropic\_api\_url: str | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/anthropic_api_url)
+### [anthropic_api_url: str | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/anthropic_api_url)
 
 Base URL for API requests. Only specify if using a proxy or service emulator.
 
@@ -136,21 +136,21 @@ If a value isn't passed in, will attempt to read the value first from
 
 If `LANGSMITH_GATEWAY` is set, it is used as a fallback after those env vars.
 
-### [anthropic\_api\_key: SecretStr](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/anthropic_api_key)
+### [anthropic_api_key: SecretStr](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/anthropic_api_key)
 
 Automatically read from env var `ANTHROPIC_API_KEY` if not provided.
 
 If `LANGSMITH_GATEWAY` is enabled and the base URL points at the gateway,
 `LANGSMITH_GATEWAY_API_KEY` is used instead.
 
-### [anthropic\_proxy: str | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/anthropic_proxy)
+### [anthropic_proxy: str | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/anthropic_proxy)
 
 Proxy to use for the Anthropic clients, will be used for every API call.
 
 If not provided, will attempt to read from the `ANTHROPIC_PROXY` environment
 variable.
 
-### [default\_headers: Mapping[str, str] | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/default_headers)
+### [default_headers: Mapping[str, str] | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/default_headers)
 
 Headers to pass to the Anthropic clients, will be used for every API call.
 
@@ -161,13 +161,13 @@ through `client.beta.messages.create`.
 
 Example: `#!python betas=["token-efficient-tools-2025-02-19"]`
 
-### [model\_kwargs: dict[str, Any]](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/model_kwargs)
+### [model_kwargs: dict[str, Any]](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/model_kwargs)
 
 ### [streaming: bool](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/streaming)
 
 Whether to use streaming or not.
 
-### [stream\_usage: bool](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/stream_usage)
+### [stream_usage: bool](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/stream_usage)
 
 Whether to include usage metadata in streaming output.
 
@@ -196,7 +196,7 @@ summarized reasoning in the response. On Opus 5, disabled thinking is
 supported only at `"high"` effort or below. On Opus 5.5, thinking
 can't be disabled; omit `thinking` and use `output_config.effort`.
 
-### [output\_config: dict[str, Any] | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/output_config)
+### [output_config: dict[str, Any] | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/output_config)
 
 Configuration options for the model's output.
 
@@ -224,7 +224,7 @@ ChatAnthropic(
 See Anthropic docs on
 [extended output](https://platform.claude.com/docs/en/api/go/beta/messages/create) .
 
-### [reasoning\_effort: Literal['max', 'xhigh', 'high', 'medium', 'low'] | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/reasoning_effort)
+### [reasoning_effort: Literal['max', 'xhigh', 'high', 'medium', 'low'] | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/reasoning_effort)
 
 Reasoning effort.
 
@@ -247,13 +247,13 @@ default is `'medium'`.
 
 Example: `reasoning_effort="medium"`
 
-### [mcp\_servers: list[dict[str, Any]] | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/mcp_servers)
+### [mcp_servers: list[dict[str, Any]] | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/mcp_servers)
 
 List of MCP servers to use for the request.
 
 Example: `#!python mcp_servers=[{"type": "url", "url": "https://mcp.example.com/mcp", "name": "example-mcp"}]`
 
-### [context\_management: dict[str, Any] | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/context_management)
+### [context_management: dict[str, Any] | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/context_management)
 
 Configuration for
 [context management](https://platform.claude.com/docs/en/build-with-claude/context-editing) .
@@ -280,7 +280,7 @@ model = ChatAnthropic(
 
 Can also be passed at call time, which overrides the value set here.
 
-### [reuse\_last\_container: bool | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/reuse_last_container)
+### [reuse_last_container: bool | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/reuse_last_container)
 
 Automatically reuse container from most recent response (code execution).
 
@@ -290,13 +290,13 @@ model responses will include container metadata. Set `reuse_last_container=True`
 to automatically reuse the container from the most recent response for subsequent
 invocations.
 
-### [inference\_geo: str | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/inference_geo)
+### [inference_geo: str | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/inference_geo)
 
 Controls where model inference runs. See Anthropic's
 [data residency](https://platform.claude.com/docs/en/build-with-claude/data-residency)
 docs for more information.
 
-### [user\_profile\_id: str | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/user_profile_id)
+### [user_profile_id: str | None](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/user_profile_id)
 
 User profile ID to attribute the request to.
 
@@ -311,66 +311,66 @@ Can also be passed at call time, which overrides the value set here (for example
 
 Alias for `reasoning_effort`.
 
-### [lc\_secrets: dict[str, str]](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/lc_secrets)
+### [lc_secrets: dict[str, str]](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/lc_secrets)
 
 Return a mapping of secret keys to environment variables.
 
 ## Methods
 
-### [is\_lc\_serializable](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/is_lc_serializable)
+### [is_lc_serializable](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/is_lc_serializable)
 
 Whether the class is serializable in langchain.
 
-### [get\_lc\_namespace](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/get_lc_namespace)
+### [get_lc_namespace](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/get_lc_namespace)
 
 Get the namespace of the LangChain object.
 
-### [set\_default\_max\_tokens](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/set_default_max_tokens)
+### [set_default_max_tokens](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/set_default_max_tokens)
 
 Set default `max_tokens` from model profile with fallback.
 
-### [build\_extra](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/build_extra)
+### [build_extra](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/build_extra)
 
 Build model kwargs.
 
-### [bind\_tools](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/bind_tools)
+### [bind_tools](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/bind_tools)
 
 Bind tool-like objects to `ChatAnthropic`.
 
-### [with\_structured\_output](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/with_structured_output)
+### [with_structured_output](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/with_structured_output)
 
 Model wrapper that returns outputs formatted to match the given schema.
 
 See the [LangChain docs](https://docs.langchain.com/oss/python/integrations/chat/anthropic#structured-output)
 for more details and examples.
 
-### [get\_num\_tokens\_from\_messages](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/get_num_tokens_from_messages)
+### [get_num_tokens_from_messages](https://reference.langchain.com/python/langchain-anthropic/chat_models/ChatAnthropic/get_num_tokens_from_messages)
 
 Count tokens in a sequence of input messages.
 
 This uses Anthropic's official [token counting API](https://platform.claude.com/docs/en/build-with-claude/token-counting) .
 
-## Inherited from[BaseChatModel](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel) (langchain\_core)
+## Inherited from[BaseChatModel](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel) (langchain_core)
 
 ### Attributes
 
-[rate\_limiter](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/rate_limiter) [disable\_streaming](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/disable_streaming) [output\_version](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/output_version) [profile](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/profile) [OutputType](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/OutputType)
+[rate_limiter](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/rate_limiter) [disable_streaming](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/disable_streaming) [output_version](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/output_version) [profile](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/profile) [OutputType](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/OutputType)
 
 ### Methods
 
-[invoke](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/invoke) [ainvoke](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/ainvoke) [stream](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/stream) [astream](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/astream) [stream\_events](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/stream_events) [astream\_events](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/astream_events) [generate](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/generate) [agenerate](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate) [generate\_prompt](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/generate_prompt) [agenerate\_prompt](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate_prompt) [dict](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/dict) [asdict](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/asdict) [bind](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/bind)
+[invoke](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/invoke) [ainvoke](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/ainvoke) [stream](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/stream) [astream](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/astream) [stream_events](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/stream_events) [astream_events](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/astream_events) [generate](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/generate) [agenerate](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate) [generate_prompt](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/generate_prompt) [agenerate_prompt](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate_prompt) [dict](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/dict) [asdict](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/asdict) [bind](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/bind)
 
-## Inherited from[BaseLanguageModel](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel) (langchain\_core)
+## Inherited from[BaseLanguageModel](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel) (langchain_core)
 
 ### Attributes
 
-[cache](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/cache) [verbose](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/verbose) [callbacks](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/callbacks) [tags](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/tags) [metadata](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/metadata) [custom\_get\_token\_ids](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/custom_get_token_ids) [InputType](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/InputType)
+[cache](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/cache) [verbose](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/verbose) [callbacks](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/callbacks) [tags](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/tags) [metadata](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/metadata) [custom_get_token_ids](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/custom_get_token_ids) [InputType](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/InputType)
 
 ### Methods
 
-[model\_post\_init](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/model_post_init) [set\_verbose](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/set_verbose) [generate\_prompt](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/generate_prompt) [agenerate\_prompt](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/agenerate_prompt) [get\_token\_ids](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_token_ids) [get\_num\_tokens](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens)
+[model_post_init](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/model_post_init) [set_verbose](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/set_verbose) [generate_prompt](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/generate_prompt) [agenerate_prompt](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/agenerate_prompt) [get_token_ids](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_token_ids) [get_num_tokens](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens)
 
-## Inherited from[RunnableSerializable](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable) (langchain\_core)
+## Inherited from[RunnableSerializable](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable) (langchain_core)
 
 ### Attributes
 
@@ -378,27 +378,27 @@ This uses Anthropic's official [token counting API](https://platform.claude.com/
 
 ### Methods
 
-[to\_json](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/to_json) [configurable\_fields](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/configurable_fields) [configurable\_alternatives](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/configurable_alternatives)
+[to_json](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/to_json) [configurable_fields](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/configurable_fields) [configurable_alternatives](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/configurable_alternatives)
 
-## Inherited from[Serializable](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable) (langchain\_core)
-
-### Attributes
-
-[lc\_attributes](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/lc_attributes)
-
-### Methods
-
-[lc\_id](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/lc_id) [to\_json](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/to_json) [to\_json\_not\_implemented](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/to_json_not_implemented)
-
-## Inherited from[Runnable](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable) (langchain\_core)
+## Inherited from[Serializable](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable) (langchain_core)
 
 ### Attributes
 
-[name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/name) [InputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/InputType) [OutputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/OutputType) [input\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/input_schema) [output\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/output_schema) [config\_specs](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_specs)
+[lc_attributes](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/lc_attributes)
 
 ### Methods
 
-[get\_name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_name) [get\_input\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_schema) [get\_input\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_jsonschema) [get\_output\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_schema) [get\_output\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_jsonschema) [config\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_schema) [get\_config\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_config_jsonschema) [get\_graph](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_graph) [get\_prompts](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_prompts) [pipe](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pipe) [pick](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pick) [assign](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/assign) [invoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/invoke) [ainvoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/ainvoke) [batch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch) [batch\_as\_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch_as_completed) [abatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch) [abatch\_as\_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch_as_completed) [stream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream) [astream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream) [astream\_log](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_log) [astream\_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_events) [stream\_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream_events) [transform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/transform) [atransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/atransform) [bind](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/bind) [with\_config](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_config) [with\_listeners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_listeners) [with\_alisteners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_alisteners) [with\_types](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_types) [with\_retry](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_retry) [map](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/map) [with\_fallbacks](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_fallbacks) [as\_tool](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/as_tool)
+[lc_id](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/lc_id) [to_json](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/to_json) [to_json_not_implemented](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/to_json_not_implemented)
+
+## Inherited from[Runnable](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable) (langchain_core)
+
+### Attributes
+
+[name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/name) [InputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/InputType) [OutputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/OutputType) [input_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/input_schema) [output_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/output_schema) [config_specs](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_specs)
+
+### Methods
+
+[get_name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_name) [get_input_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_schema) [get_input_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_jsonschema) [get_output_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_schema) [get_output_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_jsonschema) [config_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_schema) [get_config_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_config_jsonschema) [get_graph](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_graph) [get_prompts](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_prompts) [pipe](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pipe) [pick](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pick) [assign](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/assign) [invoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/invoke) [ainvoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/ainvoke) [batch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch) [batch_as_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch_as_completed) [abatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch) [abatch_as_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch_as_completed) [stream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream) [astream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream) [astream_log](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_log) [astream_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_events) [stream_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream_events) [transform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/transform) [atransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/atransform) [bind](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/bind) [with_config](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_config) [with_listeners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_listeners) [with_alisteners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_alisteners) [with_types](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_types) [with_retry](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_retry) [map](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/map) [with_fallbacks](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_fallbacks) [as_tool](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/as_tool)
 
 [View source on GitHub](https://github.com/langchain-ai/langchain/blob/b660fc7a4371db238d088fb4f8f9c0a40fa26251/libs/partners/anthropic/langchain_anthropic/chat_models.py#L1352)
 

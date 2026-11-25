@@ -279,6 +279,25 @@ var container =
 System.out.println(container.id());
 ```
 
+```csharp
+using OpenAI.Containers;
+#pragma warning disable OPENAI001
+
+string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
+ContainerClient client = new(key);
+
+ContainerResource container = await client.CreateContainerAsync(new ContainerCreationOptions("analysis-container")
+{
+    MemoryLimit = ContainerMemoryLimit.Max1GB,
+    ExpirationPolicy = new ContainerExpirationPolicy
+    {
+        Anchor = ContainerExpirationPolicyAnchor.LastActiveAt,
+        Duration = TimeSpan.FromMinutes(20),
+    },
+});
+Console.WriteLine(container.Id);
+```
+
 ```ruby
 require "openai"
 
@@ -1245,6 +1264,17 @@ client.containers().delete(containerId);
 System.out.println("Container deleted.");
 ```
 
+```csharp
+using OpenAI.Containers;
+#pragma warning disable OPENAI001
+
+string key = Environment.GetEnvironmentVariable("OPENAI_API_KEY")!;
+ContainerClient client = new(key);
+
+await client.DeleteContainerAsync("container_id");
+Console.WriteLine("Container deleted");
+```
+
 ```ruby
 require "openai"
 
@@ -1991,6 +2021,95 @@ func (e shellExecutor) run(command string, timeout time.Duration) shellResult {
 		result.ExitCode = -1
 	}
 	return result
+}
+```
+
+```java
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.*;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+String command = args.length > 0 ? args[0] : "printf shell-executor-ready";
+double timeoutSeconds = args.length > 1 ? Double.parseDouble(args[1]) : 1.0;
+System.out.println(new ObjectMapper().writeValueAsString(execute(command, timeoutSeconds)));
+
+// Linux host example: setsid gives the shell and its descendants an owned
+// process group. Only execute commands approved by your application policy.
+static Map<String, Object> execute(String command, double timeoutSeconds) throws Exception {
+  if (!Double.isFinite(timeoutSeconds) || timeoutSeconds <= 0)
+    throw new IllegalArgumentException("Timeout must be positive and finite");
+  Path directory = Files.createTempDirectory("shell-example-");
+  Path stdout = directory.resolve("stdout"), stderr = directory.resolve("stderr");
+  Process process = null;
+  try {
+    process =
+        new ProcessBuilder("setsid", "sh", "-c", command)
+            .redirectOutput(stdout.toFile())
+            .redirectError(stderr.toFile())
+            .start();
+    process.getOutputStream().close();
+    long deadline = System.nanoTime() + (long) (timeoutSeconds * 1_000_000_000L);
+    boolean timedOut = false;
+    boolean outputLimit = false;
+    while (process.isAlive() || groupExists(process.pid())) {
+      timedOut = System.nanoTime() >= deadline;
+      outputLimit = Files.size(stdout) > 1024 * 1024 || Files.size(stderr) > 1024 * 1024;
+      if (timedOut || outputLimit) break;
+      Thread.sleep(10);
+    }
+    // A fast command may finish between polls after exceeding the output cap.
+    outputLimit |= Files.size(stdout) > 1024 * 1024 || Files.size(stderr) > 1024 * 1024;
+    int exitCode = process.isAlive() ? -1 : process.exitValue();
+    if (timedOut || outputLimit) {
+      signalGroup(process.pid(), "TERM");
+      process.waitFor(100, TimeUnit.MILLISECONDS);
+      signalGroup(process.pid(), "KILL");
+      process.waitFor();
+    }
+    if (outputLimit) exitCode = 1;
+    return Map.of(
+        "stdout",
+        readOutput(stdout),
+        "stderr",
+        readOutput(stderr),
+        "exit_code",
+        exitCode,
+        "timed_out",
+        timedOut);
+  } finally {
+    if (process != null) {
+      signalGroup(process.pid(), "KILL");
+      process.waitFor();
+    }
+    Files.deleteIfExists(stdout);
+    Files.deleteIfExists(stderr);
+    Files.deleteIfExists(directory);
+  }
+}
+
+static boolean groupExists(long pid) throws Exception {
+  return new ProcessBuilder("kill", "-0", "--", "-" + pid)
+          .redirectOutput(ProcessBuilder.Redirect.DISCARD)
+          .redirectError(ProcessBuilder.Redirect.DISCARD)
+          .start()
+          .waitFor()
+      == 0;
+}
+
+static void signalGroup(long pid, String signal) throws Exception {
+  new ProcessBuilder("kill", "-" + signal, "--", "-" + pid)
+      .redirectOutput(ProcessBuilder.Redirect.DISCARD)
+      .redirectError(ProcessBuilder.Redirect.DISCARD)
+      .start()
+      .waitFor();
+}
+
+static String readOutput(Path path) throws Exception {
+  try (var input = Files.newInputStream(path)) {
+    return new String(input.readNBytes(1024 * 1024), StandardCharsets.UTF_8);
+  }
 }
 ```
 

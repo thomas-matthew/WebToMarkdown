@@ -1,18 +1,18 @@
 Categories:
 :   [File functions](https://docs.snowflake.com/sql-reference/functions-file) (AI Functions)
 
-# AI\_TRANSCRIBE
+# AI_TRANSCRIBE
 
-AI\_TRANSCRIBE is a fully managed SQL function that transcribes audio and video files stored in a stage, extracting
+AI_TRANSCRIBE is a fully managed SQL function that transcribes audio and video files stored in a stage, extracting
 text, timestamps, and speaker information. See [Create stage for media files](https://docs.snowflake.com/user-guide/snowflake-cortex/ai-multimodal#label-cortex-llm-media-files) for information on creating a
-stage suitable for storing files for processing by AI\_TRANSCRIBE.
+stage suitable for storing files for processing by AI_TRANSCRIBE.
 
-Under the hood, AI\_TRANSCRIBE orchestrates optimized AI models for transcription and speaker diarization, processing
-audio files of up to two hours in length. AI\_TRANSCRIBE is horizontally scalable, allowing efficient batch processing
+Under the hood, AI_TRANSCRIBE orchestrates optimized AI models for transcription and speaker diarization, processing
+audio files of up to two hours in length. AI_TRANSCRIBE is horizontally scalable, allowing efficient batch processing
 by processing multiple files at the same time. Audio can be processed directly from object storage to avoid
 unnecessary data movement.
 
-By default, AI\_TRANSCRIBE converts audio files to clean, readable text. You can also specify a timestamp granularity
+By default, AI_TRANSCRIBE converts audio files to clean, readable text. You can also specify a timestamp granularity
 to extract timestamps for each word or change of speaker. Word-level timestamps are useful for applications such as
 subtitles or for letting the user jump to specific parts of the audio by clicking words in the transcript.
 Speaker-level timestamps are useful for understanding who said what in meetings, interviews, or phone calls.
@@ -34,7 +34,7 @@ AI_TRANSCRIBE( <audio_file> [ , <options> ] [, <return_error_details> ] )
 **Required:**
 
 `audio_file`
-:   A FILE type object representing an audio file. Use [TO\_FILE function](https://docs.snowflake.com/sql-reference/functions/to_file) to create a reference to your staged file.
+:   A FILE type object representing an audio file. Use [TO_FILE function](https://docs.snowflake.com/sql-reference/functions/to_file) to create a reference to your staged file.
 
 **Optional:**
 
@@ -65,11 +65,11 @@ A string containing a JSON representation of the transcription result. The JSON 
   + `"end"`: The end time of the segment in seconds.
   + `"text"`: The transcription text for the segment.
   + `"speaker_label"`: The label of the speaker for the segment, provided when the `timestamp_granularity` field is set to `speaker`.
-    Labels are of the form “SPEAKER\_00”, “SPEAKER\_01”, etc. and are assigned in the order speakers are detected in the audio file.
+    Labels are of the form “SPEAKER_00”, “SPEAKER_01”, etc. and are assigned in the order speakers are detected in the audio file.
 
 ## Error behavior
 
-By default, if AI\_TRANSCRIBE can’t process the input, the function returns NULL. If the query processes multiple rows,
+By default, if AI_TRANSCRIBE can’t process the input, the function returns NULL. If the query processes multiple rows,
 rows with errors return NULL and don’t prevent the query from completing.
 
 The return value on error depends on the `return_error_details`
@@ -84,12 +84,12 @@ For more information about error handling for AI functions, see [Snowflake Corte
 
 ## Access control requirements
 
-Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
+Users must use a role that has been granted the [SNOWFLAKE.CORTEX_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
 See [Cortex LLM privileges](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this role.
 
 ## Usage notes
 
-* AI\_TRANSCRIBE supports the following audio and video file formats:
+* AI_TRANSCRIBE supports the following audio and video file formats:
 
   | Audio | AAC, FLAC, M4A, MP3, MP4, OGG, WAV, WEBM |
   | --- | --- |
@@ -99,15 +99,15 @@ See [Cortex LLM privileges](https://docs.snowflake.com/user-guide/snowflake-cort
   following supported codecs: AAC, ALAC, FLAC, MP3, Opus, Vorbis, or PCM.
 
   Factors such as sample rate, bit depth, and number of channels do not affect transcription, but they might make the
-  file too large to process if they are too high. Internally, AI\_TRANSCRIBE uses monophonic audio at 16 kHz, and
+  file too large to process if they are too high. Internally, AI_TRANSCRIBE uses monophonic audio at 16 kHz, and
   resamples input files when they are not already in this format
 * The maximum audio file size is 700 MB.
-* The maximum audio file duration is 60 minutes when timestamp granularity is set to “word” or “speaker”.
+* The maximum audio file duration is 90 minutes when timestamp granularity is set to “word” or “speaker”.
   If timestamp granularity is not used, the maximum duration is 120 minutes.
 
 ## Supported languages
 
-AI\_TRANSCRIBE supports the following languages, which are automatically detected. Files can contain multiple
+AI_TRANSCRIBE supports the following languages, which are automatically detected. Files can contain multiple
 supported languages.
 
 Note
@@ -159,7 +159,7 @@ current pricing information, see the
 
 Note
 
-AI\_TRANSCRIBE has a minimum billing duration of 10 seconds. Files shorter than 10 seconds are still processed, but
+AI_TRANSCRIBE has a minimum billing duration of 10 seconds. Files shorter than 10 seconds are still processed, but
 are billed at 10 seconds. To efficiently process large numbers of short audio files, consider batching them into a
 single file and using timestamps to identify the start and end of each original file in the resulting
 transcription.
@@ -170,7 +170,7 @@ transcription.
 
 The following example transcribes [an audio file](https://docs.snowflake.com/static/samples/cortex/audio/consultation.wav) stored in the
 `financial_consultation` stage, returning a text transcript of the entire file. The
-[TO\_FILE function](https://docs.snowflake.com/sql-reference/functions/to_file) converts the staged file to a file reference.
+[TO_FILE function](https://docs.snowflake.com/sql-reference/functions/to_file) converts the staged file to a file reference.
 
 ```
 SELECT AI_TRANSCRIBE(TO_FILE(
@@ -522,15 +522,15 @@ audio file.
 
 ### Call transcript analysis
 
-You can pass the output of AI\_TRANSCRIBE to other AI Functions for further processing. For example, you can use
-AI\_SUMMARIZE to summarize the transcription, or AI\_CLASSIFY to classify the content of the transcription. This
-example uses AI\_SENTIMENT and AI\_COMPLETE to analyze the text transcribed from
+You can pass the output of AI_TRANSCRIBE to other AI Functions for further processing. For example, you can use
+AI_SUMMARIZE to summarize the transcription, or AI_CLASSIFY to classify the content of the transcription. This
+example uses AI_SENTIMENT and AI_COMPLETE to analyze the text transcribed from
 [customer call audio](https://docs.snowflake.com/static/samples/cortex/audio/consultation_1.wav) and provide sentiment on four dimensions
 and an assessment of the agent.
 
 Note
 
-AI\_SENTIMENT analyzes only text and does not consider speech characteristics like tone of voice.
+AI_SENTIMENT analyzes only text and does not consider speech characteristics like tone of voice.
 
 ```
 WITH transcriptions AS
@@ -544,7 +544,7 @@ SELECT
 FROM transcriptions
 ```
 
-AI\_SENTIMENT response:
+AI_SENTIMENT response:
 
 ```
 {
@@ -573,7 +573,7 @@ AI\_SENTIMENT response:
 }
 ```
 
-AI\_COMPLETE response:
+AI_COMPLETE response:
 
 ```
 "The agent needs significant improvement in empathy, active listening, and client-centered communication. Instead of
@@ -593,12 +593,12 @@ If the function fails, it raises an error. Common error messages include:
 | File too large. Maximum size is 734,003,200 Bytes, file exceeds this limit. | The provided audio file exceeds the maximum file size. |
 | Invalid file format. Only [‘flac’, ‘mp3’, ‘ogg’, ‘wav’, ‘webm’] files are supported, or WebM file does not contain an audio stream. | The audio file is not one of the supported formats, which are listed in the error message. WebM files support multiple media types, so make sure the file contains an audio stream. If the file is in a supported format, check that it is not corrupted. |
 | File will be too large after resampling it to 16000 Hertz. Expected size is 3,355,444,448,000.0 Bytes. | The provided audio file is too large after resampling to 16 kHz. If the provided audio has a lower sample rate, its resampled size is larger than the original, and could potentially exceed the maximum allowed file size. |
-| Audio duration too long: 6052.10 seconds. Maximum allowed: 3600 seconds. or Audio duration too long: 7335.28 seconds. Maximum allowed: 7200 seconds. | The provided audio file is too long. If you are using timestamp granularity, the maximum duration is 60 minutes (3600 seconds). |
-| Unsupported detected language | The audio file contains a language that is not supported by AI\_TRANSCRIBE. |
+| Audio duration too long: 6052.10 seconds. Maximum allowed: 5400 seconds. or Audio duration too long: 7335.28 seconds. Maximum allowed: 7200 seconds. | The provided audio file is too long. If you are using timestamp granularity, the maximum duration is 90 minutes (5400 seconds). |
+| Unsupported detected language | The audio file contains a language that is not supported by AI_TRANSCRIBE. |
 
 ## Regional availability
 
-AI\_TRANSCRIBE is available in the following regions:
+AI_TRANSCRIBE is available in the following regions:
 
 * AWS US West 2 (Oregon)
 * AWS US East 1 (N. Virginia)

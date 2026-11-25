@@ -1,6 +1,6 @@
-Functionv1.2.23 (latest)●Since v1.2
+Functionv1.2.24 (latest)●Since v1.2
 
-# get\_runtime
+# get_runtime
 
 Get the runtime for the current graph run.
 

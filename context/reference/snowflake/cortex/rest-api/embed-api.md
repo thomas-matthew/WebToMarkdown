@@ -1,6 +1,6 @@
 # Vector embedding REST API
 
-The Cortex REST API gives you access to an endpoint for performing [vector embeddings](https://docs.snowflake.com/user-guide/snowflake-cortex/vector-embeddings), using the [AI\_EMBED](https://docs.snowflake.com/sql-reference/functions/ai_embed) function.
+The Cortex REST API gives you access to an endpoint for performing [vector embeddings](https://docs.snowflake.com/user-guide/snowflake-cortex/vector-embeddings), using the [AI_EMBED](https://docs.snowflake.com/sql-reference/functions/ai_embed) function.
 
 ## Setting up authentication
 
@@ -16,8 +16,8 @@ Consider creating a dedicated user for Cortex REST API requests.
 
 ## Setting up authorization
 
-To send a REST API request, your default role must be granted the SNOWFLAKE.CORTEX\_USER database role.
-In most cases, users already have this privilege because SNOWFLAKE.CORTEX\_USER is granted to the PUBLIC
+To send a REST API request, your default role must be granted the SNOWFLAKE.CORTEX_USER database role.
+In most cases, users already have this privilege because SNOWFLAKE.CORTEX_USER is granted to the PUBLIC
 role automatically, and all roles inherit PUBLIC.
 
 If your Snowflake administrator has revoked this grant, they must re-grant it:
@@ -30,7 +30,7 @@ GRANT ROLE my_role TO USER my_user;
 Important
 
 REST API requests use the user’s default role, so that role must have the necessary privileges. You can change
-a user’s default role with [ALTER USER … SET DEFAULT\_ROLE](https://docs.snowflake.com/sql-reference/sql/alter-user).
+a user’s default role with [ALTER USER … SET DEFAULT_ROLE](https://docs.snowflake.com/sql-reference/sql/alter-user).
 
 ```
 ALTER USER my_user SET DEFAULT_ROLE=my_role

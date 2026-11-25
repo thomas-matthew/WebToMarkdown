@@ -113,8 +113,8 @@ For more information about Semantic Views and their YAML specification, see:
 
 ## Access control requirements
 
-To make requests to Cortex Analyst, use a role with either the SNOWFLAKE.CORTEX\_USER or SNOWFLAKE.CORTEX\_ANALYST\_USER database role.
-CORTEX\_USER provides access to all Covered AI features, while CORTEX\_ANALYST\_USER provides access only to Cortex Analyst.
+To make requests to Cortex Analyst, use a role with either the SNOWFLAKE.CORTEX_USER or SNOWFLAKE.CORTEX_ANALYST_USER database role.
+CORTEX_USER provides access to all Covered AI features, while CORTEX_ANALYST_USER provides access only to Cortex Analyst.
 For information about Covered AI features, see [Legal notices](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst#label-analyst-legal-notices).
 
 To use Cortex Analyst with a semantic model, you also need the following privileges:
@@ -132,7 +132,7 @@ Note that the example in this topic uses a session token to authenticate to a Sn
 
 ### Limiting access to specific roles
 
-By default, the CORTEX\_USER role is granted to the PUBLIC role. The PUBLIC role is automatically granted to all users and roles.
+By default, the CORTEX_USER role is granted to the PUBLIC role. The PUBLIC role is automatically granted to all users and roles.
 If you don’t want all users to have this privilege, you can revoke access to the PUBLIC role and grant access to specific roles.
 For more information, see [Cortex LLM privileges](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges).
 
@@ -140,13 +140,13 @@ To control access to specific semantic models, you can store the YAML file in a 
 
 ### Limiting access using the Cortex Analyst user role
 
-To provide selective access to Cortex Analyst for specific users, use the SNOWFLAKE.CORTEX\_ANALYST\_USER database role.
+To provide selective access to Cortex Analyst for specific users, use the SNOWFLAKE.CORTEX_ANALYST_USER database role.
 This role includes the privileges needed to call the Cortex Analyst API. For more information about Covered AI features, see [Legal notices](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-analyst#label-analyst-legal-notices).
 
 Important
 
-If your user roles have the CORTEX\_USER role, you must revoke access to the CORTEX\_USER role.
-To revoke the CORTEX\_USER database role from your user roles, run the following command using the
+If your user roles have the CORTEX_USER role, you must revoke access to the CORTEX_USER role.
+To revoke the CORTEX_USER database role from your user roles, run the following command using the
 ACCOUNTADMIN role:
 
 ```
@@ -155,7 +155,7 @@ REVOKE DATABASE ROLE SNOWFLAKE.CORTEX_USER FROM ROLE analyst;
 
 To provide access to Cortex Analyst, use the ACCOUNTADMIN role to do the following:
 
-1. Grant the SNOWFLAKE.CORTEX\_ANALYST\_USER database role to a custom role.
+1. Grant the SNOWFLAKE.CORTEX_ANALYST_USER database role to a custom role.
 2. Assign this custom role to users.
 
 Note
@@ -165,7 +165,7 @@ You can’t grant database roles directly to users. For more information, see [G
 The following example:
 
 1. Creates the custom role, `cortex_analyst_user_role`.
-2. Grants it the CORTEX\_ANALYST\_USER database role.
+2. Grants it the CORTEX_ANALYST_USER database role.
 3. Assigns this role to `example_user`.
 
 ```
@@ -420,7 +420,7 @@ repository. This repository is configured with various pre-built features that m
 ## Disable Cortex Analyst functionality
 
 If you do not want Cortex Analyst to be available in your account, disable the feature by changing the
-ENABLE\_CORTEX\_ANALYST parameter using the ACCOUNTADMIN role:
+ENABLE_CORTEX_ANALYST parameter using the ACCOUNTADMIN role:
 
 ```
 USE ROLE ACCOUNTADMIN;
@@ -487,13 +487,13 @@ The above charges cover AI costs for text-to-SQL. Additional warehouse costs app
 
 ### Monitoring the cost of Cortex Analyst
 
-To view credit consumption for Cortex Analyst, use the [CORTEX\_ANALYST\_USAGE\_HISTORY view](https://docs.snowflake.com/sql-reference/account-usage/cortex_analyst_usage_history). For example:
+To view credit consumption for Cortex Analyst, use the [CORTEX_ANALYST_USAGE_HISTORY view](https://docs.snowflake.com/sql-reference/account-usage/cortex_analyst_usage_history). For example:
 
 ```
 SELECT * FROM SNOWFLAKE.ACCOUNT_USAGE.CORTEX_ANALYST_USAGE_HISTORY;
 ```
 
-Usage of Cortex Analyst also appears in the [METERING\_HISTORY view](https://docs.snowflake.com/sql-reference/account-usage/metering_history) in the ACCOUNT\_USAGE schema with a service type of AI\_SERVICES.
+Usage of Cortex Analyst also appears in the [METERING_HISTORY view](https://docs.snowflake.com/sql-reference/account-usage/metering_history) in the ACCOUNT_USAGE schema with a service type of AI_SERVICES.
 
 ## Legal notices
 

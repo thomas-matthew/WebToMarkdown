@@ -1,7 +1,7 @@
 Categories:
 :   [String & binary functions](https://docs.snowflake.com/sql-reference/functions-string) (AI Functions)
 
-# AI\_PARSE\_DOCUMENT
+# AI_PARSE_DOCUMENT
 
 Regional Availability
 
@@ -10,7 +10,7 @@ Available through [cross-region inference](https://docs.snowflake.com/user-guide
 
 Returns document content from a Snowflake stage as a JSON-formatted string. Supports text extraction (OCR), text and
 layout extraction (LAYOUT), and text, layout, and visual content extraction (AGENTIC). For more information, see
-[Parsing documents with AI\_PARSE\_DOCUMENT](https://docs.snowflake.com/user-guide/snowflake-cortex/parse-document).
+[Parsing documents with AI_PARSE_DOCUMENT](https://docs.snowflake.com/user-guide/snowflake-cortex/parse-document).
 
 ## Syntax
 
@@ -24,9 +24,9 @@ AI_PARSE_DOCUMENT( <file_object> [, <options> ] [, <return_error_details> ] )
 
 `file_object`
 :   A [FILE](https://docs.snowflake.com/sql-reference/data-types-unstructured#label-data-types-file) object that specifies the document to parse, stored in a Snowflake stage. For
-    information about creating file objects, see [TO\_FILE](https://docs.snowflake.com/sql-reference/functions/to_file).
+    information about creating file objects, see [TO_FILE](https://docs.snowflake.com/sql-reference/functions/to_file).
 
-    To parse selected pages of a paginated document, pass [`FL_FILTER_PAGES`](https://docs.snowflake.com/sql-reference/functions/fl_filter_pages) as the `file_object` argument. `AI_PARSE_DOCUMENT` processes only the selected pages. For page-range syntax and restrictions, see [FL\_FILTER\_PAGES](https://docs.snowflake.com/sql-reference/functions/fl_filter_pages).
+    To parse selected pages of a paginated document, pass [`FL_FILTER_PAGES`](https://docs.snowflake.com/sql-reference/functions/fl_filter_pages) as the `file_object` argument. `AI_PARSE_DOCUMENT` processes only the selected pages. For page-range syntax and restrictions, see [FL_FILTER_PAGES](https://docs.snowflake.com/sql-reference/functions/fl_filter_pages).
 
 **Optional:**
 
@@ -45,7 +45,7 @@ AI_PARSE_DOCUMENT( <file_object> [, <options> ] [, <return_error_details> ] )
 
       Tip
 
-      To process long documents that exceed the token limit of AI\_PARSE\_DOCUMENT, set this option to TRUE.
+      To process long documents that exceed the token limit of AI_PARSE_DOCUMENT, set this option to TRUE.
     * `'page_filter'`: An array that specifies ranges of pages of a multi-page document to process. Each
       range is an object with `start` and `end` fields that specify the first (inclusive) and last (exclusive) page in
       the range. Page indexes start at 0. For example, `{'start': 0, 'end': 1}` specifies the first page of the
@@ -68,7 +68,7 @@ AI_PARSE_DOCUMENT( <file_object> [, <options> ] [, <return_error_details> ] )
 ## Returns
 
 By default the function returns the JSON as a string, so use
-[PARSE\_JSON](https://docs.snowflake.com/sql-reference/functions/parse_json) to read the fields in SQL. If parsing fails, the function returns NULL. Every
+[PARSE_JSON](https://docs.snowflake.com/sql-reference/functions/parse_json) to read the fields in SQL. If parsing fails, the function returns NULL. Every
 successful result includes `metadata.pageCount`, which is the total number of pages in the source document.
 
 To explicitly request page-level output, set `page_split` to TRUE. The `page_filter` option also enables page splitting automatically.
@@ -300,7 +300,7 @@ The following fields are expected when `image_type` is `other`:
 
 ## Error behavior
 
-By default, if AI\_PARSE\_DOCUMENT can’t process the input, the function returns NULL. If the query processes multiple
+By default, if AI_PARSE_DOCUMENT can’t process the input, the function returns NULL. If the query processes multiple
 rows, rows with errors return NULL and don’t prevent the query from completing.
 
 An invalid `FL_FILTER_PAGES` selection, or a valid selection that resolves to no pages, produces a row-level error. By default, `AI_PARSE_DOCUMENT` returns NULL for the affected row. Set `return_error_details` to TRUE to return the error information. For range validation rules, see [Error conditions](https://docs.snowflake.com/sql-reference/functions/fl_filter_pages#label-fl-filter-pages-error-conditions).
@@ -316,7 +316,7 @@ For more information about error handling for AI functions, see [Snowflake Corte
 
 ### Partial results in AGENTIC mode
 
-If processing fails for an image, AI\_PARSE\_DOCUMENT still returns the parsed document content and the available
+If processing fails for an image, AI_PARSE_DOCUMENT still returns the parsed document content and the available
 results for other images. The affected image entry contains the following error marker:
 
 ```
@@ -398,12 +398,12 @@ be processed. Image coordinates are omitted for brevity.
 
 ## Examples
 
-For examples, see [AI\_PARSE\_DOCUMENT examples](https://docs.snowflake.com/user-guide/snowflake-cortex/parse-document#label-parse-document-examples).
+For examples, see [AI_PARSE_DOCUMENT examples](https://docs.snowflake.com/user-guide/snowflake-cortex/parse-document#label-parse-document-examples).
 
 Note
 
-AI\_PARSE\_DOCUMENT is the updated version of [PARSE\_DOCUMENT](https://docs.snowflake.com/sql-reference/functions/parse_document-snowflake-cortex).
-For the latest functionality, use AI\_PARSE\_DOCUMENT.
+AI_PARSE_DOCUMENT is the updated version of [PARSE_DOCUMENT](https://docs.snowflake.com/sql-reference/functions/parse_document-snowflake-cortex).
+For the latest functionality, use AI_PARSE_DOCUMENT.
 
 ## Legal notices
 

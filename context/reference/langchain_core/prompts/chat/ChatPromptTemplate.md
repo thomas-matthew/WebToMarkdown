@@ -1,4 +1,4 @@
-Classv1.8.3 (latest)●Since v1.8
+Classv1.8.4 (latest)●Since v0.1
 
 # ChatPromptTemplate
 
@@ -141,7 +141,7 @@ ChatPromptTemplate(
 
 | Name | Type | Description |
 | --- | --- | --- |
-| `messages`\* | `Sequence[MessageLikeRepresentation]` | Sequence of message representations.  A message can be represented using the following formats:   1. `BaseMessagePromptTemplate` 2. `BaseMessage` 3. 2-tuple of `(message type, template)`; e.g.,    `('human', '{user_input}')` 4. 2-tuple of `(message class, template)` 5. A string which is shorthand for `('human', template)`; e.g.,    `'{user_input}'` |
+| `messages`* | `Sequence[MessageLikeRepresentation]` | Sequence of message representations.  A message can be represented using the following formats:   1. `BaseMessagePromptTemplate` 2. `BaseMessage` 3. 2-tuple of `(message type, template)`; e.g.,    `('human', '{user_input}')` 4. 2-tuple of `(message class, template)` 5. A string which is shorthand for `('human', template)`; e.g.,    `'{user_input}'` |
 | `template_format` | `PromptTemplateFormat` | Default:`'f-string'`  Format of the template. |
 | `**kwargs` | `Any` | Default:`{}`  Additional keyword arguments passed to `BasePromptTemplate`, including (but not limited to):   * `input_variables`: A list of the names of the variables whose values   are required as inputs to the prompt. * `optional_variables`: A list of the names of the variables for   placeholder or `MessagePlaceholder` that are optional.  These variables are auto inferred from the prompt and user need not   provide them. * `partial_variables`: A dictionary of the partial variables the prompt   template carries.  Partial variables populate the template so that you don't need to   pass them in every time you call the prompt. * `validate_template`: Whether to validate the template. * `input_types`: A dictionary of the types of the variables the prompt   template expects.  If not provided, all variables are assumed to be strings. |
 
@@ -149,12 +149,12 @@ ChatPromptTemplate(
 
 constructor
 
-\_\_init\_\_
+__init__
 
 | Name | Type |
 | --- | --- |
 | messages | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[MessageLikeRepresentation](https://reference.langchain.com/python/langchain-core/prompts/chat/MessageLikeRepresentation)] |
-| template\_format | [PromptTemplateFormat](https://reference.langchain.com/python/langchain-core/prompts/string/PromptTemplateFormat) |
+| template_format | [PromptTemplateFormat](https://reference.langchain.com/python/langchain-core/prompts/string/PromptTemplateFormat) |
 | kwargs | [Any](https://docs.python.org/3/library/typing.html#typing.Any) |
 
 ## Attributes
@@ -167,7 +167,7 @@ List of messages consisting of either message prompt templates or messages.
 
 attribute
 
-validate\_template: bool
+validate_template: bool
 
 Whether or not to try validating the template.
 
@@ -175,13 +175,13 @@ Whether or not to try validating the template.
 
 method
 
-get\_lc\_namespace
+get_lc_namespace
 
 Get the namespace of the LangChain object.
 
 method
 
-validate\_input\_variables
+validate_input_variables
 
 Validate input variables.
 
@@ -190,7 +190,7 @@ variables in the messages.
 
 method
 
-from\_template
+from_template
 
 Create a chat prompt template from a template string.
 
@@ -199,19 +199,19 @@ human.
 
 method
 
-from\_messages
+from_messages
 
 Create a chat prompt template from a variety of message formats.
 
 method
 
-format\_messages
+format_messages
 
 Format the chat template into a list of finalized messages.
 
 method
 
-aformat\_messages
+aformat_messages
 
 Async format the chat template into a list of finalized messages.
 
@@ -235,7 +235,7 @@ Extend the chat template with a sequence of messages.
 
 method
 
-pretty\_repr
+pretty_repr
 
 Human-readable representation.
 
@@ -249,7 +249,7 @@ Save prompt to file.
 
 ### Attributes
 
-[Alc\_attributes: dict[str, Any]](https://reference.langchain.com/python/langchain-core/prompts/chat/BaseChatPromptTemplate/lc_attributes)
+[Alc_attributes: dict[str, Any]](https://reference.langchain.com/python/langchain-core/prompts/chat/BaseChatPromptTemplate/lc_attributes)
 
 ### Methods
 
@@ -265,19 +265,19 @@ Maformat
 
 Async format the chat template into a string.
 
-Mformat\_prompt
+Mformat_prompt
 
 —
 
 Format prompt.
 
-Maformat\_prompt
+Maformat_prompt
 
 —
 
 Async format prompt.
 
-Mpretty\_print
+Mpretty_print
 
 —
 
@@ -287,31 +287,31 @@ Print a human-readable representation.
 
 ### Attributes
 
-Ainput\_variables: list[str]
+Ainput_variables: list[str]
 
 —
 
 A list of the names of the variables whose values are required as inputs to the
 
-Aoptional\_variables: list[str]
+Aoptional_variables: list[str]
 
 —
 
 A list of the names of the variables for placeholder or `MessagePlaceholder` that
 
-Ainput\_types: builtins.dict[str, Any]
+Ainput_types: builtins.dict[str, Any]
 
 —
 
 A dictionary of the types of the variables the prompt template expects.
 
-Aoutput\_parser: BaseOutputParser | None
+Aoutput_parser: BaseOutputParser | None
 
 —
 
 How to parse the output of calling an LLM on this formatted prompt.
 
-Apartial\_variables: Mapping[str, Any]
+Apartial_variables: Mapping[str, Any]
 
 —
 
@@ -329,7 +329,7 @@ Atags: list[str] | None
 
 Tags to be used for tracing.
 
-[Amodel\_config](https://reference.langchain.com/python/langchain-core/prompts/base/BasePromptTemplate/model_config)
+[Amodel_config](https://reference.langchain.com/python/langchain-core/prompts/base/BasePromptTemplate/model_config)
 
 AOutputType: Any
 
@@ -339,19 +339,19 @@ Return the output type of the prompt.
 
 ### Methods
 
-Mvalidate\_variable\_names
+Mvalidate_variable_names
 
 —
 
 Validate variable names do not include restricted names.
 
-Mis\_lc\_serializable
+Mis_lc_serializable
 
 —
 
 Return `True` as this class is serializable.
 
-Mget\_input\_schema
+Mget_input_schema
 
 —
 
@@ -369,13 +369,13 @@ Mainvoke
 
 Async invoke the prompt.
 
-Mformat\_prompt
+Mformat_prompt
 
 —
 
 Create `PromptValue`.
 
-Maformat\_prompt
+Maformat_prompt
 
 —
 
@@ -415,23 +415,23 @@ Aname: str | None
 
 The name of the `Runnable`.
 
-[Amodel\_config](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/model_config)
+[Amodel_config](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/model_config)
 
 ### Methods
 
-Mto\_json
+Mto_json
 
 —
 
 Serialize the `Runnable` to JSON.
 
-Mconfigurable\_fields
+Mconfigurable_fields
 
 —
 
 Configure particular `Runnable` fields at runtime.
 
-Mconfigurable\_alternatives
+Mconfigurable_alternatives
 
 —
 
@@ -441,41 +441,41 @@ Configure alternatives for `Runnable` objects that can be set at runtime.
 
 ### Attributes
 
-Alc\_secrets: dict[str, str]
+Alc_secrets: dict[str, str]
 
 —
 
 A map of constructor argument names to secret ids.
 
-Alc\_attributes: dict[str, Any]
+Alc_attributes: dict[str, Any]
 
 —
 
 List of attribute names that should be included in the serialized kwargs.
 
-[Amodel\_config](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/model_config)
+[Amodel_config](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/model_config)
 
 ### Methods
 
-Mis\_lc\_serializable
+Mis_lc_serializable
 
 —
 
 Is this class serializable?
 
-Mlc\_id
+Mlc_id
 
 —
 
 Return a unique identifier for this class for serialization purposes.
 
-Mto\_json
+Mto_json
 
 —
 
 Serialize the object to JSON.
 
-Mto\_json\_not\_implemented
+Mto_json_not_implemented
 
 —
 
@@ -503,19 +503,19 @@ AOutputType: type[Output]
 
 Output Type.
 
-Ainput\_schema: TypeBaseModel
+Ainput_schema: TypeBaseModel
 
 —
 
 The type of input this `Runnable` accepts specified as a Pydantic model.
 
-Aoutput\_schema: TypeBaseModel
+Aoutput_schema: TypeBaseModel
 
 —
 
 Output schema.
 
-Aconfig\_specs: list[ConfigurableFieldSpec]
+Aconfig_specs: list[ConfigurableFieldSpec]
 
 —
 
@@ -523,55 +523,55 @@ List configurable fields for this `Runnable`.
 
 ### Methods
 
-Mget\_name
+Mget_name
 
 —
 
 Get the name of the `Runnable`.
 
-Mget\_input\_schema
+Mget_input_schema
 
 —
 
 Get a Pydantic model that can be used to validate input to the `Runnable`.
 
-Mget\_input\_jsonschema
+Mget_input_jsonschema
 
 —
 
 Get a JSON schema that represents the input to the `Runnable`.
 
-Mget\_output\_schema
+Mget_output_schema
 
 —
 
 Get a Pydantic model that can be used to validate output to the `Runnable`.
 
-Mget\_output\_jsonschema
+Mget_output_jsonschema
 
 —
 
 Get a JSON schema that represents the output of the `Runnable`.
 
-Mconfig\_schema
+Mconfig_schema
 
 —
 
 The type of config this `Runnable` accepts specified as a Pydantic model.
 
-Mget\_config\_jsonschema
+Mget_config_jsonschema
 
 —
 
 Get a JSON schema that represents the config of the `Runnable`.
 
-Mget\_graph
+Mget_graph
 
 —
 
 Return a graph representation of this `Runnable`.
 
-Mget\_prompts
+Mget_prompts
 
 —
 
@@ -613,7 +613,7 @@ Mbatch
 
 Default implementation runs invoke in parallel using a thread pool executor.
 
-Mbatch\_as\_completed
+Mbatch_as_completed
 
 —
 
@@ -625,7 +625,7 @@ Mabatch
 
 Default implementation runs `ainvoke` in parallel using `asyncio.gather`.
 
-Mabatch\_as\_completed
+Mabatch_as_completed
 
 —
 
@@ -643,19 +643,19 @@ Mastream
 
 Default implementation of `astream`, which calls `ainvoke`.
 
-Mastream\_log
+Mastream_log
 
 —
 
 Stream all output from a `Runnable`, as reported to the callback system.
 
-Mastream\_events
+Mastream_events
 
 —
 
 Generate a stream of events.
 
-Mstream\_events
+Mstream_events
 
 —
 
@@ -679,31 +679,31 @@ Mbind
 
 Bind arguments to a `Runnable`, returning a new `Runnable`.
 
-Mwith\_config
+Mwith_config
 
 —
 
 Bind config to a `Runnable`, returning a new `Runnable`.
 
-Mwith\_listeners
+Mwith_listeners
 
 —
 
 Bind lifecycle listeners to a `Runnable`, returning a new `Runnable`.
 
-Mwith\_alisteners
+Mwith_alisteners
 
 —
 
 Bind async lifecycle listeners to a `Runnable`.
 
-Mwith\_types
+Mwith_types
 
 —
 
 Bind input and output types to a `Runnable`, returning a new `Runnable`.
 
-Mwith\_retry
+Mwith_retry
 
 —
 
@@ -715,13 +715,13 @@ Mmap
 
 Return a new `Runnable` that maps a list of inputs to a list of outputs.
 
-Mwith\_fallbacks
+Mwith_fallbacks
 
 —
 
 Add fallbacks to a `Runnable`, returning a new `Runnable`.
 
-Mas\_tool
+Mas_tool
 
 —
 

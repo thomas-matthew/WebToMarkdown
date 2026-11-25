@@ -24,7 +24,7 @@ All the LLMs that Snowflake provides access to via our Snowflake AI Features are
 
 Snowflake Cortex features are provided as SQL functions and are also available [in Python](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-programmatic-use).
 To call any of these functions, your role needs the USE AI FUNCTIONS account-level privilege and one of the
-CORTEX\_USER or AI\_FUNCTIONS\_USER database roles. For details, see
+CORTEX_USER or AI_FUNCTIONS_USER database roles. For details, see
 [Privileges and model access for Cortex AI Functions](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-privileges-and-access).
 
 Cortex AI Functions can be grouped into the following categories:
@@ -37,33 +37,33 @@ Cortex AI Functions can be grouped into the following categories:
 These task-specific functions are purpose-built managed functions that automate routine tasks, like simple summaries and
 quick translations, that don’t require any customization.
 
-* [AI\_COMPLETE](https://docs.snowflake.com/sql-reference/functions/ai_complete): Generates a completion for a given text string or image using a selected LLM. Use this function for most generative AI tasks.
-* [AI\_CLASSIFY](https://docs.snowflake.com/sql-reference/functions/ai_classify): Classifies text or images into user-defined categories.
-* [AI\_FILTER](https://docs.snowflake.com/sql-reference/functions/ai_filter): Returns True or False for a given text or image input, allowing you to filter results in *SELECT*, *WHERE*, or *JOIN … ON* clauses.
-* [AI\_AGG](https://docs.snowflake.com/sql-reference/functions/ai_agg): Aggregates a text column and returns insights across multiple rows based on a user-defined prompt. This function isn’t subject to context window limitations.
-* [AI\_EMBED](https://docs.snowflake.com/sql-reference/functions/ai_embed): Generates an embedding vector for a text or image input, which can be used for similarity search, clustering, and classification tasks.
-* [AI\_MULTI\_EMBED](https://docs.snowflake.com/sql-reference/functions/ai_multi_embed): Creates multimodal embeddings from text, images, audio, or video, returning one or more vectors with segment metadata for semantic search across modalities.
-* [AI\_EXTRACT](https://docs.snowflake.com/sql-reference/functions/ai_extract): Extracts information from an input string or file, for example, text, images, and documents. Supports multiple languages.
-* [AI\_SENTIMENT](https://docs.snowflake.com/sql-reference/functions/ai_sentiment): Extracts sentiment from text.
-* [AI\_SUMMARIZE](https://docs.snowflake.com/sql-reference/functions/ai_summarize): Automatically summarizes text, images, and documents, identifying key themes, facts, and relationships across multimodal content.
-* [AI\_SUMMARIZE\_AGG](https://docs.snowflake.com/sql-reference/functions/ai_summarize_agg): Aggregates a text column and returns a summary across multiple rows. This function isn’t subject to context window limitations.
-* [AI\_SIMILARITY](https://docs.snowflake.com/sql-reference/functions/ai_similarity): Calculates the embedding similarity between two inputs.
-* [AI\_TRANSCRIBE](https://docs.snowflake.com/sql-reference/functions/ai_transcribe): Transcribes audio and video files stored in a stage, extracting text, timestamps, and speaker information.
-* [AI\_PARSE\_DOCUMENT](https://docs.snowflake.com/sql-reference/functions/ai_parse_document): Extracts text (using OCR mode) or text with layout information
+* [AI_COMPLETE](https://docs.snowflake.com/sql-reference/functions/ai_complete): Generates a completion for a given text string or image using a selected LLM. Use this function for most generative AI tasks.
+* [AI_CLASSIFY](https://docs.snowflake.com/sql-reference/functions/ai_classify): Classifies text or images into user-defined categories.
+* [AI_FILTER](https://docs.snowflake.com/sql-reference/functions/ai_filter): Returns True or False for a given text or image input, allowing you to filter results in *SELECT*, *WHERE*, or *JOIN … ON* clauses.
+* [AI_AGG](https://docs.snowflake.com/sql-reference/functions/ai_agg): Aggregates a text column and returns insights across multiple rows based on a user-defined prompt. This function isn’t subject to context window limitations.
+* [AI_EMBED](https://docs.snowflake.com/sql-reference/functions/ai_embed): Generates an embedding vector for a text or image input, which can be used for similarity search, clustering, and classification tasks.
+* [AI_MULTI_EMBED](https://docs.snowflake.com/sql-reference/functions/ai_multi_embed): Creates multimodal embeddings from text, images, audio, or video, returning one or more vectors with segment metadata for semantic search across modalities.
+* [AI_EXTRACT](https://docs.snowflake.com/sql-reference/functions/ai_extract): Extracts information from an input string or file, for example, text, images, and documents. Supports multiple languages.
+* [AI_SENTIMENT](https://docs.snowflake.com/sql-reference/functions/ai_sentiment): Extracts sentiment from text.
+* [AI_SUMMARIZE](https://docs.snowflake.com/sql-reference/functions/ai_summarize): Automatically summarizes text, images, and documents, identifying key themes, facts, and relationships across multimodal content.
+* [AI_SUMMARIZE_AGG](https://docs.snowflake.com/sql-reference/functions/ai_summarize_agg): Aggregates a text column and returns a summary across multiple rows. This function isn’t subject to context window limitations.
+* [AI_SIMILARITY](https://docs.snowflake.com/sql-reference/functions/ai_similarity): Calculates the embedding similarity between two inputs.
+* [AI_TRANSCRIBE](https://docs.snowflake.com/sql-reference/functions/ai_transcribe): Transcribes audio and video files stored in a stage, extracting text, timestamps, and speaker information.
+* [AI_PARSE_DOCUMENT](https://docs.snowflake.com/sql-reference/functions/ai_parse_document): Extracts text (using OCR mode) or text with layout information
   (using LAYOUT mode) from documents in an internal or external stage. Can also extract images found in a document.
-* [AI\_REDACT](https://docs.snowflake.com/sql-reference/functions/ai_redact): Redact personally identifiable information (PII) from text.
-* [AI\_TRANSLATE](https://docs.snowflake.com/sql-reference/functions/ai_translate): Translates text between supported languages.
+* [AI_REDACT](https://docs.snowflake.com/sql-reference/functions/ai_redact): Redact personally identifiable information (PII) from text.
+* [AI_TRANSLATE](https://docs.snowflake.com/sql-reference/functions/ai_translate): Translates text between supported languages.
 
 ### Helper functions
 
 Helper functions are purpose-built managed functions that reduce cases of failures when running other Cortex AI Functions, for example by
 getting the count of tokens in an input prompt to ensure the call doesn’t exceed a model limit.
 
-* [TO\_FILE](https://docs.snowflake.com/sql-reference/functions/to_file): Creates a reference to a file in an internal or external stage for use with
-  AI\_COMPLETE and other functions that accept files.
-* [AI\_COUNT\_TOKENS](https://docs.snowflake.com/sql-reference/functions/ai_count_tokens): Given an input text, returns the token count based on the model or Cortex
+* [TO_FILE](https://docs.snowflake.com/sql-reference/functions/to_file): Creates a reference to a file in an internal or external stage for use with
+  AI_COMPLETE and other functions that accept files.
+* [AI_COUNT_TOKENS](https://docs.snowflake.com/sql-reference/functions/ai_count_tokens): Given an input text, returns the token count based on the model or Cortex
   function specified.
-* [PROMPT](https://docs.snowflake.com/sql-reference/functions/prompt): Helps you build prompt objects for use with AI\_COMPLETE and other functions.
+* [PROMPT](https://docs.snowflake.com/sql-reference/functions/prompt): Helps you build prompt objects for use with AI_COMPLETE and other functions.
 
 ## Performance considerations
 

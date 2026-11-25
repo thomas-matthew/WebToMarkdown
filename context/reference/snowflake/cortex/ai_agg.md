@@ -2,16 +2,16 @@ Categories:
 :   [Aggregate functions](https://docs.snowflake.com/sql-reference/functions-aggregation) (General)
     [String & binary functions](https://docs.snowflake.com/sql-reference/functions-string) (AI Functions)
 
-# AI\_AGG
+# AI_AGG
 
 Reduces a column of text data using a natural language instruction.
 
 For example, `AI_AGG(reviews, 'Describe the most common complaints mentioned in the book reviews')` will return a summary of user feedback.
 
-Unlike [COMPLETE (SNOWFLAKE.CORTEX)](https://docs.snowflake.com/sql-reference/functions/complete-snowflake-cortex) and [AI\_SUMMARIZE](https://docs.snowflake.com/sql-reference/functions/ai_summarize), this function supports datasets larger than the maximum language model context window.
+Unlike [COMPLETE (SNOWFLAKE.CORTEX)](https://docs.snowflake.com/sql-reference/functions/complete-snowflake-cortex) and [AI_SUMMARIZE](https://docs.snowflake.com/sql-reference/functions/ai_summarize), this function supports datasets larger than the maximum language model context window.
 
 See also:
-:   [AI\_SUMMARIZE\_AGG](https://docs.snowflake.com/sql-reference/functions/ai_summarize_agg)
+:   [AI_SUMMARIZE_AGG](https://docs.snowflake.com/sql-reference/functions/ai_summarize_agg)
 
 ## Syntax
 
@@ -51,7 +51,7 @@ For optimal performance, follow these guidelines:
 
 ## Examples
 
-AI\_AGG can be used as a simple scalar function on string constants. In the following example, AI\_AGG is used to
+AI_AGG can be used as a simple scalar function on string constants. In the following example, AI_AGG is used to
 summarize product ratings, which are provided as a single string.
 
 ```
@@ -63,7 +63,7 @@ SELECT AI_AGG('[Excellent, Excellent, Great, Mediocre]',
 Overall, the product has received overwhelmingly positive reviews, with the majority of users rating it as 'Excellent' or 'Great'. Only a small percentage of users had a mediocre experience with the product. This suggests that the product is well-liked by most consumers and is a great option for those looking for a reliable choice.
 ```
 
-AI\_AGG can also be used on a column of data. In the following example, the product ratings from the above example are provided as a column in a table using a [Common Table Expression](https://docs.snowflake.com/user-guide/queries-cte).
+AI_AGG can also be used on a column of data. In the following example, the product ratings from the above example are provided as a column in a table using a [Common Table Expression](https://docs.snowflake.com/user-guide/queries-cte).
 
 ```
 WITH reviews AS (
@@ -80,7 +80,7 @@ SELECT AI_AGG(review, 'Summarize the restaurant reviews for potential consumers'
 Reviews for this restaurant are mixed. Some customers had a very positive experience, describing the restaurant as "excellent" and loving the pizza. However, others had a more neutral or negative experience, citing mediocre food and service.
 ```
 
-AI\_AGG can be used on multiple columns of data using `CONCAT` or the `||` operator.
+AI_AGG can be used on multiple columns of data using `CONCAT` or the `||` operator.
 
 ```
 WITH reviews AS (
@@ -98,7 +98,7 @@ SELECT AI_AGG('Menu Item: ' || menu_item || '\nReview: ' || review,
 Based on the reviews, the restaurant seems to receive high praise for their pizza, with two reviews using the word "excellent" to describe their experience. However, the reviews for other menu items, such as burgers and pancakes, are more mixed, with some customers expressing disappointment with the service or finding the food to be just mediocre. Overall, potential consumers may want to consider ordering pizza if they decide to dine at this restaurant.
 ```
 
-AI\_AGG can also be used in combination with GROUP BY. The following example summarizes product ratings for two products (identified by the column `product_id`) in a table of reviews.
+AI_AGG can also be used in combination with GROUP BY. The following example summarizes product ratings for two products (identified by the column `product_id`) in a table of reviews.
 
 ```
 WITH reviews AS (
@@ -156,7 +156,7 @@ SELECT product_id,
 +------------+--------------------+
 ```
 
-See also [AI\_SUMMARIZE\_AGG](https://docs.snowflake.com/sql-reference/functions/ai_summarize_agg).
+See also [AI_SUMMARIZE_AGG](https://docs.snowflake.com/sql-reference/functions/ai_summarize_agg).
 
 ## Legal notices
 

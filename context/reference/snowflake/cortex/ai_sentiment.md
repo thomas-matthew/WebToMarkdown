@@ -1,9 +1,9 @@
 Categories:
 :   [String & binary functions](https://docs.snowflake.com/sql-reference/functions-string) (AI Functions)
 
-# AI\_SENTIMENT
+# AI_SENTIMENT
 
-AI\_SENTIMENT provides sentiment classification across diverse markets and languages. It uses a custom
+AI_SENTIMENT provides sentiment classification across diverse markets and languages. It uses a custom
 Snowflake large language model to return overall sentiment for a piece of text and, optionally,
 aspect-based (also called category-based or entity-based) sentiment for specific topics that you specify.
 
@@ -38,7 +38,7 @@ AI_SENTIMENT( <text> [ , <categories> ] [, <return_error_details> ] )
     string. For example, if extracting sentiment from a restaurant review, you might specify
     `['cost', 'quality', 'service', 'wait time']` as the categories. Each category may be a maximum of 30 characters long.
 
-    If you do not provide this argument, AI\_SENTIMENT returns only the overall sentiment.
+    If you do not provide this argument, AI_SENTIMENT returns only the overall sentiment.
 
 `return_error_details`
 :   A BOOLEAN flag that indicates whether to return error details in case of error. When set to TRUE, the function returns
@@ -86,7 +86,7 @@ Example:
 
 ## Error behavior
 
-By default, if AI\_SENTIMENT can’t process the input, the function returns NULL. If the query processes multiple rows,
+By default, if AI_SENTIMENT can’t process the input, the function returns NULL. If the query processes multiple rows,
 rows with errors return NULL and don’t prevent the query from completing.
 
 The return value on error depends on the `return_error_details`
@@ -101,26 +101,26 @@ For more information about error handling for AI functions, see [Snowflake Corte
 
 ## Access control requirements
 
-Users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
+Users must use a role that has been granted the [SNOWFLAKE.CORTEX_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
 See [Cortex LLM privileges](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this role.
 
 ## Usage notes
 
-* **Supported languages:** AI\_SENTIMENT can analyze sentiment in English, French, German, Hindi, Italian, Spanish, and
+* **Supported languages:** AI_SENTIMENT can analyze sentiment in English, French, German, Hindi, Italian, Spanish, and
   Portuguese. Aspects can be specified in the language of the text or in English.
-* **Context window:** AI\_SENTIMENT is optimized for text inputs of 2,048 tokens (roughly 1,600 words). Inputs that
+* **Context window:** AI_SENTIMENT is optimized for text inputs of 2,048 tokens (roughly 1,600 words). Inputs that
   exceed the context window return an error; outputs that would exceed the context window are truncated.
 * **Aspect limits:** You can specify a maximum of ten aspects, each no longer than 30 characters.
 
 | Function | Context window (tokens) | Maximum number of entity labels |
 | --- | --- | --- |
-| AI\_SENTIMENT | 2,048 | 10 |
+| AI_SENTIMENT | 2,048 | 10 |
 
 ## Examples
 
 ### Get the overall sentiment of text
 
-The following example uses AI\_SENTIMENT to get the overall sentiment of a product review.
+The following example uses AI_SENTIMENT to get the overall sentiment of a product review.
 
 ```
 SELECT AI_SENTIMENT('I went to the store, bought the leggings and exact same as shorts...
@@ -144,7 +144,7 @@ Return value:
 ### Get aspect-based sentiment
 
 Specify one or more aspects to get aspect-based sentiment in addition to the overall sentiment. The following example
-uses AI\_SENTIMENT to get the sentiment classification for specific aspects of a restaurant review.
+uses AI_SENTIMENT to get the sentiment classification for specific aspects of a restaurant review.
 
 ```
 SELECT AI_SENTIMENT('A tourist\'s delight, in low urban light,
@@ -178,7 +178,7 @@ Return value:
 }
 ```
 
-If some aspects that you specify do not apply to the text you provide, AI\_SENTIMENT returns `unknown` for those aspects,
+If some aspects that you specify do not apply to the text you provide, AI_SENTIMENT returns `unknown` for those aspects,
 as shown for `Professionalism` and `Brand` in the following example.
 
 ```
@@ -230,7 +230,7 @@ SELECT
 
 ### Multilingual sentiment analysis
 
-AI\_SENTIMENT can analyze sentiment in multiple languages, so you don’t need to translate the text and risk losing an
+AI_SENTIMENT can analyze sentiment in multiple languages, so you don’t need to translate the text and risk losing an
 essential part of its meaning. You do not need to specify the language of the text. Aspects can be specified in the
 language of the text or in English.
 
@@ -318,16 +318,16 @@ Return value:
 
 ## Regional availability
 
-AI\_SENTIMENT is available in the following regions:
+AI_SENTIMENT is available in the following regions:
 
 | Function (Model) | AWS US West 2 (Oregon) | AWS US East 1 (N. Virginia) | AWS Europe Central 1 (Frankfurt) | AWS Europe West 1 (Ireland) | AWS AP Southeast 2 (Sydney) | AWS AP Northeast 1 (Tokyo) | Azure East US 2 (Virginia) | Azure West Europe (Netherlands) | AWS (Cross-Region) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| AI\_SENTIMENT | ✔ | ✔ | ✔ |  |  | ✔ | ✔ | ✔ | ✔ |
+| AI_SENTIMENT | ✔ | ✔ | ✔ |  |  | ✔ | ✔ | ✔ | ✔ |
 
 Note
 
-AI\_SENTIMENT is the updated version of [ENTITY\_SENTIMENT](https://docs.snowflake.com/sql-reference/functions/entity_sentiment-snowflake-cortex).
-For the latest functionality, use AI\_SENTIMENT.
+AI_SENTIMENT is the updated version of [ENTITY_SENTIMENT](https://docs.snowflake.com/sql-reference/functions/entity_sentiment-snowflake-cortex).
+For the latest functionality, use AI_SENTIMENT.
 
 ## Legal notices
 

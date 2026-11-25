@@ -1,4 +1,4 @@
-Classv1.8.3 (latest)●Since v1.8
+Classv1.8.4 (latest)●Since v0.1
 
 # BaseRetriever
 
@@ -85,7 +85,7 @@ BaseRetriever(
 
 attribute
 
-model\_config
+model_config
 
 attribute
 
@@ -141,19 +141,19 @@ The name of the `Runnable`.
 
 ### Methods
 
-Mto\_json
+Mto_json
 
 —
 
 Serialize the `Runnable` to JSON.
 
-Mconfigurable\_fields
+Mconfigurable_fields
 
 —
 
 Configure particular `Runnable` fields at runtime.
 
-Mconfigurable\_alternatives
+Mconfigurable_alternatives
 
 —
 
@@ -163,13 +163,13 @@ Configure alternatives for `Runnable` objects that can be set at runtime.
 
 ### Attributes
 
-Alc\_secrets: dict[str, str]
+Alc_secrets: dict[str, str]
 
 —
 
 A map of constructor argument names to secret ids.
 
-Alc\_attributes: dict[str, Any]
+Alc_attributes: dict[str, Any]
 
 —
 
@@ -177,31 +177,31 @@ List of attribute names that should be included in the serialized kwargs.
 
 ### Methods
 
-Mis\_lc\_serializable
+Mis_lc_serializable
 
 —
 
 Is this class serializable?
 
-Mget\_lc\_namespace
+Mget_lc_namespace
 
 —
 
 Get the namespace of the LangChain object.
 
-Mlc\_id
+Mlc_id
 
 —
 
 Return a unique identifier for this class for serialization purposes.
 
-Mto\_json
+Mto_json
 
 —
 
 Serialize the object to JSON.
 
-Mto\_json\_not\_implemented
+Mto_json_not_implemented
 
 —
 
@@ -229,19 +229,19 @@ AOutputType: type[Output]
 
 Output Type.
 
-Ainput\_schema: TypeBaseModel
+Ainput_schema: TypeBaseModel
 
 —
 
 The type of input this `Runnable` accepts specified as a Pydantic model.
 
-Aoutput\_schema: TypeBaseModel
+Aoutput_schema: TypeBaseModel
 
 —
 
 Output schema.
 
-Aconfig\_specs: list[ConfigurableFieldSpec]
+Aconfig_specs: list[ConfigurableFieldSpec]
 
 —
 
@@ -249,55 +249,55 @@ List configurable fields for this `Runnable`.
 
 ### Methods
 
-Mget\_name
+Mget_name
 
 —
 
 Get the name of the `Runnable`.
 
-Mget\_input\_schema
+Mget_input_schema
 
 —
 
 Get a Pydantic model that can be used to validate input to the `Runnable`.
 
-Mget\_input\_jsonschema
+Mget_input_jsonschema
 
 —
 
 Get a JSON schema that represents the input to the `Runnable`.
 
-Mget\_output\_schema
+Mget_output_schema
 
 —
 
 Get a Pydantic model that can be used to validate output to the `Runnable`.
 
-Mget\_output\_jsonschema
+Mget_output_jsonschema
 
 —
 
 Get a JSON schema that represents the output of the `Runnable`.
 
-Mconfig\_schema
+Mconfig_schema
 
 —
 
 The type of config this `Runnable` accepts specified as a Pydantic model.
 
-Mget\_config\_jsonschema
+Mget_config_jsonschema
 
 —
 
 Get a JSON schema that represents the config of the `Runnable`.
 
-Mget\_graph
+Mget_graph
 
 —
 
 Return a graph representation of this `Runnable`.
 
-Mget\_prompts
+Mget_prompts
 
 —
 
@@ -327,7 +327,7 @@ Mbatch
 
 Default implementation runs invoke in parallel using a thread pool executor.
 
-Mbatch\_as\_completed
+Mbatch_as_completed
 
 —
 
@@ -339,7 +339,7 @@ Mabatch
 
 Default implementation runs `ainvoke` in parallel using `asyncio.gather`.
 
-Mabatch\_as\_completed
+Mabatch_as_completed
 
 —
 
@@ -357,19 +357,19 @@ Mastream
 
 Default implementation of `astream`, which calls `ainvoke`.
 
-Mastream\_log
+Mastream_log
 
 —
 
 Stream all output from a `Runnable`, as reported to the callback system.
 
-Mastream\_events
+Mastream_events
 
 —
 
 Generate a stream of events.
 
-Mstream\_events
+Mstream_events
 
 —
 
@@ -393,31 +393,31 @@ Mbind
 
 Bind arguments to a `Runnable`, returning a new `Runnable`.
 
-Mwith\_config
+Mwith_config
 
 —
 
 Bind config to a `Runnable`, returning a new `Runnable`.
 
-Mwith\_listeners
+Mwith_listeners
 
 —
 
 Bind lifecycle listeners to a `Runnable`, returning a new `Runnable`.
 
-Mwith\_alisteners
+Mwith_alisteners
 
 —
 
 Bind async lifecycle listeners to a `Runnable`.
 
-Mwith\_types
+Mwith_types
 
 —
 
 Bind input and output types to a `Runnable`, returning a new `Runnable`.
 
-Mwith\_retry
+Mwith_retry
 
 —
 
@@ -429,13 +429,13 @@ Mmap
 
 Return a new `Runnable` that maps a list of inputs to a list of outputs.
 
-Mwith\_fallbacks
+Mwith_fallbacks
 
 —
 
 Add fallbacks to a `Runnable`, returning a new `Runnable`.
 
-Mas\_tool
+Mas_tool
 
 —
 

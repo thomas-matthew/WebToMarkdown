@@ -16,4 +16,4 @@ Overview
 
 Pregel combines **actors**
 and **channels** into a single application.
-\*\*Acto
+**Acto

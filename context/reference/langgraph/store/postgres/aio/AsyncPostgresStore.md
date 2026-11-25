@@ -112,11 +112,11 @@ clean up resources when you're done with the store.
 
 constructor
 
-\_\_init\_\_
+__init__
 
 | Name | Type |
 | --- | --- |
-| conn | \_ainternal.[Conn](https://reference.langchain.com/python/langgraph.checkpoint.postgres/Conn) |
+| conn | _ainternal.[Conn](https://reference.langchain.com/python/langgraph.checkpoint.postgres/Conn) |
 | pipe | AsyncPipeline | None |
 | deserializer | [Callable](https://docs.python.org/3/library/typing.html#typing.Callable)[[[bytes](https://docs.python.org/3/library/stdtypes.html#bytes) | orjson.Fragment], [dict](https://docs.python.org/3/library/stdtypes.html#dict)[[str](https://docs.python.org/3/library/stdtypes.html#str), [Any](https://docs.python.org/3/library/typing.html#typing.Any)]] | None |
 | index | [PostgresIndexConfig](https://reference.langchain.com/python/langgraph.store.postgres/base/PostgresIndexConfig) | None |
@@ -126,7 +126,7 @@ constructor
 
 attribute
 
-supports\_ttl: bool
+supports_ttl: bool
 
 attribute
 
@@ -146,11 +146,11 @@ loop
 
 attribute
 
-supports\_pipeline
+supports_pipeline
 
 attribute
 
-index\_config: index
+index_config: index
 
 attribute
 
@@ -158,7 +158,7 @@ embeddings: None
 
 attribute
 
-ttl\_config: ttl
+ttl_config: ttl
 
 ## Methods
 
@@ -168,7 +168,7 @@ abatch
 
 method
 
-from\_conn\_string
+from_conn_string
 
 Create a new AsyncPostgresStore instance from a connection string.
 
@@ -184,19 +184,19 @@ the first time the store is used.
 
 method
 
-sweep\_ttl
+sweep_ttl
 
 Delete expired store items based on TTL.
 
 method
 
-start\_ttl\_sweeper
+start_ttl_sweeper
 
 Periodically delete expired store items based on TTL.
 
 method
 
-stop\_ttl\_sweeper
+stop_ttl_sweeper
 
 Stop the TTL sweeper task if it's running.
 
@@ -204,7 +204,7 @@ Stop the TTL sweeper task if it's running.
 
 ### Attributes
 
-[AMIGRATIONS: MIGRATIONS](https://reference.langchain.com/python/langgraph.store.postgres/base/BasePostgresStore/MIGRATIONS)[AVECTOR\_MIGRATIONS: VECTOR\_MIGRATIONS](https://reference.langchain.com/python/langgraph.store.postgres/base/BasePostgresStore/VECTOR_MIGRATIONS)
+[AMIGRATIONS: MIGRATIONS](https://reference.langchain.com/python/langgraph.store.postgres/base/BasePostgresStore/MIGRATIONS)[AVECTOR_MIGRATIONS: VECTOR_MIGRATIONS](https://reference.langchain.com/python/langgraph.store.postgres/base/BasePostgresStore/VECTOR_MIGRATIONS)
 
 [View source on GitHub](https://github.com/langchain-ai/langgraph/blob/08a2016953789a4f579b4d36bd1967941ec62012/libs/checkpoint-postgres/langgraph/store/postgres/aio.py#L42)
 

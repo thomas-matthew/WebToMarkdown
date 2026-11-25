@@ -824,6 +824,84 @@ func main() {
 }
 ```
 
+```java
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.errors.RateLimitException;
+import com.openai.models.responses.*;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.function.Supplier;
+
+var client = OpenAIOkHttpClient.builder().fromEnv().maxRetries(0).build();
+var params =
+    ResponseCreateParams.builder()
+        .model("gpt-6-luna")
+        .input("Say hello in one sentence.")
+        .reasoning(
+            com.openai.models.Reasoning.builder()
+                .effort(com.openai.models.ReasoningEffort.LOW)
+                .build())
+        .maxOutputTokens(2048)
+        .build();
+var response =
+    retryWithExponentialBackoff(() -> client.responses().create(params), 1000, 2, true, 10);
+response.output().stream()
+    .flatMap(item -> item.message().stream())
+    .flatMap(message -> message.content().stream())
+    .flatMap(content -> content.outputText().stream())
+    .forEach(text -> System.out.println(text.text()));
+
+static <T> T retryWithExponentialBackoff(
+    Supplier<T> operation, long initialDelayMs, double base, boolean jitter, int maxRetries)
+    throws InterruptedException {
+  double delay = initialDelayMs;
+  for (int retries = 0; ; retries++) {
+    try {
+      return operation.get();
+    } catch (RateLimitException error) {
+      if (retries >= maxRetries) throw error;
+      delay *= base * (1 + (jitter ? ThreadLocalRandom.current().nextDouble() : 0));
+      Thread.sleep((long) delay);
+    }
+  }
+}
+```
+
+```csharp
+using System.ClientModel;
+using System.ClientModel.Primitives;
+using OpenAI.Responses;
+#pragma warning disable OPENAI001
+
+ResponsesClientOptions clientOptions = new() { RetryPolicy = new ClientRetryPolicy(maxRetries: 0) };
+ResponsesClient client = new(new ApiKeyCredential(key), clientOptions);
+
+CreateResponseOptions options = new("gpt-6-luna", [ResponseItem.CreateUserMessageItem("Say hello in one sentence.")])
+{
+    ReasoningOptions = new() { ReasoningEffortLevel = ResponseReasoningEffortLevel.Low },
+    MaxOutputTokenCount = 2048
+};
+ResponseResult response = await RetryWithBackoffAsync(() => client.CreateResponseAsync(options));
+Console.WriteLine(response.GetOutputText());
+
+internal static async Task<ResponseResult> RetryWithBackoffAsync(Func<Task<ClientResult<ResponseResult>>> operation)
+{
+    double delaySeconds = 1;
+    const int maxRetries = 10;
+    for (int attempt = 0; ; attempt++)
+    {
+        try
+        {
+            return await operation();
+        }
+        catch (ClientResultException error) when (error.Status == 429 && attempt < maxRetries)
+        {
+            delaySeconds *= 2 * (1 + Random.Shared.NextDouble());
+            await Task.Delay(TimeSpan.FromSeconds(delaySeconds));
+        }
+    }
+}
+```
+
 ```ruby
 require "openai"
 

@@ -198,7 +198,7 @@ Asynchronous checkpointer that stores checkpoints in a Postgres database.
 
 Function
 
-### [create\_checkpoint](https://reference.langchain.com/python/langgraph/pregel/_checkpoint/create_checkpoint)
+### [create_checkpoint](https://reference.langchain.com/python/langgraph/pregel/_checkpoint/create_checkpoint)
 
 Build a new Checkpoint from the previous one and live channel state.
 

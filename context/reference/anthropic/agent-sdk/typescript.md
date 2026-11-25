@@ -153,8 +153,6 @@ function prewarm(params?: {
 | `options` | [`Options`](#options) | Optional configuration object, the same type that `startup()` takes |
 | `initializeTimeoutMs` | `number` | Maximum time in milliseconds to wait for the spare's initialization. Defaults to `60000`. If initialization doesn't complete in time, the promise rejects with a timeout error |
 
-`prewarm()` counts time spent in [Setup](https://code.claude.com/docs/en/hooks.md#setup) hooks toward `initializeTimeoutMs`, even when you leave it unset. To give slow Setup hooks more time, set a longer value.
-
 #### Returns
 
 Returns a `Promise<`[`SpareProcess`](#spareprocess)`>` that resolves once the spare is ready to claim.
@@ -633,7 +631,7 @@ const result = query({
 * [`API_TIMEOUT_MS`](https://code.claude.com/docs/en/env-vars): how long each request attempt can wait for response headers, in milliseconds. It doesn't limit how long a streaming response runs after the headers arrive. Default `600000`. Applies to the main loop and all subagents.
 * `CLAUDE_CODE_MAX_RETRIES`: maximum API retries. Default `10`, capped at `15`. Each retry gets its own `API_TIMEOUT_MS` window.
 
-  For unattended runs that need to wait through longer outages, set [`CLAUDE_CODE_RETRY_WATCHDOG=1`](https://code.claude.com/docs/en/errors#tune-retry-behavior): it retries transient capacity errors indefinitely and, on Claude Code v2.1.199 or later, raises the default for other transient errors to `300` and removes the cap on this variable.
+  For unattended runs that need to wait through longer outages, set [`CLAUDE_CODE_RETRY_WATCHDOG=1`](https://code.claude.com/docs/en/errors#tune-retry-behavior) to keep retrying transient capacity errors. With `CLAUDE_CODE_RETRY_WATCHDOG` set on v2.1.199 or later, the cap doesn't apply, and the default for other transient errors is `300`.
 * `CLAUDE_ASYNC_AGENT_STALL_TIMEOUT_MS`: stall watchdog for subagents. While the stream watchdog is on, the default is `CLAUDE_STREAM_IDLE_TIMEOUT_MS` plus 5 minutes, which comes to `600000` unless you raise that variable. With the stream watchdog off, the default is `600000`. Before v2.1.257, the default was always `600000`.
 
   The timer resets on each stream event. On a stall, Claude Code aborts the subagent and reports the stall to the parent. For a background subagent, it also marks the task failed and attaches any partial result.
@@ -1297,7 +1295,7 @@ type AgentDefinition = {
 | `disallowedTools` | No | Array of tool names to explicitly disallow for this agent. MCP server-level patterns are also accepted: `mcp__server` or `mcp__server__*` removes every tool from that server, and `mcp__*` removes every MCP tool from any server |
 | `prompt` | Yes | The agent's system prompt |
 | `model` | No | Model override for this agent. Accepts an alias such as `'fable'`, `'opus'`, `'sonnet'`, `'haiku'`, `'inherit'`, or a full model ID. `'inherit'` uses the model of the agent that spawned this one. When you omit `model`, Claude Code picks the model in the [subagent model order](https://code.claude.com/docs/en/sub-agents.md#choose-a-model) |
-| `mcpServers` | No | MCP server specifications for this agent |
+| `mcpServers` | No | MCP server specifications for this agent. Put a [`createSdkMcpServer()`](#createsdkmcpserver) server in the `mcpServers` field of [`Options`](#options). If you pass the server object in this field instead, TypeScript Agent SDK v0.3.327 or later ignores it and emits a `CLAUDE_SDK_AGENT_IN_PROCESS_SERVER` warning |
 | `skills` | No | Array of skill names to preload into the agent context |
 | `initialPrompt` | No | Auto-submitted as the first user turn when this agent runs as the main thread agent |
 | `maxTurns` | No | Maximum number of agentic turns (API round-trips) before stopping |
@@ -2090,7 +2088,8 @@ type SDKStartupFailureReason =
   | "org_config_required_unavailable"
   | "org_config_refused"
   | "sandbox_required_unavailable"
-  | "config_file_invalid";
+  | "config_file_invalid"
+  | "sideload_flags_disabled";
 ```
 
 Each value names one refusal:
@@ -2118,6 +2117,7 @@ Each value names one refusal:
 | `org_config_refused` | Anthropic refused to provide the organization's policies and managed settings for this sign-in, for example because the sign-in expired or was revoked, or the organization doesn't allow Claude Code for this account. Requires Agent SDK v0.3.293 or later |
 | `sandbox_required_unavailable` | [`failIfUnavailable`](#sandboxsettings) is on and the sandbox can't start. The text in `errors` ends with `Set sandbox.failIfUnavailable=false to allow unsandboxed execution.` Requires Agent SDK v0.3.314 or later |
 | `config_file_invalid` | `~/.claude.json` isn't valid JSON. Claude Code leaves the file unchanged, so a retry fails the same way until someone repairs it. `errors` names the file and says how to restore or repair it. See [Configuration error in \~/.claude.json](https://code.claude.com/docs/en/errors.md#configuration-error-in-claude-json). Requires TypeScript Agent SDK v0.3.318 or later and Claude Code v2.1.318 or later |
+| `sideload_flags_disabled` | A flag or launch option violates managed [`disableSideloadFlags`](https://code.claude.com/docs/en/settings-reference#disablesideloadflags). Requires TypeScript Agent SDK v0.3.331 or later and Claude Code v2.1.331 or later |
 
 ### `SDKSystemMessage`
 
@@ -2249,6 +2249,8 @@ type SDKInformationalMessage = {
   session_id: string;
 };
 ```
+
+A warning whose `tag` is `settings_not_in_effect` means some settings from your app, or from a user, project, or local file, didn't load or were skipped. Follow the steps in `content`. You won't see this warning for every invalid value. Requires TypeScript Agent SDK v0.3.330 or later.
 
 ### `SDKWorkerShuttingDownMessage`
 
@@ -2506,7 +2508,7 @@ type SDKMessageOrigin =
     }
   | {
       kind: "task-notification";
-      subkind?: "scheduled-trigger" | "peer-send-message";
+      subkind?: "scheduled-trigger" | "peer-send-message" | "external-event";
       fireReason?: string;
       runId?: string;
     }
@@ -2536,12 +2538,13 @@ To send text the user didn't write, such as a fetched page or another agent's ou
 
 ### Task-notification subkinds
 
-When Claude Code delivers a task notification into a session, it sets `subkind` on the notification's `origin` if Anthropic servers verified where that notification came from. It also sets `subkind` when your application [declares the message as a scheduled run](#declare-a-scheduled-run) itself, which requires TypeScript Agent SDK v0.3.280 or later. `subkind` requires Claude Code v2.1.213 or later, and it takes one of two values:
+When Claude Code delivers a task notification into a session, it sets `subkind` on the notification's `origin` if Anthropic servers verified where that notification came from. It also sets `subkind` when your application [declares the message as a scheduled run](#declare-a-scheduled-run) itself, which requires TypeScript Agent SDK v0.3.280 or later. `subkind` requires Claude Code v2.1.213 or later. Values include:
 
 * `scheduled-trigger`: the notification is a [cloud scheduled task](https://code.claude.com/docs/en/routines.md)'s stored prompt, delivered because one of the task's triggers fired: its schedule, its [API trigger](https://code.claude.com/docs/en/routines.md#add-an-api-trigger), its [GitHub trigger](https://code.claude.com/docs/en/routines.md#add-a-github-trigger), or **Run now**. A prompt your application [declares as a scheduled run](#declare-a-scheduled-run) carries this value too. Claude Code frames these to the model as the session's assigned task, with a different notice from the [notice that other task notifications carry](#sdktasknotificationmessage).
 * `peer-send-message`: the notification is a message that another of your sessions sent with the server-side `send_message` tool that [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web.md) use to message each other, not the [cross-session `SendMessage` tool](https://code.claude.com/docs/en/cross-session-messaging), and Anthropic servers verified that both sessions belong to the same private group of sessions. Requires Claude Code v2.1.224 or later. A `send_message` delivery the servers didn't verify that way gets no subkind.
+* `external-event`: the notification reports an event outside the session and can quote a third party. [PR activity](https://code.claude.com/docs/en/claude-code-on-the-web.md#how-claude-responds-to-pr-activity) can arrive with this value or no `subkind`. Requires Claude Code v2.1.330 or later.
 
-Every other task notification has no `subkind`. That includes [PR activity](https://code.claude.com/docs/en/claude-code-on-the-web.md#how-claude-responds-to-pr-activity) delivered into a session and background events such as a finished task. Messages from the [cross-session `SendMessage` tool](https://code.claude.com/docs/en/cross-session-messaging) aren't task notifications at all: whether they come from a session on the same machine or through Anthropic servers from another machine, Claude Code gives them `kind: "peer"` and the [peer origin fields](#peer-origin-fields).
+Background events such as a finished task have no `subkind`. Messages from the [cross-session `SendMessage` tool](https://code.claude.com/docs/en/cross-session-messaging) aren't task notifications and carry `kind: "peer"` with the [peer origin fields](#peer-origin-fields).
 
 `fireReason` says why a `scheduled-trigger` notification fired, as a short lowercase token such as `scheduled`, `manual`, `retry`, `catch_up`, or `api`. Anthropic servers set it on a [cloud scheduled task](https://code.claude.com/docs/en/routines.md)'s deliveries, and your application sets it when it declares a scheduled run. It's absent when neither sent one. Requires TypeScript Agent SDK v0.3.280 or later.
 
@@ -4267,6 +4270,7 @@ type MonitorOutput = {
   taskId: string;
   timeoutMs: number;
   persistent?: boolean;
+  keptInSandboxByCheck?: boolean;
 };
 ```
 
@@ -4793,10 +4797,11 @@ type CronCreateOutput = {
   recurring: boolean;
   durable?: boolean; // true when persisted to .claude/scheduled_tasks.json; false when session-only
   nextFireAt?: number;
+  maxAgeMs?: number; // age at which a recurring job ends; requires Claude Code v2.1.330 or later
 };
 ```
 
-Returns the job ID, a human-readable schedule, and the next run time. `nextFireAt` gives it in epoch milliseconds, with [jitter](https://code.claude.com/docs/en/scheduled-tasks.md#jitter) already applied, so it's when the job is set to run. The field requires TypeScript Agent SDK v0.3.299 or later and Claude Code v2.1.299 or later.
+Returns the job ID, a human-readable schedule, and the next run time. `nextFireAt` gives it in epoch milliseconds, with [jitter](https://code.claude.com/docs/en/scheduled-tasks.md#jitter) already applied, so it's when the job is set to run. `nextFireAt` requires TypeScript Agent SDK v0.3.299 or later and Claude Code v2.1.299 or later.
 
 ### CronDelete
 

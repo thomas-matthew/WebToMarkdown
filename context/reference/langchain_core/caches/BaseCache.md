@@ -1,4 +1,4 @@
-Classv1.8.3 (latest)●Since v1.8
+Classv1.8.4 (latest)●Since v0.1
 
 # BaseCache
 
@@ -65,7 +65,7 @@ aupdate
 
 Async update cache based on `prompt` and `llm_string`.
 
-The prompt and llm\_string are used to generate a key for the cache.
+The prompt and llm_string are used to generate a key for the cache.
 The key should match that of the look up method.
 
 method

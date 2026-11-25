@@ -2,14 +2,14 @@ Categories:
 :   [String & binary functions](https://docs.snowflake.com/sql-reference/functions-string) (AI Functions) ,
     [File functions](https://docs.snowflake.com/sql-reference/functions-file) (AI Functions)
 
-# AI\_COMPLETE
+# AI_COMPLETE
 
 Generates a response (completion) from text, images, documents, audio, or video using a supported language model. The
 input types you can use depend on the model and on the interface. You can provide:
 
-* A text prompt, to generate a response from the model. For more information, see [AI\_COMPLETE (Single string)](https://docs.snowflake.com/sql-reference/functions/ai_complete-single-string).
-* A single file with a text prompt, to generate a response based on the file and prompt. For more information, see [AI\_COMPLETE (Single file)](https://docs.snowflake.com/sql-reference/functions/ai_complete-single-file).
-* A prompt object with text and one or more supported files. For more information, see [AI\_COMPLETE (Prompt object)](https://docs.snowflake.com/sql-reference/functions/ai_complete-prompt-object).
+* A text prompt, to generate a response from the model. For more information, see [AI_COMPLETE (Single string)](https://docs.snowflake.com/sql-reference/functions/ai_complete-single-string).
+* A single file with a text prompt, to generate a response based on the file and prompt. For more information, see [AI_COMPLETE (Single file)](https://docs.snowflake.com/sql-reference/functions/ai_complete-single-file).
+* A prompt object with text and one or more supported files. For more information, see [AI_COMPLETE (Prompt object)](https://docs.snowflake.com/sql-reference/functions/ai_complete-prompt-object).
 
 For the file formats, size limits, and file counts that each model supports, see
 [Model limitations](https://docs.snowflake.com/user-guide/snowflake-cortex/ai-multimodal#model-limitations) for images, audio, and video, and
@@ -18,7 +18,7 @@ for documents.
 
 Bring-your-own model: Open preview
 
-You can also use your own text generation or vision-language model deployed as a Snowpark Container Services model inference service. Specify the service name as the `model` argument. For supported inputs, availability, prerequisites, access requirements, and limitations, see [Bring-your-own model for AI\_COMPLETE](https://docs.snowflake.com/developer-guide/snowflake-ml/inference/spcs-ai-complete).
+You can also use your own text generation or vision-language model deployed as a Snowpark Container Services model inference service. Specify the service name as the `model` argument. For supported inputs, availability, prerequisites, access requirements, and limitations, see [Bring-your-own model for AI_COMPLETE](https://docs.snowflake.com/developer-guide/snowflake-ml/inference/spcs-ai-complete).
 
 ## Syntax
 
@@ -34,7 +34,7 @@ is NULL depending on whether the function succeeded or failed. See [Error behavi
 
 ## Error behavior
 
-By default, if AI\_COMPLETE can’t process the input, the function returns NULL. If the query processes multiple rows,
+By default, if AI_COMPLETE can’t process the input, the function returns NULL. If the query processes multiple rows,
 rows with errors return NULL and don’t prevent the query from completing.
 
 The return value on error depends on the `return_error_details`
@@ -49,15 +49,15 @@ For more information about error handling for AI functions, see [Snowflake Corte
 
 ## Access control requirements
 
-For Snowflake-hosted Cortex models, users must use a role that has been granted the [SNOWFLAKE.CORTEX\_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
+For Snowflake-hosted Cortex models, users must use a role that has been granted the [SNOWFLAKE.CORTEX_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
 See [Cortex LLM privileges](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges) for more information on this privilege.
 
 For models deployed as Snowpark Container Services model inference services, see [Access control requirements](https://docs.snowflake.com/developer-guide/snowflake-ml/inference/spcs-ai-complete#access-control-requirements).
 
 Note
 
-AI\_COMPLETE is the updated version of [COMPLETE](https://docs.snowflake.com/sql-reference/functions/complete-snowflake-cortex).
-For the latest functionality, use AI\_COMPLETE.
+AI_COMPLETE is the updated version of [COMPLETE](https://docs.snowflake.com/sql-reference/functions/complete-snowflake-cortex).
+For the latest functionality, use AI_COMPLETE.
 
 ## Legal notices
 

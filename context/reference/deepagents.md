@@ -118,507 +118,74 @@ AgentState with `DeltaChannel` on messages to reduce checkpoint growth from O(N�
 
 Class
 
-### [SubAgent](https://reference.langchain.com/python/deepagents/middleware/subagents/SubAgent)
+### [WindowsProcessReader](https://reference.langchain.com/python/deepagents/backends/_windows_process/WindowsProcessReader)
 
-Specification for a declarative subagent.
+Read both captured pipes by polling instead of with reader threads.
 
-By default the subagent is isolated: it receives only the delegated task
-description. Setting `mode="fork"` makes it continue the parent's
-conversation inste
+`subprocess.communicate` starts a thread for each pipe on Windows. Those
+threads hold the pipe until the write end closes, so a cal
 
 Class
 
-### [CompiledSubAgent](https://reference.langchain.com/python/deepagents/middleware/subagents/CompiledSubAgent)
+### [BaseSandbox](https://reference.langchain.com/python/deepagents/backends/sandbox/BaseSandbox)
 
-A pre-compiled agent spec.
+Base sandbox implementation with `execute()` as the core abstract method.
 
-Note
+This class provides default implementations for all protocol methods.
+File listing, grep, and glob use shell commands via `ex
 
-The `runnable`'s state schema must include a 'messages' key.
-
-This is required for the subagent to communicate results back to
-the main agent.
-
-Class
-
-### [TaskToolSchema](https://reference.langchain.com/python/deepagents/middleware/subagents/TaskToolSchema)
-
-Input schema for the `task` tool.
-
-Class
-
-### [SubAgentMiddleware](https://reference.langchain.com/python/deepagents/middleware/subagents/SubAgentMiddleware)
-
-Middleware for providing subagents to an agent via a `task` tool.
-
-This middleware adds a `task` tool to the agent that can be used
-to invoke subagents.
-
-Subagents are useful for handling complex task
-
-Class
-
-### [FilesystemPermission](https://reference.langchain.com/python/deepagents/middleware/filesystem/FilesystemPermission)
-
-A single access rule for filesystem operations.
-
-With `FilesystemBackend` (directly or behind a `CompositeBackend` route),
-rules are matched against both the requested path and its symlink-resolved
-ta
-
-Class
-
-### [FilesystemState](https://reference.langchain.com/python/deepagents/middleware/filesystem/FilesystemState)
-
-State for the filesystem middleware.
-
-Class
-
-### [LsSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/LsSchema)
-
-Input schema for the `ls` tool.
-
-Class
-
-### [ReadFileSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/ReadFileSchema)
-
-Input schema for the `read_file` tool.
-
-Class
-
-### [ReadVideoFileSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/ReadVideoFileSchema)
-
-Input schema for `read_file` when the optional video frame extraction is available.
-
-Identical to `ReadFileSchema`; only the `offset`/`limit` descriptions differ
-to document their video semantics (int
-
-Class
-
-### [WriteFileSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/WriteFileSchema)
-
-Input schema for the `write_file` tool.
-
-Class
-
-### [EditFileSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/EditFileSchema)
-
-Input schema for the `edit_file` tool.
-
-Class
-
-### [DeleteSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/DeleteSchema)
-
-Input schema for the `delete` tool.
-
-Class
-
-### [GlobSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/GlobSchema)
-
-Input schema for the `glob` tool.
-
-Class
-
-### [GrepSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/GrepSchema)
-
-Input schema for the `grep` tool.
-
-Class
-
-### [ExecuteSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/ExecuteSchema)
-
-Input schema for the `execute` tool.
-
-Class
-
-### [FilesystemMiddleware](https://reference.langchain.com/python/deepagents/middleware/filesystem/FilesystemMiddleware)
-
-Middleware for providing filesystem and optional execution tools to an agent.
-
-This middleware adds filesystem tools to the agent: `ls`, `read_file`, `write_file`,
-`edit_file`, `glob`, and `grep`.
-
-Fi
-
-Class
-
-### [VideoExtractionError](https://reference.langchain.com/python/deepagents/middleware/_video/VideoExtractionError)
-
-Raised when PyAV cannot produce frames for the requested window.
-
-Class
-
-### [AsyncSubAgent](https://reference.langchain.com/python/deepagents/middleware/async_subagents/AsyncSubAgent)
-
-Specification for an async subagent running on a remote Agent Protocol server.
-
-Async subagents connect to any Agent Protocol-compliant server via the
-
-Class
-
-### [AsyncTask](https://reference.langchain.com/python/deepagents/middleware/async_subagents/AsyncTask)
-
-A tracked async subagent task persisted in agent state.
-
-Class
-
-### [AsyncSubAgentState](https://reference.langchain.com/python/deepagents/middleware/async_subagents/AsyncSubAgentState)
-
-State extension for async subagent task tracking.
-
-Class
-
-### [StartAsyncTaskSchema](https://reference.langchain.com/python/deepagents/middleware/async_subagents/StartAsyncTaskSchema)
-
-Input schema for the `start_async_task` tool.
-
-Class
-
-### [CheckAsyncTaskSchema](https://reference.langchain.com/python/deepagents/middleware/async_subagents/CheckAsyncTaskSchema)
-
-Input schema for the `check_async_task` tool.
-
-Class
-
-### [UpdateAsyncTaskSchema](https://reference.langchain.com/python/deepagents/middleware/async_subagents/UpdateAsyncTaskSchema)
-
-Input schema for the `update_async_task` tool.
-
-Class
-
-### [CancelAsyncTaskSchema](https://reference.langchain.com/python/deepagents/middleware/async_subagents/CancelAsyncTaskSchema)
-
-Input schema for the `cancel_async_task` tool.
-
-Class
-
-### [ListAsyncTasksSchema](https://reference.langchain.com/python/deepagents/middleware/async_subagents/ListAsyncTasksSchema)
-
-Input schema for the `list_async_tasks` tool.
-
-Class
-
-### [TaskEvent](https://reference.langchain.com/python/deepagents/middleware/async_subagents/TaskEvent)
-
-How an async subagent's task ended or paused, as reported to the agent that started it.
-
-A notification message carries it as notification metadata with source
-`"async_subagent"`; read it with `get\_no
-
-Class
-
-### [AsyncSubAgentMiddleware](https://reference.langchain.com/python/deepagents/middleware/async_subagents/AsyncSubAgentMiddleware)
-
-Middleware for async subagents running on remote Agent Protocol servers.
-
-This middleware adds tools for launching, monitoring, and updating
-background tasks on remote Agent Protocol servers. Unlike t
-
-Class
-
-### [CompactConversationSchema](https://reference.langchain.com/python/deepagents/middleware/summarization/CompactConversationSchema)
-
-Input schema for the `compact_conversation` tool.
-
-Class
-
-### [SummarizationEvent](https://reference.langchain.com/python/deepagents/middleware/summarization/SummarizationEvent)
-
-Represents a summarization event.
-
-Class
-
-### [TriggerClause](https://reference.langchain.com/python/deepagents/middleware/summarization/TriggerClause)
-
-Dictionary-based summarization trigger with AND semantics.
-
-Class
-
-### [TruncateArgsSettings](https://reference.langchain.com/python/deepagents/middleware/summarization/TruncateArgsSettings)
-
-Settings for truncating large tool-call arguments in older messages.
-
-This is a lightweight, pre-summarization optimization that fires at a lower
-token threshold than full conversation compaction. Whe
-
-Class
-
-### [SummarizationState](https://reference.langchain.com/python/deepagents/middleware/summarization/SummarizationState)
-
-State for the summarization middleware.
-
-Extends AgentState with a private field for tracking summarization events.
-
-Class
-
-### [SummarizationDefaults](https://reference.langchain.com/python/deepagents/middleware/summarization/SummarizationDefaults)
-
-Default settings computed from model profile.
-
-Class
-
-### [SummarizationToolMiddleware](https://reference.langchain.com/python/deepagents/middleware/summarization/SummarizationToolMiddleware)
-
-Middleware that provides a `compact_conversation` tool for manual compaction.
-
-This middleware composes with a `SummarizationMiddleware` instance, reusing
-its summarization engine (model, backend, tri
-
-Class
-
-### [SkillMetadata](https://reference.langchain.com/python/deepagents/middleware/skills/SkillMetadata)
-
-Metadata for a skill per Agent Skills specification (https://agentskills.io/specification).
-
-Class
-
-### [SkillsState](https://reference.langchain.com/python/deepagents/middleware/skills/SkillsState)
-
-State for the skills middleware.
-
-Class
-
-### [SkillsStateUpdate](https://reference.langchain.com/python/deepagents/middleware/skills/SkillsStateUpdate)
-
-State update for the skills middleware.
-
-Class
-
-### [SkillsMiddleware](https://reference.langchain.com/python/deepagents/middleware/skills/SkillsMiddleware)
-
-Middleware for loading and exposing agent skills to the system prompt.
-
-Loads skills from backend sources and injects them into the system prompt
-using progressive disclosure (metadata first, full con
-
-Class
-
-### [CriterionPass](https://reference.langchain.com/python/deepagents/middleware/rubric/CriterionPass)
-
-Per-criterion grader verdict when the criterion passes.
-
-Class
-
-### [CriterionFail](https://reference.langchain.com/python/deepagents/middleware/rubric/CriterionFail)
-
-Per-criterion grader verdict when the criterion fails.
-
-Class
-
-### [RubricEvaluation](https://reference.langchain.com/python/deepagents/middleware/rubric/RubricEvaluation)
-
-One grader evaluation, appended to `_rubric_evaluations` each iteration.
-
-Consumers can read any field without guarding against absence since all
-fields are always populated by `_build_evaluation` and
-
-Class
-
-### [RubricState](https://reference.langchain.com/python/deepagents/middleware/rubric/RubricState)
-
-State schema for `RubricMiddleware`.
-
-Only `rubric` is part of the public I/O schema -- callers write a
-rubric and read the improved agent response back from `messages`.
-
-Everything else is bookkeepin
-
-Class
-
-### [GraderResponse](https://reference.langchain.com/python/deepagents/middleware/rubric/GraderResponse)
-
-Structured output the grader sub-agent must emit.
-
-Passed as `response_format=GraderResponse` to `create_agent` so the
-underlying provider's structured output strategy is auto-selected.
-
-Class
-
-### [RubricMiddleware](https://reference.langchain.com/python/deepagents/middleware/rubric/RubricMiddleware)
-
-Middleware that drives self-evaluated iteration against a rubric.
-
-The middleware activates only when a caller passes a `rubric` on
-invocation state. With no rubric, both `before_agent` and `after\_age
-
-Class
-
-### [MemoryState](https://reference.langchain.com/python/deepagents/middleware/memory/MemoryState)
-
-State schema for `MemoryMiddleware`.
-
-Class
-
-### [MemoryStateUpdate](https://reference.langchain.com/python/deepagents/middleware/memory/MemoryStateUpdate)
-
-State update for `MemoryMiddleware`.
-
-Class
-
-### [MemoryMiddleware](https://reference.langchain.com/python/deepagents/middleware/memory/MemoryMiddleware)
-
-Middleware for loading agent memory from `AGENTS.md` files.
-
-Loads memory content from configured sources and injects into the system
-prompt. Supports multiple sources that are combined together. See
-
-Class
-
-### [UnsupportedContentMiddleware](https://reference.langchain.com/python/deepagents/middleware/unsupported_content/UnsupportedContentMiddleware)
-
-Replace multimodal input blocks the active model can't accept with a text notice.
-
-Without it, a request carrying content the model can't accept (e.g. an image sent
-to a text-only model) fails, and si
-
-Class
-
-### [PatchToolCallsMiddleware](https://reference.langchain.com/python/deepagents/middleware/patch_tool_calls/PatchToolCallsMiddleware)
-
-Middleware to patch dangling tool calls in the messages history.
-
-Class
-
-### [ContentPreview](https://reference.langchain.com/python/deepagents/middleware/_message_eviction/ContentPreview)
-
-A rendered preview plus a record of what was left out to build it.
-
-The flags are reported by the code that built `text`, never inferred from
-the rendered bytes — a literal `... [N lines truncated] ..
-
-Class
-
-### [GeneralPurposeSubagentProfile](https://reference.langchain.com/python/deepagents/profiles/harness/harness_profiles/GeneralPurposeSubagentProfile)
-
-Edits applied to the auto-added `general-purpose` subagent.
-
-Beta
-
-`deepagents.profiles` exposes beta APIs that may receive minor changes in
-future releases. Refer to the [versioning docum
-
-Class
-
-### [HarnessProfileConfig](https://reference.langchain.com/python/deepagents/profiles/harness/harness_profiles/HarnessProfileConfig)
-
-Declarative harness-profile config for YAML/JSON-backed profiles.
-
-Beta
-
-`deepagents.profiles` exposes beta APIs that may receive minor changes in
-future releases. Refer to the [versioning
-
-Class
-
-### [HarnessProfile](https://reference.langchain.com/python/deepagents/profiles/harness/harness_profiles/HarnessProfile)
-
-Runtime configuration for deep agent behavior.
-
-Beta
-
-`deepagents.profiles` exposes beta APIs that may receive minor changes in
-future releases. Refer to the [versioning documentation](htt
-
-Class
-
-### [NemotronToolCallShim](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronToolCallShim)
-
-Repair small Nemotron filesystem tool-call and tool-result quirks.
-
-Class
-
-### [ReadFileContinuationNoticeMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/ReadFileContinuationNoticeMiddleware)
-
-Append a continuation notice to exactly-at-limit `read_file` results.
-
-Class
-
-### [ModelRateLimitRetryMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/ModelRateLimitRetryMiddleware)
-
-Retry transient provider 429s around model calls.
-
-Class
-
-### [ChatNVIDIAMessageCompatibilityMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/ChatNVIDIAMessageCompatibilityMiddleware)
-
-Mirror standard LangChain tool-call fields into ChatNVIDIA payload metadata.
-
-Class
-
-### [NemotronReasoningTagCleanupMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronReasoningTagCleanupMiddleware)
-
-Remove preserved `<think>` blocks from normal assistant content.
-
 Class
 
-### [NemotronTextToolCallParser](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronTextToolCallParser)
+### [InvalidGlobPatternError](https://reference.langchain.com/python/deepagents/backends/utils/InvalidGlobPatternError)
 
-Repair tool calls emitted as text content instead of structured calls.
+A glob pattern the shared matcher refuses to compile.
 
-Class
-
-### [NemotronProgressBudgetMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronProgressBudgetMiddleware)
-
-Stop Ultra3-specific tool loops before they consume runaway context.
-
-Class
-
-### [NemotronPolicyNudgeState](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronPolicyNudgeState)
+Subclasses `ValueError` so existing `except ValueError` handlers keep
+working. Callers that catch this specific type can label the failure a
+*pat
 
-State schema for one-shot Nemotron policy nudges.
-
 Class
 
-### [NemotronPolicyNudgeMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronPolicyNudgeMiddleware)
+### [ContextHubBackend](https://reference.langchain.com/python/deepagents/backends/context_hub/ContextHubBackend)
 
-Inject lightweight policy nudges for common Ultra3 agent-control misses.
+Backend that stores files in a LangSmith Hub agent repo (persistent).
 
 Class
-
-### [FollowupDisciplineState](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/FollowupDisciplineState)
 
-State schema for `FollowupDisciplineMiddleware`.
+### [CompositeBackend](https://reference.langchain.com/python/deepagents/backends/composite/CompositeBackend)
 
-Class
-
-### [FollowupDisciplineMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/FollowupDisciplineMiddleware)
+Routes file operations to different backends by path prefix.
 
-Send Ultra3 back once when it asks redundant follow-up questions.
+Matches paths against route prefixes (longest first) and delegates to the
+corresponding backend. Unmatched paths use the default backend.
 
 Class
-
-### [EntityResolutionGuardState](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/EntityResolutionGuardState)
-
-State schema for `EntityResolutionGuardMiddleware`.
 
-Class
+### [StateBackend](https://reference.langchain.com/python/deepagents/backends/state/StateBackend)
 
-### [EntityResolutionGuardMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/EntityResolutionGuardMiddleware)
+Backend that stores files in agent state (ephemeral).
 
-Send Ultra3 back once when it finalizes with unresolved or mis-bound IDs.
+Uses LangGraph's state management and checkpointing. Files persist within
+a conversation thread but not across threads. State is automatically
+ch
 
 Class
-
-### [FinalAnswerGuardState](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/FinalAnswerGuardState)
 
-State schema for `FinalAnswerGuardMiddleware`.
+### [LocalShellBackend](https://reference.langchain.com/python/deepagents/backends/local_shell/LocalShellBackend)
 
-Class
+Filesystem backend with unrestricted local shell command execution.
 
-### [FinalAnswerGuardMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/FinalAnswerGuardMiddleware)
+This backend extends `FilesystemBackend` to add shell command execution
+capabilities. Commands are executed directly on the host sy
 
-Send Ultra3 back once when a final answer drops obvious required details.
-
 Class
-
-### [ProviderProfile](https://reference.langchain.com/python/deepagents/profiles/provider/provider_profiles/ProviderProfile)
 
-Declarative configuration for constructing a chat model.
+### [FilesystemBackend](https://reference.langchain.com/python/deepagents/backends/filesystem/FilesystemBackend)
 
-Beta
+Backend that reads and writes files directly from the filesystem.
 
-`deepagents.profiles` exposes beta APIs that may receive minor changes in
-future releases. Refer to the [versioning document
+Files are accessed using their actual filesystem paths. Relative paths are
+resolved relative to the current working directory. Conten
 
 Class
 
@@ -770,73 +337,12 @@ Adds `execute()`/`aexecute()` for shell comm
 
 Class
 
-### [FilesystemBackend](https://reference.langchain.com/python/deepagents/backends/filesystem/FilesystemBackend)
-
-Backend that reads and writes files directly from the filesystem.
-
-Files are accessed using their actual filesystem paths. Relative paths are
-resolved relative to the current working directory. Conten
-
-Class
-
-### [InvalidGlobPatternError](https://reference.langchain.com/python/deepagents/backends/utils/InvalidGlobPatternError)
-
-A glob pattern the shared matcher refuses to compile.
-
-Subclasses `ValueError` so existing `except ValueError` handlers keep
-working. Callers that catch this specific type can label the failure a
-\*pat
-
-Class
-
-### [CompositeBackend](https://reference.langchain.com/python/deepagents/backends/composite/CompositeBackend)
-
-Routes file operations to different backends by path prefix.
-
-Matches paths against route prefixes (longest first) and delegates to the
-corresponding backend. Unmatched paths use the default backend.
-
-Class
-
 ### [PosixProcessReader](https://reference.langchain.com/python/deepagents/backends/_posix_process/PosixProcessReader)
 
 Collect text-mode output across polling attempts, joining only at EOF.
 
 Unlike `Popen.communicate`, a timed-out attempt does not build a snapshot of
 all output read so far. Chunks stay buffered for th
-
-Class
-
-### [ContextHubBackend](https://reference.langchain.com/python/deepagents/backends/context_hub/ContextHubBackend)
-
-Backend that stores files in a LangSmith Hub agent repo (persistent).
-
-Class
-
-### [BaseSandbox](https://reference.langchain.com/python/deepagents/backends/sandbox/BaseSandbox)
-
-Base sandbox implementation with `execute()` as the core abstract method.
-
-This class provides default implementations for all protocol methods.
-File listing, grep, and glob use shell commands via `ex
-
-Class
-
-### [LocalShellBackend](https://reference.langchain.com/python/deepagents/backends/local_shell/LocalShellBackend)
-
-Filesystem backend with unrestricted local shell command execution.
-
-This backend extends `FilesystemBackend` to add shell command execution
-capabilities. Commands are executed directly on the host sy
-
-Class
-
-### [WindowsProcessReader](https://reference.langchain.com/python/deepagents/backends/_windows_process/WindowsProcessReader)
-
-Read both captured pipes by polling instead of with reader threads.
-
-`subprocess.communicate` starts a thread for each pipe on Windows. Those
-threads hold the pipe until the write end closes, so a cal
 
 Class
 
@@ -849,25 +355,564 @@ Files are organized via namespaces and persist across all threads.
 
 Class
 
-### [StateBackend](https://reference.langchain.com/python/deepagents/backends/state/StateBackend)
-
-Backend that stores files in agent state (ephemeral).
-
-Uses LangGraph's state management and checkpointing. Files persist within
-a conversation thread but not across threads. State is automatically
-ch
-
-Class
-
 ### [LangSmithSandbox](https://reference.langchain.com/python/deepagents/backends/langsmith/LangSmithSandbox)
 
 LangSmith sandbox implementation conforming to `SandboxBackendProtocol`.
+
+Class
+
+### [VideoExtractionError](https://reference.langchain.com/python/deepagents/middleware/_video/VideoExtractionError)
+
+Raised when PyAV cannot produce frames for the requested window.
+
+Class
+
+### [CompactConversationSchema](https://reference.langchain.com/python/deepagents/middleware/summarization/CompactConversationSchema)
+
+Input schema for the `compact_conversation` tool.
+
+Class
+
+### [SummarizationEvent](https://reference.langchain.com/python/deepagents/middleware/summarization/SummarizationEvent)
+
+Represents a summarization event.
+
+Class
+
+### [TriggerClause](https://reference.langchain.com/python/deepagents/middleware/summarization/TriggerClause)
+
+Dictionary-based summarization trigger with AND semantics.
+
+Class
+
+### [TruncateArgsSettings](https://reference.langchain.com/python/deepagents/middleware/summarization/TruncateArgsSettings)
+
+Settings for truncating large tool-call arguments in older messages.
+
+This is a lightweight, pre-summarization optimization that fires at a lower
+token threshold than full conversation compaction. Whe
+
+Class
+
+### [SummarizationState](https://reference.langchain.com/python/deepagents/middleware/summarization/SummarizationState)
+
+State for the summarization middleware.
+
+Extends AgentState with a private field for tracking summarization events.
+
+Class
+
+### [SummarizationDefaults](https://reference.langchain.com/python/deepagents/middleware/summarization/SummarizationDefaults)
+
+Default settings computed from model profile.
+
+Class
+
+### [SummarizationToolMiddleware](https://reference.langchain.com/python/deepagents/middleware/summarization/SummarizationToolMiddleware)
+
+Middleware that provides a `compact_conversation` tool for manual compaction.
+
+This middleware composes with a `SummarizationMiddleware` instance, reusing
+its summarization engine (model, backend, tri
+
+Class
+
+### [CriterionPass](https://reference.langchain.com/python/deepagents/middleware/rubric/CriterionPass)
+
+Per-criterion grader verdict when the criterion passes.
+
+Class
+
+### [CriterionFail](https://reference.langchain.com/python/deepagents/middleware/rubric/CriterionFail)
+
+Per-criterion grader verdict when the criterion fails.
+
+Class
+
+### [RubricEvaluation](https://reference.langchain.com/python/deepagents/middleware/rubric/RubricEvaluation)
+
+One grader evaluation, appended to `_rubric_evaluations` each iteration.
+
+Consumers can read any field without guarding against absence since all
+fields are always populated by `_build_evaluation` and
+
+Class
+
+### [RubricState](https://reference.langchain.com/python/deepagents/middleware/rubric/RubricState)
+
+State schema for `RubricMiddleware`.
+
+Only `rubric` is part of the public I/O schema -- callers write a
+rubric and read the improved agent response back from `messages`.
+
+Everything else is bookkeepin
+
+Class
+
+### [GraderResponse](https://reference.langchain.com/python/deepagents/middleware/rubric/GraderResponse)
+
+Structured output the grader sub-agent must emit.
+
+Passed as `response_format=GraderResponse` to `create_agent` so the
+underlying provider's structured output strategy is auto-selected.
+
+Class
+
+### [RubricMiddleware](https://reference.langchain.com/python/deepagents/middleware/rubric/RubricMiddleware)
+
+Middleware that drives self-evaluated iteration against a rubric.
+
+The middleware activates only when a caller passes a `rubric` on
+invocation state. With no rubric, both `before_agent` and `after_age
+
+Class
+
+### [UnsupportedContentMiddleware](https://reference.langchain.com/python/deepagents/middleware/unsupported_content/UnsupportedContentMiddleware)
+
+Replace multimodal input blocks the active model can't accept with a text notice.
+
+Without it, a request carrying content the model can't accept (e.g. an image sent
+to a text-only model) fails, and si
+
+Class
+
+### [SkillMetadata](https://reference.langchain.com/python/deepagents/middleware/skills/SkillMetadata)
+
+Metadata for a skill per Agent Skills specification (https://agentskills.io/specification).
+
+Class
+
+### [SkillsState](https://reference.langchain.com/python/deepagents/middleware/skills/SkillsState)
+
+State for the skills middleware.
+
+Class
+
+### [SkillsStateUpdate](https://reference.langchain.com/python/deepagents/middleware/skills/SkillsStateUpdate)
+
+State update for the skills middleware.
+
+Class
+
+### [SkillsMiddleware](https://reference.langchain.com/python/deepagents/middleware/skills/SkillsMiddleware)
+
+Middleware for loading and exposing agent skills to the system prompt.
+
+Loads skills from backend sources and injects them into the system prompt
+using progressive disclosure (metadata first, full con
+
+Class
+
+### [ContentPreview](https://reference.langchain.com/python/deepagents/middleware/_message_eviction/ContentPreview)
+
+A rendered preview plus a record of what was left out to build it.
+
+The flags are reported by the code that built `text`, never inferred from
+the rendered bytes — a literal `... [N lines truncated] ..
+
+Class
+
+### [PatchToolCallsMiddleware](https://reference.langchain.com/python/deepagents/middleware/patch_tool_calls/PatchToolCallsMiddleware)
+
+Middleware to patch dangling tool calls in the messages history.
+
+Class
+
+### [FilesystemPermission](https://reference.langchain.com/python/deepagents/middleware/filesystem/FilesystemPermission)
+
+A single access rule for filesystem operations.
+
+With `FilesystemBackend` (directly or behind a `CompositeBackend` route),
+rules are matched against both the requested path and its symlink-resolved
+ta
+
+Class
+
+### [FilesystemState](https://reference.langchain.com/python/deepagents/middleware/filesystem/FilesystemState)
+
+State for the filesystem middleware.
+
+Class
+
+### [LsSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/LsSchema)
+
+Input schema for the `ls` tool.
+
+Class
+
+### [ReadFileSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/ReadFileSchema)
+
+Input schema for the `read_file` tool.
+
+Class
+
+### [ReadVideoFileSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/ReadVideoFileSchema)
+
+Input schema for `read_file` when the optional video frame extraction is available.
+
+Identical to `ReadFileSchema`; only the `offset`/`limit` descriptions differ
+to document their video semantics (int
+
+Class
+
+### [WriteFileSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/WriteFileSchema)
+
+Input schema for the `write_file` tool.
+
+Class
+
+### [EditFileSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/EditFileSchema)
+
+Input schema for the `edit_file` tool.
+
+Class
+
+### [DeleteSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/DeleteSchema)
+
+Input schema for the `delete` tool.
+
+Class
+
+### [GlobSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/GlobSchema)
+
+Input schema for the `glob` tool.
+
+Class
+
+### [GrepSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/GrepSchema)
+
+Input schema for the `grep` tool.
+
+Class
+
+### [ExecuteSchema](https://reference.langchain.com/python/deepagents/middleware/filesystem/ExecuteSchema)
+
+Input schema for the `execute` tool.
+
+Class
+
+### [FilesystemMiddleware](https://reference.langchain.com/python/deepagents/middleware/filesystem/FilesystemMiddleware)
+
+Middleware for providing filesystem and optional execution tools to an agent.
+
+This middleware adds filesystem tools to the agent: `ls`, `read_file`, `write_file`,
+`edit_file`, `glob`, and `grep`.
+
+Fi
+
+Class
+
+### [MemoryState](https://reference.langchain.com/python/deepagents/middleware/memory/MemoryState)
+
+State schema for `MemoryMiddleware`.
+
+Class
+
+### [MemoryStateUpdate](https://reference.langchain.com/python/deepagents/middleware/memory/MemoryStateUpdate)
+
+State update for `MemoryMiddleware`.
+
+Class
+
+### [MemoryMiddleware](https://reference.langchain.com/python/deepagents/middleware/memory/MemoryMiddleware)
+
+Middleware for loading agent memory from `AGENTS.md` files.
+
+Loads memory content from configured sources and injects into the system
+prompt. Supports multiple sources that are combined together. See
+
+Class
+
+### [AsyncSubAgent](https://reference.langchain.com/python/deepagents/middleware/async_subagents/AsyncSubAgent)
+
+Specification for an async subagent running on a remote Agent Protocol server.
+
+Async subagents connect to any Agent Protocol-compliant server via the
+
+Class
+
+### [AsyncTask](https://reference.langchain.com/python/deepagents/middleware/async_subagents/AsyncTask)
+
+A tracked async subagent task persisted in agent state.
+
+Class
+
+### [AsyncSubAgentState](https://reference.langchain.com/python/deepagents/middleware/async_subagents/AsyncSubAgentState)
+
+State extension for async subagent task tracking.
+
+Class
+
+### [StartAsyncTaskSchema](https://reference.langchain.com/python/deepagents/middleware/async_subagents/StartAsyncTaskSchema)
+
+Input schema for the `start_async_task` tool.
+
+Class
+
+### [CheckAsyncTaskSchema](https://reference.langchain.com/python/deepagents/middleware/async_subagents/CheckAsyncTaskSchema)
+
+Input schema for the `check_async_task` tool.
+
+Class
+
+### [UpdateAsyncTaskSchema](https://reference.langchain.com/python/deepagents/middleware/async_subagents/UpdateAsyncTaskSchema)
+
+Input schema for the `update_async_task` tool.
+
+Class
+
+### [CancelAsyncTaskSchema](https://reference.langchain.com/python/deepagents/middleware/async_subagents/CancelAsyncTaskSchema)
+
+Input schema for the `cancel_async_task` tool.
+
+Class
+
+### [ListAsyncTasksSchema](https://reference.langchain.com/python/deepagents/middleware/async_subagents/ListAsyncTasksSchema)
+
+Input schema for the `list_async_tasks` tool.
+
+Class
+
+### [TaskEvent](https://reference.langchain.com/python/deepagents/middleware/async_subagents/TaskEvent)
+
+How an async subagent's task ended or paused, as reported to the agent that started it.
+
+A notification message carries it as notification metadata with source
+`"async_subagent"`; read it with `get_no
+
+Class
+
+### [AsyncSubAgentMiddleware](https://reference.langchain.com/python/deepagents/middleware/async_subagents/AsyncSubAgentMiddleware)
+
+Middleware for async subagents running on remote Agent Protocol servers.
+
+This middleware adds tools for launching, monitoring, and updating
+background tasks on remote Agent Protocol servers. Unlike t
+
+Class
+
+### [SubAgent](https://reference.langchain.com/python/deepagents/middleware/subagents/SubAgent)
+
+Specification for a declarative subagent.
+
+By default the subagent is isolated: it receives only the delegated task
+description. Setting `mode="fork"` makes it continue the parent's
+conversation inste
+
+Class
+
+### [CompiledSubAgent](https://reference.langchain.com/python/deepagents/middleware/subagents/CompiledSubAgent)
+
+A pre-compiled agent spec.
+
+Note
+
+The `runnable`'s state schema must include a 'messages' key.
+
+This is required for the subagent to communicate results back to
+the main agent.
+
+Class
+
+### [TaskToolSchema](https://reference.langchain.com/python/deepagents/middleware/subagents/TaskToolSchema)
+
+Input schema for the `task` tool.
+
+Class
+
+### [SubAgentMiddleware](https://reference.langchain.com/python/deepagents/middleware/subagents/SubAgentMiddleware)
+
+Middleware for providing subagents to an agent via a `task` tool.
+
+This middleware adds a `task` tool to the agent that can be used
+to invoke subagents.
+
+Subagents are useful for handling complex task
+
+Class
+
+### [ProviderProfile](https://reference.langchain.com/python/deepagents/profiles/provider/provider_profiles/ProviderProfile)
+
+Declarative configuration for constructing a chat model.
+
+Beta
+
+`deepagents.profiles` exposes beta APIs that may receive minor changes in
+future releases. Refer to the [versioning document
+
+Class
+
+### [GeneralPurposeSubagentProfile](https://reference.langchain.com/python/deepagents/profiles/harness/harness_profiles/GeneralPurposeSubagentProfile)
+
+Edits applied to the auto-added `general-purpose` subagent.
+
+Beta
+
+`deepagents.profiles` exposes beta APIs that may receive minor changes in
+future releases. Refer to the [versioning docum
+
+Class
+
+### [HarnessProfileConfig](https://reference.langchain.com/python/deepagents/profiles/harness/harness_profiles/HarnessProfileConfig)
+
+Declarative harness-profile config for YAML/JSON-backed profiles.
+
+Beta
+
+`deepagents.profiles` exposes beta APIs that may receive minor changes in
+future releases. Refer to the [versioning
+
+Class
+
+### [HarnessProfile](https://reference.langchain.com/python/deepagents/profiles/harness/harness_profiles/HarnessProfile)
+
+Runtime configuration for deep agent behavior.
+
+Beta
+
+`deepagents.profiles` exposes beta APIs that may receive minor changes in
+future releases. Refer to the [versioning documentation](htt
+
+Class
+
+### [NemotronToolCallShim](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronToolCallShim)
+
+Repair small Nemotron filesystem tool-call and tool-result quirks.
+
+Class
+
+### [ReadFileContinuationNoticeMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/ReadFileContinuationNoticeMiddleware)
+
+Append a continuation notice to exactly-at-limit `read_file` results.
+
+Class
+
+### [ModelRateLimitRetryMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/ModelRateLimitRetryMiddleware)
+
+Retry transient provider 429s around model calls.
+
+Class
+
+### [ChatNVIDIAMessageCompatibilityMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/ChatNVIDIAMessageCompatibilityMiddleware)
+
+Mirror standard LangChain tool-call fields into ChatNVIDIA payload metadata.
+
+Class
+
+### [NemotronReasoningTagCleanupMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronReasoningTagCleanupMiddleware)
+
+Remove preserved `<think>` blocks from normal assistant content.
+
+Class
+
+### [NemotronTextToolCallParser](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronTextToolCallParser)
+
+Repair tool calls emitted as text content instead of structured calls.
+
+Class
+
+### [NemotronProgressBudgetMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronProgressBudgetMiddleware)
+
+Stop Ultra3-specific tool loops before they consume runaway context.
+
+Class
+
+### [NemotronPolicyNudgeState](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronPolicyNudgeState)
+
+State schema for one-shot Nemotron policy nudges.
+
+Class
+
+### [NemotronPolicyNudgeMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/NemotronPolicyNudgeMiddleware)
+
+Inject lightweight policy nudges for common Ultra3 agent-control misses.
+
+Class
+
+### [FollowupDisciplineState](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/FollowupDisciplineState)
+
+State schema for `FollowupDisciplineMiddleware`.
+
+Class
+
+### [FollowupDisciplineMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/FollowupDisciplineMiddleware)
+
+Send Ultra3 back once when it asks redundant follow-up questions.
+
+Class
+
+### [EntityResolutionGuardState](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/EntityResolutionGuardState)
+
+State schema for `EntityResolutionGuardMiddleware`.
+
+Class
+
+### [EntityResolutionGuardMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/EntityResolutionGuardMiddleware)
+
+Send Ultra3 back once when it finalizes with unresolved or mis-bound IDs.
+
+Class
+
+### [FinalAnswerGuardState](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/FinalAnswerGuardState)
+
+State schema for `FinalAnswerGuardMiddleware`.
+
+Class
+
+### [FinalAnswerGuardMiddleware](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/FinalAnswerGuardMiddleware)
+
+Send Ultra3 back once when a final answer drops obvious required details.
 
 ## Functions
 
 Function
 
-### [create\_deep\_agent](https://reference.langchain.com/python/deepagents/graph/create_deep_agent)
+### [resolve_model](https://reference.langchain.com/python/deepagents/_models/resolve_model)
+
+Resolve a model string to a `BaseChatModel`.
+
+If `model` is already a `BaseChatModel`, returns it unchanged.
+
+String models are resolved via `init_chat_model`, composed with any
+provider-specific init
+
+Function
+
+### [get_model_identifier](https://reference.langchain.com/python/deepagents/_models/get_model_identifier)
+
+Extract the provider-native model identifier from a chat model.
+
+Providers do not agree on a single field name for the identifier. Some use
+`model_name`, while others use `model`.
+
+Function
+
+### [get_model_provider](https://reference.langchain.com/python/deepagents/_models/get_model_provider)
+
+Extract the provider name from a chat model instance.
+
+Uses the model's `_get_ls_params` method. The base `BaseChatModel`
+implementation derives `ls_provider` from the class name, and all major
+provid
+
+Function
+
+### [is_bedrock_model](https://reference.langchain.com/python/deepagents/_models/is_bedrock_model)
+
+Check whether a model targets AWS Bedrock.
+
+Function
+
+### [model_matches_spec](https://reference.langchain.com/python/deepagents/_models/model_matches_spec)
+
+Check whether a model instance already matches a string model spec.
+
+Bare specs match by model identifier. Provider-prefixed specs match by both
+model identifier and provider when the current model ex
+
+Function
+
+### [create_deep_agent](https://reference.langchain.com/python/deepagents/graph/create_deep_agent)
 
 Create a deep agent.
 
@@ -879,96 +924,148 @@ By default, this agent has access to the following tools:
 
 Function
 
-### [resolve\_model](https://reference.langchain.com/python/deepagents/_models/resolve_model)
+### [compile_grep_include_glob](https://reference.langchain.com/python/deepagents/backends/utils/compile_grep_include_glob)
 
-Resolve a model string to a `BaseChatModel`.
+Compile a grep include-glob into a matcher with ripgrep-like semantics.
 
-If `model` is already a `BaseChatModel`, returns it unchanged.
-
-String models are resolved via `init_chat_model`, composed with any
-provider-specific init
+Provides one shared include-glob behavior for every backend so the same
+`grep(..., glob=...)` call closely mirrors ripgrep for
 
 Function
 
-### [get\_model\_identifier](https://reference.langchain.com/python/deepagents/_models/get_model_identifier)
+### [sanitize_tool_call_id](https://reference.langchain.com/python/deepagents/backends/utils/sanitize_tool_call_id)
 
-Extract the provider-native model identifier from a chat model.
-
-Providers do not agree on a single field name for the identifier. Some use
-`model_name`, while others use `model`.
+Return a bounded, path-safe component for a tool call ID.
 
 Function
 
-### [get\_model\_provider](https://reference.langchain.com/python/deepagents/_models/get_model_provider)
+### [format_content_with_line_numbers](https://reference.langchain.com/python/deepagents/backends/utils/format_content_with_line_numbers)
 
-Extract the provider name from a chat model instance.
+Format file content with line numbers.
 
-Uses the model's `_get_ls_params` method. The base `BaseChatModel`
-implementation derives `ls_provider` from the class name, and all major
-provid
-
-Function
-
-### [is\_bedrock\_model](https://reference.langchain.com/python/deepagents/_models/is_bedrock_model)
-
-Check whether a model targets AWS Bedrock.
+Chunks lines longer than `MAX_LINE_LENGTH` with continuation markers
+(e.g., `5.1`, `5.2`). Line markers are separated from source content
+with two spaces so sou
 
 Function
 
-### [model\_matches\_spec](https://reference.langchain.com/python/deepagents/_models/model_matches_spec)
+### [check_empty_content](https://reference.langchain.com/python/deepagents/backends/utils/check_empty_content)
 
-Check whether a model instance already matches a string model spec.
-
-Bare specs match by model identifier. Provider-prefixed specs match by both
-model identifier and provider when the current model ex
+Check if content is empty and return warning message.
 
 Function
 
-### [private\_state\_field\_names](https://reference.langchain.com/python/deepagents/middleware/_state/private_state_field_names)
+### [file_data_to_string](https://reference.langchain.com/python/deepagents/backends/utils/file_data_to_string)
 
-Return fields annotated with `PrivateStateAttr` across state schemas.
-
-Annotations are resolved at runtime, so a schema whose `PrivateStateAttr`
-annotation references a `TYPE_CHECKING`-only name canno
+Convert current or legacy persisted file content to a string.
 
 Function
 
-### [append\_to\_system\_message](https://reference.langchain.com/python/deepagents/middleware/_utils/append_to_system_message)
+### [create_file_data](https://reference.langchain.com/python/deepagents/backends/utils/create_file_data)
 
-Append text to a system message.
-
-Function
-
-### [is\_anthropic\_chat\_model](https://reference.langchain.com/python/deepagents/middleware/_utils/is_anthropic_chat_model)
-
-Return whether `model` is a `langchain_anthropic` chat model.
-
-Reads `sys.modules` rather than importing `langchain_anthropic`: an instance
-of `ChatAnthropic` implies its module is loaded, and importi
+Create a `FileData` object with timestamps.
 
 Function
 
-### [create\_sub\_agent](https://reference.langchain.com/python/deepagents/middleware/subagents/create_sub_agent)
+### [update_file_data](https://reference.langchain.com/python/deepagents/backends/utils/update_file_data)
 
-Create a runnable agent from a raw `SubAgent` spec.
-
-This is the shared entrypoint for the `create_agent` path used by
-raw subagent specs. Pre-compiled `CompiledSubAgent` runnables are already
-created
+Update `FileData` with new content, preserving creation timestamp.
 
 Function
 
-### [supports\_execution](https://reference.langchain.com/python/deepagents/middleware/filesystem/supports_execution)
+### [normalize_read_bounds](https://reference.langchain.com/python/deepagents/backends/utils/normalize_read_bounds)
 
-Check if a backend supports command execution.
+Floor a requested read window at a zero offset and zero lines.
 
-For `CompositeBackend`,
-checks if the default backend supports execution.
-For other backends, checks i
+Models occasionally emit degenerate `read_file` arguments (`offset=-1`,
+`limit=0`). Clamping `offset` keeps backends from reporting a li
 
 Function
 
-### [video\_dependencies\_available](https://reference.langchain.com/python/deepagents/middleware/_video/video_dependencies_available)
+### [slice_read_response](https://reference.langchain.com/python/deepagents/backends/utils/slice_read_response)
+
+Slice file data to the requested line range without formatting.
+
+The returned `ReadResult` carries the raw (unformatted) window in
+`file_data`; line-number formatting is applied downstream by the
+midd
+
+Function
+
+### [perform_string_replacement](https://reference.langchain.com/python/deepagents/backends/utils/perform_string_replacement)
+
+Perform string replacement with occurrence validation.
+
+Function
+
+### [truncate_if_too_long](https://reference.langchain.com/python/deepagents/backends/utils/truncate_if_too_long)
+
+Truncate list or string result if it exceeds token limit (rough estimate: 4 chars/token).
+
+Function
+
+### [to_posix_path](https://reference.langchain.com/python/deepagents/backends/utils/to_posix_path)
+
+Normalize backslash separators to forward slashes for `PurePosixPath` use.
+
+Backends running on Windows return OS-native paths using backslashes.
+`PurePosixPath` treats backslashes as literal filename
+
+Function
+
+### [validate_path](https://reference.langchain.com/python/deepagents/backends/utils/validate_path)
+
+Validate and normalize file path for security.
+
+Ensures paths are safe to use by preventing directory traversal attacks
+and enforcing consistent formatting. All paths are normalized to use
+forward sla
+
+Function
+
+### [grep_matches_from_files](https://reference.langchain.com/python/deepagents/backends/utils/grep_matches_from_files)
+
+Return structured grep matches from an in-memory files mapping.
+
+Performs literal text search (not regex).
+
+Returns a `GrepResult` with matches on success. When `max_count` is set, at
+most that many m
+
+Function
+
+### [build_grep_results_dict](https://reference.langchain.com/python/deepagents/backends/utils/build_grep_results_dict)
+
+Group structured matches into the legacy dict form used by formatters.
+
+Function
+
+### [format_grep_matches](https://reference.langchain.com/python/deepagents/backends/utils/format_grep_matches)
+
+Format structured grep matches using existing formatting logic.
+
+Function
+
+### [regex_literal_hint](https://reference.langchain.com/python/deepagents/backends/utils/regex_literal_hint)
+
+Return a hint when a pattern looks like an (unsupported) regex.
+
+`grep` matches literal text, so regex metacharacters are searched verbatim
+and silently miss. Callers gate this on a no-match result; t
+
+Function
+
+### [execute_accepts_timeout](https://reference.langchain.com/python/deepagents/backends/protocol/execute_accepts_timeout)
+
+Check whether a backend class's `execute` accepts a `timeout` kwarg.
+
+Older backend packages didn't lower-bound their SDK dependency, so they
+may not accept the `timeout` keyword added to
+[`SandboxBac
+
+Function
+
+### [video_dependencies_available](https://reference.langchain.com/python/deepagents/middleware/_video/video_dependencies_available)
 
 Return whether the optional video dependencies appear to be installed.
 
@@ -977,19 +1074,19 @@ Uses `importlib.util.find_spec`, which checks that `av` and Pillow are
 
 Function
 
-### [extract\_video\_frames](https://reference.langchain.com/python/deepagents/middleware/_video/extract_video_frames)
+### [extract_video_frames](https://reference.langchain.com/python/deepagents/middleware/_video/extract_video_frames)
 
 Decode sampled frames from a video byte payload.
 
 Function
 
-### [compute\_summarization\_defaults](https://reference.langchain.com/python/deepagents/middleware/summarization/compute_summarization_defaults)
+### [compute_summarization_defaults](https://reference.langchain.com/python/deepagents/middleware/summarization/compute_summarization_defaults)
 
 Compute default summarization settings based on model profile.
 
 Function
 
-### [create\_summarization\_middleware](https://reference.langchain.com/python/deepagents/middleware/summarization/create_summarization_middleware)
+### [create_summarization_middleware](https://reference.langchain.com/python/deepagents/middleware/summarization/create_summarization_middleware)
 
 Create a Deep Agents `SummarizationMiddleware` with model-aware defaults.
 
@@ -1000,7 +1097,7 @@ The Deep Agents `SummarizationMiddleware` wraps
 
 Function
 
-### [create\_summarization\_tool\_middleware](https://reference.langchain.com/python/deepagents/middleware/summarization/create_summarization_tool_middleware)
+### [create_summarization_tool_middleware](https://reference.langchain.com/python/deepagents/middleware/summarization/create_summarization_tool_middleware)
 
 Create a `SummarizationToolMiddleware` with model-aware defaults.
 
@@ -1009,7 +1106,31 @@ Convenience factory: builds a `SummarizationMiddleware` via
 
 Function
 
-### [disclosed\_skill\_tool\_names](https://reference.langchain.com/python/deepagents/middleware/skills/disclosed_skill_tool_names)
+### [private_state_field_names](https://reference.langchain.com/python/deepagents/middleware/_state/private_state_field_names)
+
+Return fields annotated with `PrivateStateAttr` across state schemas.
+
+Annotations are resolved at runtime, so a schema whose `PrivateStateAttr`
+annotation references a `TYPE_CHECKING`-only name canno
+
+Function
+
+### [append_to_system_message](https://reference.langchain.com/python/deepagents/middleware/_utils/append_to_system_message)
+
+Append text to a system message.
+
+Function
+
+### [is_anthropic_chat_model](https://reference.langchain.com/python/deepagents/middleware/_utils/is_anthropic_chat_model)
+
+Return whether `model` is a `langchain_anthropic` chat model.
+
+Reads `sys.modules` rather than importing `langchain_anthropic`: an instance
+of `ChatAnthropic` implies its module is loaded, and importi
+
+Function
+
+### [disclosed_skill_tool_names](https://reference.langchain.com/python/deepagents/middleware/skills/disclosed_skill_tool_names)
 
 Return the names of the skill tools disclosed to the latest model call.
 
@@ -1018,13 +1139,33 @@ skill tools the model has been shown. The agent's own
 
 Function
 
-### [append\_prompt\_caching\_middleware](https://reference.langchain.com/python/deepagents/middleware/_prompt_caching/append_prompt_caching_middleware)
+### [append_prompt_caching_middleware](https://reference.langchain.com/python/deepagents/middleware/_prompt_caching/append_prompt_caching_middleware)
 
 Append provider-specific prompt caching middleware.
 
 Function
 
-### [validate\_profile\_key](https://reference.langchain.com/python/deepagents/profiles/_keys/validate_profile_key)
+### [supports_execution](https://reference.langchain.com/python/deepagents/middleware/filesystem/supports_execution)
+
+Check if a backend supports command execution.
+
+For `CompositeBackend`,
+checks if the default backend supports execution.
+For other backends, checks i
+
+Function
+
+### [create_sub_agent](https://reference.langchain.com/python/deepagents/middleware/subagents/create_sub_agent)
+
+Create a runnable agent from a raw `SubAgent` spec.
+
+This is the shared entrypoint for the `create_agent` path used by
+raw subagent specs. Pre-compiled `CompiledSubAgent` runnables are already
+created
+
+Function
+
+### [validate_profile_key](https://reference.langchain.com/python/deepagents/profiles/_keys/validate_profile_key)
 
 Validate a `provider` or `provider:model` profile registry key.
 
@@ -1033,54 +1174,7 @@ Providers must not contain colons, while model identifiers m
 
 Function
 
-### [register\_harness\_profile](https://reference.langchain.com/python/deepagents/profiles/harness/harness_profiles/register_harness_profile)
-
-Register a harness profile for a provider or specific model.
-
-Beta
-
-`deepagents.profiles` exposes beta APIs that may receive minor changes in
-future releases. Refer to the [versioning docu
-
-Function
-
-### [register](https://reference.langchain.com/python/deepagents/profiles/harness/_anthropic_sonnet_4_6/register)
-
-Register the built-in Claude Sonnet 4.6 harness profile.
-
-Function
-
-### [register](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/register)
-
-Register the built-in Nemotron 3 Ultra harness profile.
-
-Function
-
-### [register](https://reference.langchain.com/python/deepagents/profiles/harness/_anthropic_opus_4_7/register)
-
-Register the built-in Claude Opus 4.7 harness profile.
-
-Function
-
-### [register](https://reference.langchain.com/python/deepagents/profiles/harness/_openai_codex/register)
-
-Register the built-in Codex harness profile for each Codex spec.
-
-Function
-
-### [register](https://reference.langchain.com/python/deepagents/profiles/harness/_anthropic_haiku_4_5/register)
-
-Register the built-in Claude Haiku 4.5 harness profile.
-
-Function
-
-### [register](https://reference.langchain.com/python/deepagents/profiles/provider/_nvidia/register)
-
-Register the built-in NVIDIA provider profile.
-
-Function
-
-### [check\_openrouter\_version](https://reference.langchain.com/python/deepagents/profiles/provider/_openrouter/check_openrouter_version)
+### [check_openrouter_version](https://reference.langchain.com/python/deepagents/profiles/provider/_openrouter/check_openrouter_version)
 
 Raise if the installed `langchain-openrouter` is below the minimum.
 
@@ -1095,7 +1189,13 @@ Register the built-in OpenRouter provider profile.
 
 Function
 
-### [register\_provider\_profile](https://reference.langchain.com/python/deepagents/profiles/provider/provider_profiles/register_provider_profile)
+### [register](https://reference.langchain.com/python/deepagents/profiles/provider/_nvidia/register)
+
+Register the built-in NVIDIA provider profile.
+
+Function
+
+### [register_provider_profile](https://reference.langchain.com/python/deepagents/profiles/provider/provider_profiles/register_provider_profile)
 
 Register a `ProviderProfile` for a provider or specific model.
 
@@ -1106,7 +1206,7 @@ future releases. Refer to the [versioning do
 
 Function
 
-### [get\_provider\_profile](https://reference.langchain.com/python/deepagents/profiles/provider/provider_profiles/get_provider_profile)
+### [get_provider_profile](https://reference.langchain.com/python/deepagents/profiles/provider/provider_profiles/get_provider_profile)
 
 Look up the `ProviderProfile` for a model spec.
 
@@ -1117,7 +1217,7 @@ future releases. Refer to the [versioning documentation](ht
 
 Function
 
-### [apply\_provider\_profile](https://reference.langchain.com/python/deepagents/profiles/provider/provider_profiles/apply_provider_profile)
+### [apply_provider_profile](https://reference.langchain.com/python/deepagents/profiles/provider/provider_profiles/apply_provider_profile)
 
 Compose `init_chat_model` kwargs from the registered profile for `spec`.
 
@@ -1134,163 +1234,63 @@ Register the built-in OpenAI provider profile.
 
 Function
 
-### [warn\_deprecated](https://reference.langchain.com/python/deepagents/_api/deprecation/warn_deprecated)
+### [register](https://reference.langchain.com/python/deepagents/profiles/harness/_openai_codex/register)
+
+Register the built-in Codex harness profile for each Codex spec.
+
+Function
+
+### [register_harness_profile](https://reference.langchain.com/python/deepagents/profiles/harness/harness_profiles/register_harness_profile)
+
+Register a harness profile for a provider or specific model.
+
+Beta
+
+`deepagents.profiles` exposes beta APIs that may receive minor changes in
+future releases. Refer to the [versioning docu
+
+Function
+
+### [register](https://reference.langchain.com/python/deepagents/profiles/harness/_anthropic_haiku_4_5/register)
+
+Register the built-in Claude Haiku 4.5 harness profile.
+
+Function
+
+### [register](https://reference.langchain.com/python/deepagents/profiles/harness/_anthropic_sonnet_4_6/register)
+
+Register the built-in Claude Sonnet 4.6 harness profile.
+
+Function
+
+### [register](https://reference.langchain.com/python/deepagents/profiles/harness/_anthropic_opus_4_7/register)
+
+Register the built-in Claude Opus 4.7 harness profile.
+
+Function
+
+### [register](https://reference.langchain.com/python/deepagents/profiles/harness/_nvidia_nemotron_3_ultra/register)
+
+Register the built-in Nemotron 3 Ultra harness profile.
+
+Function
+
+### [warn_deprecated](https://reference.langchain.com/python/deepagents/_api/deprecation/warn_deprecated)
 
 Emit a deprecation warning with caller-controlled stack attribution.
 
 Function
 
-### [reset\_deprecation\_dedupe](https://reference.langchain.com/python/deepagents/_api/deprecation/reset_deprecation_dedupe)
+### [reset_deprecation_dedupe](https://reference.langchain.com/python/deepagents/_api/deprecation/reset_deprecation_dedupe)
 
 Reset the `@deprecated` decorator's dedupe flag for testing.
 
-The langchain\_core `@deprecated` decorator emits each warning at most once
+The langchain_core `@deprecated` decorator emits each warning at most once
 per process via a closure-bound `warned` flag. Tests that asser
 
 Function
 
-### [execute\_accepts\_timeout](https://reference.langchain.com/python/deepagents/backends/protocol/execute_accepts_timeout)
-
-Check whether a backend class's `execute` accepts a `timeout` kwarg.
-
-Older backend packages didn't lower-bound their SDK dependency, so they
-may not accept the `timeout` keyword added to
-[`SandboxBac
-
-Function
-
-### [compile\_grep\_include\_glob](https://reference.langchain.com/python/deepagents/backends/utils/compile_grep_include_glob)
-
-Compile a grep include-glob into a matcher with ripgrep-like semantics.
-
-Provides one shared include-glob behavior for every backend so the same
-`grep(..., glob=...)` call closely mirrors ripgrep for
-
-Function
-
-### [sanitize\_tool\_call\_id](https://reference.langchain.com/python/deepagents/backends/utils/sanitize_tool_call_id)
-
-Return a bounded, path-safe component for a tool call ID.
-
-Function
-
-### [format\_content\_with\_line\_numbers](https://reference.langchain.com/python/deepagents/backends/utils/format_content_with_line_numbers)
-
-Format file content with line numbers.
-
-Chunks lines longer than `MAX_LINE_LENGTH` with continuation markers
-(e.g., `5.1`, `5.2`). Line markers are separated from source content
-with two spaces so sou
-
-Function
-
-### [check\_empty\_content](https://reference.langchain.com/python/deepagents/backends/utils/check_empty_content)
-
-Check if content is empty and return warning message.
-
-Function
-
-### [file\_data\_to\_string](https://reference.langchain.com/python/deepagents/backends/utils/file_data_to_string)
-
-Convert current or legacy persisted file content to a string.
-
-Function
-
-### [create\_file\_data](https://reference.langchain.com/python/deepagents/backends/utils/create_file_data)
-
-Create a `FileData` object with timestamps.
-
-Function
-
-### [update\_file\_data](https://reference.langchain.com/python/deepagents/backends/utils/update_file_data)
-
-Update `FileData` with new content, preserving creation timestamp.
-
-Function
-
-### [normalize\_read\_bounds](https://reference.langchain.com/python/deepagents/backends/utils/normalize_read_bounds)
-
-Floor a requested read window at a zero offset and zero lines.
-
-Models occasionally emit degenerate `read_file` arguments (`offset=-1`,
-`limit=0`). Clamping `offset` keeps backends from reporting a li
-
-Function
-
-### [slice\_read\_response](https://reference.langchain.com/python/deepagents/backends/utils/slice_read_response)
-
-Slice file data to the requested line range without formatting.
-
-The returned `ReadResult` carries the raw (unformatted) window in
-`file_data`; line-number formatting is applied downstream by the
-midd
-
-Function
-
-### [perform\_string\_replacement](https://reference.langchain.com/python/deepagents/backends/utils/perform_string_replacement)
-
-Perform string replacement with occurrence validation.
-
-Function
-
-### [truncate\_if\_too\_long](https://reference.langchain.com/python/deepagents/backends/utils/truncate_if_too_long)
-
-Truncate list or string result if it exceeds token limit (rough estimate: 4 chars/token).
-
-Function
-
-### [to\_posix\_path](https://reference.langchain.com/python/deepagents/backends/utils/to_posix_path)
-
-Normalize backslash separators to forward slashes for `PurePosixPath` use.
-
-Backends running on Windows return OS-native paths using backslashes.
-`PurePosixPath` treats backslashes as literal filename
-
-Function
-
-### [validate\_path](https://reference.langchain.com/python/deepagents/backends/utils/validate_path)
-
-Validate and normalize file path for security.
-
-Ensures paths are safe to use by preventing directory traversal attacks
-and enforcing consistent formatting. All paths are normalized to use
-forward sla
-
-Function
-
-### [grep\_matches\_from\_files](https://reference.langchain.com/python/deepagents/backends/utils/grep_matches_from_files)
-
-Return structured grep matches from an in-memory files mapping.
-
-Performs literal text search (not regex).
-
-Returns a `GrepResult` with matches on success. When `max_count` is set, at
-most that many m
-
-Function
-
-### [build\_grep\_results\_dict](https://reference.langchain.com/python/deepagents/backends/utils/build_grep_results_dict)
-
-Group structured matches into the legacy dict form used by formatters.
-
-Function
-
-### [format\_grep\_matches](https://reference.langchain.com/python/deepagents/backends/utils/format_grep_matches)
-
-Format structured grep matches using existing formatting logic.
-
-Function
-
-### [regex\_literal\_hint](https://reference.langchain.com/python/deepagents/backends/utils/regex_literal_hint)
-
-Return a hint when a pattern looks like an (unsupported) regex.
-
-`grep` matches literal text, so regex metacharacters are searched verbatim
-and silently miss. Callers gate this on a no-match result; t
-
-Function
-
-### [get\_default\_model](https://reference.langchain.com/python/deepagents/graph/get_default_model)
+### [get_default_model](https://reference.langchain.com/python/deepagents/graph/get_default_model)
 
 deprecated
 
@@ -1300,7 +1300,7 @@ Deprecated
 
 Deprecated since `0.5.3`; will be removed in `deepagents==1.0.0`.
 Construct your model explicitly (e.g.,
-`ChatAnthropic(model\_name="
+`ChatAnthropic(model_name="
 
 ## Modules
 
@@ -1321,6 +1321,89 @@ point for constructing a fully configured deep agent with planning, f
 
 Module
 
+### [backends](https://reference.langchain.com/python/deepagents/backends)
+
+Memory backends for pluggable file storage.
+
+Module
+
+### [sandbox](https://reference.langchain.com/python/deepagents/backends/sandbox)
+
+Base sandbox implementation.
+
+`BaseSandbox` implements
+`SandboxBackendProtocol`.
+
+File listing, grep,
+
+Module
+
+### [utils](https://reference.langchain.com/python/deepagents/backends/utils)
+
+Shared utility functions for memory backend implementations.
+
+This module contains both user-facing string formatters and structured
+helpers used by backends and the composite router. Structured helpe
+
+Module
+
+### [context_hub](https://reference.langchain.com/python/deepagents/backends/context_hub)
+
+`ContextHubBackend`: Store files in a LangSmith Hub agent repo (persistent).
+
+Module
+
+### [composite](https://reference.langchain.com/python/deepagents/backends/composite)
+
+Composite backend that routes file operations by path prefix.
+
+Routes operations to different backends based on path prefixes. Use this when
+you need different storage strategies for different paths (
+
+Module
+
+### [state](https://reference.langchain.com/python/deepagents/backends/state)
+
+`StateBackend`: Store files in LangGraph agent state (ephemeral).
+
+Module
+
+### [local_shell](https://reference.langchain.com/python/deepagents/backends/local_shell)
+
+`LocalShellBackend`: Filesystem backend with unrestricted local shell execution.
+
+This backend extends `FilesystemBackend` to add shell command execution on
+the local host system. It provides NO sandb
+
+Module
+
+### [filesystem](https://reference.langchain.com/python/deepagents/backends/filesystem)
+
+`FilesystemBackend`: Read and write files directly from the filesystem.
+
+Module
+
+### [protocol](https://reference.langchain.com/python/deepagents/backends/protocol)
+
+Protocol definition for pluggable memory backends.
+
+This module defines the `BackendProtocol` that all backend implementations
+must follow. Backends can store files in different locations (state, file
+
+Module
+
+### [store](https://reference.langchain.com/python/deepagents/backends/store)
+
+`StoreBackend`: Adapter for LangGraph's BaseStore (persistent, cross-thread).
+
+Module
+
+### [langsmith](https://reference.langchain.com/python/deepagents/backends/langsmith)
+
+LangSmith sandbox backend implementation.
+
+Module
+
 ### [middleware](https://reference.langchain.com/python/deepagents/middleware)
 
 Middleware for the Deep Agents agent.
@@ -1334,27 +1417,6 @@ The LLM receives tools through two paths:
 
 Module
 
-### [subagents](https://reference.langchain.com/python/deepagents/middleware/subagents)
-
-Middleware for providing subagents to an agent via a `task` tool.
-
-Module
-
-### [filesystem](https://reference.langchain.com/python/deepagents/middleware/filesystem)
-
-Middleware for providing filesystem tools to an agent.
-
-Module
-
-### [async\_subagents](https://reference.langchain.com/python/deepagents/middleware/async_subagents)
-
-Middleware for async subagents running on remote Agent Protocol servers.
-
-Async subagents use the LangGraph SDK to launch background runs on remote
-[Agent Protocol](https://github.com/langchain-ai/age
-
-Module
-
 ### [summarization](https://reference.langchain.com/python/deepagents/middleware/summarization)
 
 Summarization middleware for automatic and tool-based conversation compaction.
@@ -1365,12 +1427,9 @@ This module provides two middleware classes and a convenience factory:
 
 Module
 
-### [skills](https://reference.langchain.com/python/deepagents/middleware/skills)
+### [permissions](https://reference.langchain.com/python/deepagents/middleware/permissions)
 
-Skills middleware for loading and exposing agent skills to the system prompt.
-
-This module implements Anthropic's agent skills pattern with progressive disclosure,
-loading skills from backend storage
+Backward-compatible re-export for filesystem permissions.
 
 Module
 
@@ -1384,9 +1443,30 @@ returns
 
 Module
 
-### [permissions](https://reference.langchain.com/python/deepagents/middleware/permissions)
+### [unsupported_content](https://reference.langchain.com/python/deepagents/middleware/unsupported_content)
 
-Backward-compatible re-export for filesystem permissions.
+Replace input content blocks the active model can't accept.
+
+Module
+
+### [skills](https://reference.langchain.com/python/deepagents/middleware/skills)
+
+Skills middleware for loading and exposing agent skills to the system prompt.
+
+This module implements Anthropic's agent skills pattern with progressive disclosure,
+loading skills from backend storage
+
+Module
+
+### [patch_tool_calls](https://reference.langchain.com/python/deepagents/middleware/patch_tool_calls)
+
+Middleware to patch dangling tool calls in the messages history.
+
+Module
+
+### [filesystem](https://reference.langchain.com/python/deepagents/middleware/filesystem)
+
+Middleware for providing filesystem tools to an agent.
 
 Module
 
@@ -1399,15 +1479,18 @@ loading memory/context from configurable sources
 
 Module
 
-### [unsupported\_content](https://reference.langchain.com/python/deepagents/middleware/unsupported_content)
+### [async_subagents](https://reference.langchain.com/python/deepagents/middleware/async_subagents)
 
-Replace input content blocks the active model can't accept.
+Middleware for async subagents running on remote Agent Protocol servers.
+
+Async subagents use the LangGraph SDK to launch background runs on remote
+[Agent Protocol](https://github.com/langchain-ai/age
 
 Module
 
-### [patch\_tool\_calls](https://reference.langchain.com/python/deepagents/middleware/patch_tool_calls)
+### [subagents](https://reference.langchain.com/python/deepagents/middleware/subagents)
 
-Middleware to patch dangling tool calls in the messages history.
+Middleware for providing subagents to an agent via a `task` tool.
 
 Module
 
@@ -1422,6 +1505,23 @@ future releases. Refer to the [versioning documentation](h
 
 Module
 
+### [provider](https://reference.langchain.com/python/deepagents/profiles/provider)
+
+Provider profile package: `ProviderProfile` API and built-in providers.
+
+Module
+
+### [provider_profiles](https://reference.langchain.com/python/deepagents/profiles/provider/provider_profiles)
+
+Beta APIs for configuring model-construction behavior.
+
+Beta
+
+`deepagents.profiles` exposes beta APIs that may receive minor changes in
+future releases. Refer to the [versioning documentat
+
+Module
+
 ### [harness](https://reference.langchain.com/python/deepagents/profiles/harness)
 
 Harness profile package: `HarnessProfile` API and built-in registrations.
@@ -1431,26 +1531,9 @@ Individual built-in modules expose a zero-arg `register()` callable; the lazy
 
 Module
 
-### [harness\_profiles](https://reference.langchain.com/python/deepagents/profiles/harness/harness_profiles)
+### [harness_profiles](https://reference.langchain.com/python/deepagents/profiles/harness/harness_profiles)
 
 Beta APIs for configuring deep agent runtime behavior.
-
-Beta
-
-`deepagents.profiles` exposes beta APIs that may receive minor changes in
-future releases. Refer to the [versioning documentat
-
-Module
-
-### [provider](https://reference.langchain.com/python/deepagents/profiles/provider)
-
-Provider profile package: `ProviderProfile` API and built-in providers.
-
-Module
-
-### [provider\_profiles](https://reference.langchain.com/python/deepagents/profiles/provider/provider_profiles)
-
-Beta APIs for configuring model-construction behavior.
 
 Beta
 
@@ -1470,99 +1553,16 @@ Re-exports:
 
 * `deprecated`: decorator for callables, cl
 
-Module
-
-### [backends](https://reference.langchain.com/python/deepagents/backends)
-
-Memory backends for pluggable file storage.
-
-Module
-
-### [protocol](https://reference.langchain.com/python/deepagents/backends/protocol)
-
-Protocol definition for pluggable memory backends.
-
-This module defines the `BackendProtocol` that all backend implementations
-must follow. Backends can store files in different locations (state, file
-
-Module
-
-### [filesystem](https://reference.langchain.com/python/deepagents/backends/filesystem)
-
-`FilesystemBackend`: Read and write files directly from the filesystem.
-
-Module
-
-### [utils](https://reference.langchain.com/python/deepagents/backends/utils)
-
-Shared utility functions for memory backend implementations.
-
-This module contains both user-facing string formatters and structured
-helpers used by backends and the composite router. Structured helpe
-
-Module
-
-### [composite](https://reference.langchain.com/python/deepagents/backends/composite)
-
-Composite backend that routes file operations by path prefix.
-
-Routes operations to different backends based on path prefixes. Use this when
-you need different storage strategies for different paths (
-
-Module
-
-### [context\_hub](https://reference.langchain.com/python/deepagents/backends/context_hub)
-
-`ContextHubBackend`: Store files in a LangSmith Hub agent repo (persistent).
-
-Module
-
-### [sandbox](https://reference.langchain.com/python/deepagents/backends/sandbox)
-
-Base sandbox implementation.
-
-`BaseSandbox` implements
-`SandboxBackendProtocol`.
-
-File listing, grep,
-
-Module
-
-### [local\_shell](https://reference.langchain.com/python/deepagents/backends/local_shell)
-
-`LocalShellBackend`: Filesystem backend with unrestricted local shell execution.
-
-This backend extends `FilesystemBackend` to add shell command execution on
-the local host system. It provides NO sandb
-
-Module
-
-### [store](https://reference.langchain.com/python/deepagents/backends/store)
-
-`StoreBackend`: Adapter for LangGraph's BaseStore (persistent, cross-thread).
-
-Module
-
-### [state](https://reference.langchain.com/python/deepagents/backends/state)
-
-`StateBackend`: Store files in LangGraph agent state (ephemeral).
-
-Module
-
-### [langsmith](https://reference.langchain.com/python/deepagents/backends/langsmith)
-
-LangSmith sandbox backend implementation.
-
 ## Types
 
 Type
 
-### [SkillSource](https://reference.langchain.com/python/deepagents/middleware/skills/SkillSource)
+### [GlobBackendResult](https://reference.langchain.com/python/deepagents/backends/composite/GlobBackendResult)
 
-A skill source: either a bare path or a `(path, label)` pair.
+Result shape accepted by composite glob merge helpers.
 
-When only a path is given, the label is derived from the final path
-component. Supply a tuple to override the default (e.g. to distinguis
+Composite glob supports both current `GlobResult` values and legacy
+`list[FileInfo]` backend returns.
 
 Type
 
@@ -1577,9 +1577,9 @@ statuses the grader cannot emit itself:
 
 Type
 
-### [GlobBackendResult](https://reference.langchain.com/python/deepagents/backends/composite/GlobBackendResult)
+### [SkillSource](https://reference.langchain.com/python/deepagents/middleware/skills/SkillSource)
 
-Result shape accepted by composite glob merge helpers.
+A skill source: either a bare path or a `(path, label)` pair.
 
-Composite glob supports both current `GlobResult` values and legacy
-`list[FileInfo]` backend returns.
+When only a path is given, the label is derived from the final path
+component. Supply a tuple to override the default (e.g. to distinguis

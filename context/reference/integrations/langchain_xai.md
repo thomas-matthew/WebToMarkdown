@@ -25,13 +25,13 @@ for more nuanced details on the API's behavior and supported parameters.
 
 Module
 
-### [langchain\_xai](https://reference.langchain.com/python/langchain-xai/langchain_xai)
+### [langchain_xai](https://reference.langchain.com/python/langchain-xai/langchain_xai)
 
 LangChain integration with xAI.
 
 Module
 
-### [chat\_models](https://reference.langchain.com/python/langchain-xai/chat_models)
+### [chat_models](https://reference.langchain.com/python/langchain-xai/chat_models)
 
 Wrapper around xAI's Chat Completions API.
 
@@ -39,4 +39,4 @@ Module
 
 ### [data](https://reference.langchain.com/python/langchain-xai/data)
 
-Model profile data. All edits should be made in profile\_augmentations.toml.
+Model profile data. All edits should be made in profile_augmentations.toml.

@@ -1,4 +1,4 @@
-Classv1.8.3 (latest)●Since v1.8
+Classv1.8.4 (latest)●Since v0.2
 
 # Blob
 
@@ -109,7 +109,7 @@ Location where the original content was found.
 
 attribute
 
-model\_config
+model_config
 
 attribute
 
@@ -126,37 +126,37 @@ case that value will be used instead.
 
 method
 
-check\_blob\_is\_valid
+check_blob_is_valid
 
 Verify that either data or path is provided.
 
 method
 
-as\_string
+as_string
 
 Read data as a string.
 
 method
 
-as\_bytes
+as_bytes
 
 Read data as bytes.
 
 method
 
-as\_bytes\_io
+as_bytes_io
 
 Read data as a byte stream.
 
 method
 
-from\_path
+from_path
 
 Load the blob from a path like object.
 
 method
 
-from\_data
+from_data
 
 Initialize the `Blob` from in-memory data.
 
@@ -180,13 +180,13 @@ Arbitrary metadata associated with the content.
 
 ### Attributes
 
-Alc\_secrets: dict[str, str]
+Alc_secrets: dict[str, str]
 
 —
 
 A map of constructor argument names to secret ids.
 
-Alc\_attributes: dict[str, Any]
+Alc_attributes: dict[str, Any]
 
 —
 
@@ -194,31 +194,31 @@ List of attribute names that should be included in the serialized kwargs.
 
 ### Methods
 
-Mis\_lc\_serializable
+Mis_lc_serializable
 
 —
 
 Is this class serializable?
 
-Mget\_lc\_namespace
+Mget_lc_namespace
 
 —
 
 Get the namespace of the LangChain object.
 
-Mlc\_id
+Mlc_id
 
 —
 
 Return a unique identifier for this class for serialization purposes.
 
-Mto\_json
+Mto_json
 
 —
 
 Serialize the object to JSON.
 
-Mto\_json\_not\_implemented
+Mto_json_not_implemented
 
 —
 

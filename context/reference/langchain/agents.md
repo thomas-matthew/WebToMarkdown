@@ -40,7 +40,7 @@ Automatically select the best strategy for structured output.
 
 Function
 
-### [create\_agent](https://reference.langchain.com/python/langchain/agents/factory/create_agent)
+### [create_agent](https://reference.langchain.com/python/langchain/agents/factory/create_agent)
 
 Creates an agent graph that calls tools in a loop until a stopping condition is met.
 
@@ -49,19 +49,19 @@ visit the [Agents](https://docs.langchain.com/oss/python/langchain/agent
 
 Function
 
-### [before\_model](https://reference.langchain.com/python/langchain/agents/middleware/types/before_model)
+### [before_model](https://reference.langchain.com/python/langchain/agents/middleware/types/before_model)
 
 Decorator used to dynamically create a middleware with the `before_model` hook.
 
 Function
 
-### [after\_model](https://reference.langchain.com/python/langchain/agents/middleware/types/after_model)
+### [after_model](https://reference.langchain.com/python/langchain/agents/middleware/types/after_model)
 
 Decorator used to dynamically create a middleware with the `after_model` hook.
 
 Function
 
-### [wrap\_model\_call](https://reference.langchain.com/python/langchain/agents/middleware/types/wrap_model_call)
+### [wrap_model_call](https://reference.langchain.com/python/langchain/agents/middleware/types/wrap_model_call)
 
 Create middleware with `wrap_model_call` hook from a function.
 
@@ -70,7 +70,7 @@ calls, implement retry logic, handle errors, and rewr
 
 Function
 
-### [wrap\_tool\_call](https://reference.langchain.com/python/langchain/agents/middleware/types/wrap_tool_call)
+### [wrap_tool_call](https://reference.langchain.com/python/langchain/agents/middleware/types/wrap_tool_call)
 
 Create middleware with `wrap_tool_call` hook from a function.
 

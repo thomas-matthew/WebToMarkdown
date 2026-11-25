@@ -1,4 +1,4 @@
-Classv1.2.23 (latest)●Since v1.2
+Classv1.2.24 (latest)●Since v1.2
 
 # CompiledStateGraph
 
@@ -20,12 +20,12 @@ CompiledStateGraph(
 
 constructor
 
-\_\_init\_\_
+__init__
 
 | Name | Type |
 | --- | --- |
 | builder | [StateGraph](https://reference.langchain.com/python/langgraph/graph/state/StateGraph)[[StateT](https://reference.langchain.com/python/langgraph/typing/StateT), [ContextT](https://reference.langchain.com/python/langgraph/typing/ContextT), [InputT](https://reference.langchain.com/python/langgraph/typing/InputT), [OutputT](https://reference.langchain.com/python/langgraph/typing/OutputT)] |
-| schema\_to\_mapper | [dict](https://docs.python.org/3/library/stdtypes.html#dict)[[type](https://docs.python.org/3/library/functions.html#type)[[Any](https://docs.python.org/3/library/typing.html#typing.Any)], [Callable](https://docs.python.org/3/library/typing.html#typing.Callable)[[[Any](https://docs.python.org/3/library/typing.html#typing.Any)], [Any](https://docs.python.org/3/library/typing.html#typing.Any)] | None] |
+| schema_to_mapper | [dict](https://docs.python.org/3/library/stdtypes.html#dict)[[type](https://docs.python.org/3/library/functions.html#type)[[Any](https://docs.python.org/3/library/typing.html#typing.Any)], [Callable](https://docs.python.org/3/library/typing.html#typing.Callable)[[[Any](https://docs.python.org/3/library/typing.html#typing.Any)], [Any](https://docs.python.org/3/library/typing.html#typing.Any)] | None] |
 | kwargs | [Any](https://docs.python.org/3/library/typing.html#typing.Any) |
 
 ## Attributes
@@ -36,29 +36,29 @@ builder: StateGraph[StateT, ContextT, InputT, OutputT]
 
 attribute
 
-schema\_to\_mapper: dict[type[Any], Callable[[Any], Any] | None]
+schema_to_mapper: dict[type[Any], Callable[[Any], Any] | None]
 
 ## Methods
 
 method
 
-get\_input\_jsonschema
+get_input_jsonschema
 
 method
 
-get\_output\_jsonschema
+get_output_jsonschema
 
 method
 
-attach\_node
+attach_node
 
 method
 
-attach\_edge
+attach_edge
 
 method
 
-attach\_branch
+attach_branch
 
 ## Inherited from[Pregel](https://reference.langchain.com/python/langgraph/pregel/main/Pregel)
 
@@ -66,29 +66,29 @@ attach\_branch
 
 [Anodes: dict[str, PregelNode]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/nodes)[Achannels: dict[str, BaseChannel | ManagedValueSpec]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/channels)
 
-Astream\_mode: StreamMode
+Astream_mode: StreamMode
 
 —
 
 Mode to stream output, defaults to 'values'.
 
-Astream\_eager: bool
+Astream_eager: bool
 
 —
 
 Whether to force emitting stream events eagerly, automatically turned on
 
-[Aoutput\_channels: str | Sequence[str]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/output_channels)
+[Aoutput_channels: str | Sequence[str]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/output_channels)
 
-Astream\_channels: str | Sequence[str] | None
+Astream_channels: str | Sequence[str] | None
 
 —
 
 Channels to stream, defaults to all channels not in reserved channels
 
-[Ainterrupt\_after\_nodes: All | Sequence[str]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/interrupt_after_nodes)[Ainterrupt\_before\_nodes: All | Sequence[str]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/interrupt_before_nodes)[Ainput\_channels: str | Sequence[str]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/input_channels)
+[Ainterrupt_after_nodes: All | Sequence[str]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/interrupt_after_nodes)[Ainterrupt_before_nodes: All | Sequence[str]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/interrupt_before_nodes)[Ainput_channels: str | Sequence[str]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/input_channels)
 
-Astep\_timeout: float | None
+Astep_timeout: float | None
 
 —
 
@@ -118,35 +118,35 @@ Acache: BaseCache | None
 
 Cache to use for storing node results.
 
-Aretry\_policy: Sequence[RetryPolicy]
+Aretry_policy: Sequence[RetryPolicy]
 
 —
 
 Retry policies to use when running tasks. Empty set disables retries.
 
-Acache\_policy: CachePolicy | None
+Acache_policy: CachePolicy | None
 
 —
 
 Cache policy to use for all nodes. Can be overridden by individual nodes.
 
-Acontext\_schema: type[ContextT] | None
+Acontext_schema: type[ContextT] | None
 
 —
 
 Specifies the schema for the context object that will be passed to the workflow.
 
-[Aconfig: RunnableConfig | None](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/config)[Aname: str](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/name)[Atrigger\_to\_nodes: Mapping[str, Sequence[str]]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/trigger_to_nodes)[Anode\_error\_handler\_map: Mapping[str, str]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/node_error_handler_map)[Astream\_transformers: tuple[Callable[[tuple[str, ...]], Any], ...]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/stream_transformers)[AInputType: Any](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/InputType)[AOutputType: Any](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/OutputType)[Astream\_channels\_list: Sequence[str]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/stream_channels_list)[Astream\_channels\_asis: str | Sequence[str]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/stream_channels_asis)
+[Aconfig: RunnableConfig | None](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/config)[Aname: str](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/name)[Atrigger_to_nodes: Mapping[str, Sequence[str]]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/trigger_to_nodes)[Anode_error_handler_map: Mapping[str, str]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/node_error_handler_map)[Astream_transformers: tuple[Callable[[tuple[str, ...]], Any], ...]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/stream_transformers)[AInputType: Any](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/InputType)[AOutputType: Any](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/OutputType)[Astream_channels_list: Sequence[str]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/stream_channels_list)[Astream_channels_asis: str | Sequence[str]](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/stream_channels_asis)
 
 ### Methods
 
-Mget\_graph
+Mget_graph
 
 —
 
 Return a drawable representation of the computation graph.
 
-Maget\_graph
+Maget_graph
 
 —
 
@@ -154,69 +154,69 @@ Return a drawable representation of the computation graph.
 
 [Mcopy](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/copy)
 
-Mwith\_config
+Mwith_config
 
 —
 
 Create a copy of the Pregel object with an updated config.
 
-[Mvalidate](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/validate)[Mconfig\_schema](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/config_schema)[Mget\_config\_jsonschema](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/get_config_jsonschema)[Mget\_context\_jsonschema](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/get_context_jsonschema)[Mget\_input\_schema](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/get_input_schema)[Mget\_output\_schema](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/get_output_schema)
+[Mvalidate](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/validate)[Mconfig_schema](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/config_schema)[Mget_config_jsonschema](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/get_config_jsonschema)[Mget_context_jsonschema](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/get_context_jsonschema)[Mget_input_schema](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/get_input_schema)[Mget_output_schema](https://reference.langchain.com/python/langgraph/pregel/main/Pregel/get_output_schema)
 
-Mget\_subgraphs
-
-—
-
-Get the subgraphs of the graph.
-
-Maget\_subgraphs
+Mget_subgraphs
 
 —
 
 Get the subgraphs of the graph.
 
-Mget\_state
+Maget_subgraphs
+
+—
+
+Get the subgraphs of the graph.
+
+Mget_state
 
 —
 
 Get the current state of the graph.
 
-Maget\_state
+Maget_state
 
 —
 
 Get the current state of the graph.
 
-Mget\_state\_history
+Mget_state_history
 
 —
 
 Get the history of the state of the graph.
 
-Maget\_state\_history
+Maget_state_history
 
 —
 
 Asynchronously get the history of the state of the graph.
 
-Mbulk\_update\_state
+Mbulk_update_state
 
 —
 
 Apply updates to the graph state in bulk. Requires a checkpointer to be set.
 
-Mabulk\_update\_state
+Mabulk_update_state
 
 —
 
 Asynchronously apply updates to the graph state in bulk. Requires a checkpointer to be set.
 
-Mupdate\_state
+Mupdate_state
 
 —
 
 Update the state of the graph with the given values, as if they came from
 
-Maupdate\_state
+Maupdate_state
 
 —
 
@@ -234,13 +234,13 @@ Mastream
 
 Asynchronously stream graph steps for a single input.
 
-Mstream\_events
+Mstream_events
 
 —
 
 Stream events from this graph.
 
-Mastream\_events
+Mastream_events
 
 —
 
@@ -258,13 +258,13 @@ Mainvoke
 
 Asynchronously run the graph with a single input and config.
 
-Mclear\_cache
+Mclear_cache
 
 —
 
 Clear the cache for the given nodes.
 
-Maclear\_cache
+Maclear_cache
 
 —
 
@@ -274,17 +274,17 @@ Asynchronously clear the cache for the given nodes.
 
 ### Methods
 
-[Mwith\_config](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/with_config)[Mget\_graph](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/get_graph)[Maget\_graph](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/aget_graph)[Mget\_state](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/get_state)[Maget\_state](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/aget_state)[Mget\_state\_history](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/get_state_history)[Maget\_state\_history](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/aget_state_history)[Mbulk\_update\_state](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/bulk_update_state)[Mabulk\_update\_state](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/abulk_update_state)[Mupdate\_state](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/update_state)[Maupdate\_state](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/aupdate_state)[Mstream](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/stream)[Mastream](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/astream)[Minvoke](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/invoke)[Mainvoke](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/ainvoke)
+[Mwith_config](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/with_config)[Mget_graph](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/get_graph)[Maget_graph](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/aget_graph)[Mget_state](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/get_state)[Maget_state](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/aget_state)[Mget_state_history](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/get_state_history)[Maget_state_history](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/aget_state_history)[Mbulk_update_state](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/bulk_update_state)[Mabulk_update_state](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/abulk_update_state)[Mupdate_state](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/update_state)[Maupdate_state](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/aupdate_state)[Mstream](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/stream)[Mastream](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/astream)[Minvoke](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/invoke)[Mainvoke](https://reference.langchain.com/python/langgraph/pregel/protocol/PregelProtocol/ainvoke)
 
-## Inherited from[Runnable](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable)(langchain\_core)
+## Inherited from[Runnable](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable)(langchain_core)
 
 ### Attributes
 
-[Aname](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/name)[AInputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/InputType)[AOutputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/OutputType)[Ainput\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/input_schema)[Aoutput\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/output_schema)[Aconfig\_specs](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_specs)
+[Aname](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/name)[AInputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/InputType)[AOutputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/OutputType)[Ainput_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/input_schema)[Aoutput_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/output_schema)[Aconfig_specs](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_specs)
 
 ### Methods
 
-[Mget\_name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_name)[Mget\_input\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_schema)[Mget\_output\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_schema)[Mconfig\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_schema)[Mget\_config\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_config_jsonschema)[Mget\_graph](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_graph)[Mget\_prompts](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pipe)[Mpick](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pick)[Massign](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/assign)[Minvoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/invoke)[Mainvoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/ainvoke)[Mbatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch)[Mbatch\_as\_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch\_as\_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mstream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream)[Mastream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream)[Mastream\_log](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_log)[Mastream\_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_events)[Mstream\_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream_events)[Mtransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/transform)[Matransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/atransform)[Mbind](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/bind)[Mwith\_config](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_config)[Mwith\_listeners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith\_alisteners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith\_types](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_types)[Mwith\_retry](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/map)[Mwith\_fallbacks](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas\_tool](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/as_tool)
+[Mget_name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_name)[Mget_input_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_schema)[Mget_output_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_schema)[Mconfig_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_schema)[Mget_config_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_config_jsonschema)[Mget_graph](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_graph)[Mget_prompts](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pipe)[Mpick](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pick)[Massign](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/assign)[Minvoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/invoke)[Mainvoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/ainvoke)[Mbatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch)[Mbatch_as_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch_as_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mstream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream)[Mastream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream)[Mastream_log](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_log)[Mastream_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_events)[Mstream_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream_events)[Mtransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/transform)[Matransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/atransform)[Mbind](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/bind)[Mwith_config](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_config)[Mwith_listeners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith_alisteners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith_types](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_types)[Mwith_retry](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/map)[Mwith_fallbacks](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas_tool](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/as_tool)
 
 [View source on GitHub](https://github.com/langchain-ai/langgraph/blob/58a6e1cc5b7dfc3619fc6e7e7573b040d554649b/libs/langgraph/langgraph/graph/state.py#L1404)
 

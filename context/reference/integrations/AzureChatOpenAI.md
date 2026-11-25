@@ -1,4 +1,4 @@
-Classv1.8.3 (latest)●Since v1.3
+Classv1.8.5 (latest)●Since v1.3
 
 # AzureChatOpenAI
 
@@ -30,22 +30,22 @@ export AZURE_OPENAI_ENDPOINT="https://your-endpoint.openai.azure.com/"
 Copy
 
 Key init args — completion params:
-azure\_deployment:
+azure_deployment:
 Name of Azure OpenAI deployment to use.
 temperature:
 Sampling temperature.
-max\_tokens:
+max_tokens:
 Max number of tokens to generate.
 logprobs:
 Whether to return logprobs.
 
 Key init args — client params:
-api\_version:
+api_version:
 Azure OpenAI REST API version to use (distinct from the version of the
 underlying model). [See more on the different versions.](https://learn.microsoft.com/en-us/azure/ai-services/openai/reference#rest-api-versioning)
 timeout:
 Timeout for requests.
-max\_retries:
+max_retries:
 Max number of retries.
 organization:
 OpenAI organization ID. If not passed in will be read from env
@@ -53,7 +53,7 @@ var `OPENAI_ORG_ID`.
 model:
 The name of the underlying OpenAI model. Used for tracing and token
 counting. Does not affect completion.
-model\_version:
+model_version:
 The version of the underlying OpenAI model. Used for tracing and token
 counting. Does not affect completion. E.g., `'0125'`, `'0125-preview'`, etc.
 
@@ -498,7 +498,7 @@ Copy
 
 attribute
 
-azure\_endpoint: str | None
+azure_endpoint: str | None
 
 Your Azure endpoint, including the resource.
 
@@ -508,7 +508,7 @@ Example: `https://example-resource.azure.openai.com/`
 
 attribute
 
-deployment\_name: str | None
+deployment_name: str | None
 
 A model deployment.
 
@@ -520,19 +520,19 @@ This means you won't be able to use non-deployment endpoints.
 
 attribute
 
-openai\_api\_version: str | None
+openai_api_version: str | None
 
 Automatically inferred from env var `OPENAI_API_VERSION` if not provided.
 
 attribute
 
-openai\_api\_key: SecretStr | None
+openai_api_key: SecretStr | None
 
 Automatically inferred from env var `AZURE_OPENAI_API_KEY` if not provided.
 
 attribute
 
-azure\_ad\_token: SecretStr | None
+azure_ad_token: SecretStr | None
 
 Your Azure Active Directory token.
 
@@ -542,7 +542,7 @@ For more, see [this page](https://www.microsoft.com/en-us/security/business/iden
 
 attribute
 
-azure\_ad\_token\_provider: Callable[[], str] | None
+azure_ad_token_provider: Callable[[], str] | None
 
 A function that returns an Azure Active Directory token.
 
@@ -551,7 +551,7 @@ will be invoked if `azure_ad_async_token_provider` is not provided.
 
 attribute
 
-azure\_ad\_async\_token\_provider: Callable[[], Awaitable[str]] | None
+azure_ad_async_token_provider: Callable[[], Awaitable[str]] | None
 
 A function that returns an Azure Active Directory token.
 
@@ -559,7 +559,7 @@ Will be invoked on every async request.
 
 attribute
 
-model\_version: str
+model_version: str
 
 The version of the model (e.g. `'0125'` for `'gpt-3.5-0125'`).
 
@@ -574,20 +574,20 @@ correct cost.
 
 attribute
 
-openai\_api\_type: str | None
+openai_api_type: str | None
 
 Legacy, for `openai<1.0.0` support.
 
 attribute
 
-validate\_base\_url: bool
+validate_base_url: bool
 
 If legacy arg `openai_api_base` is passed in, try to infer if it is a
 `base_url` or `azure_endpoint` and update client params accordingly.
 
 attribute
 
-model\_name: str | None
+model_name: str | None
 
 Name of the deployed OpenAI model.
 
@@ -600,7 +600,7 @@ Does NOT affect completion.
 
 attribute
 
-disabled\_params: dict[str, Any] | None
+disabled_params: dict[str, Any] | None
 
 Parameters of the OpenAI client or chat.completions endpoint that should be
 disabled for the given model.
@@ -624,19 +624,19 @@ By default, unless `model_name="gpt-4o"` is specified, then
 
 attribute
 
-max\_tokens: int | None
+max_tokens: int | None
 
 Maximum number of tokens to generate.
 
 attribute
 
-lc\_secrets: dict[str, str]
+lc_secrets: dict[str, str]
 
 Get the mapping of secret environment variables.
 
 attribute
 
-lc\_attributes: dict[str, Any]
+lc_attributes: dict[str, Any]
 
 Get the attributes relevant to tracing.
 
@@ -644,25 +644,25 @@ Get the attributes relevant to tracing.
 
 method
 
-get\_lc\_namespace
+get_lc_namespace
 
 Get the namespace of the LangChain object.
 
 method
 
-is\_lc\_serializable
+is_lc_serializable
 
 Check if the class is serializable in langchain.
 
 method
 
-validate\_environment
+validate_environment
 
 Validate that api key and python package exists in environment.
 
 method
 
-with\_structured\_output
+with_structured_output
 
 Model wrapper that returns outputs formatted to match the given schema.
 
@@ -670,7 +670,7 @@ Model wrapper that returns outputs formatted to match the given schema.
 
 ### Attributes
 
-[Aclient: Any](https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI/client)[Aasync\_client: Any](https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI/async_client)[Aroot\_client: Any](https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI/root_client)[Aroot\_async\_client: Any](https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI/root_async_client)
+[Aclient: Any](https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI/client)[Aasync_client: Any](https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI/async_client)[Aroot_client: Any](https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI/root_client)[Aroot_async_client: Any](https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI/root_async_client)
 
 Atemperature: float | None
 
@@ -678,51 +678,51 @@ Atemperature: float | None
 
 What sampling temperature to use.
 
-Amodel\_kwargs: dict[str, Any]
+Amodel_kwargs: dict[str, Any]
 
 —
 
 Holds any model parameters valid for `create` call not explicitly specified.
 
-Aopenai\_api\_base: str | None
+Aopenai_api_base: str | None
 
 —
 
 Base URL path for API requests, leave blank if not using a proxy or service emulator.
 
-Aopenai\_organization: str | None
+Aopenai_organization: str | None
 
 —
 
 Automatically inferred from env var `OPENAI_ORG_ID` if not provided.
 
-[Aopenai\_proxy: str | None](https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI/openai_proxy)
+[Aopenai_proxy: str | None](https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI/openai_proxy)
 
-Arequest\_timeout: float | tuple[float, float] | Any | None
+Arequest_timeout: float | tuple[float, float] | Any | None
 
 —
 
 Timeout for requests to OpenAI completion API.
 
-Astream\_usage: bool | None
+Astream_usage: bool | None
 
 —
 
 Whether to include usage metadata in streaming output.
 
-Amax\_retries: int | None
+Amax_retries: int | None
 
 —
 
 Maximum number of retries to make when generating.
 
-Apresence\_penalty: float | None
+Apresence_penalty: float | None
 
 —
 
 Penalizes repeated tokens.
 
-Afrequency\_penalty: float | None
+Afrequency_penalty: float | None
 
 —
 
@@ -740,13 +740,13 @@ Alogprobs: bool | None
 
 Whether to return logprobs.
 
-Atop\_logprobs: int | None
+Atop_logprobs: int | None
 
 —
 
 Number of most likely tokens to return at each token position, each with an
 
-Alogit\_bias: dict[int, int] | None
+Alogit_bias: dict[int, int] | None
 
 —
 
@@ -764,13 +764,13 @@ An: int | None
 
 Number of chat completions to generate for each prompt.
 
-Atop\_p: float | None
+Atop_p: float | None
 
 —
 
 Total probability mass of tokens to consider at each step.
 
-Areasoning\_effort: str | None
+Areasoning_effort: str | None
 
 —
 
@@ -788,33 +788,33 @@ Averbosity: str | None
 
 Controls the verbosity level of responses for reasoning models.
 
-Atiktoken\_model\_name: str | None
+Atiktoken_model_name: str | None
 
 —
 
 The model name to pass to tiktoken when using this class.
 
-[Adefault\_headers: Mapping[str, str] | None](https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI/default_headers)[Adefault\_query: Mapping[str, object] | None](https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI/default_query)
+[Adefault_headers: Mapping[str, str] | None](https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI/default_headers)[Adefault_query: Mapping[str, object] | None](https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI/default_query)
 
-Ahttp\_client: Any | None
+Ahttp_client: Any | None
 
 —
 
 Optional `httpx.Client`.
 
-Ahttp\_async\_client: Any | None
+Ahttp_async_client: Any | None
 
 —
 
 Optional `httpx.AsyncClient`.
 
-Ahttp\_socket\_options: Sequence[tuple[int, int, int]] | None
+Ahttp_socket_options: Sequence[tuple[int, int, int]] | None
 
 —
 
 TCP socket options applied to the httpx transports built by this instance.
 
-Astream\_chunk\_timeout: float | None
+Astream_chunk_timeout: float | None
 
 —
 
@@ -826,19 +826,19 @@ Astop: list[str] | str | None
 
 Default stop sequences.
 
-Aextra\_body: Mapping[str, Any] | None
+Aextra_body: Mapping[str, Any] | None
 
 —
 
 Optional additional JSON properties to include in the request parameters
 
-Ainclude\_response\_headers: bool
+Ainclude_response_headers: bool
 
 —
 
 Whether to include response headers in the output message `response_metadata`.
 
-Acontext\_management: list[dict[str, Any]] | None
+Acontext_management: list[dict[str, Any]] | None
 
 —
 
@@ -850,13 +850,13 @@ Ainclude: list[str] | None
 
 Additional fields to include in generations from Responses API.
 
-Aprompt\_cache\_options: dict[str, Any] | None
+Aprompt_cache_options: dict[str, Any] | None
 
 —
 
 Options controlling OpenAI prompt cache behavior.
 
-Aservice\_tier: str | None
+Aservice_tier: str | None
 
 —
 
@@ -874,113 +874,113 @@ Atruncation: str | None
 
 Truncation strategy (Responses API).
 
-Ause\_previous\_response\_id: bool
+Ause_previous_response_id: bool
 
 —
 
 If `True`, always pass `previous_response_id` using the ID of the most recent
 
-Ause\_responses\_api: bool | None
+Ause_responses_api: bool | None
 
 —
 
 Whether to use the Responses API instead of the Chat API.
 
-Aoutput\_version: str | None
+Aoutput_version: str | None
 
 —
 
 Version of `AIMessage` output format to use.
 
-[Amodel\_config](https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI/model_config)
+[Amodel_config](https://reference.langchain.com/python/langchain-openai/chat_models/base/BaseChatOpenAI/model_config)
 
 Amodel: str
 
 —
 
-Same as model\_name.
+Same as model_name.
 
 ### Methods
 
-Mbuild\_extra
+Mbuild_extra
 
 —
 
 Build extra kwargs from additional params that were passed in.
 
-Mvalidate\_temperature
+Mvalidate_temperature
 
 —
 
 Validate temperature parameter for different models.
 
-Mget\_token\_ids
+Mget_token_ids
 
 —
 
 Get the tokens present in the text with tiktoken package.
 
-Mget\_num\_tokens\_from\_messages
+Mget_num_tokens_from_messages
 
 —
 
 Calculate num tokens for supported OpenAI chat models.
 
-Mbind\_tools
+Mbind_tools
 
 —
 
 Bind tool-like objects to this chat model.
 
-## Inherited from[BaseChatModel](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel)(langchain\_core)
+## Inherited from[BaseChatModel](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel)(langchain_core)
 
 ### Attributes
 
-[Arate\_limiter](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/rate_limiter)[Adisable\_streaming](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/disable_streaming)[Aoutput\_version](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/output_version)[Aprofile](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/profile)[Amodel\_config](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/model_config)[AOutputType](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/OutputType)
+[Arate_limiter](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/rate_limiter)[Adisable_streaming](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/disable_streaming)[Aoutput_version](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/output_version)[Aprofile](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/profile)[Amodel_config](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/model_config)[AOutputType](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/OutputType)
 
 ### Methods
 
-[Minvoke](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/invoke)[Mainvoke](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/ainvoke)[Mstream](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/stream)[Mastream](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/astream)[Mstream\_events](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/stream_events)[Mastream\_events](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/astream_events)[Mgenerate](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/generate)[Magenerate](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate)[Mgenerate\_prompt](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/generate_prompt)[Magenerate\_prompt](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate_prompt)[Mdict](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/dict)[Masdict](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/asdict)[Mbind](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/bind)[Mbind\_tools](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/bind_tools)
+[Minvoke](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/invoke)[Mainvoke](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/ainvoke)[Mstream](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/stream)[Mastream](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/astream)[Mstream_events](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/stream_events)[Mastream_events](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/astream_events)[Mgenerate](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/generate)[Magenerate](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate)[Mgenerate_prompt](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/generate_prompt)[Magenerate_prompt](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/agenerate_prompt)[Mdict](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/dict)[Masdict](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/asdict)[Mbind](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/bind)[Mbind_tools](https://reference.langchain.com/python/langchain-core/language_models/chat_models/BaseChatModel/bind_tools)
 
-## Inherited from[BaseLanguageModel](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel)(langchain\_core)
+## Inherited from[BaseLanguageModel](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel)(langchain_core)
 
 ### Attributes
 
-[Acache](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/cache)[Averbose](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/verbose)[Acallbacks](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/callbacks)[Atags](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/tags)[Ametadata](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/metadata)[Acustom\_get\_token\_ids](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/custom_get_token_ids)[Amodel\_config](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/model_config)[AInputType](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/InputType)
+[Acache](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/cache)[Averbose](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/verbose)[Acallbacks](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/callbacks)[Atags](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/tags)[Ametadata](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/metadata)[Acustom_get_token_ids](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/custom_get_token_ids)[Amodel_config](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/model_config)[AInputType](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/InputType)
 
 ### Methods
 
-[Mmodel\_post\_init](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/model_post_init)[Mset\_verbose](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/set_verbose)[Mgenerate\_prompt](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/generate_prompt)[Magenerate\_prompt](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/agenerate_prompt)[Mget\_token\_ids](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_token_ids)[Mget\_num\_tokens](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens)[Mget\_num\_tokens\_from\_messages](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens_from_messages)
+[Mmodel_post_init](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/model_post_init)[Mset_verbose](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/set_verbose)[Mgenerate_prompt](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/generate_prompt)[Magenerate_prompt](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/agenerate_prompt)[Mget_token_ids](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_token_ids)[Mget_num_tokens](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens)[Mget_num_tokens_from_messages](https://reference.langchain.com/python/langchain-core/language_models/base/BaseLanguageModel/get_num_tokens_from_messages)
 
-## Inherited from[RunnableSerializable](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable)(langchain\_core)
+## Inherited from[RunnableSerializable](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable)(langchain_core)
 
 ### Attributes
 
-[Aname](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/name)[Amodel\_config](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/model_config)
+[Aname](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/name)[Amodel_config](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/model_config)
 
 ### Methods
 
-[Mto\_json](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/to_json)[Mconfigurable\_fields](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/configurable_fields)[Mconfigurable\_alternatives](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/configurable_alternatives)
+[Mto_json](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/to_json)[Mconfigurable_fields](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/configurable_fields)[Mconfigurable_alternatives](https://reference.langchain.com/python/langchain-core/runnables/base/RunnableSerializable/configurable_alternatives)
 
-## Inherited from[Serializable](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable)(langchain\_core)
+## Inherited from[Serializable](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable)(langchain_core)
 
 ### Attributes
 
-[Amodel\_config](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/model_config)
+[Amodel_config](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/model_config)
 
 ### Methods
 
-[Mlc\_id](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/lc_id)[Mto\_json](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/to_json)[Mto\_json\_not\_implemented](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/to_json_not_implemented)
+[Mlc_id](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/lc_id)[Mto_json](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/to_json)[Mto_json_not_implemented](https://reference.langchain.com/python/langchain-core/load/serializable/Serializable/to_json_not_implemented)
 
-## Inherited from[Runnable](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable)(langchain\_core)
+## Inherited from[Runnable](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable)(langchain_core)
 
 ### Attributes
 
-[Aname](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/name)[AInputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/InputType)[AOutputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/OutputType)[Ainput\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/input_schema)[Aoutput\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/output_schema)[Aconfig\_specs](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_specs)
+[Aname](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/name)[AInputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/InputType)[AOutputType](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/OutputType)[Ainput_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/input_schema)[Aoutput_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/output_schema)[Aconfig_specs](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_specs)
 
 ### Methods
 
-[Mget\_name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_name)[Mget\_input\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_schema)[Mget\_input\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_jsonschema)[Mget\_output\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_schema)[Mget\_output\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_jsonschema)[Mconfig\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_schema)[Mget\_config\_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_config_jsonschema)[Mget\_graph](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_graph)[Mget\_prompts](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pipe)[Mpick](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pick)[Massign](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/assign)[Minvoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/invoke)[Mainvoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/ainvoke)[Mbatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch)[Mbatch\_as\_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch\_as\_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mstream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream)[Mastream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream)[Mastream\_log](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_log)[Mastream\_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_events)[Mstream\_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream_events)[Mtransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/transform)[Matransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/atransform)[Mbind](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/bind)[Mwith\_config](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_config)[Mwith\_listeners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith\_alisteners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith\_types](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_types)[Mwith\_retry](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/map)[Mwith\_fallbacks](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas\_tool](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/as_tool)
+[Mget_name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_name)[Mget_input_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_schema)[Mget_input_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_input_jsonschema)[Mget_output_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_schema)[Mget_output_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_output_jsonschema)[Mconfig_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_schema)[Mget_config_jsonschema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_config_jsonschema)[Mget_graph](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_graph)[Mget_prompts](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pipe)[Mpick](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pick)[Massign](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/assign)[Minvoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/invoke)[Mainvoke](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/ainvoke)[Mbatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch)[Mbatch_as_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch_as_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mstream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream)[Mastream](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream)[Mastream_log](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_log)[Mastream_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_events)[Mstream_events](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/stream_events)[Mtransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/transform)[Matransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/atransform)[Mbind](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/bind)[Mwith_config](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_config)[Mwith_listeners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith_alisteners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith_types](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_types)[Mwith_retry](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/map)[Mwith_fallbacks](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas_tool](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/as_tool)
 
 [View source on GitHub](https://github.com/langchain-ai/langchain/blob/71c30f2212abbf140b4b97d9c41184682db3696b/libs/partners/openai/langchain_openai/chat_models/azure.py#L64)
 

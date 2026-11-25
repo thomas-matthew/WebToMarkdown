@@ -1,4 +1,4 @@
-Classv1.2.23 (latest)●Since v1.2
+Classv1.2.24 (latest)●Since v1.2
 
 # Pregel
 
@@ -312,34 +312,34 @@ Copy
 
 constructor
 
-\_\_init\_\_
+__init__
 
 | Name | Type |
 | --- | --- |
 | nodes | [dict](https://docs.python.org/3/library/stdtypes.html#dict)[[str](https://docs.python.org/3/library/stdtypes.html#str), [PregelNode](https://reference.langchain.com/python/langgraph/pregel/_read/PregelNode) | [NodeBuilder](https://reference.langchain.com/python/langgraph/pregel/main/NodeBuilder)] |
 | channels | [dict](https://docs.python.org/3/library/stdtypes.html#dict)[[str](https://docs.python.org/3/library/stdtypes.html#str), [BaseChannel](https://reference.langchain.com/python/langgraph/channels/base/BaseChannel) | [ManagedValueSpec](https://reference.langchain.com/python/langgraph/managed/base/ManagedValueSpec)] | None |
-| auto\_validate | [bool](https://docs.python.org/3/library/functions.html#bool) |
-| stream\_mode | [StreamMode](https://reference.langchain.com/python/langgraph/types/StreamMode) |
-| stream\_eager | [bool](https://docs.python.org/3/library/functions.html#bool) |
-| output\_channels | [str](https://docs.python.org/3/library/stdtypes.html#str) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[str](https://docs.python.org/3/library/stdtypes.html#str)] |
-| stream\_channels | [str](https://docs.python.org/3/library/stdtypes.html#str) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[str](https://docs.python.org/3/library/stdtypes.html#str)] | None |
-| interrupt\_after\_nodes | [All](https://reference.langchain.com/python/langgraph/types/All) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[str](https://docs.python.org/3/library/stdtypes.html#str)] |
-| interrupt\_before\_nodes | [All](https://reference.langchain.com/python/langgraph/types/All) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[str](https://docs.python.org/3/library/stdtypes.html#str)] |
-| input\_channels | [str](https://docs.python.org/3/library/stdtypes.html#str) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[str](https://docs.python.org/3/library/stdtypes.html#str)] |
-| step\_timeout | [float](https://docs.python.org/3/library/functions.html#float) | None |
+| auto_validate | [bool](https://docs.python.org/3/library/functions.html#bool) |
+| stream_mode | [StreamMode](https://reference.langchain.com/python/langgraph/types/StreamMode) |
+| stream_eager | [bool](https://docs.python.org/3/library/functions.html#bool) |
+| output_channels | [str](https://docs.python.org/3/library/stdtypes.html#str) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[str](https://docs.python.org/3/library/stdtypes.html#str)] |
+| stream_channels | [str](https://docs.python.org/3/library/stdtypes.html#str) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[str](https://docs.python.org/3/library/stdtypes.html#str)] | None |
+| interrupt_after_nodes | [All](https://reference.langchain.com/python/langgraph/types/All) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[str](https://docs.python.org/3/library/stdtypes.html#str)] |
+| interrupt_before_nodes | [All](https://reference.langchain.com/python/langgraph/types/All) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[str](https://docs.python.org/3/library/stdtypes.html#str)] |
+| input_channels | [str](https://docs.python.org/3/library/stdtypes.html#str) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[str](https://docs.python.org/3/library/stdtypes.html#str)] |
+| step_timeout | [float](https://docs.python.org/3/library/functions.html#float) | None |
 | debug | [bool](https://docs.python.org/3/library/functions.html#bool) | None |
 | checkpointer | [Checkpointer](https://reference.langchain.com/python/langgraph/types/Checkpointer) |
-| store | [BaseStore](https://reference.langchain.com/python/langgraph.store/base/BaseStore) | None |
+| store | [BaseStore](https://reference.langchain.com/python/langchain-core/stores/BaseStore) | None |
 | cache | [BaseCache](https://reference.langchain.com/python/langchain-core/caches/BaseCache) | None |
-| retry\_policy | [RetryPolicy](https://reference.langchain.com/python/langgraph/types/RetryPolicy) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[RetryPolicy](https://reference.langchain.com/python/langgraph/types/RetryPolicy)] |
-| cache\_policy | [CachePolicy](https://reference.langchain.com/python/langgraph/types/CachePolicy) | None |
-| context\_schema | [type](https://docs.python.org/3/library/functions.html#type)[[ContextT](https://reference.langchain.com/python/langgraph/typing/ContextT)] | None |
+| retry_policy | [RetryPolicy](https://reference.langchain.com/python/langgraph/types/RetryPolicy) | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[RetryPolicy](https://reference.langchain.com/python/langgraph/types/RetryPolicy)] |
+| cache_policy | [CachePolicy](https://reference.langchain.com/python/langgraph/types/CachePolicy) | None |
+| context_schema | [type](https://docs.python.org/3/library/functions.html#type)[[ContextT](https://reference.langchain.com/python/langgraph/typing/ContextT)] | None |
 | config | [RunnableConfig](https://reference.langchain.com/python/langchain-core/runnables/config/RunnableConfig) | None |
-| trigger\_to\_nodes | [Mapping](https://docs.python.org/3/library/typing.html#typing.Mapping)[[str](https://docs.python.org/3/library/stdtypes.html#str), [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[str](https://docs.python.org/3/library/stdtypes.html#str)]] | None |
-| node\_error\_handler\_map | [Mapping](https://docs.python.org/3/library/typing.html#typing.Mapping)[[str](https://docs.python.org/3/library/stdtypes.html#str), [str](https://docs.python.org/3/library/stdtypes.html#str)] | None |
+| trigger_to_nodes | [Mapping](https://docs.python.org/3/library/typing.html#typing.Mapping)[[str](https://docs.python.org/3/library/stdtypes.html#str), [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[str](https://docs.python.org/3/library/stdtypes.html#str)]] | None |
+| node_error_handler_map | [Mapping](https://docs.python.org/3/library/typing.html#typing.Mapping)[[str](https://docs.python.org/3/library/stdtypes.html#str), [str](https://docs.python.org/3/library/stdtypes.html#str)] | None |
 | name | [str](https://docs.python.org/3/library/stdtypes.html#str) |
-| stream\_transformers | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[Callable](https://docs.python.org/3/library/typing.html#typing.Callable)[[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)[[str](https://docs.python.org/3/library/stdtypes.html#str), ...]], [Any](https://docs.python.org/3/library/typing.html#typing.Any)]] | None |
-| deprecated\_kwargs | Unpack[[DeprecatedKwargs](https://reference.langchain.com/python/langgraph/_internal/_typing/DeprecatedKwargs)] |
+| stream_transformers | [Sequence](https://docs.python.org/3/library/typing.html#typing.Sequence)[[Callable](https://docs.python.org/3/library/typing.html#typing.Callable)[[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple)[[str](https://docs.python.org/3/library/stdtypes.html#str), ...]], [Any](https://docs.python.org/3/library/typing.html#typing.Any)]] | None |
+| deprecated_kwargs | Unpack[[DeprecatedKwargs](https://reference.langchain.com/python/langgraph/_internal/_typing/DeprecatedKwargs)] |
 
 ## Attributes
 
@@ -353,42 +353,42 @@ channels: dict[str, BaseChannel | ManagedValueSpec]
 
 attribute
 
-stream\_mode: StreamMode
+stream_mode: StreamMode
 
 Mode to stream output, defaults to 'values'.
 
 attribute
 
-stream\_eager: bool
+stream_eager: bool
 
 Whether to force emitting stream events eagerly, automatically turned on
-for stream\_mode "messages" and "custom".
+for stream_mode "messages" and "custom".
 
 attribute
 
-output\_channels: str | Sequence[str]
+output_channels: str | Sequence[str]
 
 attribute
 
-stream\_channels: str | Sequence[str] | None
+stream_channels: str | Sequence[str] | None
 
 Channels to stream, defaults to all channels not in reserved channels
 
 attribute
 
-interrupt\_after\_nodes: All | Sequence[str]
+interrupt_after_nodes: All | Sequence[str]
 
 attribute
 
-interrupt\_before\_nodes: All | Sequence[str]
+interrupt_before_nodes: All | Sequence[str]
 
 attribute
 
-input\_channels: str | Sequence[str]
+input_channels: str | Sequence[str]
 
 attribute
 
-step\_timeout: float | None
+step_timeout: float | None
 
 Maximum time to wait for a step to complete, in seconds.
 
@@ -418,19 +418,19 @@ Cache to use for storing node results.
 
 attribute
 
-retry\_policy: Sequence[RetryPolicy]
+retry_policy: Sequence[RetryPolicy]
 
 Retry policies to use when running tasks. Empty set disables retries.
 
 attribute
 
-cache\_policy: CachePolicy | None
+cache_policy: CachePolicy | None
 
 Cache policy to use for all nodes. Can be overridden by individual nodes.
 
 attribute
 
-context\_schema: type[ContextT] | None
+context_schema: type[ContextT] | None
 
 Specifies the schema for the context object that will be passed to the workflow.
 
@@ -444,15 +444,15 @@ name: str
 
 attribute
 
-trigger\_to\_nodes: Mapping[str, Sequence[str]]
+trigger_to_nodes: Mapping[str, Sequence[str]]
 
 attribute
 
-node\_error\_handler\_map: Mapping[str, str]
+node_error_handler_map: Mapping[str, str]
 
 attribute
 
-stream\_transformers: tuple[Callable[[tuple[str, ...]], Any], ...]
+stream_transformers: tuple[Callable[[tuple[str, ...]], Any], ...]
 
 attribute
 
@@ -464,23 +464,23 @@ OutputType: Any
 
 attribute
 
-stream\_channels\_list: Sequence[str]
+stream_channels_list: Sequence[str]
 
 attribute
 
-stream\_channels\_asis: str | Sequence[str]
+stream_channels_asis: str | Sequence[str]
 
 ## Methods
 
 method
 
-get\_graph
+get_graph
 
 Return a drawable representation of the computation graph.
 
 method
 
-aget\_graph
+aget_graph
 
 Return a drawable representation of the computation graph.
 
@@ -490,7 +490,7 @@ copy
 
 method
 
-with\_config
+with_config
 
 Create a copy of the Pregel object with an updated config.
 
@@ -500,75 +500,75 @@ validate
 
 method
 
-get\_context\_jsonschema
+get_context_jsonschema
 
 method
 
-get\_input\_schema
+get_input_schema
 
 method
 
-get\_input\_jsonschema
+get_input_jsonschema
 
 method
 
-get\_output\_schema
+get_output_schema
 
 method
 
-get\_output\_jsonschema
+get_output_jsonschema
 
 method
 
-get\_subgraphs
+get_subgraphs
 
 Get the subgraphs of the graph.
 
 method
 
-aget\_subgraphs
+aget_subgraphs
 
 Get the subgraphs of the graph.
 
 method
 
-get\_state
+get_state
 
 Get the current state of the graph.
 
 method
 
-aget\_state
+aget_state
 
 Get the current state of the graph.
 
 method
 
-get\_state\_history
+get_state_history
 
 Get the history of the state of the graph.
 
 method
 
-aget\_state\_history
+aget_state_history
 
 Asynchronously get the history of the state of the graph.
 
 method
 
-bulk\_update\_state
+bulk_update_state
 
 Apply updates to the graph state in bulk. Requires a checkpointer to be set.
 
 method
 
-abulk\_update\_state
+abulk_update_state
 
 Asynchronously apply updates to the graph state in bulk. Requires a checkpointer to be set.
 
 method
 
-update\_state
+update_state
 
 Update the state of the graph with the given values, as if they came from
 node `as_node`. If `as_node` is not provided, it will be set to the last node
@@ -576,7 +576,7 @@ that updated the state, if not ambiguous.
 
 method
 
-aupdate\_state
+aupdate_state
 
 Asynchronously update the state of the graph with the given values, as if they came from
 node `as_node`. If `as_node` is not provided, it will be set to the last node
@@ -596,7 +596,7 @@ Asynchronously stream graph steps for a single input.
 
 method
 
-stream\_events
+stream_events
 
 Stream events from this graph.
 
@@ -619,7 +619,7 @@ which transformers are registered.
 
 method
 
-astream\_events
+astream_events
 
 Async variant of `stream_events`.
 
@@ -649,33 +649,33 @@ Asynchronously run the graph with a single input and config.
 
 method
 
-clear\_cache
+clear_cache
 
 Clear the cache for the given nodes.
 
 method
 
-aclear\_cache
+aclear_cache
 
 Asynchronously clear the cache for the given nodes.
 
 deprecatedmethod
 
-config\_schema
+config_schema
 
 deprecatedmethod
 
-get\_config\_jsonschema
+get_config_jsonschema
 
-## Inherited from[Runnable](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable)(langchain\_core)
+## Inherited from[Runnable](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable)(langchain_core)
 
 ### Attributes
 
-[Ainput\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/input_schema)[Aoutput\_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/output_schema)[Aconfig\_specs](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_specs)
+[Ainput_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/input_schema)[Aoutput_schema](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/output_schema)[Aconfig_specs](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/config_specs)
 
 ### Methods
 
-[Mget\_name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_name)[Mget\_prompts](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pipe)[Mpick](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pick)[Massign](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/assign)[Mbatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch)[Mbatch\_as\_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch\_as\_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mastream\_log](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_log)[Mtransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/transform)[Matransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/atransform)[Mbind](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/bind)[Mwith\_listeners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith\_alisteners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith\_types](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_types)[Mwith\_retry](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/map)[Mwith\_fallbacks](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas\_tool](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/as_tool)
+[Mget_name](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_name)[Mget_prompts](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/get_prompts)[Mpipe](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pipe)[Mpick](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/pick)[Massign](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/assign)[Mbatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch)[Mbatch_as_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/batch_as_completed)[Mabatch](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch)[Mabatch_as_completed](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/abatch_as_completed)[Mastream_log](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/astream_log)[Mtransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/transform)[Matransform](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/atransform)[Mbind](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/bind)[Mwith_listeners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_listeners)[Mwith_alisteners](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_alisteners)[Mwith_types](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_types)[Mwith_retry](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_retry)[Mmap](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/map)[Mwith_fallbacks](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/with_fallbacks)[Mas_tool](https://reference.langchain.com/python/langchain-core/runnables/base/Runnable/as_tool)
 
 [View source on GitHub](https://github.com/langchain-ai/langgraph/blob/58a6e1cc5b7dfc3619fc6e7e7573b040d554649b/libs/langgraph/langgraph/pregel/main.py#L456)
 

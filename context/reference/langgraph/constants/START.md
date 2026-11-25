@@ -1,4 +1,4 @@
-Attributev1.2.23 (latest)●Since v1.2
+Attributev1.2.24 (latest)●Since v1.2
 
 # START
 

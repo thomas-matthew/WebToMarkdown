@@ -1,13 +1,13 @@
 Categories:
 :   [String & binary functions](https://docs.snowflake.com/sql-reference/functions-string) (AI Functions)
 
-# AI\_CLASSIFY
+# AI_CLASSIFY
 
 Classifies text, images, or documents into categories that you specify.
 
 ## Region availability
 
-The following table shows the regions where you can use the AI\_CLASSIFY function for each input type:
+The following table shows the regions where you can use the AI_CLASSIFY function for each input type:
 
 | Data type | AWS US West 2 (Oregon) | AWS US East 1 (N. Virginia) | AWS Europe Central 1 (Frankfurt) | AWS Europe West 1 (Ireland) | AWS AP Southeast 2 (Sydney) | AWS AP Northeast 1 (Tokyo) | Azure East US 2 (Virginia) | Azure West Europe (Netherlands) | AWS (Cross-Region) |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -74,7 +74,7 @@ For single label classification, the `labels` array has exactly one element. For
 
 ## Error behavior
 
-By default, if AI\_CLASSIFY can’t process the input, the function returns NULL. If the query processes multiple rows,
+By default, if AI_CLASSIFY can’t process the input, the function returns NULL. If the query processes multiple rows,
 rows with errors return NULL and don’t prevent the query from completing.
 
 The return value on error depends on the `return_error_details`
@@ -89,7 +89,7 @@ For more information about error handling for AI functions, see [Snowflake Corte
 
 ## Access control requirements
 
-Users must use a role that has the [SNOWFLAKE.CORTEX\_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
+Users must use a role that has the [SNOWFLAKE.CORTEX_USER database role](https://docs.snowflake.com/sql-reference/snowflake-db-roles#label-snowflake-db-roles-cortex-user).
 For more information about this privilege, see [Cortex LLM privileges](https://docs.snowflake.com/user-guide/snowflake-cortex/aisql-privileges-and-access#label-cortex-llm-privileges).
 
 ## Usage notes
@@ -106,12 +106,12 @@ For best results, follow these guidelines:
 * Providing a clear task description can improve accuracy when the relationship between the input and categories is unclear or complex.
 * Adding label descriptions can improve accuracy, especially when labels are ambiguous or require specific selection
   criteria. Write descriptions that clearly highlight what distinguishes each label from the others.
-* Each label, description, and example increases the number of input tokens for every AI\_CLASSIFY call, which affects cost.
+* Each label, description, and example increases the number of input tokens for every AI_CLASSIFY call, which affects cost.
 * Examples can help to improve accuracy.
 
 Note
 
-AI\_CLASSIFY adds a prompt to your input to generate its response. This increases the token count beyond the text that you’ve provided.
+AI_CLASSIFY adds a prompt to your input to generate its response. This increases the token count beyond the text that you’ve provided.
 
 ### Documents
 
@@ -126,9 +126,9 @@ Supported file types: `.pdf`, `.doc`, `.docx`, `.xls`, `.xlsx`, `.html`, `.csv`,
 
 ## Examples
 
-The following examples use the AI\_CLASSIFY function with only the required arguments.
+The following examples use the AI_CLASSIFY function with only the required arguments.
 
-### AI\_CLASSIFY: Text
+### AI_CLASSIFY: Text
 
 The following example classifies the prompt into one of two categories, travel or cooking:
 
@@ -195,7 +195,7 @@ The following is the output of the preceding command.
 ```
 
 The following example creates a `text_classification_table` that contains a column for text and a column for possible
-categories for that text. The AI\_CLASSIFY function is called on each row of the table to classify the string in the text
+categories for that text. The AI_CLASSIFY function is called on each row of the table to classify the string in the text
 column.
 
 ```
@@ -214,7 +214,7 @@ SELECT input,
 FROM text_classification_table;
 ```
 
-### AI\_CLASSIFY: Images
+### AI_CLASSIFY: Images
 
 Using single file input:
 
@@ -245,7 +245,7 @@ AI_CLASSIFY(PROMPT('Please help me classify the food within this image {0}', img
 FROM food_pictures;
 ```
 
-### AI\_CLASSIFY: Documents
+### AI_CLASSIFY: Documents
 
 ```
 WITH staged_docs AS (
@@ -259,9 +259,9 @@ The following is the output of the preceding command.
 
 | DOC | CLASSIFICATION |
 | --- | --- |
-| @my\_doc\_stage/invoice\_001.pdf | [“invoice”] |
-| @my\_doc\_stage/contract\_2026.pdf | [“contract”] |
-| @my\_doc\_stage/blood\_panel\_report.pdf | [“lab\_report”] |
+| @my_doc_stage/invoice_001.pdf | [“invoice”] |
+| @my_doc_stage/contract_2026.pdf | [“contract”] |
+| @my_doc_stage/blood_panel_report.pdf | [“lab_report”] |
 
 ## Limitations
 
@@ -277,8 +277,8 @@ The following is the output of the preceding command.
 
 Note
 
-AI\_CLASSIFY is the updated version of [CLASSIFY\_TEXT](https://docs.snowflake.com/sql-reference/functions/classify_text-snowflake-cortex).
-For the latest functionality, use AI\_CLASSIFY.
+AI_CLASSIFY is the updated version of [CLASSIFY_TEXT](https://docs.snowflake.com/sql-reference/functions/classify_text-snowflake-cortex).
+For the latest functionality, use AI_CLASSIFY.
 
 ## Legal notices
 

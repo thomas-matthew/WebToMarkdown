@@ -1,4 +1,4 @@
-Classv1.2.23 (latest)●Since v1.2
+Classv1.2.24 (latest)●Since v1.2
 
 # Runtime
 
@@ -102,17 +102,17 @@ Runtime(
 
 constructor
 
-\_\_init\_\_
+__init__
 
 | Name | Type |
 | --- | --- |
 | context | [ContextT](https://reference.langchain.com/python/langgraph/typing/ContextT) |
 | store | [BaseStore](https://reference.langchain.com/python/langchain-core/stores/BaseStore) | None |
-| stream\_writer | [StreamWriter](https://reference.langchain.com/python/langgraph/types/StreamWriter) |
+| stream_writer | [StreamWriter](https://reference.langchain.com/python/langgraph/types/StreamWriter) |
 | heartbeat | [Callable](https://docs.python.org/3/library/typing.html#typing.Callable)[[], None] |
 | previous | [Any](https://docs.python.org/3/library/typing.html#typing.Any) |
-| execution\_info | [ExecutionInfo](https://reference.langchain.com/python/langgraph/runtime/ExecutionInfo) | None |
-| server\_info | [ServerInfo](https://reference.langchain.com/python/langgraph/runtime/ServerInfo) | None |
+| execution_info | [ExecutionInfo](https://reference.langchain.com/python/langgraph/runtime/ExecutionInfo) | None |
+| server_info | [ServerInfo](https://reference.langchain.com/python/langgraph/runtime/ServerInfo) | None |
 | control | [RunControl](https://reference.langchain.com/python/langgraph/runtime/RunControl) | None |
 
 ## Attributes
@@ -133,7 +133,7 @@ Store for the graph run, enabling persistence and memory.
 
 attribute
 
-stream\_writer: StreamWriter
+stream_writer: StreamWriter
 
 Function that writes to the custom stream.
 
@@ -159,7 +159,7 @@ Only available with the functional API when a checkpointer is provided.
 
 attribute
 
-execution\_info: ExecutionInfo | None
+execution_info: ExecutionInfo | None
 
 Read-only execution information/metadata for the current node run.
 
@@ -167,7 +167,7 @@ None before task preparation populates it.
 
 attribute
 
-server\_info: ServerInfo | None
+server_info: ServerInfo | None
 
 Metadata injected by LangGraph Server. None when running open-source LangGraph without LangSmith deployments.
 
@@ -182,11 +182,11 @@ graph runtime.
 
 attribute
 
-drain\_requested: bool
+drain_requested: bool
 
 attribute
 
-drain\_reason: str | None
+drain_reason: str | None
 
 ## Methods
 
@@ -206,9 +206,9 @@ Replace the runtime with a new runtime with the given overrides.
 
 method
 
-patch\_execution\_info
+patch_execution_info
 
-Return a new runtime with selected execution\_info fields replaced.
+Return a new runtime with selected execution_info fields replaced.
 
 [View source on GitHub](https://github.com/langchain-ai/langgraph/blob/58a6e1cc5b7dfc3619fc6e7e7573b040d554649b/libs/langgraph/langgraph/runtime.py#L124)
 

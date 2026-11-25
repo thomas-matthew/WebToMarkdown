@@ -1,4 +1,4 @@
-Classv1.2.23 (latest)●Since v1.2
+Classv1.2.24 (latest)●Since v1.2
 
 # NodeBuilder
 
@@ -12,19 +12,19 @@ NodeBuilder(
 
 constructor
 
-\_\_init\_\_
+__init__
 
 ## Methods
 
 method
 
-subscribe\_only
+subscribe_only
 
 Subscribe to a single channel.
 
 method
 
-subscribe\_to
+subscribe_to
 
 Add channels to subscribe to.
 
@@ -33,7 +33,7 @@ channel values as input.
 
 method
 
-read\_from
+read_from
 
 Adds the specified channels to read from, without subscribing to them.
 
@@ -45,7 +45,7 @@ Adds the specified node.
 
 method
 
-write\_to
+write_to
 
 Add channel writes.
 
@@ -57,19 +57,19 @@ Add tags or metadata to the node.
 
 method
 
-add\_retry\_policies
+add_retry_policies
 
 Adds retry policies to the node.
 
 method
 
-add\_cache\_policy
+add_cache_policy
 
 Adds cache policies to the node.
 
 method
 
-set\_timeout
+set_timeout
 
 Set the per-attempt timeout policy for this node.
 

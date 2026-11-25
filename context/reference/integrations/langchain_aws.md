@@ -38,79 +38,47 @@ Class
 
 Class
 
-### [AnthropicTool](https://reference.langchain.com/python/langchain-aws/llms/bedrock/AnthropicTool)
+### [BedrockAgentFinish](https://reference.langchain.com/python/langchain-aws/agents/types/BedrockAgentFinish)
+
+AgentFinish with session id information.
 
 Class
 
-### [LLMInputOutputAdapter](https://reference.langchain.com/python/langchain-aws/llms/bedrock/LLMInputOutputAdapter)
+### [BedrockAgentAction](https://reference.langchain.com/python/langchain-aws/agents/types/BedrockAgentAction)
 
-Adapter class to prepare the inputs from Langchain to a format
-that LLM model expects.
-
-It also provides helper function to extract
-the generated text from the model response.
+AgentAction with session id information.
 
 Class
 
-### [BedrockBase](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase)
-
-Base class for Bedrock models.
+### [GuardrailConfiguration](https://reference.langchain.com/python/langchain-aws/agents/types/GuardrailConfiguration)
 
 Class
 
-### [BedrockLLM](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockLLM)
-
-Bedrock models.
-
-To authenticate, the AWS client uses the following methods to
-automatically load credentials:
-https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html
-
-If a spec
+### [KnowledgebaseConfiguration](https://reference.langchain.com/python/langchain-aws/agents/types/KnowledgebaseConfiguration)
 
 Class
 
-### [LineIterator](https://reference.langchain.com/python/langchain-aws/llms/sagemaker_endpoint/LineIterator)
+### [InlineAgentConfiguration](https://reference.langchain.com/python/langchain-aws/agents/types/InlineAgentConfiguration)
 
-A helper class for parsing the byte stream input.
-
-```
-The output of the model will be in the following format:
-
-b'{"outputs": [" a"]}
-```
-
-'
-b'{"outputs": [" challenging"]}
-'
-b'{"outputs": ["
+Configurations for an Inline Agent.
 
 Class
 
-### [ContentHandlerBase](https://reference.langchain.com/python/langchain-aws/llms/sagemaker_endpoint/ContentHandlerBase)
+### [BedrockAgentsRunnable](https://reference.langchain.com/python/langchain-aws/agents/base/BedrockAgentsRunnable)
 
-A handler class to transform input from LLM to a
-format that SageMaker endpoint expects.
-
-Similarly, the class handles transforming output from the
-SageMaker endpoint to a format that LLM class expect
+Invoke a Bedrock Agent
 
 Class
 
-### [LLMContentHandler](https://reference.langchain.com/python/langchain-aws/llms/sagemaker_endpoint/LLMContentHandler)
+### [BedrockInlineAgentsRunnable](https://reference.langchain.com/python/langchain-aws/agents/base/BedrockInlineAgentsRunnable)
 
-Content handler for LLM class.
+Invoke Bedrock Inline Agent as a Runnable.
 
 Class
 
-### [SagemakerEndpoint](https://reference.langchain.com/python/langchain-aws/llms/sagemaker_endpoint/SagemakerEndpoint)
+### [BedrockRerank](https://reference.langchain.com/python/langchain-aws/document_compressors/rerank/BedrockRerank)
 
-Sagemaker Inference Endpoint models.
-
-To use, you must supply the endpoint name from your deployed
-Sagemaker model & the region where it is deployed.
-
-To authenticate, the AWS client uses the followin
+Document compressor that uses AWS Bedrock Rerank API.
 
 Class
 
@@ -124,28 +92,41 @@ https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html
 
 Class
 
-### [InMemoryVectorStore](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/base/InMemoryVectorStore)
+### [BedrockEmbeddings](https://reference.langchain.com/python/langchain-aws/embeddings/bedrock/BedrockEmbeddings)
 
-InMemoryVectorStore vector database.
+Bedrock embedding models.
 
-To use, you should have the `redis` python package installed
-for AWS MemoryDB
-
-.. code-block:: bash
-
-Once running, you can connect to the MemoryDB server with
+To authenticate, the AWS client uses the following methods to
+automatically load credentials:
+https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html
 
 Class
 
-### [InMemoryVectorStoreRetriever](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/base/InMemoryVectorStoreRetriever)
+### [NeptuneRdfGraph](https://reference.langchain.com/python/langchain-aws/graphs/neptune_rdf_graph/NeptuneRdfGraph)
 
-Retriever for InMemoryVectorStore.
+Neptune wrapper for RDF graph operations.
 
 Class
 
-### [InMemorySemanticCache](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/cache/InMemorySemanticCache)
+### [NeptuneQueryException](https://reference.langchain.com/python/langchain-aws/graphs/neptune_graph/NeptuneQueryException)
 
-Cache that uses MemoryDB as a vector-store backend.
+Exception for the Neptune queries.
+
+Class
+
+### [BaseNeptuneGraph](https://reference.langchain.com/python/langchain-aws/graphs/neptune_graph/BaseNeptuneGraph)
+
+Class
+
+### [NeptuneAnalyticsGraph](https://reference.langchain.com/python/langchain-aws/graphs/neptune_graph/NeptuneAnalyticsGraph)
+
+Neptune Analytics wrapper for graph operations.
+
+Class
+
+### [NeptuneGraph](https://reference.langchain.com/python/langchain-aws/graphs/neptune_graph/NeptuneGraph)
+
+Neptune wrapper for graph operations.
 
 Class
 
@@ -249,107 +230,104 @@ complex logical expressions that evaluate to the InMemoryDB Query langu
 
 Class
 
-### [BedrockRerank](https://reference.langchain.com/python/langchain-aws/document_compressors/rerank/BedrockRerank)
+### [InMemorySemanticCache](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/cache/InMemorySemanticCache)
 
-Document compressor that uses AWS Bedrock Rerank API.
-
-Class
-
-### [ChatPromptAdapter](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatPromptAdapter)
-
-Adapter class to prepare the inputs from Langchain to prompt format
-that Chat model expects.
+Cache that uses MemoryDB as a vector-store backend.
 
 Class
 
-### [ChatBedrock](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock)
+### [InMemoryVectorStore](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/base/InMemoryVectorStore)
 
-A chat model that uses the Bedrock API.
+InMemoryVectorStore vector database.
 
-Class
+To use, you should have the `redis` python package installed
+for AWS MemoryDB
 
-### [ChatBedrockConverse](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse)
+.. code-block:: bash
 
-Bedrock chat model integration built on the Bedrock converse API.
-
-This implementation will eventually replace the existing ChatBedrock implementation
-once the Bedrock converse API has feature parity
+Once running, you can connect to the MemoryDB server with
 
 Class
 
-### [NeptuneRdfGraph](https://reference.langchain.com/python/langchain-aws/graphs/neptune_rdf_graph/NeptuneRdfGraph)
+### [InMemoryVectorStoreRetriever](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/base/InMemoryVectorStoreRetriever)
 
-Neptune wrapper for RDF graph operations.
-
-Class
-
-### [NeptuneQueryException](https://reference.langchain.com/python/langchain-aws/graphs/neptune_graph/NeptuneQueryException)
-
-Exception for the Neptune queries.
+Retriever for InMemoryVectorStore.
 
 Class
 
-### [BaseNeptuneGraph](https://reference.langchain.com/python/langchain-aws/graphs/neptune_graph/BaseNeptuneGraph)
+### [AnthropicTool](https://reference.langchain.com/python/langchain-aws/llms/bedrock/AnthropicTool)
 
 Class
 
-### [NeptuneAnalyticsGraph](https://reference.langchain.com/python/langchain-aws/graphs/neptune_graph/NeptuneAnalyticsGraph)
+### [LLMInputOutputAdapter](https://reference.langchain.com/python/langchain-aws/llms/bedrock/LLMInputOutputAdapter)
 
-Neptune Analytics wrapper for graph operations.
+Adapter class to prepare the inputs from Langchain to a format
+that LLM model expects.
 
-Class
-
-### [NeptuneGraph](https://reference.langchain.com/python/langchain-aws/graphs/neptune_graph/NeptuneGraph)
-
-Neptune wrapper for graph operations.
+It also provides helper function to extract
+the generated text from the model response.
 
 Class
 
-### [BedrockAgentsRunnable](https://reference.langchain.com/python/langchain-aws/agents/base/BedrockAgentsRunnable)
+### [BedrockBase](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockBase)
 
-Invoke a Bedrock Agent
-
-Class
-
-### [BedrockInlineAgentsRunnable](https://reference.langchain.com/python/langchain-aws/agents/base/BedrockInlineAgentsRunnable)
-
-Invoke Bedrock Inline Agent as a Runnable.
+Base class for Bedrock models.
 
 Class
 
-### [BedrockAgentFinish](https://reference.langchain.com/python/langchain-aws/agents/types/BedrockAgentFinish)
+### [BedrockLLM](https://reference.langchain.com/python/langchain-aws/llms/bedrock/BedrockLLM)
 
-AgentFinish with session id information.
-
-Class
-
-### [BedrockAgentAction](https://reference.langchain.com/python/langchain-aws/agents/types/BedrockAgentAction)
-
-AgentAction with session id information.
-
-Class
-
-### [GuardrailConfiguration](https://reference.langchain.com/python/langchain-aws/agents/types/GuardrailConfiguration)
-
-Class
-
-### [KnowledgebaseConfiguration](https://reference.langchain.com/python/langchain-aws/agents/types/KnowledgebaseConfiguration)
-
-Class
-
-### [InlineAgentConfiguration](https://reference.langchain.com/python/langchain-aws/agents/types/InlineAgentConfiguration)
-
-Configurations for an Inline Agent.
-
-Class
-
-### [BedrockEmbeddings](https://reference.langchain.com/python/langchain-aws/embeddings/bedrock/BedrockEmbeddings)
-
-Bedrock embedding models.
+Bedrock models.
 
 To authenticate, the AWS client uses the following methods to
 automatically load credentials:
 https://boto3.amazonaws.com/v1/documentation/api/latest/guide/credentials.html
+
+If a spec
+
+Class
+
+### [LineIterator](https://reference.langchain.com/python/langchain-aws/llms/sagemaker_endpoint/LineIterator)
+
+A helper class for parsing the byte stream input.
+
+```
+The output of the model will be in the following format:
+
+b'{"outputs": [" a"]}
+```
+
+'
+b'{"outputs": [" challenging"]}
+'
+b'{"outputs": ["
+
+Class
+
+### [ContentHandlerBase](https://reference.langchain.com/python/langchain-aws/llms/sagemaker_endpoint/ContentHandlerBase)
+
+A handler class to transform input from LLM to a
+format that SageMaker endpoint expects.
+
+Similarly, the class handles transforming output from the
+SageMaker endpoint to a format that LLM class expect
+
+Class
+
+### [LLMContentHandler](https://reference.langchain.com/python/langchain-aws/llms/sagemaker_endpoint/LLMContentHandler)
+
+Content handler for LLM class.
+
+Class
+
+### [SagemakerEndpoint](https://reference.langchain.com/python/langchain-aws/llms/sagemaker_endpoint/SagemakerEndpoint)
+
+Sagemaker Inference Endpoint models.
+
+To use, you must supply the endpoint name from your deployed
+Sagemaker model & the region where it is deployed.
+
+To authenticate, the AWS client uses the followin
 
 Class
 
@@ -378,8 +356,8 @@ Class
 See https://aws.amazon.com/bedrock/knowledge-bases for more info.
 
 Args:
-knowledge\_base\_id: Knowledge Base ID.
-region\_name: The aws
+knowledge_base_id: Knowledge Base ID.
+region_name: The aws
 
 Class
 
@@ -453,175 +431,99 @@ Class
 
 `Amazon Kendra Index` retriever.
 
+Class
+
+### [ChatPromptAdapter](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatPromptAdapter)
+
+Adapter class to prepare the inputs from Langchain to prompt format
+that Chat model expects.
+
+Class
+
+### [ChatBedrock](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/ChatBedrock)
+
+A chat model that uses the Bedrock API.
+
+Class
+
+### [ChatBedrockConverse](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse/ChatBedrockConverse)
+
+Bedrock chat model integration built on the Bedrock converse API.
+
+This implementation will eventually replace the existing ChatBedrock implementation
+once the Bedrock converse API has feature parity
+
 ## Functions
 
 Function
 
-### [setup\_logging](https://reference.langchain.com/python/langchain-aws/setup_logging)
+### [setup_logging](https://reference.langchain.com/python/langchain-aws/setup_logging)
 
 Function
 
-### [get\_system\_message](https://reference.langchain.com/python/langchain-aws/function_calling/get_system_message)
+### [get_system_message](https://reference.langchain.com/python/langchain-aws/function_calling/get_system_message)
 
 Function
 
-### [convert\_to\_anthropic\_tool](https://reference.langchain.com/python/langchain-aws/function_calling/convert_to_anthropic_tool)
+### [convert_to_anthropic_tool](https://reference.langchain.com/python/langchain-aws/function_calling/convert_to_anthropic_tool)
 
 Function
 
-### [enforce\_stop\_tokens](https://reference.langchain.com/python/langchain-aws/utils/enforce_stop_tokens)
+### [enforce_stop_tokens](https://reference.langchain.com/python/langchain-aws/utils/enforce_stop_tokens)
 
 Cut off the text as soon as any stop words occur.
 
 Function
 
-### [anthropic\_tokens\_supported](https://reference.langchain.com/python/langchain-aws/utils/anthropic_tokens_supported)
+### [anthropic_tokens_supported](https://reference.langchain.com/python/langchain-aws/utils/anthropic_tokens_supported)
 
-Check if all requirements for Anthropic count\_tokens() are met.
+Check if all requirements for Anthropic count_tokens() are met.
 
 Function
 
-### [get\_num\_tokens\_anthropic](https://reference.langchain.com/python/langchain-aws/utils/get_num_tokens_anthropic)
+### [get_num_tokens_anthropic](https://reference.langchain.com/python/langchain-aws/utils/get_num_tokens_anthropic)
 
 Get the number of tokens in a string of text.
 
 Function
 
-### [get\_token\_ids\_anthropic](https://reference.langchain.com/python/langchain-aws/utils/get_token_ids_anthropic)
+### [get_token_ids_anthropic](https://reference.langchain.com/python/langchain-aws/utils/get_token_ids_anthropic)
 
 Get the token ids for a string of text.
 
 Function
 
-### [thinking\_in\_params](https://reference.langchain.com/python/langchain-aws/utils/thinking_in_params)
+### [thinking_in_params](https://reference.langchain.com/python/langchain-aws/utils/thinking_in_params)
 
 Check if the thinking parameter is enabled in the request.
 
 Function
 
-### [extract\_tool\_calls](https://reference.langchain.com/python/langchain-aws/llms/bedrock/extract_tool_calls)
-
-Function
-
-### [enforce\_stop\_tokens](https://reference.langchain.com/python/langchain-aws/llms/sagemaker_endpoint/enforce_stop_tokens)
-
-Cut off the text as soon as any stop words occur.
-
-Function
-
-### [check\_index\_exists](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/base/check_index_exists)
-
-Check if MemoryDB index exists.
-
-Function
-
-### [read\_schema](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/schema/read_schema)
-
-Read in the index schema from a dict or yaml file.
-
-Check if it is a dict and return RedisModel otherwise, check if it's a path and
-read in the file assuming it's a yaml file and return a RedisModel
-
-Function
-
-### [check\_operator\_misuse](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/filters/check_operator_misuse)
-
-Decorator to check for misuse of equality operators.
-
-Function
-
-### [convert\_messages\_to\_prompt\_llama](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/convert_messages_to_prompt_llama)
-
-Convert a list of messages to a prompt for llama.
-
-Function
-
-### [convert\_messages\_to\_prompt\_llama3](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/convert_messages_to_prompt_llama3)
-
-Convert a list of messages to a prompt for llama.
-
-Function
-
-### [convert\_messages\_to\_prompt\_anthropic](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/convert_messages_to_prompt_anthropic)
-
-Format a list of messages into a full prompt for the Anthropic model
-Args:
-messages (List[BaseMessage]): List of BaseMessage to combine.
-human\_prompt (str, optional): Human prompt
-
-Function
-
-### [convert\_messages\_to\_prompt\_mistral](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/convert_messages_to_prompt_mistral)
-
-Convert a list of messages to a prompt for mistral.
-
-Function
-
-### [convert\_messages\_to\_prompt\_deepseek](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/convert_messages_to_prompt_deepseek)
-
-Convert a list of messages to a prompt for DeepSeek-R1.
-
-Function
-
-### [get\_boto\_session](https://reference.langchain.com/python/langchain-aws/agents/utils/get_boto_session)
+### [get_boto_session](https://reference.langchain.com/python/langchain-aws/agents/utils/get_boto_session)
 
 Construct the boto3 session
 
 Function
 
-### [parse\_agent\_response](https://reference.langchain.com/python/langchain-aws/agents/utils/parse_agent_response)
+### [parse_agent_response](https://reference.langchain.com/python/langchain-aws/agents/utils/parse_agent_response)
 
 Parses the raw response from Bedrock Agent
 
 Function
 
-### [trim\_query](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_cypher/trim_query)
-
-Trim the query to only include Cypher keywords.
-
-Function
-
-### [extract\_cypher](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_cypher/extract_cypher)
-
-Extract Cypher code from text using Regex.
-
-Function
-
-### [use\_simple\_prompt](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_cypher/use_simple_prompt)
-
-Decides whether to use the simple prompt
-
-Function
-
-### [get\_prompt](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_cypher/get_prompt)
-
-Selects the final prompt
-
-Function
-
-### [create\_neptune\_opencypher\_qa\_chain](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_cypher/create_neptune_opencypher_qa_chain)
-
-Chain for question-answering against a Neptune graph
-by generating openCypher statements.
-
-*Security note*: Make sure that the database connection uses credentials
-that are narrowly-scoped to only
-
-Function
-
-### [extract\_sparql](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_sparql/extract_sparql)
+### [extract_sparql](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_sparql/extract_sparql)
 
 Extract SPARQL code from a text.
 
 Function
 
-### [get\_prompt](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_sparql/get_prompt)
+### [get_prompt](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_sparql/get_prompt)
 
 Selects the final prompt.
 
 Function
 
-### [create\_neptune\_sparql\_qa\_chain](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_sparql/create_neptune_sparql_qa_chain)
+### [create_neptune_sparql_qa_chain](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_sparql/create_neptune_sparql_qa_chain)
 
 Chain for question-answering against a Neptune graph
 by generating SPARQL statements.
@@ -631,25 +533,123 @@ that are narrowly-scoped to only inc
 
 Function
 
-### [clean\_excerpt](https://reference.langchain.com/python/langchain-aws/retrievers/kendra/clean_excerpt)
+### [trim_query](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_cypher/trim_query)
+
+Trim the query to only include Cypher keywords.
+
+Function
+
+### [extract_cypher](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_cypher/extract_cypher)
+
+Extract Cypher code from text using Regex.
+
+Function
+
+### [use_simple_prompt](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_cypher/use_simple_prompt)
+
+Decides whether to use the simple prompt
+
+Function
+
+### [get_prompt](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_cypher/get_prompt)
+
+Selects the final prompt
+
+Function
+
+### [create_neptune_opencypher_qa_chain](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_cypher/create_neptune_opencypher_qa_chain)
+
+Chain for question-answering against a Neptune graph
+by generating openCypher statements.
+
+*Security note*: Make sure that the database connection uses credentials
+that are narrowly-scoped to only
+
+Function
+
+### [read_schema](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/schema/read_schema)
+
+Read in the index schema from a dict or yaml file.
+
+Check if it is a dict and return RedisModel otherwise, check if it's a path and
+read in the file assuming it's a yaml file and return a RedisModel
+
+Function
+
+### [check_operator_misuse](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/filters/check_operator_misuse)
+
+Decorator to check for misuse of equality operators.
+
+Function
+
+### [check_index_exists](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/base/check_index_exists)
+
+Check if MemoryDB index exists.
+
+Function
+
+### [extract_tool_calls](https://reference.langchain.com/python/langchain-aws/llms/bedrock/extract_tool_calls)
+
+Function
+
+### [enforce_stop_tokens](https://reference.langchain.com/python/langchain-aws/llms/sagemaker_endpoint/enforce_stop_tokens)
+
+Cut off the text as soon as any stop words occur.
+
+Function
+
+### [clean_excerpt](https://reference.langchain.com/python/langchain-aws/retrievers/kendra/clean_excerpt)
 
 Clean an excerpt from Kendra.
 
 Function
 
-### [combined\_text](https://reference.langchain.com/python/langchain-aws/retrievers/kendra/combined_text)
+### [combined_text](https://reference.langchain.com/python/langchain-aws/retrievers/kendra/combined_text)
 
 Combine a ResultItem title and excerpt into a single string.
+
+Function
+
+### [convert_messages_to_prompt_llama](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/convert_messages_to_prompt_llama)
+
+Convert a list of messages to a prompt for llama.
+
+Function
+
+### [convert_messages_to_prompt_llama3](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/convert_messages_to_prompt_llama3)
+
+Convert a list of messages to a prompt for llama.
+
+Function
+
+### [convert_messages_to_prompt_anthropic](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/convert_messages_to_prompt_anthropic)
+
+Format a list of messages into a full prompt for the Anthropic model
+Args:
+messages (List[BaseMessage]): List of BaseMessage to combine.
+human_prompt (str, optional): Human prompt
+
+Function
+
+### [convert_messages_to_prompt_mistral](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/convert_messages_to_prompt_mistral)
+
+Convert a list of messages to a prompt for mistral.
+
+Function
+
+### [convert_messages_to_prompt_deepseek](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock/convert_messages_to_prompt_deepseek)
+
+Convert a list of messages to a prompt for DeepSeek-R1.
 
 ## Modules
 
 Module
 
-### [langchain\_aws](https://reference.langchain.com/python/langchain-aws/langchain_aws)
+### [langchain_aws](https://reference.langchain.com/python/langchain-aws/langchain_aws)
 
 Module
 
-### [function\_calling](https://reference.langchain.com/python/langchain-aws/function_calling)
+### [function_calling](https://reference.langchain.com/python/langchain-aws/function_calling)
 
 Methods for creating function specs in the style of Bedrock Functions
 for supported model providers
@@ -660,95 +660,11 @@ Module
 
 Module
 
-### [llms](https://reference.langchain.com/python/langchain-aws/llms)
-
-Module
-
-### [bedrock](https://reference.langchain.com/python/langchain-aws/llms/bedrock)
-
-Module
-
-### [sagemaker\_endpoint](https://reference.langchain.com/python/langchain-aws/llms/sagemaker_endpoint)
-
-Sagemaker InvokeEndpoint API.
-
-Module
-
-### [runnables](https://reference.langchain.com/python/langchain-aws/runnables)
-
-Module
-
-### [q\_business](https://reference.langchain.com/python/langchain-aws/runnables/q_business)
-
-Module
-
-### [vectorstores](https://reference.langchain.com/python/langchain-aws/vectorstores)
-
-Module
-
-### [inmemorydb](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb)
-
-Module
-
-### [base](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/base)
-
-Wrapper around MemoryDB vector database.
-
-Module
-
-### [cache](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/cache)
-
-Module
-
-### [schema](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/schema)
-
-Module
-
-### [filters](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/filters)
-
-Module
-
-### [constants](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/constants)
-
-Module
-
-### [document\_compressors](https://reference.langchain.com/python/langchain-aws/document_compressors)
-
-Module
-
-### [rerank](https://reference.langchain.com/python/langchain-aws/document_compressors/rerank)
-
-Module
-
-### [chat\_models](https://reference.langchain.com/python/langchain-aws/chat_models)
-
-Module
-
-### [bedrock](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock)
-
-Module
-
-### [bedrock\_converse](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse)
-
-Module
-
-### [graphs](https://reference.langchain.com/python/langchain-aws/graphs)
-
-Module
-
-### [neptune\_rdf\_graph](https://reference.langchain.com/python/langchain-aws/graphs/neptune_rdf_graph)
-
-Module
-
-### [neptune\_graph](https://reference.langchain.com/python/langchain-aws/graphs/neptune_graph)
-
-Module
-
 ### [agents](https://reference.langchain.com/python/langchain-aws/agents)
 
 Module
 
-### [base](https://reference.langchain.com/python/langchain-aws/agents/base)
+### [types](https://reference.langchain.com/python/langchain-aws/agents/types)
 
 Module
 
@@ -756,7 +672,45 @@ Module
 
 Module
 
-### [types](https://reference.langchain.com/python/langchain-aws/agents/types)
+### [base](https://reference.langchain.com/python/langchain-aws/agents/base)
+
+Module
+
+### [document_compressors](https://reference.langchain.com/python/langchain-aws/document_compressors)
+
+Module
+
+### [rerank](https://reference.langchain.com/python/langchain-aws/document_compressors/rerank)
+
+Module
+
+### [runnables](https://reference.langchain.com/python/langchain-aws/runnables)
+
+Module
+
+### [q_business](https://reference.langchain.com/python/langchain-aws/runnables/q_business)
+
+Module
+
+### [chains](https://reference.langchain.com/python/langchain-aws/chains)
+
+Module
+
+### [graph_qa](https://reference.langchain.com/python/langchain-aws/chains/graph_qa)
+
+Module
+
+### [neptune_sparql](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_sparql)
+
+Question answering over an RDF or OWL graph using SPARQL.
+
+Module
+
+### [prompts](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/prompts)
+
+Module
+
+### [neptune_cypher](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_cypher)
 
 Module
 
@@ -768,25 +722,59 @@ Module
 
 Module
 
-### [chains](https://reference.langchain.com/python/langchain-aws/chains)
+### [graphs](https://reference.langchain.com/python/langchain-aws/graphs)
 
 Module
 
-### [graph\_qa](https://reference.langchain.com/python/langchain-aws/chains/graph_qa)
+### [neptune_rdf_graph](https://reference.langchain.com/python/langchain-aws/graphs/neptune_rdf_graph)
 
 Module
 
-### [neptune\_cypher](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_cypher)
+### [neptune_graph](https://reference.langchain.com/python/langchain-aws/graphs/neptune_graph)
 
 Module
 
-### [neptune\_sparql](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/neptune_sparql)
-
-Question answering over an RDF or OWL graph using SPARQL.
+### [vectorstores](https://reference.langchain.com/python/langchain-aws/vectorstores)
 
 Module
 
-### [prompts](https://reference.langchain.com/python/langchain-aws/chains/graph_qa/prompts)
+### [inmemorydb](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb)
+
+Module
+
+### [constants](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/constants)
+
+Module
+
+### [schema](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/schema)
+
+Module
+
+### [filters](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/filters)
+
+Module
+
+### [cache](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/cache)
+
+Module
+
+### [base](https://reference.langchain.com/python/langchain-aws/vectorstores/inmemorydb/base)
+
+Wrapper around MemoryDB vector database.
+
+Module
+
+### [llms](https://reference.langchain.com/python/langchain-aws/llms)
+
+Module
+
+### [bedrock](https://reference.langchain.com/python/langchain-aws/llms/bedrock)
+
+Module
+
+### [sagemaker_endpoint](https://reference.langchain.com/python/langchain-aws/llms/sagemaker_endpoint)
+
+Sagemaker InvokeEndpoint API.
 
 Module
 
@@ -799,6 +787,18 @@ Module
 Module
 
 ### [kendra](https://reference.langchain.com/python/langchain-aws/retrievers/kendra)
+
+Module
+
+### [chat_models](https://reference.langchain.com/python/langchain-aws/chat_models)
+
+Module
+
+### [bedrock](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock)
+
+Module
+
+### [bedrock_converse](https://reference.langchain.com/python/langchain-aws/chat_models/bedrock_converse)
 
 ## Types
 

@@ -413,7 +413,34 @@ Copy
 
 Function
 
-### [add\_inline\_agent\_name](https://reference.langchain.com/python/langgraph-supervisor/agent_name/add_inline_agent_name)
+### [create_handoff_tool](https://reference.langchain.com/python/langgraph-supervisor/handoff/create_handoff_tool)
+
+Create a tool that can handoff control to the requested agent.
+
+Function
+
+### [create_handoff_back_messages](https://reference.langchain.com/python/langgraph-supervisor/handoff/create_handoff_back_messages)
+
+Create a pair of (AIMessage, ToolMessage) to add to the message history when returning control to the supervisor.
+
+Function
+
+### [create_forward_message_tool](https://reference.langchain.com/python/langgraph-supervisor/handoff/create_forward_message_tool)
+
+Create a tool the supervisor can use to forward a worker message by name.
+
+This helps avoid information loss any time the supervisor rewrites a worker query
+to the user and also can save some tokens.
+
+Function
+
+### [create_supervisor](https://reference.langchain.com/python/langgraph-supervisor/supervisor/create_supervisor)
+
+Create a multi-agent supervisor.
+
+Function
+
+### [add_inline_agent_name](https://reference.langchain.com/python/langgraph-supervisor/agent_name/add_inline_agent_name)
 
 Add name and content XML tags to the message content.
 
@@ -426,7 +453,7 @@ AIMessage(content="<name>assistant</name><content>Hell
 
 Function
 
-### [remove\_inline\_agent\_name](https://reference.langchain.com/python/langgraph-supervisor/agent_name/remove_inline_agent_name)
+### [remove_inline_agent_name](https://reference.langchain.com/python/langgraph-supervisor/agent_name/remove_inline_agent_name)
 
 Remove explicit name and content XML tags from the AI message content.
 
@@ -438,48 +465,21 @@ Examples:
 
 Function
 
-### [with\_agent\_name](https://reference.langchain.com/python/langgraph-supervisor/agent_name/with_agent_name)
+### [with_agent_name](https://reference.langchain.com/python/langgraph-supervisor/agent_name/with_agent_name)
 
 Attach formatted agent names to the messages passed to and from a language model.
 
 This is useful for making a message history with multiple agents more coherent.
 
-Function
-
-### [create\_supervisor](https://reference.langchain.com/python/langgraph-supervisor/supervisor/create_supervisor)
-
-Create a multi-agent supervisor.
-
-Function
-
-### [create\_handoff\_tool](https://reference.langchain.com/python/langgraph-supervisor/handoff/create_handoff_tool)
-
-Create a tool that can handoff control to the requested agent.
-
-Function
-
-### [create\_handoff\_back\_messages](https://reference.langchain.com/python/langgraph-supervisor/handoff/create_handoff_back_messages)
-
-Create a pair of (AIMessage, ToolMessage) to add to the message history when returning control to the supervisor.
-
-Function
-
-### [create\_forward\_message\_tool](https://reference.langchain.com/python/langgraph-supervisor/handoff/create_forward_message_tool)
-
-Create a tool the supervisor can use to forward a worker message by name.
-
-This helps avoid information loss any time the supervisor rewrites a worker query
-to the user and also can save some tokens.
-
 ## Modules
 
 Module
 
-### [langgraph\_supervisor](https://reference.langchain.com/python/langgraph-supervisor/langgraph_supervisor)
+### [langgraph_supervisor](https://reference.langchain.com/python/langgraph-supervisor/langgraph_supervisor)
 
 Module
 
-### [agent\_name](https://reference.langchain.com/python/langgraph-supervisor/agent_name)
+### [handoff](https://reference.langchain.com/python/langgraph-supervisor/handoff)
 
 Module
 
@@ -487,4 +487,4 @@ Module
 
 Module
 
-### [handoff](https://reference.langchain.com/python/langgraph-supervisor/handoff)
+### [agent_name](https://reference.langchain.com/python/langgraph-supervisor/agent_name)

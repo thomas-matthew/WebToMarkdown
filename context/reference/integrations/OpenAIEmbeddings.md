@@ -1,4 +1,4 @@
-Classv1.8.3 (latest)●Since v1.3
+Classv1.8.5 (latest)●Since v1.3
 
 # OpenAIEmbeddings
 
@@ -31,14 +31,14 @@ The number of dimensions the resulting output embeddings should have.
 Only supported in `'text-embedding-3'` and later models.
 
 Key init args — client params:
-api\_key:
+api_key:
 OpenAI API key.
 organization:
 OpenAI organization ID. If not passed in will be read
 from env var `OPENAI_ORG_ID`.
-max\_retries:
+max_retries:
 Maximum number of retries to make when generating.
-request\_timeout:
+request_timeout:
 Timeout for requests to OpenAI completion API
 
 See full list of supported init args and their descriptions in the params section.
@@ -131,12 +131,12 @@ Copy
 ## Used in Docs
 
 * [Custom workflow](https://docs.langchain.com/oss/python/langchain/multi-agent/custom-workflow)
+* [Direct model access](https://docs.langchain.com/langsmith/llm-gateway-direct-model-access)
 * [Astra DB integration](https://docs.langchain.com/oss/python/integrations/vectorstores/astradb)
 * [Azure AI Search integration](https://docs.langchain.com/oss/python/integrations/vectorstores/azuresearch)
 * [Chroma integration](https://docs.langchain.com/oss/python/integrations/vectorstores/chroma)
-* [CockroachDB integrations](https://docs.langchain.com/oss/python/integrations/providers/cockroachdb)
 
-+15 more(2 more not shown)
++15 more(3 more not shown)
 
 ## Attributes
 
@@ -146,7 +146,7 @@ client: Any
 
 attribute
 
-async\_client: Any
+async_client: Any
 
 attribute
 
@@ -166,7 +166,7 @@ deployment: str | None
 
 attribute
 
-openai\_api\_version: str | None
+openai_api_version: str | None
 
 Version of the OpenAI API to use.
 
@@ -174,7 +174,7 @@ Automatically inferred from env var `OPENAI_API_VERSION` if not provided.
 
 attribute
 
-openai\_api\_base: str | None
+openai_api_base: str | None
 
 Base URL path for API requests, leave blank if not using a proxy or
 service emulator.
@@ -187,21 +187,21 @@ Resolution order (first match wins):
 
 attribute
 
-openai\_api\_type: str | None
+openai_api_type: str | None
 
 attribute
 
-openai\_proxy: str | None
+openai_proxy: str | None
 
 attribute
 
-embedding\_ctx\_length: int
+embedding_ctx_length: int
 
 The maximum number of tokens to embed at once.
 
 attribute
 
-openai\_api\_key: SecretStr | Callable[[], str] | Callable[[], Awaitable[str]] | None
+openai_api_key: SecretStr | Callable[[], str] | Callable[[], Awaitable[str]] | None
 
 API key to use for API calls.
 
@@ -209,7 +209,7 @@ Automatically inferred from env var `OPENAI_API_KEY` if not provided.
 
 attribute
 
-openai\_organization: str | None
+openai_organization: str | None
 
 OpenAI organization ID to use for API calls.
 
@@ -217,27 +217,27 @@ Automatically inferred from env var `OPENAI_ORG_ID` if not provided.
 
 attribute
 
-allowed\_special: Literal['all'] | set[str] | None
+allowed_special: Literal['all'] | set[str] | None
 
 attribute
 
-disallowed\_special: Literal['all'] | set[str] | Sequence[str] | None
+disallowed_special: Literal['all'] | set[str] | Sequence[str] | None
 
 attribute
 
-chunk\_size: int
+chunk_size: int
 
 Maximum number of texts to embed in each batch
 
 attribute
 
-max\_retries: int
+max_retries: int
 
 Maximum number of retries to make when generating.
 
 attribute
 
-request\_timeout: float | tuple[float, float] | Any | None
+request_timeout: float | tuple[float, float] | Any | None
 
 Timeout for requests to OpenAI completion API.
 
@@ -249,7 +249,7 @@ headers: Any
 
 attribute
 
-tiktoken\_enabled: bool
+tiktoken_enabled: bool
 
 Set this to False to use HuggingFace `transformers` tokenization.
 
@@ -259,7 +259,7 @@ entirely.
 
 attribute
 
-tiktoken\_model\_name: str | None
+tiktoken_model_name: str | None
 
 The model name to pass to tiktoken when using this class.
 
@@ -276,45 +276,45 @@ model name to use here.
 
 attribute
 
-show\_progress\_bar: bool
+show_progress_bar: bool
 
 Whether to show a progress bar when embedding.
 
 attribute
 
-model\_kwargs: dict[str, Any]
+model_kwargs: dict[str, Any]
 
 Holds any model parameters valid for `create` call not explicitly specified.
 
 attribute
 
-skip\_empty: bool
+skip_empty: bool
 
 Whether to skip empty strings when embedding or raise an error.
 
 attribute
 
-default\_headers: Mapping[str, str] | None
+default_headers: Mapping[str, str] | None
 
 attribute
 
-default\_query: Mapping[str, object] | None
+default_query: Mapping[str, object] | None
 
 attribute
 
-retry\_min\_seconds: int
+retry_min_seconds: int
 
 Min number of seconds to wait between retries
 
 attribute
 
-retry\_max\_seconds: int
+retry_max_seconds: int
 
 Max number of seconds to wait between retries
 
 attribute
 
-http\_client: Any | None
+http_client: Any | None
 
 Optional `httpx.Client`.
 
@@ -323,7 +323,7 @@ you'd like a custom client for async invocations.
 
 attribute
 
-http\_async\_client: Any | None
+http_async_client: Any | None
 
 Optional `httpx.AsyncClient`.
 
@@ -332,7 +332,7 @@ like a custom client for sync invocations.
 
 attribute
 
-check\_embedding\_ctx\_length: bool
+check_embedding_ctx_length: bool
 
 Whether to check the token length of inputs and automatically split inputs
 longer than `embedding_ctx_length`.
@@ -343,43 +343,43 @@ vLLM).
 
 attribute
 
-model\_config
+model_config
 
 ## Methods
 
 method
 
-build\_extra
+build_extra
 
 Build extra kwargs from additional params that were passed in.
 
 method
 
-validate\_environment
+validate_environment
 
 Validate that api key and python package exists in environment.
 
 method
 
-embed\_documents
+embed_documents
 
 Call OpenAI's embedding endpoint to embed search docs.
 
 method
 
-aembed\_documents
+aembed_documents
 
 Asynchronously call OpenAI's embedding endpoint to embed search docs.
 
 method
 
-embed\_query
+embed_query
 
 Call out to OpenAI's embedding endpoint for embedding query text.
 
 method
 
-aembed\_query
+aembed_query
 
 Call out to OpenAI's embedding endpoint async for embedding query text.
 

@@ -47,7 +47,7 @@ Message for passing the result of executing a tool back to a model.
 `ToolMessage` objects contain the result of a tool invocation. Typically, the result
 is encoded inside the `content` field.
 
-`tool\_
+`tool_
 
 Class
 
@@ -238,7 +238,7 @@ Does *not* need to sum to full output token count. Does *not* need to have all k
 
 Function
 
-### [trim\_messages](https://reference.langchain.com/python/langchain-core/messages/utils/trim_messages)
+### [trim_messages](https://reference.langchain.com/python/langchain-core/messages/utils/trim_messages)
 
 Trim messages to be below a token count.
 

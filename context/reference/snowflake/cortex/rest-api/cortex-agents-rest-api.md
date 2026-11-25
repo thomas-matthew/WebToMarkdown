@@ -8,11 +8,11 @@ You can use the Cortex Agent REST API to create, manage, and interact with Corte
 
 ## Private connectivity (PrivateLink)
 
-If your account uses [private connectivity](https://docs.snowflake.com/user-guide/private-connectivity-inbound), clients outside Snowflake can send Cortex Agents REST API requests to your account’s private connectivity URL. To get the host names to add to your private DNS, call [SYSTEM$ALLOWLIST\_PRIVATELINK](https://docs.snowflake.com/sql-reference/functions/system_allowlist_privatelink).
+If your account uses [private connectivity](https://docs.snowflake.com/user-guide/private-connectivity-inbound), clients outside Snowflake can send Cortex Agents REST API requests to your account’s private connectivity URL. To get the host names to add to your private DNS, call [SYSTEM$ALLOWLIST_PRIVATELINK](https://docs.snowflake.com/sql-reference/functions/system_allowlist_privatelink).
 
 Note
 
-Code that runs inside Snowflake, such as stored procedures, can’t call the REST API through a private connectivity URL; such requests return HTTP 404. Use [DATA\_AGENT\_RUN](https://docs.snowflake.com/sql-reference/functions/data_agent_run-snowflake-cortex) instead.
+Code that runs inside Snowflake, such as stored procedures, can’t call the REST API through a private connectivity URL; such requests return HTTP 404. Use [DATA_AGENT_RUN](https://docs.snowflake.com/sql-reference/functions/data_agent_run-snowflake-cortex) instead.
 
 ## Create Cortex Agent
 
@@ -52,7 +52,7 @@ Creates a new Cortex Agent Object with the specified attributes and specificatio
 | `models` | [ModelConfig](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
 | `instructions` | [AgentInstructions](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
 | `orchestration` | [OrchestrationConfig](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
-| `tools` | array of [Tool](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
+| `tools` | array of [Tool](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-tool) | List of tools available for the agent to use. Each tool includes a tool_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool_resources. |
 | `tool_resources` | map of [ToolResource](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-toolresource) | Configuration for each tool referenced in the tools array. Each key must equal the name of the corresponding tool. |
 | `thinking_effort` | string | Controls the reasoning effort used by the orchestration model. Higher effort can improve complex-task quality at the cost of latency and tokens. When omitted, the service selects the appropriate default. |
 
@@ -210,7 +210,7 @@ Updates an existing Cortex Agent with the specified attributes and specification
 | `models` | [ModelConfig](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-modelconfig) | Model configuration for the agent. Includes the orchestration model (e.g., claude-4-sonnet). If not provided, a model is automatically selected. Currently only available for the `orchestration` step. |
 | `instructions` | [AgentInstructions](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-agentinstructions) | Instructions for the agent’s behavior, including response, orchestration, and sample questions. |
 | `orchestration` | [OrchestrationConfig](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-orchestrationconfig) | Orchestration configuration, including budget constraints (e.g., seconds, tokens). |
-| `tools` | array of [Tool](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-tool) | List of tools available for the agent to use. Each tool includes a tool\_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool\_resources. |
+| `tools` | array of [Tool](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-tool) | List of tools available for the agent to use. Each tool includes a tool_spec with type, name, description, and input schema. Tools may have a corresponding configuration in tool_resources. |
 | `tool_resources` | map of [ToolResource](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-toolresource) | Configuration for each tool referenced in the tools array. Each key must equal the name of the corresponding tool. |
 | `thinking_effort` | string | Controls the reasoning effort used by the orchestration model. Higher effort can improve complex-task quality at the cost of latency and tokens. When omitted, the service selects the appropriate default. |
 
@@ -577,9 +577,9 @@ Defines a tool that can be used by the agent. Tools provide specific capabilitie
 
 ## `ToolResource`
 
-> cortex\_analyst\_text\_to\_sqlcortex\_searchgenericweb\_search
+> cortex_analyst_text_to_sqlcortex_searchgenericweb_search
 >
-> Configuration for text-to-SQL analysis tool. Provides parameters for SQL query generation and execution. Exactly one of semantic\_model\_file or semantic\_view must be provided.
+> Configuration for text-to-SQL analysis tool. Provides parameters for SQL query generation and execution. Exactly one of semantic_model_file or semantic_view must be provided.
 >
 > | Field | Type | Description |
 > | --- | --- | --- |
@@ -665,8 +665,8 @@ Specification of the tool’s type, configuration, and input requirements.
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `type` | string | The type of tool capability. Can be specialized types like ‘cortex\_analyst\_text\_to\_sql’ or ‘generic’ for general-purpose tools. |
-| `name` | string | Unique identifier for referencing this tool instance. Used to match with configuration in tool\_resources. |
+| `type` | string | The type of tool capability. Can be specialized types like ‘cortex_analyst_text_to_sql’ or ‘generic’ for general-purpose tools. |
+| `name` | string | Unique identifier for referencing this tool instance. Used to match with configuration in tool_resources. |
 | `description` | string | Description of the tool to be considered for tool use. |
 | `input_schema` | [ToolInputSchema](https://docs.snowflake.com/en/user-guide/snowflake-cortex/cortex-agents-rest-api#label-snowflake-agent-object-toolinputschema) | JSON Schema definition of the expected input parameters for this tool. This will be fed to the agent so it knows the structure it should follow for when generating the input for ToolUses. Required for generic tools to specify their input parameters. |
 

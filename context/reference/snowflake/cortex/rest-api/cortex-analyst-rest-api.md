@@ -424,7 +424,7 @@ warnings
         description: A human-readable message describing the warning
     ```
 
-response\_metadata
+response_metadata
 :   ```
     ResponseMetadata:
     type: object

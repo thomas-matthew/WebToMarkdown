@@ -40,17 +40,17 @@ The sections below describe observability for each native feature. For step-by-s
 
 Cortex Agents deployed through the Agent API or Snowflake CoWork log conversation threads, turns, and execution spans automatically into `SNOWFLAKE.LOCAL.AI_OBSERVABILITY_EVENTS`. Use the **Observability** tab or [Monitor Cortex Agent requests](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-monitor) to debug production conversations. Use the **Evaluations** tab or [Cortex Agent evaluations](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-evaluations) to score an agent on a dataset before or after deployment.
 
-Credit usage appears in [CORTEX\_AGENT\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_agent_usage_history) and [SNOWFLAKE\_INTELLIGENCE\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/snowflake_intelligence_usage_history_view). Those views include request IDs, user and agent identifiers, token counts with per-model breakdowns, and a `METADATA` column for interface and role context. Resource and shared budgets are described in [Resource budgets for Cortex Agents](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-resource-budgets) and [AI cost management and governance](https://docs.snowflake.com/user-guide/snowflake-cortex/governance-and-availability/ai-cost-management-and-governance).
+Credit usage appears in [CORTEX_AGENT_USAGE_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_agent_usage_history) and [SNOWFLAKE_INTELLIGENCE_USAGE_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/snowflake_intelligence_usage_history_view). Those views include request IDs, user and agent identifiers, token counts with per-model breakdowns, and a `METADATA` column for interface and role context. Resource and shared budgets are described in [Resource budgets for Cortex Agents](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-agents-resource-budgets) and [AI cost management and governance](https://docs.snowflake.com/user-guide/snowflake-cortex/governance-and-availability/ai-cost-management-and-governance).
 
 ### CoCo
 
 CoCo writes span records to `AI_OBSERVABILITY_EVENTS` for each prompt. All three CoCo surfaces (Snowsight, Desktop, and the CLI) are traced the same way, emit the same spans, and use the same access model. For what’s captured and how to query it, see [Observability](https://docs.snowflake.com/user-guide/cortex-code/observability).
 
-Credits, tokens, models, and request IDs for every surface are recorded in [SNOWFLAKE\_COCO\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/snowflake_coco_usage_history), whose `INTERFACE` column identifies the originating surface. Per-surface views are also available:
+Credits, tokens, models, and request IDs for every surface are recorded in [SNOWFLAKE_COCO_USAGE_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/snowflake_coco_usage_history), whose `INTERFACE` column identifies the originating surface. Per-surface views are also available:
 
-* **Snowsight**: [Observability](https://docs.snowflake.com/user-guide/cortex-code/observability) and [CORTEX\_CODE\_SNOWSIGHT\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_code_snowsight_usage_history)
-* **Desktop**: [Audit logging and observability](https://docs.snowflake.com/user-guide/cortex-code/cortex-code-desktop/security#audit-logging-and-observability) and [CORTEX\_CODE\_DESKTOP\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_code_desktop_usage_history)
-* **CLI**: [CoCo CLI](https://docs.snowflake.com/user-guide/cortex-code/cortex-code-cli) and [CORTEX\_CODE\_CLI\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_code_cli_usage_history)
+* **Snowsight**: [Observability](https://docs.snowflake.com/user-guide/cortex-code/observability) and [CORTEX_CODE_SNOWSIGHT_USAGE_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_code_snowsight_usage_history)
+* **Desktop**: [Audit logging and observability](https://docs.snowflake.com/user-guide/cortex-code/cortex-code-desktop/security#audit-logging-and-observability) and [CORTEX_CODE_DESKTOP_USAGE_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_code_desktop_usage_history)
+* **CLI**: [CoCo CLI](https://docs.snowflake.com/user-guide/cortex-code/cortex-code-cli) and [CORTEX_CODE_CLI_USAGE_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_code_cli_usage_history)
 
 See also [Cost controls for CoCo](https://docs.snowflake.com/user-guide/cortex-code/cost-controls) and [daily credit usage limits](https://docs.snowflake.com/user-guide/cortex-code/credit-usage-limit).
 
@@ -58,17 +58,17 @@ See also [Cost controls for CoCo](https://docs.snowflake.com/user-guide/cortex-c
 
 Cortex Analyst stores **direct** Analyst request and response telemetry in `SNOWFLAKE.LOCAL.CORTEX_ANALYST_REQUESTS_RAW`, not in the shared AI observability event table. When a **Cortex Agent** invokes Analyst as a tool (including agentic Analyst flows), those steps are recorded in `AI_OBSERVABILITY_EVENTS` as part of the agent trace. Administrators can query direct Analyst logs with Analyst-specific SQL or review usage in Account Usage. Batch evaluations use a separate workflow documented in [Cortex Analyst evaluations](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-analyst-evaluations).
 
-See [Administrator monitoring](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-analyst/admin-observability) for log access and [CORTEX\_ANALYST\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_analyst_usage_history) for billing data, including message counts and request timing metadata.
+See [Administrator monitoring](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-analyst/admin-observability) for log access and [CORTEX_ANALYST_USAGE_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_analyst_usage_history) for billing data, including message counts and request timing metadata.
 
 ### Cortex Search
 
-When [`REQUEST_LOGGING`](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-monitor#label-cortex-search-request-logging) is enabled on a service, Cortex Search writes one event row per request to `AI_OBSERVABILITY_EVENTS`. Query those logs with [GET\_AI\_OBSERVABILITY\_EVENTS](https://docs.snowflake.com/sql-reference/functions/get_ai_observability_events-snowflake-local) and `agent_type` `CORTEX SEARCH SERVICE` (requires `MONITOR` on the service), or follow the steps in [Monitor Cortex Search requests](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-monitor). You can also monitor serving usage and credits in Account Usage and configure resource budgets.
+When [`REQUEST_LOGGING`](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-monitor#label-cortex-search-request-logging) is enabled on a service, Cortex Search writes one event row per request to `AI_OBSERVABILITY_EVENTS`. Query those logs with [GET_AI_OBSERVABILITY_EVENTS](https://docs.snowflake.com/sql-reference/functions/get_ai_observability_events-snowflake-local) and `agent_type` `CORTEX SEARCH SERVICE` (requires `MONITOR` on the service), or follow the steps in [Monitor Cortex Search requests](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-search/cortex-search-monitor). You can also monitor serving usage and credits in Account Usage and configure resource budgets.
 
-See [CORTEX\_SEARCH\_DAILY\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_search_daily_usage_history).
+See [CORTEX_SEARCH_DAILY_USAGE_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_search_daily_usage_history).
 
 ### Built-in Cortex AI Functions
 
-Built-in functions such as `AI_COMPLETE` and `AI_CLASSIFY` do not write traces to the observability event table. Monitor credit consumption with [Managing Cortex AI Function costs with Account Usage](https://docs.snowflake.com/user-guide/snowflake-cortex/ai-func-cost-management) and [CORTEX\_AI\_FUNCTIONS\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_ai_functions_usage_history), which records function name, model, warehouse, and token counts per call. You can attach alerts and shared resource budgets as described in that topic.
+Built-in functions such as `AI_COMPLETE` and `AI_CLASSIFY` do not write traces to the observability event table. Monitor credit consumption with [Managing Cortex AI Function costs with Account Usage](https://docs.snowflake.com/user-guide/snowflake-cortex/ai-func-cost-management) and [CORTEX_AI_FUNCTIONS_USAGE_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_ai_functions_usage_history), which records function name, model, warehouse, and token counts per call. You can attach alerts and shared resource budgets as described in that topic.
 
 ### Custom AI Functions with Function Studio
 
@@ -76,7 +76,7 @@ Built-in functions such as `AI_COMPLETE` and `AI_CLASSIFY` do not write traces t
 
 ### Cortex REST API
 
-REST API inference does not write to the observability event table. Monitor token counts, credits, model name, request ID, and inference region with [CORTEX\_REST\_API\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_rest_api_usage_history).
+REST API inference does not write to the observability event table. Monitor token counts, credits, model name, request ID, and inference region with [CORTEX_REST_API_USAGE_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_rest_api_usage_history).
 
 See [Monitor usage](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-rest-api#label-cortex-rest-api-monitor-usage).
 
@@ -86,7 +86,7 @@ See [Monitor usage](https://docs.snowflake.com/user-guide/snowflake-cortex/corte
 
 Built-in functions such as `AI_COMPLETE` also support a separate **`guardrails`** request parameter ([Cortex Guard](https://docs.snowflake.com/sql-reference/functions/ai_complete-single-string#label-cortex-llm-complete-cortex-guard)) that filters potentially harmful model output. That per-request option is distinct from account-level Cortex AI Guardrails configured through `AI_SETTINGS`.
 
-Guardrail scans are recorded in [CORTEX\_AI\_GUARDRAILS\_USAGE\_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_ai_guardrails_usage_history), including scan activity, tokens, credits, and request metadata. Flagged scans also appear in Cortex Agent monitoring traces and in CoCo conversation logs.
+Guardrail scans are recorded in [CORTEX_AI_GUARDRAILS_USAGE_HISTORY](https://docs.snowflake.com/sql-reference/account-usage/cortex_ai_guardrails_usage_history), including scan activity, tokens, credits, and request metadata. Flagged scans also appear in Cortex Agent monitoring traces and in CoCo conversation logs.
 
 See [Monitor guardrail activity](https://docs.snowflake.com/user-guide/snowflake-cortex/cortex-ai-guardrails#label-cortex-ai-guardrails-monitor).
 
@@ -107,10 +107,10 @@ View External Agent traces and evaluation runs in Snowsight under **AI & ML** »
 
 Credits, tokens, and request metadata (such as model name, request ID, and user ID) for most AI features are recorded in [Account Usage](https://docs.snowflake.com/sql-reference/account-usage) views. Traces for agents, CoCo, Search, and TruLens are stored separately in `AI_OBSERVABILITY_EVENTS`. Some workloads, such as CoCo, support joining trace data to usage rows on `REQUEST_ID` to attribute cost to individual prompts.
 
-Base spend reporting on the usage views rather than on `AI_OBSERVABILITY_EVENTS`. Trace delivery is best effort, so totals computed from the event table can under-report consumption. For the authoritative sources, see [AI\_OBSERVABILITY\_EVENTS](https://docs.snowflake.com/sql-reference/local/ai_observability_events#label-ai-observability-events-billing).
+Base spend reporting on the usage views rather than on `AI_OBSERVABILITY_EVENTS`. Trace delivery is best effort, so totals computed from the event table can under-report consumption. For the authoritative sources, see [AI_OBSERVABILITY_EVENTS](https://docs.snowflake.com/sql-reference/local/ai_observability_events#label-ai-observability-events-billing).
 
 For usage views, budget types, alerts, and showback patterns by feature, see [AI cost management and governance](https://docs.snowflake.com/user-guide/snowflake-cortex/governance-and-availability/ai-cost-management-and-governance). For list prices and consumption units, see [Cortex pricing](https://docs.snowflake.com/user-guide/snowflake-cortex/pricing).
 
 ## Shared trace storage
 
-Several features write traces to `SNOWFLAKE.LOCAL.AI_OBSERVABILITY_EVENTS`. Direct Cortex Analyst requests use a separate LOCAL table instead. For what the event table stores, which features write to it, application roles, redaction behavior, and the four `GET_AI_*` table functions (including `GET_AI_OBSERVABILITY_EVENTS` with `CORTEX AGENT`, `EXTERNAL AGENT`, or `CORTEX SEARCH SERVICE`), see [AI\_OBSERVABILITY\_EVENTS table](https://docs.snowflake.com/sql-reference/local/ai_observability_events) in the LOCAL schema reference.
+Several features write traces to `SNOWFLAKE.LOCAL.AI_OBSERVABILITY_EVENTS`. Direct Cortex Analyst requests use a separate LOCAL table instead. For what the event table stores, which features write to it, application roles, redaction behavior, and the four `GET_AI_*` table functions (including `GET_AI_OBSERVABILITY_EVENTS` with `CORTEX AGENT`, `EXTERNAL AGENT`, or `CORTEX SEARCH SERVICE`), see [AI_OBSERVABILITY_EVENTS table](https://docs.snowflake.com/sql-reference/local/ai_observability_events) in the LOCAL schema reference.
