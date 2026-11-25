@@ -107,7 +107,7 @@ __init__
 | Name | Type |
 | --- | --- |
 | context | [ContextT](https://reference.langchain.com/python/langgraph/typing/ContextT) |
-| store | [BaseStore](https://reference.langchain.com/python/langchain-core/stores/BaseStore) | None |
+| store | [BaseStore](https://reference.langchain.com/python/langgraph.store/base/BaseStore) | None |
 | stream_writer | [StreamWriter](https://reference.langchain.com/python/langgraph/types/StreamWriter) |
 | heartbeat | [Callable](https://docs.python.org/3/library/typing.html#typing.Callable)[[], None] |
 | previous | [Any](https://docs.python.org/3/library/typing.html#typing.Any) |
