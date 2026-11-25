@@ -5,6 +5,7 @@ import asyncio
 import re
 import sys
 from pathlib import Path
+from typing import Any, Callable
 from urllib.parse import urljoin
 
 from bs4 import BeautifulSoup, Tag
@@ -28,6 +29,19 @@ CONTROL_LABEL: re.Pattern[str] = re.compile(
 )
 BLOCK_TAGS: list[str] = ["div", "p", "section", "ul", "ol", "table", "pre",
                          "h1", "h2", "h3", "h4", "h5", "h6"]
+
+
+def html_to_markdown(
+    html: str, code_language_callback: Callable[[Any], str | None] | None = None,
+) -> str:
+    """Convert HTML to Markdown without escaping characters.
+
+    Names like add_messages, AI_FILTER and *args stay as written; escaping
+    them (add\\_messages) would break plain-text search of the output.
+    """
+    return md(html, heading_style="ATX", escape_underscores=False,
+              escape_asterisks=False, escape_misc=False,
+              code_language_callback=code_language_callback)
 
 
 class FetchError(RuntimeError):
@@ -134,7 +148,7 @@ def extract_and_convert(html: str, url: str | None = None, selector: str = "main
     if url:
         _resolve_links(content, url)
 
-    markdown: str = md(str(content), heading_style="ATX")
+    markdown: str = html_to_markdown(str(content))
     markdown = re.sub(r"\n{3,}", "\n\n", markdown).strip()
     if not markdown:
         raise ContentError("Page content converted to empty Markdown")

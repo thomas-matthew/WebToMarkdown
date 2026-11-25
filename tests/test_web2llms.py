@@ -82,6 +82,16 @@ def test_callouts_inside_article_are_kept_but_sidebars_removed() -> None:
     assert "Scroll to top" not in markdown
 
 
+def test_identifiers_are_not_escaped_so_they_stay_searchable() -> None:
+    html = "<main><h1>add_messages</h1><p>Use AI_FILTER with *args.</p></main>"
+
+    markdown = extract_and_convert(html)
+
+    assert "# add_messages" in markdown
+    assert "Use AI_FILTER with *args." in markdown
+    assert "\\_" not in markdown and "\\*" not in markdown
+
+
 def test_card_links_move_onto_headings_and_become_absolute() -> None:
     html = """<main><h1>Graphs</h1>
       <a href="/python/langgraph/StateGraph"><span>Class</span>

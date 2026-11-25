@@ -10,9 +10,8 @@ from urllib.parse import urljoin, urlsplit
 import httpx
 from bs4 import BeautifulSoup, Tag
 from markdown import markdown  # type: ignore[import-untyped]
-from markdownify import markdownify
 
-from web2llms import fetch_page_content
+from web2llms import fetch_page_content, html_to_markdown
 
 
 def normalize_docstrings(content: str) -> str:
@@ -127,9 +126,7 @@ def clean_reference_html(html: str, native_markdown: str, url: str) -> str:
             anchor.insert_after(soup.new_string(" "))
     for image in content.find_all("img", src=True):
         image["src"] = urljoin(url, str(image["src"]))
-    result: str = markdownify(
-        str(content), heading_style="ATX", code_language_callback=code_language
-    )
+    result: str = html_to_markdown(str(content), code_language)
     return f"{result.strip()}\n\nSource: [{url}]({url})\n"
 
 
