@@ -238,6 +238,30 @@ URL_LIST=(
     "https://docs.snowflake.com/en/developer-guide/cortex-ai-cookbook/diagnose-agent-requests | docs/snowflake/cortex/cookbook/diagnose-agent-requests.md"
     "https://docs.snowflake.com/en/developer-guide/cortex-ai-cookbook/ai-usage-cost-attribution | docs/snowflake/cortex/cookbook/ai-usage-cost-attribution.md"
 
+    # === DOCS / REFERENCE: Snowflake Connector for Python ===
+    "https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-install | docs/snowflake/python-connector/install.md"
+    "https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-connect | docs/snowflake/python-connector/connect.md"
+    "https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-example | docs/snowflake/python-connector/usage.md"
+    "https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-pandas | docs/snowflake/python-connector/pandas.md"
+    "https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-asyncio | docs/snowflake/python-connector/asyncio.md"
+    "https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-distributed-fetch | docs/snowflake/python-connector/distributed-fetch.md"
+    "https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-upgrade | docs/snowflake/python-connector/upgrade-to-5x.md"
+    "https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-dependencies | docs/snowflake/python-connector/dependency-policy.md"
+    "https://docs.snowflake.com/en/developer-guide/python-connector/python-connector-api | reference/snowflake/python-connector/api.md"
+
+    # === DOCS / REFERENCE: Snowflake SQL API (REST API for running SQL) ===
+    "https://docs.snowflake.com/en/developer-guide/sql-api/intro | docs/snowflake/sql-api/intro.md"
+    "https://docs.snowflake.com/en/developer-guide/sql-api/about-endpoints | docs/snowflake/sql-api/endpoints.md"
+    "https://docs.snowflake.com/en/developer-guide/sql-api/authenticating | docs/snowflake/sql-api/authenticating.md"
+    "https://docs.snowflake.com/en/developer-guide/sql-api/submitting-requests | docs/snowflake/sql-api/submitting-requests.md"
+    "https://docs.snowflake.com/en/developer-guide/sql-api/handling-responses | docs/snowflake/sql-api/handling-responses.md"
+    "https://docs.snowflake.com/en/developer-guide/sql-api/submitting-multiple-statements | docs/snowflake/sql-api/multiple-statements.md"
+    "https://docs.snowflake.com/en/developer-guide/sql-api/using-stored-procedures | docs/snowflake/sql-api/stored-procedures.md"
+    "https://docs.snowflake.com/en/developer-guide/sql-api/using-transactions | docs/snowflake/sql-api/transactions.md"
+    "https://docs.snowflake.com/en/developer-guide/sql-api/cancelling-requests | docs/snowflake/sql-api/cancelling-requests.md"
+    "https://docs.snowflake.com/en/developer-guide/sql-api/handling-errors | docs/snowflake/sql-api/handling-errors.md"
+    "https://docs.snowflake.com/en/developer-guide/sql-api/reference | reference/snowflake/sql-api/reference.md"
+
     # === DOCS: OpenAI Core concepts (direct .md) ===
     "https://developers.openai.com/api/docs/guides/text.md | docs/openai/core-concepts/text.md"
     "https://developers.openai.com/api/docs/guides/code-generation.md | docs/openai/core-concepts/code-generation.md"
